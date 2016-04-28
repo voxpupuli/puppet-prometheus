@@ -18,7 +18,7 @@ class prometheus::alert_manager::install
     'url': {
       include staging
       $staging_file = "alert_manager-${prometheus::alert_manager::version}.${prometheus::alert_manager::download_extension}"
-      $binary = "${::staging::path}/alertmanager-${::prometheus::alert_manager::version}.${::prometheus::os}-${::prometheus::arch}"
+      $binary = "${::staging::path}/alertmanager-${::prometheus::alert_manager::version}.${::prometheus::os}-${::prometheus::arch}/alertmanager"
       staging::file { $staging_file:
         source => $prometheus::alert_manager::real_download_url,
       } ->
