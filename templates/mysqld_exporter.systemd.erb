@@ -1,0 +1,17 @@
+[Unit]
+Description=Prometheus exporter for MySQL server metrics.
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+User=<%= scope.lookupvar('prometheus::mysql_exporter::user') %>
+Group=<%= scope.lookupvar('prometheus::mysql_exporter::group') %>
+ExecStart=<%= scope.lookupvar('prometheus::mysql_exporter::bin_dir') %>/mysql_exporter \
+  -collect.<%= scope.lookupvar('prometheus::mysql_exporter::collectors').join(' -collect.') %> <%= scope.lookupvar('prometheus::mysql_exporter::extra_options') %>
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

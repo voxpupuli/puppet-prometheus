@@ -1,0 +1,31 @@
+# Prometheus Node Exporter (Upstart unit)
+description "Prometheus exporter for MySQL server metrics."
+start on runlevel [2345]
+stop on runlevel [06]
+
+env NODE_EXPORTER=<%= scope.lookupvar('prometheus::mysql_exporter::bin_dir') %>/mysql_exporter
+env COLLECTORS=<%= scope.lookupvar('prometheus::mysql_exporter::collectors').join(' -collect.') %>
+env USER=<%= scope.lookupvar('prometheus::mysql_exporter::user') %>
+env GROUP=<%= scope.lookupvar('prometheus::mysql_exporter::group') %>
+env DEFAULTS=/etc/default/mysql_exporter
+env RUNDIR=/var/run/mysql_exporter
+env PID_FILE=/var/run/mysql_exporter/mysql_exporter.pid
+pre-start script
+  [ -e $DEFAULTS ] && . $DEFAULTS
+
+  mkdir -p $RUNDIR           || true
+  chmod 0750 $RUNDIR         || true
+  chown $USER:$GROUP $RUNDIR || true
+end script
+
+script
+    # read settings like GOMAXPROCS from "/etc/default/mysql_exporter", if available.
+    [ -e $DEFAULTS ] && . $DEFAULTS
+
+    export GOMAXPROCS=${GOMAXPROCS:-2}
+    exec start-stop-daemon -c $USER -g $GROUP -p $PID_FILE -x $NODE_EXPORTER -S -- -collect.$COLLECTORS <%= scope.lookupvar('prometheus::mysql_exporter::extra_options') %>
+end script
+
+respawn
+respawn limit 10 10
+kill timeout 10

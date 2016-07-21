@@ -48,6 +48,15 @@ or simply:
 include ::prometheus::node_exporter
 ```
 
+On the mysql nodes:
+```puppet
+class { '::prometheus::mysqld_exporter':
+  collectors => ['binlog_size','info_schema.processlist']
+}
+```
+
+
+
 For more information regarding class parameters please take a look at class docstring.
 
 ## Limitations/Known issues
