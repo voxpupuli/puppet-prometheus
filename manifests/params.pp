@@ -20,6 +20,13 @@ class prometheus::params {
   $node_exporter_package_ensure = 'latest'
   $node_exporter_package_name = 'node_exporter'
   $node_exporter_extra_groups = []
+  $mysqld_exporter_download_url_base = 'https://github.com/prometheus/mysqld_exporter/releases'
+  $mysqld_exporter_version = '0.8.1'
+  $mysqld_exporter_download_extension = 'tar.gz'
+  $mysqld_exporter_collectors = ['bin_log_size','info_schema.processlist']
+  $mysqld_exporter_package_ensure = 'latest'
+  $mysqld_exporter_package_name = 'mysqld_exporter'
+  $mysqld_exporter_extra_groups = []
   $alert_manager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
   $alert_manager_config_file = "${config_dir}/alertmanager.yaml"
   $alert_manager_global = { 'smtp_smarthost' =>'localhost:25', 'smtp_from'=>'alertmanager@localhost' }
