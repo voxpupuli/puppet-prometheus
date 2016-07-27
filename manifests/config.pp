@@ -91,5 +91,9 @@ class prometheus::config(
     mode    => $prometheus::config_mode,
     content => template('prometheus/prometheus.yaml.erb'),
   }
+  file {"${prometheus::config_dir}/prometheus.yml":
+    ensure => 'link',
+    target => "${prometheus::config_dir}/prometheus.yaml",
+  }
 
 }
