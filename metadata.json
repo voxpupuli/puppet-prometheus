@@ -19,5 +19,5 @@
   "source": "https://github.com/brutus333/puppet-prometheus",
   "summary": "Prometheus Puppet module",
   "tags": [],
-  "version": "0.1.10"
+  "version": "0.1.13"
 }

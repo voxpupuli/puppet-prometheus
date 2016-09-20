@@ -99,7 +99,7 @@ class prometheus::alert_manager (
   $receivers            = $::prometheus::params::alert_manager_receivers,
   $templates            = $::prometheus::params::alert_manager_templates,
   $inhibit_rules        = $::prometheus::params::alert_manager_inhibit_rules,
-  $extra_options        = undef,
+  $extra_options        = '',
   $config_mode          = $::prometheus::params::config_mode,
   $service_enable       = true,
   $service_ensure       = 'running',

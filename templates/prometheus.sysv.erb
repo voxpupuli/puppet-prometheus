@@ -54,6 +54,8 @@ start() {
             --pidfile="$PID_FILE" \
             "$DAEMON" -log.format logger:stdout -config.file="$CONFIG" \
             -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> \
+            -web.console.templates=<%= scope.lookupvar('prometheus::shared_dir') %>/consoles \
+            -web.console.libraries=<%= scope.lookupvar('prometheus::shared_dir') %>/console_libraries \
             <%= scope.lookupvar('prometheus::extra_options') %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile

@@ -94,7 +94,7 @@ class prometheus::node_exporter (
   $package_name         = $::prometheus::params::node_exporter_package_name,
   $package_ensure       = $::prometheus::params::node_exporter_package_ensure,
   $collectors           = $::prometheus::params::node_exporter_collectors,
-  $extra_options        = undef,
+  $extra_options        = '',
   $config_mode          = $::prometheus::params::config_mode,
   $service_enable       = true,
   $service_ensure       = 'running',

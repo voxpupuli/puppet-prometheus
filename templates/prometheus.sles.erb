@@ -36,7 +36,11 @@ case "$1" in
         echo -n "Starting prometheus "
         ## Start daemon with startproc(8). If this fails
         ## the return value is set appropriately by startproc.
-        startproc $PROMETHEUS_BIN -config.file="$CONFIG_FILE" -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> <%= scope.lookupvar('prometheus::extra_options') %> >> "$LOG_FILE"
+        startproc $PROMETHEUS_BIN -config.file="$CONFIG_FILE" \
+          -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> \
+          -web.console.templates=<%= scope.lookupvar('prometheus::shared_dir') %>/consoles \
+          -web.console.libraries=<%= scope.lookupvar('prometheus::shared_dir') %>/console_libraries \
+          <%= scope.lookupvar('prometheus::extra_options') %> >> "$LOG_FILE"
 
         # Remember status and be verbose
         rc_status -v

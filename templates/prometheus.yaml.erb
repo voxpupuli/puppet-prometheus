@@ -1,6 +1,6 @@
-<% require 'yaml' %>
-<% global_config = scope.lookupvar('::prometheus::global_config') %>
-<% rule_files = scope.lookupvar('::prometheus::rule_files') %>
-<% scrape_configs = scope.lookupvar('::prometheus::scrape_configs') %>
-<% full_config = { 'global'=>global_config, 'rule_files'=>rule_files, 'scrape_configs'=>scrape_configs }%>
-<%= full_config.to_yaml %>
+<% require 'yaml' -%>
+<% global_config = scope.lookupvar('::prometheus::global_config') -%>
+<% rule_files = scope.lookupvar('::prometheus::rule_files') -%>
+<% scrape_configs = scope.lookupvar('::prometheus::scrape_configs') -%>
+<% full_config = { 'global'=>global_config, 'rule_files'=>rule_files, 'scrape_configs'=>scrape_configs } -%>
+<%= full_config.to_yaml -%>

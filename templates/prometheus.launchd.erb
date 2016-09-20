@@ -20,6 +20,10 @@
             <string><%= scope.lookupvar('prometheus::config_dir')+'/prometheus.yaml' %></string>
             <string>-storage.local.path=</string>
             <string><%= scope.lookupvar('prometheus::localstorage')%></string>
+            <string>-web.console.templates=</string>
+            <string><%= scope.lookupvar('prometheus::shared_dir') %>/consoles</string>
+            <string>-web.console.libraries=</string>
+            <string><%= scope.lookupvar('prometheus::shared_dir') %>/console_libraries</string>
 <% require 'shellwords' %>
 <% for extra_option in Shellwords.split(scope.lookupvar('prometheus::extra_options')) %>
             <string><%= extra_option %></string>

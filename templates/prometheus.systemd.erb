@@ -8,7 +8,10 @@ User=<%= scope.lookupvar('prometheus::user') %>
 Group=<%= scope.lookupvar('prometheus::group') %>
 ExecStart=<%= scope.lookupvar('prometheus::bin_dir') %>/prometheus \
   -config.file=<%= scope.lookupvar('prometheus::config_dir')+'/prometheus.yaml' %>\
-  -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> <%= scope.lookupvar('prometheus::extra_options') %>
+  -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> \
+  -web.console.templates=<%= scope.lookupvar('prometheus::shared_dir') %>/consoles \
+  -web.console.libraries=<%= scope.lookupvar('prometheus::shared_dir') %>/console_libraries \
+  <%= scope.lookupvar('prometheus::extra_options') %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always

@@ -35,6 +35,19 @@ class prometheus::install
           ensure => link,
           notify => $::prometheus::notify_service,
           target => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/prometheus";
+        $::prometheus::shared_dir:
+          ensure => directory,
+          owner  => $::prometheus::user,
+          group  => $::prometheus::group,
+          mode   => '0755';
+        "${::prometheus::shared_dir}/consoles":
+          ensure => link,
+          notify => $::prometheus::notify_service,
+          target => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/consoles";
+        "${::prometheus::shared_dir}/console_libraries":
+          ensure => link,
+          notify => $::prometheus::notify_service,
+          target => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/console_libraries";
       }
     }
     'package': {

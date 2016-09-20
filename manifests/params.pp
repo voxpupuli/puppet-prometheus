@@ -7,6 +7,7 @@ class prometheus::params {
   $bin_dir = '/usr/local/bin'
   $config_dir = '/etc/prometheus'
   $localstorage = '/var/lib/prometheus'
+  $shared_dir = '/usr/local/share/prometheus'
   $install_method = 'url'
   $package_ensure = 'latest'
   $package_name = 'prometheus'
@@ -16,7 +17,7 @@ class prometheus::params {
   $node_exporter_download_url_base = 'https://github.com/prometheus/node_exporter/releases'
   $node_exporter_version = '0.12.0'
   $node_exporter_download_extension = 'tar.gz'
-  $node_exporter_collectors = ['diskstats','filesystem','loadavg','meminfo','netdev','stat,time']
+  $node_exporter_collectors = ['diskstats','filesystem','loadavg','meminfo','netdev','stat','time']
   $node_exporter_package_ensure = 'latest'
   $node_exporter_package_name = 'node_exporter'
   $node_exporter_extra_groups = []

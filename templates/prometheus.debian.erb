@@ -18,7 +18,11 @@ DESC="Prometheus monitoring framework"
 NAME=prometheus
 DAEMON=<%= scope.lookupvar('prometheus::bin_dir') %>/$NAME
 PIDFILE=/var/run/$NAME/$NAME.pid
-DAEMON_ARGS=" -config.file=<%= scope.lookupvar('prometheus::config_dir')+'/prometheus.yaml' %> -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%> <%= scope.lookupvar('prometheus::extra_options') %>"
+DAEMON_ARGS=" -config.file=<%= scope.lookupvar('prometheus::config_dir')+'/prometheus.yaml' %>
+              -storage.local.path=<%= scope.lookupvar('prometheus::localstorage')%>
+              -web.console.templates=<%= scope.lookupvar('prometheus::shared_dir') %>/consoles
+              -web.console.libraries=<%= scope.lookupvar('prometheus::shared_dir') %>/console_libraries
+              <%= scope.lookupvar('prometheus::extra_options') %>"
 USER=<%= scope.lookupvar('prometheus::user') %>
 SCRIPTNAME=/etc/init.d/$NAME
 
