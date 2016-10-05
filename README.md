@@ -39,10 +39,21 @@ On the server (for prometheus version >= 1.0.0):
 
 ```puppet
 class { 'prometheus':
-    version => '1.0.0',
+    version        => '1.0.0',
     scrape_configs => [ {'job_name'=>'prometheus','scrape_interval'=> '30s','scrape_timeout'=>'30s','static_configs'=> [{'targets'=>['localhost:9090'], 'labels'=> { 'alias'=>'Prometheus'}}]}],
+    extra_options  => '-alertmanager.url http://localhost:9093 -web.console.templates=/opt/staging/prometheus-1.0.0.linux-amd64/consoles -web.console.libraries=/opt/staging/prometheus-1.0.0.linux-amd64/console_libraries',
+    localstorage   => '/prometheus/prometheus',
+}
+```
+
+If you want to provide your own prometheus.yml config file, use custom_config which accepts string.
+
+```puppet
+class { 'prometheus':
+    version       => '1.0.0',
+    custom_config => template('path/to/template.yml')
     extra_options => '-alertmanager.url http://localhost:9093 -web.console.templates=/opt/staging/prometheus-1.0.0.linux-amd64/consoles -web.console.libraries=/opt/staging/prometheus-1.0.0.linux-amd64/console_libraries',
-    localstorage => '/prometheus/prometheus',
+    localstorage  => '/prometheus/prometheus',
 }
 ```
 
@@ -63,8 +74,8 @@ or:
 
 ```puppet
 class { 'prometheus::node_exporter':
-    version => '0.12.0',
-    collectors => ['diskstats','filesystem','loadavg','meminfo','logind','netdev','netstat','stat','time','interrupts','ntp','tcpstat'],
+    version       => '0.12.0',
+    collectors    => ['diskstats','filesystem','loadavg','meminfo','logind','netdev','netstat','stat','time','interrupts','ntp','tcpstat'],
     extra_options => '-collector.ntp.server ntp1.orange.intra',
 }
 ```
