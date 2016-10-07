@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>             <string>io.push_gateway.daemon</string>
+    <key>UserName</key>          <string><%= scope.lookupvar('prometheus::push_gateway::user') %></string>
+    <key>GroupName</key>         <string><%= scope.lookupvar('prometheus::push_gateway::group') %></string>
+<% if scope.lookupvar('prometheus::push_gateway::service_enable') %>
+    <key>Disabled</key>          <false/>
+<% else %>
+    <key>Disabled></key>         <true/>
+<% end %>
+    <key>RunAtLoad</key>         <true/>
+    <key>KeepAlive</key>         <true/>
+    <key>ProgramArguments</key>
+        <array>
+            <string><%= scope.lookupvar('prometheus::push_gateway::bin_dir') %>/prometheus</string>
+            <string>agent</string>
+<% require 'shellwords' %>
+<% for cmd_option in Shellwords.split(scope.lookupvar('prometheus::push_gateway::cmd_options')) %>
+<% for extra_option in Shellwords.split(scope.lookupvar('prometheus::push_gateway::extra_options')) %>
+            <string><%= cmd_option %> <%= extra_option %></string>
+<% end %>
+        </array>
+</dict>
+</plist>

@@ -33,6 +33,18 @@ class prometheus::params {
   $alert_manager_download_extension = 'tar.gz'
   $alert_manager_package_ensure = 'latest'
   $alert_manager_package_name = 'alertmanager'
+  $push_gateway_version = '0.3.0'
+  $push_gateway_download_url_base = 'https://github.com/prometheus/pushgateway/releases'
+  $push_gateway_download_extension = 'tar.gz'
+  $push_gateway_package_name = 'pushgateway'
+  $push_gateway_package_ensure = 'latest'
+  $push_gateway_log_format = 'logger:stderr'
+  $push_gateway_log_level = 'info'
+  $push_gateway_storage_path=''
+  $push_gateway_persistence_file = ''
+  $push_gateway_persistence_interval = '5m0s'
+  $push_gateway_listen_address = ':9091'
+  $push_gateway_telemetry_path = '/metrics'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
   $rule_files = [ "${config_dir}/alert.rules" ]
