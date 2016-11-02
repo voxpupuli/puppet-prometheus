@@ -21,6 +21,7 @@ This module automates the install and configuration of Prometheus monitoring too
 * Optionally installs a user to run it under
 * Installs a configuration file for prometheus daemon (/etc/prometheus/prometheus.yaml) or for alertmanager (/etc/prometheus/alert.rules)
 * Manages the services via upstart, sysv, or systemd
+* Optionally creates alert rules
 
 ## Usage
 
@@ -49,6 +50,32 @@ class { 'prometheus':
 or simply:
 ```puppet
 include ::prometheus
+```
+
+To add alert rules, add the following to the class prometheus:
+```puppet
+    alerts => [{ 'name' => 'InstanceDown', 'condition' => 'up == 0', 'timeduration' => '5m', labels => [{ 'name' => 'severity', 'content' => 'page'}], 'annotations' => [{ 'name' => 'summary', content => 'Instance {{ $labels.instance }} down'}, {'name' => 'description', content => '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.' }]}]
+```
+
+or in hiera:
+```yaml
+alertrules:
+    -
+        name: 'InstanceDown'
+        condition:  'up == 0'
+        timeduration: '5m'
+        labels:
+            -
+                name: 'severity'
+                content: 'critical'
+        annotations:
+            -
+                name: 'summary'
+                content: 'Instance {{ $labels.instance }} down'
+            -
+                name: 'description'
+                content: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+
 ```
 
 On the monitored nodes:
