@@ -166,9 +166,9 @@ class prometheus (
     notify         => $notify_service,
   } ->
   class { '::prometheus::alerts':
-    location       => $config_dir,
-    alerts         => $alerts,
-    notify         => $notify_service,
+    location => $config_dir,
+    alerts   => $alerts,
+    notify   => $notify_service,
   } ->
   class { '::prometheus::run_service': } ->
   anchor {'prometheus_last': }
