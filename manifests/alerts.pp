@@ -10,13 +10,13 @@
 #
 class prometheus::alerts (
   String $location,
-  String $alertfile_name  = "alert.rules",
-  Array  $alerts
+  Array  $alerts,
+  String $alertfile_name  = 'alert.rules'
 ) inherits prometheus::params {
 
     if $alerts != [] {
-        file{ "$location/$alertfile_name":
-                ensure  => "file",
+        file{ "${location}/${alertfile_name}":
+                ensure  => 'file',
                 owner   => $prometheus::user,
                 group   => $prometheus::group,
                 content => epp("${module_name}/alerts.epp"),
