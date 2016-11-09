@@ -6,7 +6,6 @@ ALERT <%= $alert['name'] %>
     <% $alert['labels'].each |$label| { -%>
         <%= $label['name'] %> = "<%= $label['content'] %>",
     <% } -%>
-        name="{{ .Labels.name }}"
     }
     ANNOTATIONS {
     <% $alert['annotations'].each |$annotation| { -%>
