@@ -42,7 +42,7 @@ class prometheus::params {
     'scrape_interval' => '10s',
     'scrape_timeout'  => '10s',
     'file_sd_configs' => [ { 'files' => ['/etc/prometheus/scrape_config.yaml'] } ],
-    'static_configs'  => [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ] 
+    'static_configs'  => [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ]
   }]
 
 
