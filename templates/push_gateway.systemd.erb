@@ -1,0 +1,17 @@
+[Unit]
+Description=The pushgateway handles provides an intermediary for ephemeral metrics.
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+User=<%= scope.lookupvar('prometheus::push_gateway::user') %>
+Group=<%= scope.lookupvar('prometheus::push_gateway::group') %>
+ExecStart=<%= scope.lookupvar('prometheus::push_gateway::bin_dir') %>/push_gateway \
+  <%= scope.lookupvar('prometheus::push_gateway::cmd_options') %> <%= scope.lookupvar('prometheus::push_gateway::extra_options') %>
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

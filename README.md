@@ -16,7 +16,7 @@ This module automates the install and configuration of Prometheus monitoring too
 
 ### What This Module Affects
 
-* Installs the prometheus daemon, alertmanager or exporters(via url or package)
+* Installs the prometheus daemon, alertmanager, pushgateway or exporters(via url or package)
   * The package method was implemented, but currently there isn't any package for prometheus
 * Optionally installs a user to run it under
 * Installs a configuration file for prometheus daemon (/etc/prometheus/prometheus.yaml) or for alertmanager (/etc/prometheus/alert.rules)
