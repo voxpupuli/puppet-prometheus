@@ -4,12 +4,14 @@ class prometheus::config(
   $global_config,
   $rule_files,
   $scrape_configs,
+  $custom_config,
+  $init_style,
   $purge = true,
 ) {
 
-  if $prometheus::init_style {
+  if $init_style {
 
-    case $prometheus::init_style {
+    case $init_style {
       'upstart' : {
         file { '/etc/init/prometheus.conf':
           mode    => '0444',
@@ -76,20 +78,38 @@ class prometheus::config(
     }
   }
 
-  file { $prometheus::config_dir:
-    ensure  => 'directory',
-    owner   => $prometheus::user,
-    group   => $prometheus::group,
-    purge   => $purge,
-    recurse => $purge,
-  } ->
-  file { 'prometheus.yaml':
-    ensure  => present,
-    path    => "${prometheus::config_dir}/prometheus.yaml",
-    owner   => $prometheus::user,
-    group   => $prometheus::group,
-    mode    => $prometheus::config_mode,
-    content => template('prometheus/prometheus.yaml.erb'),
-  }
+  if $custom_config {
+    file { $prometheus::config_dir:
+      ensure  => 'directory',
+      owner   => $prometheus::user,
+      group   => $prometheus::group,
+      purge   => $purge,
+      recurse => $purge,
+    } ->
+    file { 'prometheus.yaml':
+      ensure  => present,
+      path    => "${prometheus::config_dir}/prometheus.yaml",
+      owner   => $prometheus::user,
+      group   => $prometheus::group,
+      mode    => $prometheus::config_mode,
+      content => $custom_config,
+    }
+  } else {
 
+    file { $prometheus::config_dir:
+      ensure  => 'directory',
+      owner   => $prometheus::user,
+      group   => $prometheus::group,
+      purge   => $purge,
+      recurse => $purge,
+    } ->
+    file { 'prometheus.yaml':
+      ensure  => present,
+      path    => "${prometheus::config_dir}/prometheus.yaml",
+      owner   => $prometheus::user,
+      group   => $prometheus::group,
+      mode    => $prometheus::config_mode,
+      content => template('prometheus/prometheus.yaml.erb'),
+    }
+  }
 }
