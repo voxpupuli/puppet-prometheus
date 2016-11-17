@@ -1,25 +1,25 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          node_exporter
+# Provides:          statsd_exporter
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      S 0 1 6
 # Short-Description: Prometheus node exporter
 # Description:       Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
-#                    
+#
 ### END INIT INFO
 
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/usr/sbin:/usr/bin:/sbin:/bin:<%= scope.lookupvar('prometheus::node_exporter::bin_dir') %>
+PATH=/usr/sbin:/usr/bin:/sbin:/bin:<%= scope.lookupvar('prometheus::statsd_exporter::bin_dir') %>
 DESC="Prometheus node exporter"
-NAME=node_exporter
-DAEMON=<%= scope.lookupvar('prometheus::node_exporter::bin_dir') %>/$NAME
+NAME=statsd_exporter
+DAEMON=<%= scope.lookupvar('prometheus::statsd_exporter::bin_dir') %>/$NAME
 PIDFILE=/var/run/$NAME/$NAME.pid
-DAEMON_ARGS=" -collectors.enabled=<%= scope.lookupvar('prometheus::node_exporter::collectors').join(',') %> <%= scope.lookupvar('prometheus::node_exporter::extra_options') %>"
-USER=<%= scope.lookupvar('prometheus::node_exporter::user') %>
+DAEMON_ARGS=" -statsd.mapping-config=<%= scope.lookupvar('prometheus::statsd_exporter::mapping_config_path') %> <%= scope.lookupvar('prometheus::statsd_exporter::extra_options') %>"
+USER=<%= scope.lookupvar('prometheus::statsd_exporter::user') %>
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed

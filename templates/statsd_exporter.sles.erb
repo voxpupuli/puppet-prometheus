@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-#       /etc/rc.d/init.d/node_exporter
+#       /etc/rc.d/init.d/statsd_exporter
 #
 #       Daemonize the prometheus node exporter.
 #
 ### BEGIN INIT INFO
-# Provides:          node_exporter
+# Provides:          statsd_exporter
 # Required-Start:    network
 # Should-Start:      $null
 # Required-Stop:     $null
@@ -20,12 +20,12 @@
 
 rc_reset
 
-NODE_EXPORTER_BIN=<%= scope.lookupvar('prometheus::node_exporter::bin_dir') %>/node_exporter
-LOG_FILE=/var/log/node_exporter
+statsd_exporter_BIN=<%= scope.lookupvar('prometheus::statsd_exporter::bin_dir') %>/statsd_exporter
+LOG_FILE=/var/log/statsd_exporter
 
 
 # read settings like GOMAXPROCS from "/etc/sysconfig/prometheus"
-[ -e /etc/sysconfig/node_exporter ] && . /etc/sysconfig/node_exporter
+[ -e /etc/sysconfig/statsd_exporter ] && . /etc/sysconfig/statsd_exporter
 
 export GOMAXPROCS=${GOMAXPROCS:-2}
 
@@ -35,7 +35,7 @@ case "$1" in
         echo -n "Starting Prometheus node exporter"
         ## Start daemon with startproc(8). If this fails
         ## the return value is set appropriately by startproc.
-        startproc $NODE_EXPORTER_BIN -collectors.enabled=<%= scope.lookupvar('prometheus::node_exporter::collectors').join(',') %> <%= scope.lookupvar('prometheus::node_exporter::extra_options') %> >> "$LOG_FILE"
+        startproc $statsd_exporter_BIN -statsd.mapping-config=<%= scope.lookupvar('prometheus::statsd_exporter::mapping_config_path') %> <%= scope.lookupvar('prometheus::statsd_exporter::extra_options') %> >> "$LOG_FILE"
 
         # Remember status and be verbose
         rc_status -v
@@ -45,7 +45,7 @@ case "$1" in
         ## Stop daemon with killproc(8) and if this fails
         ## killproc sets the return value according to LSB.
 
-        killproc -TERM $NODE_EXPORTER_BIN
+        killproc -TERM $statsd_exporter_BIN
 
         # Remember status and be verbose
         rc_status -v
@@ -62,7 +62,7 @@ case "$1" in
     reload)
         # If it supports signaling:
         echo -n "Reload service prometheus "
-        killproc -HUP $NODE_EXPORTER_BIN
+        killproc -HUP $statsd_exporter_BIN
         #touch /var/run/prometheus.pid
         rc_status -v
 
@@ -84,7 +84,7 @@ case "$1" in
         # 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 
         # NOTE: checkproc returns LSB compliant status values.
-        checkproc $NODE_EXPORTER_BIN
+        checkproc $statsd_exporter_BIN
         # NOTE: rc_status knows that we called this init script with
         # "status" option and adapts its messages accordingly.
         rc_status -v

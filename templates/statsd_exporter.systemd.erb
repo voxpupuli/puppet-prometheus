@@ -4,10 +4,10 @@ Wants=basic.target
 After=basic.target network.target
 
 [Service]
-User=<%= scope.lookupvar('prometheus::node_exporter::user') %>
-Group=<%= scope.lookupvar('prometheus::node_exporter::group') %>
-ExecStart=<%= scope.lookupvar('prometheus::node_exporter::bin_dir') %>/node_exporter \
-  -collectors.enabled=<%= scope.lookupvar('prometheus::node_exporter::collectors').join(',') %> <%= scope.lookupvar('prometheus::node_exporter::extra_options') %>
+User=<%= scope.lookupvar('prometheus::statsd_exporter::user') %>
+Group=<%= scope.lookupvar('prometheus::statsd_exporter::group') %>
+ExecStart=<%= scope.lookupvar('prometheus::statsd_exporter::bin_dir') %>/statsd_exporter \
+  -statsd.mapping-config=<%= scope.lookupvar('prometheus::statsd_exporter::mapping_config_path') %> <%= scope.lookupvar('prometheus::statsd_exporter::extra_options') %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
