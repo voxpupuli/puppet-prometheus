@@ -21,6 +21,15 @@ class prometheus::params {
   $node_exporter_package_ensure = 'latest'
   $node_exporter_package_name = 'node_exporter'
   $node_exporter_extra_groups = []
+  $statsd_exporter_download_url_base = 'https://github.com/prometheus/statsd_exporter/releases'
+  $statsd_exporter_version = '0.3.0'
+  $statsd_exporter_download_extension = 'tar.gz'
+  $statsd_exporter_package_ensure = 'latest'
+  $statsd_exporter_package_name = 'statsd_exporter'
+  $statsd_exporter_extra_groups = []
+  $statsd_exporter_mapping_config_path = '/etc/statsd_mappings.conf'
+  $statsd_exporter_add_suffix = true
+  $statsd_exporter_mapping_source = 'puppet:///modules/prometheus/statsd_mappings.conf'
   $alert_manager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
   $alert_manager_config_dir = '/etc/alert_manager'
   $alert_manager_config_file = "${alert_manager_config_dir}/alertmanager.yaml"
