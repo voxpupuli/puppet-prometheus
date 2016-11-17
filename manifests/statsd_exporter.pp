@@ -19,10 +19,14 @@
 #  [*mapping_config_path*]
 #  The path to the mapping config
 #
-#  [*mapping_source*]
-#  The file source to use for the metric configuration. In the form:
-#  'puppet:///modules/...'
-# 
+#  [*statsd_maps*]
+#  The hiera array for mappings:
+#    - map: 'test.dispatcher.*.*.*'
+#      name: 'dispatcher_events_total'
+#      labels:
+#        processor: '$2'
+#        action: '$1'
+#
 #  [*group*]
 #  Group under which statsd_exporter is running
 #
@@ -89,7 +93,7 @@ class prometheus::statsd_exporter (
   $manage_group         = true,
   $purge_config_dir     = true,
   $mapping_config_path  = $::prometheus::params::statsd_exporter_mapping_config_path,
-  $mapping_source       = $::prometheus::params::statsd_exporter_mapping_source,
+  $statsd_maps          = $::prometheus::params::statsd_exporter_maps,
   $group                = $::prometheus::params::group,
   $bin_dir              = $::prometheus::params::bin_dir,
   $arch                 = $::prometheus::params::arch,

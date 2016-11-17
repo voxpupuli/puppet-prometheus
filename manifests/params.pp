@@ -28,8 +28,19 @@ class prometheus::params {
   $statsd_exporter_package_name = 'statsd_exporter'
   $statsd_exporter_extra_groups = []
   $statsd_exporter_mapping_config_path = '/etc/statsd_mappings.conf'
-  $statsd_exporter_add_suffix = true
-  $statsd_exporter_mapping_source = 'puppet:///modules/prometheus/statsd_mappings.conf'
+  $statsd_exporter_maps = [
+    {
+      'map' => 'test.dispatcher.*.*.*',
+      'name' =>'dispatcher_events_total',
+      'labels' =>
+        {
+          'processor'=>'$1',
+          'action'=>'$2',
+          'outcome'=>'$3',
+          'job'=>'test_dispatcher',
+        },
+    },
+  ]
   $alert_manager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
   $alert_manager_config_dir = '/etc/alert_manager'
   $alert_manager_config_file = "${alert_manager_config_dir}/alertmanager.yaml"

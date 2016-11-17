@@ -1,0 +1,8 @@
+<% @statsd_maps.each do |metric| -%>
+<%= metric['map'] %>
+name="<%= metric['name'] %>"
+<% metric['labels'].each do |key, value| -%>
+<%= key %>="<%= value %>"
+<% end -%>
+
+<% end -%>

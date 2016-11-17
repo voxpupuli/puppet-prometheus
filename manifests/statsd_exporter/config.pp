@@ -3,12 +3,17 @@
 class prometheus::statsd_exporter::config(
   $purge = true,
 ) {
-  
+
+  $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps')
+  $statsd_maps = join($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
+
   file { $prometheus::statsd_exporter::mapping_config_path:
-    mode   => '0644',
-    owner  => $prometheus::statsd_exporter::user,
-    group  => $prometheus::statsd_exporter::group,
-    source => $prometheus::statsd_exporter::mapping_source,
+    ensure  => 'file',
+    mode    => '0644',
+    owner   => $prometheus::statsd_exporter::user,
+    group   => $prometheus::statsd_exporter::group,
+    content => template('prometheus/statsd_mapping.conf.erb'),
+    notify  => Service['statsd_exporter'],
   }
 
   if $prometheus::statsd_exporter::init_style {
