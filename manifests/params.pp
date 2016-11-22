@@ -4,15 +4,15 @@ class prometheus::params {
   $user = 'prometheus'
   $group = 'prometheus'
   $extra_groups = []
-  $bin_dir = '/usr/local/bin'
+  $bin_dir = '/usr/bin'
   $config_dir = '/etc/prometheus'
   $localstorage = '/var/lib/prometheus'
-  $shared_dir = '/usr/local/share/prometheus'
-  $install_method = 'url'
+  $shared_dir = '/usr/share/prometheus'
+  $install_method = 'package'
   $package_ensure = 'latest'
-  $package_name = 'prometheus'
+  $package_name = 'prometheus-systemd'
   $download_url_base = 'https://github.com/prometheus/prometheus/releases'
-  $version = '1.0.1'
+  $version = '1.2.1'
   $download_extension = 'tar.gz'
   $node_exporter_download_url_base = 'https://github.com/prometheus/node_exporter/releases'
   $node_exporter_version = '0.12.0'
@@ -37,8 +37,17 @@ class prometheus::params {
   $config_template = 'prometheus/prometheus.yaml.erb'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
-  $rule_files = [ "${config_dir}/alert.rules" ]
-  $scrape_configs = [ { 'job_name'=> 'prometheus', 'scrape_interval'=> '10s', 'scrape_timeout'=> '10s', 'static_configs'=> [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ] } ]
+  $rule_files = [ "${config_dir}/rules/*.rules" ]
+
+  $scrape_configs = [{
+    'job_name'        => 'prometheus',
+    'scrape_interval' => '10s',
+    'scrape_timeout'  => '10s',
+    'file_sd_configs' => [ { 'files' => ['/etc/prometheus/scrape_config.yaml'] } ],
+    'static_configs'  => [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ]
+  }]
+
+
   case $::architecture {
     'x86_64', 'amd64': { $arch = 'amd64' }
     'i386':            { $arch = '386'   }
