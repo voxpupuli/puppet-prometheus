@@ -1,32 +1,32 @@
 #!/bin/bash
 #
-#       /etc/rc.d/init.d/statsd_exporter
+#       /etc/rc.d/init.d/<%= @exporter_name %>
 #
-#       Daemonize the prometheus node exporter
+#       Daemonize the prometheus <%= @exporter_name %>
 #
 # chkconfig:   2345 95 20
-# description: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
-# processname: statsd_exporter
-# pidfile: /var/run/statsd_exporter/pidfile
+# description: Prometheus Exporter <%= @exporter_name %>
+# processname: <%= @exporter_name %>
+# pidfile: /var/run/<%= @exporter_name %>/pidfile
 
 # Source function library.
 . /etc/init.d/functions
 
-DAEMON=<%= scope.lookupvar('prometheus::statsd_exporter::bin_dir') %>/statsd_exporter
-PID_FILE=/var/run/statsd_exporter/statsd_exporter.pid
-LOG_FILE=/var/log/statsd_exporter
+DAEMON=<%= @bin_dir %>/<%= @exporter_name %>
+PID_FILE=/var/run/<%= @exporter_name %>/<%= @exporter_name %>.pid
+LOG_FILE=/var/log/<%= @exporter_name %>
 
-[ -e /etc/sysconfig/statsd_exporter ] && . /etc/sysconfig/statsd_exporter
+[ -e /etc/sysconfig/<%= @exporter_name %> ] && . /etc/sysconfig/<%= @exporter_name %>
 
 export GOMAXPROCS=${GOMAXPROCS:-2}
 
 #
-# Create the /var/run/statsd_exporter directory, which can live on a tmpfs
+# Create the /var/run/<%= @exporter_name %> directory, which can live on a tmpfs
 # filesystem and be destroyed between reboots.
 #
 mkrundir() {
-        [ ! -d /var/run/statsd_exporter ] && mkdir -p /var/run/statsd_exporter
-        chown <%= scope.lookupvar('prometheus::statsd_exporter::user') %> /var/run/statsd_exporter
+        [ ! -d /var/run/<%= @exporter_name %> ] && mkdir -p /var/run/<%= @exporter_name %>
+        chown <%= @user %> /var/run/<%= @exporter_name %>
 }
 
 #
@@ -38,7 +38,7 @@ mkpidfile() {
         # Create PID file if it didn't exist
         mkrundir
         [ ! -f $PID_FILE ] && pidofproc $DAEMON > $PID_FILE
-        chown <%= scope.lookupvar('prometheus::statsd_exporter::user') %> /var/run/statsd_exporter
+        chown <%= @user %> /var/run/<%= @exporter_name %>
         if [ $? -ne 0 ] ; then
             rm $PID_FILE
             KILLPROC_OPT=""
@@ -46,25 +46,25 @@ mkpidfile() {
 }
 
 start() {
-        echo -n "Starting prometheus node exporter: "
+        echo -n "Starting prometheus <%= @exporter_name %>: "
         mkrundir
         [ -f $PID_FILE ] && rm $PID_FILE
-        daemon --user=<%= scope.lookupvar('prometheus::statsd_exporter::user') %> \
+        daemon --user=<%= @user %> \
             --pidfile="$PID_FILE" \
-            "$DAEMON" -statsd.mapping-config=<%= scope.lookupvar('prometheus::statsd_exporter::mapping_config_path') %> <%= scope.lookupvar('prometheus::statsd_exporter::extra_options') %> >> "$LOG_FILE" &
+            "$DAEMON" <%= @options %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile
-        touch /var/lock/subsys/statsd_exporter
+        touch /var/lock/subsys/<%= @exporter_name %>
         return $retcode
 }
 
 stop() {
         DELAY=5 # seconds maximum to wait for a leave
 
-        echo -n "Shutting down prometheus statsd_exporter: "
+        echo -n "Shutting down prometheus <%= @exporter_name %>: "
         mkpidfile
 
-        statsd_exporter_pid=$(cat $PID_FILE)
+        <%= @exporter_name %>_pid=$(cat $PID_FILE)
         killproc $KILLPROC_OPT $DAEMON -INT
         retcode=$?
 
@@ -72,8 +72,8 @@ stop() {
         # early if we can.  If not, escalate to harsher signals.
         try=0
         while [ $try -lt $DELAY ]; do
-        if ! checkpid $statsd_exporter_pid ; then
-          rm -f /var/lock/subsys/statsd_exporter
+        if ! checkpid $<%= @exporter_name %>_pid ; then
+          rm -f /var/lock/subsys/<%= @exporter_name %>
           return $retcode
         fi
         sleep 1
@@ -89,7 +89,7 @@ stop() {
         killproc $KILLPROC_OPT $DAEMON
         retcode=$?
 
-        rm -f /var/lock/subsys/statsd_exporter $PID_FILE
+        rm -f /var/lock/subsys/<%= @exporter_name %> $PID_FILE
         return $retcode
 }
 
@@ -112,10 +112,10 @@ case "$1" in
         killproc $KILLPROC_OPT $DAEMON -HUP
         ;;
     condrestart)
-        [ -f /var/lock/subsys/statsd_exporter ] && restart || :
+        [ -f /var/lock/subsys/<%= @exporter_name %> ] && restart || :
         ;;
     *)
-        echo "Usage: statsd_exporter {start|stop|status|reload|restart}"
+        echo "Usage: <%= @exporter_name %> {start|stop|status|reload|restart}"
         exit 1
         ;;
 esac
