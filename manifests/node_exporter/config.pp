@@ -4,6 +4,12 @@ class prometheus::node_exporter::config(
   $purge = true,
 ) {
 
+  $collectors = join($prometheus::node_exporter::collectors, ',')
+  $options = "-collectors.enabled=${collectors} ${prometheus::node_exporter::extra_options}"
+  $user = $prometheus::node_exporter::user
+  $group = $prometheus::node_exporter::group
+  $exporter_name = 'node_exporter'
+
   if $prometheus::node_exporter::init_style {
 
     case $prometheus::node_exporter::init_style {
@@ -12,7 +18,7 @@ class prometheus::node_exporter::config(
           mode    => '0444',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/node_exporter.upstart.erb'),
+          content => template('prometheus/exporter.upstart.erb'),
         }
         file { '/etc/init.d/node_exporter':
           ensure => link,
@@ -27,7 +33,7 @@ class prometheus::node_exporter::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/node_exporter.systemd.erb'),
+          content => template('prometheus/exporter.systemd.erb'),
         }~>
         exec { 'node_exporter-systemd-reload':
           command     => 'systemctl daemon-reload',
@@ -40,7 +46,7 @@ class prometheus::node_exporter::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/node_exporter.sysv.erb')
+          content => template('prometheus/exporter.sysv.erb')
         }
       }
       'debian' : {
@@ -48,7 +54,7 @@ class prometheus::node_exporter::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/node_exporter.debian.erb')
+          content => template('prometheus/exporter.debian.erb')
         }
       }
       'sles' : {
@@ -64,7 +70,7 @@ class prometheus::node_exporter::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'wheel',
-          content => template('prometheus/node_exporter.launchd.erb')
+          content => template('prometheus/exporter.launchd.erb')
         }
       }
       default : {

@@ -1,5 +1,5 @@
 # Prometheus <%= @exporter_name %> Exporter (Upstart unit)
-description "Prometheus exporter for machine metrics, written in Go with pluggable metric collectors"
+description "Prometheus exporter <%= @exporter_name %>"
 start on runlevel [2345]
 stop on runlevel [06]
 
