@@ -120,17 +120,59 @@ class prometheus::statsd_exporter (
   validate_bool($manage_service)
   validate_bool($restart_on_change)
   $notify_service = $restart_on_change ? {
-    true    => Class['::prometheus::statsd_exporter::run_service'],
+    true    => Service['statsd_exporter'],
     default => undef,
   }
 
+  $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps')
+  $statsd_maps = concat($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
+
+  file { $mapping_config_path:
+    ensure  => 'file',
+    mode    => '0644',
+    owner   => $user,
+    group   => $group,
+    content => template('prometheus/statsd_mapping.conf.erb'),
+    notify  => $notify_service,
+  }
+
+  $options = "-statsd.mapping-config=\'${prometheus::statsd_exporter::mapping_config_path}\' ${prometheus::statsd_exporter::extra_options}"
+
   anchor {'statsd_exporter_first': }
   ->
-  class { '::prometheus::statsd_exporter::install': } ->
-  class { '::prometheus::statsd_exporter::config':
-    purge  => $purge_config_dir,
-    notify => $notify_service,
+  class { '::prometheus::daemon::install':
+    install_method     => $install_method,
+    daemon_name        => 'statsd_exporter',
+    version            => $version,
+    download_extension => $download_extension,
+    os                 => $os,
+    arch               => $arch,
+    real_download_url  => $real_download_url,
+    bin_dir            => $bin_dir,
+    notify_service     => $notify_service,
+    package_name       => $package_name,
+    package_ensure     => $package_ensure,
+    manage_user        => $manage_user,
+    user               => $user,
+    extra_groups       => $extra_groups,
+    group              => $group,
+    manage_group       => $manage_group,
   } ->
-  class { '::prometheus::statsd_exporter::run_service': } ->
+  class { '::prometheus::daemon::config':
+    purge       => $purge_config_dir,
+    notify      => $notify_service,
+    user        => $user,
+    group       => $group,
+    daemon_name => 'statsd_exporter',
+    options     => $options,
+    init_style  => $init_style,
+  } ->
+  class { '::prometheus::daemon::run_service':
+    init_style     => $init_style,
+    daemon_name    => 'statsd_exporter',
+    service_ensure => $service_ensure,
+    service_enable => $service_enable,
+    manage_service => $manage_service,
+  } ->
   anchor {'statsd_exporter_last': }
 }

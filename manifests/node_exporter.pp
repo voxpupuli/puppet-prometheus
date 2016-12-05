@@ -114,6 +114,7 @@ class prometheus::node_exporter (
   }
 
   $str_collectors = join($collectors, ',')
+  $options = "-collectors.enabled=${str_collectors} ${extra_options}"
 
   anchor {'node_exporter_first': }
   ->
@@ -141,7 +142,7 @@ class prometheus::node_exporter (
     user        => $user,
     group       => $group,
     daemon_name => 'node_exporter',
-    options     => "-collectors.enabled=${str_collectors} ${extra_options}",
+    options     => $options,
     init_style  => $init_style,
   } ->
   class { '::prometheus::daemon::run_service':
