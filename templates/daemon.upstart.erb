@@ -1,14 +1,14 @@
-# Prometheus <%= @exporter_name %> Exporter (Upstart unit)
-description "Prometheus exporter <%= @exporter_name %>"
+# Prometheus <%= @daemon_name %> Exporter (Upstart unit)
+description "Prometheus exporter <%= @daemon_name %>"
 start on runlevel [2345]
 stop on runlevel [06]
 
-env EXPORTER=<%= @bin_dir %>/<%= @exporter_name %>
+env EXPORTER=<%= @bin_dir %>/<%= @daemon_name %>
 env USER=<%= @user %>
 env GROUP=<%= @group %>
-env DEFAULTS=/etc/default/<%= @exporter_name %>
-env RUNDIR=/var/run/<%= @exporter_name %>
-env PID_FILE=/var/run/<%= @exporter_name %>/<%= @exporter_name %>.pid
+env DEFAULTS=/etc/default/<%= @daemon_name %>
+env RUNDIR=/var/run/<%= @daemon_name %>
+env PID_FILE=/var/run/<%= @daemon_name %>/<%= @daemon_name %>.pid
 pre-start script
   [ -e $DEFAULTS ] && . $DEFAULTS
 
@@ -18,7 +18,7 @@ pre-start script
 end script
 
 script
-    # read settings like GOMAXPROCS from "/etc/default/<%= @exporter_name %>", if available.
+    # read settings like GOMAXPROCS from "/etc/default/<%= @daemon_name %>", if available.
     [ -e $DEFAULTS ] && . $DEFAULTS
 
     export GOMAXPROCS=${GOMAXPROCS:-2}

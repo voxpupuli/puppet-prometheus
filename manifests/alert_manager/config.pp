@@ -4,6 +4,11 @@ class prometheus::alert_manager::config(
   $purge = true,
 ) {
 
+  $options = "-config.file=${prometheus::alert_manager::config_file} -storage.path=${prometheus::alert_manager::storage_path} ${prometheus::alert_manager::extra_options}"
+  $user = $prometheus::alert_manager::user
+  $group = $prometheus::alert_manager::group
+  $daemon_name = 'alert_manager'
+
   if $prometheus::alert_manager::init_style {
 
     case $prometheus::alert_manager::init_style {
@@ -12,7 +17,7 @@ class prometheus::alert_manager::config(
           mode    => '0444',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/alert_manager.upstart.erb'),
+          content => template('prometheus/daemon.upstart.erb'),
         }
         file { '/etc/init.d/alert_manager':
           ensure => link,
@@ -27,7 +32,7 @@ class prometheus::alert_manager::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/alert_manager.systemd.erb'),
+          content => template('prometheus/daemon.systemd.erb'),
         }~>
         exec { 'alert_manager-systemd-reload':
           command     => 'systemctl daemon-reload',
@@ -40,7 +45,7 @@ class prometheus::alert_manager::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/alert_manager.sysv.erb')
+          content => template('prometheus/daemon.sysv.erb'),
         }
       }
       'debian' : {
@@ -48,7 +53,7 @@ class prometheus::alert_manager::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/alert_manager.debian.erb')
+          content => template('prometheus/daemon.debian.erb'),
         }
       }
       'sles' : {
@@ -56,7 +61,7 @@ class prometheus::alert_manager::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/alert_manager.sles.erb')
+          content => template('prometheus/daemon.sles.erb'),
         }
       }
       'launchd' : {
@@ -64,7 +69,7 @@ class prometheus::alert_manager::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'wheel',
-          content => template('prometheus/alert_manager.launchd.erb')
+          content => template('prometheus/daemon.launchd.erb'),
         }
       }
       default : {
@@ -72,7 +77,7 @@ class prometheus::alert_manager::config(
       }
     }
   }
-  
+
   file { $prometheus::alert_manager::config_dir:
     ensure  => 'directory',
     owner   => $prometheus::alert_manager::user,
@@ -80,7 +85,7 @@ class prometheus::alert_manager::config(
     purge   => $purge,
     recurse => $purge,
   }
-  
+
   file { $prometheus::alert_manager::config_file:
     ensure  => present,
     owner   => $prometheus::alert_manager::user,

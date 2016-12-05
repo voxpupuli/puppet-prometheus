@@ -19,7 +19,7 @@ class prometheus::statsd_exporter::config(
   $options = "-statsd.mapping-config=\'${prometheus::statsd_exporter::mapping_config_path}\' ${prometheus::statsd_exporter::extra_options}"
   $user = $prometheus::statsd_exporter::user
   $group = $prometheus::statsd_exporter::group
-  $exporter_name = 'statsd_exporter'
+  $daemon_name = 'statsd_exporter'
 
   if $prometheus::statsd_exporter::init_style {
 
@@ -29,7 +29,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0444',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/exporter.upstart.erb'),
+          content => template('prometheus/daemon.upstart.erb'),
         }
         file { '/etc/init.d/statsd_exporter':
           ensure => link,
@@ -44,7 +44,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/exporter.systemd.erb'),
+          content => template('prometheus/daemon.systemd.erb'),
         }~>
         exec { 'statsd_exporter-systemd-reload':
           command     => 'systemctl daemon-reload',
@@ -57,7 +57,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/exporter.sysv.erb'),
+          content => template('prometheus/daemon.sysv.erb'),
         }
       }
       'debian' : {
@@ -65,7 +65,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/exporter.debian.erb'),
+          content => template('prometheus/daemon.debian.erb'),
         }
       }
       'sles' : {
@@ -73,7 +73,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
-          content => template('prometheus/exporter.sles.erb'),
+          content => template('prometheus/daemon.sles.erb'),
         }
       }
       'launchd' : {
@@ -81,7 +81,7 @@ class prometheus::statsd_exporter::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'wheel',
-          content => template('prometheus/exporter.launchd.erb'),
+          content => template('prometheus/daemon.launchd.erb'),
         }
       }
       default : {
