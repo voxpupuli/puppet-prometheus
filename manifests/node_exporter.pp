@@ -115,11 +115,9 @@ class prometheus::node_exporter (
 
   $str_collectors = join($collectors, ',')
   $options = "-collectors.enabled=${str_collectors} ${extra_options}"
-  $daemon_name = 'node_exporter'
 
   prometheus::daemon { 'node_exporter':
     install_method     => $install_method,
-    daemon_name        => $daemon_name,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,

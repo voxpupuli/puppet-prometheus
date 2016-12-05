@@ -1,6 +1,5 @@
 define prometheus::daemon (
   $install_method,
-  $daemon_name,
   $version,
   $download_extension,
   $os,
@@ -20,7 +19,6 @@ define prometheus::daemon (
   $group,
   $options,
   $init_style,
-  $daemon_name,
   $service_ensure,
   $service_enable,
   $manage_service,
@@ -28,8 +26,8 @@ define prometheus::daemon (
     case $install_method {
       'url': {
         include staging
-        $staging_file = "${daemon_name}-${version}.${download_extension}"
-        $binary = "${::staging::path}/${daemon_name}-${version}.${os}-${arch}/${daemon_name}"
+        $staging_file = "${name}-${version}.${download_extension}"
+        $binary = "${::staging::path}/${name}-${version}.${os}-${arch}/${name}"
         staging::file { $staging_file:
           source => $real_download_url,
         } ->
@@ -42,7 +40,7 @@ define prometheus::daemon (
             owner => 'root',
             group => 0, # 0 instead of root because OS X uses "wheel".
             mode  => '0555';
-          "${bin_dir}/${daemon_name}":
+          "${bin_dir}/${name}":
             ensure => link,
             notify => $notify_service,
             target => $binary,
@@ -84,13 +82,14 @@ define prometheus::daemon (
 
       case $init_style {
         'upstart' : {
-          file { "/etc/init/${daemon_name}.conf":
+          file { "/etc/init/${name}.conf":
             mode    => '0444',
             owner   => 'root',
             group   => 'root',
             content => template('prometheus/daemon.upstart.erb'),
+            notify  => $notify_service,
           }
-          file { "/etc/init.d/${daemon_name}":
+          file { "/etc/init.d/${name}":
             ensure => link,
             target => '/lib/init/upstart-job',
             owner  => 'root',
@@ -99,20 +98,20 @@ define prometheus::daemon (
           }
         }
         'systemd' : {
-          file { "/lib/systemd/system/${daemon_name}.service":
+          file { "/lib/systemd/system/${name}.service":
             mode    => '0644',
             owner   => 'root',
             group   => 'root',
             content => template('prometheus/daemon.systemd.erb'),
           }~>
-          exec { "${daemon_name}-systemd-reload":
+          exec { "${name}-systemd-reload":
             command     => 'systemctl daemon-reload',
             path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
             refreshonly => true,
           }
         }
         'sysv' : {
-          file { "/etc/init.d/${daemon_name}":
+          file { "/etc/init.d/${name}":
             mode    => '0555',
             owner   => 'root',
             group   => 'root',
@@ -120,27 +119,30 @@ define prometheus::daemon (
           }
         }
         'debian' : {
-          file { "/etc/init.d/${daemon_name}":
+          file { "/etc/init.d/${name}":
             mode    => '0555',
             owner   => 'root',
             group   => 'root',
             content => template('prometheus/daemon.debian.erb'),
+            notify  => $notify_service,
           }
         }
         'sles' : {
-          file { "/etc/init.d/${daemon_name}":
+          file { "/etc/init.d/${name}":
             mode    => '0555',
             owner   => 'root',
             group   => 'root',
             content => template('prometheus/daemon.sles.erb'),
+            notify  => $notify_service,
           }
         }
         'launchd' : {
-          file { "/Library/LaunchDaemons/io.${daemon_name}.daemon.plist":
+          file { "/Library/LaunchDaemons/io.${name}.daemon.plist":
             mode    => '0644',
             owner   => 'root',
             group   => 'wheel',
             content => template('prometheus/daemon.launchd.erb'),
+            notify  => $notify_service,
           }
         }
         default : {
@@ -150,12 +152,12 @@ define prometheus::daemon (
     }
 
     $init_selector = $init_style ? {
-      'launchd' => "io.${daemon_name}.daemon",
-      default   => $daemon_name,
+      'launchd' => "io.${name}.daemon",
+      default   => $name,
     }
 
     if $manage_service == true {
-      service { $daemon_name:
+      service { $name:
         ensure => $service_ensure,
         name   => $init_selector,
         enable => $service_enable,

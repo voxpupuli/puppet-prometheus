@@ -1,32 +1,32 @@
 #!/bin/bash
 #
-#       /etc/rc.d/init.d/<%= @daemon_name %>
+#       /etc/rc.d/init.d/<%= @name %>
 #
-#       Daemonize the prometheus <%= @daemon_name %>
+#       Daemonize the prometheus <%= @name %>
 #
 # chkconfig:   2345 95 20
-# description: Prometheus Exporter <%= @daemon_name %>
-# processname: <%= @daemon_name %>
-# pidfile: /var/run/<%= @daemon_name %>/pidfile
+# description: Prometheus Exporter <%= @name %>
+# processname: <%= @name %>
+# pidfile: /var/run/<%= @name %>/pidfile
 
 # Source function library.
 . /etc/init.d/functions
 
-DAEMON=<%= @bin_dir %>/<%= @daemon_name %>
-PID_FILE=/var/run/<%= @daemon_name %>/<%= @daemon_name %>.pid
-LOG_FILE=/var/log/<%= @daemon_name %>
+DAEMON=<%= @bin_dir %>/<%= @name %>
+PID_FILE=/var/run/<%= @name %>/<%= @name %>.pid
+LOG_FILE=/var/log/<%= @name %>
 
-[ -e /etc/sysconfig/<%= @daemon_name %> ] && . /etc/sysconfig/<%= @daemon_name %>
+[ -e /etc/sysconfig/<%= @name %> ] && . /etc/sysconfig/<%= @name %>
 
 export GOMAXPROCS=${GOMAXPROCS:-2}
 
 #
-# Create the /var/run/<%= @daemon_name %> directory, which can live on a tmpfs
+# Create the /var/run/<%= @name %> directory, which can live on a tmpfs
 # filesystem and be destroyed between reboots.
 #
 mkrundir() {
-        [ ! -d /var/run/<%= @daemon_name %> ] && mkdir -p /var/run/<%= @daemon_name %>
-        chown <%= @user %> /var/run/<%= @daemon_name %>
+        [ ! -d /var/run/<%= @name %> ] && mkdir -p /var/run/<%= @name %>
+        chown <%= @user %> /var/run/<%= @name %>
 }
 
 #
@@ -38,7 +38,7 @@ mkpidfile() {
         # Create PID file if it didn't exist
         mkrundir
         [ ! -f $PID_FILE ] && pidofproc $DAEMON > $PID_FILE
-        chown <%= @user %> /var/run/<%= @daemon_name %>
+        chown <%= @user %> /var/run/<%= @name %>
         if [ $? -ne 0 ] ; then
             rm $PID_FILE
             KILLPROC_OPT=""
@@ -46,7 +46,7 @@ mkpidfile() {
 }
 
 start() {
-        echo -n "Starting prometheus <%= @daemon_name %>: "
+        echo -n "Starting prometheus <%= @name %>: "
         mkrundir
         [ -f $PID_FILE ] && rm $PID_FILE
         daemon --user=<%= @user %> \
@@ -54,17 +54,17 @@ start() {
             "$DAEMON" <%= @options %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile
-        touch /var/lock/subsys/<%= @daemon_name %>
+        touch /var/lock/subsys/<%= @name %>
         return $retcode
 }
 
 stop() {
         DELAY=5 # seconds maximum to wait for a leave
 
-        echo -n "Shutting down prometheus <%= @daemon_name %>: "
+        echo -n "Shutting down prometheus <%= @name %>: "
         mkpidfile
 
-        <%= @daemon_name %>_pid=$(cat $PID_FILE)
+        <%= @name %>_pid=$(cat $PID_FILE)
         killproc $KILLPROC_OPT $DAEMON -INT
         retcode=$?
 
@@ -72,8 +72,8 @@ stop() {
         # early if we can.  If not, escalate to harsher signals.
         try=0
         while [ $try -lt $DELAY ]; do
-        if ! checkpid $<%= @daemon_name %>_pid ; then
-          rm -f /var/lock/subsys/<%= @daemon_name %>
+        if ! checkpid $<%= @name %>_pid ; then
+          rm -f /var/lock/subsys/<%= @name %>
           return $retcode
         fi
         sleep 1
@@ -89,7 +89,7 @@ stop() {
         killproc $KILLPROC_OPT $DAEMON
         retcode=$?
 
-        rm -f /var/lock/subsys/<%= @daemon_name %> $PID_FILE
+        rm -f /var/lock/subsys/<%= @name %> $PID_FILE
         return $retcode
 }
 
@@ -112,10 +112,10 @@ case "$1" in
         killproc $KILLPROC_OPT $DAEMON -HUP
         ;;
     condrestart)
-        [ -f /var/lock/subsys/<%= @daemon_name %> ] && restart || :
+        [ -f /var/lock/subsys/<%= @name %> ] && restart || :
         ;;
     *)
-        echo "Usage: <%= @daemon_name %> {start|stop|status|reload|restart}"
+        echo "Usage: <%= @name %> {start|stop|status|reload|restart}"
         exit 1
         ;;
 esac

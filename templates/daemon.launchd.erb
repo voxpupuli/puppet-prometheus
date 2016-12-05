@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Label</key>             <string>io.<%= @daemon_name %>.daemon</string>
+    <key>Label</key>             <string>io.<%= @name %>.daemon</string>
     <key>UserName</key>          <string><%= @user %></string>
     <key>GroupName</key>         <string><%= @group %></string>
 <% if @service_enable %>
@@ -14,7 +14,7 @@
     <key>KeepAlive</key>         <true/>
     <key>ProgramArguments</key>
         <array>
-            <string><%= @bin_dir %>/<%= @daemon_name %></string>
+            <string><%= @bin_dir %>/<%= @name %></string>
 <% require 'shellwords' %>
 <% for extra_option in Shellwords.split(@options) %>
             <string><%= extra_option %></string>

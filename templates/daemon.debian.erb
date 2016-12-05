@@ -1,12 +1,12 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          <%= @daemon_name %>
+# Provides:          <%= @name %>
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      S 0 1 6
-# Short-Description: Prometheus <%= @daemon_name %>
-# Description:       Prometheus exporter <%= @daemon_name %>
+# Short-Description: Prometheus <%= @name %>
+# Description:       Prometheus exporter <%= @name %>
 #
 ### END INIT INFO
 
@@ -14,8 +14,8 @@
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/usr/sbin:/usr/bin:/sbin:/bin:<%= @bin_dir %>
-DESC="Prometheus <%= @daemon_name %>"
-NAME=<%= @daemon_name %>
+DESC="Prometheus <%= @name %>"
+NAME=<%= @name %>
 DAEMON=<%= @bin_dir %>/$NAME
 PIDFILE=/var/run/$NAME/$NAME.pid
 DAEMON_ARGS=" <%= @options %>"
@@ -39,8 +39,8 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Function to create run directory
 #
 mkrundir() {
-        [ ! -d /var/run/<%= @daemon_name %> ] && mkdir -p /var/run/<%= @daemon_name %>
-        chown $USER /var/run/<%= @daemon_name %>
+        [ ! -d /var/run/<%= @name %> ] && mkdir -p /var/run/<%= @name %>
+        chown $USER /var/run/<%= @name %>
 }
 
 #

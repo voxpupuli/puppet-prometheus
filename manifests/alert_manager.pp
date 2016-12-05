@@ -148,11 +148,8 @@ class prometheus::alert_manager (
     require => File[$config_dir],
   }
 
-  anchor {'alert_manager_first': }
-  ->
-  class { '::prometheus::daemon::install':
+  prometheus::daemon { 'alert_manager':
     install_method     => $install_method,
-    daemon_name        => 'alert_manager',
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,
@@ -164,24 +161,14 @@ class prometheus::alert_manager (
     package_ensure     => $package_ensure,
     manage_user        => $manage_user,
     user               => $user,
+    extra_groups       => $extra_groups,
     group              => $group,
     manage_group       => $manage_group,
-  } ->
-  class { '::prometheus::daemon::config':
-    purge       => $purge_config_dir,
-    notify      => $notify_service,
-    user        => $user,
-    group       => $group,
-    daemon_name => 'alert_manager',
-    options     => $options,
-    init_style  => $init_style,
-  } ->
-  class { '::prometheus::daemon::run_service':
-    init_style     => $init_style,
-    daemon_name    => 'alert_manager',
-    service_ensure => $service_ensure,
-    service_enable => $service_enable,
-    manage_service => $manage_service,
-  } ->
-  anchor {'alert_manager_last': }
+    purge              => $purge_config_dir,
+    options            => $options,
+    init_style         => $init_style,
+    service_ensure     => $service_ensure,
+    service_enable     => $service_enable,
+    manage_service     => $manage_service,
+  }
 }
