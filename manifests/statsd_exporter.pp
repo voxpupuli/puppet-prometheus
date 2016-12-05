@@ -125,7 +125,7 @@ class prometheus::statsd_exporter (
   }
 
   $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps')
-  $statsd_maps = concat($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
+  $real_statsd_maps = concat($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
 
   file { $mapping_config_path:
     ensure  => 'file',
@@ -137,12 +137,11 @@ class prometheus::statsd_exporter (
   }
 
   $options = "-statsd.mapping-config=\'${prometheus::statsd_exporter::mapping_config_path}\' ${prometheus::statsd_exporter::extra_options}"
+  $daemon_name = 'statsd_exporter'
 
-  anchor {'statsd_exporter_first': }
-  ->
-  class { '::prometheus::daemon::install':
+  prometheus::daemon { 'statsd_exporter':
     install_method     => $install_method,
-    daemon_name        => 'statsd_exporter',
+    daemon_name        => $daemon_name,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,
@@ -157,22 +156,11 @@ class prometheus::statsd_exporter (
     extra_groups       => $extra_groups,
     group              => $group,
     manage_group       => $manage_group,
-  } ->
-  class { '::prometheus::daemon::config':
-    purge       => $purge_config_dir,
-    notify      => $notify_service,
-    user        => $user,
-    group       => $group,
-    daemon_name => 'statsd_exporter',
-    options     => $options,
-    init_style  => $init_style,
-  } ->
-  class { '::prometheus::daemon::run_service':
-    init_style     => $init_style,
-    daemon_name    => 'statsd_exporter',
-    service_ensure => $service_ensure,
-    service_enable => $service_enable,
-    manage_service => $manage_service,
-  } ->
-  anchor {'statsd_exporter_last': }
+    purge              => $purge_config_dir,
+    options            => $options,
+    init_style         => $init_style,
+    service_ensure     => $service_ensure,
+    service_enable     => $service_enable,
+    manage_service     => $manage_service,
+  }
 }

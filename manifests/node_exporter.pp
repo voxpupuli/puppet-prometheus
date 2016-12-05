@@ -115,12 +115,11 @@ class prometheus::node_exporter (
 
   $str_collectors = join($collectors, ',')
   $options = "-collectors.enabled=${str_collectors} ${extra_options}"
+  $daemon_name = 'node_exporter'
 
-  anchor {'node_exporter_first': }
-  ->
-  class { '::prometheus::daemon::install':
+  prometheus::daemon { 'node_exporter':
     install_method     => $install_method,
-    daemon_name        => 'node_exporter',
+    daemon_name        => $daemon_name,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,
@@ -135,22 +134,11 @@ class prometheus::node_exporter (
     extra_groups       => $extra_groups,
     group              => $group,
     manage_group       => $manage_group,
-  } ->
-  class { '::prometheus::daemon::config':
-    purge       => $purge_config_dir,
-    notify      => $notify_service,
-    user        => $user,
-    group       => $group,
-    daemon_name => 'node_exporter',
-    options     => $options,
-    init_style  => $init_style,
-  } ->
-  class { '::prometheus::daemon::run_service':
-    init_style     => $init_style,
-    daemon_name    => 'node_exporter',
-    service_ensure => $service_ensure,
-    service_enable => $service_enable,
-    manage_service => $manage_service,
-  } ->
-  anchor {'node_exporter_last': }
+    purge              => $purge_config_dir,
+    options            => $options,
+    init_style         => $init_style,
+    service_ensure     => $service_ensure,
+    service_enable     => $service_enable,
+    manage_service     => $manage_service,
+  }
 }
