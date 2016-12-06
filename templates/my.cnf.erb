@@ -1,0 +1,9 @@
+[client]
+user   = <%= @cnf_user %>
+password = <%= @cnf_password %>
+<% if @cnf_socket -%>
+socket = <%= @cnf_socket %>
+<%- else -%>
+host   = <%= @cnf_host %>
+port   = <%= @cnf_port %>
+<% end -%>

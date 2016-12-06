@@ -57,6 +57,11 @@ class prometheus::params {
   $config_template = 'prometheus/prometheus.yaml.erb'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
+  $mysqld_exporter_cnf_config_path = '/etc/mysqld_exporter/.my.cnf'
+  $mysqld_exporter_cnf_user = 'login'
+  $mysqld_exporter_cnf_password = 'password'
+  $mysqld_exporter_cnf_host = 'localhost'
+  $mysqld_exporter_cnf_port = 3306
   $rule_files = [ "${config_dir}/alert.rules" ]
   $scrape_configs = [ { 'job_name'=> 'prometheus', 'scrape_interval'=> '10s', 'scrape_timeout'=> '10s', 'static_configs'=> [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ] } ]
   $alerts = []
