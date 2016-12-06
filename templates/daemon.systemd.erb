@@ -6,8 +6,7 @@ After=basic.target network.target
 [Service]
 User=<%= @user %>
 Group=<%= @group %>
-ExecStart=<%= @bin_dir %>/<%= @name %>
-  <%= @options %>
+ExecStart=<%= @bin_dir %>/<%= @name %> <%= @options %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
