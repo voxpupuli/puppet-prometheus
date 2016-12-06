@@ -21,12 +21,16 @@ class prometheus::params {
   $node_exporter_package_ensure = 'latest'
   $node_exporter_package_name = 'node_exporter'
   $node_exporter_extra_groups = []
+  $node_exporter_user = 'node-exporter'
+  $node_exporter_group = 'node-exporter'
   $statsd_exporter_download_url_base = 'https://github.com/prometheus/statsd_exporter/releases'
   $statsd_exporter_version = '0.3.0'
   $statsd_exporter_download_extension = 'tar.gz'
   $statsd_exporter_package_ensure = 'latest'
   $statsd_exporter_package_name = 'statsd_exporter'
   $statsd_exporter_extra_groups = []
+  $statsd_exporter_user = 'statsd-exporter'
+  $statsd_exporter_group = 'statsd-exporter'
   $statsd_exporter_mapping_config_path = '/etc/statsd_mappings.conf'
   $statsd_exporter_maps = [
     {
@@ -54,6 +58,8 @@ class prometheus::params {
   $alert_manager_download_extension = 'tar.gz'
   $alert_manager_package_ensure = 'latest'
   $alert_manager_package_name = 'alertmanager'
+  $alert_manager_user = 'alert-manager'
+  $alert_manager_group = 'alert-manager'
   $config_template = 'prometheus/prometheus.yaml.erb'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
@@ -64,6 +70,8 @@ class prometheus::params {
   $mysqld_exporter_cnf_port = 3306
   $mysqld_exporter_version = '0.9.0'
   $mysqld_exporter_extra_groups = []
+  $mysqld_exporter_user = 'mysqld-exporter'
+  $mysqld_exporter_group = 'mysqld-exporter'
   $mysqld_exporter_download_url_base = 'https://github.com/prometheus/mysqld_exporter/releases'
   $mysqld_exporter_download_extension = 'tar.gz'
   $mysqld_exporter_package_name = 'mysqld_exporter'

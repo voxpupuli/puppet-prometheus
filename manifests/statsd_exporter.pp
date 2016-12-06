@@ -89,12 +89,12 @@
 #
 class prometheus::statsd_exporter (
   $manage_user          = true,
-  $user                 = $::prometheus::params::user,
+  $user                 = $::prometheus::params::statsd_exporter_user,
   $manage_group         = true,
   $purge_config_dir     = true,
   $mapping_config_path  = $::prometheus::params::statsd_exporter_mapping_config_path,
   $statsd_maps          = $::prometheus::params::statsd_exporter_maps,
-  $group                = $::prometheus::params::group,
+  $group                = $::prometheus::params::statsd_exporter_group,
   $bin_dir              = $::prometheus::params::bin_dir,
   $arch                 = $::prometheus::params::arch,
   $version              = $::prometheus::params::statsd_exporter_version,

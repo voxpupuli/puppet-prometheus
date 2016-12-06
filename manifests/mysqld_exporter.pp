@@ -1,6 +1,6 @@
 class prometheus::mysqld_exporter (
   $manage_user          = true,
-  $user                 = $::prometheus::params::user,
+  $user                 = $::prometheus::params::mysqld_exporter_user,
   $manage_group         = true,
   $purge_config_dir     = true,
   $cnf_config_path      = $::prometheus::params::mysqld_exporter_cnf_config_path,
@@ -9,7 +9,7 @@ class prometheus::mysqld_exporter (
   $cnf_host             = $::prometheus::params::mysqld_exporter_cnf_host,
   $cnf_port             = $::prometheus::params::mysqld_exporter_cnf_port,
   $cnf_socket           = undef,
-  $group                = $::prometheus::params::group,
+  $group                = $::prometheus::params::mysqld_exporter_group,
   $bin_dir              = $::prometheus::params::bin_dir,
   $arch                 = $::prometheus::params::arch,
   $version              = $::prometheus::params::mysqld_exporter_version,

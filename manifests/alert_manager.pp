@@ -78,10 +78,10 @@
 #
 class prometheus::alert_manager (
   $manage_user          = true,
-  $user                 = $::prometheus::params::user,
+  $user                 = $::prometheus::params::alert_manager_user,
   $manage_group         = true,
   $purge_config_dir     = true,
-  $group                = $::prometheus::params::group,
+  $group                = $::prometheus::params::alert_manager_group,
   $bin_dir              = $::prometheus::params::bin_dir,
   $arch                 = $::prometheus::params::arch,
   $version              = $::prometheus::params::alert_manager_version,

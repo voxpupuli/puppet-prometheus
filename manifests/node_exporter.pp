@@ -78,10 +78,10 @@
 #
 class prometheus::node_exporter (
   $manage_user          = true,
-  $user                 = $::prometheus::params::user,
+  $user                 = $::prometheus::params::node_exporter_user,
   $manage_group         = true,
   $purge_config_dir     = true,
-  $group                = $::prometheus::params::group,
+  $group                = $::prometheus::params::node_exporter_group,
   $bin_dir              = $::prometheus::params::bin_dir,
   $arch                 = $::prometheus::params::arch,
   $version              = $::prometheus::params::node_exporter_version,
