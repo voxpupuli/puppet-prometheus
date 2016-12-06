@@ -15,7 +15,7 @@ class prometheus::params {
   $version = '1.0.1'
   $download_extension = 'tar.gz'
   $node_exporter_download_url_base = 'https://github.com/prometheus/node_exporter/releases'
-  $node_exporter_version = '0.12.0'
+  $node_exporter_version = '0.13.0'
   $node_exporter_download_extension = 'tar.gz'
   $node_exporter_collectors = ['diskstats','filesystem','loadavg','meminfo','netdev','stat','time']
   $node_exporter_package_ensure = 'latest'
@@ -63,7 +63,7 @@ class prometheus::params {
   $config_template = 'prometheus/prometheus.yaml.erb'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
-  $mysqld_exporter_cnf_config_path = '/etc/mysqld_exporter/.my.cnf'
+  $mysqld_exporter_cnf_config_path = '/etc/.my.cnf'
   $mysqld_exporter_cnf_user = 'login'
   $mysqld_exporter_cnf_password = 'password'
   $mysqld_exporter_cnf_host = 'localhost'
