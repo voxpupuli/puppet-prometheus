@@ -45,21 +45,22 @@ class prometheus::params {
         },
     },
   ]
-  $alert_manager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
-  $alert_manager_config_dir = '/etc/alert_manager'
-  $alert_manager_config_file = "${alert_manager_config_dir}/alertmanager.yaml"
-  $alert_manager_global = { 'smtp_smarthost' =>'localhost:25', 'smtp_from'=>'alertmanager@localhost' }
-  $alert_manager_templates = [ "${alert_manager_config_dir}/*.tmpl" ]
-  $alert_manager_route = { 'group_by'               =>  [ 'alertname', 'cluster', 'service' ], 'group_wait'=> '30s', 'group_interval'=> '5m', 'repeat_interval'=> '3h', 'receiver'=> 'Admin' }
-  $alert_manager_receivers = [ { 'name'             => 'Admin', 'email_configs'=> [ { 'to'=> 'root@localhost' }] }]
-  $alert_manager_inhibit_rules = [ { 'source_match' => { 'severity'=> 'critical' },'target_match'=> { 'severity'=>'warning'},'equal'=>['alertname','cluster','service']}]
-  $alert_manager_storage_path='/var/lib/alertmanager'
-  $alert_manager_version = '0.3.0'
-  $alert_manager_download_extension = 'tar.gz'
-  $alert_manager_package_ensure = 'latest'
-  $alert_manager_package_name = 'alertmanager'
-  $alert_manager_user = 'alert-manager'
-  $alert_manager_group = 'alert-manager'
+<<<<<<< HEAD
+  $alertmanager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
+  $alertmanager_config_dir = '/etc/alertmanager'
+  $alertmanager_config_file = "${alertmanager_config_dir}/alertmanager.yaml"
+  $alertmanager_global = { 'smtp_smarthost' =>'localhost:25', 'smtp_from'=>'alertmanager@localhost' }
+  $alertmanager_templates = [ "${alertmanager_config_dir}/*.tmpl" ]
+  $alertmanager_route = { 'group_by'               =>  [ 'alertname', 'cluster', 'service' ], 'group_wait'=> '30s', 'group_interval'=> '5m', 'repeat_interval'=> '3h', 'receiver'=> 'Admin' }
+  $alertmanager_receivers = [ { 'name'             => 'Admin', 'email_configs'=> [ { 'to'=> 'root@localhost' }] }]
+  $alertmanager_inhibit_rules = [ { 'source_match' => { 'severity'=> 'critical' },'target_match'=> { 'severity'=>'warning'},'equal'=>['alertname','cluster','service']}]
+  $alertmanager_storage_path='/var/lib/alertmanager'
+  $alertmanager_version = '0.3.0'
+  $alertmanager_download_extension = 'tar.gz'
+  $alertmanager_package_ensure = 'latest'
+  $alertmanager_package_name = 'alertmanager'
+  $alertmanager_user = 'alertmanager'
+  $alertmanager_group = 'alertmanager'
   $config_template = 'prometheus/prometheus.yaml.erb'
   $config_mode = '0660'
   $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}

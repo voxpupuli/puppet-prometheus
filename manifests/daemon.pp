@@ -35,12 +35,12 @@ define prometheus::daemon (
           target  => $::staging::path,
           creates => $binary,
         } ->
-        file {
-          $binary:
+        file { $binary:
             owner => 'root',
             group => 0, # 0 instead of root because OS X uses "wheel".
-            mode  => '0555';
-          "${bin_dir}/${name}":
+            mode  => '0555',
+        } ->
+        file { "${bin_dir}/${name}":
             ensure => link,
             notify => $notify_service,
             target => $binary,
