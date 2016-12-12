@@ -23,7 +23,7 @@ class prometheus::alert_manager::config(
         }
       }
       'systemd' : {
-        file { '/lib/systemd/system/alert_manager.service':
+        file { '/etc/systemd/system/alert_manager.service':
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
