@@ -45,7 +45,6 @@ class prometheus::params {
         },
     },
   ]
-<<<<<<< HEAD
   $alertmanager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
   $alertmanager_config_dir = '/etc/alertmanager'
   $alertmanager_config_file = "${alertmanager_config_dir}/alertmanager.yaml"

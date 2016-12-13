@@ -124,7 +124,7 @@ class prometheus::statsd_exporter (
     default => undef,
   }
 
-  $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps')
+  $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps',[])
   $real_statsd_maps = concat($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
 
   file { $mapping_config_path:
