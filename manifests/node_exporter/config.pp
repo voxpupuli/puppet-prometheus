@@ -23,7 +23,7 @@ class prometheus::node_exporter::config(
         }
       }
       'systemd' : {
-        file { '/lib/systemd/system/node_exporter.service':
+        file { '/etc/systemd/system/node_exporter.service':
           mode    => '0644',
           owner   => 'root',
           group   => 'root',

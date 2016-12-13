@@ -27,7 +27,7 @@ class prometheus::config(
         }
       }
       'systemd' : {
-        file { '/lib/systemd/system/prometheus.service':
+        file { '/etc/systemd/system/prometheus.service':
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
