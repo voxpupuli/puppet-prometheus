@@ -76,8 +76,6 @@ class prometheus::params {
   $mysqld_exporter_download_extension = 'tar.gz'
   $mysqld_exporter_package_name = 'mysqld_exporter'
   $mysqld_exporter_package_ensure = 'latest'
-  $config_mode = '0660'
-  $global_config = { 'scrape_interval'=> '15s', 'evaluation_interval'=> '15s', 'external_labels'=> { 'monitor'=>'master'}}
   $rule_files = [ "${config_dir}/alert.rules" ]
   $scrape_configs = [ { 'job_name'=> 'prometheus', 'scrape_interval'=> '10s', 'scrape_timeout'=> '10s', 'static_configs'=> [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ] } ]
   $alerts = []
