@@ -98,7 +98,7 @@ define prometheus::daemon (
           }
         }
         'systemd' : {
-          file { "/lib/systemd/system/${name}.service":
+          file { "/etc/systemd/system/${name}.service":
             mode    => '0644',
             owner   => 'root',
             group   => 'root',
