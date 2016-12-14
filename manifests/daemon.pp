@@ -108,6 +108,7 @@ define prometheus::daemon (
             command     => 'systemctl daemon-reload',
             path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
             refreshonly => true,
+            notify      => $notify_service,
           }
         }
         'sysv' : {
