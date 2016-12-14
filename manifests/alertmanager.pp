@@ -148,6 +148,11 @@ class prometheus::alertmanager (
     require => File[$config_dir],
   }
 
+  # This is here to stop the previous alertmanager that was installed in version 0.1.14
+  service { 'alert_manager':
+    ensure => 'stopped',
+  }
+
   prometheus::daemon { 'alertmanager':
     install_method     => $install_method,
     version            => $version,
