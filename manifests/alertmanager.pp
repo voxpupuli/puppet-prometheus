@@ -1,6 +1,6 @@
-# Class: prometheus::mysqld_exporter
+# Class: prometheus::alertmanager
 #
-# This module manages prometheus mysqld_exporter
+# This module manages prometheus alertmanager
 #
 # Parameters:
 #  [*arch*]
