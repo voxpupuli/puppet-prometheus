@@ -2,10 +2,10 @@
 #
 #       /etc/rc.d/init.d/<%= @name %>
 #
-#       Daemonize the prometheus <%= @name %>
+#       Daemonize the prometheus <%= @name %>.
 #
 # chkconfig:   2345 95 20
-# description: Prometheus Exporter <%= @name %>
+# description: Prometheus <%= @name %>
 # processname: <%= @name %>
 # pidfile: /var/run/<%= @name %>/pidfile
 
@@ -51,7 +51,8 @@ start() {
         [ -f $PID_FILE ] && rm $PID_FILE
         daemon --user=<%= @user %> \
             --pidfile="$PID_FILE" \
-            "$DAEMON" <%= @options %> >> "$LOG_FILE" &
+            <%- require 'shellwords' -%>
+            "$DAEMON" <%= Shellwords.escape(@options) %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile
         touch /var/lock/subsys/<%= @name %>

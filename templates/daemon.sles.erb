@@ -12,8 +12,8 @@
 # Should-Stop:	     $null
 # Default-Start:     3 5
 # Default-Stop:      0 1 2 6
-# Short-Description: Prometheus exporter <%= @name %>
-# Description:       Prometheus exporter <%= @name %>
+# Short-Description: Prometheus <%= @name %>
+# Description:       Prometheus <%= @name %>
 ### END INIT INFO
 
 . /etc/rc.status
@@ -35,7 +35,8 @@ case "$1" in
         echo -n "Starting Prometheus <%= @name %>"
         ## Start daemon with startproc(8). If this fails
         ## the return value is set appropriately by startproc.
-        startproc $<%= @name %>_BIN <%= @options %> >> "$LOG_FILE"
+        <%- require 'shellwords' -%>
+        startproc $<%= @name %>_BIN <%= Shellwords.escape(@options) %> >> "$LOG_FILE"
 
         # Remember status and be verbose
         rc_status -v
