@@ -179,8 +179,6 @@ class prometheus::alertmanager (
     default => undef,
   }
 
-  $options = "-config.file=${prometheus::alertmanager::config_file} -storage.path=${prometheus::alertmanager::storage_path} ${prometheus::alertmanager::extra_options}"
-
   file { $config_dir:
     ensure  => 'directory',
     owner   => $user,

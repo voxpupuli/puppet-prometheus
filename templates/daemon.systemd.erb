@@ -7,7 +7,10 @@ After=basic.target network.target
 User=<%= @user %>
 Group=<%= @group %>
 <%- require 'shellwords' -%>
-ExecStart=<%= @bin_dir %>/<%= @name %> <%= Shellwords.escape(@options) %>
+ExecStart=<%= @bin_dir %>/<%= @name %><% for option in Shellwords.split(@options) %> \
+<%= option -%>
+<% end %>
+
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always

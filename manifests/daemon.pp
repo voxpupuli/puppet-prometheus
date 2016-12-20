@@ -15,8 +15,6 @@ define prometheus::daemon (
   $group,
   $manage_group,
   $purge,
-  $user,
-  $group,
   $options,
   $init_style,
   $service_ensure,
