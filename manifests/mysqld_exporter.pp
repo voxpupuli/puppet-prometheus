@@ -1,17 +1,34 @@
-# Class: prometheus::node_exporter
+# Class: prometheus::mysqld_exporter
 #
-# This module manages prometheus node node_exporter
+# This module manages prometheus mysqld_exporter
 #
 # Parameters:
 #  [*arch*]
 #  Architecture (amd64 or i386)
 #
-
 #  [*bin_dir*]
 #  Directory where binaries are located
 #
-#  [*collectors*]
-#  The set of node node_exporter collectors
+#  [*cnf_config_path*]
+#  The path to put the my.cnf file
+#
+#  [*cnf_host*]
+#  The mysql host. Defaults to 'localhost'
+#
+#  [*cnf_password*]
+#  The mysql user password. Defaults to 'password'
+#
+#  [*cnf_port*]
+#  The port for which the mysql host is running. Defaults to 3306
+#
+#  [*cnf_socket*]
+#  The socket which the mysql host is running. If defined, host and port are not used.
+#
+#  [*cnf_user*]
+#  The mysql user to use when connecting. Defaults to 'login'
+#
+#  [*config_mode*]
+#  The permissions of the configuration files
 #
 #  [*download_extension*]
 #  Extension for the release binary archive
@@ -72,53 +89,60 @@
 #
 #  [*version*]
 #  The binary release version
-class prometheus::node_exporter (
+class prometheus::mysqld_exporter (
   $arch                 = $::prometheus::params::arch,
   $bin_dir              = $::prometheus::params::bin_dir,
-  $collectors           = $::prometheus::params::node_exporter_collectors,
-  $download_extension   = $::prometheus::params::node_exporter_download_extension,
+  $cnf_config_path      = $::prometheus::params::mysqld_exporter_cnf_config_path,
+  $cnf_host             = $::prometheus::params::mysqld_exporter_cnf_host,
+  $cnf_password         = $::prometheus::params::mysqld_exporter_cnf_password,
+  $cnf_port             = $::prometheus::params::mysqld_exporter_cnf_port,
+  $cnf_socket           = undef,
+  $cnf_user             = $::prometheus::params::mysqld_exporter_cnf_user,
+  $config_mode          = $::prometheus::params::config_mode,
+  $download_extension   = $::prometheus::params::mysqld_exporter_download_extension,
   $download_url         = undef,
-  $download_url_base    = $::prometheus::params::node_exporter_download_url_base,
-  $extra_groups         = $::prometheus::params::node_exporter_extra_groups,
+  $download_url_base    = $::prometheus::params::mysqld_exporter_download_url_base,
+  $extra_groups         = $::prometheus::params::mysqld_exporter_extra_groups,
   $extra_options        = '',
-  $group                = $::prometheus::params::node_exporter_group,
+  $group                = $::prometheus::params::mysqld_exporter_group,
   $init_style           = $::prometheus::params::init_style,
   $install_method       = $::prometheus::params::install_method,
   $manage_group         = true,
   $manage_service       = true,
   $manage_user          = true,
   $os                   = $::prometheus::params::os,
-  $package_ensure       = $::prometheus::params::node_exporter_package_ensure,
-  $package_name         = $::prometheus::params::node_exporter_package_name,
+  $package_ensure       = $::prometheus::params::mysqld_exporter_package_ensure,
+  $package_name         = $::prometheus::params::mysqld_exporter_package_name,
   $purge_config_dir     = true,
   $restart_on_change    = true,
   $service_enable       = true,
   $service_ensure       = 'running',
-  $user                 = $::prometheus::params::node_exporter_user,
-  $version              = $::prometheus::params::node_exporter_version,
+  $user                 = $::prometheus::params::mysqld_exporter_user,
+  $version              = $::prometheus::params::mysqld_exporter_version,
 ) inherits prometheus::params {
-  # Prometheus added a 'v' on the realease name at 0.13.0
-  if versioncmp ($version, '0.13.0') >= 0 {
-    $release = "v${version}"
-  }
-  else {
-    $release = $version
-  }
-  $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  #Please provide the download_url for versions < 0.9.0
+  $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   validate_bool($purge_config_dir)
   validate_bool($manage_user)
   validate_bool($manage_service)
   validate_bool($restart_on_change)
-  validate_array($collectors)
   $notify_service = $restart_on_change ? {
-    true    => Service['node_exporter'],
+    true    => Service['mysqld_exporter'],
     default => undef,
   }
 
-  $str_collectors = join($collectors, ',')
-  $options = "-collectors.enabled=${str_collectors} ${extra_options}"
+  file { $cnf_config_path:
+    ensure  => 'file',
+    mode    => $config_mode,
+    owner   => $user,
+    group   => $group,
+    content => template('prometheus/my.cnf.erb'),
+    notify  => $notify_service,
+  }
 
-  prometheus::daemon { 'node_exporter':
+  $options = "-config.my-cnf=${cnf_config_path} ${extra_options}"
+
+  prometheus::daemon { 'mysqld_exporter':
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

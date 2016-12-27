@@ -1,25 +1,26 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          alert_manager
+# Provides:          <%= @name %>
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      S 0 1 6
-# Short-Description: Prometheus alert manager
-# Description:       The Alertmanager handles alerts sent by client applications such as the Prometheus server.
-#                    
+# Short-Description: Prometheus <%= @name %>
+# Description:       Prometheus <%= @name %>
+#
 ### END INIT INFO
 
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/usr/sbin:/usr/bin:/sbin:/bin:<%= scope.lookupvar('prometheus::alert_manager::bin_dir') %>
-DESC="Prometheus alert manager"
-NAME=alert_manager
-DAEMON=<%= scope.lookupvar('prometheus::alert_manager::bin_dir') %>/$NAME
+PATH=/usr/sbin:/usr/bin:/sbin:/bin:<%= @bin_dir %>
+DESC="Prometheus <%= @name %>"
+NAME=<%= @name %>
+DAEMON=<%= @bin_dir %>/$NAME
 PIDFILE=/var/run/$NAME/$NAME.pid
-DAEMON_ARGS=" -config.file=<%= scope.lookupvar('prometheus::alert_manager::config_file') %> -storage.path=<%= scope.lookupvar('prometheus::alert_manager::storage_path') %> <%= scope.lookupvar('prometheus::alert_manager::extra_options') %>"
-USER=<%= scope.lookupvar('prometheus::alert_manager::user') %>
+<%- require 'shellwords' -%>
+DAEMON_ARGS=<%= Shellwords.escape(@options) %>
+USER=<%= @user %>
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
@@ -39,8 +40,8 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Function to create run directory
 #
 mkrundir() {
-        [ ! -d /var/run/prometheus ] && mkdir -p /var/run/prometheus
-        chown $USER /var/run/prometheus
+        [ ! -d /var/run/<%= @name %> ] && mkdir -p /var/run/<%= @name %>
+        chown $USER /var/run/<%= @name %>
 }
 
 #

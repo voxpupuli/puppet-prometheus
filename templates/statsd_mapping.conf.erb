@@ -1,0 +1,7 @@
+<%- @real_statsd_maps.sort!{ |a,b| b[:name] <=> a[:name] }.each do |metric| -%>
+<%= metric['map'] %>
+name="<%= metric['name'] %>"
+<% metric['labels'].sort.each do |key, value| -%>
+<%= key %>="<%= value %>"
+<% end %>
+<%- end -%>

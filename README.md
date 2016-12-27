@@ -18,9 +18,10 @@ This module automates the install and configuration of Prometheus monitoring too
 
 * Installs the prometheus daemon, alertmanager or exporters(via url or package)
   * The package method was implemented, but currently there isn't any package for prometheus
-* Optionally installs a user to run it under
+* Optionally installs a user to run it under (per exporter)
 * Installs a configuration file for prometheus daemon (/etc/prometheus/prometheus.yaml) or for alertmanager (/etc/prometheus/alert.rules)
 * Manages the services via upstart, sysv, or systemd
+* Optionally creates alert rules
 
 ## Usage
 
@@ -51,6 +52,32 @@ or simply:
 include ::prometheus
 ```
 
+To add alert rules, add the following to the class prometheus:
+```puppet
+    alerts => [{ 'name' => 'InstanceDown', 'condition' => 'up == 0', 'timeduration' => '5m', labels => [{ 'name' => 'severity', 'content' => 'page'}], 'annotations' => [{ 'name' => 'summary', content => 'Instance {{ $labels.instance }} down'}, {'name' => 'description', content => '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.' }]}]
+```
+
+or in hiera:
+```yaml
+alertrules:
+    -
+        name: 'InstanceDown'
+        condition:  'up == 0'
+        timeduration: '5m'
+        labels:
+            -
+                name: 'severity'
+                content: 'critical'
+        annotations:
+            -
+                name: 'summary'
+                content: 'Instance {{ $labels.instance }} down'
+            -
+                name: 'description'
+                content: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+
+```
+
 On the monitored nodes:
 
 ```puppet
@@ -77,6 +104,8 @@ include ::prometheus::node_exporter
 For more information regarding class parameters please take a look at class docstring.
 
 ## Limitations/Known issues
+
+In version 0.1.14 of this module the alertmanager was configured to run as the service `alert_manager`. This has been changed in version 0.2.00 to be `alertmanager`.
 
 Do not use version 1.0.0 of Prometheus: https://groups.google.com/forum/#!topic/prometheus-developers/vuSIxxUDff8 ; it does break the compatibility with thus module!
 

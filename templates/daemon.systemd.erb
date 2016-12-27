@@ -1,0 +1,20 @@
+[Unit]
+Description=Prometheus <%= @name %>
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+User=<%= @user %>
+Group=<%= @group %>
+<%- require 'shellwords' -%>
+ExecStart=<%= @bin_dir %>/<%= @name %><% for option in Shellwords.split(@options) %> \
+<%= option -%>
+<% end %>
+
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

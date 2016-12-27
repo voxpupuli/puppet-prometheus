@@ -1,17 +1,16 @@
-# Class: prometheus::node_exporter
+# Class: prometheus::statsd_exporter
 #
-# This module manages prometheus node node_exporter
+# This module manages prometheus statsd_exporter
 #
 # Parameters:
 #  [*arch*]
 #  Architecture (amd64 or i386)
 #
-
 #  [*bin_dir*]
 #  Directory where binaries are located
 #
-#  [*collectors*]
-#  The set of node node_exporter collectors
+#  [*config_mode*]
+#  The permissions of the configuration files
 #
 #  [*download_extension*]
 #  Extension for the release binary archive
@@ -67,58 +66,71 @@
 #  [*service_ensure*]
 #  State ensured for the service (default 'running')
 #
+#  [*statsd_maps*]
+#  The hiera array for mappings:
+#    - map: 'test.dispatcher.*.*.*'
+#      name: 'dispatcher_events_total'
+#      labels:
+#        processor: '$2'
+#        action: '$1'
+#
 #  [*user*]
 #  User which runs the service
 #
 #  [*version*]
 #  The binary release version
-class prometheus::node_exporter (
+class prometheus::statsd_exporter (
   $arch                 = $::prometheus::params::arch,
   $bin_dir              = $::prometheus::params::bin_dir,
-  $collectors           = $::prometheus::params::node_exporter_collectors,
-  $download_extension   = $::prometheus::params::node_exporter_download_extension,
+  $config_mode          = $::prometheus::params::config_mode,
+  $download_extension   = $::prometheus::params::statsd_exporter_download_extension,
   $download_url         = undef,
-  $download_url_base    = $::prometheus::params::node_exporter_download_url_base,
-  $extra_groups         = $::prometheus::params::node_exporter_extra_groups,
+  $download_url_base    = $::prometheus::params::statsd_exporter_download_url_base,
+  $extra_groups         = $::prometheus::params::statsd_exporter_extra_groups,
   $extra_options        = '',
-  $group                = $::prometheus::params::node_exporter_group,
+  $group                = $::prometheus::params::statsd_exporter_group,
   $init_style           = $::prometheus::params::init_style,
   $install_method       = $::prometheus::params::install_method,
   $manage_group         = true,
   $manage_service       = true,
   $manage_user          = true,
+  $mapping_config_path  = $::prometheus::params::statsd_exporter_mapping_config_path,
   $os                   = $::prometheus::params::os,
-  $package_ensure       = $::prometheus::params::node_exporter_package_ensure,
-  $package_name         = $::prometheus::params::node_exporter_package_name,
+  $package_ensure       = $::prometheus::params::statsd_exporter_package_ensure,
+  $package_name         = $::prometheus::params::statsd_exporter_package_name,
   $purge_config_dir     = true,
   $restart_on_change    = true,
   $service_enable       = true,
   $service_ensure       = 'running',
-  $user                 = $::prometheus::params::node_exporter_user,
-  $version              = $::prometheus::params::node_exporter_version,
+  $statsd_maps          = $::prometheus::params::statsd_exporter_maps,
+  $user                 = $::prometheus::params::statsd_exporter_user,
+  $version              = $::prometheus::params::statsd_exporter_version,
 ) inherits prometheus::params {
-  # Prometheus added a 'v' on the realease name at 0.13.0
-  if versioncmp ($version, '0.13.0') >= 0 {
-    $release = "v${version}"
-  }
-  else {
-    $release = $version
-  }
-  $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  $real_download_url    = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   validate_bool($purge_config_dir)
   validate_bool($manage_user)
   validate_bool($manage_service)
   validate_bool($restart_on_change)
-  validate_array($collectors)
   $notify_service = $restart_on_change ? {
-    true    => Service['node_exporter'],
+    true    => Service['statsd_exporter'],
     default => undef,
   }
 
-  $str_collectors = join($collectors, ',')
-  $options = "-collectors.enabled=${str_collectors} ${extra_options}"
+  $extra_statsd_maps = hiera_array('prometheus::statsd_exporter::statsd_maps',[])
+  $real_statsd_maps = concat($extra_statsd_maps, $prometheus::statsd_exporter::statsd_maps)
 
-  prometheus::daemon { 'node_exporter':
+  file { $mapping_config_path:
+    ensure  => 'file',
+    mode    => $config_mode,
+    owner   => $user,
+    group   => $group,
+    content => template('prometheus/statsd_mapping.conf.erb'),
+    notify  => $notify_service,
+  }
+
+  $options = "-statsd.mapping-config=\'${prometheus::statsd_exporter::mapping_config_path}\' ${prometheus::statsd_exporter::extra_options}"
+
+  prometheus::daemon { 'statsd_exporter':
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

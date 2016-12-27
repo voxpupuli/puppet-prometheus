@@ -4,7 +4,7 @@
     {"name":"nanliu/staging","version_requirement":">=0.4.0 <2.0.0"}],
   "license": "Apache 2.0",
   "name": "brutus777-prometheus",
-  "operatingsystem_support": [  
+  "operatingsystem_support": [
   	{
       "operatingsystemrelease": [
         "5",
@@ -19,5 +19,5 @@
   "source": "https://github.com/brutus333/puppet-prometheus",
   "summary": "Prometheus Puppet module",
   "tags": [],
-  "version": "0.1.14"
+  "version": "0.2.00"
 }

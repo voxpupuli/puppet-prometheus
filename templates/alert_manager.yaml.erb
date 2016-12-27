@@ -1,8 +1,0 @@
-<% require 'yaml' -%>
-<% global = scope.lookupvar('::prometheus::alert_manager::global') -%>
-<% templates = scope.lookupvar('::prometheus::alert_manager::templates') -%>
-<% route = scope.lookupvar('::prometheus::alert_manager::route') -%>
-<% receivers = scope.lookupvar('::prometheus::alert_manager::receivers') -%>
-<% inhibit_rules = scope.lookupvar('::prometheus::alert_manager::inhibit_rules') -%>
-<% full_config = { 'global'=>global, 'templates'=>templates, 'route'=>route, 'receivers'=>receivers, 'inhibit_rules'=>inhibit_rules } -%>
-<%= full_config.to_yaml -%>

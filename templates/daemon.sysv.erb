@@ -1,32 +1,32 @@
 #!/bin/bash
 #
-#       /etc/rc.d/init.d/node_exporter
+#       /etc/rc.d/init.d/<%= @name %>
 #
-#       Daemonize the prometheus node exporter
+#       Daemonize the prometheus <%= @name %>.
 #
 # chkconfig:   2345 95 20
-# description: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
-# processname: node_exporter
-# pidfile: /var/run/node_exporter/pidfile
+# description: Prometheus <%= @name %>
+# processname: <%= @name %>
+# pidfile: /var/run/<%= @name %>/pidfile
 
 # Source function library.
 . /etc/init.d/functions
 
-DAEMON=<%= scope.lookupvar('prometheus::node_exporter::bin_dir') %>/node_exporter
-PID_FILE=/var/run/node_exporter/node_exporter.pid
-LOG_FILE=/var/log/node_exporter
+DAEMON=<%= @bin_dir %>/<%= @name %>
+PID_FILE=/var/run/<%= @name %>/<%= @name %>.pid
+LOG_FILE=/var/log/<%= @name %>
 
-[ -e /etc/sysconfig/node_exporter ] && . /etc/sysconfig/node_exporter
+[ -e /etc/sysconfig/<%= @name %> ] && . /etc/sysconfig/<%= @name %>
 
 export GOMAXPROCS=${GOMAXPROCS:-2}
 
 #
-# Create the /var/run/node_exporter directory, which can live on a tmpfs
+# Create the /var/run/<%= @name %> directory, which can live on a tmpfs
 # filesystem and be destroyed between reboots.
 #
 mkrundir() {
-        [ ! -d /var/run/node_exporter ] && mkdir -p /var/run/node_exporter
-        chown <%= scope.lookupvar('prometheus::node_exporter::user') %> /var/run/node_exporter
+        [ ! -d /var/run/<%= @name %> ] && mkdir -p /var/run/<%= @name %>
+        chown <%= @user %> /var/run/<%= @name %>
 }
 
 #
@@ -38,7 +38,7 @@ mkpidfile() {
         # Create PID file if it didn't exist
         mkrundir
         [ ! -f $PID_FILE ] && pidofproc $DAEMON > $PID_FILE
-        chown <%= scope.lookupvar('prometheus::node_exporter::user') %> /var/run/node_exporter
+        chown <%= @user %> /var/run/<%= @name %>
         if [ $? -ne 0 ] ; then
             rm $PID_FILE
             KILLPROC_OPT=""
@@ -46,25 +46,26 @@ mkpidfile() {
 }
 
 start() {
-        echo -n "Starting prometheus node exporter: "
+        echo -n "Starting prometheus <%= @name %>: "
         mkrundir
         [ -f $PID_FILE ] && rm $PID_FILE
-        daemon --user=<%= scope.lookupvar('prometheus::node_exporter::user') %> \
+        daemon --user=<%= @user %> \
             --pidfile="$PID_FILE" \
-            "$DAEMON" -collectors.enabled=<%= scope.lookupvar('prometheus::node_exporter::collectors').join(',') %> <%= scope.lookupvar('prometheus::node_exporter::extra_options') %> >> "$LOG_FILE" &
+            <%- require 'shellwords' -%>
+            "$DAEMON" <%= Shellwords.escape(@options) %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile
-        touch /var/lock/subsys/node_exporter
+        touch /var/lock/subsys/<%= @name %>
         return $retcode
 }
 
 stop() {
         DELAY=5 # seconds maximum to wait for a leave
 
-        echo -n "Shutting down prometheus node_exporter: "
+        echo -n "Shutting down prometheus <%= @name %>: "
         mkpidfile
 
-        node_exporter_pid=$(cat $PID_FILE)
+        <%= @name %>_pid=$(cat $PID_FILE)
         killproc $KILLPROC_OPT $DAEMON -INT
         retcode=$?
 
@@ -72,8 +73,8 @@ stop() {
         # early if we can.  If not, escalate to harsher signals.
         try=0
         while [ $try -lt $DELAY ]; do
-        if ! checkpid $node_exporter_pid ; then
-          rm -f /var/lock/subsys/node_exporter
+        if ! checkpid $<%= @name %>_pid ; then
+          rm -f /var/lock/subsys/<%= @name %>
           return $retcode
         fi
         sleep 1
@@ -89,7 +90,7 @@ stop() {
         killproc $KILLPROC_OPT $DAEMON
         retcode=$?
 
-        rm -f /var/lock/subsys/node_exporter $PID_FILE
+        rm -f /var/lock/subsys/<%= @name %> $PID_FILE
         return $retcode
 }
 
@@ -112,10 +113,10 @@ case "$1" in
         killproc $KILLPROC_OPT $DAEMON -HUP
         ;;
     condrestart)
-        [ -f /var/lock/subsys/node_exporter ] && restart || :
+        [ -f /var/lock/subsys/<%= @name %> ] && restart || :
         ;;
     *)
-        echo "Usage: node_exporter {start|stop|status|reload|restart}"
+        echo "Usage: <%= @name %> {start|stop|status|reload|restart}"
         exit 1
         ;;
 esac

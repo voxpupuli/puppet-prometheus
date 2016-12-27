@@ -136,6 +136,8 @@ class prometheus (
   $global_config        = $::prometheus::params::global_config,
   $rule_files           = $::prometheus::params::rule_files,
   $scrape_configs       = $::prometheus::params::scrape_configs,
+  $alerts               = $::prometheus::params::alerts
+
 ) inherits prometheus::params {
   if( versioncmp($::prometheus::version, '1.0.0') == -1 ){
     $real_download_url    = pick($download_url,
@@ -171,6 +173,11 @@ class prometheus (
     purge           => $purge_config_dir,
     notify          => $notify_service,
     config_template => $config_template,
+  } ->
+  class { '::prometheus::alerts':
+    location => $config_dir,
+    alerts   => $alerts,
+    notify   => $notify_service,
   } ->
   class { '::prometheus::run_service': } ->
   anchor {'prometheus_last': }
