@@ -1,4 +1,4 @@
-<%- @real_statsd_maps.sort_by!{ |metric| metric[:name] }.each do |metric| -%>
+<%- @real_statsd_maps.sort!{ |a,b| b[:name] <=> a[:name] }.each do |metric| -%>
 <%= metric['map'] %>
 name="<%= metric['name'] %>"
 <% metric['labels'].sort.each do |key, value| -%>
