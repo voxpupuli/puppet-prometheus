@@ -51,6 +51,15 @@ class prometheus::params {
   $node_exporter_package_name = 'node_exporter'
   $node_exporter_user = 'node-exporter'
   $node_exporter_version = '0.13.0'
+  $haproxy_exporter_download_extension = 'tar.gz'
+  $haproxy_exporter_download_url_base = 'https://github.com/prometheus/haproxy_exporter/releases'
+  $haproxy_exporter_extra_groups = []
+  $haproxy_exporter_group = 'haproxy-exporter'
+  $haproxy_exporter_package_ensure = 'latest'
+  $haproxy_exporter_package_name = 'haproxy_exporter'
+  $haproxy_exporter_user = 'haproxy-exporter'
+  $haproxy_exporter_version = '0.7.1'
+  $haproxy_exporter_scrape_uri = 'http://localhost/;csv'
   $package_ensure = 'latest'
   $package_name = 'prometheus'
   $rule_files = [ "${config_dir}/alert.rules" ]
