@@ -67,6 +67,9 @@
 #  [*service_ensure*]
 #  State ensured for the service (default 'running')
 #
+#  [*service_name*]
+#  Name of the node exporter service (default 'node_exporter')
+#
 #  [*user*]
 #  User which runs the service
 #
@@ -94,6 +97,7 @@ class prometheus::node_exporter (
   $restart_on_change    = true,
   $service_enable       = true,
   $service_ensure       = 'running',
+  $service_name         = 'node_exporter',
   $user                 = $::prometheus::params::node_exporter_user,
   $version              = $::prometheus::params::node_exporter_version,
 ) inherits prometheus::params {
@@ -111,14 +115,14 @@ class prometheus::node_exporter (
   validate_bool($restart_on_change)
   validate_array($collectors)
   $notify_service = $restart_on_change ? {
-    true    => Service['node_exporter'],
+    true    => Service[$service_name],
     default => undef,
   }
 
   $str_collectors = join($collectors, ',')
   $options = "-collectors.enabled=${str_collectors} ${extra_options}"
 
-  prometheus::daemon { 'node_exporter':
+  prometheus::daemon { $service_name :
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
