@@ -1,0 +1,15 @@
+<% @alerts.each do |alert| -%>
+ALERT <%= alert['name'] %>
+    IF <%= alert['condition'] %>
+    FOR <%= alert['timeduration'] %>
+    LABELS {
+    <% alert['labels'].each do |label| -%>
+        <%= label['name'] %> = "<%= label['content'] %>",
+    <% end -%>
+    }
+    ANNOTATIONS {
+    <% alert['annotations'].each do |annotation| -%>
+        <%= annotation['name'] %> = "<%= annotation['content'] %>",
+    <% end -%>
+    }
+<% end -%>

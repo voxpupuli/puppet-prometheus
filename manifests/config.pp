@@ -10,6 +10,17 @@ class prometheus::config(
 
   if $prometheus::init_style {
 
+    # the vast majority of files here are init-files
+    # so any change there should trigger a full service restart
+    if $::prometheus::restart_on_change {
+      File {
+        notify => [Class['::prometheus::run_service']],
+      }
+      $systemd_notify = [Exec['prometheus-systemd-reload'], Class['::prometheus::run_service']]
+    } else {
+      $systemd_notify = Exec['prometheus-systemd-reload']
+    }
+
     case $prometheus::init_style {
       'upstart' : {
         file { '/etc/init/prometheus.conf':
@@ -31,9 +42,10 @@ class prometheus::config(
           mode    => '0644',
           owner   => 'root',
           group   => 'root',
+          notify  => $systemd_notify,
           content => template('prometheus/prometheus.systemd.erb'),
         }
-        ~> exec { 'prometheus-systemd-reload':
+        exec { 'prometheus-systemd-reload':
           command     => 'systemctl daemon-reload',
           path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
           refreshonly => true,
@@ -90,6 +102,7 @@ class prometheus::config(
     owner   => $prometheus::user,
     group   => $prometheus::group,
     mode    => $prometheus::config_mode,
+    notify  => Class['::prometheus::service_reload'],
     content => template($config_template),
   }
 

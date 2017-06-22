@@ -84,6 +84,8 @@
 #
 #  [*restart_on_change*]
 #  Should puppet restart prometheus on configuration change? (default true)
+#  Note: this applies only to command-line options changes. Configuration
+#  options are always *reloaded* without restarting.
 #
 #  [*init_style*]
 #  Service startup scripts style (e.g. rc, upstart or systemd)
@@ -167,10 +169,6 @@ class prometheus (
 
   $config_hash_real = deep_merge($config_defaults, $config_hash)
   validate_hash($config_hash_real)
-  $notify_service = $restart_on_change ? {
-    true    => Class['::prometheus::run_service'],
-    default => undef,
-  }
 
   anchor {'prometheus_first': }
   -> class { '::prometheus::install': }
@@ -179,14 +177,13 @@ class prometheus (
     rule_files      => $rule_files,
     scrape_configs  => $scrape_configs,
     purge           => $purge_config_dir,
-    notify          => $notify_service,
     config_template => $config_template,
   }
   -> class { '::prometheus::alerts':
     location => $config_dir,
     alerts   => $alerts,
-    notify   => $notify_service,
   }
   -> class { '::prometheus::run_service': }
+  -> class { '::prometheus::service_reload': }
   -> anchor {'prometheus_last': }
 }
