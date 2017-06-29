@@ -73,6 +73,15 @@ class prometheus::params {
   $node_exporter_version = '0.14.0'
   $package_ensure = 'latest'
   $package_name = 'prometheus'
+  $redis_exporter_redis_address = ['redis://localhost:6379']
+  $redis_exporter_download_extension = 'tar.gz'
+  $redis_exporter_download_url_base = 'https://github.com/oliver006/redis_exporter/releases'
+  $redis_exporter_extra_groups = []
+  $redis_exporter_group = 'redis-exporter'
+  $redis_exporter_package_ensure = 'latest'
+  $redis_exporter_package_name = 'redis_exporter'
+  $redis_exporter_user = 'redis-exporter'
+  $redis_exporter_version = '0.11.2'
   $rule_files = [ "${config_dir}/alert.rules" ]
   $scrape_configs = [ { 'job_name'=> 'prometheus', 'scrape_interval'=> '10s', 'scrape_timeout'=> '10s', 'static_configs'=> [ { 'targets'=> [ 'localhost:9090' ], 'labels'=> { 'alias'=> 'Prometheus'} } ] } ]
   $shared_dir = '/usr/local/share/prometheus'
