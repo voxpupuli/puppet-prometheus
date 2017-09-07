@@ -83,7 +83,7 @@ On the monitored nodes:
 
 ```puppet
 class { '::prometheus::node_exporter':
-  collectors => ['diskstats','filesystem','loadavg','meminfo','netdev','stat,time']
+  collectors => ['diskstats','filesystem','loadavg','meminfo','netdev','stat','time']
 }
 ```
 
