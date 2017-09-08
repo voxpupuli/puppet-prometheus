@@ -10,13 +10,18 @@ class prometheus::run_service {
     default   => 'prometheus',
   }
 
+  $restart_cmd = $prometheus::init_style ? {
+    'systemd' => "systemctl reload-or-restart ${init_selector}",
+    default   => '/usr/bin/pkill -HUP prometheus',
+  }
+
   if $prometheus::manage_service == true {
     service { 'prometheus':
       ensure     => $prometheus::service_ensure,
       name       => $init_selector,
       enable     => $prometheus::service_enable,
       hasrestart => true,
-      restart    => '/usr/bin/pkill -HUP prometheus',
+      restart    => $restart_cmd,
     }
   }
 }
