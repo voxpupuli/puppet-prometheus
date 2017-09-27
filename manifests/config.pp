@@ -9,7 +9,7 @@ class prometheus::config(
   $config_template = $::prometheus::params::config_template,
 ) {
 
-  if $prometheus::init_style {
+  if $prometheus::init_style  and $prometheus::manage_service == true {
     if( versioncmp($::prometheus::version, '2.0.0') < 0 ){
       # helper variable indicating prometheus version, so we can use on this information in the template
       $prometheus_v2 = false

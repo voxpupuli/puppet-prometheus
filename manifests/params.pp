@@ -41,6 +41,7 @@ class prometheus::params {
   $group = 'prometheus'
   $install_method = 'url'
   $localstorage = '/var/lib/prometheus'
+  $manage_service = true
   $mesos_exporter_server_type= 'master'
   $mesos_exporter_cnf_scrape_uri = 'http://localhost:5050'
   $mesos_exporter_download_extension = 'tar.gz'

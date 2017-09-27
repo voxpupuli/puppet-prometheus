@@ -75,7 +75,7 @@ define prometheus::daemon (
   $init_style         = $::prometheus::params::init_style,
   $service_ensure     = 'running',
   $service_enable     = true,
-  $manage_service     = true,
+  $manage_service     = $::prometheus::manage_service,
 ) {
 
   case $install_method {
@@ -148,7 +148,7 @@ define prometheus::daemon (
   }
 
 
-  if $init_style {
+  if $init_style and $manage_service {
 
     case $init_style {
       'upstart' : {
