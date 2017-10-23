@@ -164,6 +164,11 @@ class prometheus (
 
   $config_hash_real = assert_type(Hash, deep_merge($config_defaults, $config_hash))
 
+  $notify_service = $restart_on_change ? {
+    true    => Class['::prometheus::run_service'],
+    default => undef,
+  }
+
   anchor {'prometheus_first': }
   -> class { '::prometheus::install': }
   -> class { '::prometheus::config':
