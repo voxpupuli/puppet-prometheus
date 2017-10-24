@@ -139,7 +139,7 @@ class prometheus::alertmanager (
   $download_url_base         = $::prometheus::params::alertmanager_download_url_base,
   $extra_groups              = $::prometheus::params::alertmanager_extra_groups,
   $extra_options             = '',
-  Array $global              = $::prometheus::params::alertmanager_global,
+  Hash $global               = $::prometheus::params::alertmanager_global,
   $group                     = $::prometheus::params::alertmanager_group,
   Array $inhibit_rules       = $::prometheus::params::alertmanager_inhibit_rules,
   $init_style                = $::prometheus::params::init_style,
