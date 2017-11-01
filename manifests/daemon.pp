@@ -60,7 +60,7 @@ define prometheus::daemon (
   $user,
   $group,
 
-  $install_method     = $::prometheus::params::install_method,
+  $install_method     = $::prometheus::install_method,
   $download_extension = $::prometheus::params::download_extension,
   $os                 = $::prometheus::params::os,
   $arch               = $::prometheus::params::arch,
@@ -148,7 +148,7 @@ define prometheus::daemon (
   }
 
 
-  if $init_style {
+  if $init_style and $install_method == 'url' {
 
     case $init_style {
       'upstart' : {
