@@ -17,4 +17,4 @@ if @prometheus_v2
     full_config['remote_read'] = remote_read_configs
 end
  -%>
-<%= full_config.to_yaml(options = {:line_width => -1}).gsub(/source_labels: ".+?"/) { |x| x.gsub('"', '') } -%>
+<%= full_config.to_yaml(options = {:line_width => -1}).gsub(/.*:\W"\[.*\]"/) { |x| x.gsub('"', '') } -%>
