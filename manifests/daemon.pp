@@ -53,6 +53,10 @@
 #  [*manage_service*]
 #  Should puppet manage the service? (default true)
 #
+#  [*daemon_environment*]
+#  environment which must be set for a daemon (default undef)
+#  e.g. DATA_SOURCE_NAME="postgresql://login:password@hostname:port/dbname"
+#
 define prometheus::daemon (
   $version,
   $real_download_url,
@@ -76,6 +80,7 @@ define prometheus::daemon (
   $service_ensure     = 'running',
   $service_enable     = true,
   $manage_service     = true,
+  $daemon_environment = undef,
 ) {
 
   case $install_method {

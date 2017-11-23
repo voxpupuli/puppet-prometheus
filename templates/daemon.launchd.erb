@@ -15,10 +15,15 @@
     <key>ProgramArguments</key>
         <array>
             <string><%= @bin_dir %>/<%= @name %></string>
-<% require 'shellwords' %>
-<% for extra_option in Shellwords.split(@options) %>
+            <%- require 'shellwords' -%>
+            <%- for extra_option in Shellwords.split(@options) -%>
             <string><%= extra_option %></string>
-<% end %>
+            <%- end -%>
+            <%- if @daemon_environment -%>
+            <string>setenv</string>
+            <string><%= @daemon_environment.split('=')[0] %></string>
+            <string><%= @daemon_environment.split('=').drop(1) %></string>
+            <%- end -%>
         </array>
 </dict>
 </plist>
