@@ -21,6 +21,7 @@ class prometheus::params {
   $alertmanager_version = '0.5.1'
   $alerts = []
   $bin_dir = '/usr/local/bin'
+  $collect_scrape_jobs = []
   $config_dir = '/etc/prometheus'
   $config_mode = '0660'
   $config_template = 'prometheus/prometheus.yaml.erb'

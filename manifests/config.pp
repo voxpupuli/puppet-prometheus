@@ -3,10 +3,11 @@
 class prometheus::config (
   $global_config,
   $rule_files,
-  $scrape_configs,
+  Array[Hash] $scrape_configs,
   $remote_read_configs,
-  $config_template = $::prometheus::params::config_template,
-  $storage_retention = $::prometheus::params::storage_retention,
+  $config_template                 = $::prometheus::params::config_template,
+  $storage_retention               = $::prometheus::params::storage_retention,
+  Array[Hash] $collect_scrape_jobs = $::prometheus::params::collect_scraper_jobs,
 ) {
 
   if $prometheus::init_style {
@@ -105,6 +106,42 @@ class prometheus::config (
       }
     }
   }
+
+  # TODO: promtool currently does not support checking the syntax of file_sd_config "includes".
+  # Ideally we'd check them the same way the other config files are checked.
+  file { "${prometheus::config_dir}/collected_configs":
+    ensure  => directory,
+    owner   => $prometheus::user,
+    group   => $prometheus::group,
+    purge   => true,
+    recurse => true,
+  }
+
+  $collect_scrape_jobs.each |Hash $job_definition| {
+    if !has_key($job_definition, 'job_name') {
+      fail('collected scrape job has no job_name!')
+    }
+
+    $job_name = $job_definition['job_name']
+
+    Prometheus::Scrape_job <<| job_name == $job_name |>> {
+      collect_dir => "${prometheus::config_dir}/collected_configs",
+      notify      => Class['::prometheus::service_reload'],
+    }
+  }
+
+  # we build the "real" scrape_configs by ensuring the exported configs have the right
+  # file_sd_configs setting
+  $collected_scrape_jobs = $collect_scrape_jobs.map |$job_definition| {
+    $job_name = $job_definition['job_name']
+    merge($job_definition, {
+      file_sd_configs => [{
+        files => [ "${prometheus::config_dir}/collected_configs/${job_name}_*.yaml" ]
+      }]
+    })
+  }
+
+  $real_scrape_configs = concat($scrape_configs, $collected_scrape_jobs)
 
   if versioncmp($prometheus::version, '2.0.0') >= 0 {
     $cfg_verify_cmd = 'check config'

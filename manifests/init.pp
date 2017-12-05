@@ -113,6 +113,14 @@
 #  prometheus 1.8.*, only durations understood by golang's time.ParseDuration are supported. Starting
 #  with prometheus 2, durations can also be given in days, weeks and years.
 #
+#  [*collect_scrape_jobs*]
+#  Array of scrape_configs. Format, e.g.:
+#  - job_name: some_exporter
+#    scheme: https
+#  The jobs defined here will be used to collect resources exported via prometheus::daemon,
+#  creating the appropriate prometheus scrape configs for each endpoint. All scrape_config
+#  options can be passed as hash elements. Only the job_name is mandatory.
+#
 # Actions:
 #
 # Requires: see Modulefile
@@ -120,43 +128,44 @@
 # Sample Usage:
 #
 class prometheus (
-  Boolean $manage_user        = true,
-  $user                       = $::prometheus::params::user,
-  $manage_group               = true,
-  Boolean $purge_config_dir   = true,
-  $group                      = $::prometheus::params::group,
-  $extra_groups               = $::prometheus::params::extra_groups,
-  $bin_dir                    = $::prometheus::params::bin_dir,
-  $shared_dir                 = $::prometheus::params::shared_dir,
-  $arch                       = $::prometheus::params::arch,
-  $version                    = $::prometheus::params::version,
-  $install_method             = $::prometheus::params::install_method,
-  $os                         = $::prometheus::params::os,
-  $download_url               = undef,
-  $download_url_base          = $::prometheus::params::download_url_base,
-  $download_extension         = $::prometheus::params::download_extension,
-  $package_name               = $::prometheus::params::package_name,
-  $package_ensure             = $::prometheus::params::package_ensure,
-  String $config_dir          = $::prometheus::params::config_dir,
-  $localstorage               = $::prometheus::params::localstorage,
-  $extra_options              = '',
-  Hash $config_hash           = {},
-  Hash $config_defaults       = {},
-  $config_template            = $::prometheus::params::config_template,
-  $config_mode                = $::prometheus::params::config_mode,
-  $service_enable             = true,
-  $service_ensure             = 'running',
-  Boolean $manage_service     = true,
-  Boolean $restart_on_change  = true,
-  $init_style                 = $::prometheus::params::init_style,
-  Hash $global_config         = $::prometheus::params::global_config,
-  Array $rule_files           = $::prometheus::params::rule_files,
-  Array $scrape_configs       = $::prometheus::params::scrape_configs,
-  Array $remote_read_configs  = $::prometheus::params::remote_read_configs,
-  $alerts                     = $::prometheus::params::alerts,
-  Array $alert_relabel_config = $::prometheus::params::alert_relabel_config,
-  Array $alertmanagers_config = $::prometheus::params::alertmanagers_config,
-  String $storage_retention   = $::prometheus::params::storage_retention,
+  Boolean $manage_user             = true,
+  $user                            = $::prometheus::params::user,
+  $manage_group                    = true,
+  Boolean $purge_config_dir        = true,
+  $group                           = $::prometheus::params::group,
+  $extra_groups                    = $::prometheus::params::extra_groups,
+  $bin_dir                         = $::prometheus::params::bin_dir,
+  $shared_dir                      = $::prometheus::params::shared_dir,
+  $arch                            = $::prometheus::params::arch,
+  $version                         = $::prometheus::params::version,
+  $install_method                  = $::prometheus::params::install_method,
+  $os                              = $::prometheus::params::os,
+  $download_url                    = undef,
+  $download_url_base               = $::prometheus::params::download_url_base,
+  $download_extension              = $::prometheus::params::download_extension,
+  $package_name                    = $::prometheus::params::package_name,
+  $package_ensure                  = $::prometheus::params::package_ensure,
+  String $config_dir               = $::prometheus::params::config_dir,
+  $localstorage                    = $::prometheus::params::localstorage,
+  $extra_options                   = '',
+  Hash $config_hash                = {},
+  Hash $config_defaults            = {},
+  $config_template                 = $::prometheus::params::config_template,
+  $config_mode                     = $::prometheus::params::config_mode,
+  $service_enable                  = true,
+  $service_ensure                  = 'running',
+  Boolean $manage_service          = true,
+  Boolean $restart_on_change       = true,
+  $init_style                      = $::prometheus::params::init_style,
+  Hash $global_config              = $::prometheus::params::global_config,
+  Array $rule_files                = $::prometheus::params::rule_files,
+  Array $scrape_configs            = $::prometheus::params::scrape_configs,
+  Array $remote_read_configs       = $::prometheus::params::remote_read_configs,
+  $alerts                          = $::prometheus::params::alerts,
+  Array $alert_relabel_config      = $::prometheus::params::alert_relabel_config,
+  Array $alertmanagers_config      = $::prometheus::params::alertmanagers_config,
+  String $storage_retention        = $::prometheus::params::storage_retention,
+  Array[Hash] $collect_scrape_jobs = $::prometheus::params::collect_scrape_jobs,
 ) inherits prometheus::params {
 
   if( versioncmp($::prometheus::version, '1.0.0') == -1 ){
@@ -189,6 +198,7 @@ class prometheus (
     remote_read_configs => $remote_read_configs,
     config_template     => $config_template,
     storage_retention   => $storage_retention,
+    collect_scrape_jobs => $collect_scrape_jobs,
   }
   -> class { '::prometheus::run_service': }
   -> class { '::prometheus::service_reload': }
