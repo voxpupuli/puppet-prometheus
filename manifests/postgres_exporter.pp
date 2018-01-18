@@ -92,8 +92,12 @@ class prometheus::postgres_exporter (
   String           $user                  = $::prometheus::params::postgres_exporter_user,
   String           $version               = $::prometheus::params::postgres_exporter_version,
 ) inherits prometheus::params {
-  #Please provide the download_url for versions < 0.9.0
-  $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}")
+  #Please provide the download_url for versions < 0.4.1
+  if versioncmp ($version, '0.4.1') >= 0 {
+    $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}")
+  } else {
+    $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}_v${version}_${os}-${arch}.${download_extension}")
+  }
 
   $notify_service = $restart_on_change ? {
     true    => Service['postgres_exporter'],

@@ -7,7 +7,7 @@ After=basic.target network.target
 User=<%= @user %>
 Group=<%= @group %>
 <% if @daemon_environment -%>
-Environment=<%= @daemon_environment -%>
+Environment=<%= @daemon_environment %>
 <% end -%>
 <%- require 'shellwords' -%>
 ExecStart=<%= @bin_dir %>/<%= @name %><% for option in Shellwords.split(@options) %> \
