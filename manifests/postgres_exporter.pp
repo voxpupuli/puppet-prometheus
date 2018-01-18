@@ -74,6 +74,7 @@ class prometheus::postgres_exporter (
   String           $bin_dir               = $::prometheus::params::bin_dir,
   Optional[String] $download_url          = undef,
   String           $download_url_base     = $::prometheus::params::postgres_exporter_download_url_base,
+  String           $download_extension    = $::prometheus::params::postgres_exporter_download_extension,
   Array            $extra_groups          = $::prometheus::params::postgres_exporter_extra_groups,
   String           $extra_options         = '',
   String           $group                 = $::prometheus::params::postgres_exporter_group,
@@ -109,14 +110,14 @@ class prometheus::postgres_exporter (
   # some start styles need a config file
   case $init_style {
     'debian','upstart' : {
-      file { '/etc/default/postgres_exporter':
+      file { '/etc/default/postgres_exporter':
         ensure  => file,
         mode    => '0644',
         content => "export ${daemon_environment}\n",
       }
     }
     'sles', 'sysv': {
-      file { '/etc/sysconfig/postgres_exporter':
+      file { '/etc/sysconfig/postgres_exporter':
         ensure  => file,
         mode    => '0644',
         content => "export ${daemon_environment}\n",
