@@ -22,7 +22,7 @@ if @prometheus_v2
 end
  -%>
 <%= if @prometheus_v2
-full_config.to_yaml
+full_config.to_yaml.gsub(/(module|source_labels): ".+?"/) { |x| x.gsub('"', '') }
 else
 full_config.to_yaml(options = {:line_width => -1}).gsub(/source_labels: ".+?"/) { |x| x.gsub('"', '') }
 end
