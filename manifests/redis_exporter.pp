@@ -137,7 +137,7 @@ class prometheus::redis_exporter (
       extract_path    => "/opt/${service_name}-${version}.${os}-${arch}",
       source          => $real_download_url,
       checksum_verify => false,
-      creates         => "/opt/${name}-${version}.${os}-${arch}/${name}",
+      creates         => "/opt/${service_name}-${version}.${os}-${arch}/${service_name}",
       cleanup         => true,
     }
     -> file { "${bin_dir}/${service_name}":
