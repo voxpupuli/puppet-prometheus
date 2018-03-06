@@ -78,6 +78,7 @@ define prometheus::daemon (
   $manage_service                 = true,
   Hash[String, Scalar] $env_vars  = {},
   Optional[String] $env_file_path = $::prometheus::params::env_file_path,
+  Boolean $use_camptocamp_systemd = $::prometheus::params::use_camptocamp_systemd,
 ) {
 
   case $install_method {
@@ -169,10 +170,27 @@ define prometheus::daemon (
         }
       }
       'systemd' : {
-        include 'systemd'
-        ::systemd::unit_file {"${name}.service":
-          content => template('prometheus/daemon.systemd.erb'),
-          notify  => $notify_service,
+        $systemd_content = template('prometheus/daemon.systemd.erb')
+        if $use_camptocamp_systemd {
+          include 'systemd'
+          ::systemd::unit_file {"${name}.service":
+            content => $systemd_content,
+            notify  => $notify_service,
+          }
+        } else {
+          file { "/etc/systemd/system/${name}.service":
+            mode    => '0644',
+            owner   => 'root',
+            group   => 'root',
+            content => $systemd_content,
+            notify  => Exec["${name}-systemd-reload"],
+          }
+          exec { "${name}-systemd-reload":
+            command     => 'systemctl daemon-reload',
+            path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+            refreshonly => true,
+            notify      => $notify_service,
+          }
         }
       }
       'sysv' : {

@@ -6,6 +6,7 @@ class prometheus::config (
   $scrape_configs,
   $remote_read_configs,
   $remote_write_configs,
+  Boolean $use_camptocamp_systemd = $::prometheus::params::use_camptocamp_systemd,
   $config_template = $::prometheus::params::config_template,
   $storage_retention = $::prometheus::params::storage_retention,
 ) {
@@ -67,9 +68,25 @@ class prometheus::config (
         }
       }
       'systemd' : {
-        include 'systemd'
-        ::systemd::unit_file {'prometheus.service':
-          content => template('prometheus/prometheus.systemd.erb'),
+        $systemd_content = template('prometheus/prometheus.systemd.erb')
+        if $use_camptocamp_systemd {
+          include 'systemd'
+          ::systemd::unit_file {'prometheus.service':
+            content => $systemd_content,
+          }
+        } else {
+          file { '/etc/systemd/system/prometheus.service':
+            mode    => '0644',
+            owner   => 'root',
+            group   => 'root',
+            notify  => $systemd_notify,
+            content => $systemd_content,
+          }
+          exec { 'prometheus-systemd-reload':
+            command     => 'systemctl daemon-reload',
+            path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+            refreshonly => true,
+          }
         }
       }
       'sysv' : {
