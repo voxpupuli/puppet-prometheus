@@ -271,4 +271,16 @@ class prometheus::params {
   if $init_style == undef {
     fail('Unsupported OS')
   }
+
+  # Autodetect whether we should use camptocamp/systemd
+  $metadata = load_module_metadata('systemd', true)
+  if empty($metadata) {
+    $use_camptocamp_systemd = false
+  } else {
+    if $metadata['name'] == 'camptocamp-systemd' {
+      $use_camptocamp_systemd = true
+    } else {
+      $use_camptocamp_systemd = false
+    }
+  }
 }
