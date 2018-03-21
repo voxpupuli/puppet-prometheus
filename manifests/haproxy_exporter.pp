@@ -104,7 +104,7 @@ class prometheus::haproxy_exporter(
     default => undef,
   }
 
-  $options = "-haproxy.scrape-uri=\"${cnf_scrape_uri}\" ${extra_options}"
+  $options = "--haproxy.scrape-uri=\"${cnf_scrape_uri}\" ${extra_options}"
 
   prometheus::daemon { 'haproxy_exporter':
     install_method     => $install_method,
