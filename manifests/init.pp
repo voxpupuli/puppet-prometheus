@@ -142,6 +142,8 @@ class prometheus (
   Stdlib::Absolutepath $shared_dir,
   String $version,
   String $install_method,
+  Optional[String] $proxy,
+  Optional[String] $no_proxy,
   Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $download_url_base,
   String $download_extension,
   String $package_name,
