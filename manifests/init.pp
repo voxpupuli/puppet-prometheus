@@ -34,6 +34,12 @@
 #  [*install_method*]
 #  Installation method: url or package (only url is supported currently)
 #
+# [*proxy*]
+#   Will set the http_proxy and https_proxy env variables in 
+#
+# [*no_proxy*]
+#   Will set the no_proxy variable in
+#
 #  [*os*]
 #  Operating system (linux is supported)
 #
