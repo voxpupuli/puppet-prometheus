@@ -6,6 +6,8 @@ defaults:
   data_hash: yaml_data
 
 hierarchy:
+  - name: 'Architecture Name'
+    path: "arch/%{facts.architecture}.yaml"
   - name: 'Distribution Name'
     path: "%{facts.os.name}.yaml"
   - name: 'Operating System Family'

@@ -22,21 +22,21 @@ class prometheus::install (
         extract_path    => '/opt',
         source          => $prometheus::real_download_url,
         checksum_verify => false,
-        creates         => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/prometheus",
+        creates         => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/prometheus",
         cleanup         => true,
       }
       -> file {
-        "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/prometheus":
+        "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/prometheus":
           owner => 'root',
           group => 0, # 0 instead of root because OS X uses "wheel".
           mode  => '0555';
         "${prometheus::bin_dir}/prometheus":
           ensure => link,
           notify => $prometheus::notify_service,
-          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/prometheus";
+          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/prometheus";
         "${prometheus::bin_dir}/promtool":
           ensure => link,
-          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/promtool";
+          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/promtool";
         $prometheus::shared_dir:
           ensure => directory,
           owner  => $prometheus::user,
@@ -45,11 +45,11 @@ class prometheus::install (
         "${prometheus::shared_dir}/consoles":
           ensure => link,
           notify => $prometheus::notify_service,
-          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/consoles";
+          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/consoles";
         "${prometheus::shared_dir}/console_libraries":
           ensure => link,
           notify => $prometheus::notify_service,
-          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::real_arch}/console_libraries";
+          target => "/opt/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/console_libraries";
       }
     }
     'package': {

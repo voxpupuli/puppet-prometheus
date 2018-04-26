@@ -105,14 +105,14 @@ class prometheus::consul_exporter (
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
-  String $os                     = $prometheus::os,
-  String $init_style             = $prometheus::init_style,
-  String $install_method         = $prometheus::install_method,
+  String $os                     = lookup('prometheus::os'),
+  Optional[String] $init_style   = lookup('prometheus::init_style'),
+  String $install_method         = lookup('prometheus::install_method'),
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $arch                   = $prometheus::arch,
-  String $bin_dir                = $prometheus::bin_dir,
-) inherits prometheus {
+  String $arch                   = lookup('prometheus::arch'),
+  String $bin_dir                = lookup('prometheus::bin_dir'),
+) {
 
   # Prometheus added a 'v' on the realease name at 0.3.0
   if versioncmp ($version, '0.3.0') == -1 {

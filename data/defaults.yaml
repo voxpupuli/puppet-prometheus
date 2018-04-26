@@ -2,6 +2,8 @@
 prometheus::bin_dir: '/usr/local/bin'
 prometheus::version: '1.5.2'
 prometheus::install_method: 'url'
+prometheus::init_style: "%{facts.service_provider}"
+prometheus::os: 'linux'
 prometheus::alert_relabel_config: []
 prometheus::alertmanagers_config: []
 prometheus::alertmanager::config_dir: '/etc/alertmanager'

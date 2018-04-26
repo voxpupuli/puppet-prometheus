@@ -62,7 +62,7 @@ define prometheus::daemon (
   String $install_method          = $prometheus::install_method,
   String $download_extension      = $prometheus::download_extension,
   String $os                      = $prometheus::os,
-  String $arch                    = $prometheus::real_arch,
+  String $arch                    = $prometheus::arch,
   Stdlib::Absolutepath $bin_dir   = $prometheus::bin_dir,
   Optional[String] $package_name  = undef,
   String $package_ensure          = 'installed',
@@ -76,7 +76,7 @@ define prometheus::daemon (
   Boolean $service_enable         = true,
   Boolean $manage_service         = true,
   Hash[String, Scalar] $env_vars  = {},
-  Optional[String] $env_file_path = $prometheus::env_file_path,
+  Optional[String] $env_file_path = lookup('prometheus::env_file_path'),
 ) {
 
   case $install_method {

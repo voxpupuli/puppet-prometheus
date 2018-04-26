@@ -134,6 +134,7 @@ class prometheus (
   Array $extra_groups,
   Stdlib::Absolutepath $bin_dir,
   Stdlib::Absolutepath $shared_dir,
+  String $arch,
   String $version,
   String $install_method,
   Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $download_url_base,
@@ -145,6 +146,7 @@ class prometheus (
   String $config_template,
   String $config_mode,
   Hash $global_config,
+  String $init_style,
   Array $rule_files,
   Array $scrape_configs,
   Array $remote_read_configs,
@@ -159,32 +161,22 @@ class prometheus (
   String $service_ensure         = 'running',
   Boolean $manage_service        = true,
   Boolean $restart_on_change     = true,
-  String $init_style             = $facts['service_provider'],
   String $extra_options          = '',
   Hash $config_hash              = {},
   Hash $config_defaults          = {},
   String $os                     = downcase($facts['kernel']),
   Optional[String] $download_url = undef,
-  String $arch                   = $facts['architecture'],
   Boolean $manage_group          = true,
   Boolean $purge_config_dir      = true,
   Boolean $manage_user           = true,
 ) {
 
-  case $arch {
-    'x86_64', 'amd64': { $real_arch = 'amd64' }
-    'i386':            { $real_arch = '386'   }
-    default:           {
-      fail("Unsupported kernel architecture: ${arch}")
-    }
-  }
-
   if( versioncmp($::prometheus::version, '1.0.0') == -1 ){
     $real_download_url = pick($download_url,
-      "${download_url_base}/download/${version}/${package_name}-${version}.${os}-${real_arch}.${download_extension}")
+      "${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   } else {
     $real_download_url = pick($download_url,
-      "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${real_arch}.${download_extension}")
+      "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   }
   $notify_service = $restart_on_change ? {
     true    => Service['prometheus'],

@@ -9,6 +9,7 @@ describe 'prometheus::node_exporter' do
 
       context 'without parameters' do
         it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '  ') }
+        it { is_expected.not_to contain_class('prometheus::install') }
       end
 
       context 'without collector parameters' do
