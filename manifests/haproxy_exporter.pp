@@ -95,7 +95,7 @@ class prometheus::haproxy_exporter(
   String $extra_options          = '',
   Optional[String] $download_url = undef,
   String $arch                   = lookup('prometheus::arch'),
-  String $bin_dir                = lookup('prometheus::bin_dir'),
+  Stdlib::Absolutepath $bin_dir  = lookup('prometheus::bin_dir'),
 ) {
 
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")

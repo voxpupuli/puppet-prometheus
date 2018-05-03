@@ -104,19 +104,19 @@ class prometheus::blackbox_exporter (
   Boolean $service_enable        = true,
   String $service_ensure         = 'running',
   String $service_name           = 'blackbox_exporter',
-  String $init_style             = $prometheus::init_style,
-  String $install_method         = $prometheus::install_method,
+  Optional[String] $init_style   = lookup('prometheus::init_style'),
+  String $install_method         = lookup('prometheus::install_method'),
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
-  String $os                     = $prometheus::os,
+  String $os                     = lookup('prometheus::os'),
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $config_mode            = $prometheus::config_mode,
-  String $arch                   = $prometheus::arch,
-  String $bin_dir                = $prometheus::bin_dir,
+  String $config_mode            = lookup('prometheus::config_mode'),
+  String $arch                   = lookup('prometheus::arch'),
+  String $bin_dir                = lookup('prometheus::bin_dir'),
   Hash $modules                  = {},
-) inherits prometheus {
+) {
 
   # Prometheus added a 'v' on the release name at 0.1.0 of blackbox
   if versioncmp ($version, '0.1.0') >= 0 {
