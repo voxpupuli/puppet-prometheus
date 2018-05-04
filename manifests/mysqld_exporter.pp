@@ -108,19 +108,19 @@ class prometheus::mysqld_exporter (
   Boolean $restart_on_change                                         = true,
   Boolean $service_enable                                            = true,
   String $service_ensure                                             = 'running',
-  String $init_style                                                 = $prometheus::init_style,
-  String $install_method                                             = $prometheus::install_method,
+  Optional[String] $init_style                                       = lookup('prometheus::init_style'),
+  String $install_method                                             = lookup('prometheus::install_method'),
   Boolean $manage_group                                              = true,
   Boolean $manage_service                                            = true,
   Boolean $manage_user                                               = true,
-  String $os                                                         = $prometheus::os,
+  String $os                                                         = lookup('prometheus::os'),
   String $extra_options                                              = '',
   Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
-  String $config_mode                                                = $prometheus::config_mode,
+  String $config_mode                                                = lookup('prometheus::config_mode'),
   Optional[Stdlib::Absolutepath] $cnf_socket                         = undef,
-  String $arch                                                       = $prometheus::arch,
-  Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
-) inherits prometheus {
+  String $arch                                                       = lookup('prometheus::arch'),
+  Stdlib::Absolutepath $bin_dir                                      = lookup('prometheus::bin_dir'),
+) {
 
   #Please provide the download_url for versions < 0.9.0
   $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")

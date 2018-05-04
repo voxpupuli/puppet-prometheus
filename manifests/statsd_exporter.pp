@@ -91,22 +91,22 @@ class prometheus::statsd_exporter (
   Array[Hash] $statsd_maps,
   String $user,
   String $version,
-  String $arch                                                       = $prometheus::arch,
-  Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
-  String $config_mode                                                = $prometheus::config_mode,
+  String $arch                                                       = lookup('prometheus::arch'),
+  Stdlib::Absolutepath $bin_dir                                      = lookup('prometheus::bin_dir'),
+  String $config_mode                                                = lookup('prometheus::config_mode'),
   Boolean $purge_config_dir                                          = true,
   Boolean $restart_on_change                                         = true,
   Boolean $service_enable                                            = true,
   String $service_ensure                                             = 'running',
-  String $os                                                         = $prometheus::os,
-  String $init_style                                                 = $prometheus::init_style,
-  String $install_method                                             = $prometheus::install_method,
+  String $os                                                         = lookup('prometheus::os'),
+  Optional[String] $init_style                                       = lookup('prometheus::init_style'),
+  String $install_method                                             = lookup('prometheus::install_method'),
   Boolean $manage_group                                              = true,
   Boolean $manage_service                                            = true,
   Boolean $manage_user                                               = true,
   String $extra_options                                              = '',
   Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
-) inherits prometheus {
+) {
 
   $real_download_url    = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {

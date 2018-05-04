@@ -150,18 +150,18 @@ class prometheus::alertmanager (
   String $service_name           = 'alertmanager',
   Boolean $restart_on_change     = true,
   Boolean $purge_config_dir      = true,
-  String $init_style             = $prometheus::init_style,
-  String $install_method         = $prometheus::install_method,
+  String $init_style             = lookup('prometheus::init_style'),
+  String $install_method         = lookup('prometheus::install_method'),
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
-  String $os                     = $prometheus::os,
+  String $os                     = lookup('prometheus::os'),
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $config_mode            = $prometheus::config_mode,
-  String $arch                   = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir  = $prometheus::bin_dir,
-) inherits prometheus {
+  String $config_mode            = lookup('prometheus::config_mode'),
+  String $arch                   = lookup('prometheus::arch'),
+  Stdlib::Absolutepath $bin_dir  = lookup('prometheus::bin_dir'),
+) {
 
   if( versioncmp($version, '0.3.0') == -1 ){
     $real_download_url    = pick($download_url,

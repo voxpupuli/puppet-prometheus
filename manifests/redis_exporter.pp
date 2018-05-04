@@ -96,18 +96,18 @@ class prometheus::redis_exporter (
   Boolean $service_enable        = true,
   String $service_ensure         = 'running',
   String $service_name           = 'redis_exporter',
-  String $init_style             = $prometheus::init_style,
-  String $install_method         = $prometheus::install_method,
+  Optional[String] $init_style   = lookup('prometheus::init_style'),
+  String $install_method         = lookup('prometheus::install_method'),
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
   String $namespace              = 'redis',
-  String $os                     = $prometheus::os,
+  String $os                     = lookup('prometheus::os'),
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $arch                   = $prometheus::arch,
-  String $bin_dir                = $prometheus::bin_dir,
-) inherits prometheus {
+  String $arch                   = lookup('prometheus::arch'),
+  String $bin_dir                = lookup('prometheus::bin_dir'),
+) {
 
   $release = "v${version}"
 

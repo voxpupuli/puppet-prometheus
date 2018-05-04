@@ -90,17 +90,17 @@ class prometheus::mesos_exporter (
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
   String $service_ensure         = 'running',
-  String $init_style             = $prometheus::init_style,
-  String $install_method         = $prometheus::install_method,
+  Optional[String] $init_style   = lookup('prometheus::init_style'),
+  String $install_method         = lookup('prometheus::install_method'),
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
-  String $os                     = $prometheu::os,
+  String $os                     = lookup('prometheus::os'),
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $arch                   = $prometheus::arch,
-  String $bin_dir                = $prometheus::bin_dir,
-) inherits prometheus {
+  String $arch                   = lookup('prometheus::arch'),
+  String $bin_dir                = lookup('prometheus::bin_dir'),
+) {
 
   $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
