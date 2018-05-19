@@ -14,6 +14,7 @@ class prometheus::service_reload() {
       'sles'    => "/etc/init.d/${init_selector} reload",
       'debian'  => "/etc/init.d/${init_selector} reload",
       'launchd' => "launchctl stop ${init_selector} && launchctl start ${init_selector}",
+      'freebsd' => 'service prometheus reload',
     }
 
     exec { 'prometheus-reload':

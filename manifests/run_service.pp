@@ -16,5 +16,9 @@ class prometheus::run_service {
       name   => $init_selector,
       enable => $prometheus::server::service_enable,
     }
+    if $facts['systemd'] {
+      Class['systemd::systemctl::daemon_reload']
+      -> Service['prometheus']
+    }
   }
 }

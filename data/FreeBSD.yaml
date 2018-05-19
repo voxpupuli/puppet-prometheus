@@ -1,0 +1,9 @@
+---
+prometheus::configname: 'prometheus.yml'
+prometheus::version: '2.2.1'
+prometheus::prometheus_method: 'package'
+prometheus::bin_dir: '/usr/local/bin'
+prometheus::env_file_path: '/usr/local/etc'
+prometheus::config_dir: '/usr/local/etc'
+prometheus::purge_config_dir: false
+prometheus::localstorage: '/var/db/prometheus'

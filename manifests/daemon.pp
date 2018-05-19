@@ -224,6 +224,14 @@ define prometheus::daemon (
           notify  => $notify_service,
         }
       }
+      'freebsd': {
+        file{"/usr/local/etc/rc.d/${name}":
+          mode    => '0555',
+          owner   => 'root',
+          group   => 'wheel',
+          content => "MANAGED BY PUPPET",
+        }
+      }
       default : {
         fail("I don't know how to create an init script for style ${init_style}")
       }

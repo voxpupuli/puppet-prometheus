@@ -14,8 +14,14 @@ describe 'prometheus' do
           end
 
           # prometheus::install
+          dbpath = case facts[:os]['family']
+                   when 'FreeBSD'
+                     '/var/db/prometheus'
+                   else
+                     '/var/lib/prometheus'
+                   end
           it {
-            is_expected.to contain_file('/var/lib/prometheus').with(
+            is_expected.to contain_file(dbpath).with(
               'ensure' => 'directory',
               'owner'  => 'prometheus',
               'group'  => 'prometheus',
@@ -147,32 +153,38 @@ describe 'prometheus' do
                 'mode'  => '0755'
               )
             }
+          elsif ['freebsd-10-amd64', 'freebsd-11-amd64', 'freebsd-12-amd64'].include?(os)
+            it {
+              is_expected.to contain_file('/usr/local/etc/rc.d/prometheus')
+            }
           else
             it {
               is_expected.to raise_error(Puppet::Error, %r{I don't know how to create an init script for style})
             }
           end
 
-          it {
-            is_expected.to contain_file('/etc/prometheus').with(
-              'ensure'  => 'directory',
-              'owner'   => 'prometheus',
-              'group'   => 'prometheus',
-              'purge'   => true,
-              'recurse' => true
-            )
-          }
+          unless facts[:os]['family'] == 'FreeBSD'
+            it {
+              is_expected.to contain_file('/etc/prometheus').with(
+                'ensure'  => 'directory',
+                'owner'   => 'prometheus',
+                'group'   => 'prometheus',
+                'purge'   => true,
+                'recurse' => true
+              )
+            }
 
-          it {
-            is_expected.to contain_file('prometheus.yaml').with(
-              'ensure'  => 'present',
-              'path'    => '/etc/prometheus/prometheus.yaml',
-              'owner'   => 'prometheus',
-              'group'   => 'prometheus',
-              'mode'    => '0660',
-              'content' => File.read(fixtures('files', "prometheus#{prom_major}.yaml"))
-            ).that_notifies('Class[prometheus::service_reload]')
-          }
+            it {
+              is_expected.to contain_file('prometheus.yaml').with(
+                'ensure'  => 'present',
+                'path'    => '/etc/prometheus/prometheus.yaml',
+                'owner'   => 'prometheus',
+                'group'   => 'prometheus',
+                'mode'    => '0660',
+                'content' => File.read(fixtures('files', "prometheus#{prom_major}.yaml"))
+              ).that_notifies('Class[prometheus::run_service]')
+            }
+          end
 
           # prometheus::alerts
           it {
@@ -241,11 +253,17 @@ describe 'prometheus' do
             prom_version = parameters[:version]
             prom_major = prom_version[0]
 
+            path = case facts[:os]['family']
+                   when 'FreeBSD'
+                     '/usr/local/etc/alert.rules'
+                   else
+                     '/etc/prometheus/alert.rules'
+                   end
             it {
               is_expected.to compile
             }
             it {
-              is_expected.to contain_file('/etc/prometheus/alert.rules').with(
+              is_expected.to contain_file(path).with(
                 'ensure'  => 'file',
                 'owner'   => 'prometheus',
                 'group'   => 'prometheus',
@@ -271,13 +289,19 @@ describe 'prometheus' do
               parameters
             end
 
+            path = case facts[:os]['family']
+                   when 'FreeBSD'
+                     '/usr/local/etc/prometheus.yml'
+                   else
+                     '/etc/prometheus/prometheus.yaml'
+                   end
             it {
               is_expected.to compile
             }
             it {
               is_expected.to contain_file('prometheus.yaml').with(
                 'ensure'  => 'present',
-                'path'    => '/etc/prometheus/prometheus.yaml',
+                'path'    => path,
                 'owner'   => 'prometheus',
                 'group'   => 'prometheus',
                 'content' => %r{http://domain.tld/path}

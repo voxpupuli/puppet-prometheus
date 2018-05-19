@@ -84,11 +84,16 @@ class prometheus::install {
       system => true,
     })
   }
-  file { $prometheus::server::config_dir:
-    ensure  => 'directory',
-    owner   => $prometheus::server::user,
-    group   => $prometheus::server::group,
-    purge   => $prometheus::server::purge_config_dir,
-    recurse => $prometheus::server::purge_config_dir,
+  # at least on FreeBSD it can happen that the used config_dir is a generic directory
+  # which can bring us to duplicate resources, since other modules define it as well
+  # in this case, the puppet/dhcp also wants to create it
+  if (!defined(File[$prometheus::server::config_dir])) {
+    file { $prometheus::server::config_dir:
+      ensure  => 'directory',
+      owner   => $prometheus::server::user,
+      group   => $prometheus::server::group,
+      purge   => $prometheus::server::purge_config_dir,
+      recurse => $prometheus::server::purge_config_dir,
+    }
   }
 }

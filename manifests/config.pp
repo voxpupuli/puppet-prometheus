@@ -56,9 +56,9 @@ class prometheus::config {
       File {
         notify => Class['prometheus::run_service'],
       }
-      $systemd_notify = [Exec['prometheus-systemd-reload'], Class['prometheus::run_service']]
+      $notify = Class['prometheus::run_service']
     } else {
-      $systemd_notify = Exec['prometheus-systemd-reload']
+      $notify = undef
     }
 
     case $prometheus::server::init_style {
@@ -115,6 +115,25 @@ class prometheus::config {
           content => template('prometheus/prometheus.launchd.erb'),
         }
       }
+      'freebsd': {
+        file { '/usr/local/etc/rc.d/prometheus':
+          mode    => '0555',
+          owner   => 'root',
+          group   => 'wheel',
+          content => epp('prometheus/prometheus.freebsd.epp'),
+        }
+        if ( ! defined(File['/etc/rc.conf.local']) ) {
+          file{'/etc/rc.conf.local':
+            ensure => 'file',
+          }
+        }
+        file_line{'prometheus_config_rc_conf_local':
+          ensure => 'present',
+          path   => '/etc/rc.conf.local',
+          line   => "prometheus_config='${prometheus::server::config_dir}/${prometheus::server::configname}'",
+          match  => '^prometheus_config',
+        }
+      }
       default : {
         fail("I don't know how to create an init script for style ${prometheus::server::init_style}")
       }
@@ -166,10 +185,9 @@ class prometheus::config {
       owner        => $prometheus::server::user,
       group        => $prometheus::server::group,
       mode         => $prometheus::server::config_mode,
-      notify       => Class['prometheus::service_reload'],
+      notify       => $notify,
       content      => template($prometheus::server::config_template),
       validate_cmd => "${prometheus::server::bin_dir}/promtool ${cfg_verify_cmd} %",
     }
   }
-
 }
