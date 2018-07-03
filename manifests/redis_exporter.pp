@@ -95,7 +95,7 @@ class prometheus::redis_exporter (
   String $package_name,
   String $user,
   String $version,
-  String $config_file            = undef,
+  String $config_file            = '',
   Array[String] $conn_string     = ['localhost:6379'],
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
@@ -161,7 +161,7 @@ class prometheus::redis_exporter (
     $all_config = $addr + $conn_string
     $config_file_content = join($all_config,"\n")
 
-    if $config_file == undef {
+    if $config_file == '' {
       $redis_exporter_config_file = "${install_dir}/redis_exporter.conf"
     } else {
       $redis_exporter_config_file = $config_file
