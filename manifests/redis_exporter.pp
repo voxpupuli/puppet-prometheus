@@ -17,10 +17,6 @@
 #  For a full list of options and syntax, refer to:
 #  https://github.com/oliver006/redis_exporter/blob/master/contrib/sample_redis_hosts_file.txt
 #
-#  [*separator_string*]
-#  Separator used to split redis.addr, redis.password and redis.alias into several elements. (default ",")
-#  Note: If your password has commas(","), you must change it to something else.
-#
 #  [*download_extension*]
 #  Extension for the release binary archive
 #
@@ -90,6 +86,7 @@
 #  The binary release version
 
 class prometheus::redis_exporter (
+  Array[String] $addr,
   String $download_extension,
   String $download_url_base,
   String $group,
@@ -98,8 +95,7 @@ class prometheus::redis_exporter (
   String $package_name,
   String $user,
   String $version,
-  String $redis_exporter_config_file,
-  Array[String] $addr,
+  String $config_file            = undef,
   Array[String] $conn_string     = ['localhost:6379'],
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
@@ -127,24 +123,10 @@ class prometheus::redis_exporter (
     default => undef,
   }
 
-  # Is preferable to use "-redis.file" to specify many redis servers in one single configuration file
-  $all_config = $addr + $conn_string
-  $config_file_content = join($all_config,"\n")
-
-  file { $redis_exporter_config_file:
-    ensure  => present,
-    content => $config_file_content,
-    mode    => '0640',
-    owner   => $user,
-    group   => $group,
-    notify  => $notify_service,
-  }
-
-  $options = "-redis.file=${redis_exporter_config_file} -namespace=${namespace} ${extra_options}"
-
   if length($addr) > 0 {
     warning('DEPRECATION WARNING: The $addr variable will not be supported in the next versions.')
     warning('For security reasons and better compatibility, please use $conn_string instead.')
+    warning('https://github.com/oliver006/redis_exporter/blob/master/contrib/sample_redis_hosts_file.txt')
   }
 
   if $install_method == 'url' {
@@ -175,6 +157,27 @@ class prometheus::redis_exporter (
       target => "${install_dir}/${service_name}",
       before => Prometheus::Daemon[$service_name],
     }
+    # Is preferable to use "-redis.file" to specify many redis servers in one single configuration file as needed
+    $all_config = $addr + $conn_string
+    $config_file_content = join($all_config,"\n")
+
+    if $config_file == undef {
+      $redis_exporter_config_file = "${install_dir}/redis_exporter.conf"
+    } else {
+      $redis_exporter_config_file = $config_file
+    }
+
+    file { $redis_exporter_config_file:
+      ensure  => present,
+      content => $config_file_content,
+      mode    => '0640',
+      owner   => $user,
+      group   => $group,
+      notify  => $notify_service,
+    }
+
+    $options = "-redis.file=${redis_exporter_config_file} -namespace=${namespace} ${extra_options}"
+
   } else {
     $exporter_install_method = $install_method
   }
