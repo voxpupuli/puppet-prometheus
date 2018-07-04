@@ -10,8 +10,14 @@
 #  [*bin_dir*]
 #  Directory where binaries are located
 #
-#  [*addr*]
-#  Array of address of one or more redis nodes. Defaults to redis://localhost:6379
+#  [*conn_string*]
+#  Array of connection string of one or more redis nodes. Defaults to redis://localhost:6379
+#  For a full list of options and syntax, refer to:
+#  https://github.com/oliver006/redis_exporter/blob/master/contrib/sample_redis_hosts_file.txt
+#
+#  [*separator_string*]
+#  Separator used to split redis.addr, redis.password and redis.alias into several elements. (default ",")
+#  Note: If your password has commas(","), you must change it to something else.
 #
 #  [*download_extension*]
 #  Extension for the release binary archive
@@ -82,7 +88,6 @@
 #  The binary release version
 
 class prometheus::redis_exporter (
-  Array[String] $addr,
   String $download_extension,
   String $download_url_base,
   Array[String] $extra_groups,
@@ -91,6 +96,8 @@ class prometheus::redis_exporter (
   String $package_name,
   String $user,
   String $version,
+  String $redis_exporter_config_file,
+  Array[String] $conn_string     = ['localhost:6379'],
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
@@ -117,9 +124,19 @@ class prometheus::redis_exporter (
     default => undef,
   }
 
-  $str_addresses = join($addr, ',')
-  $options = "-redis.addr=${str_addresses} -namespace=${namespace} ${extra_options}"
+  # Is preferable to use "-redis.file" to specify many redis servers in one single configuration file
+  $config_file_content = join($conn_string,"\n")
+  file { $redis_exporter_config_file:
+    ensure  => present,
+    content => $config_file_content,
+    mode    => '0640',
+    owner   => $user,
+    group   => $group,
+    notify  => $notify_service,
+  }
 
+  $options = "-redis.file=${redis_exporter_config_file} -namespace=${namespace} ${extra_options}"
+  
   if $install_method == 'url' {
     # Not a big fan of copypasting but prometheus::daemon takes for granted
     # a specific path embedded in the prometheus *_exporter tarball, which
