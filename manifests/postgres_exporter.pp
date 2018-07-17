@@ -6,7 +6,6 @@
 #  [*arch*]
 #  Architecture (amd64 or i386)
 #
-
 #  [*bin_dir*]
 #  Directory where binaries are located
 #
@@ -77,7 +76,7 @@
 #
 #  [*version*]
 #  The binary release version
-
+#
 #  [*postgres_user*]
 #  User to authenticate against postgres
 #
@@ -92,17 +91,17 @@
 #  Uri on howto connect to the database
 
 class prometheus::postgres_exporter (
-  String $download_extension,
-  String $download_url_base,
+  String[1] $download_extension,
+  String[1] $download_url_base,
   Array[String] $extra_groups,
-  String $group,
-  String $package_ensure,
-  String $package_name,
-  String $user,
-  String $version,
-  String $data_source_uri,
-  String $postgres_pass,
-  String $postgres_user,
+  String[1] $group,
+  String[1] $package_ensure,
+  String[1] $package_name,
+  String[1] $user,
+  String[1] $version,
+  String[1] $data_source_uri,
+  String[1] $postgres_pass,
+  String[1] $postgres_user,
   Enum['env', 'file'] $postgres_auth_method,
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
@@ -114,11 +113,11 @@ class prometheus::postgres_exporter (
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
-  String $os                     = $prometheus::os,
+  String[1] $os                  = $prometheus::os,
   String $options                = '',
   Optional[String] $download_url = undef,
-  String $arch                   = $prometheus::real_arch,
-  String $bin_dir                = $prometheus::bin_dir,
+  String[1] $arch                = $prometheus::real_arch,
+  String[1] $bin_dir             = $prometheus::bin_dir,
 ) inherits prometheus {
 
   $release = "v${version}"
@@ -153,7 +152,7 @@ class prometheus::postgres_exporter (
   if $install_method == 'url' {
     # Not a big fan of copypasting but prometheus::daemon takes for granted
     # a specific path embedded in the prometheus *_exporter tarball, which
-    # redis_exporter lacks.
+    # postgres_exporter lacks.
     # TODO: patch prometheus::daemon to support custom extract directories
     $exporter_install_method = 'none'
     $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"

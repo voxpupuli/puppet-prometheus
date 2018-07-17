@@ -18,8 +18,15 @@ describe 'prometheus::postgres_exporter' do
           }
         end
 
+        it { is_expected.to compile.with_all_deps }
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/postgres_exporter').with('target' => '/opt/postgres_exporter-0.4.6.linux-amd64/postgres_exporter') }
+        end
+        describe 'required resources' do
+          it { is_expected.to contain_group('postgres-exporter') }
+          it { is_expected.to contain_prometheus__daemon('prometheus_postgres_exporter') }
+          it { is_expected.to contain_service('prometheus_postgres_exporter') }
+          it { is_expected.to contain_user('postgres_exporter') }
         end
       end
     end
