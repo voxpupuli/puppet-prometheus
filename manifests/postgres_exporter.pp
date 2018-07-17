@@ -103,7 +103,7 @@ class prometheus::postgres_exporter (
   String $data_source_uri,
   String $postgres_pass,
   String $postgres_user,
-  String $postgres_auth_method,
+  Enum['env', 'file'] $postgres_auth_method,
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
@@ -131,6 +131,13 @@ class prometheus::postgres_exporter (
   }
 
   case $postgres_auth_method {
+    'env': {
+      $env_vars = {
+        'DATA_SOURCE_URI'       => $data_source_uri,
+        'DATA_SOURCE_USER'      => $postgres_user,
+        'DATA_SOURCE_PASS'      => $postgres_pass,
+      }
+    }
     'file': {
       $env_vars = {
         'DATA_SOURCE_URI'       => $data_source_uri,
@@ -139,11 +146,7 @@ class prometheus::postgres_exporter (
       }
     }
     default: {
-      $env_vars = {
-        'DATA_SOURCE_URI'       => $data_source_uri,
-        'DATA_SOURCE_USER'      => $postgres_user,
-        'DATA_SOURCE_PASS'      => $postgres_pass,
-      }
+      $env_vars = {}
     }
   }
 
