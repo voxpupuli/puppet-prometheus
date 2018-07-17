@@ -41,7 +41,7 @@ This module automates the install and configuration of Prometheus monitoring too
 * Installs a configuration file for prometheus daemon (/etc/prometheus/prometheus.yaml) or for alertmanager (/etc/prometheus/alert.rules)
 * Manages the services via upstart, sysv, or systemd
 * Optionally creates alert rules
-* The following exporters are currently implemented: node_exporter, statsd_exporter, process_exporter, haproxy_exporter, mysqld_exporter, blackbox_exporter, consul_exporter, redis_exporter, varnish_exporter, graphite_exporter
+* The following exporters are currently implemented: node_exporter, statsd_exporter, process_exporter, haproxy_exporter, mysqld_exporter, blackbox_exporter, consul_exporter, redis_exporter, varnish_exporter, graphite_exporter, postgres_exporter
 
 ## Usage
 
