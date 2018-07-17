@@ -115,7 +115,7 @@ class prometheus::postgres_exporter (
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
   String $os                     = $prometheus::os,
-  String $extra_options          = '',
+  String $options                = '',
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::real_arch,
   String $bin_dir                = $prometheus::bin_dir,
@@ -124,7 +124,6 @@ class prometheus::postgres_exporter (
   $release = "v${version}"
 
   $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}_${os}-${arch}.${download_extension}")
-  $options = "${extra_options}"
 
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
@@ -139,7 +138,7 @@ class prometheus::postgres_exporter (
         'DATA_SOURCE_PASS_FILE' => $postgres_pass,
       }
     }
-    'env': {
+    'default': {
       $env_vars = {
         'DATA_SOURCE_URI'       => $data_source_uri,
         'DATA_SOURCE_USER'      => $postgres_user,
