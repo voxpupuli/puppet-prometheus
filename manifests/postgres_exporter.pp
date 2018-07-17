@@ -138,7 +138,7 @@ class prometheus::postgres_exporter (
         'DATA_SOURCE_PASS_FILE' => $postgres_pass,
       }
     }
-    'default': {
+    default: {
       $env_vars = {
         'DATA_SOURCE_URI'       => $data_source_uri,
         'DATA_SOURCE_USER'      => $postgres_user,
