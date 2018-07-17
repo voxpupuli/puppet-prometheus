@@ -42,6 +42,7 @@ class prometheus::server (
   Boolean $manage_group                                         = $prometheus::manage_group,
   Boolean $purge_config_dir                                     = $prometheus::purge_config_dir,
   Boolean $manage_user                                          = $prometheus::manage_user,
+  Variant[Stdlib::HTTPurl, Stdlib::Unixpath, String[0]] $external_url = $prometheus::external_url,
 ) inherits prometheus {
 
   if( versioncmp($version, '1.0.0') == -1 ){

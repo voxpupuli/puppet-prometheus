@@ -12,6 +12,7 @@ ExecStart=/usr/local/bin/prometheus \
   --storage.tsdb.retention=360h \
   --web.console.templates=/usr/local/share/prometheus/consoles \
   --web.console.libraries=/usr/local/share/prometheus/console_libraries \
+  --web.external-url='' \
   
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process

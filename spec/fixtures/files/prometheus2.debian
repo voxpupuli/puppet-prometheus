@@ -23,6 +23,7 @@ DAEMON_ARGS="--config.file=/etc/prometheus/prometheus.yaml
              --storage.tsdb.retention=360h
              --web.console.templates=/usr/local/share/prometheus/consoles
              --web.console.libraries=/usr/local/share/prometheus/console_libraries
+             --web.external-url=''
              "
 USER=prometheus
 SCRIPTNAME=/etc/init.d/$NAME

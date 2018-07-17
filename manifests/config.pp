@@ -30,6 +30,7 @@ class prometheus::config {
         "--storage.tsdb.retention=${prometheus::server::storage_retention}",
         "--web.console.templates=${prometheus::server::shared_dir}/consoles",
         "--web.console.libraries=${prometheus::server::shared_dir}/console_libraries",
+        "--web.external-url='${prometheus::server::external_url}'",
       ]
     }
 
