@@ -21,10 +21,10 @@ describe 'prometheus::postgres_exporter' do
         describe 'with all defaults' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_file('/usr/local/bin/postgres_exporter').with('target' => '/opt/postgres_exporter-0.4.6.linux-amd64/postgres_exporter') }
-          it { is_expected.to contain_prometheus__daemon('prometheus_postgres_exporter') }
-          it { is_expected.to contain_user('postgres_exporter') }
+          it { is_expected.to contain_prometheus__daemon('postgres_exporter') }
+          it { is_expected.to contain_user('postgres-exporter') }
           it { is_expected.to contain_group('postgres-exporter') }
-          it { is_expected.to contain_service('prometheus_postgres_exporter') }
+          it { is_expected.to contain_service('postgres_exporter') }
 
 
         end
