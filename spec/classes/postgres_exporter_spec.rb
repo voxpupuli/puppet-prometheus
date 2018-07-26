@@ -25,8 +25,6 @@ describe 'prometheus::postgres_exporter' do
           it { is_expected.to contain_user('postgres-exporter') }
           it { is_expected.to contain_group('postgres-exporter') }
           it { is_expected.to contain_service('postgres_exporter') }
-
-
         end
       end
     end
