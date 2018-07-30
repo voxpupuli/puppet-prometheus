@@ -14,8 +14,8 @@ describe 'prometheus::postgres_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
-            postgres_user: 'username'
+            install_method: 'url',
+            postgres_user: 'username',
             postgres_pass: 'password'
           }
         end
