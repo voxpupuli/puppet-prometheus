@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'prometheus postgres exporter' do
   it 'postgres_exporter works idempotently with no errors' do
-    pp = 'include prometheus::postgres_exporter'
+    pp = "class{'prometheus::postgres_exporter': postgres_pass => 'password', postgres_user => 'username' }"
     # Run it twice and test for idempotency
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
