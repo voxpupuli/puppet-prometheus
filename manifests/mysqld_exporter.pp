@@ -138,8 +138,11 @@ class prometheus::mysqld_exporter (
     notify  => $notify_service,
   }
 
-  $options = "-config.my-cnf=${cnf_config_path} ${extra_options}"
-
+  if versioncmp($version, '0.11.0') < 0 {
+    $options = "-config.my-cnf=${cnf_config_path} ${extra_options}"
+  } else {
+    $options = "--config.my-cnf=${cnf_config_path} ${extra_options}"
+  }
   prometheus::daemon { 'mysqld_exporter':
     install_method     => $install_method,
     version            => $version,
