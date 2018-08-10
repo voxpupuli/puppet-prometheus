@@ -97,13 +97,7 @@ class prometheus::process_exporter(
   Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
 ) inherits prometheus {
 
-  # Prometheus removed a dot on the realease name at 0.2.0
-  if versioncmp ($version, '0.2.0') >= 0 {
-    $filename = "${package_name}-${version}${os}_${arch}.${download_extension}"
-  }
-  else {
-    $filename = "${package_name}-${version}.${os}-${arch}.${download_extension}"
-  }
+  $filename = "${package_name}-${version}.${os}-${arch}.${download_extension}"
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${filename}")
   $notify_service = $restart_on_change ? {
     true    => Service['process-exporter'],
