@@ -39,8 +39,8 @@ prometheus::alertmanager::package_ensure: 'latest'
 prometheus::alertmanager::package_name: 'alertmanager'
 prometheus::alertmanager::receivers:
   - 'name': 'Admin'
-  - 'email_configs':
-    - 'to': 'root@localhost'
+    'email_configs':
+      - 'to': 'root@localhost'
 prometheus::alertmanager::route:
   'group_by':
     - 'alertname'

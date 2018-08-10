@@ -90,7 +90,7 @@ class prometheus::pushgateway (
   String $os                     = $prometheus::os,
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  String $arch                   = $prometheus::arch,
+  String $arch                   = $prometheus::real_arch,
   String $bin_dir                = $prometheus::bin_dir,
 ) inherits prometheus {
 
