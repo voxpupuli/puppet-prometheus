@@ -9,21 +9,19 @@ describe 'prometheus::mysqld_exporter' do
 
       context 'default' do
         describe 'options is correct' do
-          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '--config.my-cnf=/etc/.my.cnf ') }
+          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '-config.my-cnf=/etc/.my.cnf ') }
         end
       end
 
-      context 'with version < 0.11.0' do
+      context 'with version >= 0.11.0' do
         let(:params) do
           {
-            version: '0.9.0',
-            arch: 'amd64',
-            os: 'linux'
+            version: '0.11.0'
           }
         end
 
         describe 'options is correct' do
-          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '-config.my-cnf=/etc/.my.cnf ') }
+          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '--config.my-cnf=/etc/.my.cnf ') }
         end
       end
     end
