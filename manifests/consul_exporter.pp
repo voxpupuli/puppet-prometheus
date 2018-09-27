@@ -24,6 +24,10 @@
 #  [*download_url_base*]
 #  Base URL for the binary archive
 #
+#  [*proxy*]
+#  Will set the http_proxy and https_proxy env variables in
+#  (example: proxy => 'http://proxy.company.com:8080)
+#
 #  [*extra_groups*]
 #  Extra groups to add the binary user to
 #
@@ -109,6 +113,7 @@ class prometheus::consul_exporter (
   String $init_style             = $prometheus::init_style,
   String $install_method         = $prometheus::install_method,
   String $extra_options          = '',
+  Optional[String] $proxy        = undef,
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::arch,
   String $bin_dir                = $prometheus::bin_dir,
@@ -141,6 +146,7 @@ class prometheus::consul_exporter (
     os                 => $os,
     arch               => $arch,
     real_download_url  => $real_download_url,
+    proxy              => $proxy,
     bin_dir            => $bin_dir,
     notify_service     => $notify_service,
     package_name       => $package_name,

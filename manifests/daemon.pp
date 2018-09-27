@@ -20,6 +20,10 @@
 #  [*download_extension*]
 #  Extension for the release binary archive
 #
+#  [*proxy*]
+#  Will set the http_proxy and https_proxy env variables in
+#  (example: proxy => 'http://proxy.company.com:8080)
+#
 #  [*os*]
 #  Operating system (linux is the only one supported)
 #
@@ -65,6 +69,7 @@ define prometheus::daemon (
   String $arch                    = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir   = $prometheus::bin_dir,
   Optional[String] $package_name  = undef,
+  Optional[String] $proxy         = undef,
   String $package_ensure          = 'installed',
   Boolean $manage_user            = true,
   Array $extra_groups             = [],
@@ -91,6 +96,7 @@ define prometheus::daemon (
         -> archive { "/opt/${name}-${version}.${os}-${arch}/${name}":
           ensure          => present,
           source          => $real_download_url,
+          proxy           => $proxy,
           checksum_verify => false,
           before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
         }
@@ -100,6 +106,7 @@ define prometheus::daemon (
           extract         => true,
           extract_path    => '/opt',
           source          => $real_download_url,
+          proxy           => $proxy,
           checksum_verify => false,
           creates         => "/opt/${name}-${version}.${os}-${arch}/${name}",
           cleanup         => true,

@@ -34,11 +34,12 @@
 #  [*install_method*]
 #  Installation method: url or package (only url is supported currently)
 #
-# [*proxy*]
-#   Will set the http_proxy and https_proxy env variables in 
+#  [*proxy*]
+#  Will set the http_proxy and https_proxy env variables in 
+#  (example: proxy => 'http://proxy.company.com:8080) 
 #
-# [*no_proxy*]
-#   Will set the no_proxy variable in
+#  [*no_proxy*]
+#  Will set the no_proxy variable in
 #
 #  [*os*]
 #  Operating system (linux is supported)
@@ -143,7 +144,6 @@ class prometheus (
   String $version,
   String $install_method,
   Optional[String] $proxy,
-  Optional[String] $no_proxy,
   Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $download_url_base,
   String $download_extension,
   String $package_name,
@@ -162,6 +162,7 @@ class prometheus (
   Array $alertmanagers_config,
   String $storage_retention,
   Stdlib::Absolutepath $env_file_path,
+  Optional[String] $proxy        = undef,
   Hash $extra_alerts             = {},
   Boolean $service_enable        = true,
   String $service_ensure         = 'running',
