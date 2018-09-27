@@ -60,6 +60,16 @@ describe 'prometheus::node_exporter' do
           it { is_expected.to contain_file('/usr/local/bin/node_exporter').with('target' => '/opt/node_exporter-0.13.0.linux-amd64/node_exporter') }
         end
       end
+
+      context 'with manage_service specified' do
+        let(:params) do
+          {
+            manage_service: false,
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+      end
     end
   end
 end
