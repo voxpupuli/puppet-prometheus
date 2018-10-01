@@ -113,7 +113,7 @@ class prometheus::consul_exporter (
   String $init_style             = $prometheus::init_style,
   String $install_method         = $prometheus::install_method,
   String $extra_options          = '',
-  Optional[String] $proxy        = undef,
+  Optional[String[1]] $proxy     = undef,
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::arch,
   String $bin_dir                = $prometheus::bin_dir,

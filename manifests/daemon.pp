@@ -69,7 +69,7 @@ define prometheus::daemon (
   String $arch                    = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir   = $prometheus::bin_dir,
   Optional[String] $package_name  = undef,
-  Optional[String] $proxy         = undef,
+  Optional[String[1]] $proxy      = undef,
   String $package_ensure          = 'installed',
   Boolean $manage_user            = true,
   Array $extra_groups             = [],

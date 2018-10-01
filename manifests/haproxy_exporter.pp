@@ -98,7 +98,7 @@ class prometheus::haproxy_exporter(
   String $os                     = $prometheus::os,
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  Optional[String] $proxy        = undef,
+  Optional[String[1]] $proxy     = undef,
   String $arch                   = $prometheus::arch,
   Stdlib::Absolutepath $bin_dir  = $prometheus::bin_dir,
 ) inherits prometheus {

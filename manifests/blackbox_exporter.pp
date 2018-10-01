@@ -116,7 +116,7 @@ class prometheus::blackbox_exporter (
   String $os                     = $prometheus::os,
   String $extra_options          = '',
   Optional[String] $download_url = undef,
-  Optional[String] $proxy        = undef,
+  Optional[String[1]] $proxy     = undef,
   String $config_mode            = $prometheus::config_mode,
   String $arch                   = $prometheus::arch,
   String $bin_dir                = $prometheus::bin_dir,

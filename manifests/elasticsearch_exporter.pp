@@ -104,7 +104,7 @@ class prometheus::elasticsearch_exporter (
   Boolean $manage_user           = true,
   String $os                     = $prometheus::os,
   String $extra_options          = '',
-  Optional[String] $proxy        = undef,
+  Optional[String[1]] $proxy     = undef,
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::arch,
   String $bin_dir                = $prometheus::bin_dir,

@@ -105,7 +105,7 @@ class prometheus::statsd_exporter (
   String $os                                                         = $prometheus::os,
   String $init_style                                                 = $prometheus::init_style,
   String $install_method                                             = $prometheus::install_method,
-  Optional[String] $proxy                                            = undef,
+  Optional[String[1]] $proxy                                         = undef,
   Boolean $manage_group                                              = true,
   Boolean $manage_service                                            = true,
   Boolean $manage_user                                               = true,

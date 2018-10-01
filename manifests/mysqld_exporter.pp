@@ -119,7 +119,7 @@ class prometheus::mysqld_exporter (
   Boolean $manage_user                                               = true,
   String $os                                                         = $prometheus::os,
   String $extra_options                                              = '',
-  Optional[String] $proxy                                            = undef,
+  Optional[String[1]] $proxy                                         = undef,
   Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
   String $config_mode                                                = $prometheus::config_mode,
   Optional[Stdlib::Absolutepath] $cnf_socket                         = undef,
