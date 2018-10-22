@@ -175,6 +175,12 @@ class prometheus::alertmanager (
     default => undef,
   }
 
+  # Install amtool - Alertmanager validation tool
+  file {"${prometheus::server::bin_dir}/amtool":
+    ensure => link,
+    target => "/opt/${package_name}-${version}.${os}-${arch}/amtool",
+  }
+  
   file { $config_dir:
     ensure  => 'directory',
     owner   => $user,
@@ -190,7 +196,8 @@ class prometheus::alertmanager (
     mode    => $config_mode,
     content => template('prometheus/alertmanager.yaml.erb'),
     notify  => $notify_service,
-    require => File[$config_dir],
+    require => [ File["${prometheus::server::bin_dir}/amtool"], File[$config_dir] ],
+    validate_cmd => "${prometheus::bin_dir}/amtool check-config --alertmanager.url='' %",
   }
 
   if $facts['prometheus_alert_manager_running'] == 'running' {
