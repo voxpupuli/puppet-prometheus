@@ -190,13 +190,13 @@ class prometheus::alertmanager (
   }
 
   file { $config_file:
-    ensure  => present,
-    owner   => $user,
-    group   => $group,
-    mode    => $config_mode,
-    content => template('prometheus/alertmanager.yaml.erb'),
-    notify  => $notify_service,
-    require => [ File["${prometheus::server::bin_dir}/amtool"], File[$config_dir] ],
+    ensure       => present,
+    owner        => $user,
+    group        => $group,
+    mode         => $config_mode,
+    content      => template('prometheus/alertmanager.yaml.erb'),
+    notify       => $notify_service,
+    require      => File["${prometheus::server::bin_dir}/amtool", $config_dir],
     validate_cmd => "${prometheus::bin_dir}/amtool check-config --alertmanager.url='' %",
   }
 
