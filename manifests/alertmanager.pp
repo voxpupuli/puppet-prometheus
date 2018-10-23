@@ -180,7 +180,7 @@ class prometheus::alertmanager (
     ensure => link,
     target => "/opt/${package_name}-${version}.${os}-${arch}/amtool",
   }
-  
+
   file { $config_dir:
     ensure  => 'directory',
     owner   => $user,
