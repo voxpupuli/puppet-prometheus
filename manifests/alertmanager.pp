@@ -202,13 +202,13 @@ class prometheus::alertmanager (
     }
   } else {
     file { $config_file:
-      ensure       => present,
-      owner        => $user,
-      group        => $group,
-      mode         => $config_mode,
-      content      => template('prometheus/alertmanager.yaml.erb'),
-      notify       => Service['alertmanager'],
-      require      => File[$config_dir],
+      ensure  => present,
+      owner   => $user,
+      group   => $group,
+      mode    => $config_mode,
+      content => template('prometheus/alertmanager.yaml.erb'),
+      notify  => Service['alertmanager'],
+      require => File[$config_dir],
     }
   }
 
