@@ -1,0 +1,71 @@
+ <%- | String[1]  $name | -%>
+#!/bin/sh
+
+# THIS FILE IS MANAGED BY PUPPET
+
+# PROVIDE: <%= $name %>
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# <%= $name %>_enable (bool):          Set to NO by default.
+#               Set it to YES to enable <%= $name %>.
+# <%= $name %>_user (string):          Set user that <%= $name %> will run under
+#               Default is "nobody".
+# <%= $name %>_group (string):         Set group that <%= $name %> will run under
+#               Default is "nobody".
+# <%= $name %>_args (string):          Set extra arguments to pass to <%= $name %>
+#               Default is "".
+# <%= $name %>_listen_address (string):Set ip:port that <%= $name %> will listen on
+#               Default is ":9100".
+# <%= $name %>_textfile_dir (string):  Set directory that <%= $name %> will watch
+#               Default is "/var/tmp/<%= $name %>".
+
+. /etc/rc.subr
+
+name=<%= $name %>
+rcvar=<%= $name %>_enable
+
+load_rc_config $name
+
+: ${<%= $name %>_enable:="NO"}
+: ${<%= $name %>_user:="nobody"}
+: ${<%= $name %>_group:="nobody"}
+: ${<%= $name %>_args:=""}
+: ${<%= $name %>_listen_address:=":9100"}
+: ${<%= $name %>_textfile_dir:="/var/tmp/<%= $name %>"}
+
+
+pidfile=/var/run/<%= $name %>.pid
+command="/usr/sbin/daemon"
+procname="/usr/local/bin/<%= $name %>"
+command_args="-p ${pidfile} -T ${name} \
+    /usr/bin/env ${procname} \
+    --web.listen-address=${<%= $name %>_listen_address} \
+    --collector.textfile.directory=${<%= $name %>_textfile_dir} \
+    ${<%= $name %>_args}"
+
+start_precmd=<%= $name %>_startprecmd
+
+<%= $name %>_startprecmd()
+{
+    if [ ! -e ${pidfile} ]; then
+        install \
+            -o ${<%= $name %>_user} \
+            -g ${<%= $name %>_group} \
+            /dev/null ${pidfile};
+    fi
+    if [ ! -d ${<%= $name %>_textfile_dir} ]; then
+        install \
+            -d \
+            -o ${<%= $name %>_user} \
+            -g ${<%= $name %>_group} \
+            -m 1755 \
+            ${<%= $name %>_textfile_dir}
+    fi
+}
+
+load_rc_config $name
+run_rc_command "$1"

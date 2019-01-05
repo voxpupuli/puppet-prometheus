@@ -229,7 +229,7 @@ define prometheus::daemon (
           mode    => '0555',
           owner   => 'root',
           group   => 'wheel',
-          content => "MANAGED BY PUPPET",
+          content => epp("${module_name}/daemon.freebsd.epp", {'name' => $name}),
         }
       }
       default : {
