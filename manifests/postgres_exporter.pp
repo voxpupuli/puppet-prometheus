@@ -12,6 +12,9 @@
 #  [*addr*]
 #  Array of address of one or more redis nodes. Defaults to redis://localhost:6379
 #
+#  [*data_source_custom*]
+#  Hash of key/value pair to use for alternate environment variables when using param 'postgres_auth_method'
+#
 #  [*download_extension*]
 #  Extension for the release binary archive
 #
@@ -86,6 +89,7 @@
 #  [*postgres_auth_method*]
 #  method for presenting username and password to the exporter
 #  This can be file, or env (default 'env')
+#  Using 'custom' requires 'data_source_custom' values
 #
 #  [*data_source_uri*]
 #  Uri on howto connect to the database
@@ -102,14 +106,15 @@ class prometheus::postgres_exporter (
   String[1] $data_source_uri,
   String[1] $postgres_pass,
   String[1] $postgres_user,
-  Enum['env', 'file'] $postgres_auth_method,
+  Enum['custom', 'env', 'file'] $postgres_auth_method,
+  Hash $data_source_custom       = {},
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
-  String[1] $service_ensure         = 'running',
-  String[1] $service_name           = 'postgres_exporter',
+  String[1] $service_ensure      = 'running',
+  String[1] $service_name        = 'postgres_exporter',
   Optional[String] $init_style   = $prometheus::init_style,
-  String[1] $install_method         = $prometheus::install_method,
+  String[1] $install_method      = $prometheus::install_method,
   Boolean $manage_group          = true,
   Boolean $manage_service        = true,
   Boolean $manage_user           = true,
@@ -143,6 +148,9 @@ class prometheus::postgres_exporter (
         'DATA_SOURCE_USER_FILE' => $postgres_user,
         'DATA_SOURCE_PASS_FILE' => $postgres_pass,
       }
+    }
+    'custom': {
+      $env_vars = $data_source_custom
     }
     default: {
       $env_vars = {}
