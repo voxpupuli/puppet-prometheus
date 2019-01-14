@@ -13,7 +13,7 @@
 #  Array of address of one or more redis nodes. Defaults to redis://localhost:6379
 #
 #  [*data_source_custom*]
-#  Hash of key/value pair to use for alternate environment variables when using param 'postgres_auth_method'
+#  Hash of key:value pair to use for alternate environment variables when using param 'postgres_auth_method'
 #
 #  [*download_extension*]
 #  Extension for the release binary archive
@@ -107,7 +107,7 @@ class prometheus::postgres_exporter (
   Optional[String[1]] $postgres_pass,
   Optional[String[1]] $postgres_user,
   Enum['custom', 'env', 'file'] $postgres_auth_method,
-  Hash $data_source_custom       = {},
+  Hash[String,String] $data_source_custom       = {},
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
