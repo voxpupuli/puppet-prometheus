@@ -12,10 +12,11 @@ ExecStart=/usr/local/bin/prometheus \
   -storage.local.retention=360h \
   -web.console.templates=/usr/local/share/prometheus/consoles \
   -web.console.libraries=/usr/local/share/prometheus/console_libraries \
-  
+
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
+LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target
