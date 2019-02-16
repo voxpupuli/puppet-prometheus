@@ -12,6 +12,7 @@ ExecStart=<%= scope.lookupvar('prometheus::server::bin_dir') %>/prometheus \
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
+LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target
