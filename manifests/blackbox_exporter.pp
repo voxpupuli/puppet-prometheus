@@ -142,6 +142,17 @@ class prometheus::blackbox_exporter (
     notify  => $notify_service,
   }
 
+  # Get all used probers into an array
+  $probers = $modules.map |$key, $value| { $value['prober'] }
+
+  # If we’re not running as root and use the ICMP prober, we need the CAP_NET_RAW capability
+  if $user != 'root' and ('icmp' in $probers) {
+    file_capability { "/opt/${service_name}-${version}.${os}-${arch}/${service_name}":
+      capability => 'cap_net_raw=ep',
+    }
+
+    File_Capability["/opt/${service_name}-${version}.${os}-${arch}/${service_name}"] ~> $notify_service
+  }
 
   prometheus::daemon { $service_name :
     install_method     => $install_method,
