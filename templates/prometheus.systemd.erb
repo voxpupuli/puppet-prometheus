@@ -7,7 +7,7 @@ After=basic.target network.target
 User=<%= scope.lookupvar('prometheus::server::user') %>
 Group=<%= scope.lookupvar('prometheus::server::group') %>
 ExecStart=<%= scope.lookupvar('prometheus::server::bin_dir') %>/prometheus \
-  <%= @daemon_flags.join(" \\\n  ") %> \
+  <%= @daemon_flags.join("\n  ") %>
   <%= scope.lookupvar('prometheus::server::extra_options') %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
