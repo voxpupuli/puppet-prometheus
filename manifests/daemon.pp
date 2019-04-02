@@ -106,7 +106,7 @@ define prometheus::daemon (
           source          => $real_download_url,
           checksum_verify => false,
           creates         => "/opt/${name}-${version}.${os}-${arch}/${name}",
-          cleanup         => true,
+          cleanup         => false,
           before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
         }
       }
