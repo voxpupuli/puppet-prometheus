@@ -69,6 +69,14 @@ prometheus::config_dir: '/etc/prometheus'
 prometheus::config_mode: '0640'
 prometheus::config_show_diff: true
 prometheus::config_template: 'prometheus/prometheus.yaml.erb'
+prometheus::bind_exporter::download_extension: 'tar.gz'
+prometheus::bind_exporter::download_url_base: 'https://github.com/digitalocean/bind_exporter/'
+prometheus::bind_exporter::extra_groups: []
+prometheus::bind_exporter::group: 'bind-exporter'
+prometheus::bind_exporter::package_ensure: 'latest'
+prometheus::bind_exporter::package_name: 'bind_exporter'
+prometheus::bind_exporter::user: 'bind-exporter'
+prometheus::bind_exporter::version: '0.2.0'
 prometheus::consul_exporter::consul_health_summary: true
 prometheus::consul_exporter::consul_server: 'localhost:8500'
 prometheus::consul_exporter::download_extension: 'tar.gz'
