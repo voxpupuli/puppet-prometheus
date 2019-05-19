@@ -103,7 +103,7 @@ class prometheus::blackbox_exporter (
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
   String $service_ensure         = 'running',
-  String $service_name           = 'blackbox_exporter',
+  String $service_name           = $prometheus::blackbox_exporter::service_name,
   String $init_style             = $prometheus::init_style,
   String $install_method         = $prometheus::install_method,
   Boolean $manage_group          = true,

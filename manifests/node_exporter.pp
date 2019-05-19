@@ -98,7 +98,7 @@ class prometheus::node_exporter (
   Boolean $restart_on_change          = true,
   Boolean $service_enable             = true,
   String $service_ensure              = 'running',
-  String $service_name                = 'node_exporter',
+  String $service_name                = $prometheus::node_exporter::service_name,
   Optional[String] $init_style        = $prometheus::init_style,
   String $install_method              = $prometheus::install_method,
   Boolean $manage_group               = true,
