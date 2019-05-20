@@ -7,13 +7,19 @@ describe 'prometheus::node_exporter' do
         facts.merge(os_specific_facts(facts))
       end
 
+      service_name = if facts[:osfamily] == 'Archlinux'
+                       'prometheus-node-exporter'
+                     else
+                       'node_exporter'
+                     end
+
       context 'without parameters' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('prometheus') }
         it { is_expected.to contain_user('node-exporter') }
         it { is_expected.to contain_group('node-exporter') }
         it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '  ') }
-        it { is_expected.to contain_service('node_exporter') }
+        it { is_expected.to contain_service(service_name) }
       end
 
       context 'without collector parameters' do
