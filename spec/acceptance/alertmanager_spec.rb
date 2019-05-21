@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'prometheus alertmanager' do
   it 'alertmanager works idempotently with no errors' do
-    pp = 'include prometheus::alertmanager'
+    pp = "class { 'prometheus::alertmanager': }"
     # Run it twice and test for idempotency
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
