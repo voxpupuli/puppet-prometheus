@@ -19,6 +19,7 @@ describe 'prometheus alertmanager' do
                 ]
               }
             ]
+          }
     EOS
     # Run it twice and test for idempotency
     apply_manifest(pp, catch_failures: true)
