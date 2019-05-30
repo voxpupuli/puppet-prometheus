@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'prometheus alertmanager' do
   it 'alertmanager works idempotently with no errors' do
-    pp = "class { 'prometheus::alertmanager': }"
+    pp = 'class { "prometheus::alertmanager": version => "0.17.0", extra_options => "--web.listen-address=127.0.0.1:9093"}'
     # Run it twice and test for idempotency
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
