@@ -5,7 +5,7 @@ describe 'prometheus alertmanager' do
     pp = <<-EOS
      class { 'prometheus::alertmanager':
             version => '0.17.0',
-            extra_options => '--web.listen-address="127.0.0.1:9093"',
+            extra_options => '--web.listen-address=":9093"',
             route => { 'receiver' => 'default' },
             receivers => [
               {
