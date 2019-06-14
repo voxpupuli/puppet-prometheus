@@ -3,6 +3,7 @@
       Array[String] $daemon_flags,
       Optional[Integer] $max_open_files,
       Stdlib::Absolutepath $bin_dir,
+      Optional[String] $env_file_path,
 | -%>
 # THIS FILE IS MANAGED BY PUPPET
 [Unit]
@@ -13,8 +14,13 @@ After=basic.target network.target
 [Service]
 User=<%= $user %>
 Group=<%= $group %>
+<% if $env_file_path { -%>
+EnvironmentFile=<%= $env_file_path %>/prometheus
+ExecStart=<%= $bin_dir %>/prometheus $ARGS
+<% } else { -%>
 ExecStart=<%= $bin_dir %>/prometheus \
   <%= $daemon_flags.join(" \\\n  ") %>
+<% } -%>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always

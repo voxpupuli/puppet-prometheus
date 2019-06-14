@@ -158,6 +158,15 @@ class prometheus::config {
     default => undef,
   }
 
+  if $prometheus::env_file_path != undef {
+    file { "${prometheus::env_file_path}/prometheus":
+      mode    => '0644',
+      owner   => 'root',
+      group   => '0', # Darwin uses wheel
+      content => "ARGS='${join($daemon_flags, ' ')}'\n",
+    }
+  }
+
   case $prometheus::server::init_style { # lint:ignore:case_without_default
     'upstart': {
       file { '/etc/init/prometheus.conf':
@@ -185,6 +194,7 @@ class prometheus::config {
             'daemon_flags'   => $daemon_flags,
             'max_open_files' => $max_open_files,
             'bin_dir'        => $prometheus::server::bin_dir,
+            'env_file_path'  => $prometheus::server::env_file_path,
         }),
         notify  => $notify,
       }
