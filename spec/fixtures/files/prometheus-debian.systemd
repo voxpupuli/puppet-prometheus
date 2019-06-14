@@ -1,3 +1,4 @@
+# THIS FILE IS MANAGED BY PUPPET
 [Unit]
 Description=Prometheus Monitoring framework
 Wants=basic.target
@@ -6,13 +7,8 @@ After=basic.target network.target
 [Service]
 User=prometheus
 Group=prometheus
-ExecStart=/usr/local/bin/prometheus \
-  -config.file=/etc/prometheus/prometheus.yaml \
-  -web.console.templates=/usr/local/share/prometheus/consoles \
-  -web.console.libraries=/usr/local/share/prometheus/console_libraries \
-  -storage.local.path=/var/lib/prometheus \
-  -storage.local.retention=360h \
-  
+EnvironmentFile=/etc/default/prometheus
+ExecStart=/usr/local/bin/prometheus $ARGS
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always

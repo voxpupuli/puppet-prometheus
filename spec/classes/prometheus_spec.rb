@@ -115,9 +115,21 @@ describe 'prometheus' do
             }
 
             it {
-              is_expected.to contain_systemd__unit_file('prometheus.service').with(
-                'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
-              )
+              if ['centos-7-x86_64', 'redhat-7-x86_64'].include?(os)
+                is_expected.to contain_file('/etc/sysconfig/prometheus').with(
+                  'content' => File.read(fixtures('files', 'prometheus.default'))
+                )
+                is_expected.to contain_systemd__unit_file('prometheus.service').with(
+                  'content' => File.read(fixtures('files', 'prometheus-redhat.systemd'))
+                )
+              elsif ['debian-8-x86_64', 'debian-9-x86_64', 'ubuntu-16.04-x86_64', 'ubuntu-18.04-x86_64', 'archlinux-4-x86_64'].include?(os)
+                is_expected.to contain_file('/etc/default/prometheus').with(
+                  'content' => File.read(fixtures('files', 'prometheus.default'))
+                )
+                is_expected.to contain_systemd__unit_file('prometheus.service').with(
+                  'content' => File.read(fixtures('files', 'prometheus-debian.systemd'))
+                )
+              end
             }
             describe 'max_open_files' do
               context 'by default' do
