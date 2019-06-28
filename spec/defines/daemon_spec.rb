@@ -45,7 +45,7 @@ describe 'prometheus::daemon' do
             is_expected.to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with(
               'ensure'          => 'present',
               'extract'         => true,
-              'extract_path'    => '/opt',
+              'extract_path'    => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}",
               'source'          => params[:real_download_url],
               'checksum_verify' => false,
               'creates'         => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
