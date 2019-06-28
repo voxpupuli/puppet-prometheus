@@ -162,7 +162,7 @@ define prometheus::daemon (
   }
 
 
-  if $init_style {
+  if $init_style != '' {
     case $init_style {
       'upstart' : {
         file { "/etc/init/${name}.conf":
