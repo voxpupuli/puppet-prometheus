@@ -107,10 +107,16 @@ define prometheus::daemon (
           before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
         }
       } else {
-        archive { "/tmp/${name}-${version}.${download_extension}":
+        file { "/opt/${name}-${version}.${os}-${arch}":
+          ensure => directory,
+          owner  => 'root',
+          group  => 0, # 0 instead of root because OS X uses "wheel".
+          mode   => '0755',
+        }
+        -> archive { "/tmp/${name}-${version}.${download_extension}":
           ensure          => present,
           extract         => true,
-          extract_path    => '/opt',
+          extract_path    => "/opt/${name}-${version}.${os}-${arch}",
           source          => $real_download_url,
           checksum_verify => false,
           creates         => "/opt/${name}-${version}.${os}-${arch}/${name}",
