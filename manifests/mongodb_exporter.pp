@@ -71,6 +71,11 @@
 #
 #  [*version*]
 #  The binary release version
+#
+#  [*use_kingpin*]
+#  Since version 0.7.0, the mongodb exporter uses kingpin, thus
+#  this param to define how we call the mongodb.uri in the $options
+#  https://github.com/percona/mongodb_exporter/blob/v0.7.0/CHANGELOG.md
 
 class prometheus::mongodb_exporter (
   String $cnf_uri,
@@ -82,6 +87,7 @@ class prometheus::mongodb_exporter (
   String $package_name,
   String $user,
   String $version,
+  Boolean $use_kingpin,
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
@@ -109,7 +115,12 @@ class prometheus::mongodb_exporter (
     default => undef,
   }
 
-  $options = "-mongodb.uri=${cnf_uri} ${extra_options}"
+  $flag_prefix = $use_kingpin ? {
+    true  => '--',
+    false => '-',
+  }
+
+  $options = "${flag_prefix}mongodb.uri=${cnf_uri} ${extra_options}"
 
   prometheus::daemon { 'mongodb_exporter':
     install_method     => $install_method,
