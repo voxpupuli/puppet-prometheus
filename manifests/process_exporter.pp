@@ -9,6 +9,9 @@
 #  [*bin_dir*]
 #  Directory where binaries are located
 #
+#  [*config_file_content*]
+#  Specify the content of the config file without using template
+#
 #  [*download_extension*]
 #  Extension for the release binary archive
 #
@@ -79,7 +82,7 @@ class prometheus::process_exporter(
   String $user,
   String $version,
   Stdlib::Absolutepath $config_path,
-  Optional[String] $config_file_content = undef,
+  Optional[String] $config_file_content                              = undef,
   Array $watched_processes                                           = [],
   Boolean $purge_config_dir                                          = true,
   Boolean $restart_on_change                                         = true,
