@@ -37,6 +37,29 @@ describe 'prometheus::alertmanager' do
           }
         end
       end
+
+      context 'with manage_config => false' do
+        [
+          {
+            version: '0.9.0',
+            manage_config: false
+          },
+          {
+            version: '0.18.0',
+            manage_config: false
+          }
+        ].each do |parameters|
+          context "with alertmanager verions #{parameters[:version]}" do
+            let(:params) do
+              parameters
+            end
+
+            it {
+              is_expected.not_to contain_file('/etc/alertmanager/alertmanager.yaml')
+            }
+          end
+        end
+      end
     end
   end
 end

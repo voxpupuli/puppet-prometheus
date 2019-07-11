@@ -19,6 +19,7 @@ prometheus::extract_command: ~
 prometheus::alert_relabel_config: []
 prometheus::alertmanagers_config: []
 prometheus::alertmanager::config_dir: '/etc/alertmanager'
+prometheus::alertmanager::manage_config: true
 prometheus::alertmanager::config_file: "%{hiera('prometheus::alertmanager::config_dir')}/alertmanager.yaml"
 prometheus::alertmanager::download_extension: 'tar.gz'
 prometheus::alertmanager::download_url_base: 'https://github.com/prometheus/alertmanager/releases'

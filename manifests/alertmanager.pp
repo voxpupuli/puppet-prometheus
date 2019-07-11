@@ -150,6 +150,7 @@ class prometheus::alertmanager (
   String $service_name           = 'alertmanager',
   Boolean $restart_on_change     = true,
   Boolean $purge_config_dir      = true,
+  Boolean $manage_config         = true,
   String $init_style             = $prometheus::init_style,
   String $install_method         = $prometheus::install_method,
   Boolean $manage_group          = true,
@@ -190,25 +191,30 @@ class prometheus::alertmanager (
       target => "/opt/${package_name}-${version}.${os}-${arch}/amtool",
     }
 
-    file { $config_file:
-      ensure       => present,
-      owner        => $user,
-      group        => $group,
-      mode         => $config_mode,
-      content      => template('prometheus/alertmanager.yaml.erb'),
-      notify       => $notify_service,
-      require      => File["${bin_dir}/amtool", $config_dir],
-      validate_cmd => "${bin_dir}/amtool check-config --alertmanager.url='' %",
+    if $manage_config {
+      file { $config_file:
+        ensure       => present,
+        owner        => $user,
+        group        => $group,
+        mode         => $config_mode,
+        content      => template('prometheus/alertmanager.yaml.erb'),
+        notify       => $notify_service,
+        require      => File["${bin_dir}/amtool", $config_dir],
+        validate_cmd => "${bin_dir}/amtool check-config --alertmanager.url='' %",
+      }
     }
   } else {
-    file { $config_file:
-      ensure  => present,
-      owner   => $user,
-      group   => $group,
-      mode    => $config_mode,
-      content => template('prometheus/alertmanager.yaml.erb'),
-      notify  => $notify_service,
-      require => File[$config_dir],
+
+    if $manage_config {
+      file { $config_file:
+        ensure  => present,
+        owner   => $user,
+        group   => $group,
+        mode    => $config_mode,
+        content => template('prometheus/alertmanager.yaml.erb'),
+        notify  => $notify_service,
+        require => File[$config_dir],
+      }
     }
   }
 
