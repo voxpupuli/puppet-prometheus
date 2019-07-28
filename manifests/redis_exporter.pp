@@ -129,7 +129,13 @@ class prometheus::redis_exporter (
     # redis_exporter lacks.
     # TODO: patch prometheus::daemon to support custom extract directories
     $exporter_install_method = 'none'
-    $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"
+    if (versioncmp($version, '1.0.0') >= 0) {
+      $install_dir = "/opt/${service_name}-v${version}.${os}-${arch}"
+      $extract_path = '/opt'
+    } else {
+      $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"
+      $extract_path = $install_dir
+    }
     file { $install_dir:
       ensure => 'directory',
       owner  => 'root',
@@ -139,7 +145,7 @@ class prometheus::redis_exporter (
     -> archive { "/tmp/${service_name}-${version}.${download_extension}":
       ensure          => present,
       extract         => true,
-      extract_path    => $install_dir,
+      extract_path    => $extract_path,
       source          => $real_download_url,
       checksum_verify => false,
       creates         => "${install_dir}/${service_name}",
