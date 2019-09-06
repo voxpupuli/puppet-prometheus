@@ -35,7 +35,7 @@ describe 'prometheus::bind_exporter' do
       context 'with extra options specified' do
         let(:params) do
           {
-            extra_options: "-bind.pid-file /var/run/named/named.pid -bind.stats-groups 'server,view,tasks'",
+            extra_options: "-bind.pid-file /var/run/named/named.pid -bind.stats-groups 'server,view,tasks'"
           }
         end
 
