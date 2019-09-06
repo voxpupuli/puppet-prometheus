@@ -20,7 +20,6 @@ describe 'prometheus::bind_exporter' do
 
         describe 'with specific params' do
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_archive('/tmp/bind_exporter-0.2.0.tar.gz') }
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('bind-exporter') }
           it { is_expected.to contain_user('bind-exporter') }
