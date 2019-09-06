@@ -73,8 +73,7 @@
 #  The binary release version
 
 class prometheus::bind_exporter (
-  String $download_extension,
-  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url_base,
+  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url,
   Array[String[1]] $extra_groups,
   String[1] $group,
   String[1] $package_ensure,
@@ -94,7 +93,8 @@ class prometheus::bind_exporter (
   String[1] $os                                                      = $prometheus::os,
   String $extra_options                                              = '',
   Hash[String, Scalar] $env_vars                                     = {},
-  Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
+  String $download_extension                                         = '',
+  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url_base      = undef,
   String[1] $config_mode                                             = $prometheus::config_mode,
   String[1] $arch                                                    = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
