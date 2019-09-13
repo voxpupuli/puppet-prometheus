@@ -47,6 +47,9 @@
 #  [*manage_group*]
 #  Whether to create a group for or rely on external code for that
 #
+#  [*deploy_unit_file*]
+#  Whether to create a unit file or not (default true)
+#
 #  [*service_ensure*]
 #  State ensured for the service (default 'running')
 #
@@ -79,6 +82,7 @@ define prometheus::daemon (
   Boolean $purge                       = true,
   String $options                      = '',
   String $init_style                   = $prometheus::init_style,
+  Boolean $deploy_unit_file            = true,
   String $service_ensure               = 'running',
   Boolean $service_enable              = true,
   Boolean $manage_service              = true,
@@ -180,10 +184,12 @@ define prometheus::daemon (
       }
     }
     'systemd' : {
-      include 'systemd'
-      systemd::unit_file {"${name}.service":
-        content => template('prometheus/daemon.systemd.erb'),
-        notify  => $notify_service,
+      if $deploy_unit_file {
+        include 'systemd'
+        systemd::unit_file {"${name}.service":
+          content => template('prometheus/daemon.systemd.erb'),
+          notify  => $notify_service,
+        }
       }
     }
     # service_provider returns redhat on CentOS using sysv, https://tickets.puppetlabs.com/browse/PUP-5296
