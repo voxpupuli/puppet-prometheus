@@ -109,6 +109,7 @@ class prometheus::statsd_exporter (
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9102,
   String[1] $scrape_job_name              = 'statsd',
+  Optional[Hash] $scrape_job_labels       = {},
 ) inherits prometheus {
 
   # Prometheus added a 'v' on the realease name at 0.4.0 and changed the configuration format to yaml in 0.5.0
@@ -165,5 +166,6 @@ class prometheus::statsd_exporter (
     export_scrape_job  => $export_scrape_job,
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
+    scrape_job_labels  => $scrape_job_labels,
   }
 }

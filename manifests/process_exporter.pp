@@ -98,6 +98,7 @@ class prometheus::process_exporter(
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9256,
   String[1] $scrape_job_name              = 'process',
+  Optional[Hash] $scrape_job_labels       = {},
 ) inherits prometheus {
 
   $filename = "${package_name}-${version}.${os}-${arch}.${download_extension}"
@@ -143,5 +144,6 @@ class prometheus::process_exporter(
     export_scrape_job  => $export_scrape_job,
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
+    scrape_job_labels  => $scrape_job_labels,
   }
 }

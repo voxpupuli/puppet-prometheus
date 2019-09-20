@@ -103,6 +103,7 @@ class prometheus::apache_exporter (
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9117,
   String[1] $scrape_job_name              = 'apache',
+  Optional[Hash] $scrape_job_labels                                  = {},
 ) inherits prometheus {
 
   #Please provide the download_url for versions < 0.9.0
@@ -139,5 +140,6 @@ class prometheus::apache_exporter (
     export_scrape_job  => $export_scrape_job,
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
+    scrape_job_labels  => $scrape_job_labels,
   }
 }
