@@ -86,8 +86,6 @@
 #  The binary release version
 
 class prometheus::node_exporter (
-  String $download_extension,
-  String $download_url_base,
   Array[String] $extra_groups,
   String $group,
   String $package_ensure,
@@ -107,6 +105,8 @@ class prometheus::node_exporter (
   Boolean $manage_user                  = true,
   String $os                            = $prometheus::os,
   String $extra_options                 = '',
+  Optional[String] $download_extension	= undef,
+  Optional[String] $download_url_base	= undef,
   Optional[String] $download_url        = undef,
   String $arch                          = $prometheus::real_arch,
   String $bin_dir                       = $prometheus::bin_dir,
