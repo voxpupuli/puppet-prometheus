@@ -86,6 +86,7 @@ define prometheus::daemon (
   String $service_ensure               = 'running',
   Boolean $service_enable              = true,
   Boolean $manage_service              = true,
+  Optional[String] $service_provider   = undef,
   Hash[String, Scalar] $env_vars       = {},
   Optional[String] $env_file_path      = $prometheus::env_file_path,
   Optional[String[1]] $extract_command = $prometheus::extract_command,
@@ -229,6 +230,9 @@ define prometheus::daemon (
         notify  => $notify_service,
       }
     }
+    'none' : {
+      # Deploy your own init file
+    }
     default : {
       fail("I don't know how to create an init script for style ${init_style}")
     }
@@ -252,6 +256,7 @@ define prometheus::daemon (
   $real_provider = $init_style ? {
     'sles'  => 'redhat',  # mimics puppet's default behaviour
     'sysv'  => 'redhat',  # all currently used cases for 'sysv' are redhat-compatible
+    'none'  => $service_provider,
     default => $init_style,
   }
 
