@@ -168,6 +168,7 @@ class prometheus::config {
     case $prometheus::server::init_style {
       'upstart' : {
         file { '/etc/init/prometheus.conf':
+          notify  => Service['prometheus'],
           mode    => '0444',
           owner   => 'root',
           group   => 'root',
@@ -189,6 +190,7 @@ class prometheus::config {
       }
       'sysv', 'redhat' : {
         file { '/etc/init.d/prometheus':
+          notify  => Service['prometheus'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -197,6 +199,7 @@ class prometheus::config {
       }
       'debian' : {
         file { '/etc/init.d/prometheus':
+          notify  => Service['prometheus'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -205,6 +208,7 @@ class prometheus::config {
       }
       'sles' : {
         file { '/etc/init.d/prometheus':
+          notify  => Service['prometheus'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -213,6 +217,7 @@ class prometheus::config {
       }
       'launchd' : {
         file { '/Library/LaunchDaemons/io.prometheus.daemon.plist':
+          notify  => Service['prometheus'],
           mode    => '0644',
           owner   => 'root',
           group   => 'wheel',
