@@ -168,7 +168,7 @@ class prometheus::config {
     case $prometheus::server::init_style {
       'upstart' : {
         file { '/etc/init/prometheus.conf':
-          notify  => Service['prometheus'],
+          notify  => Class['prometheus::run_service'],
           mode    => '0444',
           owner   => 'root',
           group   => 'root',
@@ -186,11 +186,12 @@ class prometheus::config {
         include 'systemd'
         systemd::unit_file {'prometheus.service':
           content => template('prometheus/prometheus.systemd.erb'),
+          notify  => Class['prometheus::run_service'],
         }
       }
       'sysv', 'redhat' : {
         file { '/etc/init.d/prometheus':
-          notify  => Service['prometheus'],
+          notify  => Class['prometheus::run_service'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -199,7 +200,7 @@ class prometheus::config {
       }
       'debian' : {
         file { '/etc/init.d/prometheus':
-          notify  => Service['prometheus'],
+          notify  => Class['prometheus::run_service'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -208,7 +209,7 @@ class prometheus::config {
       }
       'sles' : {
         file { '/etc/init.d/prometheus':
-          notify  => Service['prometheus'],
+          notify  => Class['prometheus::run_service'],
           mode    => '0555',
           owner   => 'root',
           group   => 'root',
@@ -217,7 +218,7 @@ class prometheus::config {
       }
       'launchd' : {
         file { '/Library/LaunchDaemons/io.prometheus.daemon.plist':
-          notify  => Service['prometheus'],
+          notify  => Class['prometheus::run_service'],
           mode    => '0644',
           owner   => 'root',
           group   => 'wheel',

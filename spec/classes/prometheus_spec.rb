@@ -103,7 +103,7 @@ describe 'prometheus' do
                 'owner'  => 'root',
                 'group'  => 'root',
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.debian"))
-              )
+              ).that_notifies('Class[prometheus::run_service]')
             }
           elsif ['centos-6-x86_64', 'redhat-6-x86_64'].include?(os)
             # init_style = 'sysv'
@@ -114,7 +114,7 @@ describe 'prometheus' do
                 'owner'  => 'root',
                 'group'  => 'root',
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.sysv"))
-              )
+              ).that_notifies('Class[prometheus::run_service]')
             }
           elsif ['centos-7-x86_64', 'centos-8-x86_64', 'debian-8-x86_64', 'debian-9-x86_64', 'redhat-7-x86_64', 'redhat-8-x86_64', 'ubuntu-16.04-x86_64', 'ubuntu-18.04-x86_64', 'archlinux-5-x86_64'].include?(os)
             # init_style = 'systemd'
@@ -155,7 +155,7 @@ describe 'prometheus' do
                 'owner'   => 'root',
                 'group'   => 'root',
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.upstart"))
-              )
+              ).that_notifies('Class[prometheus::run_service]')
             }
 
             it {
@@ -165,7 +165,7 @@ describe 'prometheus' do
                 'owner' => 'root',
                 'group' => 'root',
                 'mode'  => '0755'
-              )
+              ).that_notifies('Class[prometheus::run_service]')
             }
           else
             it {
