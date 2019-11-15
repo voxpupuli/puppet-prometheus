@@ -186,6 +186,7 @@ class prometheus::config {
         include 'systemd'
         systemd::unit_file {'prometheus.service':
           content => template('prometheus/prometheus.systemd.erb'),
+          notify  => Class['prometheus::run_service']
         }
         -> Class['systemd::systemctl::daemon_reload']
         -> Class['prometheus::run_service']
