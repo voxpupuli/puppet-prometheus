@@ -188,7 +188,7 @@ class prometheus::config {
           content => template('prometheus/prometheus.systemd.erb'),
           notify  => Class['prometheus::run_service'],
         }
-        -> Class['systemd::systemctl::daemon_reload']
+        Class['systemd::systemctl::daemon_reload']
         -> Class['prometheus::run_service']
       }
       'sysv', 'redhat' : {
