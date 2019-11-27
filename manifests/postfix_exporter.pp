@@ -40,6 +40,8 @@
 #   Whether to enable the service from puppet.
 # @param extra_options
 #   Extra options added to the startup command. Override these if you want to monitor a logfile instead of systemd.
+# @param env_vars
+#  The environment variable to pass to the daemon
 # @param restart_on_change
 #   Should puppet restart the service on configuration change?
 # @param export_scrape_job
@@ -79,6 +81,7 @@ class prometheus::postfix_exporter (
   # exporter configuration
   String  $extra_options     = '--systemd.enable --systemd.unit=\'postfix.service\' --postfix.logfile_path=\'\'',
   Boolean $restart_on_change = true,
+  Hash[String, Scalar] $env_vars = {},
 
   # scrape job configuration
   Boolean        $export_scrape_job = false,
@@ -113,6 +116,7 @@ class prometheus::postfix_exporter (
     manage_group       => $manage_group,
     options            => $extra_options,
     init_style         => $init_style,
+    env_vars           => $env_vars,
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,

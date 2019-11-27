@@ -15,6 +15,8 @@
 #  Extra groups to add the binary user to
 # @param extra_options
 #  Extra options added to the startup command
+# @param env_vars
+#  The environment variable to pass to the daemon
 # @param group
 #  Group under which the binary is running
 # @param init_style
@@ -83,6 +85,7 @@ class prometheus::blackbox_exporter (
   Boolean $manage_user                    = true,
   String[1] $os                           = downcase($facts['kernel']),
   String $extra_options                   = '',
+  Hash[String, Scalar] $env_vars          = {},
   Optional[String] $download_url          = undef,
   String[1] $config_mode                  = $prometheus::config_mode,
   String[1] $arch                         = $prometheus::real_arch,
@@ -136,6 +139,7 @@ class prometheus::blackbox_exporter (
     manage_group       => $manage_group,
     options            => $options,
     init_style         => $init_style,
+    env_vars           => $env_vars,
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
