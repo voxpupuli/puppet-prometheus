@@ -54,6 +54,7 @@ class prometheus::process_exporter(
   String $version,
   Stdlib::Absolutepath $config_path,
   Array $watched_processes                = [],
+  Optional[Hash] $hash_watched_processes  = undef,
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,
@@ -82,12 +83,17 @@ class prometheus::process_exporter(
     default => undef,
   }
 
+  $config_path_content = $hash_watched_processes ? {
+    undef   => template('prometheus/process-exporter.yaml.erb'),
+    default => $watched_processes.to_yaml,
+  }
+
   file { $config_path:
     ensure  => 'file',
     mode    => $config_mode,
     owner   => $user,
     group   => $group,
-    content => template('prometheus/process-exporter.yaml.erb'),
+    content => $config_path_content,
     notify  => $notify_service,
   }
 
