@@ -1,0 +1,8 @@
+---
+process_names:
+- name: "{{.Matches}}"
+  cmdline:
+  - ".*process1.*"
+- name: "{{.Matches}}"
+  cmdline:
+  - ".*process2.*"
