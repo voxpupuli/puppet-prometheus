@@ -158,7 +158,7 @@ class prometheus::config {
     default => undef,
   }
 
-  if $prometheus::env_file_path != undef {
+  if $prometheus::env_file_path {
     file { "${prometheus::env_file_path}/prometheus":
       mode    => '0644',
       owner   => 'root',
