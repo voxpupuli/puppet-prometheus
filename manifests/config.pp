@@ -163,7 +163,7 @@ class prometheus::config {
       mode    => '0644',
       owner   => 'root',
       group   => '0', # Darwin uses wheel
-      content => "ARGS='${join($daemon_flags, ' ')}'\n",
+      content => "ARGS='${join(sort($daemon_flags), ' ')}'\n",
     }
   }
 
@@ -191,7 +191,7 @@ class prometheus::config {
         content => epp("${module_name}/prometheus.systemd.epp", {
             'user'           => $prometheus::server::user,
             'group'          => $prometheus::server::group,
-            'daemon_flags'   => $daemon_flags,
+            'daemon_flags'   => $daemon_flags.sort,
             'max_open_files' => $max_open_files,
             'bin_dir'        => $prometheus::server::bin_dir,
             'env_file_path'  => $prometheus::server::env_file_path,
