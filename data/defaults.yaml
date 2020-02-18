@@ -90,7 +90,7 @@ prometheus::elasticsearch_exporter::extra_groups: []
 prometheus::elasticsearch_exporter::group: 'elasticsearch-exporter'
 prometheus::elasticsearch_exporter::package_ensure: 'latest'
 prometheus::elasticsearch_exporter::package_name: 'elasticsearch_exporter'
-prometheus::elasticsearch_exporter::service_name: 'elasticsearch-exporter'
+prometheus::elasticsearch_exporter::service_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::user: 'elasticsearch-exporter'
 prometheus::elasticsearch_exporter::use_kingpin: true
 prometheus::elasticsearch_exporter::version: '1.1.0rc1'
