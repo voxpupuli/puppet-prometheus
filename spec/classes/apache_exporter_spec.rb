@@ -14,7 +14,8 @@ describe 'prometheus::apache_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
+            service_name: 'apache_exporter'
           }
         end
 
@@ -41,7 +42,8 @@ describe 'prometheus::apache_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
+            service_name: 'apache_exporter'
           }
         end
 
