@@ -1,5 +1,7 @@
 # puppet-prometheus
 
+# TEST Facter 4
+
 [![Build Status](https://travis-ci.org/voxpupuli/puppet-prometheus.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-prometheus)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/prometheus.svg)](https://forge.puppetlabs.com/puppet/prometheus)
 [![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/prometheus.svg)](https://forge.puppetlabs.com/puppet/prometheus)
