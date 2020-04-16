@@ -64,7 +64,7 @@ describe 'prometheus::apache_exporter' do
           {
             scrape_uri: 'http://127.0.0.1/server-status?auto',
             extra_options: '--test',
-            version: '0.4.0',
+            version: '0.8.0',
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
