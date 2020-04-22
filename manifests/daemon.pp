@@ -169,15 +169,22 @@ define prometheus::daemon (
       }
     }
     'systemd': {
-      include 'systemd'
-      systemd::unit_file {"${name}.service":
+      file { "/etc/systemd/system/${name}.service":
+        mode    => '0644',
+        owner   => 'root',
+        group   => 'root',
         content => template('prometheus/daemon.systemd.erb'),
         notify  => $notify_service,
       }
+      ~> exec { "${name}-systemd-reload":
+        command     => 'systemctl daemon-reload',
+        path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+        refreshonly => true,
+        notify      => $notify_service,
+      }
       # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
-      # and camptocamp/systemd only creates this relationship when managing the service
       if $manage_service and versioncmp($facts['puppetversion'],'6.1.0') < 0 {
-        Class['systemd::systemctl::daemon_reload'] -> Service[$name]
+        Exec["${name}-systemd-reload"] -> Service[$name]
       }
     }
     # service_provider returns redhat on CentOS using sysv, https://tickets.puppetlabs.com/browse/PUP-5296
