@@ -98,8 +98,40 @@ class prometheus::mongodb_exporter (
 
   $options = "${flag_prefix}mongodb.uri=${cnf_uri} ${extra_options}"
 
+  if $install_method == 'url' and (versioncmp($version, '0.7.0') >= 0) {
+    # Not a big fan of copypasting but prometheus::daemon takes for granted
+    # a specific path embedded in the prometheus *_exporter tarball, which
+    # mongodb_exporter lacks.
+    # TODO: patch prometheus::daemon to support custom extract directories
+    $exporter_install_method = 'none'
+    $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"
+    file { $install_dir:
+      ensure => 'directory',
+      owner  => 'root',
+      group  => 0, # 0 instead of root because OS X uses "wheel".
+      mode   => '0555',
+    }
+    -> archive { "/tmp/${service_name}-${version}.${download_extension}":
+      ensure          => present,
+      extract         => true,
+      extract_path    => $install_dir,
+      source          => $real_download_url,
+      checksum_verify => false,
+      creates         => "${install_dir}/${service_name}",
+      cleanup         => true,
+    }
+    -> file { "${bin_dir}/${service_name}":
+      ensure => link,
+      notify => $notify_service,
+      target => "${install_dir}/${service_name}",
+      before => Prometheus::Daemon[$service_name],
+    }
+  } else {
+    $exporter_install_method = $install_method
+  }
+
   prometheus::daemon { 'mongodb_exporter':
-    install_method     => $install_method,
+    install_method     => $exporter_install_method,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,
