@@ -5,6 +5,7 @@ describe 'prometheus mongodb_exporter' do
     pp = 'include prometheus::mongodb_exporter'
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
+    shell('sleep 30')
   end
 
   describe 'prometheus mongodb_exporter version 0.3.1' do
@@ -12,6 +13,7 @@ describe 'prometheus mongodb_exporter' do
       pp = "class { 'prometheus::mongodb_exporter': version => '0.3.1' }"
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
+      shell('sleep 30')
     end
 
     describe process('mongodb_exporter') do
@@ -33,6 +35,7 @@ describe 'prometheus mongodb_exporter' do
       pp = "class { 'prometheus::mongodb_exporter': version => '0.11.0', use_kingpin => true }"
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
+      shell('sleep 30')
     end
 
     describe process('mongodb_exporter') do
