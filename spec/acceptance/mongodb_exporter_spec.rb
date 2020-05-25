@@ -14,6 +14,10 @@ describe 'prometheus mongodb_exporter' do
       apply_manifest(pp, catch_changes: true)
     end
 
+    describe process('mongodb_exporter') do
+      its(:args) { is_expected.to match %r{\ -mongodb.uri} }
+    end
+
     describe service('mongodb_exporter') do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
@@ -26,9 +30,13 @@ describe 'prometheus mongodb_exporter' do
 
   describe 'prometheus mongodb_exporter version 0.11.0' do
     it ' mongodb_exporter installs with version 0.11.0' do
-      pp = "class { 'prometheus::mongodb_exporter': version => '0.11.0' }"
+      pp = "class { 'prometheus::mongodb_exporter': version => '0.11.0', use_kingpin => true }"
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
+    end
+
+    describe process('mongodb_exporter') do
+      its(:args) { is_expected.to match %r{\ --mongodb.uri} }
     end
 
     describe service('mongodb_exporter') do
