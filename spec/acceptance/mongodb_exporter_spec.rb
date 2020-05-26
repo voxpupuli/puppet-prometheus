@@ -4,7 +4,7 @@ describe 'prometheus mongodb_exporter' do
   it 'mongodb_exporter works idempotently with no errors' do
     pp = 'include prometheus::mongodb_exporter'
     apply_manifest(pp, catch_failures: true)
-    apply_manifest(pp, catch_changes: true)
+    apply_manifest(pp, expect_changes: true)
     shell('sleep 30')
   end
 
