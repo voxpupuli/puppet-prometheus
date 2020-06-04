@@ -1,0 +1,11 @@
+---
+global:
+  config_version: 3
+input:
+  type: file
+  path: "/var/log/syslog"
+metrics:
+- name: syslog_errors
+  type: counter
+  help: number of syslog errors
+  match: error
