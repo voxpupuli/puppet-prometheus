@@ -1,0 +1,18 @@
+<% require 'yaml' -%>
+<% full_config = {
+  'global' => {
+    'config_version' => 3,
+  },
+  'input' => @config_input,
+  'imports' => [
+    {
+      'type' => 'grok_patterns',
+      'dir' => "/opt/#{@service_name}-#{@version}.#{@os}-#{@arch}/patterns",
+    },
+  ],
+  'metrics' => @config_metrics,
+  'server' => {
+    'port' => @scrape_port,
+  },
+} -%>
+<%= full_config.to_yaml -%>

@@ -8,6 +8,15 @@ prometheus::install_method: 'url'
 prometheus::manage_prometheus_server: false
 prometheus::extract_command: ~
 prometheus::service_name: 'prometheus'
+prometheus::grok_exporter::config_file: '/etc/grok-exporter.yaml'
+prometheus::grok_exporter::download_extension: 'zip'
+prometheus::grok_exporter::download_url_base: 'https://github.com/fstab/grok_exporter/releases'
+prometheus::grok_exporter::extra_groups: []
+prometheus::grok_exporter::group: 'grok-exporter'
+prometheus::grok_exporter::package_ensure: 'latest'
+prometheus::grok_exporter::package_name: 'grok_exporter'
+prometheus::grok_exporter::user: 'grok-exporter'
+prometheus::grok_exporter::version: '1.0.0.RC3'
 prometheus::pushprox_client::download_extension: 'tar.gz'
 prometheus::pushprox_client::download_url_base: 'https://github.com/camptocamp/PushProx/releases'
 prometheus::pushprox_client::extra_groups: []
