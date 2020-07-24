@@ -45,6 +45,8 @@
 #  Service startup scripts style (e.g. rc, upstart or systemd).
 #  Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 #  Typically this can be used when a package is already providing the file.
+# @param unit_after
+#  List of units that should be started prior to this daemon. Only supported for the systemd init_style.
 define prometheus::daemon (
   String[1] $version,
   Prometheus::Uri $real_download_url,
@@ -78,6 +80,7 @@ define prometheus::daemon (
   Optional[Stdlib::Port] $scrape_port     = undef,
   String[1] $scrape_job_name              = $name,
   Hash $scrape_job_labels                 = { 'alias' => $scrape_host },
+  Array $unit_after                       = [],
   Stdlib::Absolutepath $usershell         = $prometheus::usershell,
 ) {
   case $install_method {

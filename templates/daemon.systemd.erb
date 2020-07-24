@@ -2,7 +2,7 @@
 [Unit]
 Description=Prometheus <%= @name %>
 Wants=basic.target
-After=basic.target network.target
+After=basic.target network.target<% @unit_after.each do |after_item| %> <%= after_item %><% end %>
 
 [Service]
 User=<%= @user %>
