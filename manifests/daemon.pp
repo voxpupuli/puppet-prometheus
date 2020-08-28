@@ -80,7 +80,7 @@ define prometheus::daemon (
   Optional[Stdlib::Port] $scrape_port     = undef,
   String[1] $scrape_job_name              = $name,
   Hash $scrape_job_labels                 = { 'alias' => $scrape_host },
-  Array $unit_after                       = [],
+  Array[String[1]] $unit_after            = [],
   Stdlib::Absolutepath $usershell         = $prometheus::usershell,
 ) {
   case $install_method {
