@@ -180,7 +180,16 @@ define prometheus::daemon (
     'systemd': {
       include 'systemd'
       systemd::unit_file { "${name}.service":
-        content => template('prometheus/daemon.systemd.erb'),
+        content => epp('prometheus/daemon.systemd.epp', {
+            'bin_dir'       => $bin_dir,
+            'bin_name'      => $bin_name,
+            'env_file_path' => $env_file_path,
+            'group'         => $group,
+            'name'          => $name,
+            'options'       => $options,
+            'unit_after'    => $unit_after,
+            'user'          => $user
+        }),
         notify  => $notify_service,
       }
       # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
