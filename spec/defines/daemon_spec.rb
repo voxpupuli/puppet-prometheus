@@ -174,7 +174,7 @@ describe 'prometheus::daemon' do
             end
             context 'with defined unit_after' do
               let(:params) do
-                parameters.merge(unit_after: ['foo.service','bar.service'])
+                parameters.merge(unit_after: ['foo.service', 'bar.service'])
               end
 
               it {
