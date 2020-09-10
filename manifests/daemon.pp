@@ -178,13 +178,13 @@ define prometheus::daemon (
       # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
       # and camptocamp/systemd only creates this relationship when managing the service
       if $manage_service and versioncmp($facts['puppetversion'],'6.1.0') < 0 {
-        exec { 'prometheus_daemon_reload':
+        exec { "${name}_daemon_reload":
           command     => '/bin/systemctl daemon-reload',
           refreshonly => true,
         }
-        $effective_notify = [$notify_service, Exec['prometheus_daemon_reload']]
+        $effective_notify = [$notify_service, Exec["${name}_daemon_reload"]]
       } else {
-        $effective_notify = [$notify_service]
+        $effective_notify = $notify_service
       }
 
       systemd::unit_file { "${name}.service":
