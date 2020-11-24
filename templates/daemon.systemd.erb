@@ -14,6 +14,9 @@ EnvironmentFile=<%= @env_file_path %>/<%= @name%>
 ExecStart=<%= @bin_dir %>/<%= @bin_name %><% for option in Shellwords.split(@options) %> \
 <%= option -%>
 <% end %>
+<%- @systemd_configs.each_pair do |key,value| -%>
+<%= key %>=<%= value %>
+<%- end -%>
 
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process

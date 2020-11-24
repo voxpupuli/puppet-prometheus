@@ -45,6 +45,8 @@
 #  Service startup scripts style (e.g. rc, upstart or systemd).
 #  Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 #  Typically this can be used when a package is already providing the file.
+# @param systemd_configs
+#   Additional systemd Service configurations
 define prometheus::daemon (
   String[1] $version,
   Prometheus::Uri $real_download_url,
@@ -79,6 +81,7 @@ define prometheus::daemon (
   String[1] $scrape_job_name              = $name,
   Hash $scrape_job_labels                 = { 'alias' => $scrape_host },
   Stdlib::Absolutepath $usershell         = $prometheus::usershell,
+  Hash[String[1],Scalar] $systemd_configs = {},
 ) {
   case $install_method {
     'url': {

@@ -147,6 +147,21 @@ describe 'prometheus::daemon' do
               }
             end
 
+            context 'with systemd_configs defined' do
+              let(:params) do
+                parameters.merge(systemd_configs: {
+                                   'StandardOutput' => 'tty',
+                                   'StandardError' => 'journal',
+                                 })
+              end
+
+              it {
+                is_expected.to contain_systemd__unit_file('smurf_exporter.service').with_content(
+                  %r{StandardOutput=tty\nStandardError=journal}
+                )
+              }
+            end
+
           elsif ['ubuntu-14.04-x86_64'].include?(os)
             # init_style = 'upstart'
 
