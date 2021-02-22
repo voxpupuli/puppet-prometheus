@@ -25,7 +25,8 @@
 #
 # @param extra_options
 #  Extra options added to the startup command
-#
+# @param env_vars
+#  The environment variable to pass to the daemon
 # @param group
 #  Group under which the binary is running
 #
@@ -65,11 +66,30 @@
 # @param service_ensure
 #  State ensured for the service (default 'running')
 #
+# @param service_name
+#  Name of the node exporter service (default 'bind_exporter')
+#
 # @param user
 #  User which runs the service
 #
 # @param version
 #  The binary release version
+#
+# @param export_scrape_job
+#   Whether to export a `prometheus::scrape_job` to puppetDB for
+#   collecting on your prometheus server.
+# @param scrape_job_name
+#   The name of the scrape job. When configuring prometheus with this
+#   puppet module, the jobs to be collected are configured with
+#   `prometheus::collect_scrape_jobs`.
+# @param scrape_port
+#   The port to use in the scrape job.  This won't normally need to be
+#   changed unless you run the exporter with a non-default port by
+#   overriding `extra_options`.
+# @param scrape_job_labels
+#   Labels to configure on the scrape job. If not set, the
+#   `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will
+#   be used.
 class prometheus::bind_exporter (
   Stdlib::HTTPSUrl $download_url,
   Array[String[1]] $extra_groups                = [],
