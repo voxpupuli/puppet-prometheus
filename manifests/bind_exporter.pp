@@ -91,7 +91,7 @@
 #   `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will
 #   be used.
 class prometheus::bind_exporter (
-  Stdlib::HTTPSUrl $download_url,
+  Optional[Stdlib::HTTPSUrl] $download_url      = undef,
   Array[String[1]] $extra_groups                = [],
   String[1] $group                              = 'bind-exporter',
   String[1] $package_ensure                     = 'latest',
