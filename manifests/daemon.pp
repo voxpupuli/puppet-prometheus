@@ -250,7 +250,7 @@ define prometheus::daemon (
       fail('must set $scrape_port on exported daemon')
     }
 
-    @@prometheus::scrape_job { "${scrape_job_name}_${scrape_host}_${scrape_port}":
+    @@prometheus::scrape_job { "${scrape_host}_${scrape_port}":
       job_name => $scrape_job_name,
       targets  => ["${scrape_host}:${scrape_port}"],
       labels   => $scrape_job_labels,

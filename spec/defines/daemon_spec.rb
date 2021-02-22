@@ -153,7 +153,7 @@ describe 'prometheus::daemon' do
             subject { exported_resources }
 
             it {
-              is_expected.to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
+              is_expected.to contain_prometheus__scrape_job('localhost_1234').with(
                 'labels' => {
                   'alias' => 'localhost'
                 }
@@ -185,7 +185,7 @@ describe 'prometheus::daemon' do
           subject { exported_resources }
 
           it {
-            is_expected.to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
+            is_expected.to contain_prometheus__scrape_job('localhost_1234').with(
               'labels' => {
                 'instance' => 'smurf1'
               }
