@@ -196,7 +196,6 @@ define prometheus::daemon (
         content => template('prometheus/daemon.systemd.erb'),
         notify  => $effective_notify,
       }
-
     }
     # service_provider returns redhat on CentOS using sysv, https://tickets.puppetlabs.com/browse/PUP-5296
     'sysv','redhat': {
