@@ -184,11 +184,11 @@ class prometheus::config {
         # we don't use systemd::systemctl::daemon_reload here
         # as it creates a dependency cycle in some cases
         # (see https://github.com/voxpupuli/puppet-prometheus/issues/434)
-        exec { "prometheus_daemon_reload":
+        exec { 'prometheus_daemon_reload':
           command     => '/bin/systemctl daemon-reload',
           refreshonly => true,
         }
-        $effective_notify = [$notify, Exec["prometheus_daemon_reload"]]
+        $effective_notify = [$notify, Exec['prometheus_daemon_reload']]
       } else {
         $effective_notify = $notify
       }
