@@ -175,9 +175,12 @@ define prometheus::daemon (
     'systemd': {
       include 'systemd'
 
-      # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
-      # and camptocamp/systemd only creates this relationship when managing the service
+      # we need this only for Puppet < 6.1, which don't do daemon reload natively
+      # (see https://tickets.puppetlabs.com/browse/PUP-3483)
       if $manage_service and versioncmp($facts['puppetversion'],'6.1.0') < 0 {
+        # we don't use systemd::systemctl::daemon_reload here
+        # as it creates a dependency cycle in some cases
+        # (see https://github.com/voxpupuli/puppet-prometheus/issues/434)
         exec { "${name}_daemon_reload":
           command     => '/bin/systemctl daemon-reload',
           refreshonly => true,
