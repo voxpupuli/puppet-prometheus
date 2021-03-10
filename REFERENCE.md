@@ -2581,6 +2581,7 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`download_url_base`](#-prometheus--blackbox_exporter--download_url_base)
 * [`extra_groups`](#-prometheus--blackbox_exporter--extra_groups)
 * [`extra_options`](#-prometheus--blackbox_exporter--extra_options)
+* [`env_vars`](#-prometheus--blackbox_exporter--env_vars)
 * [`group`](#-prometheus--blackbox_exporter--group)
 * [`init_style`](#-prometheus--blackbox_exporter--init_style)
 * [`install_method`](#-prometheus--blackbox_exporter--install_method)
@@ -2671,6 +2672,14 @@ Data type: `Optional[String[1]]`
 Extra options added to the startup command
 
 Default value: `undef`
+
+##### <a name="-prometheus--blackbox_exporter--env_vars"></a>`env_vars`
+
+Data type: `Hash[String[1], Scalar]`
+
+env_vars added to the unit file (key:value)
+
+Default value: `{}`
 
 ##### <a name="-prometheus--blackbox_exporter--group"></a>`group`
 

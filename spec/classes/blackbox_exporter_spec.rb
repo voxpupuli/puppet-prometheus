@@ -58,6 +58,19 @@ describe 'prometheus::blackbox_exporter' do
           it { is_expected.to contain_file('/etc/blackbox_exporter_web-config.yml').with(ensure: 'file') }
           it { is_expected.to contain_prometheus__daemon('blackbox_exporter').with(options: '--config.file=/etc/blackbox-exporter.yaml --web.config.file=/etc/blackbox_exporter_web-config.yml') }
         end
+
+        context 'with env_vars set' do
+          let(:params) do
+            {
+              env_vars: {
+                'FOO' => 'BAR'
+              }
+            }
+          end
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_prometheus__daemon('blackbox_exporter').with(env_vars: { 'FOO' => 'BAR' }) }
+        end
       end
     end
   end
