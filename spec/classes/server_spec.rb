@@ -24,6 +24,22 @@ describe 'prometheus::server' do
           )
         }
 
+        it {
+          content = catalogue.resource('file', 'prometheus.yaml').send(:parameters)[:content]
+          expect(content).to include('job_name: prometheus')
+        }
+
+        context 'without default scrape configs' do
+          let(:params) do
+            super().merge('include_default_scrape_configs' => false)
+          end
+
+          it {
+            content = catalogue.resource('file', 'prometheus.yaml').send(:parameters)[:content]
+            expect(content).not_to include('job_name: prometheus')
+          }
+        end
+
         describe 'max_open_files' do
           context 'by default' do
             it {

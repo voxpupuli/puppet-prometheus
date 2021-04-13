@@ -99,19 +99,6 @@ describe 'prometheus server basics' do
           }
         ]
       },
-      scrape_configs => [
-        {
-          'job_name' => 'prometheus',
-          'scrape_interval' => '10s',
-          'scrape_timeout'  => '10s',
-          'static_configs'  => [
-            {
-              'targets' => [ 'localhost:9090' ],
-              'labels'  => { 'alias' => 'Prometheus' }
-            }
-          ]
-        }
-      ]
     }
     EOS
       # Run it twice and test for idempotency
@@ -155,19 +142,6 @@ describe 'prometheus server basics' do
           }
         ]
       },
-      scrape_configs => [
-        {
-          'job_name' => 'prometheus',
-          'scrape_interval' => '10s',
-          'scrape_timeout'  => '10s',
-          'static_configs'  => [
-            {
-              'targets' => [ 'localhost:9090' ],
-              'labels'  => { 'alias' => 'Prometheus' }
-            }
-          ]
-        }
-      ]
     }
     EOS
       # Run it twice and test for idempotency

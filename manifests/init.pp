@@ -67,6 +67,8 @@
 #  Prometheus rule files
 # @param scrape_configs
 #  Prometheus scrape configs
+# @param include_default_scrape_configs
+#  Include the module default scrape configs
 # @param remote_read_configs
 #  Prometheus remote_read config to scrape prometheus 1.8+ instances
 # @param remote_write_configs
@@ -298,6 +300,7 @@ class prometheus (
   Boolean $purge_config_dir                                                     = true,
   Boolean $manage_user                                                          = true,
   Boolean $config_show_diff                                                     = true,
+  Boolean $include_default_scrape_configs                                       = true,
 ) {
   case $arch {
     'x86_64', 'amd64': { $real_arch = 'amd64' }

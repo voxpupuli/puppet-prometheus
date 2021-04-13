@@ -1,7 +1,7 @@
 <% require 'yaml' -%>
 <% global_config = scope.lookupvar('::prometheus::server::global_config') -%>
 <% rule_files = scope.lookupvar('::prometheus::server::_rule_files') -%>
-<% scrape_configs = scope.lookupvar('::prometheus::server::scrape_configs') -%>
+<% scrape_configs = scope.lookupvar('::prometheus::config::scrape_configs') -%>
 <% remote_read_configs = scope.lookupvar('::prometheus::server::remote_read_configs') -%>
 <% remote_write_configs = scope.lookupvar('::prometheus::server::remote_write_configs') -%>
 <% full_config = {

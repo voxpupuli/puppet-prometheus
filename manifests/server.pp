@@ -19,6 +19,7 @@ class prometheus::server (
   Hash $global_config                                                           = $prometheus::global_config,
   Array $rule_files                                                             = $prometheus::rule_files,
   Array $scrape_configs                                                         = $prometheus::scrape_configs,
+  Boolean $include_default_scrape_configs                                       = $prometheus::include_default_scrape_configs,
   Array $remote_read_configs                                                    = $prometheus::remote_read_configs,
   Array $remote_write_configs                                                   = $prometheus::remote_write_configs,
   Variant[Array,Hash] $alerts                                                   = $prometheus::alerts,
