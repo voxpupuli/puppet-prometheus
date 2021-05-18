@@ -52,17 +52,17 @@
 #  this param to define how we call the mongodb.uri in the $options
 #  https://github.com/percona/mongodb_exporter/blob/v0.7.0/CHANGELOG.md
 class prometheus::mongodb_exporter (
-  String[1] $cnf_uri,
-  String $download_extension,
-  String[1] $download_url_base,
-  Array  $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $service_name,
-  String[1] $user,
-  String[1] $version,
-  Boolean $use_kingpin,
+  String[1] $cnf_uri                      = 'mongodb://localhost:27017',
+  String $download_extension              = 'tar.gz',
+  String[1] $download_url_base            = 'https://github.com/percona/mongodb_exporter/releases',
+  Array $extra_groups                     = [],
+  String[1] $group                        = 'mongodb-exporter',
+  String[1] $package_ensure               = 'latest',
+  String[1] $package_name                 = 'mongodb_exporter',
+  String[1] $service_name                 = 'mongodb_exporter',
+  String[1] $user                         = 'mongodb-exporter',
+  String[1] $version                      = '0.20.4',
+  Boolean $use_kingpin                    = true,
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,
@@ -86,6 +86,12 @@ class prometheus::mongodb_exporter (
   #Please provide the download_url for versions < 0.9.0
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
+  if versioncmp($version, '0.7.0') < 0 or versioncmp($version, '0.20.4') >= 0 {
+    $archive_bin_path = undef  # use default
+  } else {
+    $archive_bin_path = '/opt/mongodb_exporter'
+  }
+
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
@@ -106,6 +112,7 @@ class prometheus::mongodb_exporter (
     arch               => $arch,
     real_download_url  => $real_download_url,
     bin_dir            => $bin_dir,
+    archive_bin_path   => $archive_bin_path,
     notify_service     => $notify_service,
     package_name       => $package_name,
     package_ensure     => $package_ensure,

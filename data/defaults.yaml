@@ -184,17 +184,6 @@ prometheus::mysqld_exporter::package_name: 'mysqld_exporter'
 prometheus::mysqld_exporter::service_name: 'mysqld_exporter'
 prometheus::mysqld_exporter::user: 'mysqld-exporter'
 prometheus::mysqld_exporter::version: '0.12.1'
-prometheus::mongodb_exporter::cnf_uri: 'mongodb://localhost:27017'
-prometheus::mongodb_exporter::download_extension: 'tar.gz'
-prometheus::mongodb_exporter::download_url_base: 'https://github.com/percona/mongodb_exporter/releases'
-prometheus::mongodb_exporter::extra_groups: []
-prometheus::mongodb_exporter::group: 'mongodb-exporter'
-prometheus::mongodb_exporter::package_ensure: 'latest'
-prometheus::mongodb_exporter::package_name: 'mongodb_exporter'
-prometheus::mongodb_exporter::service_name: 'mongodb_exporter'
-prometheus::mongodb_exporter::user: 'mongodb-exporter'
-prometheus::mongodb_exporter::version: '0.11.0'
-prometheus::mongodb_exporter::use_kingpin: false
 prometheus::node_exporter::download_extension: 'tar.gz'
 prometheus::node_exporter::download_url_base: 'https://github.com/prometheus/node_exporter/releases'
 prometheus::node_exporter::extra_groups: []

@@ -10,7 +10,7 @@ describe 'prometheus::mongodb_exporter' do
       context 'with version specified' do
         let(:params) do
           {
-            version: '0.3.0',
+            version: '0.20.4',
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
@@ -23,7 +23,7 @@ describe 'prometheus::mongodb_exporter' do
         end
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/mongodb_exporter').with('target' => '/opt/mongodb_exporter-0.3.0.linux-amd64/mongodb_exporter') }
+          it { is_expected.to contain_file('/usr/local/bin/mongodb_exporter').with('target' => '/opt/mongodb_exporter-0.20.4.linux-amd64/mongodb_exporter') }
         end
       end
     end
