@@ -47,6 +47,12 @@
 #  Should puppet manage the service? (default true)
 # @param manage_user
 #  Whether to create user or rely on external code for that
+# @param mute_time_intervals
+#  Array of mute time intervals
+#  Example:
+#  prometheus::alertmanager::mute_time_intervals:
+#  - name: weekend
+#    weekdays: ['saturday','sunday']
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -103,6 +109,7 @@ class prometheus::alertmanager (
   String[1] $package_name,
   Array $receivers,
   Hash $route,
+  Array[Hash] $mute_time_intervals,
   Stdlib::Absolutepath $storage_path,
   Array $templates,
   String[1] $user,

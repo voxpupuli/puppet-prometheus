@@ -35,6 +35,9 @@ describe 'prometheus::alertmanager' do
             is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Service[alertmanager]')
             verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', ['---', 'global:', '  smtp_smarthost: localhost:25', '  smtp_from: alertmanager@localhost'])
           }
+          it {
+            is_expected.not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{mute_time_intervals})
+          }
         end
         describe 'service reload' do
           it {
@@ -45,6 +48,29 @@ describe 'prometheus::alertmanager' do
             )
           }
         end
+      end
+
+      context 'with latest version specified and mute_time_intervals' do
+        let(:params) do
+          {
+            version: '0.22.0',
+            arch: 'amd64',
+            os: 'linux',
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
+            mute_time_intervals: [{ 'name' => 'weekend', 'weekdays' => ['saturday','sunday'] }],
+          }
+        end
+
+        it {
+          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
+            'mute_time_intervals:',
+            '- name: weekend',
+            '  weekdays:',
+            '  - saturday',
+            '  - sunday',
+          ])
+        }
       end
 
       context 'when reload_on_change => true' do
