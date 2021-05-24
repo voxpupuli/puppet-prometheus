@@ -107,6 +107,7 @@ class prometheus::alertmanager (
   Array $templates,
   String[1] $user,
   String[1] $version,
+  Hash $mute_time_intervals,
   Boolean $service_enable                 = true,
   Stdlib::Ensure::Service $service_ensure = 'running',
   String[1] $service_name                 = 'alertmanager',
