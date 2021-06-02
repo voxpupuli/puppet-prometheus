@@ -86,9 +86,9 @@ class prometheus::openvpn_exporter (
     default => undef,
   }
 
-  $_status_paths = ''
-  if $status_paths != [] {
-    $_status_paths = "-openvpn.status_paths=\\\"${join(unique($status_paths), ',')}\\\""
+  $_status_paths = $status_paths ? {
+    undef   => '',
+    default => "-openvpn.status_paths=${join(unique($status_paths), ',')}",
   }
 
   $options = join([$extra_options,
