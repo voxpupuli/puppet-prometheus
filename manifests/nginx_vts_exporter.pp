@@ -62,7 +62,7 @@ class prometheus::nginx_vts_exporter (
   Boolean          $restart_on_change     = true,
   Boolean          $service_enable        = true,
   String           $service_ensure        = 'running',
-  String           $init_style            = $facts['service_provider'],
+  Prometheus::Initstyle $init_style       = $facts['service_provider'],
   Prometheus::Install $install_method     = $prometheus::install_method,
   Boolean          $manage_group          = true,
   Boolean          $manage_service        = true,

@@ -1789,7 +1789,7 @@ Default value: `'bind-exporter'`
 
 ##### <a name="init_style"></a>`init_style`
 
-Data type: `String[1]`
+Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
@@ -6116,7 +6116,7 @@ Group under which the binary is running
 
 ##### <a name="init_style"></a>`init_style`
 
-Data type: `String`
+Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
