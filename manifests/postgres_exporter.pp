@@ -57,7 +57,7 @@
 #  Uri on howto connect to the database
 class prometheus::postgres_exporter (
   String $download_extension,
-  String[1] $download_url_base,
+  Prometheus::Uri $download_url_base,
   Array[String[1]] $extra_groups,
   String[1] $group,
   String[1] $package_ensure,

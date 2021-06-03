@@ -55,7 +55,7 @@ class prometheus::elasticsearch_exporter (
   String[1] $cnf_uri,
   String[1] $cnf_timeout,
   String $download_extension,
-  String[1] $download_url_base,
+  Prometheus::Uri $download_url_base,
   Array $extra_groups,
   String[1] $group,
   String[1] $package_ensure,

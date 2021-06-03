@@ -65,7 +65,7 @@
 #  Additional environment variables that should be supplied to the exporter, as a hash of key:value
 #  (default {})
 class prometheus::rabbitmq_exporter (
-  String[1] $download_url_base,
+  Prometheus::Uri $download_url_base,
   Array[String] $extra_groups,
   String[1] $group,
   String[1] $package_ensure,

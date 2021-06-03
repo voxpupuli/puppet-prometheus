@@ -56,7 +56,7 @@
 #
 class prometheus::bird_exporter (
   String $download_extension              = '',
-  String[1] $download_url_base            = 'https://github.com/czerwonk/bird_exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/czerwonk/bird_exporter/releases',
   Array[String] $extra_groups             = ['bird'],
   String[1] $group                        = 'bird-exporter',
   String[1] $package_ensure               = 'installed',
