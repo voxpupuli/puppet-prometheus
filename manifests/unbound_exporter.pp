@@ -54,7 +54,7 @@
 #
 class prometheus::unbound_exporter (
   String $download_extension              = '',
-  String[1] $download_url_base            = 'https://github.com/kumina/unbound_exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/kumina/unbound_exporter/releases',
   Array[String] $extra_groups             = ['unbound'],
   String[1] $group                        = 'unbound-exporter',
   String[1] $package_ensure               = 'installed',

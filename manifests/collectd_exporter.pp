@@ -45,7 +45,7 @@
 #  The binary release version
 class prometheus::collectd_exporter (
   String $download_extension,
-  String[1] $download_url_base,
+  Prometheus::Uri $download_url_base,
   String[1] $group,
   String[1] $package_ensure,
   String[1] $package_name,

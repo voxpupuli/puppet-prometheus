@@ -51,7 +51,7 @@
 #  The ip address that the exporter will to listen to (default '')
 class prometheus::dellhw_exporter (
   String $download_extension              = 'tar.gz',
-  String[1] $download_url_base            = 'https://github.com/galexrt/dellhw_exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/galexrt/dellhw_exporter/releases',
   Array[String] $extra_groups             = [],
   String[1] $group                        = 'dellhw-exporter',
   String[1] $package_ensure               = 'present',

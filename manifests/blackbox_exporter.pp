@@ -65,7 +65,7 @@
 class prometheus::blackbox_exporter (
   String[1] $config_file,
   String $download_extension,
-  String[1] $download_url_base,
+  Prometheus::Uri $download_url_base,
   Array[String] $extra_groups,
   String[1] $group,
   String[1] $package_ensure,
