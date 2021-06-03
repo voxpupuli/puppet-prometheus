@@ -74,7 +74,7 @@ class prometheus::snmp_exporter (
   Boolean $manage_user                    = true,
   String[1] $os                           = downcase($facts['kernel']),
   String $extra_options                   = '',
-  Optional[String] $download_url          = undef,
+  Optional[Prometheus::Uri] $download_url = undef,
   String[1] $config_mode                  = $prometheus::config_mode,
   String[1] $arch                         = $prometheus::real_arch,
   String[1] $bin_dir                      = $prometheus::bin_dir,

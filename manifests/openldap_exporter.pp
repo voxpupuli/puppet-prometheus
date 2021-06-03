@@ -66,7 +66,7 @@ class prometheus::openldap_exporter (
   Boolean $manage_user                    = true,
   String[1] $os                           = downcase($facts['kernel']),
   String $options                         = '',
-  Optional[String] $download_url          = undef,
+  Optional[Prometheus::Uri] $download_url = undef,
   String[1] $bin_dir                      = $prometheus::bin_dir,
   Boolean $export_scrape_job              = false,
   Optional[Stdlib::Host] $scrape_host     = undef,

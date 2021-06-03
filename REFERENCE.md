@@ -1789,7 +1789,7 @@ Default value: `'bind-exporter'`
 
 ##### <a name="init_style"></a>`init_style`
 
-Data type: `String[1]`
+Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
@@ -1797,7 +1797,7 @@ Default value: `$prometheus::init_style`
 
 ##### <a name="install_method"></a>`install_method`
 
-Data type: `String[1]`
+Data type: `Prometheus::Install`
 
 Installation method: url or package (only url is supported currently)
 
@@ -2014,7 +2014,7 @@ Default value: `''`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -2308,7 +2308,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -2816,7 +2816,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -3082,7 +3082,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -3380,7 +3380,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -3630,7 +3630,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -4141,7 +4141,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -4414,7 +4414,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -4699,7 +4699,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -4961,7 +4961,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -5242,7 +5242,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -5497,7 +5497,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -6082,7 +6082,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -6116,7 +6116,7 @@ Group under which the binary is running
 
 ##### <a name="init_style"></a>`init_style`
 
-Data type: `String`
+Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
@@ -6124,7 +6124,7 @@ Default value: `$facts['service_provider']`
 
 ##### <a name="install_method"></a>`install_method`
 
-Data type: `String`
+Data type: `Prometheus::Install`
 
 Installation method: url or package (only url is supported currently)
 
@@ -6356,7 +6356,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -6603,7 +6603,7 @@ Default value: `''`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -6856,7 +6856,7 @@ The following parameters are available in the `prometheus::postfix_exporter` cla
 
 ##### <a name="install_method"></a>`install_method`
 
-Data type: `Enum['url','package']`
+Data type: `Prometheus::Install`
 
 Installation method: `url` or `package`. (Note `package` is not available on most OSes.)
 
@@ -7122,7 +7122,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -7704,7 +7704,7 @@ Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -8612,7 +8612,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -8916,7 +8916,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -9639,7 +9639,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -10159,7 +10159,7 @@ Default value: `''`
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
@@ -10207,7 +10207,7 @@ Default value: `$facts['service_provider']`
 
 ##### <a name="install_method"></a>`install_method`
 
-Data type: `String[1]`
+Data type: `Prometheus::Install`
 
 Installation method: url or package (only url is supported currently)
 
@@ -10426,7 +10426,7 @@ Extension for the release binary archive
 
 ##### <a name="download_url"></a>`download_url`
 
-Data type: `Optional[String]`
+Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
