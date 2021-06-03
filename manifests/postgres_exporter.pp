@@ -79,7 +79,7 @@ class prometheus::postgres_exporter (
   Boolean $manage_user                          = true,
   String[1] $os                                 = downcase($facts['kernel']),
   String $options                               = '',
-  Optional[String] $download_url                = undef,
+  Optional[Prometheus::Uri] $download_url       = undef,
   Optional[String] $postgres_pass               = undef,
   Optional[String] $postgres_user               = undef,
   String[1] $arch                               = $prometheus::real_arch,

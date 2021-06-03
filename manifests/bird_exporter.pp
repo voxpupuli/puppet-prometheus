@@ -75,7 +75,7 @@ class prometheus::bird_exporter (
   Boolean $manage_user                    = true,
   String[1] $os                           = downcase($facts['kernel']),
   String[1] $extra_options                = '-bird.v2 -web.listen-address=127.0.0.1:9324 -format.new=true',
-  Optional[String] $download_url          = undef,
+  Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
   String[1] $bin_dir                      = '/usr/local/bin',
   Boolean $export_scrape_job              = false,
