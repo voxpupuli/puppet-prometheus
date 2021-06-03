@@ -48,14 +48,14 @@
 # @param version
 #  The binary release version
 class prometheus::openvpn_exporter (
-  String $download_extension,
-  String[1] $download_url_base,
-  Array[String] $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $user,
-  String[1] $version,
+  String $download_extension                = '',
+  String[1] $download_url_base              = 'https://github.com/wandera/openvpn_exporter/releases',
+  Array[String] $extra_groups               = [],
+  String[1] $group                          = 'openvpn-exporter',
+  String[1] $package_ensure                 = 'latest',
+  String[1] $package_name                   = 'openvpn_exporter',
+  String[1] $user                           = 'openvpn-exporter',
+  String[1] $version                        = 'v0.3.0.3',
   Boolean $purge_config_dir                 = true,
   Boolean $restart_on_change                = true,
   Boolean $service_enable                   = true,
