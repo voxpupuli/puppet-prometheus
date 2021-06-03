@@ -67,7 +67,7 @@ class prometheus::unbound_exporter (
   Stdlib::Ensure::Service $service_ensure = 'running',
   String[1] $service_name                 = 'unbound_exporter',
   Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  String[1] $install_method               = 'none',
+  Prometheus::Install $install_method     = 'none',
   Boolean $manage_group                   = true,
   Boolean $manage_service                 = true,
   Boolean $manage_user                    = true,

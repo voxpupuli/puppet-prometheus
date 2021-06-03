@@ -104,7 +104,7 @@ class prometheus::bind_exporter (
   String[1] $service_ensure                     = 'running',
   String $service_name                          = 'bind_exporter',
   String[1] $init_style                         = $prometheus::init_style,
-  String[1] $install_method                     = $prometheus::install_method,
+  Prometheus::Install $install_method           = $prometheus::install_method,
   Boolean $manage_group                         = true,
   Boolean $manage_service                       = true,
   Boolean $manage_user                          = true,
