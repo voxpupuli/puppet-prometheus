@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v11.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v11.2.0) (2021-06-08)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v11.1.0...v11.2.0)
+
+**Implemented enhancements:**
+
+- Exporters: Use Prometheus::Initstyle for $init\_style [\#557](https://github.com/voxpupuli/puppet-prometheus/pull/557) ([bastelfreak](https://github.com/bastelfreak))
+- Exporters: Use Prometheus::Install for $install\_method [\#556](https://github.com/voxpupuli/puppet-prometheus/pull/556) ([bastelfreak](https://github.com/bastelfreak))
+- Exporters: Use Prometheus::Uri for $download\_url\_base [\#554](https://github.com/voxpupuli/puppet-prometheus/pull/554) ([bastelfreak](https://github.com/bastelfreak))
+- Add openvpn\_exporter [\#553](https://github.com/voxpupuli/puppet-prometheus/pull/553) ([JosephKav](https://github.com/JosephKav))
+- mongodb\_exporter supporting newer versions [\#550](https://github.com/voxpupuli/puppet-prometheus/pull/550) ([kuldazbraslav](https://github.com/kuldazbraslav))
+- Add openldap\_exporter [\#549](https://github.com/voxpupuli/puppet-prometheus/pull/549) ([dabelenda](https://github.com/dabelenda))
+- Add ipsec\_exporter [\#547](https://github.com/voxpupuli/puppet-prometheus/pull/547) ([kuldazbraslav](https://github.com/kuldazbraslav))
+
+**Merged pull requests:**
+
+- Exporters: Use Optional\[Prometheus::Uri\] for $download\_url [\#555](https://github.com/voxpupuli/puppet-prometheus/pull/555) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v11.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v11.1.0) (2021-04-25)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v11.0.0...v11.1.0)
