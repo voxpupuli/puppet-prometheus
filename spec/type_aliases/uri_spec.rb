@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe 'Prometheus::Uri' do
-  describe 'accepts http, https, and case-sensitive aws s3 uris' do
+  describe 'accepts http, https, file paths, and case-sensitive aws s3 uris' do
     [
       'http://www.download.com',
       'HTTP://www.download.com',
       'Https://service.io',
       'https://service.io',
+      'puppet:///files/path',
+      'file:///files/path',
       's3://bucket-name/path',
       's3://bucket/path/to/file.txt'
     ].each do |value|
