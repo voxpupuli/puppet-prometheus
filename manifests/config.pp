@@ -6,6 +6,27 @@ class prometheus::config {
 
   $prometheus_v2 = versioncmp($prometheus::server::version, '2.0.0') >= 0
 
+  if $prometheus::server::include_default_scrape_configs {
+    $default_scrape_configs = [
+      {
+        'job_name'        => 'prometheus',
+        'scrape_interval' => '10s',
+        'scrape_timeout'  => '10s',
+        'static_configs'  => [
+          {
+            'targets' => ['localhost:9090'],
+            'labels'  => {
+              'alias' => 'Prometheus',
+            },
+          },
+        ],
+      }
+    ]
+    $scrape_configs = $default_scrape_configs + $prometheus::server::scrape_configs
+  } else {
+    $scrape_configs = $prometheus::server::scrape_configs
+  }
+
   # Validation
   $invalid_args = if $prometheus_v2 {
     {
