@@ -3,10 +3,10 @@
 #  Architecture (amd64 or i386)
 # @param bin_dir
 #  Directory where binaries are located
-# @param collectors_enable
-#  Collectors to enable, addtionally to the defaults
-# @param collectors_disable
-#  disable collectors which are enabled by default
+# @param config_file
+#   Path to IPMI exporter configuration file
+# @param config_mode
+#  The permissions of the configuration files
 # @param download_extension
 #  Extension for the release binary archive
 # @param download_url
@@ -29,6 +29,8 @@
 #  Should puppet manage the service? (default true)
 # @param manage_user
 #  Whether to create user or rely on external code for that
+# @param modules
+#  Hash of IPMI exporter modules
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -50,9 +52,10 @@
 # @param version
 #  The binary release version
 class prometheus::ipmi_exporter (
+  Stdlib::Absolutepath $config_file       = '/etc/ipmi_exporter.yaml',
   String[1] $package_name                 = 'ipmi_exporter',
   String $download_extension              = 'tar.gz',
-  String[1] $version                      = 'v1.3.1',
+  String[1] $version                      = '1.4.0',
   String[1] $package_ensure               = 'latest',
   String[1] $user                         = 'ipmi-exporter',
   String[1] $group                        = 'ipmi-exporter',
@@ -71,11 +74,9 @@ class prometheus::ipmi_exporter (
   String[1] $os                           = downcase($facts['kernel']),
   String $extra_options                   = '',
   Optional[Prometheus::Uri] $download_url = undef,
+  String[1] $config_mode                  = $prometheus::config_mode,
   String[1] $arch                         = $prometheus::real_arch,
   String[1] $bin_dir                      = $prometheus::bin_dir,
-  Optional[Array[String]] $collectors     = undef,
-  Array[String] $collectors_enable        = [],
-  Array[String] $collectors_disable       = [],
   Optional[Stdlib::Host] $scrape_host     = undef,
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9290,
@@ -83,24 +84,34 @@ class prometheus::ipmi_exporter (
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $bin_name           = undef,
   Boolean $unprivileged                   = true,
+  Hash $modules                           = {},
+  Stdlib::Absolutepath $script_dir        = '/usr/local/bin',
 ) inherits prometheus {
   package { 'freeipmi':
     ensure => 'present',
   }
+  # Prometheus added a 'v' on the release name before 1.4.0
+  if versioncmp ($version, '1.4.0') >= 0 {
+    $release = $version
+  }
+  else {
+    $release = "v${version}"
+  }
 
-  $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${release}.${os}-${arch}.${download_extension}")
 
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
   }
 
-  $cmd_collectors_enable = $collectors_enable.map |$collector| {
-    "--collector.${collector}"
-  }
-
-  $cmd_collectors_disable = $collectors_disable.map |$collector| {
-    "--no-collector.${collector}"
+  file { $config_file:
+    ensure  => file,
+    owner   => $user,
+    group   => $group,
+    mode    => $config_mode,
+    content => epp('prometheus/ipmi_exporter.yaml.epp', { 'modules' => $modules }),
+    notify  => $notify_service,
   }
 
   if $unprivileged {
@@ -120,7 +131,7 @@ class prometheus::ipmi_exporter (
         ',
     }
 
-    file { '/usr/local/bin/ipmi-sudo.sh':
+    file { "${script_dir}/ipmi-sudo.sh":
       owner   => $user,
       group   => $group,
       mode    => '0750',
@@ -138,20 +149,21 @@ class prometheus::ipmi_exporter (
     ]
 
     $sudo_rewrites.each |String $rewrite| {
-      file { "/usr/local/bin/${rewrite}":
+      file { "${script_dir}/${rewrite}":
         ensure  => 'link',
-        target  => '/usr/local/bin/ipmi-sudo.sh',
-        require => File['/usr/local/bin/ipmi-sudo.sh'],
+        target  => "${script_dir}/ipmi-sudo.sh",
+        require => File["${script_dir}/ipmi-sudo.sh"],
       }
     }
 
-    $unprivileged_option = '--freeipmi.path=/usr/local/bin'
+    $unprivileged_option = "--freeipmi.path=${script_dir}"
+  } else {
+    $unprivileged_option = ''
   }
 
   $options = join([
+      "--config.file=${config_file}",
       $extra_options,
-      join($cmd_collectors_enable, ' '),
-      join($cmd_collectors_disable, ' '),
       $unprivileged_option,
   ], ' ')
 
