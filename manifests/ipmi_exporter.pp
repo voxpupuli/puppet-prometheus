@@ -120,32 +120,36 @@ class prometheus::ipmi_exporter (
     file { "/etc/sudoers.d/${service_name}":
       owner   => 'root',
       group   => 'root',
-      mode    => '0644',
-      content => 'ipmi-exporter ALL = NOPASSWD: /usr/sbin/ipmimonitoring,\
-        /usr/sbin/ipmi-sensors,\
-        /usr/sbin/ipmi-dcmi,\
-        /usr/sbin/ipmi-raw,\
-        /usr/sbin/bmc-info,\
-        /usr/sbin/ipmi-chassis,\
-        /usr/sbin/ipmi-sel
-        ',
+      mode    => '0440',
+      content => join([
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmimonitoring",
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sensors",
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-dcmi",
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-raw",
+          "${user} ALL = NOPASSWD: /usr/sbin/bmc-info",
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-chassis",
+          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sel",
+      ], "\n"),
     }
 
     file { "${script_dir}/ipmi-sudo.sh":
       owner   => $user,
       group   => $group,
       mode    => '0750',
-      content => '#!/bin/sh
-        sudo /usr/sbin/$(basename $0) "$@"',
+      content => join([
+          '#!/bin/bash',
+          'sudo /usr/sbin/$(basename $0) "$@"',
+      ], "\n"),
     }
 
     $sudo_rewrites = [
       'ipmimonitoring',
       'ipmi-sensors',
       'ipmi-dcmi',
+      'ipmi-raw',
       'bmc-info',
       'ipmi-chassis',
-      'ipmi-raw',
+      'ipmi-sel',
     ]
 
     $sudo_rewrites.each |String $rewrite| {
