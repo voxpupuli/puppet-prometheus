@@ -33,6 +33,8 @@ This module supports below Prometheus architectures:
 - i386
 - armv71 (Tested on raspberry pi 3)
 
+The `prometheus::ipmi_exporter` class has a dependency on [saz/sudo](https://forge.puppet.com/modules/saz/sudo) Puppet module.
+
 ## Background
 
 This module automates the install and configuration of Prometheus monitoring tool: [Prometheus web site](https://prometheus.io/docs/introduction/overview/)

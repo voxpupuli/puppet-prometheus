@@ -2,3 +2,4 @@
 #   if a same named fact exists in facterdb it will be overridden.
 ---
 prometheus_alert_manager_running: 'stopped'
+sudoversion: '1.8.23'

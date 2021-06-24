@@ -2,10 +2,8 @@ require 'spec_helper_acceptance'
 
 describe 'prometheus ipmi exporter' do
   it 'ipmi_exporter works idempotently with no errors' do
-    # Debian does not automatically have /etc/sudoers.d during tests
-    if fact('os.family') == 'Debian'
-      on hosts, 'mkdir -p /etc/sudoers.d'
-    end
+    # TODO: Remove --ignore-dependencies once > 6.0.0 is released with https://github.com/saz/puppet-sudo/pull/268
+    on hosts, puppet('module', 'install', 'saz-sudo', '--version', '6.0.0', '--ignore-dependencies')
     pp = 'include prometheus::ipmi_exporter'
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
