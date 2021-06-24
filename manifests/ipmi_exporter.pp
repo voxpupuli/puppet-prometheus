@@ -116,12 +116,9 @@ class prometheus::ipmi_exporter (
 
   if $unprivileged {
     # crazy workaround from https://github.com/soundcloud/ipmi_exporter#running-as-unprivileged-user
-
-    file { "/etc/sudoers.d/${service_name}":
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0440',
-      content => join([
+    sudo::conf { $service_name:
+      ensure         => 'present',
+      content        => join([
           "${user} ALL = NOPASSWD: /usr/sbin/ipmimonitoring",
           "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sensors",
           "${user} ALL = NOPASSWD: /usr/sbin/ipmi-dcmi",
@@ -130,6 +127,7 @@ class prometheus::ipmi_exporter (
           "${user} ALL = NOPASSWD: /usr/sbin/ipmi-chassis",
           "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sel",
       ], "\n"),
+      sudo_file_name => $service_name,
     }
 
     file { "${script_dir}/ipmi-sudo.sh":
