@@ -48,7 +48,7 @@
 # @param hash_watched_processes
 #  A hash of processes to monitor with the ability to pass different options
 #  Don't set if you want to use only the Array version of it (watched_processes)
-# @watched_processes
+# @param watched_processes
 #  A list of processes to monitor
 #  Has no effect if hash_watched_processes is set
 # @example Usage with hash_watched_processes
