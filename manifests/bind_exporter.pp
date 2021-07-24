@@ -112,7 +112,7 @@ class prometheus::bind_exporter (
   String $extra_options                         = '',
   Hash[String, Scalar] $env_vars                = {},
   String $download_extension                    = 'tar.gz',
-  Optional[Stdlib::HTTPSUrl] $download_url_base = 'https://github.com/prometheus-community/bind_exporter/releases',
+  Stdlib::HTTPSUrl $download_url_base           = 'https://github.com/prometheus-community/bind_exporter/releases',
   String[1] $config_mode                        = $prometheus::config_mode,
   String[1] $arch                               = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                 = $prometheus::bin_dir,

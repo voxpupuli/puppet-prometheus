@@ -286,7 +286,7 @@ class prometheus (
   Hash $config_defaults                                                         = {},
   String[1] $os                                                                 = downcase($facts['kernel']),
   Optional[Variant[Stdlib::HTTPUrl, Stdlib::Unixpath, String[1]]] $external_url = undef,
-  Optional[Array[Hash[String[1], Any]]] $collect_scrape_jobs                    = [],
+  Array[Hash[String[1], Any]] $collect_scrape_jobs                              = [],
   Optional[String[1]] $collect_tag                                              = undef,
   Optional[Integer] $max_open_files                                             = undef,
   String[1] $configname                                                         = 'prometheus.yaml',
