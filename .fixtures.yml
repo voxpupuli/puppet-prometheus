@@ -2,5 +2,5 @@ fixtures:
   repositories:
     archive: "https://github.com/voxpupuli/puppet-archive"
     stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib"
-    systemd: "https://github.com/camptocamp/puppet-systemd"
+    systemd: "https://github.com/voxpupuli/puppet-systemd"
     sudo: "https://github.com/saz/puppet-sudo"
