@@ -1,5 +1,3 @@
 def os_specific_facts(facts)
-  if ['Archlinux', 'Debian', 'RedHat'].include?(facts[:os]['family'])
-    { service_provider: 'systemd' }
-  end
+  return { service_provider: 'systemd' } if %w[Archlinux Debian RedHat].include?(facts[:os]['family'])
 end

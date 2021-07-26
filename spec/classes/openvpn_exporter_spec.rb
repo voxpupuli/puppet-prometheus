@@ -18,7 +18,7 @@ describe 'prometheus::openvpn_exporter' do
 
         describe 'with all defaults' do
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_file('/usr/local/bin/openvpn_exporter').with('target' => "/opt/openvpn_exporter-v0.3.0.3.linux-amd64/openvpn_exporter") }
+          it { is_expected.to contain_file('/usr/local/bin/openvpn_exporter').with('target' => '/opt/openvpn_exporter-v0.3.0.3.linux-amd64/openvpn_exporter') }
           it { is_expected.to contain_prometheus__daemon('openvpn_exporter') }
           it { is_expected.to contain_user('openvpn-exporter') }
           it { is_expected.to contain_group('openvpn-exporter') }
