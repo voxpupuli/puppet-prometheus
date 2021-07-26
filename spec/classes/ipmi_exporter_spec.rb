@@ -52,11 +52,11 @@ describe 'prometheus::ipmi_exporter' do
         end
         it do
           verify_contents(catalogue, '/etc/ipmi_exporter.yaml', [
-            'modules:',
-            '  default:',
-            '    collectors:',
-            '    - bmc',
-          ])
+                            'modules:',
+                            '  default:',
+                            '    collectors:',
+                            '    - bmc',
+                          ])
         end
       end
 

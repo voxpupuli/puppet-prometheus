@@ -58,18 +58,18 @@ describe 'prometheus::alertmanager' do
             os: 'linux',
             bin_dir: '/usr/local/bin',
             install_method: 'url',
-            mute_time_intervals: [{ 'name' => 'weekend', 'weekdays' => ['saturday','sunday'] }],
+            mute_time_intervals: [{ 'name' => 'weekend', 'weekdays' => %w[saturday sunday] }],
           }
         end
 
         it {
           verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
-            'mute_time_intervals:',
-            '- name: weekend',
-            '  weekdays:',
-            '  - saturday',
-            '  - sunday',
-          ])
+                            'mute_time_intervals:',
+                            '- name: weekend',
+                            '  weekdays:',
+                            '  - saturday',
+                            '  - sunday',
+                          ])
         }
       end
 
