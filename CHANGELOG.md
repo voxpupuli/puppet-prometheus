@@ -4,7 +4,37 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v11.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v11.2.0) (2021-06-08)
+## [v12.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.0.0) (2021-07-26)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v11.2.0...v12.0.0)
+
+**Breaking changes:**
+
+- Overhaul and fix ipmi\_exporter class [\#562](https://github.com/voxpupuli/puppet-prometheus/pull/562) ([treydock](https://github.com/treydock))
+
+**Implemented enhancements:**
+
+- Support SSL exporter [\#567](https://github.com/voxpupuli/puppet-prometheus/pull/567) ([treydock](https://github.com/treydock))
+- Add support for SSH exporter [\#566](https://github.com/voxpupuli/puppet-prometheus/pull/566) ([treydock](https://github.com/treydock))
+- Support mute\_time\_intervals for Alertmanager [\#563](https://github.com/voxpupuli/puppet-prometheus/pull/563) ([treydock](https://github.com/treydock))
+- Support Stdlib::Filesource as type for download urls [\#561](https://github.com/voxpupuli/puppet-prometheus/pull/561) ([gburton1](https://github.com/gburton1))
+
+**Fixed bugs:**
+
+- Fix wrong undef datatypes [\#570](https://github.com/voxpupuli/puppet-prometheus/pull/570) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Alertmanger service will not start \(public IP\) [\#558](https://github.com/voxpupuli/puppet-prometheus/issues/558)
+
+**Merged pull requests:**
+
+- switch from camptocamp/systemd to voxpupuli/systemd [\#569](https://github.com/voxpupuli/puppet-prometheus/pull/569) ([bastelfreak](https://github.com/bastelfreak))
+- Fix IPMI exporter sudo config, add dependency on saz/sudo [\#565](https://github.com/voxpupuli/puppet-prometheus/pull/565) ([treydock](https://github.com/treydock))
+- Misc fixes to make IPMI exporter more consistent [\#564](https://github.com/voxpupuli/puppet-prometheus/pull/564) ([treydock](https://github.com/treydock))
+- Allow default scrape\_configs to be optional [\#542](https://github.com/voxpupuli/puppet-prometheus/pull/542) ([treydock](https://github.com/treydock))
+
+## [v11.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v11.2.0) (2021-06-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v11.1.0...v11.2.0)
 
