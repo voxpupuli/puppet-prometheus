@@ -49,6 +49,14 @@
 #  The binary release version
 # @param env_vars
 #  hash with custom environment variables thats passed to the exporter via init script / unit file
+# @param env_file_path
+#  The path to the file with the environmetn variable that is read from the init script/systemd unit
+#
+# @example configure bird_exporter on Arch Linux via the repository package
+#  class { 'prometheus::bird_exporter':
+#    env_vars => { 'BIRD_EXPORTER_ARGS'=> '-bird.v2 -web.listen-address=127.0.0.1:9324 -format.new=true -bird.socket=/var/run/bird/bird.ctl -format.description-labels' },
+#    require  => Service['bird'],
+#  }
 #
 # @see https://github.com/czerwonk/bird_exporter
 #
@@ -77,7 +85,7 @@ class prometheus::bird_exporter (
   String[1] $extra_options                = '-bird.v2 -web.listen-address=127.0.0.1:9324 -format.new=true',
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = '/usr/local/bin',
+  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Boolean $export_scrape_job              = false,
   Optional[Stdlib::Host] $scrape_host     = undef,
   Stdlib::Port $scrape_port               = 9324,
@@ -85,6 +93,7 @@ class prometheus::bird_exporter (
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $bin_name           = undef,
   Hash[String[1], Scalar] $env_vars       = {},
+  Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}_${os}_${arch}")
 
@@ -122,5 +131,6 @@ class prometheus::bird_exporter (
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
     env_vars           => $env_vars,
+    env_file_path      => $env_file_path,
   }
 }

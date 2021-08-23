@@ -1976,6 +1976,17 @@ This module manages prometheus bird exporter
 * **See also**
   * https://github.com/czerwonk/bird_exporter
 
+#### Examples
+
+##### configure bird_exporter on Arch Linux via the repository package
+
+```puppet
+class { 'prometheus::bird_exporter':
+  env_vars => { 'BIRD_EXPORTER_ARGS'=> '-bird.v2 -web.listen-address=127.0.0.1:9324 -format.new=true -bird.socket=/var/run/bird/bird.ctl -format.description-labels' },
+  require  => Service['bird'],
+}
+```
+
 #### Parameters
 
 The following parameters are available in the `prometheus::bird_exporter` class:
@@ -2004,6 +2015,7 @@ The following parameters are available in the `prometheus::bird_exporter` class:
 * [`user`](#user)
 * [`version`](#version)
 * [`env_vars`](#env_vars)
+* [`env_file_path`](#env_file_path)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -2021,11 +2033,11 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
-Default value: `'/usr/local/bin'`
+Default value: `$prometheus::bin_dir`
 
 ##### <a name="download_extension"></a>`download_extension`
 
@@ -2202,6 +2214,14 @@ Data type: `Hash[String[1], Scalar]`
 hash with custom environment variables thats passed to the exporter via init script / unit file
 
 Default value: `{}`
+
+##### <a name="env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to the file with the environmetn variable that is read from the init script/systemd unit
+
+Default value: `$prometheus::env_file_path`
 
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
