@@ -75,7 +75,7 @@ class prometheus::unbound_exporter (
   String $extra_options                   = '',
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = '/usr/local/bin',
+  Stdlib::Absolutepath $bin_dir           = '/usr/local/bin',
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9167,
   String[1] $scrape_job_name              = 'unbound',

@@ -74,7 +74,7 @@ class prometheus::mesos_exporter (
   String $extra_options                   = '',
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = $prometheus::bin_dir,
+  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Boolean $export_scrape_job              = false,
   Optional[Stdlib::Host] $scrape_host     = undef,
   Stdlib::Port $scrape_port               = 9105,

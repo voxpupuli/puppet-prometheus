@@ -77,7 +77,7 @@ class prometheus::node_exporter (
   String $extra_options                   = '',
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = $prometheus::bin_dir,
+  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Optional[Array[String]] $collectors     = undef,
   Array[String] $collectors_enable        = [],
   Array[String] $collectors_disable       = [],

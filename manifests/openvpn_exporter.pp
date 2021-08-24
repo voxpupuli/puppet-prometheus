@@ -70,7 +70,7 @@ class prometheus::openvpn_exporter (
   String $extra_options                     = '',
   Optional[Prometheus::Uri] $download_url   = undef,
   String[1] $arch                           = $prometheus::real_arch,
-  String[1] $bin_dir                        = $prometheus::bin_dir,
+  Stdlib::Absolutepath $bin_dir             = $prometheus::bin_dir,
   Array[Stdlib::Absolutepath] $status_paths = [],
   Optional[Stdlib::Host] $scrape_host       = undef,
   Boolean $export_scrape_job                = false,

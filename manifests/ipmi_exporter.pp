@@ -76,7 +76,7 @@ class prometheus::ipmi_exporter (
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $config_mode                  = $prometheus::config_mode,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = $prometheus::bin_dir,
+  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Optional[Stdlib::Host] $scrape_host     = undef,
   Boolean $export_scrape_job              = false,
   Stdlib::Port $scrape_port               = 9290,
