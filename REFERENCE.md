@@ -6350,6 +6350,8 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`env_vars`](#env_vars)
+* [`env_file_path`](#env_file_path)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
@@ -6446,7 +6448,7 @@ Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
 ##### <a name="install_method"></a>`install_method`
 
@@ -6551,6 +6553,22 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+##### <a name="env_vars"></a>`env_vars`
+
+Data type: `Hash[String[1], Scalar]`
+
+hash with custom environment variables thats passed to the exporter via init script / unit file
+
+Default value: `{}`
+
+##### <a name="env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to the file with the environmetn variable that is read from the init script/systemd unit
+
+Default value: `$prometheus::env_file_path`
 
 ##### <a name="scrape_host"></a>`scrape_host`
 

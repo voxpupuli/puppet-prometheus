@@ -54,6 +54,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param env_vars
+#  hash with custom environment variables thats passed to the exporter via init script / unit file
+# @param env_file_path
+#  The path to the file with the environmetn variable that is read from the init script/systemd unit
 class prometheus::node_exporter (
   String $download_extension,
   Prometheus::Uri $download_url_base,
@@ -68,7 +72,7 @@ class prometheus::node_exporter (
   Boolean $service_enable                 = true,
   Stdlib::Ensure::Service $service_ensure = 'running',
   String[1] $service_name                 = 'node_exporter',
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
+  Prometheus::Initstyle $init_style       = $prometheus::init_style,
   Prometheus::Install $install_method     = $prometheus::install_method,
   Boolean $manage_group                   = true,
   Boolean $manage_service                 = true,
@@ -87,6 +91,8 @@ class prometheus::node_exporter (
   String[1] $scrape_job_name              = 'node',
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $bin_name           = undef,
+  Hash[String[1], Scalar] $env_vars       = {},
+  Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -145,5 +151,7 @@ class prometheus::node_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
+    env_vars           => $env_vars,
+    env_file_path      => $env_file_path,
   }
 }
