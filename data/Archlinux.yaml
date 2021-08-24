@@ -12,3 +12,11 @@ prometheus::node_exporter::user: 'node_exporter'
 prometheus::node_exporter::group: 'node_exporter'
 prometheus::node_exporter::manage_user: false
 prometheus::node_exporter::manage_group: false
+prometheus::bird_exporter::install_method: 'package'
+prometheus::bird_exporter::bin_name: 'prometheus-bird-exporter'
+prometheus::bird_exporter::package_name: 'prometheus-bird-exporter'
+prometheus::bird_exporter::manage_user: false
+prometheus::bird_exporter::manage_group: false
+prometheus::bird_exporter::init_style: 'none'
+prometheus::bird_exporter::service_name: 'prometheus-bird-exporter'
+prometheus::bird_exporter::env_file_path: '/etc/conf.d'
