@@ -1470,7 +1470,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -2331,7 +2331,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -2589,7 +2589,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -2833,7 +2833,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -3109,7 +3109,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -3397,7 +3397,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -3659,7 +3659,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -4426,7 +4426,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -4997,7 +4997,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -5268,7 +5268,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -5525,7 +5525,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -6367,7 +6367,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -6639,7 +6639,7 @@ The following parameters are available in the `prometheus::openldap_exporter` cl
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -6911,7 +6911,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -7431,7 +7431,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -8020,7 +8020,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -8930,7 +8930,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -9228,7 +9228,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -9946,7 +9946,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -10213,7 +10213,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -10510,7 +10510,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
@@ -11078,7 +11078,7 @@ Default value: `$prometheus::real_arch`
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 

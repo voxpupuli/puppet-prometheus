@@ -82,7 +82,7 @@ class prometheus::rabbitmq_exporter (
   Array[String] $rabbit_capabilities,
   Array[String] $rabbit_exporters,
   String[1] $arch                         = $prometheus::real_arch,
-  String[1] $bin_dir                      = $prometheus::bin_dir,
+  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Optional[Prometheus::Uri] $download_url = undef,
   String $extra_options                   = '',
   Prometheus::Initstyle $init_style       = $facts['service_provider'],
