@@ -4,7 +4,20 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v12.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.0.0) (2021-07-26)
+## [v12.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.1.0) (2021-08-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.0.0...v12.1.0)
+
+**Implemented enhancements:**
+
+- $bin\_dir: Update datatype to Stdlib::Absolutepath [\#575](https://github.com/voxpupuli/puppet-prometheus/pull/575) ([bastelfreak](https://github.com/bastelfreak))
+- Arch Linux: Install bird\_exporter via packages [\#574](https://github.com/voxpupuli/puppet-prometheus/pull/574) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- Arch Linux: Fix node\_exporter installation [\#576](https://github.com/voxpupuli/puppet-prometheus/pull/576) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v12.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.0.0) (2021-07-27)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v11.2.0...v12.0.0)
 
