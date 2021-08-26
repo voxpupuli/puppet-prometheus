@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'prometheus postfix exporter' do
   describe 'install postfix' do
     before do
-      install_module_from_forge('camptocamp/postfix', '>= 1.8.0 < 2.0.0')
+      install_module_from_forge('puppet/postfix', '>= 1.8.0 < 2.0.0')
     end
     it do
       pp = 'include postfix'
