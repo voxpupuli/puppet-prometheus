@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v12.1.1](https://github.com/voxpupuli/puppet-prometheus/tree/v12.1.1) (2021-08-26)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.1.0...v12.1.1)
+
+**Merged pull requests:**
+
+- Allow up-to-date dependencies [\#579](https://github.com/voxpupuli/puppet-prometheus/pull/579) ([smortex](https://github.com/smortex))
+
 ## [v12.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.1.0) (2021-08-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.0.0...v12.1.0)
