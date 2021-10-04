@@ -33,6 +33,7 @@ The package method needs specific yum or apt repo settings which are not made ye
 * [`prometheus::mesos_exporter`](#prometheusmesos_exporter): This module manages prometheus mesos_exporter
 * [`prometheus::mongodb_exporter`](#prometheusmongodb_exporter): This module manages prometheus mongodb_exporter
 * [`prometheus::mysqld_exporter`](#prometheusmysqld_exporter): manages prometheus mysqld_exporter
+* [`prometheus::nginx_prometheus_exporter`](#prometheusnginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheusnginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheusnode_exporter): This module manages prometheus node node_exporter
 * [`prometheus::openldap_exporter`](#prometheusopenldap_exporter): This module manages prometheus openldap_exporter
@@ -6065,6 +6066,312 @@ Data type: `Optional[Hash]`
 
 
 Default value: ``undef``
+
+### <a name="prometheusnginx_prometheus_exporter"></a>`prometheus::nginx_prometheus_exporter`
+
+This module manages prometheus nginx exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::nginx_prometheus_exporter` class:
+
+* [`arch`](#arch)
+* [`bin_dir`](#bin_dir)
+* [`config_mode`](#config_mode)
+* [`download_extension`](#download_extension)
+* [`download_url`](#download_url)
+* [`download_url_base`](#download_url_base)
+* [`extra_groups`](#extra_groups)
+* [`extra_options`](#extra_options)
+* [`group`](#group)
+* [`init_style`](#init_style)
+* [`install_method`](#install_method)
+* [`manage_group`](#manage_group)
+* [`manage_service`](#manage_service)
+* [`manage_user`](#manage_user)
+* [`os`](#os)
+* [`package_ensure`](#package_ensure)
+* [`package_name`](#package_name)
+* [`purge_config_dir`](#purge_config_dir)
+* [`restart_on_change`](#restart_on_change)
+* [`scrape_uri`](#scrape_uri)
+* [`service_enable`](#service_enable)
+* [`service_ensure`](#service_ensure)
+* [`service_name`](#service_name)
+* [`user`](#user)
+* [`version`](#version)
+* [`export_scrape_job`](#export_scrape_job)
+* [`scrape_host`](#scrape_host)
+* [`scrape_port`](#scrape_port)
+* [`scrape_job_name`](#scrape_job_name)
+* [`scrape_job_labels`](#scrape_job_labels)
+* [`bin_name`](#bin_name)
+* [`env_vars`](#env_vars)
+* [`env_file_path`](#env_file_path)
+
+##### <a name="arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+The permissions of the configuration files
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: ``undef``
+
+##### <a name="download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/nginxinc/nginx-prometheus-exporter/releases'`
+
+##### <a name="extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="extra_options"></a>`extra_options`
+
+Data type: `String`
+
+Extra options added to the startup command
+
+Default value: `''`
+
+##### <a name="group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'nginx-prometheus-exporter'`
+
+##### <a name="init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$facts['service_provider']`
+
+##### <a name="install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: ``true``
+
+##### <a name="manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: ``true``
+
+##### <a name="manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: ``true``
+
+##### <a name="os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'nginx-prometheus-exporter'`
+
+##### <a name="purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: ``true``
+
+##### <a name="restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: ``true``
+
+##### <a name="scrape_uri"></a>`scrape_uri`
+
+Data type: `String[1]`
+
+The URI for the nginx status or nginx plus api page
+
+Default value: `'http://localhost:8080/stub_status'`
+
+##### <a name="service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: ``true``
+
+##### <a name="service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'nginx_prometheus_exporter')
+
+Default value: `'nginx_prometheus_exporter'`
+
+##### <a name="user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'nginx-prometheus-exporter'`
+
+##### <a name="version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'0.9.0'`
+
+##### <a name="export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: ``false``
+
+##### <a name="scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: ``undef``
+
+##### <a name="scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9113`
+
+##### <a name="scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'nginx'`
+
+##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
+##### <a name="bin_name"></a>`bin_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'nginx-prometheus-exporter'`
+
+##### <a name="env_vars"></a>`env_vars`
+
+Data type: `Hash[String[1], Scalar]`
+
+
+
+Default value: `{}`
+
+##### <a name="env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `$prometheus::env_file_path`
 
 ### <a name="prometheusnginx_vts_exporter"></a>`prometheus::nginx_vts_exporter`
 
