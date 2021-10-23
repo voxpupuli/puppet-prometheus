@@ -1,0 +1,17 @@
+---
+prometheus::init_style: 'none'
+prometheus::configname: 'prometheus.yml'
+prometheus::server::init_style: 'none'
+prometheus::version: '2.30.0'
+prometheus::install_method: 'package'
+prometheus::bin_dir: '/usr/bin'
+prometheus::env_file_path: '/etc/defaults'
+prometheus::node_exporter::package_name: 'node_exporter'
+prometheus::node_exporter::install_method: 'package'
+prometheus::node_exporter::bin_name: 'node_exporter'
+prometheus::node_exporter::user: 'node_exporter'
+prometheus::node_exporter::group: 'node_exporter'
+prometheus::node_exporter::manage_user: false
+prometheus::node_exporter::manage_group: false
+prometheus::node_exporter::service_name: 'node_exporter'
+prometheus::node_exporter::init_style: 'none'
