@@ -3,7 +3,7 @@ prometheus::usershell: '/usr/bin/nologin'
 prometheus::extra_options: ~
 prometheus::download_url: ~
 prometheus::bin_dir: '/usr/local/bin'
-prometheus::version: '2.20.1'
+prometheus::version: '2.30.3'
 prometheus::install_method: 'url'
 prometheus::manage_prometheus_server: false
 prometheus::extract_command: ~
