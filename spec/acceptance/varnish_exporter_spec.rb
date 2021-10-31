@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus varnish exporter' do
@@ -11,6 +13,7 @@ describe 'prometheus varnish exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9131) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -29,6 +32,7 @@ describe 'prometheus varnish exporter' do
     describe port(9131) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::varnish_exporter': version => '1.5'}"
       apply_manifest(pp, catch_failures: true)

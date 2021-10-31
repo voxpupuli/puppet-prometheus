@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus' do
@@ -28,11 +30,11 @@ describe 'prometheus' do
 
           # prometheus::install
           it {
-            is_expected.to contain_file('/var/lib/prometheus').with(
+            expect(subject).to contain_file('/var/lib/prometheus').with(
               'ensure' => 'directory',
-              'owner'  => 'prometheus',
-              'group'  => 'prometheus',
-              'mode'   => '0755'
+              'owner' => 'prometheus',
+              'group' => 'prometheus',
+              'mode' => '0755'
             )
           }
 
@@ -42,7 +44,7 @@ describe 'prometheus' do
           prom_arch = facts[:architecture] == 'i386' ? '386' : 'amd64'
 
           it {
-            is_expected.to contain_archive("/tmp/prometheus-#{prom_version}.tar.gz").with(
+            expect(subject).to contain_archive("/tmp/prometheus-#{prom_version}.tar.gz").with(
               'ensure' => 'present',
               'extract' => true,
               'extract_path' => '/opt',
@@ -54,45 +56,45 @@ describe 'prometheus' do
           }
 
           it {
-            is_expected.to contain_file("/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus").with(
-              'owner'  => 'root',
-              'group'  => 0,
-              'mode'   => '0555'
+            expect(subject).to contain_file("/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus").with(
+              'owner' => 'root',
+              'group' => 0,
+              'mode' => '0555'
             )
           }
 
           it {
-            is_expected.to contain_file('/usr/local/bin/prometheus').with(
+            expect(subject).to contain_file('/usr/local/bin/prometheus').with(
               'ensure' => 'link',
               'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus"
             ).that_notifies('Service[prometheus]')
           }
 
           it {
-            is_expected.to contain_file('/usr/local/share/prometheus').with(
-              'ensure'  => 'directory',
-              'owner'   => 'prometheus',
-              'group'   => 'prometheus',
-              'mode'    => '0755'
+            expect(subject).to contain_file('/usr/local/share/prometheus').with(
+              'ensure' => 'directory',
+              'owner' => 'prometheus',
+              'group' => 'prometheus',
+              'mode' => '0755'
             )
           }
 
           it {
-            is_expected.to contain_file('/usr/local/share/prometheus/consoles').with(
+            expect(subject).to contain_file('/usr/local/share/prometheus/consoles').with(
               'ensure' => 'link',
               'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/consoles"
             ).that_notifies('Service[prometheus]')
           }
 
           it {
-            is_expected.to contain_file('/usr/local/share/prometheus/console_libraries').with(
+            expect(subject).to contain_file('/usr/local/share/prometheus/console_libraries').with(
               'ensure' => 'link',
               'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/console_libraries"
             ).that_notifies('Service[prometheus]')
           }
 
           it {
-            is_expected.to contain_user('prometheus').with(
+            expect(subject).to contain_user('prometheus').with(
               'ensure' => 'present',
               'system' => true,
               'groups' => []
@@ -100,7 +102,7 @@ describe 'prometheus' do
           }
 
           it {
-            is_expected.to contain_group('prometheus').with(
+            expect(subject).to contain_group('prometheus').with(
               'ensure' => 'present',
               'system' => true
             )
@@ -111,14 +113,15 @@ describe 'prometheus' do
             it { is_expected.not_to contain_systemd__unit_file('prometheus.service') }
           else
             it {
-              is_expected.to contain_class('systemd')
+              expect(subject).to contain_class('systemd')
             }
 
             it {
-              is_expected.to contain_systemd__unit_file('prometheus.service').with(
+              expect(subject).to contain_systemd__unit_file('prometheus.service').with(
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
               )
             }
+
             describe 'max_open_files' do
               context 'by default' do
                 it {
@@ -126,6 +129,7 @@ describe 'prometheus' do
                   expect(content).not_to include('LimitNOFILE')
                 }
               end
+
               context 'when set to 1000000' do
                 let(:params) do
                   parameters.merge('max_open_files' => 1_000_000)
@@ -140,47 +144,47 @@ describe 'prometheus' do
           end
 
           it {
-            is_expected.to contain_file('/etc/prometheus').with(
-              'ensure'  => 'directory',
-              'owner'   => 'root',
-              'group'   => 'prometheus',
-              'purge'   => true,
+            expect(subject).to contain_file('/etc/prometheus').with(
+              'ensure' => 'directory',
+              'owner' => 'root',
+              'group' => 'prometheus',
+              'purge' => true,
               'recurse' => true,
-              'force'   => true
+              'force' => true
             )
           }
 
           it {
-            is_expected.to contain_file('prometheus.yaml').with(
-              'ensure'    => 'file',
-              'path'      => configpath,
-              'owner'     => 'root',
-              'group'     => 'prometheus',
-              'mode'      => '0640',
+            expect(subject).to contain_file('prometheus.yaml').with(
+              'ensure' => 'file',
+              'path' => configpath,
+              'owner' => 'root',
+              'group' => 'prometheus',
+              'mode' => '0640',
               'show_diff' => true,
-              'content'   => File.read(fixtures('files', "prometheus#{prom_major}.yaml"))
+              'content' => File.read(fixtures('files', "prometheus#{prom_major}.yaml"))
             ).that_notifies('Class[prometheus::service_reload]')
           }
 
           # prometheus::alerts
           it {
-            is_expected.not_to contain_file('/etc/prometheus/alert.rules')
+            expect(subject).not_to contain_file('/etc/prometheus/alert.rules')
           }
 
           # prometheus::run_service
           it {
-            is_expected.to contain_service('prometheus').with(
-              'ensure'     => 'running',
-              'name'       => 'prometheus',
-              'enable'     => true
+            expect(subject).to contain_service('prometheus').with(
+              'ensure' => 'running',
+              'name' => 'prometheus',
+              'enable' => true
             )
           }
 
           # prometheus::service_reload
           it {
-            is_expected.to contain_exec('prometheus-reload').with(
+            expect(subject).to contain_exec('prometheus-reload').with(
               # 'command'     => 'systemctl reload prometheus',
-              'path'        => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
+              'path' => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
               'refreshonly' => true
             )
           }
@@ -211,11 +215,11 @@ describe 'prometheus' do
             version: '1.5.3',
             install_method: 'url',
             alerts: [{
-              'name'         => 'alert_name',
-              'condition'    => 'up == 0',
+              'name' => 'alert_name',
+              'condition' => 'up == 0',
               'timeduration' => '5min',
-              'labels'       => [{ 'name' => 'severity', 'content' => 'woops' }],
-              'annotations'  => [{ 'name' => 'summary', 'content' => 'did a woops {{ $labels.instance }}' }]
+              'labels' => [{ 'name' => 'severity', 'content' => 'woops' }],
+              'annotations' => [{ 'name' => 'summary', 'content' => 'did a woops {{ $labels.instance }}' }]
             }]
           },
           {
@@ -227,10 +231,10 @@ describe 'prometheus' do
                 'name' => 'alert.rules',
                 rules: [
                   {
-                    'alert'       => 'alert_name',
-                    'expr'        => 'up == 0',
-                    'for'         => '5min',
-                    'labels'      => { 'severity' => 'woops' },
+                    'alert' => 'alert_name',
+                    'expr' => 'up == 0',
+                    'for' => '5min',
+                    'labels' => { 'severity' => 'woops' },
                     'annotations' => {
                       'summary' => 'did a woops {{ $labels.instance }}'
                     }
@@ -249,13 +253,14 @@ describe 'prometheus' do
             prom_major = prom_version[0]
 
             it {
-              is_expected.to compile.with_all_deps
+              expect(subject).to compile.with_all_deps
             }
+
             it {
-              is_expected.to contain_file('/etc/prometheus/alert.rules').with(
-                'ensure'  => 'file',
-                'owner'   => 'root',
-                'group'   => 'prometheus',
+              expect(subject).to contain_file('/etc/prometheus/alert.rules').with(
+                'ensure' => 'file',
+                'owner' => 'root',
+                'group' => 'prometheus',
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.alert.rules"))
               ).that_notifies('Class[prometheus::service_reload]')
             }
@@ -281,14 +286,15 @@ describe 'prometheus' do
             end
 
             it { is_expected.to compile.with_all_deps }
+
             it {
-              is_expected.to contain_file('prometheus.yaml').with(
-                'ensure'    => 'file',
-                'path'      => configpath,
-                'owner'     => 'root',
-                'group'     => 'prometheus',
+              expect(subject).to contain_file('prometheus.yaml').with(
+                'ensure' => 'file',
+                'path' => configpath,
+                'owner' => 'root',
+                'group' => 'prometheus',
                 'show_diff' => true,
-                'content'   => %r{http://domain.tld/path}
+                'content' => %r{http://domain.tld/path}
               )
             }
           end
@@ -312,7 +318,7 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.not_to contain_file(configpath)
+              expect(subject).not_to contain_file(configpath)
             }
           end
         end
@@ -335,18 +341,20 @@ describe 'prometheus' do
             end
 
             it { is_expected.to compile.with_all_deps }
+
             it {
-              is_expected.to contain_file('prometheus.yaml').with(
-                'ensure'    => 'file',
-                'path'      => configpath,
-                'owner'     => 'root',
-                'group'     => 'prometheus',
+              expect(subject).to contain_file('prometheus.yaml').with(
+                'ensure' => 'file',
+                'path' => configpath,
+                'owner' => 'root',
+                'group' => 'prometheus',
                 'show_diff' => parameters[:config_show_diff]
               )
             }
           end
         end
       end
+
       context 'command-line flags' do
         context 'prometheus v2' do
           version = '2.13.0'
@@ -395,15 +403,16 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure'  => 'file',
-                'mode'    => '0444',
-                'owner'   => 'root',
-                'group'   => 'root',
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
+                'ensure' => 'file',
+                'mode' => '0444',
+                'owner' => 'root',
+                'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus2_all.systemd'))
               )
             }
           end
+
           context 'with extra args write-in', if: facts[:service_provider] == 'systemd' do
             let(:params) do
               {
@@ -416,16 +425,17 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure'  => 'file',
-                'mode'    => '0444',
-                'owner'   => 'root',
-                'group'   => 'root',
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
+                'ensure' => 'file',
+                'mode' => '0444',
+                'owner' => 'root',
+                'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus2_extra.systemd'))
               )
             }
           end
         end
+
         context 'prometheus v2.6', if: facts[:service_provider] == 'systemd' do
           context 'with storage retention time' do
             let(:params) do
@@ -439,16 +449,17 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure'  => 'file',
-                'mode'    => '0444',
-                'owner'   => 'root',
-                'group'   => 'root',
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
+                'ensure' => 'file',
+                'mode' => '0444',
+                'owner' => 'root',
+                'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus2_6_retention.systemd'))
               )
             }
           end
         end
+
         context 'prometheus v1' do
           version = '1.7.0'
           context 'with extra args write-in', if: facts[:service_provider] == 'systemd' do
@@ -463,15 +474,16 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure'  => 'file',
-                'mode'    => '0444',
-                'owner'   => 'root',
-                'group'   => 'root',
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
+                'ensure' => 'file',
+                'mode' => '0444',
+                'owner' => 'root',
+                'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus1_extra.systemd'))
               )
             }
           end
+
           context 'with all valid params', if: facts[:service_provider] == 'systemd' do
             let(:params) do
               {
@@ -503,11 +515,11 @@ describe 'prometheus' do
             end
 
             it {
-              is_expected.to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure'  => 'file',
-                'mode'    => '0444',
-                'owner'   => 'root',
-                'group'   => 'root',
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
+                'ensure' => 'file',
+                'mode' => '0444',
+                'owner' => 'root',
+                'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus1_all.systemd'))
               )
             }

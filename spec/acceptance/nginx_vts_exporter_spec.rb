@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus nginx_vts_exporter' do
@@ -33,6 +35,7 @@ describe 'prometheus nginx_vts_exporter' do
     describe port(9913) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::nginx_vts_exporter': version => '0.10.3'}"
       # Run it twice and test for idempotency

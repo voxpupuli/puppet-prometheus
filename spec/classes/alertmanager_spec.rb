@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::alertmanager' do
@@ -27,23 +29,27 @@ describe 'prometheus::alertmanager' do
           it { is_expected.to contain_prometheus__daemon('alertmanager') }
           it { is_expected.to contain_service('alertmanager') }
         end
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/alertmanager').with('target' => '/opt/alertmanager-0.9.1.linux-amd64/alertmanager') }
         end
+
         describe 'config file contents' do
           it {
-            is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Service[alertmanager]')
+            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Service[alertmanager]')
             verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', ['---', 'global:', '  smtp_smarthost: localhost:25', '  smtp_from: alertmanager@localhost'])
           }
+
           it {
-            is_expected.not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{mute_time_intervals})
+            expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{mute_time_intervals})
           }
         end
+
         describe 'service reload' do
           it {
-            is_expected.to contain_exec('alertmanager-reload').with(
+            expect(subject).to contain_exec('alertmanager-reload').with(
               # 'command'     => 'systemctl reload alertmanager',
-              'path'        => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
+              'path' => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
               'refreshonly' => true
             )
           }
@@ -77,7 +83,7 @@ describe 'prometheus::alertmanager' do
         let(:params) { { reload_on_change: true } }
 
         it {
-          is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Exec[alertmanager-reload]')
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Exec[alertmanager-reload]')
         }
       end
 
@@ -98,7 +104,7 @@ describe 'prometheus::alertmanager' do
             end
 
             it {
-              is_expected.not_to contain_file('/etc/alertmanager/alertmanager.yaml')
+              expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml')
             }
           end
         end

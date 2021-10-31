@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus nginx exporter' do
@@ -20,7 +22,7 @@ describe 'prometheus nginx exporter' do
   }
   Class['nginx'] -> Class['prometheus::nginx_prometheus_exporter']
   Nginx::Resource::Server['localhost'] -> Class['prometheus::nginx_prometheus_exporter']
-  EOS
+    EOS
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
   end
@@ -30,10 +32,12 @@ describe 'prometheus nginx exporter' do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
+
     describe port(9113) do
       it { is_expected.to be_listening.with('tcp6') }
     end
     # the describe process uses `ps -C` which truncates the cmd output to 15 characters on newer versions.
+
     if os == 'centos-7-x86_64'
       describe process('nginx-prometheus-exporter') do
         its(:args) { is_expected.to match %r{\ -nginx.scrape-uri http://localhost:8888/stub_status} }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus graphite exporter' do
@@ -11,6 +13,7 @@ describe 'prometheus graphite exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9109) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -30,6 +33,7 @@ describe 'prometheus graphite exporter' do
     describe port(9109) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::graphite_exporter': version => '0.7.1'}"
       apply_manifest(pp, catch_failures: true)

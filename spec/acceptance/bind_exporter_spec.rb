@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus bind exporter' do
@@ -12,6 +14,7 @@ describe 'prometheus bind exporter' do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
+
     describe port(9119) do
       it { is_expected.to be_listening.with('tcp6') }
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::bird_exporter' do
@@ -41,6 +43,7 @@ describe 'prometheus::bird_exporter' do
           it { is_expected.to contain_archive('/opt/bird_exporter-1.2.5.linux-amd64/bird_exporter') }
           it { is_expected.to contain_file('/opt/bird_exporter-1.2.5.linux-amd64/bird_exporter') }
           it { is_expected.to contain_file('/opt/bird_exporter-1.2.5.linux-amd64').with_ensure('directory') }
+
           if facts[:os]['family'] == 'RedHat'
             it { is_expected.not_to contain_file('/etc/sysconfig/bird_exporter') }
           else
@@ -59,11 +62,13 @@ describe 'prometheus::bird_exporter' do
         end
 
         it { is_expected.to compile.with_all_deps }
-        if facts[:os]['family'] == 'RedHat'
+
+        case facts[:os]['family']
+        when 'RedHat'
           it { is_expected.to contain_file('/etc/sysconfig/bird_exporter') }
           it { is_expected.not_to contain_file('/etc/default/bird_exporter') }
           it { is_expected.not_to contain_file('/etc/conf.d/prometheus-bird-exporter') }
-        elsif facts[:os]['family'] == 'Archlinux'
+        when 'Archlinux'
           it { is_expected.to contain_file('/etc/conf.d/prometheus-bird-exporter') }
           it { is_expected.not_to contain_file('/etc/default/bird_exporter') }
           it { is_expected.not_to contain_file('/etc/sysconfig/bird_exporter') }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::beanstalkd_exporter' do
@@ -29,6 +31,7 @@ describe 'prometheus::beanstalkd_exporter' do
           it { is_expected.to contain_file('/etc/beanstalkd-exporter.conf').with('ensure' => 'file') }
           it { is_expected.to contain_file('/etc/beanstalkd-exporter-mapping.conf').with('ensure' => 'file') }
         end
+
         describe 'compile manifest' do
           it { is_expected.to compile.with_all_deps }
         end

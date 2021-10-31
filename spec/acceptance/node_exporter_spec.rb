@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus node_exporter' do
@@ -33,6 +35,7 @@ describe 'prometheus node_exporter' do
     describe port(9100) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::node_exporter': version => '0.16.0'}"
       # Run it twice and test for idempotency

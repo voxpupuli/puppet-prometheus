@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus blackbox exporter' do
@@ -11,6 +13,7 @@ describe 'prometheus blackbox exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9115) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -30,6 +33,7 @@ describe 'prometheus blackbox exporter' do
     describe port(9115) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::blackbox_exporter': version => '0.14.0'}"
       apply_manifest(pp, catch_failures: true)

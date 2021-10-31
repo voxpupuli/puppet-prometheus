@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus ipsec_exporter' do
@@ -33,6 +35,7 @@ describe 'prometheus ipsec_exporter' do
     describe port(9536) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::ipsec_exporter': version => '0.3.2'}"
       # Run it twice and test for idempotency

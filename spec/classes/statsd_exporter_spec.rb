@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::statsd_exporter' do
@@ -58,12 +60,12 @@ describe 'prometheus::statsd_exporter' do
 
         describe 'mapping config file' do
           it {
-            is_expected.to contain_file('/etc/statsd-exporter-mapping.yaml').with(
-              'ensure'  => 'file',
-              'owner'   => 'root',
-              'group'   => 'statsd-exporter',
-              'mode'    => '0640',
-              'notify'  => 'Service[statsd_exporter]',
+            expect(subject).to contain_file('/etc/statsd-exporter-mapping.yaml').with(
+              'ensure' => 'file',
+              'owner' => 'root',
+              'group' => 'statsd-exporter',
+              'mode' => '0640',
+              'notify' => 'Service[statsd_exporter]',
               'content' => <<-YAML.gsub(%r{^\s+\|}, '')
                 |---
                 |mappings:

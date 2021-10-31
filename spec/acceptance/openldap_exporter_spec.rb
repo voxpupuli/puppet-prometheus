@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus openldap exporter' do
@@ -11,6 +13,7 @@ describe 'prometheus openldap exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9330) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -64,6 +67,7 @@ describe 'prometheus openldap exporter' do
     describe port(9330) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::openldap_exporter': version => '2.1'}"
       apply_manifest(pp, catch_failures: true)

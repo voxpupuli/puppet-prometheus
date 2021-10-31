@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus pushgateway' do
@@ -33,6 +35,7 @@ describe 'prometheus pushgateway' do
     describe port(9091) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::pushgateway': version => '0.8.0'}"
       # Run it twice and test for idempotency

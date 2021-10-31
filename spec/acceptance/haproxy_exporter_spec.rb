@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus haproxy_exporter' do
@@ -33,6 +35,7 @@ describe 'prometheus haproxy_exporter' do
     describe port(9101) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::haproxy_exporter': version => '0.9.0'}"
       # Run it twice and test for idempotency
@@ -66,6 +69,7 @@ describe 'prometheus haproxy_exporter' do
     describe port(9101) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::haproxy_exporter': version => '0.10.0'}"
       # Run it twice and test for idempotency

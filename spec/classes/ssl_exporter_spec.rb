@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::ssl_exporter' do
@@ -17,7 +19,7 @@ describe 'prometheus::ssl_exporter' do
             install_method: 'url',
             modules: {
               'https' => {
-                'prober'  => 'https',
+                'prober' => 'https',
                 'timeout' => '5s',
               },
             }
@@ -34,8 +36,9 @@ describe 'prometheus::ssl_exporter' do
           it { is_expected.to contain_service('ssl_exporter') }
           it { is_expected.to contain_archive('/tmp/ssl_exporter-2.2.1.tar.gz') }
           it { is_expected.to contain_file('/opt/ssl_exporter-2.2.1.linux-amd64/ssl_exporter') }
+
           it {
-            is_expected.to contain_file('/etc/ssl_exporter.yaml')
+            expect(subject).to contain_file('/etc/ssl_exporter.yaml')
             verify_contents(catalogue, '/etc/ssl_exporter.yaml', ['---', 'modules:', '  https:', '    prober: https', '    timeout: 5s'])
           }
         end

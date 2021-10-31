@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus snmp exporter' do
@@ -13,6 +15,7 @@ describe 'prometheus snmp exporter' do
     it { is_expected.to be_enabled }
   end
   # the class installs an the snmp_exporter that listens on port 9104
+
   describe port(9116) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -33,6 +36,7 @@ describe 'prometheus snmp exporter' do
     describe port(9116) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::snmp_exporter': version => '0.15.0'}"
       # Run it twice and test for idempotency
