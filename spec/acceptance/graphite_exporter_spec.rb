@@ -18,6 +18,7 @@ describe 'prometheus graphite exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'graphite_exporter update from 0.2.0 to 0.7.1' do
     it 'is idempotent' do
       pp = "class{'prometheus::graphite_exporter': version => '0.2.0'}"
@@ -49,4 +50,5 @@ describe 'prometheus graphite exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

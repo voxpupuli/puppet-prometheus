@@ -19,6 +19,7 @@ describe 'prometheus haproxy_exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'haproxy_exporter update from 0.7.1 to 0.9.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::haproxy_exporter': version => '0.7.1'}"
@@ -86,4 +87,5 @@ describe 'prometheus haproxy_exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

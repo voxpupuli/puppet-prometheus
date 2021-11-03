@@ -18,6 +18,7 @@ describe 'prometheus varnish exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'varnish_exporter update from 1.4 to 1.5' do
     it 'is idempotent' do
       pp = "class{'prometheus::varnish_exporter': version => '1.4'}"
@@ -48,4 +49,5 @@ describe 'prometheus varnish exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

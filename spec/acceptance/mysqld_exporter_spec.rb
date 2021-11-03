@@ -20,6 +20,7 @@ describe 'prometheus mysqld exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'mysqld_exporter update from 0.9.0 to 0.12.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::mysqld_exporter': version => '0.9.0'}"
@@ -57,4 +58,5 @@ describe 'prometheus mysqld exporter' do
       its(:args) { is_expected.to match %r{\ --config.my-cnf} }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

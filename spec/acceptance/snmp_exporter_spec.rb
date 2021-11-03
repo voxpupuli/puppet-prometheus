@@ -20,6 +20,7 @@ describe 'prometheus snmp exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'snmp_exporter update from 0.7.0 to 0.15.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::snmp_exporter': version => '0.7.0'}"
@@ -53,4 +54,5 @@ describe 'prometheus snmp exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

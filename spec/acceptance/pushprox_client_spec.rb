@@ -15,6 +15,7 @@ describe 'prometheus pushprox_client' do
     apply_manifest(pp, catch_changes: true)
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody
   describe service('pushprox_proxy') do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
@@ -34,4 +35,5 @@ describe 'prometheus pushprox_client' do
   describe port(9369) do
     it { is_expected.to be_listening.with('tcp6') }
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody
 end

@@ -20,6 +20,7 @@ describe 'prometheus postgres exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'postgres_exporter works with custom data config' do
     pp = "class{'prometheus::postgres_exporter': postgres_auth_method => 'custom', group => 'postgres', user => 'postgres', data_source_custom => {'DATA_SOURCE_NAME' => 'user=postgres host=/var/run/postgresql/ sslmode=disable',} }"
     # Run it twice and test for idempotency
@@ -67,4 +68,5 @@ describe 'prometheus postgres exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

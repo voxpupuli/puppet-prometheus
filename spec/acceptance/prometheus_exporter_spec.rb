@@ -14,18 +14,15 @@ describe 'prometheus exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   # the class installs an exporter that listens on three ports
   # it should not install the prometheus server (port 9090)
-
   describe port(9108) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
   describe port(9109) do
     it { is_expected.to be_listening.with('tcp6') }
-  end
-
-  describe port(9109) do
     it { is_expected.to be_listening.with('udp6') }
   end
 

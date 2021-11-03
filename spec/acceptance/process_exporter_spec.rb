@@ -19,6 +19,7 @@ describe 'prometheus process_exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'process_exporter update from 0.1.0 to 0.5.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::process_exporter': version => '0.1.0'}"
@@ -52,4 +53,5 @@ describe 'prometheus process_exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

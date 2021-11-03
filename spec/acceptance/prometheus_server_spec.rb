@@ -11,6 +11,7 @@ describe 'prometheus server basics' do
     apply_manifest(pp, catch_changes: true)
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe service('prometheus') do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
@@ -164,4 +165,5 @@ describe 'prometheus server basics' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end
