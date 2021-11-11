@@ -8,16 +8,12 @@ describe 'prometheus sachet' do
             receivers => [
               {
                 name => 'telegram',
-                provider => telegram,
-                to:
-                  - '123456789'
-                text: {{ .Status | title }}: {{ .CommonAnnotations.summary }}
+                provider => 'telegram',
+                to => ['123456789'],
+                text => '{{ .Status | title }}: {{ .CommonAnnotations.summary }}'
               }
             ],
-            providers => {
-              telegram:
-                token: "724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0"
-            }
+            providers => { telegram => { token => '724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0' } }
           }
     EOS
     # Run it twice and test for idempotency
