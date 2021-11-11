@@ -92,7 +92,7 @@ class prometheus::sachet (
   String[1] $version,
   Array $receivers,
   Hash $providers,
-  Array $templates                        = [],
+  Array $templates,
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,

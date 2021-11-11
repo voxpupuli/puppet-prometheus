@@ -34,6 +34,9 @@ prometheus::sachet::package_ensure: 'latest'
 prometheus::sachet::package_name: 'sachet'
 prometheus::sachet::user: 'sachet'
 prometheus::sachet::version: '0.2.6'
+prometheus::sachet::templates: []
+prometheus::sachet::receivers: []
+prometheus::sachet::providers: {}
 prometheus::alert_relabel_config: []
 prometheus::alertmanagers_config: []
 prometheus::alertmanager::config_dir: '/etc/alertmanager'
