@@ -45,18 +45,18 @@ describe 'prometheus::sachet' do
           it {
             is_expected.to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
             verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
-              "---",
-              "templates: []",
-              "receivers:",
-              "- name: telegram",
-              "  provider: telegram",
-              "  to:",
-              "  - \'123456789\'",
-              "  text: \"{{ .Status | title }}: {{ .CommonAnnotations.summary }}\"",
-              "providers:",
-              "  telegram:",
-              "    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0"
-            ])
+                              '---',
+                              'templates: []',
+                              'receivers:',
+                              '- name: telegram',
+                              '  provider: telegram',
+                              '  to:',
+                              '  - \'123456789\'',
+                              '  text: "{{ .Status | title }}: {{ .CommonAnnotations.summary }}"',
+                              'providers:',
+                              '  telegram:',
+                              '    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0'
+                            ])
           }
         end
       end
@@ -73,7 +73,7 @@ describe 'prometheus::sachet' do
               name: 'notifications',
               template: "{{ define \"telegram_message\" }}\n"\
                         "{{ .Status | title }}: {{ .CommonAnnotations.summary }}\n"\
-                        "{{ end }}"
+                        '{{ end }}'
             }],
             receivers: [{
               name: 'telegram',
@@ -92,26 +92,26 @@ describe 'prometheus::sachet' do
         it {
           is_expected.to contain_file('/etc/sachet/templates/notifications.tmpl')
           verify_contents(catalogue, '/etc/sachet/templates/notifications.tmpl', [
-            "{{ define \"telegram_message\" }}",
-            "{{ .Status | title }}: {{ .CommonAnnotations.summary }}",
-            "{{ end }}"
-          ])
+                            '{{ define "telegram_message" }}',
+                            '{{ .Status | title }}: {{ .CommonAnnotations.summary }}',
+                            '{{ end }}'
+                          ])
 
           is_expected.to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
           verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
-            "---",
-            "templates:",
-            "- \"/etc/sachet/templates/notifications.tmpl\"",
-            "receivers:",
-            "- name: telegram",
-            "  provider: telegram",
-            "  to:",
-            "  - \'123456789\'",
-            "  text: '{{ template \"telegram_message\" . }}'",
-            "providers:",
-            "  telegram:",
-            "    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0"
-          ])
+                            '---',
+                            'templates:',
+                            '- "/etc/sachet/templates/notifications.tmpl"',
+                            'receivers:',
+                            '- name: telegram',
+                            '  provider: telegram',
+                            '  to:',
+                            '  - \'123456789\'',
+                            '  text: \'{{ template "telegram_message" . }}\'',
+                            'providers:',
+                            '  telegram:',
+                            '    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0'
+                          ])
         }
       end
     end
