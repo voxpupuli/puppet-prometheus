@@ -9834,7 +9834,7 @@ Data type: `String`
 
 Extension for the release binary archive
 
-Default value: `'.tar.gz'`
+Default value: `'tar.gz'`
 
 ##### <a name="download_url"></a>`download_url`
 

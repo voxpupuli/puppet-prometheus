@@ -82,7 +82,7 @@
 class prometheus::sachet (
   Stdlib::Absolutepath $config_dir        = '/etc/sachet',
   Stdlib::Absolutepath $config_file       = '/etc/sachet/sachet.yaml',
-  String $download_extension              = '.tar.gz',
+  String $download_extension              = 'tar.gz',
   Prometheus::Uri $download_url_base      = 'https://github.com/messagebird/sachet/releases',
   Array[String] $extra_groups             = [],
   String[1] $group                        = 'sachet',
