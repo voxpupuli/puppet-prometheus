@@ -9834,6 +9834,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'.tar.gz'`
+
 ##### <a name="download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -9848,11 +9850,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/messagebird/sachet/releases'`
+
 ##### <a name="extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
@@ -9867,6 +9873,8 @@ Default value: `''`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'sachet'`
 
 ##### <a name="init_style"></a>`init_style`
 
@@ -9922,11 +9930,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'sachet'`
 
 ##### <a name="purge_config_dir"></a>`purge_config_dir`
 
@@ -9973,6 +9985,8 @@ prometheus::sachet::receivers:
   provider: telegram
   text: '{{ template "telegram_message" . }}'
 
+Default value: `[]`
+
 ##### <a name="providers"></a>`providers`
 
 Data type: `Hash`
@@ -9983,6 +9997,8 @@ Example:
 prometheus::sachet::providers:
   telegram:
     token: "724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0"
+
+Default value: `{}`
 
 ##### <a name="restart_on_change"></a>`restart_on_change`
 
@@ -10022,11 +10038,15 @@ Data type: `String[1]`
 
 User which runs the service
 
+Default value: `'sachet'`
+
 ##### <a name="version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.2.6'`
 
 ##### <a name="config_dir"></a>`config_dir`
 
@@ -10034,11 +10054,15 @@ Data type: `Stdlib::Absolutepath`
 
 
 
+Default value: `'/etc/sachet'`
+
 ##### <a name="config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
 
+
+Default value: `'/etc/sachet/sachet.yaml'`
 
 ##### <a name="config_mode"></a>`config_mode`
 
