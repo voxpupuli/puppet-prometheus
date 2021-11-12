@@ -153,7 +153,11 @@ class prometheus::sachet (
     owner   => 'root',
     group   => $group,
     mode    => $config_mode,
-    content => template('prometheus/sachet.yaml.erb'),
+    content => epp('prometheus/sachet.yaml.epp', {
+        'templates' => $templates.map |$template| { "${template_dir}/${template[name]}.tmpl" },
+        'receivers' => $receivers,
+        'providers' => $providers
+    }),
     notify  => $notify_service,
     require => File[$config_dir],
   }

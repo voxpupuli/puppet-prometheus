@@ -1,7 +1,0 @@
-<% require 'yaml' -%>
-<% template_dir = scope.lookupvar('::prometheus::sachet::template_dir') -%>
-<% templates = scope.lookupvar('::prometheus::sachet::templates').map { |template| "#{template_dir}/#{template["name"]}.tmpl" } -%>
-<% receivers = scope.lookupvar('::prometheus::sachet::receivers') -%>
-<% providers = scope.lookupvar('::prometheus::sachet::providers') -%>
-<% full_config = { 'templates'=>templates, 'receivers'=>receivers, 'providers'=>providers } -%>
-<%= full_config.to_yaml -%>
