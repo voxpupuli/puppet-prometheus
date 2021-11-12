@@ -48,6 +48,7 @@ The package method needs specific yum or apt repo settings which are not made ye
 * [`prometheus::rabbitmq_exporter`](#prometheusrabbitmq_exporter): This module manages prometheus rabbitmq_exporter
 * [`prometheus::redis_exporter`](#prometheusredis_exporter): This module manages prometheus node redis_exporter
 * [`prometheus::run_service`](#prometheusrun_service): This class is meant to be called from prometheus. It ensure the service is running
+* [`prometheus::sachet`](#prometheussachet): This module manages prometheus sachet (https://github.com/messagebird/sachet)
 * [`prometheus::server`](#prometheusserver): class to manage the actual prometheus server. This class gets called from the init.pp
 * [`prometheus::snmp_exporter`](#prometheussnmp_exporter): This module manages prometheus snmp_exporter
 * [`prometheus::ssh_exporter`](#prometheusssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
@@ -9770,6 +9771,322 @@ Default value: ``undef``
 ### <a name="prometheusrun_service"></a>`prometheus::run_service`
 
 This class is meant to be called from prometheus. It ensure the service is running
+
+### <a name="prometheussachet"></a>`prometheus::sachet`
+
+This module manages prometheus sachet (https://github.com/messagebird/sachet)
+
+#### Parameters
+
+The following parameters are available in the `prometheus::sachet` class:
+
+* [`arch`](#arch)
+* [`bin_dir`](#bin_dir)
+* [`download_extension`](#download_extension)
+* [`download_url`](#download_url)
+* [`download_url_base`](#download_url_base)
+* [`extra_groups`](#extra_groups)
+* [`extra_options`](#extra_options)
+* [`group`](#group)
+* [`init_style`](#init_style)
+* [`install_method`](#install_method)
+* [`manage_group`](#manage_group)
+* [`manage_service`](#manage_service)
+* [`manage_user`](#manage_user)
+* [`os`](#os)
+* [`package_ensure`](#package_ensure)
+* [`package_name`](#package_name)
+* [`purge_config_dir`](#purge_config_dir)
+* [`templates`](#templates)
+* [`receivers`](#receivers)
+* [`providers`](#providers)
+* [`restart_on_change`](#restart_on_change)
+* [`service_enable`](#service_enable)
+* [`service_ensure`](#service_ensure)
+* [`service_name`](#service_name)
+* [`user`](#user)
+* [`version`](#version)
+* [`config_dir`](#config_dir)
+* [`config_file`](#config_file)
+* [`config_mode`](#config_mode)
+* [`listen_port`](#listen_port)
+* [`bin_name`](#bin_name)
+
+##### <a name="arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: ``undef``
+
+##### <a name="download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/messagebird/sachet/releases'`
+
+##### <a name="extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="extra_options"></a>`extra_options`
+
+Data type: `String`
+
+Extra options added to the startup command
+
+Default value: `''`
+
+##### <a name="group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'sachet'`
+
+##### <a name="init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: ``true``
+
+##### <a name="manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: ``true``
+
+##### <a name="manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: ``true``
+
+##### <a name="os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'sachet'`
+
+##### <a name="purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: ``true``
+
+##### <a name="templates"></a>`templates`
+
+Data type: `Array`
+
+An array of templates.
+Example:
+prometheus::sachet::templates:
+- name: 'notifications'
+  template: |
+    {{ define "telegram_title" }}[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} @ {{ .CommonLabels.identifier }} {{ end }}
+
+    {{ define "telegram_message" }}
+    {{ if gt (len .Alerts.Firing) 0 }}
+    *Alerts Firing:*
+    {{ range .Alerts.Firing }}• {{ .Labels.instance }}: {{ .Annotations.description }}
+    {{ end }}{{ end }}
+    {{ if gt (len .Alerts.Resolved) 0 }}
+    *Alerts Resolved:*
+    {{ range .Alerts.Resolved }}• {{ .Labels.instance }}: {{ .Annotations.description }}
+    {{ end }}{{ end }}{{ end }}
+
+    {{ define "telegram_text" }}{{ template "telegram_title" .}}
+    {{ template "telegram_message" . }}{{ end }}
+
+Default value: `[]`
+
+##### <a name="receivers"></a>`receivers`
+
+Data type: `Array`
+
+An array of receivers.
+Example:
+prometheus::sachet::receivers:
+- name: 'Telegram'
+  provider: telegram
+  text: '{{ template "telegram_message" . }}'
+
+Default value: `[]`
+
+##### <a name="providers"></a>`providers`
+
+Data type: `Hash`
+
+An hash of providers.
+See https://github.com/messagebird/sachet/blob/master/examples/config.yaml for more examples
+Example:
+prometheus::sachet::providers:
+  telegram:
+    token: "724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0"
+
+Default value: `{}`
+
+##### <a name="restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: ``true``
+
+##### <a name="service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: ``true``
+
+##### <a name="service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'sachet')
+
+Default value: `'sachet'`
+
+##### <a name="user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'sachet'`
+
+##### <a name="version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'0.2.6'`
+
+##### <a name="config_dir"></a>`config_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `'/etc/sachet'`
+
+##### <a name="config_file"></a>`config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `'/etc/sachet/sachet.yaml'`
+
+##### <a name="config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="listen_port"></a>`listen_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9876`
+
+##### <a name="bin_name"></a>`bin_name`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: ``undef``
 
 ### <a name="prometheusserver"></a>`prometheus::server`
 
