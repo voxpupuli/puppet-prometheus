@@ -92,7 +92,11 @@ class prometheus::postgres_exporter (
 ) inherits prometheus {
   $release = "v${version}"
 
-  $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}_${os}-${arch}.${download_extension}")
+  if versioncmp($version, '0.9.0') < 0 {
+    $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}_${os}-${arch}.${download_extension}")
+  } else {
+    $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  }
 
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
