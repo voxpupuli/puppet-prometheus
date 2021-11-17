@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus snmp exporter' do
@@ -13,10 +15,12 @@ describe 'prometheus snmp exporter' do
     it { is_expected.to be_enabled }
   end
   # the class installs an the snmp_exporter that listens on port 9104
+
   describe port(9116) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'snmp_exporter update from 0.7.0 to 0.15.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::snmp_exporter': version => '0.7.0'}"
@@ -33,6 +37,7 @@ describe 'prometheus snmp exporter' do
     describe port(9116) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::snmp_exporter': version => '0.15.0'}"
       # Run it twice and test for idempotency
@@ -49,4 +54,5 @@ describe 'prometheus snmp exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

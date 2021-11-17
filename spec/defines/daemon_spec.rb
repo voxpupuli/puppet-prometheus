@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::daemon' do
@@ -17,17 +19,17 @@ describe 'prometheus::daemon' do
 
       [
         {
-          version:           '1.2.3',
+          version: '1.2.3',
           real_download_url: 'https://github.com/prometheus/smurf_exporter/releases/v1.2.3/smurf_exporter-1.2.3.any.tar.gz',
-          notify_service:    'Service[smurf_exporter]',
-          user:              'smurf_user',
-          group:             'smurf_group',
-          env_vars:          { SOMEVAR: 42 },
-          bin_dir:           '/usr/local/bin',
-          install_method:    'url',
+          notify_service: 'Service[smurf_exporter]',
+          user: 'smurf_user',
+          group: 'smurf_group',
+          env_vars: { SOMEVAR: 42 },
+          bin_dir: '/usr/local/bin',
+          install_method: 'url',
           export_scrape_job: true,
-          scrape_host:       'localhost',
-          scrape_port:       1234
+          scrape_host: 'localhost',
+          scrape_port: 1234
         }
       ].each do |parameters|
         context "with parameters #{parameters}" do
@@ -38,38 +40,39 @@ describe 'prometheus::daemon' do
           it { is_expected.to compile.with_all_deps }
 
           it { is_expected.to contain_class('prometheus') }
+
           prom_os = facts[:kernel].downcase
           prom_arch = facts[:architecture] == 'i386' ? '386' : 'amd64'
 
           it {
-            is_expected.to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with(
-              'ensure'          => 'present',
-              'extract'         => true,
-              'extract_path'    => '/opt',
-              'source'          => params[:real_download_url],
+            expect(subject).to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with(
+              'ensure' => 'present',
+              'extract' => true,
+              'extract_path' => '/opt',
+              'source' => params[:real_download_url],
               'checksum_verify' => false,
-              'creates'         => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
-              'cleanup'         => true
+              'creates' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
+              'cleanup' => true
             ).that_comes_before("File[/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter]")
           }
 
           it {
-            is_expected.to contain_file("/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter").with(
+            expect(subject).to contain_file("/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter").with(
               'owner' => 'root',
               'group' => 0,
-              'mode'  => '0555'
+              'mode' => '0555'
             )
           }
 
           it {
-            is_expected.to contain_file('/usr/local/bin/smurf_exporter').with(
+            expect(subject).to contain_file('/usr/local/bin/smurf_exporter').with(
               'ensure' => 'link',
               'target' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter"
             ).that_notifies('Service[smurf_exporter]')
           }
 
           it {
-            is_expected.to contain_user('smurf_user').with(
+            expect(subject).to contain_user('smurf_user').with(
               'ensure' => 'present',
               'system' => true,
               'groups' => []
@@ -77,7 +80,7 @@ describe 'prometheus::daemon' do
           }
 
           it {
-            is_expected.to contain_group('smurf_group').with(
+            expect(subject).to contain_group('smurf_group').with(
               'ensure' => 'present',
               'system' => true
             )
@@ -94,7 +97,7 @@ describe 'prometheus::daemon' do
           it { is_expected.to contain_class('systemd') }
 
           it {
-            is_expected.to contain_systemd__unit_file('smurf_exporter.service').that_notifies(
+            expect(subject).to contain_systemd__unit_file('smurf_exporter.service').that_notifies(
               'Service[smurf_exporter]'
             ).with_content(
               %r{User=smurf_user\n}
@@ -103,9 +106,7 @@ describe 'prometheus::daemon' do
             )
           }
 
-          if Gem::Version.new(facts[:puppetversion]) < Gem::Version.new('6.1.0')
-            it { is_expected.to contain_class('systemd::systemctl::daemon_reload').that_comes_before('Service[smurf_exporter]') }
-          end
+          it { is_expected.to contain_class('systemd::systemctl::daemon_reload').that_comes_before('Service[smurf_exporter]') } if Gem::Version.new(facts[:puppetversion]) < Gem::Version.new('6.1.0')
 
           context 'with overidden bin_name' do
             let(:params) do
@@ -113,7 +114,7 @@ describe 'prometheus::daemon' do
             end
 
             it {
-              is_expected.to contain_systemd__unit_file('smurf_exporter.service').with_content(
+              expect(subject).to contain_systemd__unit_file('smurf_exporter.service').with_content(
                 %r{ExecStart=/usr/local/bin/notsmurf_exporter}
               )
             }
@@ -121,20 +122,20 @@ describe 'prometheus::daemon' do
 
           if os == 'ubuntu-16.04-x86_64'
             it {
-              is_expected.to contain_file('/etc/default/smurf_exporter').with(
-                'mode'    => '0644',
-                'owner'   => 'root',
-                'group'   => '0'
+              expect(subject).to contain_file('/etc/default/smurf_exporter').with(
+                'mode' => '0644',
+                'owner' => 'root',
+                'group' => '0'
               ).with_content(
                 %r{SOMEVAR="42"\n}
               )
             }
           elsif ['centos-7-x86_64', 'redhat-7-x86_64'].include?(os)
             it {
-              is_expected.to contain_file('/etc/sysconfig/smurf_exporter').with(
-                'mode'    => '0644',
-                'owner'   => 'root',
-                'group'   => '0'
+              expect(subject).to contain_file('/etc/sysconfig/smurf_exporter').with(
+                'mode' => '0644',
+                'owner' => 'root',
+                'group' => '0'
               ).with_content(
                 %r{SOMEVAR="42"\n}
               )
@@ -142,9 +143,9 @@ describe 'prometheus::daemon' do
           end
 
           it {
-            is_expected.to contain_service('smurf_exporter').with(
+            expect(subject).to contain_service('smurf_exporter').with(
               'ensure' => 'running',
-              'name'   => 'smurf_exporter',
+              'name' => 'smurf_exporter',
               'enable' => true
             )
           }
@@ -153,7 +154,7 @@ describe 'prometheus::daemon' do
             subject { exported_resources }
 
             it {
-              is_expected.to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
+              expect(subject).to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
                 'labels' => {
                   'alias' => 'localhost'
                 }
@@ -166,17 +167,17 @@ describe 'prometheus::daemon' do
       context 'with scrape_job_labels specified' do
         let(:params) do
           {
-            version:           '1.2.3',
+            version: '1.2.3',
             real_download_url: 'https://github.com/prometheus/smurf_exporter/releases/v1.2.3/smurf_exporter-1.2.3.any.tar.gz',
-            notify_service:    'Service[smurf_exporter]',
-            user:              'smurf_user',
-            group:             'smurf_group',
-            env_vars:          { SOMEVAR: 42 },
-            bin_dir:           '/usr/local/bin',
-            install_method:    'url',
+            notify_service: 'Service[smurf_exporter]',
+            user: 'smurf_user',
+            group: 'smurf_group',
+            env_vars: { SOMEVAR: 42 },
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
             export_scrape_job: true,
-            scrape_host:       'localhost',
-            scrape_port:       1234,
+            scrape_host: 'localhost',
+            scrape_port: 1234,
             scrape_job_labels: { 'instance' => 'smurf1' }
           }
         end
@@ -185,7 +186,7 @@ describe 'prometheus::daemon' do
           subject { exported_resources }
 
           it {
-            is_expected.to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
+            expect(subject).to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
               'labels' => {
                 'instance' => 'smurf1'
               }

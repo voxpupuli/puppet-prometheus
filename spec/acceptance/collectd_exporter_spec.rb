@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus collectd exporter' do
@@ -13,6 +15,7 @@ describe 'prometheus collectd exporter' do
     it { is_expected.to be_enabled }
   end
   # the class installs an the collectd_exporter that listens on port 9103
+
   describe port(9103) do
     it { is_expected.to be_listening.with('tcp6') }
   end

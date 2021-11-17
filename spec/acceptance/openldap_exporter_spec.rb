@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus openldap exporter' do
@@ -11,10 +13,12 @@ describe 'prometheus openldap exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9330) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'openldap_exporter works with ldap_binddn + ldap_password config' do
     it 'is idempotent' do
       pp = "class{'prometheus::openldap_exporter': version => '2.0', ldap_binddn => 'cn=user', ldap_password => 'password'}"
@@ -64,6 +68,7 @@ describe 'prometheus openldap exporter' do
     describe port(9330) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::openldap_exporter': version => '2.1'}"
       apply_manifest(pp, catch_failures: true)
@@ -79,4 +84,5 @@ describe 'prometheus openldap exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::nginx_vts_exporter' do
@@ -26,6 +28,7 @@ describe 'prometheus::nginx_vts_exporter' do
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_prometheus__daemon('nginx-vts-exporter') }
         end
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/nginx-vts-exporter').with('target' => '/opt/nginx-vts-exporter-0.6.linux-amd64/nginx-vts-exporter') }
           it { is_expected.to compile.with_all_deps }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::process_exporter' do
@@ -29,6 +31,7 @@ describe 'prometheus::process_exporter' do
 
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_archive('/tmp/process-exporter-0.2.4.tar.gz') }
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/process-exporter').with('target' => '/opt/process-exporter-0.2.4.linux-amd64/process-exporter') }
         end
@@ -40,11 +43,11 @@ describe 'prometheus::process_exporter' do
             hash_watched_processes: {
               'process_names' => [
                 {
-                  'name'    => '{{.Matches}}',
+                  'name' => '{{.Matches}}',
                   'cmdline' => ['.*process1.*']
                 },
                 {
-                  'name'    => '{{.Matches}}',
+                  'name' => '{{.Matches}}',
                   'cmdline' => ['.*process2.*']
                 }
               ]

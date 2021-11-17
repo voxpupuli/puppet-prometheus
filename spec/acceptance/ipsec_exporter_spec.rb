@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus ipsec_exporter' do
@@ -17,6 +19,7 @@ describe 'prometheus ipsec_exporter' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'ipsec_exporter update from 0.3.1 to 0.3.2' do
     it 'is idempotent' do
       pp = "class{'prometheus::ipsec_exporter': version => '0.3.1'}"
@@ -33,6 +36,7 @@ describe 'prometheus ipsec_exporter' do
     describe port(9536) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::ipsec_exporter': version => '0.3.2'}"
       # Run it twice and test for idempotency
@@ -49,4 +53,5 @@ describe 'prometheus ipsec_exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

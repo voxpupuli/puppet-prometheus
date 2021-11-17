@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::ssh_exporter' do
@@ -34,8 +36,9 @@ describe 'prometheus::ssh_exporter' do
           it { is_expected.to contain_service('ssh_exporter') }
           it { is_expected.to contain_archive('/tmp/ssh_exporter-1.2.0.tar.gz') }
           it { is_expected.to contain_file('/opt/ssh_exporter-1.2.0.linux-amd64/ssh_exporter') }
+
           it {
-            is_expected.to contain_file('/etc/ssh_exporter.yaml')
+            expect(subject).to contain_file('/etc/ssh_exporter.yaml')
             verify_contents(catalogue, '/etc/ssh_exporter.yaml', ['---', 'modules:', '  default:', '    user: prometheus', '    private_key: "/home/prometheus/.ssh/id_rsa"'])
           }
         end

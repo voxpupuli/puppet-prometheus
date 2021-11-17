@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus varnish exporter' do
@@ -11,10 +13,12 @@ describe 'prometheus varnish exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9131) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'varnish_exporter update from 1.4 to 1.5' do
     it 'is idempotent' do
       pp = "class{'prometheus::varnish_exporter': version => '1.4'}"
@@ -29,6 +33,7 @@ describe 'prometheus varnish exporter' do
     describe port(9131) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::varnish_exporter': version => '1.5'}"
       apply_manifest(pp, catch_failures: true)
@@ -44,4 +49,5 @@ describe 'prometheus varnish exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

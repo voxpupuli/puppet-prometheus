@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus graphite exporter' do
@@ -11,10 +13,12 @@ describe 'prometheus graphite exporter' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9109) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'graphite_exporter update from 0.2.0 to 0.7.1' do
     it 'is idempotent' do
       pp = "class{'prometheus::graphite_exporter': version => '0.2.0'}"
@@ -30,6 +34,7 @@ describe 'prometheus graphite exporter' do
     describe port(9109) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::graphite_exporter': version => '0.7.1'}"
       apply_manifest(pp, catch_failures: true)
@@ -45,4 +50,5 @@ describe 'prometheus graphite exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

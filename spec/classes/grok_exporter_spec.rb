@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::grok_exporter' do
@@ -25,9 +27,9 @@ describe 'prometheus::grok_exporter' do
               },
               'metrics' => [
                 {
-                  'name'  => 'syslog_errors',
-                  'type'  => 'counter',
-                  'help'  => 'number of syslog errors',
+                  'name' => 'syslog_errors',
+                  'type' => 'counter',
+                  'help' => 'number of syslog errors',
                   'match' => 'error'
                 }
               ]

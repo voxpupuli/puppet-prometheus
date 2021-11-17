@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::dellhw_exporter' do
@@ -10,6 +12,7 @@ describe 'prometheus::dellhw_exporter' do
       context 'with all defaults' do
         describe 'with all defaults' do
           it { is_expected.to compile.with_all_deps }
+
           if facts[:os]['name'] == 'Archlinux'
             it { is_expected.to contain_package('dellhw_exporter') }
             it { is_expected.not_to contain_file('/usr/local/bin/dellhw_exporter') }
