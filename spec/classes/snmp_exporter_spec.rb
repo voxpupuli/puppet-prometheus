@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::snmp_exporter' do
@@ -20,18 +22,20 @@ describe 'prometheus::snmp_exporter' do
 
         describe 'with all defaults' do
           it { is_expected.to compile.with_all_deps }
+
           it {
-            is_expected.to contain_file('/etc/snmp-exporter.yaml').with(
-              'ensure'  => 'file',
-              'owner'   => 'root',
-              'group'   => 'snmp-exporter',
-              'mode'    => '0640',
+            expect(subject).to contain_file('/etc/snmp-exporter.yaml').with(
+              'ensure' => 'file',
+              'owner' => 'root',
+              'group' => 'snmp-exporter',
+              'mode' => '0640',
               'content' => nil,
-              'source'  => 'file:/opt/snmp_exporter-0.6.0.linux-amd64/snmp.yml',
+              'source' => 'file:/opt/snmp_exporter-0.6.0.linux-amd64/snmp.yml',
               'require' => 'File[/opt/snmp_exporter-0.6.0.linux-amd64/snmp_exporter]',
-              'notify'  => 'Service[snmp_exporter]'
+              'notify' => 'Service[snmp_exporter]'
             )
           }
+
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_file('/usr/local/bin/snmp_exporter').with('target' => '/opt/snmp_exporter-0.6.0.linux-amd64/snmp_exporter') }
           it { is_expected.to contain_prometheus__daemon('snmp_exporter') }

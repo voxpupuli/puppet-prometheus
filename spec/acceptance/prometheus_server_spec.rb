@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus server basics' do
@@ -9,13 +11,16 @@ describe 'prometheus server basics' do
     apply_manifest(pp, catch_changes: true)
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe service('prometheus') do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9090) do
     it { is_expected.to be_listening.with('tcp6') }
   end
+
   it 'prometheus server via server class works idempotently with no errors' do
     pp = 'include prometheus::server'
 
@@ -28,6 +33,7 @@ describe 'prometheus server basics' do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
+
   describe port(9090) do
     it { is_expected.to be_listening.with('tcp6') }
   end
@@ -46,6 +52,7 @@ describe 'prometheus server basics' do
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
+
     it 'allows admin API' do
       shell('curl -s -XPOST http://127.0.0.1:9090/api/v1/admin/tsdb/snapshot') do |r|
         expect(r.stdout).not_to match(%r{admin APIs disabled})
@@ -100,7 +107,7 @@ describe 'prometheus server basics' do
         ]
       },
     }
-    EOS
+      EOS
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
@@ -143,7 +150,7 @@ describe 'prometheus server basics' do
         ]
       },
     }
-    EOS
+      EOS
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
@@ -158,4 +165,5 @@ describe 'prometheus server basics' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::varnish_exporter' do
@@ -19,9 +21,11 @@ describe 'prometheus::varnish_exporter' do
         end
 
         it { is_expected.to compile.with_all_deps }
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/prometheus_varnish_exporter').with('target' => '/opt/prometheus_varnish_exporter-1.4.linux-amd64/prometheus_varnish_exporter') }
         end
+
         describe 'required resources' do
           it { is_expected.to contain_group('varnish') }
           it { is_expected.to contain_prometheus__daemon('prometheus_varnish_exporter') }

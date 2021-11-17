@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::bind_exporter' do
@@ -26,6 +28,7 @@ describe 'prometheus::bind_exporter' do
           it { is_expected.to contain_prometheus__daemon('bind_exporter').with('options' => '') }
           it { is_expected.to contain_service('bind_exporter') }
         end
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/bind_exporter').with('target' => '/opt/bind_exporter-0.2.0.linux-amd64/bind_exporter') }
         end

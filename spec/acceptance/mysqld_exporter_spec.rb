@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus mysqld exporter' do
@@ -13,10 +15,12 @@ describe 'prometheus mysqld exporter' do
     it { is_expected.to be_enabled }
   end
   # the class installs an the mysqld_exporter that listens on port 9104
+
   describe port(9104) do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'mysqld_exporter update from 0.9.0 to 0.12.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::mysqld_exporter': version => '0.9.0'}"
@@ -33,6 +37,7 @@ describe 'prometheus mysqld exporter' do
     describe port(9104) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::mysqld_exporter': version => '0.12.0'}"
       # Run it twice and test for idempotency
@@ -48,8 +53,10 @@ describe 'prometheus mysqld exporter' do
     describe port(9104) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     describe process('mysqld_exporter') do
       its(:args) { is_expected.to match %r{\ --config.my-cnf} }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

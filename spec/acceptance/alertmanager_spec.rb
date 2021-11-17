@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus alertmanager' do
@@ -31,6 +33,7 @@ describe 'prometheus alertmanager' do
     it { is_expected.to be_enabled }
   end
   # the class installs an the alertmanager that listens on port 9093
+
   describe port(9093) do
     it { is_expected.to be_listening.with('tcp6') }
   end

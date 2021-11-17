@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::server' do
@@ -19,7 +21,7 @@ describe 'prometheus::server' do
         it { is_expected.to contain_class('systemd') }
 
         it {
-          is_expected.to contain_systemd__unit_file('prometheus.service').with(
+          expect(subject).to contain_systemd__unit_file('prometheus.service').with(
             'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
           )
         }

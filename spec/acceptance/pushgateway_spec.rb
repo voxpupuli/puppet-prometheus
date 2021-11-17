@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus pushgateway' do
@@ -17,6 +19,7 @@ describe 'prometheus pushgateway' do
     it { is_expected.to be_listening.with('tcp6') }
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'pushgateway update from 0.4.0 to 0.8.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::pushgateway': version => '0.4.0'}"
@@ -33,6 +36,7 @@ describe 'prometheus pushgateway' do
     describe port(9091) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::pushgateway': version => '0.8.0'}"
       # Run it twice and test for idempotency
@@ -49,4 +53,5 @@ describe 'prometheus pushgateway' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

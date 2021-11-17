@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus apache exporter' do
@@ -12,14 +14,17 @@ describe 'prometheus apache exporter' do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
+
     describe port(9117) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     describe process('apache_exporter') do
       its(:args) { is_expected.to match %r{\ --scrape_uri http://localhost/server-status/\?auto} }
     end
   end
 
+  # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
   describe 'apache_exporter update from 0.5.0 to 0.7.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::apache_exporter': version => '0.5.0'}"
@@ -39,6 +44,7 @@ describe 'prometheus apache exporter' do
     describe port(9117) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
     it 'is idempotent' do
       pp = "class{'prometheus::apache_exporter': version => '0.7.0'}"
       apply_manifest(pp, catch_failures: true)
@@ -58,4 +64,5 @@ describe 'prometheus apache exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
+  # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end

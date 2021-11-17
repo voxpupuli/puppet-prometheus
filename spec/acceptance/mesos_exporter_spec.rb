@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus mesos exporter' do
@@ -20,6 +22,7 @@ describe 'prometheus mesos exporter' do
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
+
     describe service('mesos_exporter') do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
@@ -33,6 +36,7 @@ describe 'prometheus mesos exporter' do
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
+
     describe service('mesos_exporter') do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
