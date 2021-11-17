@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v12.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.3.0) (2021-11-17)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.2.0...v12.3.0)
+
+**Implemented enhancements:**
+
+- Add a parameter to validate alertmanager config [\#593](https://github.com/voxpupuli/puppet-prometheus/pull/593) ([roidelapluie](https://github.com/roidelapluie))
+- Add sachet webhook receiver [\#590](https://github.com/voxpupuli/puppet-prometheus/pull/590) ([BDelacour](https://github.com/BDelacour))
+
+**Fixed bugs:**
+
+- fix download url for new asset url schema [\#591](https://github.com/voxpupuli/puppet-prometheus/pull/591) ([reini-1](https://github.com/reini-1))
+
+**Closed issues:**
+
+- Alertmanager configuration is not checked when installed from RPM [\#592](https://github.com/voxpupuli/puppet-prometheus/issues/592)
+- postgres\_exporter 0.10.0 cannot be downloaded [\#584](https://github.com/voxpupuli/puppet-prometheus/issues/584)
+- found multiple scrape configs with job name `x` [\#573](https://github.com/voxpupuli/puppet-prometheus/issues/573)
+
+**Merged pull requests:**
+
+- Update prometheus version from 2.20.1 to 2.30.3 [\#587](https://github.com/voxpupuli/puppet-prometheus/pull/587) ([saz](https://github.com/saz))
+- Run CI nightly [\#586](https://github.com/voxpupuli/puppet-prometheus/pull/586) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v12.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.2.0) (2021-10-04)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.1.1...v12.2.0)

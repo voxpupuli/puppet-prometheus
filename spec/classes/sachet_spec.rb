@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::sachet' do
@@ -38,12 +40,14 @@ describe 'prometheus::sachet' do
           it { is_expected.to contain_prometheus__daemon('sachet') }
           it { is_expected.to contain_service('sachet') }
         end
+
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/sachet').with('target' => '/opt/sachet-0.2.6.linux-amd64/sachet') }
         end
+
         describe 'config file contents' do
           it {
-            is_expected.to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
+            expect(subject).to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
             verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
                               '---',
                               'templates: []',
@@ -90,14 +94,14 @@ describe 'prometheus::sachet' do
         end
 
         it {
-          is_expected.to contain_file('/etc/sachet/templates/notifications.tmpl')
+          expect(subject).to contain_file('/etc/sachet/templates/notifications.tmpl')
           verify_contents(catalogue, '/etc/sachet/templates/notifications.tmpl', [
                             '{{ define "telegram_message" }}',
                             '{{ .Status | title }}: {{ .CommonAnnotations.summary }}',
                             '{{ end }}'
                           ])
 
-          is_expected.to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
+          expect(subject).to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
           verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
                             '---',
                             'templates:',

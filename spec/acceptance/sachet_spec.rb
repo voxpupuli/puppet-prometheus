@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'prometheus sachet' do
@@ -26,6 +28,7 @@ describe 'prometheus sachet' do
     it { is_expected.to be_enabled }
   end
   # the class installs sachet that listens on port 9876
+
   describe port(9876) do
     it { is_expected.to be_listening.with('tcp6') }
   end
