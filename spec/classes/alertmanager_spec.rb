@@ -120,7 +120,7 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without_validate_cmd
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').without_validate_cmd
         }
       end
 
@@ -135,7 +135,7 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').with_validate_cmd('/bin/amtool check-config --alertmanager.url=\'\' %')
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_validate_cmd('/bin/amtool check-config --alertmanager.url=\'\' %')
         }
       end
     end
