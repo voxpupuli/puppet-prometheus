@@ -103,6 +103,35 @@ describe 'prometheus::alertmanager' do
           end
         end
       end
+
+      context 'with validate_config => false' do
+        let(:params) do
+          {
+            manage_config: true,
+            install_method: 'package',
+            validate_config: false,
+          }
+        end
+
+        it {
+          is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without_validate_cmd
+        }
+      end
+
+      context 'with validate_config => true' do
+        let(:params) do
+          {
+            manage_config: true,
+            install_method: 'package',
+            validate_config: true,
+            bin_dir: '/bin',
+          }
+        end
+
+        it {
+          is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').with_validate_cmd('/bin/amtool check-config --alertmanager.url=\'\' %')
+        }
+      end
     end
   end
 end
