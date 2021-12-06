@@ -51,6 +51,10 @@
 #  Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
 #  this param to define how we call the es.uri and es.timeout in the $options
 #  https://github.com/justwatchcom/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::elasticsearch_exporter (
   String[1] $cnf_uri,
   String[1] $cnf_timeout,
@@ -83,6 +87,8 @@ class prometheus::elasticsearch_exporter (
   Stdlib::Port $scrape_port               = 9114,
   String[1] $scrape_job_name              = 'elasticsearch',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   #Please provide the download_url for versions < 0.9.0
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -126,5 +132,7 @@ class prometheus::elasticsearch_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

@@ -64,6 +64,10 @@
 # @param extra_env_vars
 #  Additional environment variables that should be supplied to the exporter, as a hash of key:value
 #  (default {})
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::rabbitmq_exporter (
   Prometheus::Uri $download_url_base,
   Array[String] $extra_groups,
@@ -101,6 +105,8 @@ class prometheus::rabbitmq_exporter (
   Stdlib::Port $scrape_port               = 9090,
   String[1] $scrape_job_name              = 'rabbitmq',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
@@ -148,5 +154,7 @@ class prometheus::rabbitmq_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

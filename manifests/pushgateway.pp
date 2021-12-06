@@ -43,6 +43,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::pushgateway (
   String[1] $download_extension,
   String[1] $download_url_base,
@@ -66,6 +70,8 @@ class prometheus::pushgateway (
   Optional[String] $download_url          = undef,
   String[1] $arch                         = $prometheus::real_arch,
   String[1] $bin_dir                      = $prometheus::bin_dir,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.3.0
   if versioncmp ($version, '0.3.0') >= 0 {
@@ -101,5 +107,7 @@ class prometheus::pushgateway (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

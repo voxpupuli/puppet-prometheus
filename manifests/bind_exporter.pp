@@ -90,6 +90,10 @@
 #   Labels to configure on the scrape job. If not set, the
 #   `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will
 #   be used.
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::bind_exporter (
   Optional[Stdlib::HTTPSUrl] $download_url      = undef,
   Array[String[1]] $extra_groups                = [],
@@ -120,6 +124,8 @@ class prometheus::bind_exporter (
   Stdlib::Port $scrape_port                     = 9119,
   String[1] $scrape_job_name                    = 'bind',
   Optional[Hash] $scrape_job_labels             = undef,
+  Optional[String[1]] $proxy_server             = undef,
+  Optional[String[1]] $proxy_type               = undef,
 ) inherits prometheus {
   #Please provide the download_url for versions < 0.9.0
   $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -155,5 +161,7 @@ class prometheus::bind_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

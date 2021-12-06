@@ -46,6 +46,10 @@
 #  DN (LDAP User) used to authenticate to openldap cn=monitor tree
 # @param ldap_password
 #  Password used to authenticate to openldap cn=monitor tree
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::openldap_exporter (
   String $download_extension              = '',
   Array[String] $extra_groups             = [],
@@ -75,6 +79,8 @@ class prometheus::openldap_exporter (
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $ldap_binddn        = undef,
   Optional[String[1]] $ldap_password      = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $release = "v${version}"
   $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${os}")
@@ -117,5 +123,7 @@ class prometheus::openldap_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

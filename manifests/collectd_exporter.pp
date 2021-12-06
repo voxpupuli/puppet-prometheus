@@ -43,6 +43,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::collectd_exporter (
   String $download_extension,
   Prometheus::Uri $download_url_base,
@@ -71,6 +75,8 @@ class prometheus::collectd_exporter (
   Boolean $purge_config_dir               = true,
   Boolean $manage_user                    = true,
   Boolean $manage_group                   = true,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
@@ -105,5 +111,7 @@ class prometheus::collectd_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

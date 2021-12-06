@@ -79,6 +79,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::sachet (
   Stdlib::Absolutepath $config_dir        = '/etc/sachet',
   Stdlib::Absolutepath $config_file       = '/etc/sachet/sachet.yaml',
@@ -111,6 +115,8 @@ class prometheus::sachet (
   Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Stdlib::Port $listen_port               = 9876,
   Optional[String[1]] $bin_name           = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
@@ -187,5 +193,7 @@ class prometheus::sachet (
     service_enable     => $service_enable,
     manage_service     => $manage_service,
     bin_name           => $bin_name,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

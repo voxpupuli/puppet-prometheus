@@ -58,6 +58,10 @@
 #  hash with custom environment variables thats passed to the exporter via init script / unit file
 # @param env_file_path
 #  The path to the file with the environmetn variable that is read from the init script/systemd unit
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::node_exporter (
   String $download_extension,
   Prometheus::Uri $download_url_base,
@@ -93,6 +97,8 @@ class prometheus::node_exporter (
   Optional[String[1]] $bin_name           = undef,
   Hash[String[1], Scalar] $env_vars       = {},
   Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -153,5 +159,7 @@ class prometheus::node_exporter (
     bin_name           => $bin_name,
     env_vars           => $env_vars,
     env_file_path      => $env_file_path,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

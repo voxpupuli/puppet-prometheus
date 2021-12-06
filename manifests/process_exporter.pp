@@ -51,6 +51,10 @@
 # @param watched_processes
 #  A list of processes to monitor
 #  Has no effect if hash_watched_processes is set
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 # @example Usage with hash_watched_processes
 #  class { 'prometheus::process_exporter':
 #    version                => '0.6.0',
@@ -103,6 +107,8 @@ class prometheus::process_exporter (
   Stdlib::Port $scrape_port               = 9256,
   String[1] $scrape_job_name              = 'process',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $filename = "${package_name}-${version}.${os}-${arch}.${download_extension}"
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${filename}")
@@ -155,5 +161,7 @@ class prometheus::process_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

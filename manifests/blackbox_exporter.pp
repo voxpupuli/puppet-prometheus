@@ -49,6 +49,10 @@
 #  The binary release version
 # @param config_mode
 #  The permissions of the configuration files
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 # Example for configuring named blackbox modules via hiera
 # details of the format: https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
 # @example
@@ -93,6 +97,8 @@ class prometheus::blackbox_exporter (
   Stdlib::Port $scrape_port               = 9115,
   String[1] $scrape_job_name              = 'blackbox',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the release name at 0.1.0 of blackbox
   if versioncmp ($version, '0.1.0') >= 0 {
@@ -144,5 +150,7 @@ class prometheus::blackbox_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

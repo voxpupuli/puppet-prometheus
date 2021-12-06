@@ -51,6 +51,10 @@
 #  Since version 0.7.0, the mongodb exporter uses kingpin, thus
 #  this param to define how we call the mongodb.uri in the $options
 #  https://github.com/percona/mongodb_exporter/blob/v0.7.0/CHANGELOG.md
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::mongodb_exporter (
   String[1] $cnf_uri                      = 'mongodb://localhost:27017',
   String $download_extension              = 'tar.gz',
@@ -82,6 +86,8 @@ class prometheus::mongodb_exporter (
   Stdlib::Port $scrape_port               = 9216,
   String[1] $scrape_job_name              = 'mongodb',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   #Please provide the download_url for versions < 0.9.0
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -132,5 +138,7 @@ class prometheus::mongodb_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

@@ -55,6 +55,10 @@
 #  Address to listen on for web interface and telemetry. (default ":9107")
 # @param web_telemetry_path
 #  Path under which to expose metrics. (default "/metrics")
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::consul_exporter (
   Boolean $consul_health_summary,
   String[1] $consul_server,
@@ -89,6 +93,8 @@ class prometheus::consul_exporter (
   Stdlib::Port $scrape_port               = 9107,
   String[1] $scrape_job_name              = 'consul',
   Optional[Hash] $scrape_job_labels       = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.3.0
   if versioncmp ($version, '0.3.0') == -1 {
@@ -145,5 +151,7 @@ class prometheus::consul_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

@@ -45,6 +45,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::memcached_exporter (
   String $download_extension              = 'tar.gz',
   Prometheus::Uri $download_url_base      = 'https://github.com/prometheus/memcached_exporter/releases',
@@ -75,6 +79,8 @@ class prometheus::memcached_exporter (
   String[1] $scrape_job_name              = 'memcached',
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $bin_name           = undef,
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
@@ -111,5 +117,7 @@ class prometheus::memcached_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

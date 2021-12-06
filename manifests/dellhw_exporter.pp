@@ -49,6 +49,10 @@
 #  The file path to the omReport executable (default "/opt/dell/srvadmin/bin/omreport")
 # @param scrape_ipadress
 #  The ip address that the exporter will to listen to (default '')
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::dellhw_exporter (
   String $download_extension              = 'tar.gz',
   Prometheus::Uri $download_url_base      = 'https://github.com/galexrt/dellhw_exporter/releases',
@@ -81,6 +85,8 @@ class prometheus::dellhw_exporter (
   Optional[Hash] $scrape_job_labels       = undef,
   Optional[String[1]] $bin_name           = undef,
   Stdlib::Unixpath $omreport_path         = '/opt/dell/srvadmin/bin/omreport',
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/dellhw_exporter-${version}.${os}-${arch}.${download_extension}")
 
@@ -122,5 +128,7 @@ class prometheus::dellhw_exporter (
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
     archive_bin_path   => "/opt/dellhw_exporter-${version}.${os}-${arch}/dellhw_exporter",
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

@@ -49,6 +49,10 @@
 #  The binary release version
 # @param env_vars
 #  The environment variable to pass to the daemon
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::pushprox_client (
   String[1] $proxy_url,
   String[1] $download_extension,
@@ -76,6 +80,8 @@ class prometheus::pushprox_client (
   String[1] $arch                         = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Hash[String, Scalar] $env_vars          = {},
+  Optional[String[1]] $proxy_server       = undef,
+  Optional[String[1]] $proxy_type         = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/PushProx-${version}.${os}-${arch}.${download_extension}")
 
@@ -110,5 +116,7 @@ class prometheus::pushprox_client (
     service_enable     => $service_enable,
     manage_service     => $manage_service,
     env_vars           => $env_vars,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }
