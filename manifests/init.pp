@@ -306,7 +306,7 @@ class prometheus (
   Boolean $config_show_diff                                                     = true,
   Boolean $include_default_scrape_configs                                       = true,
   Optional[String[1]] $proxy_server                                             = undef,
-  Optional[String[1]] $proxy_type                                               = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
 ) {
   case $arch {
     'x86_64', 'amd64': { $real_arch = 'amd64' }
