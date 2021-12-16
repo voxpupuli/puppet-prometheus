@@ -61,6 +61,38 @@ describe 'prometheus::server' do
             }
           end
         end
+
+        describe 'tsdb-disabled' do
+          context 'by default' do
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).to include('storage.tsdb.path')
+              expect(content).to include('storage.tsdb.retention')
+            }
+          end
+
+          context 'when retention set to false' do
+            let(:params) do
+              super().merge('storage_retention' => false)
+            end
+
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).not_to include('storage.tsdb.retention')
+            }
+          end
+
+          context 'when storage path set to false' do
+            let(:params) do
+              super().merge('localstorage' => false)
+            end
+
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).not_to include('storage.tsdb.path')
+            }
+          end
+        end
       end
     end
   end
