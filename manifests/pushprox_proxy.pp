@@ -85,6 +85,7 @@ class prometheus::pushprox_proxy (
     version            => $version,
     download_extension => $download_extension,
     archive_bin_path   => "/opt/PushProx-${version}.${os}-${arch}/pushprox-proxy",
+    install_path       => "/opt/PushProx-${version}.${os}-${arch}",
     os                 => $os,
     arch               => $arch,
     real_download_url  => $real_download_url,

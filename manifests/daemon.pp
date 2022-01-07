@@ -72,7 +72,8 @@ define prometheus::daemon (
   Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
   Optional[String[1]] $extract_command    = $prometheus::extract_command,
   Stdlib::Absolutepath $extract_path      = '/opt',
-  Stdlib::Absolutepath $archive_bin_path  = "/opt/${name}-${version}.${os}-${arch}/${name}",
+  Stdlib::Absolutepath $install_path      = "/opt/${name}-${version}.${os}-${arch}",
+  Stdlib::Absolutepath $archive_bin_path  = "${install_path}/${name}",
   Boolean $export_scrape_job              = false,
   Stdlib::Host $scrape_host               = $facts['networking']['fqdn'],
   Optional[Stdlib::Port] $scrape_port     = undef,
@@ -83,17 +84,17 @@ define prometheus::daemon (
   case $install_method {
     'url': {
       if $download_extension == '' {
-        file { "/opt/${name}-${version}.${os}-${arch}":
+        file { $install_path:
           ensure => directory,
           owner  => 'root',
           group  => 0, # 0 instead of root because OS X uses "wheel".
           mode   => '0755',
         }
-        -> archive { "/opt/${name}-${version}.${os}-${arch}/${name}":
+        -> archive { $archive_bin_path:
           ensure          => present,
           source          => $real_download_url,
           checksum_verify => false,
-          before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
+          before          => File[$archive_bin_path],
         }
       } else {
         archive { "/tmp/${name}-${version}.${download_extension}":
@@ -108,9 +109,11 @@ define prometheus::daemon (
           extract_command => $extract_command,
         }
       }
-      file { $archive_bin_path:
-        owner => 'root',
-        group => 0, # 0 instead of root because OS X uses "wheel".
+      exec { "/bin/chown root:0 -R ${archive_bin_path}":
+        command => "/bin/chown root:0 -R ${install_path}", # 0 instead of root because OS X uses "wheel".
+        onlyif  => "/usr/bin/test `/usr/bin/stat -c '%U' ${archive_bin_path}` != 'root'",
+      }
+      -> file { $archive_bin_path:
         mode  => '0555',
       }
       -> file { "${bin_dir}/${name}":

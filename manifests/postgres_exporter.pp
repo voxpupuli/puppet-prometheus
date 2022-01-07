@@ -149,6 +149,13 @@ class prometheus::postgres_exporter (
       creates         => "${install_dir}/${service_name}",
       cleanup         => true,
     }
+    -> exec { "/bin/chown root:0 -R ${install_dir}":
+      command => "/bin/chown root:0 -R ${install_dir}",
+      onlyif  => "/usr/bin/test `/usr/bin/stat -c '%U' ${install_dir}/${service_name}` != 'root'",
+    }
+    -> file { "${install_dir}/${service_name}":
+      mode  => '0555',
+    }
     -> file { "${bin_dir}/${service_name}":
       ensure => link,
       notify => $notify_service,

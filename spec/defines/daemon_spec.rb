@@ -58,8 +58,6 @@ describe 'prometheus::daemon' do
 
           it {
             expect(subject).to contain_file("/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter").with(
-              'owner' => 'root',
-              'group' => 0,
               'mode' => '0555'
             )
           }
