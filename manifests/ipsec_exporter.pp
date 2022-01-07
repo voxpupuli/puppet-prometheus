@@ -79,10 +79,12 @@ class prometheus::ipsec_exporter (
   if versioncmp ($version, '0.3.2') >= 0 {
     $release          = $version
     $archive_bin_path = undef  # use default
+    $install_path     = undef  # use default
   }
   else {
     $release          = "v${version}"
     $archive_bin_path = "/opt/ipsec_exporter-v${version}.${os}-${arch}"
+    $install_path     = "/opt/ipsec_exporter-v${version}.${os}-${arch}"
   }
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${release}.${os}-${arch}.${download_extension}")
 
@@ -100,6 +102,7 @@ class prometheus::ipsec_exporter (
     real_download_url  => $real_download_url,
     bin_dir            => $bin_dir,
     archive_bin_path   => $archive_bin_path,
+    install_path       => $install_path,
     notify_service     => $notify_service,
     package_name       => $package_name,
     package_ensure     => $package_ensure,
