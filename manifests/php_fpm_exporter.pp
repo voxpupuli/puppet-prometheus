@@ -1,4 +1,4 @@
-# @summary This module manages prometheus nginx exporter
+# @summary This module manages prometheus php-fpm exporter
 # @param arch
 #  Architecture (amd64 or i386)
 # @param bin_dir
@@ -44,26 +44,26 @@
 # @param service_ensure
 #  State ensured for the service (default 'running')
 # @param service_name
-#  Name of the nginx prometheus exporter service (default 'nginx_prometheus_exporter')
+#  Name of the php-fpm exporter service (default 'php-fpm_exporter')
 # @param user
 #  User which runs the service
 # @param version
 #  The binary release version
-class prometheus::nginx_prometheus_exporter (
-  String[1] $scrape_uri                   = 'http://localhost:8080/stub_status',
+class prometheus::php_fpm_exporter (
+  String[1] $scrape_uri                   = 'tcp://127.0.0.1:9000/status',
   String $download_extension              = 'tar.gz',
-  Prometheus::Uri $download_url_base      = 'https://github.com/nginxinc/nginx-prometheus-exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/hipages/php-fpm_exporter/releases',
   Array[String[1]] $extra_groups          = [],
-  String[1] $group                        = 'nginx-prometheus-exporter',
+  String[1] $group                        = 'php-fpm_exporter',
   String[1] $package_ensure               = 'latest',
-  String[1] $package_name                 = 'nginx-prometheus-exporter',
-  String[1] $user                         = 'nginx-prometheus-exporter',
-  String[1] $version                      = '0.9.0',
+  String[1] $package_name                 = 'php-fpm_exporter',
+  String[1] $user                         = 'php-fpm_exporter',
+  String[1] $version                      = '2.0.4',
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,
   Stdlib::Ensure::Service $service_ensure = 'running',
-  String[1] $service_name                 = 'nginx_prometheus_exporter',
+  String[1] $service_name                 = 'php-fpm_exporter',
   Prometheus::Initstyle $init_style       = $facts['service_provider'],
   Prometheus::Install $install_method     = $prometheus::install_method,
   Boolean $manage_group                   = true,
@@ -77,25 +77,26 @@ class prometheus::nginx_prometheus_exporter (
   Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
   Boolean $export_scrape_job              = false,
   Optional[Stdlib::Host] $scrape_host     = undef,
-  Stdlib::Port $scrape_port               = 9113,
-  String[1] $scrape_job_name              = 'nginx',
+  Stdlib::Port $scrape_port               = 9253,
+  String[1] $scrape_job_name              = 'php-fpm',
   Optional[Hash] $scrape_job_labels       = undef,
-  String[1] $bin_name                     = 'nginx-prometheus-exporter',
+  String[1] $bin_name                     = 'php-fpm_exporter',
   Hash[String[1], Scalar] $env_vars       = {},
   Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
 ) inherits prometheus {
-  $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
+  $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
+
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
   }
 
-  $options = "-nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  $options = "server --phpfpm.scrape-uri '${scrape_uri}' ${extra_options}"
 
   if $install_method == 'url' {
     # Not a big fan of copypasting but prometheus::daemon takes for granted
     # a specific path embedded in the prometheus *_exporter tarball, which
-    # nginx_prometheus_exporter lacks currently as of version 0.9.0
+    # php-fpm_exporter lacks currently as of version 2.0.4
     # TODO: patch prometheus::daemon to support custom extract directories
     $real_install_method = 'none'
     $install_dir = "/opt/${package_name}-${version}.${os}-${arch}"
