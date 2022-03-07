@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v12.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.4.0) (2022-03-07)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.3.0...v12.4.0)
+
+**Implemented enhancements:**
+
+- Add php-fpm exporter [\#605](https://github.com/voxpupuli/puppet-prometheus/pull/605) ([kubicgruenfeld](https://github.com/kubicgruenfeld))
+- Add Debian 11 support [\#601](https://github.com/voxpupuli/puppet-prometheus/pull/601) ([towo](https://github.com/towo))
+- Allow to set storage parameters to false [\#598](https://github.com/voxpupuli/puppet-prometheus/pull/598) ([kubicgruenfeld](https://github.com/kubicgruenfeld))
+
+**Closed issues:**
+
+- We should be able to download from custom url with credentials [\#603](https://github.com/voxpupuli/puppet-prometheus/issues/603)
+- Prometheus Agent mode not supported yet [\#597](https://github.com/voxpupuli/puppet-prometheus/issues/597)
+
 ## [v12.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.3.0) (2021-11-17)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.2.0...v12.3.0)
