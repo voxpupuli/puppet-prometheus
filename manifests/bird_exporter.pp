@@ -63,7 +63,7 @@
 # @author Tim Meusel <tim@bastelfreak.de>
 #
 class prometheus::bird_exporter (
-  String $download_extension              = '',
+  Optional[String[1]] $download_extension = undef,
   Prometheus::Uri $download_url_base      = 'https://github.com/czerwonk/bird_exporter/releases',
   Array[String] $extra_groups             = ['bird'],
   String[1] $group                        = 'bird-exporter',

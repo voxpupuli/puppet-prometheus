@@ -47,7 +47,7 @@
 # @param ldap_password
 #  Password used to authenticate to openldap cn=monitor tree
 class prometheus::openldap_exporter (
-  String $download_extension              = '',
+  Optional[String[1]] $download_extension = undef,
   Array[String] $extra_groups             = [],
   String[1] $group                        = 'openldap-exporter',
   String[1] $package_ensure               = 'latest',

@@ -53,7 +53,7 @@
 # @author Tim Meusel <tim@bastelfreak.de>
 #
 class prometheus::unbound_exporter (
-  String $download_extension              = '',
+  Optional[String[1]] $download_extension = undef,
   Prometheus::Uri $download_url_base      = 'https://github.com/kumina/unbound_exporter/releases',
   Array[String] $extra_groups             = ['unbound'],
   String[1] $group                        = 'unbound-exporter',
