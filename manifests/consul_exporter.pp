@@ -80,7 +80,7 @@ class prometheus::consul_exporter (
   String[1] $os                           = downcase($facts['kernel']),
   Prometheus::Initstyle $init_style       = $facts['service_provider'],
   Prometheus::Install $install_method     = $prometheus::install_method,
-  String $extra_options                   = '',
+  Optional[String[1]] $extra_options      = undef,
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,

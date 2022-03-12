@@ -67,7 +67,7 @@ class prometheus::pushprox_proxy (
   Boolean $manage_service                 = true,
   Boolean $manage_user                    = true,
   String[1] $os                           = $prometheus::os,
-  String $extra_options                   = '',
+  Optional[String[1]] $extra_options      = undef,
   Optional[String] $download_url          = undef,
   String[1] $config_mode                  = $prometheus::config_mode,
   String[1] $arch                         = $prometheus::real_arch,

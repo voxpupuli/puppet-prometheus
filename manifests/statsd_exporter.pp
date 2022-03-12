@@ -79,7 +79,7 @@ class prometheus::statsd_exporter (
   Boolean $manage_group                   = true,
   Boolean $manage_service                 = true,
   Boolean $manage_user                    = true,
-  String $extra_options                   = '',
+  Optional[String[1]] $extra_options      = undef,
   Optional[Prometheus::Uri] $download_url = undef,
   Boolean $export_scrape_job              = false,
   Optional[Stdlib::Host] $scrape_host     = undef,

@@ -109,7 +109,7 @@ class prometheus::bind_exporter (
   Boolean $manage_service                       = true,
   Boolean $manage_user                          = true,
   String[1] $os                                 = $prometheus::os,
-  String $extra_options                         = '',
+  Optional[String[1]] $extra_options            = undef,
   Hash[String, Scalar] $env_vars                = {},
   String $download_extension                    = 'tar.gz',
   Stdlib::HTTPSUrl $download_url_base           = 'https://github.com/prometheus-community/bind_exporter/releases',

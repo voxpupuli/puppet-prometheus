@@ -73,7 +73,7 @@ class prometheus::redis_exporter (
   Boolean $manage_user                    = true,
   String[1] $namespace                    = 'redis',
   String[1] $os                           = downcase($facts['kernel']),
-  String $extra_options                   = '',
+  Optional[String[1]] $extra_options      = undef,
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
