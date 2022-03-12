@@ -93,7 +93,7 @@ class prometheus::process_exporter (
   Boolean $manage_service                 = true,
   Boolean $manage_user                    = true,
   String[1] $os                           = downcase($facts['kernel']),
-  String $extra_options                   = '',
+  Optional[String[1]] $extra_options      = undef,
   String[1] $config_mode                  = $prometheus::config_mode,
   Optional[Prometheus::Uri] $download_url = undef,
   String[1] $arch                         = $prometheus::real_arch,
