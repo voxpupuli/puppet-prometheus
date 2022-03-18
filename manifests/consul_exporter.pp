@@ -55,6 +55,10 @@
 #  Address to listen on for web interface and telemetry. (default ":9107")
 # @param web_telemetry_path
 #  Path under which to expose metrics. (default "/metrics")
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::consul_exporter (
   Boolean $consul_health_summary,
   String[1] $consul_server,
@@ -70,25 +74,27 @@ class prometheus::consul_exporter (
   String[1] $version,
   String[1] $web_listen_address,
   String[1] $web_telemetry_path,
-  Boolean $purge_config_dir               = true,
-  Boolean $restart_on_change              = true,
-  Boolean $service_enable                 = true,
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  Boolean $manage_group                   = true,
-  Boolean $manage_service                 = true,
-  Boolean $manage_user                    = true,
-  String[1] $os                           = downcase($facts['kernel']),
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  Prometheus::Install $install_method     = $prometheus::install_method,
-  Optional[String[1]] $extra_options      = undef,
-  Optional[Prometheus::Uri] $download_url = undef,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
-  Boolean $export_scrape_job              = false,
-  Optional[Stdlib::Host] $scrape_host     = undef,
-  Stdlib::Port $scrape_port               = 9107,
-  String[1] $scrape_job_name              = 'consul',
-  Optional[Hash] $scrape_job_labels       = undef,
+  Boolean $purge_config_dir                                  = true,
+  Boolean $restart_on_change                                 = true,
+  Boolean $service_enable                                    = true,
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  Boolean $manage_group                                      = true,
+  Boolean $manage_service                                    = true,
+  Boolean $manage_user                                       = true,
+  String[1] $os                                              = downcase($facts['kernel']),
+  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Install $install_method                        = $prometheus::install_method,
+  Optional[String[1]] $extra_options                         = undef,
+  Optional[Prometheus::Uri] $download_url                    = undef,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
+  Boolean $export_scrape_job                                 = false,
+  Optional[Stdlib::Host] $scrape_host                        = undef,
+  Stdlib::Port $scrape_port                                  = 9107,
+  String[1] $scrape_job_name                                 = 'consul',
+  Optional[Hash] $scrape_job_labels                          = undef,
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.3.0
   if versioncmp ($version, '0.3.0') == -1 {
@@ -145,5 +151,7 @@ class prometheus::consul_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

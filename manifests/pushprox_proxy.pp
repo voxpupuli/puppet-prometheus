@@ -47,6 +47,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::pushprox_proxy (
   String[1] $download_extension,
   Prometheus::Uri $download_url_base,
@@ -56,22 +60,24 @@ class prometheus::pushprox_proxy (
   String[1] $package_name,
   String[1] $user,
   String[1] $version,
-  Boolean $service_enable                 = true,
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  String[1] $service_name                 = 'pushprox_proxy',
-  Boolean $restart_on_change              = true,
-  Boolean $purge_config_dir               = true,
-  Prometheus::Initstyle $init_style       = $prometheus::init_style,
-  String[1] $install_method               = $prometheus::install_method,
-  Boolean $manage_group                   = true,
-  Boolean $manage_service                 = true,
-  Boolean $manage_user                    = true,
-  String[1] $os                           = $prometheus::os,
-  Optional[String[1]] $extra_options      = undef,
-  Optional[String] $download_url          = undef,
-  String[1] $config_mode                  = $prometheus::config_mode,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
+  Boolean $service_enable                                    = true,
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  String[1] $service_name                                    = 'pushprox_proxy',
+  Boolean $restart_on_change                                 = true,
+  Boolean $purge_config_dir                                  = true,
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
+  String[1] $install_method                                  = $prometheus::install_method,
+  Boolean $manage_group                                      = true,
+  Boolean $manage_service                                    = true,
+  Boolean $manage_user                                       = true,
+  String[1] $os                                              = $prometheus::os,
+  Optional[String[1]] $extra_options                         = undef,
+  Optional[String] $download_url                             = undef,
+  String[1] $config_mode                                     = $prometheus::config_mode,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/PushProx-${version}.${os}-${arch}.${download_extension}")
 
@@ -103,5 +109,7 @@ class prometheus::pushprox_proxy (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

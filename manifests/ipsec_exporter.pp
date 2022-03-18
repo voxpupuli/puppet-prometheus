@@ -45,35 +45,41 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::ipsec_exporter (
-  String[1] $download_extension           = 'tar.gz',
-  Prometheus::Uri $download_url_base      = 'https://github.com/dennisstritzke/ipsec_exporter/releases',
-  Array[String[1]] $extra_groups          = [],
-  String[1] $group                        = 'ipsec-exporter',
-  String[1] $package_ensure               = 'latest',
-  String[1] $package_name                 = 'ipsec_exporter',
-  String[1] $service_name                 = 'ipsec_exporter',
-  String[1] $user                         = 'ipsec-exporter',
-  String[1] $version                      = '0.3.2',
-  String[1] $os                           = downcase($facts['kernel']),
-  String $options                         = '',
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  Prometheus::Install $install_method     = $prometheus::install_method,
-  Optional[Prometheus::Uri] $download_url = undef,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::AbsolutePath $bin_dir           = $prometheus::bin_dir,
-  Boolean $export_scrape_job              = false,
-  Optional[Stdlib::Host] $scrape_host     = undef,
-  Stdlib::Port $scrape_port               = 9536,
-  String[1] $scrape_job_name              = 'ipsec',
-  Optional[Hash] $scrape_job_labels       = undef,
-  Boolean $service_enable                 = true,
-  Boolean $manage_service                 = true,
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  Boolean $restart_on_change              = true,
-  Boolean $purge_config_dir               = true,
-  Boolean $manage_user                    = true,
-  Boolean $manage_group                   = true,
+  String[1] $download_extension                              = 'tar.gz',
+  Prometheus::Uri $download_url_base                         = 'https://github.com/dennisstritzke/ipsec_exporter/releases',
+  Array[String[1]] $extra_groups                             = [],
+  String[1] $group                                           = 'ipsec-exporter',
+  String[1] $package_ensure                                  = 'latest',
+  String[1] $package_name                                    = 'ipsec_exporter',
+  String[1] $service_name                                    = 'ipsec_exporter',
+  String[1] $user                                            = 'ipsec-exporter',
+  String[1] $version                                         = '0.3.2',
+  String[1] $os                                              = downcase($facts['kernel']),
+  String $options                                            = '',
+  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Install $install_method                        = $prometheus::install_method,
+  Optional[Prometheus::Uri] $download_url                    = undef,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::AbsolutePath $bin_dir                              = $prometheus::bin_dir,
+  Boolean $export_scrape_job                                 = false,
+  Optional[Stdlib::Host] $scrape_host                        = undef,
+  Stdlib::Port $scrape_port                                  = 9536,
+  String[1] $scrape_job_name                                 = 'ipsec',
+  Optional[Hash] $scrape_job_labels                          = undef,
+  Boolean $service_enable                                    = true,
+  Boolean $manage_service                                    = true,
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  Boolean $restart_on_change                                 = true,
+  Boolean $purge_config_dir                                  = true,
+  Boolean $manage_user                                       = true,
+  Boolean $manage_group                                      = true,
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
   # Prometheus dropped a 'v' on the realease name at 0.3.2
   if versioncmp ($version, '0.3.2') >= 0 {
@@ -119,5 +125,7 @@ class prometheus::ipsec_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

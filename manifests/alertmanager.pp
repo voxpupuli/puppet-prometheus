@@ -100,6 +100,10 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::alertmanager (
   Stdlib::Absolutepath $config_dir,
   Stdlib::Absolutepath $config_file,
@@ -118,25 +122,27 @@ class prometheus::alertmanager (
   Array $templates,
   String[1] $user,
   String[1] $version,
-  Boolean $service_enable                 = true,
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  String[1] $service_name                 = 'alertmanager',
-  Boolean $restart_on_change              = true,
-  Boolean $reload_on_change               = false,
-  Boolean $purge_config_dir               = true,
-  Boolean $manage_config                  = true,
-  Boolean $validate_config                = false,
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  String[1] $install_method               = $prometheus::install_method,
-  Boolean $manage_group                   = true,
-  Boolean $manage_service                 = true,
-  Boolean $manage_user                    = true,
-  String[1] $os                           = $prometheus::os,
-  Optional[String[1]] $extra_options      = undef,
-  Optional[String] $download_url          = undef,
-  String[1] $config_mode                  = $prometheus::config_mode,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
+  Boolean $service_enable                                    = true,
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  String[1] $service_name                                    = 'alertmanager',
+  Boolean $restart_on_change                                 = true,
+  Boolean $reload_on_change                                  = false,
+  Boolean $purge_config_dir                                  = true,
+  Boolean $manage_config                                     = true,
+  Boolean $validate_config                                   = false,
+  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  String[1] $install_method                                  = $prometheus::install_method,
+  Boolean $manage_group                                      = true,
+  Boolean $manage_service                                    = true,
+  Boolean $manage_user                                       = true,
+  String[1] $os                                              = $prometheus::os,
+  Optional[String[1]] $extra_options                         = undef,
+  Optional[String] $download_url                             = undef,
+  String[1] $config_mode                                     = $prometheus::config_mode,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
   if( versioncmp($version, '0.3.0') == -1 ) {
     $real_download_url    = pick($download_url,
@@ -267,5 +273,7 @@ class prometheus::alertmanager (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

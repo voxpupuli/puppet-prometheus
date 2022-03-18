@@ -216,6 +216,10 @@
 # @param config_show_diff
 #  Whether to show prometheus configuration file diff in the Puppet logs.
 # @param extra_groups Extra groups of which the user should be a part
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus (
   String $user,
   String $group,
@@ -301,6 +305,8 @@ class prometheus (
   Boolean $manage_user                                                          = true,
   Boolean $config_show_diff                                                     = true,
   Boolean $include_default_scrape_configs                                       = true,
+  Optional[String[1]] $proxy_server                                             = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
 ) {
   case $arch {
     'x86_64', 'amd64': { $real_arch = 'amd64' }

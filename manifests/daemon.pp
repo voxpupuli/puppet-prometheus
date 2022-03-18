@@ -45,40 +45,46 @@
 #  Service startup scripts style (e.g. rc, upstart or systemd).
 #  Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 #  Typically this can be used when a package is already providing the file.
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 define prometheus::daemon (
   String[1] $version,
   Prometheus::Uri $real_download_url,
   $notify_service,
   String[1] $user,
   String[1] $group,
-  Prometheus::Install $install_method     = $prometheus::install_method,
-  String $download_extension              = $prometheus::download_extension,
-  String[1] $os                           = $prometheus::os,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir           = $prometheus::bin_dir,
-  String[1] $bin_name                     = $name,
-  Optional[String] $package_name          = undef,
-  String[1] $package_ensure               = 'installed',
-  Boolean $manage_user                    = true,
-  Array $extra_groups                     = [],
-  Boolean $manage_group                   = true,
-  Boolean $purge                          = true,
-  String $options                         = '',
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  Boolean $service_enable                 = true,
-  Boolean $manage_service                 = true,
-  Hash[String[1], Scalar] $env_vars       = {},
-  Stdlib::Absolutepath $env_file_path     = $prometheus::env_file_path,
-  Optional[String[1]] $extract_command    = $prometheus::extract_command,
-  Stdlib::Absolutepath $extract_path      = '/opt',
-  Stdlib::Absolutepath $archive_bin_path  = "/opt/${name}-${version}.${os}-${arch}/${name}",
-  Boolean $export_scrape_job              = false,
-  Stdlib::Host $scrape_host               = $facts['networking']['fqdn'],
-  Optional[Stdlib::Port] $scrape_port     = undef,
-  String[1] $scrape_job_name              = $name,
-  Hash $scrape_job_labels                 = { 'alias' => $scrape_host },
-  Stdlib::Absolutepath $usershell         = $prometheus::usershell,
+  Prometheus::Install $install_method                        = $prometheus::install_method,
+  String $download_extension                                 = $prometheus::download_extension,
+  String[1] $os                                              = $prometheus::os,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
+  String[1] $bin_name                                        = $name,
+  Optional[String] $package_name                             = undef,
+  String[1] $package_ensure                                  = 'installed',
+  Boolean $manage_user                                       = true,
+  Array $extra_groups                                        = [],
+  Boolean $manage_group                                      = true,
+  Boolean $purge                                             = true,
+  String $options                                            = '',
+  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  Boolean $service_enable                                    = true,
+  Boolean $manage_service                                    = true,
+  Hash[String[1], Scalar] $env_vars                          = {},
+  Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
+  Optional[String[1]] $extract_command                       = $prometheus::extract_command,
+  Stdlib::Absolutepath $extract_path                         = '/opt',
+  Stdlib::Absolutepath $archive_bin_path                     = "/opt/${name}-${version}.${os}-${arch}/${name}",
+  Boolean $export_scrape_job                                 = false,
+  Stdlib::Host $scrape_host                                  = $facts['networking']['fqdn'],
+  Optional[Stdlib::Port] $scrape_port                        = undef,
+  String[1] $scrape_job_name                                 = $name,
+  Hash $scrape_job_labels                                    = { 'alias' => $scrape_host },
+  Stdlib::Absolutepath $usershell                            = $prometheus::usershell,
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) {
   case $install_method {
     'url': {
@@ -94,6 +100,8 @@ define prometheus::daemon (
           source          => $real_download_url,
           checksum_verify => false,
           before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
+          proxy_server    => $proxy_server,
+          proxy_type      => $proxy_type,
         }
       } else {
         archive { "/tmp/${name}-${version}.${download_extension}":
@@ -106,6 +114,8 @@ define prometheus::daemon (
           cleanup         => true,
           before          => File[$archive_bin_path],
           extract_command => $extract_command,
+          proxy_server    => $proxy_server,
+          proxy_type      => $proxy_type,
         }
       }
       file { $archive_bin_path:

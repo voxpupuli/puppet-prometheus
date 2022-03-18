@@ -50,13 +50,19 @@
 #   The name of the scrape job. When configuring prometheus with this puppet module, the jobs to be collected are configured with `prometheus::collect_scrape_jobs`.
 # @param scrape_job_labels
 #   Labels to configure on the scrape job. If not set, the `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will be used.
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus::postfix_exporter (
   # Installation options
-  Prometheus::Install $install_method     = 'url',
-  Optional[Stdlib::HTTPUrl] $download_url = undef,
-  Stdlib::HTTPUrl $download_url_base      = 'https://github.com/kumina/postfix_exporter/releases',
-  String $download_extension              = '',
-  String[1] $version                      = '0.2.0',
+  Prometheus::Install $install_method                        = 'url',
+  Optional[Stdlib::HTTPUrl] $download_url                    = undef,
+  Stdlib::HTTPUrl $download_url_base                         = 'https://github.com/kumina/postfix_exporter/releases',
+  String $download_extension                                 = '',
+  String[1] $version                                         = '0.2.0',
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 
   # Package options (relevant when `install_method == 'package'`)
   String[1] $package_ensure               = 'installed',
@@ -121,5 +127,7 @@ class prometheus::postfix_exporter (
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }

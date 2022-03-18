@@ -47,41 +47,47 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 #
 # @see https://github.com/kumina/unbound_exporter
 #
 # @author Tim Meusel <tim@bastelfreak.de>
 #
 class prometheus::unbound_exporter (
-  String $download_extension              = '',
-  Prometheus::Uri $download_url_base      = 'https://github.com/kumina/unbound_exporter/releases',
-  Array[String] $extra_groups             = ['unbound'],
-  String[1] $group                        = 'unbound-exporter',
-  String[1] $package_ensure               = 'installed',
-  String[1] $package_name                 = 'unbound_exporter',
-  String[1] $user                         = 'unbound-exporter',
-  String[1] $version                      = '0.3',
-  Boolean $purge_config_dir               = true,
-  Boolean $restart_on_change              = true,
-  Boolean $service_enable                 = true,
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  String[1] $service_name                 = 'unbound_exporter',
-  Prometheus::Initstyle $init_style       = $facts['service_provider'],
-  Prometheus::Install $install_method     = 'none',
-  Boolean $manage_group                   = true,
-  Boolean $manage_service                 = true,
-  Boolean $manage_user                    = true,
-  String[1] $os                           = downcase($facts['kernel']),
-  Optional[String[1]] $extra_options      = undef,
-  Optional[Prometheus::Uri] $download_url = undef,
-  String[1] $arch                         = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir           = '/usr/local/bin',
-  Boolean $export_scrape_job              = false,
-  Stdlib::Port $scrape_port               = 9167,
-  String[1] $scrape_job_name              = 'unbound',
-  Optional[Hash] $scrape_job_labels       = undef,
-  Optional[String[1]] $bin_name           = undef,
-  Hash $env_vars                          = { 'GODEBUG' => 'x509ignoreCN=0' },
+  String $download_extension                                 = '',
+  Prometheus::Uri $download_url_base                         = 'https://github.com/kumina/unbound_exporter/releases',
+  Array[String] $extra_groups                                = ['unbound'],
+  String[1] $group                                           = 'unbound-exporter',
+  String[1] $package_ensure                                  = 'installed',
+  String[1] $package_name                                    = 'unbound_exporter',
+  String[1] $user                                            = 'unbound-exporter',
+  String[1] $version                                         = '0.3',
+  Boolean $purge_config_dir                                  = true,
+  Boolean $restart_on_change                                 = true,
+  Boolean $service_enable                                    = true,
+  Stdlib::Ensure::Service $service_ensure                    = 'running',
+  String[1] $service_name                                    = 'unbound_exporter',
+  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Install $install_method                        = 'none',
+  Boolean $manage_group                                      = true,
+  Boolean $manage_service                                    = true,
+  Boolean $manage_user                                       = true,
+  String[1] $os                                              = downcase($facts['kernel']),
+  Optional[String[1]] $extra_options                         = undef,
+  Optional[Prometheus::Uri] $download_url                    = undef,
+  String[1] $arch                                            = $prometheus::real_arch,
+  Stdlib::Absolutepath $bin_dir                              = '/usr/local/bin',
+  Boolean $export_scrape_job                                 = false,
+  Stdlib::Port $scrape_port                                  = 9167,
+  String[1] $scrape_job_name                                 = 'unbound',
+  Optional[Hash] $scrape_job_labels                          = undef,
+  Optional[String[1]] $bin_name                              = undef,
+  Hash $env_vars                                             = { 'GODEBUG' => 'x509ignoreCN=0' },
+  Optional[String[1]] $proxy_server                          = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}_${os}_${arch}")
 
@@ -118,5 +124,7 @@ class prometheus::unbound_exporter (
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
     env_vars           => $env_vars,
+    proxy_server       => $proxy_server,
+    proxy_type         => $proxy_type,
   }
 }
