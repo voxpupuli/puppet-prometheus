@@ -116,13 +116,13 @@ class prometheus::blackbox_exporter (
   $options = "--config.file=${config_file} ${extra_options}"
 
   file { $config_file:
-    ensure  => file,
-    owner   => 'root',
-    group   => $group,
-    mode    => $config_mode,
-    show_diff   => false,
-    content => template('prometheus/blackbox_exporter.yaml.erb'),
-    notify  => $notify_service,
+    ensure    => file,
+    owner     => 'root',
+    group     => $group,
+    mode      => $config_mode,
+    show_diff => false,
+    content   => template('prometheus/blackbox_exporter.yaml.erb'),
+    notify    => $notify_service,
   }
 
   prometheus::daemon { $service_name:
