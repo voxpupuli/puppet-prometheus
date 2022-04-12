@@ -120,6 +120,7 @@ class prometheus::blackbox_exporter (
     owner   => 'root',
     group   => $group,
     mode    => $config_mode,
+    show_diff => false,
     content => template('prometheus/blackbox_exporter.yaml.erb'),
     notify  => $notify_service,
   }
