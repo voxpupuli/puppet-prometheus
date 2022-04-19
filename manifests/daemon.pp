@@ -72,6 +72,7 @@ define prometheus::daemon (
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   Boolean $service_enable                                    = true,
   Boolean $manage_service                                    = true,
+  Boolean $env_vars_sensitive                                = false,
   Hash[String[1], Scalar] $env_vars                          = {},
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $extract_command                       = $prometheus::extract_command,
@@ -248,16 +249,17 @@ define prometheus::daemon (
     # those files to be present, even if empty, so it's critical that
     # the file not get removed
     file { "${env_file_path}/${name}":
-      mode    => '0644',
-      owner   => 'root',
-      group   => '0', # Darwin uses wheel
-      content => epp(
+      mode      => '0644',
+      owner     => 'root',
+      group     => '0', # Darwin uses wheel
+      content   => epp(
         'prometheus/daemon.env.epp',
         {
           'env_vars' => $env_vars_merged,
         }
       ),
-      notify  => $notify_service,
+      notify    => $notify_service,
+      show_diff => !$env_vars_sensitive,
     }
   }
 

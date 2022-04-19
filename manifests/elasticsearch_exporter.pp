@@ -55,6 +55,8 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
 # @param env_vars
 #  hash with custom environment variables that's passed to the exporter via init script / unit file
 # @param env_file_path
@@ -93,6 +95,7 @@ class prometheus::elasticsearch_exporter (
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Boolean $env_vars_sensitive                                = false,
   Hash[String[1], Scalar] $env_vars                          = {},
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
 ) inherits prometheus {
@@ -140,6 +143,7 @@ class prometheus::elasticsearch_exporter (
     scrape_job_labels  => $scrape_job_labels,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
+    env_vars_sensitive => $env_vars_sensitive,
     env_vars           => $env_vars,
     env_file_path      => $env_file_path,
   }
