@@ -56,9 +56,9 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 # @param env_vars
-#  hash with custom environment variables thats passed to the exporter via init script / unit file
+#  hash with custom environment variables that's passed to the exporter via init script / unit file
 # @param env_file_path
-#  The path to the file with the environmetn variable that is read from the init script/systemd unit
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 class prometheus::elasticsearch_exporter (
   String[1] $cnf_uri,
   String[1] $cnf_timeout,
