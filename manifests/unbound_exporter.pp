@@ -51,6 +51,12 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
+# @param env_vars
+#  Hash with custom environment variables that's passed to the exporter via init script / unit file
+# @param env_file_path
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 #
 # @see https://github.com/kumina/unbound_exporter
 #
@@ -85,7 +91,9 @@ class prometheus::unbound_exporter (
   String[1] $scrape_job_name                                 = 'unbound',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $bin_name                              = undef,
+  Boolean $env_vars_sensitive                                = false,
   Hash $env_vars                                             = { 'GODEBUG' => 'x509ignoreCN=0' },
+  Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
@@ -123,7 +131,9 @@ class prometheus::unbound_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
+    env_vars_sensitive => $env_vars_sensitive,
     env_vars           => $env_vars,
+    env_file_path      => $env_file_path,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
   }

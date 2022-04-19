@@ -58,7 +58,7 @@
 # @param env_vars_sensitive
 #  Do not show diff in case environment variables are sensitive
 # @param env_vars
-#  hash with custom environment variables that's passed to the exporter via init script / unit file
+#  Hash with custom environment variables that's passed to the exporter via init script / unit file
 # @param env_file_path
 #  The path to the file with the environment variable that is read from the init script/systemd unit
 class prometheus::elasticsearch_exporter (

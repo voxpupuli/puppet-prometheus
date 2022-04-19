@@ -50,6 +50,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
+# @param env_file_path
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 class prometheus::openldap_exporter (
   String $download_extension                                 = '',
   Array[String] $extra_groups                                = [],
@@ -81,6 +85,8 @@ class prometheus::openldap_exporter (
   Optional[String[1]] $ldap_password                         = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Boolean $env_vars_sensitive                                = false,
+  Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
 ) inherits prometheus {
   $release = "v${version}"
   $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${os}")
@@ -117,7 +123,9 @@ class prometheus::openldap_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    env_vars_sensitive => $env_vars_sensitive,
     env_vars           => $env_vars,
+    env_file_path      => $env_file_path,
     export_scrape_job  => $export_scrape_job,
     scrape_host        => $scrape_host,
     scrape_port        => $scrape_port,

@@ -49,6 +49,12 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
+# @param env_vars
+#  Hash with custom environment variables that's passed to the exporter via init script / unit file
+# @param env_file_path
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 define prometheus::daemon (
   String[1] $version,
   Prometheus::Uri $real_download_url,

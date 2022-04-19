@@ -94,6 +94,12 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
+# @param env_vars
+#  Hash with custom environment variables that's passed to the exporter via init script / unit file
+# @param env_file_path
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 class prometheus::bind_exporter (
   Optional[Stdlib::HTTPSUrl] $download_url                   = undef,
   Array[String[1]] $extra_groups                             = [],
@@ -114,7 +120,9 @@ class prometheus::bind_exporter (
   Boolean $manage_user                                       = true,
   String[1] $os                                              = $prometheus::os,
   Optional[String[1]] $extra_options                         = undef,
+  Boolean $env_vars_sensitive                                = false,
   Hash[String, Scalar] $env_vars                             = {},
+  Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   String $download_extension                                 = 'tar.gz',
   Stdlib::HTTPSUrl $download_url_base                        = 'https://github.com/prometheus-community/bind_exporter/releases',
   String[1] $config_mode                                     = $prometheus::config_mode,
@@ -152,7 +160,9 @@ class prometheus::bind_exporter (
     manage_group       => $manage_group,
     purge              => $purge_config_dir,
     options            => $extra_options,
+    env_vars_sensitive => $env_vars_sensitive,
     env_vars           => $env_vars,
+    env_file_path      => $env_file_path,
     init_style         => $init_style,
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,

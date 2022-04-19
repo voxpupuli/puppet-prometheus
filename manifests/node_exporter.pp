@@ -54,10 +54,12 @@
 #  User which runs the service
 # @param version
 #  The binary release version
+# @param env_vars_sensitive
+#  Do not show diff in case environment variables are sensitive
 # @param env_vars
-#  hash with custom environment variables thats passed to the exporter via init script / unit file
+#  Hash with custom environment variables that's passed to the exporter via init script / unit file
 # @param env_file_path
-#  The path to the file with the environmetn variable that is read from the init script/systemd unit
+#  The path to the file with the environment variable that is read from the init script/systemd unit
 # @param proxy_server
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
@@ -95,6 +97,7 @@ class prometheus::node_exporter (
   String[1] $scrape_job_name                                 = 'node',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $bin_name                              = undef,
+  Boolean $env_vars_sensitive                                = false,
   Hash[String[1], Scalar] $env_vars                          = {},
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $proxy_server                          = undef,
@@ -157,6 +160,7 @@ class prometheus::node_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
+    env_vars_sensitive => $env_vars_sensitive,
     env_vars           => $env_vars,
     env_file_path      => $env_file_path,
     proxy_server       => $proxy_server,
