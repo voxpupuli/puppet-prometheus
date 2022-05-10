@@ -134,7 +134,7 @@ class prometheus::process_exporter (
 
   $options = "-config.path=${config_path} ${extra_options}"
 
-  prometheus::daemon { 'process-exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
