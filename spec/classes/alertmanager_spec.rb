@@ -64,7 +64,9 @@ describe 'prometheus::alertmanager' do
             os: 'linux',
             bin_dir: '/usr/local/bin',
             install_method: 'url',
-            mute_time_intervals: [{ 'name' => 'weekend', 'weekdays' => %w[saturday sunday] }],
+            mute_time_intervals: [
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+            ],
           }
         end
 
@@ -72,9 +74,41 @@ describe 'prometheus::alertmanager' do
           verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
                             'mute_time_intervals:',
                             '- name: weekend',
-                            '  weekdays:',
-                            '  - saturday',
-                            '  - sunday',
+                            '  time_intervals:',
+                            '  - weekdays:',
+                            '    - saturday',
+                            '    - sunday',
+                          ])
+        }
+      end
+
+      context 'with latest version specified and time_intervals' do
+        let(:params) do
+          {
+            version: '0.24.0',
+            arch: 'amd64',
+            os: 'linux',
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
+            mute_time_intervals: [
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+            ],
+            time_intervals: [
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+            ],
+          }
+        end
+
+        it { is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without(content: %r{mute_time_intervals}) }
+
+        it {
+          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
+                            'time_intervals:',
+                            '- name: weekend',
+                            '  time_intervals:',
+                            '  - weekdays:',
+                            '    - saturday',
+                            '    - sunday',
                           ])
         }
       end

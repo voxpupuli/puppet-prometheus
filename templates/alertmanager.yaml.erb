@@ -6,8 +6,13 @@
 <% inhibit_rules = scope.lookupvar('::prometheus::alertmanager::inhibit_rules') -%>
 <% full_config = { 'global'=>global, 'templates'=>templates, 'route'=>route, 'receivers'=>receivers, 'inhibit_rules'=>inhibit_rules } -%>
 <%
-if scope.function_versioncmp([scope.lookupvar('::prometheus::alertmanager::version'), '0.22.0']) >= 0
+if scope.function_versioncmp([scope.lookupvar('::prometheus::alertmanager::version'), '0.22.0']) >= 0 &&
+    scope.lookupvar('::prometheus::alertmanager::time_intervals').empty?
   full_config['mute_time_intervals'] = scope.lookupvar('::prometheus::alertmanager::mute_time_intervals')
+end
+if scope.function_versioncmp([scope.lookupvar('::prometheus::alertmanager::version'), '0.24.0']) >= 0 &&
+    ! scope.lookupvar('::prometheus::alertmanager::time_intervals').empty?
+  full_config['time_intervals'] = scope.lookupvar('::prometheus::alertmanager::time_intervals')
 end
 -%>
 <%= full_config.to_yaml -%>
