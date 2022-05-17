@@ -63,7 +63,7 @@ class prometheus::ipmi_exporter (
   String[1] $package_ensure                                  = 'latest',
   String[1] $user                                            = 'ipmi-exporter',
   String[1] $group                                           = 'ipmi-exporter',
-  Prometheus::Uri $download_url_base                         = 'https://github.com/soundcloud/ipmi_exporter/releases',
+  Prometheus::Uri $download_url_base                         = 'https://github.com/prometheus-community/ipmi_exporter/releases',
   Array[String] $extra_groups                                = [],
   Prometheus::Initstyle $init_style                          = $facts['service_provider'],
   Boolean $purge_config_dir                                  = true,
