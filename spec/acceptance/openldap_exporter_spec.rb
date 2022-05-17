@@ -83,6 +83,21 @@ describe 'prometheus openldap exporter' do
     describe port(9330) do
       it { is_expected.to be_listening.with('tcp6') }
     end
+
+    it 'upgrades to new download format' do
+      pp = "class{'prometheus::openldap_exporter': version => '2.2.1'}"
+      apply_manifest(pp, catch_failures: true)
+      apply_manifest(pp, catch_changes: true)
+    end
+
+    describe service('openldap_exporter') do
+      it { is_expected.to be_running }
+      it { is_expected.to be_enabled }
+    end
+
+    describe port(9330) do
+      it { is_expected.to be_listening.with('tcp6') }
+    end
   end
   # rubocop:enable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
 end
