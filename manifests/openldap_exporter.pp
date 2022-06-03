@@ -51,7 +51,7 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::openldap_exporter (
-  String $download_extension                                 = '',
+  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
   Array[String] $extra_groups                                = [],
   String[1] $group                                           = 'openldap-exporter',
   String[1] $package_ensure                                  = 'latest',
@@ -69,7 +69,7 @@ class prometheus::openldap_exporter (
   Boolean $manage_service                                    = true,
   Boolean $manage_user                                       = true,
   String[1] $os                                              = downcase($facts['kernel']),
-  String $options                                            = '',
+  String $options                                            = '', # lint:ignore:params_empty_string_assignment
   Optional[Prometheus::Uri] $download_url                    = undef,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   Boolean $export_scrape_job                                 = false,

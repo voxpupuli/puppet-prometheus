@@ -57,7 +57,7 @@
 # @author Tim Meusel <tim@bastelfreak.de>
 #
 class prometheus::unbound_exporter (
-  String $download_extension                                 = '',
+  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
   Prometheus::Uri $download_url_base                         = 'https://github.com/kumina/unbound_exporter/releases',
   Array[String] $extra_groups                                = ['unbound'],
   String[1] $group                                           = 'unbound-exporter',

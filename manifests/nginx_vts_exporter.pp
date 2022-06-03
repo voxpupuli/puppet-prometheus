@@ -72,7 +72,7 @@ class prometheus::nginx_vts_exporter (
   Boolean          $manage_service                           = true,
   Boolean          $manage_user                              = true,
   String           $os                                       = downcase($facts['kernel']),
-  String           $extra_options                            = '',
+  String           $extra_options                            = '', # lint:ignore:params_empty_string_assignment
   Optional[Prometheus::Uri] $download_url                    = undef,
   String           $arch                                     = $prometheus::real_arch,
   String           $bin_dir                                  = $prometheus::bin_dir,

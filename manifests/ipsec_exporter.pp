@@ -60,7 +60,7 @@ class prometheus::ipsec_exporter (
   String[1] $user                                            = 'ipsec-exporter',
   String[1] $version                                         = '0.3.2',
   String[1] $os                                              = downcase($facts['kernel']),
-  String $options                                            = '',
+  String $options                                            = '', # lint:ignore:params_empty_string_assignment
   Prometheus::Initstyle $init_style                          = $facts['service_provider'],
   Prometheus::Install $install_method                        = $prometheus::install_method,
   Optional[Prometheus::Uri] $download_url                    = undef,

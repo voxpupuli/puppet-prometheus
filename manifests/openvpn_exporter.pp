@@ -52,7 +52,7 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::openvpn_exporter (
-  String $download_extension                                 = '',
+  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
   Prometheus::Uri $download_url_base                         = 'https://github.com/wandera/openvpn_exporter/releases',
   Array[String[1]] $extra_groups                             = [],
   String[1] $group                                           = 'openvpn-exporter',
