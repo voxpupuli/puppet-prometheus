@@ -1,13 +1,4 @@
 ---
-prometheus::usershell: '/usr/bin/nologin'
-prometheus::extra_options: ~
-prometheus::download_url: ~
-prometheus::bin_dir: '/usr/local/bin'
-prometheus::version: '2.30.3'
-prometheus::install_method: 'url'
-prometheus::manage_prometheus_server: false
-prometheus::extract_command: ~
-prometheus::service_name: 'prometheus'
 prometheus::pushprox_client::download_extension: 'tar.gz'
 prometheus::pushprox_client::download_url_base: 'https://github.com/prometheus-community/PushProx/releases'
 prometheus::pushprox_client::extra_groups: []
