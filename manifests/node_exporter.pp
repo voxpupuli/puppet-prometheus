@@ -99,15 +99,37 @@ class prometheus::node_exporter (
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+
+  ### TLS
+  Boolean $use_tls_server_config                     = false,
+  Optional[Stdlib::Absolutepath] $tls_cert_file      = undef,
+  Optional[Stdlib::Absolutepath] $tls_key_file       = undef,
+  Optional[Stdlib::Absolutepath] $tls_client_ca_file = undef,
+  String[1] $tls_client_auth_type                    = 'RequireAndVerifyClientCert',
+  Stdlib::Absolutepath $web_config_file              = '/etc/node_exporter_web-config.yml',
+  String[1] $tls_min_version                         = 'TLS12',
+  String[1] $tls_max_version                         = 'TLS13',
+  Optional[Array[String[1]]] $tls_cipher_suites      = undef,
+  Optional[Array[String[1]]] $tls_curve_preferences  = undef,
+  Boolean $tls_prefer_server_cipher_suites           = true,
+
+  ### HTTP/2
+  Boolean $use_http_server_config = false,
+  Boolean $http2                  = true,
+  Optional[Hash] $http2_headers   = undef,
+
+  ### Basic Auth
+  Optional[Hash] $basic_auth_users = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
     $release = "v${version}"
-  }
-  else {
+  } else {
     $release = $version
   }
-  $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+
+  $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+
   if $collectors {
     warning('Use of $collectors parameter is deprecated')
   }
@@ -125,9 +147,70 @@ class prometheus::node_exporter (
     "--no-collector.${collector}"
   }
 
-  $options = join([$extra_options,
-      join($cmd_collectors_enable, ' '),
-  join($cmd_collectors_disable, ' ')], ' ')
+  if $use_tls_server_config {
+    # if tls is enabled, these values have to be set and cannot be undef anymore
+    $valid_tls_cert_file        = assert_type(Stdlib::Absolutepath, $tls_cert_file)
+    $valid_tls_key_file         = assert_type(Stdlib::Absolutepath, $tls_key_file)
+
+    $tls_server_config = {
+      tls_server_config => {
+        cert_file        => $valid_tls_cert_file,
+        key_file         => $valid_tls_key_file,
+        client_ca_file   => $tls_client_ca_file,
+        client_auth_type => $tls_client_auth_type,
+        min_version      => $tls_min_version,
+        max_version      => $tls_max_version,
+        cipher_suites    => $tls_cipher_suites,
+        prefer_server_cipher_suites => $tls_prefer_server_cipher_suites,
+        curve_preferences           => $tls_curve_preferences,
+      },
+    }
+  } else {
+    $tls_server_config = {}
+  }
+
+  if $use_http_server_config {
+    $http_server_config = {
+      http_server_config => {
+        http2   => $http2,
+        headers => $http2_headers,
+      },
+    }
+  } else {
+    $http_server_config = {}
+  }
+
+  if $basic_auth_users =~ Undef {
+    $basic_auth_config = {}
+  } else {
+    $basic_auth_config = {
+      basic_auth_users => $basic_auth_users,
+    }
+  }
+
+  $web_config_content = merge($tls_server_config, $http_server_config, $basic_auth_config)
+
+  if empty($web_config_content) {
+    file { $web_config_file:
+      ensure  => absent,
+    }
+
+    $web_config = ''
+  } else {
+    file { $web_config_file:
+      ensure  => file,
+      content => $web_config_content.to_yaml,
+    }
+
+    $web_config = "--web.config=${$web_config_file}"
+  }
+
+  $options = [
+    $extra_options,
+    $cmd_collectors_enable.join(' '),
+    $cmd_collectors_disable.join(' '),
+    $web_config,
+  ].join(' ')
 
   prometheus::daemon { $service_name:
     install_method     => $install_method,
