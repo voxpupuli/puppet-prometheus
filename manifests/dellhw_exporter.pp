@@ -80,7 +80,7 @@ class prometheus::dellhw_exporter (
   Boolean $export_scrape_job                                 = false,
   Optional[Stdlib::Host] $scrape_host                        = undef,
   Stdlib::Port $scrape_port                                  = 9137,
-  String $scrape_ipadress                                    = '',
+  String $scrape_ipadress                                    = '', # lint:ignore:params_empty_string_assignment
   String[1] $scrape_job_name                                 = 'dellhw',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $bin_name                              = undef,

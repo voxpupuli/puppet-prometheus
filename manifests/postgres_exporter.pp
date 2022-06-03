@@ -82,7 +82,7 @@ class prometheus::postgres_exporter (
   Boolean $manage_service                                    = true,
   Boolean $manage_user                                       = true,
   String[1] $os                                              = downcase($facts['kernel']),
-  String $options                                            = '',
+  String $options                                            = '', # lint:ignore:params_empty_string_assignment
   Optional[Prometheus::Uri] $download_url                    = undef,
   Optional[String] $postgres_pass                            = undef,
   Optional[String] $postgres_user                            = undef,

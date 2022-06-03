@@ -59,7 +59,7 @@ class prometheus::postfix_exporter (
   Prometheus::Install $install_method                        = 'url',
   Optional[Stdlib::HTTPUrl] $download_url                    = undef,
   Stdlib::HTTPUrl $download_url_base                         = 'https://github.com/kumina/postfix_exporter/releases',
-  String $download_extension                                 = '',
+  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
   String[1] $version                                         = '0.2.0',
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
