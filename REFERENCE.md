@@ -170,6 +170,8 @@ The following parameters are available in the `prometheus` class:
 * [`log_format`](#log_format)
 * [`config_show_diff`](#config_show_diff)
 * [`extra_groups`](#extra_groups)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`env_file_path`](#env_file_path)
 * [`manage_prometheus_server`](#manage_prometheus_server)
 * [`manage_config`](#manage_config)
@@ -820,6 +822,22 @@ Data type: `Array`
 
 Extra groups of which the user should be a part
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
@@ -880,6 +898,8 @@ The following parameters are available in the `prometheus::alertmanager` class:
 * [`templates`](#templates)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`config_dir`](#config_dir)
 * [`reload_on_change`](#reload_on_change)
 
@@ -941,11 +961,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="global"></a>`global`
 
@@ -1156,6 +1176,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
@@ -1203,6 +1239,8 @@ The following parameters are available in the `prometheus::apache_exporter` clas
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -1261,11 +1299,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -1391,6 +1429,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -1466,6 +1520,8 @@ The following parameters are available in the `prometheus::beanstalkd_exporter` 
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -1540,11 +1596,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -1662,6 +1718,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -1741,6 +1813,8 @@ The following parameters are available in the `prometheus::bind_exporter` class:
 * [`scrape_job_name`](#scrape_job_name)
 * [`scrape_port`](#scrape_port)
 * [`scrape_job_labels`](#scrape_job_labels)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 
 ##### <a name="arch"></a>`arch`
 
@@ -1800,11 +1874,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="env_vars"></a>`env_vars`
 
@@ -1981,6 +2055,22 @@ be used.
 
 Default value: ``undef``
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ### <a name="prometheusbird_exporter"></a>`prometheus::bird_exporter`
 
 This module manages prometheus bird exporter
@@ -2028,6 +2118,8 @@ The following parameters are available in the `prometheus::bird_exporter` class:
 * [`version`](#version)
 * [`env_vars`](#env_vars)
 * [`env_file_path`](#env_file_path)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -2235,6 +2327,22 @@ The path to the file with the environmetn variable that is read from the init sc
 
 Default value: `$prometheus::env_file_path`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -2327,6 +2435,8 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`user`](#user)
 * [`version`](#version)
 * [`config_mode`](#config_mode)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -2383,11 +2493,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -2515,6 +2625,22 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -2585,6 +2711,8 @@ The following parameters are available in the `prometheus::collectd_exporter` cl
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -2749,6 +2877,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -2829,6 +2973,8 @@ The following parameters are available in the `prometheus::consul_exporter` clas
 * [`version`](#version)
 * [`web_listen_address`](#web_listen_address)
 * [`web_telemetry_path`](#web_telemetry_path)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -2891,11 +3037,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -3031,6 +3177,22 @@ Data type: `String[1]`
 
 Path under which to expose metrics. (default "/metrics")
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -3104,6 +3266,8 @@ The following parameters are available in the `prometheus::dellhw_exporter` clas
 * [`version`](#version)
 * [`omreport_path`](#omreport_path)
 * [`scrape_ipadress`](#scrape_ipadress)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -3161,11 +3325,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -3311,6 +3475,22 @@ The ip address that the exporter will to listen to (default '')
 
 Default value: `''`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -3392,6 +3572,8 @@ The following parameters are available in the `prometheus::elasticsearch_exporte
 * [`user`](#user)
 * [`version`](#version)
 * [`use_kingpin`](#use_kingpin)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`service_name`](#service_name)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
@@ -3455,11 +3637,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -3579,6 +3761,22 @@ Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
 this param to define how we call the es.uri and es.timeout in the $options
 https://github.com/justwatchcom/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="service_name"></a>`service_name`
 
 Data type: `String[1]`
@@ -3655,6 +3853,8 @@ The following parameters are available in the `prometheus::graphite_exporter` cl
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -3819,6 +4019,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -3893,6 +4109,8 @@ The following parameters are available in the `prometheus::grok_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -3964,11 +4182,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -4088,6 +4306,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -4160,6 +4394,8 @@ The following parameters are available in the `prometheus::haproxy_exporter` cla
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -4216,11 +4452,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -4338,6 +4574,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -4419,6 +4671,8 @@ The following parameters are available in the `prometheus::ipmi_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
@@ -4482,7 +4736,7 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-Default value: `'https://github.com/soundcloud/ipmi_exporter/releases'`
+Default value: `'https://github.com/prometheus-community/ipmi_exporter/releases'`
 
 ##### <a name="extra_groups"></a>`extra_groups`
 
@@ -4494,11 +4748,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -4636,6 +4890,22 @@ The binary release version
 
 Default value: `'1.4.0'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -4731,6 +5001,8 @@ The following parameters are available in the `prometheus::ipsec_exporter` class
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -4921,6 +5193,22 @@ The binary release version
 
 Default value: `'0.3.2'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -4992,6 +5280,8 @@ The following parameters are available in the `prometheus::memcached_exporter` c
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -5049,11 +5339,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -5183,6 +5473,22 @@ The binary release version
 
 Default value: `'0.6.0'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -5264,6 +5570,8 @@ The following parameters are available in the `prometheus::mesos_exporter` class
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -5326,11 +5634,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -5448,6 +5756,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -5521,6 +5845,8 @@ The following parameters are available in the `prometheus::mongodb_exporter` cla
 * [`user`](#user)
 * [`version`](#version)
 * [`use_kingpin`](#use_kingpin)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -5585,11 +5911,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -5729,6 +6055,22 @@ https://github.com/percona/mongodb_exporter/blob/v0.7.0/CHANGELOG.md
 
 Default value: ``true``
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -5810,6 +6152,8 @@ The following parameters are available in the `prometheus::mysqld_exporter` clas
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -5916,11 +6260,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -6038,6 +6382,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -6111,6 +6471,8 @@ The following parameters are available in the `prometheus::nginx_prometheus_expo
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -6178,11 +6540,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -6320,6 +6682,22 @@ The binary release version
 
 Default value: `'0.9.0'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -6416,6 +6794,8 @@ The following parameters are available in the `prometheus::nginx_vts_exporter` c
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -6594,6 +6974,22 @@ Data type: `String`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -6670,12 +7066,29 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`version`](#version)
 * [`env_vars`](#env_vars)
 * [`env_file_path`](#env_file_path)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
 * [`scrape_job_name`](#scrape_job_name)
 * [`scrape_job_labels`](#scrape_job_labels)
 * [`bin_name`](#bin_name)
+* [`use_tls_server_config`](#use_tls_server_config)
+* [`tls_cert_file`](#tls_cert_file)
+* [`tls_key_file`](#tls_key_file)
+* [`tls_client_ca_file`](#tls_client_ca_file)
+* [`tls_client_auth_type`](#tls_client_auth_type)
+* [`web_config_file`](#web_config_file)
+* [`tls_min_version`](#tls_min_version)
+* [`tls_max_version`](#tls_max_version)
+* [`tls_cipher_suites`](#tls_cipher_suites)
+* [`tls_curve_preferences`](#tls_curve_preferences)
+* [`tls_prefer_server_cipher_suites`](#tls_prefer_server_cipher_suites)
+* [`use_http_server_config`](#use_http_server_config)
+* [`http2`](#http2)
+* [`http2_headers`](#http2_headers)
+* [`basic_auth_users`](#basic_auth_users)
 
 ##### <a name="arch"></a>`arch`
 
@@ -6748,11 +7161,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -6888,6 +7301,22 @@ The path to the file with the environmetn variable that is read from the init sc
 
 Default value: `$prometheus::env_file_path`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -6936,6 +7365,126 @@ Data type: `Optional[String[1]]`
 
 Default value: ``undef``
 
+##### <a name="use_tls_server_config"></a>`use_tls_server_config`
+
+Data type: `Boolean`
+
+
+
+Default value: ``false``
+
+##### <a name="tls_cert_file"></a>`tls_cert_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: ``undef``
+
+##### <a name="tls_key_file"></a>`tls_key_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: ``undef``
+
+##### <a name="tls_client_ca_file"></a>`tls_client_ca_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: ``undef``
+
+##### <a name="tls_client_auth_type"></a>`tls_client_auth_type`
+
+Data type: `String[1]`
+
+
+
+Default value: `'RequireAndVerifyClientCert'`
+
+##### <a name="web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `'/etc/node_exporter_web-config.yml'`
+
+##### <a name="tls_min_version"></a>`tls_min_version`
+
+Data type: `String[1]`
+
+
+
+Default value: `'TLS12'`
+
+##### <a name="tls_max_version"></a>`tls_max_version`
+
+Data type: `String[1]`
+
+
+
+Default value: `'TLS13'`
+
+##### <a name="tls_cipher_suites"></a>`tls_cipher_suites`
+
+Data type: `Optional[Array[String[1]]]`
+
+
+
+Default value: ``undef``
+
+##### <a name="tls_curve_preferences"></a>`tls_curve_preferences`
+
+Data type: `Optional[Array[String[1]]]`
+
+
+
+Default value: ``undef``
+
+##### <a name="tls_prefer_server_cipher_suites"></a>`tls_prefer_server_cipher_suites`
+
+Data type: `Boolean`
+
+
+
+Default value: ``true``
+
+##### <a name="use_http_server_config"></a>`use_http_server_config`
+
+Data type: `Boolean`
+
+
+
+Default value: ``false``
+
+##### <a name="http2"></a>`http2`
+
+Data type: `Boolean`
+
+
+
+Default value: ``true``
+
+##### <a name="http2_headers"></a>`http2_headers`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
+##### <a name="basic_auth_users"></a>`basic_auth_users`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
 ### <a name="prometheusopenldap_exporter"></a>`prometheus::openldap_exporter`
 
 This module manages prometheus openldap_exporter
@@ -6967,6 +7516,8 @@ The following parameters are available in the `prometheus::openldap_exporter` cl
 * [`version`](#version)
 * [`ldap_binddn`](#ldap_binddn)
 * [`ldap_password`](#ldap_password)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -7158,6 +7709,22 @@ Password used to authenticate to openldap cn=monitor tree
 
 Default value: ``undef``
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -7230,6 +7797,8 @@ The following parameters are available in the `prometheus::openvpn_exporter` cla
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
@@ -7295,11 +7864,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -7429,6 +7998,22 @@ The binary release version
 
 Default value: `'v0.3.0.3'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -7510,6 +8095,8 @@ The following parameters are available in the `prometheus::php_fpm_exporter` cla
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -7577,11 +8164,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -7719,6 +8306,22 @@ The binary release version
 
 Default value: `'2.0.4'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -7825,6 +8428,8 @@ The following parameters are available in the `prometheus::postfix_exporter` cla
 * [`scrape_port`](#scrape_port)
 * [`scrape_job_name`](#scrape_job_name)
 * [`scrape_job_labels`](#scrape_job_labels)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 
 ##### <a name="install_method"></a>`install_method`
@@ -8013,6 +8618,22 @@ Labels to configure on the scrape job. If not set, the `prometheus::daemon` defa
 
 Default value: ``undef``
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -8056,6 +8677,8 @@ The following parameters are available in the `prometheus::postgres_exporter` cl
 * [`postgres_pass`](#postgres_pass)
 * [`postgres_auth_method`](#postgres_auth_method)
 * [`data_source_uri`](#data_source_uri)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`options`](#options)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
@@ -8261,6 +8884,22 @@ Data type: `String[1]`
 
 Uri on howto connect to the database
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="options"></a>`options`
 
 Data type: `String`
@@ -8367,6 +9006,8 @@ The following parameters are available in the `prometheus::process_exporter` cla
 * [`version`](#version)
 * [`hash_watched_processes`](#hash_watched_processes)
 * [`watched_processes`](#watched_processes)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`config_path`](#config_path)
 * [`config_mode`](#config_mode)
 * [`export_scrape_job`](#export_scrape_job)
@@ -8419,11 +9060,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -8559,6 +9200,22 @@ Has no effect if hash_watched_processes is set
 
 Default value: `[]`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="config_path"></a>`config_path`
 
 Data type: `Stdlib::Absolutepath`
@@ -8645,6 +9302,8 @@ The following parameters are available in the `prometheus::puppetdb_exporter` cl
 * [`user`](#user)
 * [`version`](#version)
 * [`puppetdb_url`](#puppetdb_url)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -8702,11 +9361,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -8844,6 +9503,22 @@ The URI to PuppetDB with http/https protocol at the beginning and `/pdb/query` a
 
 Default value: `'http://127.0.0.1:8080/pdb/query'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -8922,6 +9597,8 @@ The following parameters are available in the `prometheus::pushgateway` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 
 ##### <a name="arch"></a>`arch`
 
@@ -8967,11 +9644,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -9083,6 +9760,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ### <a name="prometheuspushprox_client"></a>`prometheus::pushprox_client`
 
 This module manages prometheus pushprox_client
@@ -9116,6 +9809,8 @@ The following parameters are available in the `prometheus::pushprox_client` clas
 * [`user`](#user)
 * [`version`](#version)
 * [`env_vars`](#env_vars)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`proxy_url`](#proxy_url)
 
 ##### <a name="arch"></a>`arch`
@@ -9170,11 +9865,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -9302,6 +9997,22 @@ The environment variable to pass to the daemon
 
 Default value: `{}`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="proxy_url"></a>`proxy_url`
 
 Data type: `String[1]`
@@ -9340,6 +10051,8 @@ The following parameters are available in the `prometheus::pushprox_proxy` class
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 
 ##### <a name="arch"></a>`arch`
 
@@ -9393,11 +10106,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -9517,6 +10230,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ### <a name="prometheusrabbitmq_exporter"></a>`prometheus::rabbitmq_exporter`
 
 This module manages prometheus rabbitmq_exporter
@@ -9556,6 +10285,8 @@ The following parameters are available in the `prometheus::rabbitmq_exporter` cl
 * [`rabbit_capabilities`](#rabbit_capabilities)
 * [`rabbit_exporters`](#rabbit_exporters)
 * [`extra_env_vars`](#extra_env_vars)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -9606,11 +10337,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -9781,6 +10512,22 @@ Additional environment variables that should be supplied to the exporter, as a h
 
 Default value: `{}`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -9854,6 +10601,8 @@ The following parameters are available in the `prometheus::redis_exporter` class
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -9910,13 +10659,13 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 For a full list of the exporter's supported extra options
 please refer to https://github.com/oliver006/redis_exporter
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -10044,6 +10793,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -10122,6 +10887,8 @@ The following parameters are available in the `prometheus::sachet` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`config_dir`](#config_dir)
 * [`config_file`](#config_file)
 * [`config_mode`](#config_mode)
@@ -10178,11 +10945,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -10363,6 +11130,22 @@ Data type: `String[1]`
 The binary release version
 
 Default value: `'0.2.6'`
+
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
 
 ##### <a name="config_dir"></a>`config_dir`
 
@@ -10888,6 +11671,8 @@ The following parameters are available in the `prometheus::snmp_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -10958,11 +11743,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -11080,6 +11865,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -11154,6 +11955,8 @@ The following parameters are available in the `prometheus::ssh_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
@@ -11227,11 +12030,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -11369,6 +12172,22 @@ The binary release version
 
 Default value: `'1.2.0'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -11451,6 +12270,8 @@ The following parameters are available in the `prometheus::ssl_exporter` class:
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`scrape_host`](#scrape_host)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
@@ -11524,11 +12345,11 @@ Default value: `[]`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -11666,6 +12487,22 @@ The binary release version
 
 Default value: `'2.2.1'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -11747,6 +12584,8 @@ The following parameters are available in the `prometheus::statsd_exporter` clas
 * [`mappings`](#mappings)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`mapping_config_path`](#mapping_config_path)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
@@ -11806,11 +12645,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -11939,6 +12778,22 @@ Data type: `String[1]`
 
 The binary release version
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="mapping_config_path"></a>`mapping_config_path`
 
 Data type: `Stdlib::Absolutepath`
@@ -12019,6 +12874,8 @@ The following parameters are available in the `prometheus::unbound_exporter` cla
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_port`](#scrape_port)
 * [`scrape_job_name`](#scrape_job_name)
@@ -12076,11 +12933,11 @@ Default value: `['unbound']`
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -12210,6 +13067,22 @@ The binary release version
 
 Default value: `'0.3'`
 
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
+
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
@@ -12289,6 +13162,8 @@ The following parameters are available in the `prometheus::varnish_exporter` cla
 * [`service_name`](#service_name)
 * [`user`](#user)
 * [`version`](#version)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`export_scrape_job`](#export_scrape_job)
 * [`scrape_host`](#scrape_host)
 * [`scrape_port`](#scrape_port)
@@ -12339,11 +13214,11 @@ Extra groups to add the binary user to
 
 ##### <a name="extra_options"></a>`extra_options`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: `''`
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
@@ -12460,6 +13335,22 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
 
 ##### <a name="export_scrape_job"></a>`export_scrape_job`
 
@@ -12594,6 +13485,8 @@ The following parameters are available in the `prometheus::daemon` defined type:
 * [`extract_path`](#extract_path)
 * [`archive_bin_path`](#archive_bin_path)
 * [`init_style`](#init_style)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
 * [`group`](#group)
 * [`purge`](#purge)
 * [`options`](#options)
@@ -12775,6 +13668,22 @@ Can also be set to `none` when you don't want the class to create a startup scri
 Typically this can be used when a package is already providing the file.
 
 Default value: `$facts['service_provider']`
+
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: ``undef``
 
 ##### <a name="group"></a>`group`
 
