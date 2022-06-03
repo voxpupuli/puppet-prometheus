@@ -226,6 +226,8 @@ Data type: `Stdlib::Absolutepath`
 
 Directory where binaries are located
 
+Default value: `'/usr/local/bin'`
+
 ##### <a name="shared_dir"></a>`shared_dir`
 
 Data type: `Stdlib::Absolutepath`
@@ -246,11 +248,15 @@ Data type: `String`
 
 Prometheus release
 
+Default value: `'2.30.3'`
+
 ##### <a name="install_method"></a>`install_method`
 
 Data type: `String`
 
 Installation method: url or package (only url is supported currently)
+
+Default value: `'url'`
 
 ##### <a name="os"></a>`os`
 
@@ -265,6 +271,8 @@ Default value: `downcase($facts['kernel'])`
 Data type: `Optional[String]`
 
 Complete URL corresponding to the Prometheus release, default to undef
+
+Default value: ``undef``
 
 ##### <a name="download_url_base"></a>`download_url_base`
 
@@ -307,6 +315,8 @@ Location of prometheus local storage (storage.local argument)
 Data type: `Optional[String[1]]`
 
 Extra options added to prometheus startup command
+
+Default value: ``undef``
 
 ##### <a name="config_hash"></a>`config_hash`
 
@@ -357,6 +367,8 @@ Default value: `'running'`
 Data type: `String`
 
 Name of the prometheus service (default 'prometheus')
+
+Default value: `'prometheus'`
 
 ##### <a name="manage_service"></a>`manage_service`
 
@@ -472,6 +484,8 @@ Data type: `Optional[String[1]]`
 
 Custom command passed to the archive resource to extract the downloaded archive.
 
+Default value: ``undef``
+
 ##### <a name="collect_tag"></a>`collect_tag`
 
 Data type: `Optional[String[1]]`
@@ -509,6 +523,8 @@ Data type: `Stdlib::Absolutepath`
 
 if requested, we create a user for prometheus or the exporters. The default
 shell is nologin. It can be overwritten to any valid path.
+
+Default value: `'/usr/bin/nologin'`
 
 ##### <a name="web_listen_address"></a>`web_listen_address`
 
@@ -849,6 +865,8 @@ Data type: `Stdlib::Absolutepath`
 Data type: `Boolean`
 
 
+
+Default value: ``false``
 
 ##### <a name="manage_config"></a>`manage_config`
 
