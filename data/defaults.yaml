@@ -93,8 +93,7 @@ prometheus::extra_groups: []
 prometheus::global_config:
   'scrape_interval': '15s'
   'evaluation_interval': '15s'
-  'external_labels':
-    'monitor': 'master'
+  'external_labels': {}
 prometheus::group: 'prometheus'
 prometheus::include_default_scrape_configs: true
 prometheus::localstorage: '/var/lib/prometheus'
