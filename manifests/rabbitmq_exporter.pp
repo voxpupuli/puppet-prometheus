@@ -102,7 +102,7 @@ class prometheus::rabbitmq_exporter (
   Hash[String,String] $extra_env_vars                        = {},
   Boolean $export_scrape_job                                 = false,
   Optional[Stdlib::Host] $scrape_host                        = undef,
-  Stdlib::Port $scrape_port                                  = 9090,
+  Stdlib::Port $scrape_port                                  = 9419,
   String[1] $scrape_job_name                                 = 'rabbitmq',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
@@ -122,6 +122,7 @@ class prometheus::rabbitmq_exporter (
     'SKIP_QUEUES'         => $queues_exclude_regex,
     'RABBIT_CAPABILITIES' => join($rabbit_capabilities, ','),
     'RABBIT_EXPORTERS'    => join($rabbit_exporters, ','),
+    'PUBLISH_PORT'        => $scrape_port,
   }
 
   $real_env_vars = merge($env_vars, $extra_env_vars)
