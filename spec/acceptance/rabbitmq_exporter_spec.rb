@@ -36,7 +36,7 @@ describe 'prometheus rabbitmq_exporter' do
       it { is_expected.to be_enabled }
     end
 
-    describe port(9090) do
+    describe port(9419) do
       it { is_expected.to be_listening.with('tcp6') }
     end
   end
