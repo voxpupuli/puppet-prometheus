@@ -42,6 +42,7 @@ describe 'prometheus::alertmanager' do
 
           it {
             expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{mute_time_intervals})
+            expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{time_intervals})
           }
         end
 
@@ -75,6 +76,30 @@ describe 'prometheus::alertmanager' do
                             '  weekdays:',
                             '  - saturday',
                             '  - sunday',
+                          ])
+        }
+      end
+
+      context 'with latest version specified and time_intervals' do
+        let(:params) do
+          {
+            version: '0.24.0',
+            arch: 'amd64',
+            os: 'linux',
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
+            time_intervals: [{ 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }],
+          }
+        end
+
+        it {
+          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
+                            'time_intervals:',
+                            '- name: weekend',
+                            '  time_intervals:',
+                            '  - weekdays:',
+                            '    - saturday',
+                            '    - sunday',
                           ])
         }
       end

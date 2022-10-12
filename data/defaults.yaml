@@ -54,6 +54,7 @@ prometheus::alertmanager::route:
 prometheus::alertmanager::mute_time_intervals: []
 prometheus::alertmanager::storage_path: '/var/lib/alertmanager'
 prometheus::alertmanager::templates: [ "%{lookup('prometheus::alertmanager::config_dir')}/*.tmpl" ]
+prometheus::alertmanager::time_intervals: []
 prometheus::alertmanager::user: 'alertmanager'
 prometheus::alertmanager::version: '0.21.0'
 prometheus::alerts: {}

@@ -96,6 +96,13 @@
 #  The storage path to pass to the alertmanager. Defaults to '/var/lib/alertmanager'
 # @param templates
 #  The array of template files. Defaults to [ "${config_dir}/*.tmpl" ]
+# @param time_intervals
+#  Array of time intervals
+#  Example:
+#  prometheus::alertmanager::time_intervals:
+#  - name: weekend
+#    time_intervals:
+#      - weekdays: ['saturday','sunday']
 # @param user
 #  User which runs the service
 # @param version
@@ -120,6 +127,7 @@ class prometheus::alertmanager (
   Array[Hash] $mute_time_intervals,
   Stdlib::Absolutepath $storage_path,
   Array $templates,
+  Array[Hash] $time_intervals,
   String[1] $user,
   String[1] $version,
   Boolean $service_enable                                    = true,

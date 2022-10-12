@@ -914,6 +914,7 @@ The following parameters are available in the `prometheus::alertmanager` class:
 * [`service_name`](#service_name)
 * [`storage_path`](#storage_path)
 * [`templates`](#templates)
+* [`time_intervals`](#time_intervals)
 * [`user`](#user)
 * [`version`](#version)
 * [`proxy_server`](#proxy_server)
@@ -1181,6 +1182,17 @@ The storage path to pass to the alertmanager. Defaults to '/var/lib/alertmanager
 Data type: `Array`
 
 The array of template files. Defaults to [ "${config_dir}/*.tmpl" ]
+
+##### <a name="time_intervals"></a>`time_intervals`
+
+Data type: `Array[Hash]`
+
+Array of time intervals
+Example:
+prometheus::alertmanager::time_intervals:
+- name: weekend
+  time_intervals:
+  - weekdays: ['saturday','sunday']
 
 ##### <a name="user"></a>`user`
 

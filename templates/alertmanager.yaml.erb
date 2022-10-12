@@ -9,5 +9,8 @@
 if scope.function_versioncmp([scope.lookupvar('::prometheus::alertmanager::version'), '0.22.0']) >= 0
   full_config['mute_time_intervals'] = scope.lookupvar('::prometheus::alertmanager::mute_time_intervals')
 end
+if scope.function_versioncmp([scope.lookupvar('::prometheus::alertmanager::version'), '0.24.0']) >= 0
+  full_config['time_intervals'] = scope.lookupvar('::prometheus::alertmanager::time_intervals')
+end
 -%>
 <%= full_config.to_yaml -%>
