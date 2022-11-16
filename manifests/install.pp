@@ -80,7 +80,7 @@ class prometheus::install {
     }
   }
   if $prometheus::server::manage_group {
-    ensure_resource('group', [$prometheus::server::group],{
+    ensure_resource('group', [$prometheus::server::group], {
         ensure => 'present',
         system => true,
     })

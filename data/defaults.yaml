@@ -52,6 +52,7 @@ prometheus::alertmanager::route:
   'repeat_interval': '3h'
   'receiver': 'Admin'
 prometheus::alertmanager::mute_time_intervals: []
+prometheus::alertmanager::time_intervals: []
 prometheus::alertmanager::storage_path: '/var/lib/alertmanager'
 prometheus::alertmanager::templates: [ "%{lookup('prometheus::alertmanager::config_dir')}/*.tmpl" ]
 prometheus::alertmanager::user: 'alertmanager'

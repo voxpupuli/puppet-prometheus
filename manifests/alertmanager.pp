@@ -49,10 +49,19 @@
 #  Whether to create user or rely on external code for that
 # @param mute_time_intervals
 #  Array of mute time intervals
+#  Not applied if time_intervals is defined
 #  Example:
 #  prometheus::alertmanager::mute_time_intervals:
 #  - name: weekend
-#    weekdays: ['saturday','sunday']
+#    time_intervals:
+#      - weekdays: ['saturday','sunday']
+# @param time_intervals
+#   Array of time intervals, only supported with 0.24.0 and newer
+#  Example:
+#  prometheus::alertmanager::time_intervals:
+#  - name: weekend
+#    time_intervals:
+#      - weekdays: ['saturday','sunday']
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -118,6 +127,7 @@ class prometheus::alertmanager (
   Array $receivers,
   Hash $route,
   Array[Hash] $mute_time_intervals,
+  Array[Hash] $time_intervals,
   Stdlib::Absolutepath $storage_path,
   Array $templates,
   String[1] $user,

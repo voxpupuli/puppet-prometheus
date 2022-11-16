@@ -110,7 +110,7 @@ class prometheus::statsd_exporter (
     mode    => $config_mode,
     owner   => 'root',
     group   => $group,
-    content => to_yaml( { mappings => $mappings }),
+    content => to_yaml({ mappings => $mappings }),
     notify  => $notify_service,
   }
 
