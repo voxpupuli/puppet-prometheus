@@ -33,7 +33,7 @@ class prometheus::server (
   String[1] $service_name                                                       = $prometheus::service_name,
   Boolean $manage_service                                                       = $prometheus::manage_service,
   Boolean $restart_on_change                                                    = $prometheus::restart_on_change,
-  Prometheus::Initstyle $init_style                                             = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                                             = $prometheus::init_style,
   Optional[String[1]] $extra_options                                            = $prometheus::extra_options,
   Hash $config_hash                                                             = $prometheus::config_hash,
   Hash $config_defaults                                                         = $prometheus::config_defaults,

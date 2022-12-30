@@ -65,7 +65,7 @@ class prometheus::openvpn_exporter (
   Boolean $service_enable                                    = true,
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   String[1] $service_name                                    = 'openvpn_exporter',
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Prometheus::Install $install_method                        = $prometheus::install_method,
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,

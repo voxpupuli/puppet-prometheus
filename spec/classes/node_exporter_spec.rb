@@ -128,9 +128,10 @@ describe 'prometheus::node_exporter' do
         end
       end
 
-      context 'with tls set in web-config.yml' do
+      context 'with tls set in web-config.yml version lower than 1.5.0' do
         let(:params) do
           {
+            version: '1.4.0',
             use_tls_server_config: true,
             tls_cert_file: '/etc/node_exporter/foo.cert',
             tls_key_file: '/etc/node_exporter/foo.key'
@@ -144,6 +145,46 @@ describe 'prometheus::node_exporter' do
           it { is_expected.to contain_prometheus__daemon('prometheus-node-exporter').with(options: '   --web.config=/etc/node_exporter_web-config.yml') }
         else
           it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '   --web.config=/etc/node_exporter_web-config.yml') }
+        end
+      end
+
+      context 'with tls set in web-config.yml version equal to 1.5.0' do
+        let(:params) do
+          {
+            version: '1.5.0',
+            use_tls_server_config: true,
+            tls_cert_file: '/etc/node_exporter/foo.cert',
+            tls_key_file: '/etc/node_exporter/foo.key'
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/node_exporter_web-config.yml').with(ensure: 'file') }
+
+        if facts[:os]['name'] == 'Archlinux'
+          it { is_expected.to contain_prometheus__daemon('prometheus-node-exporter').with(options: '   --web.config.file=/etc/node_exporter_web-config.yml') }
+        else
+          it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '   --web.config.file=/etc/node_exporter_web-config.yml') }
+        end
+      end
+
+      context 'with tls set in web-config.yml version higher to 1.5.0' do
+        let(:params) do
+          {
+            version: '1.5.1',
+            use_tls_server_config: true,
+            tls_cert_file: '/etc/node_exporter/foo.cert',
+            tls_key_file: '/etc/node_exporter/foo.key'
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/node_exporter_web-config.yml').with(ensure: 'file') }
+
+        if facts[:os]['name'] == 'Archlinux'
+          it { is_expected.to contain_prometheus__daemon('prometheus-node-exporter').with(options: '   --web.config.file=/etc/node_exporter_web-config.yml') }
+        else
+          it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '   --web.config.file=/etc/node_exporter_web-config.yml') }
         end
       end
     end

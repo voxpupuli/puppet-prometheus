@@ -80,7 +80,7 @@ class prometheus::bird_exporter (
   Boolean $service_enable                                    = true,
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   String[1] $service_name                                    = 'bird_exporter',
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Prometheus::Install $install_method                        = 'url',
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,

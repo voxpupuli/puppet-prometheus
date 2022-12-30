@@ -140,7 +140,7 @@ class prometheus::alertmanager (
   Boolean $purge_config_dir                                  = true,
   Boolean $manage_config                                     = true,
   Boolean $validate_config                                   = false,
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   String[1] $install_method                                  = $prometheus::install_method,
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,

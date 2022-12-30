@@ -82,7 +82,7 @@ class prometheus::consul_exporter (
   Boolean $manage_service                                    = true,
   Boolean $manage_user                                       = true,
   String[1] $os                                              = downcase($facts['kernel']),
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Prometheus::Install $install_method                        = $prometheus::install_method,
   Optional[String[1]] $extra_options                         = undef,
   Optional[Prometheus::Uri] $download_url                    = undef,
