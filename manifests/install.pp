@@ -19,25 +19,25 @@ class prometheus::install {
       archive { "/tmp/prometheus-${prometheus::server::version}.${prometheus::server::download_extension}":
         ensure          => present,
         extract         => true,
-        extract_path    => '/opt',
+        extract_path    => $prometheus::basepath,
         source          => $prometheus::server::real_download_url,
         checksum_verify => false,
-        creates         => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus",
+        creates         => "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus",
         cleanup         => true,
         extract_command => $prometheus::extract_command,
       }
       -> file {
-        "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus":
+        "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus":
           owner => 'root',
           group => 0, # 0 instead of root because OS X uses "wheel".
           mode  => '0555';
         "${prometheus::server::bin_dir}/prometheus":
           ensure => link,
           notify => $prometheus::server::notify_service,
-          target => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus";
+          target => "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus";
         "${prometheus::server::bin_dir}/promtool":
           ensure => link,
-          target => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/promtool";
+          target => "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/promtool";
         $prometheus::server::shared_dir:
           ensure => directory,
           owner  => $prometheus::server::user,
@@ -46,11 +46,11 @@ class prometheus::install {
         "${prometheus::server::shared_dir}/consoles":
           ensure => link,
           notify => $prometheus::server::notify_service,
-          target => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/consoles";
+          target => "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/consoles";
         "${prometheus::server::shared_dir}/console_libraries":
           ensure => link,
           notify => $prometheus::server::notify_service,
-          target => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/console_libraries";
+          target => "${prometheus::basepath}/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/console_libraries";
       }
     }
     'package': {

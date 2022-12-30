@@ -113,7 +113,7 @@ class prometheus::ssl_exporter (
   ], ' ')
 
   # SSL exporter is not packaged into a directory
-  $extract_path = "/opt/${service_name}-${version}.${os}-${arch}"
+  $extract_path = "${prometheus::basepath}/${service_name}-${version}.${os}-${arch}"
   file { $extract_path:
     ensure => 'directory',
     owner  => 'root',

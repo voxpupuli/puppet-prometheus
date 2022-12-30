@@ -187,7 +187,7 @@ class prometheus::alertmanager (
     # If version >= 0.10.0 then install amtool - Alertmanager validation tool
     file { "${bin_dir}/amtool":
       ensure => link,
-      target => "/opt/${package_name}-${version}.${os}-${arch}/amtool",
+      target => "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}/amtool",
     }
 
     if $manage_config {
