@@ -47,7 +47,7 @@
 #  Optional options for the JVM of the standalone jmx exporter
 class prometheus::jmx_exporter (
   String[1] $version,
-  String[1] $config_file_location                            = '/etc/jmx-exporter.yaml',
+  Stdlib::Absolutepath $config_file_location                 = '/etc/jmx-exporter.yaml',
   String[1] $service_name                                    = 'jmx_exporter',
   String[1] $user                                            = 'jmx_exporter',
   String[1] $group                                           = 'jmx-exporter',
