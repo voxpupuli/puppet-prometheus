@@ -90,12 +90,12 @@ class prometheus::jmx_exporter (
   }
 
   file { $config_file_location:
-      ensure  => file,
-      owner   => 'root',
-      group   => $group,
-      mode    => $config_mode,
-      content => template('prometheus/jmx_exporter.yaml.erb'),
-      notify  => $notify_service,
+    ensure  => file,
+    owner   => 'root',
+    group   => $group,
+    mode    => $config_mode,
+    content => template('prometheus/jmx_exporter.yaml.erb'),
+    notify  => $notify_service,
   }
 
   $_manage_group = $deployment ? {
