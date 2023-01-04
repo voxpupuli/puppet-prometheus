@@ -63,7 +63,7 @@ class prometheus::jmx_exporter (
   Boolean $manage_user                                       = true,
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,
-  Optional[Numeric] $port                                    = undef,
+  Optional[Stdlib::Port::Unprivileged] $port                 = undef,
   Optional[Prometheus::Uri] $download_url                    = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
