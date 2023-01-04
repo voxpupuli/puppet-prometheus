@@ -47,12 +47,12 @@
 #  Optional options for the JVM of the standalone jmx exporter
 class prometheus::jmx_exporter (
   String[1] $version,
-  String[1] $config_file_location,
-  String[1] $service_name,
-  String[1] $user,
-  String[1] $group,
-  Array $extra_groups,
-  String[1] $java_bin_path,
+  String[1] $config_file_location                            = '/etc/jmx-exporter.yaml',
+  String[1] $service_name                                    = 'jmx_exporter',
+  String[1] $user                                            = 'jmx_exporter',
+  String[1] $group                                           = 'jmx-exporter',
+  Array $extra_groups                                        = [],
+  String[1] $java_bin_path                                   = '/usr/bin/java',
   Hash $configuration                                        = {},
   Enum['javaagent', 'httpserver'] $deployment                = 'httpserver',
   String[1] $os                                              = downcase($facts['kernel']),
@@ -89,8 +89,7 @@ class prometheus::jmx_exporter (
     default => undef,
   }
 
-  file {
-    $config_file_location:
+  file { $config_file_location:
       ensure  => file,
       owner   => 'root',
       group   => $group,
@@ -133,7 +132,8 @@ class prometheus::jmx_exporter (
     manage_bin_link    => false,
     bin_dir            => dirname($java_bin_path),
     bin_name           => basename($java_bin_path),
-    options            => "${_java_options}-jar /opt/${_name}-${version}.${os}-${arch}/${_name} ${port} ${config_file_location}",
+    options            => "${_java_options}-jar /opt/${_name}-${version}.${os}-${arch}/${_name} ${port} ${
+      config_file_location}",
     os                 => $os,
     arch               => $arch,
   }
