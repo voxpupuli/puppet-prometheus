@@ -132,8 +132,7 @@ class prometheus::jmx_exporter (
     manage_bin_link    => false,
     bin_dir            => dirname($java_bin_path),
     bin_name           => basename($java_bin_path),
-    options            => "${_java_options}-jar /opt/${_name}-${version}.${os}-${arch}/${_name} ${port} ${
-      config_file_location}",
+    options            => "${_java_options}-jar /opt/${_name}-${version}.${os}-${arch}/${_name} ${port} ${config_file_location}",
     os                 => $os,
     arch               => $arch,
   }
