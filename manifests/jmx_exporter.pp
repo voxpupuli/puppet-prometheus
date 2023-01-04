@@ -51,7 +51,7 @@ class prometheus::jmx_exporter (
   String[1] $service_name                                    = 'jmx_exporter',
   String[1] $user                                            = 'jmx_exporter',
   String[1] $group                                           = 'jmx-exporter',
-  Array $extra_groups                                        = [],
+  Array[String[1]] $extra_groups                             = [],
   String[1] $java_bin_path                                   = '/usr/bin/java',
   Hash $configuration                                        = {},
   Enum['javaagent', 'httpserver'] $deployment                = 'httpserver',
