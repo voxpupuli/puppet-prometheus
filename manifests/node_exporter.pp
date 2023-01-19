@@ -202,7 +202,11 @@ class prometheus::node_exporter (
       content => $web_config_content.to_yaml,
     }
 
-    $web_config = "--web.config=${$web_config_file}"
+    if versioncmp($version, '1.5.0') >= 0 {
+      $web_config = "--web.config.file=${$web_config_file}"
+    } else {
+      $web_config = "--web.config=${$web_config_file}"
+    }
   }
 
   $options = [
