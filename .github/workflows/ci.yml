@@ -18,7 +18,7 @@ jobs:
     env:
       BUNDLE_WITHOUT: development:system_tests:release
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -45,7 +45,7 @@ jobs:
       PUPPET_VERSION: "~> ${{ matrix.puppet }}.0"
     name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -56,7 +56,7 @@ jobs:
 
   acceptance:
     needs: setup_matrix
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       BUNDLE_WITHOUT: development:test:release
     strategy:
@@ -65,7 +65,7 @@ jobs:
         include: ${{fromJson(needs.setup_matrix.outputs.github_action_test_matrix)}}
     name: ${{ matrix.puppet.name }} - ${{ matrix.setfile.name }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
