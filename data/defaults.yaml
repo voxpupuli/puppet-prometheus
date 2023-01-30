@@ -285,12 +285,3 @@ prometheus::graphite_exporter::manage_service: true
 prometheus::graphite_exporter::manage_user: true
 prometheus::graphite_exporter::version: '0.9.0'
 prometheus::graphite_exporter::options: ''
-prometheus::collectd_exporter::download_extension: 'tar.gz'
-prometheus::collectd_exporter::download_url_base: 'https://github.com/prometheus/collectd_exporter/releases'
-prometheus::collectd_exporter::group: 'collectd-exporter'
-prometheus::collectd_exporter::package_ensure: 'latest'
-prometheus::collectd_exporter::package_name: 'collectd_exporter'
-prometheus::collectd_exporter::service_name: 'collectd_exporter'
-prometheus::collectd_exporter::user: 'collectd-exporter'
-prometheus::collectd_exporter::version: '0.5.0'
-prometheus::collectd_exporter::options: ''

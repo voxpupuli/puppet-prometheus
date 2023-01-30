@@ -2791,6 +2791,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--collectd_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[String[1]]`
@@ -2805,17 +2807,23 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/collectd_exporter/releases'`
+
 ##### <a name="-prometheus--collectd_exporter--options"></a>`options`
 
 Data type: `String`
 
 Options added to the startup command
 
+Default value: `''`
+
 ##### <a name="-prometheus--collectd_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'collectd-exporter'`
 
 ##### <a name="-prometheus--collectd_exporter--init_style"></a>`init_style`
 
@@ -2871,11 +2879,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--collectd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'collectd_exporter'`
 
 ##### <a name="-prometheus--collectd_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -2915,17 +2927,23 @@ Data type: `String[1]`
 
 Name of the collectd exporter service (default 'collectd_exporter')
 
+Default value: `'collectd_exporter'`
+
 ##### <a name="-prometheus--collectd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
+Default value: `'collectd-exporter'`
+
 ##### <a name="-prometheus--collectd_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.5.0'`
 
 ##### <a name="-prometheus--collectd_exporter--proxy_server"></a>`proxy_server`
 
