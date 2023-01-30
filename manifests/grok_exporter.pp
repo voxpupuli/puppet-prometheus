@@ -58,7 +58,7 @@
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::grok_exporter (
   Hash $config,
-  String[1] $config_file                                     = '/etc/grok-exporter.yaml' ,
+  Stdlib::Absolutepath $config_file                          = '/etc/grok-exporter.yaml' ,
   String $download_extension                                 = 'zip',
   Prometheus::Uri $download_url_base                         = 'https://github.com/fstab/grok_exporter/releases',
   Array[String[1]] $extra_groups                             = [],
