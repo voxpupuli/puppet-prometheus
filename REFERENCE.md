@@ -9,54 +9,55 @@
 #### Public Classes
 
 * [`prometheus`](#prometheus): This module manages prometheus
-* [`prometheus::alertmanager`](#prometheusalertmanager): This module manages prometheus alertmanager
-* [`prometheus::apache_exporter`](#prometheusapache_exporter): This module manages prometheus apache_exporter
-* [`prometheus::beanstalkd_exporter`](#prometheusbeanstalkd_exporter): This module manages prometheus beanstalkd_exporter
-* [`prometheus::bind_exporter`](#prometheusbind_exporter): Class: prometheus::bind_exporter  This module manages prometheus bind_exporter
-* [`prometheus::bird_exporter`](#prometheusbird_exporter): This module manages prometheus bird exporter
-* [`prometheus::blackbox_exporter`](#prometheusblackbox_exporter): This module manages prometheus blackbox_exporter
-* [`prometheus::collectd_exporter`](#prometheuscollectd_exporter): This module manages prometheus node collectd_exporter
-* [`prometheus::config`](#prometheusconfig): Configuration class for prometheus monitoring system
-* [`prometheus::consul_exporter`](#prometheusconsul_exporter): This module manages prometheus node consul_exporter
-* [`prometheus::dellhw_exporter`](#prometheusdellhw_exporter): This module manages prometheus node dellhw_exporter
-* [`prometheus::elasticsearch_exporter`](#prometheuselasticsearch_exporter): This module manages prometheus elasticsearch_exporter
-* [`prometheus::graphite_exporter`](#prometheusgraphite_exporter): This module manages prometheus node graphite_exporter
-* [`prometheus::grok_exporter`](#prometheusgrok_exporter): This module manages prometheus grok_exporter
-* [`prometheus::haproxy_exporter`](#prometheushaproxy_exporter): This module manages prometheus haproxy_exporter
-* [`prometheus::install`](#prometheusinstall): Install prometheus via different methods with parameters from init
+* [`prometheus::alertmanager`](#prometheus--alertmanager): This module manages prometheus alertmanager
+* [`prometheus::apache_exporter`](#prometheus--apache_exporter): This module manages prometheus apache_exporter
+* [`prometheus::beanstalkd_exporter`](#prometheus--beanstalkd_exporter): This module manages prometheus beanstalkd_exporter
+* [`prometheus::bind_exporter`](#prometheus--bind_exporter): Class: prometheus::bind_exporter  This module manages prometheus bind_exporter
+* [`prometheus::bird_exporter`](#prometheus--bird_exporter): This module manages prometheus bird exporter
+* [`prometheus::blackbox_exporter`](#prometheus--blackbox_exporter): This module manages prometheus blackbox_exporter
+* [`prometheus::collectd_exporter`](#prometheus--collectd_exporter): This module manages prometheus node collectd_exporter
+* [`prometheus::config`](#prometheus--config): Configuration class for prometheus monitoring system
+* [`prometheus::consul_exporter`](#prometheus--consul_exporter): This module manages prometheus node consul_exporter
+* [`prometheus::dellhw_exporter`](#prometheus--dellhw_exporter): This module manages prometheus node dellhw_exporter
+* [`prometheus::elasticsearch_exporter`](#prometheus--elasticsearch_exporter): This module manages prometheus elasticsearch_exporter
+* [`prometheus::graphite_exporter`](#prometheus--graphite_exporter): This module manages prometheus node graphite_exporter
+* [`prometheus::grok_exporter`](#prometheus--grok_exporter): This module manages prometheus grok_exporter
+* [`prometheus::haproxy_exporter`](#prometheus--haproxy_exporter): This module manages prometheus haproxy_exporter
+* [`prometheus::install`](#prometheus--install): Install prometheus via different methods with parameters from init
 Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
 implement the package install method as well
 The package method needs specific yum or apt repo settings which are not made yet by the module
-* [`prometheus::ipmi_exporter`](#prometheusipmi_exporter): This module manages prometheus node ipmi_exporter (https://github.com/soundcloud/ipmi_exporter)
-* [`prometheus::ipsec_exporter`](#prometheusipsec_exporter): This module manages prometheus node ipsec_exporter
-* [`prometheus::memcached_exporter`](#prometheusmemcached_exporter): This module manages prometheus node memcached_exporter
-* [`prometheus::mesos_exporter`](#prometheusmesos_exporter): This module manages prometheus mesos_exporter
-* [`prometheus::mongodb_exporter`](#prometheusmongodb_exporter): This module manages prometheus mongodb_exporter
-* [`prometheus::mysqld_exporter`](#prometheusmysqld_exporter): manages prometheus mysqld_exporter
-* [`prometheus::nginx_prometheus_exporter`](#prometheusnginx_prometheus_exporter): This module manages prometheus nginx exporter
-* [`prometheus::nginx_vts_exporter`](#prometheusnginx_vts_exporter): This module manages prometheus nginx_vts_exporter
-* [`prometheus::node_exporter`](#prometheusnode_exporter): This module manages prometheus node node_exporter
-* [`prometheus::openldap_exporter`](#prometheusopenldap_exporter): This module manages prometheus openldap_exporter
-* [`prometheus::openvpn_exporter`](#prometheusopenvpn_exporter): This module manages prometheus node openvpn_exporter
-* [`prometheus::php_fpm_exporter`](#prometheusphp_fpm_exporter): This module manages prometheus php-fpm exporter
-* [`prometheus::postfix_exporter`](#prometheuspostfix_exporter): manages prometheus postfix_exporter
-* [`prometheus::postgres_exporter`](#prometheuspostgres_exporter): This module manages prometheus node postgres_exporter
-* [`prometheus::process_exporter`](#prometheusprocess_exporter): This module manages prometheus process_exporter
-* [`prometheus::puppetdb_exporter`](#prometheuspuppetdb_exporter): This module manages prometheus node puppetdb_exporter
-* [`prometheus::pushgateway`](#prometheuspushgateway): This module manages prometheus node pushgateway
-* [`prometheus::pushprox_client`](#prometheuspushprox_client): This module manages prometheus pushprox_client
-* [`prometheus::pushprox_proxy`](#prometheuspushprox_proxy): This module manages prometheus pushprox_proxy
-* [`prometheus::rabbitmq_exporter`](#prometheusrabbitmq_exporter): This module manages prometheus rabbitmq_exporter
-* [`prometheus::redis_exporter`](#prometheusredis_exporter): This module manages prometheus node redis_exporter
-* [`prometheus::run_service`](#prometheusrun_service): This class is meant to be called from prometheus. It ensure the service is running
-* [`prometheus::sachet`](#prometheussachet): This module manages prometheus sachet (https://github.com/messagebird/sachet)
-* [`prometheus::server`](#prometheusserver): class to manage the actual prometheus server. This class gets called from the init.pp
-* [`prometheus::snmp_exporter`](#prometheussnmp_exporter): This module manages prometheus snmp_exporter
-* [`prometheus::ssh_exporter`](#prometheusssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
-* [`prometheus::ssl_exporter`](#prometheusssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
-* [`prometheus::statsd_exporter`](#prometheusstatsd_exporter): This module manages prometheus statsd_exporter
-* [`prometheus::unbound_exporter`](#prometheusunbound_exporter): This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
-* [`prometheus::varnish_exporter`](#prometheusvarnish_exporter): This module manages prometheus varnish_exporter
+* [`prometheus::ipmi_exporter`](#prometheus--ipmi_exporter): This module manages prometheus node ipmi_exporter (https://github.com/soundcloud/ipmi_exporter)
+* [`prometheus::ipsec_exporter`](#prometheus--ipsec_exporter): This module manages prometheus node ipsec_exporter
+* [`prometheus::jmx_exporter`](#prometheus--jmx_exporter): Installs and configures the Prometheus JMX exporter
+* [`prometheus::memcached_exporter`](#prometheus--memcached_exporter): This module manages prometheus node memcached_exporter
+* [`prometheus::mesos_exporter`](#prometheus--mesos_exporter): This module manages prometheus mesos_exporter
+* [`prometheus::mongodb_exporter`](#prometheus--mongodb_exporter): This module manages prometheus mongodb_exporter
+* [`prometheus::mysqld_exporter`](#prometheus--mysqld_exporter): manages prometheus mysqld_exporter
+* [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
+* [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
+* [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
+* [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
+* [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
+* [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
+* [`prometheus::postfix_exporter`](#prometheus--postfix_exporter): manages prometheus postfix_exporter
+* [`prometheus::postgres_exporter`](#prometheus--postgres_exporter): This module manages prometheus node postgres_exporter
+* [`prometheus::process_exporter`](#prometheus--process_exporter): This module manages prometheus process_exporter
+* [`prometheus::puppetdb_exporter`](#prometheus--puppetdb_exporter): This module manages prometheus node puppetdb_exporter
+* [`prometheus::pushgateway`](#prometheus--pushgateway): This module manages prometheus node pushgateway
+* [`prometheus::pushprox_client`](#prometheus--pushprox_client): This module manages prometheus pushprox_client
+* [`prometheus::pushprox_proxy`](#prometheus--pushprox_proxy): This module manages prometheus pushprox_proxy
+* [`prometheus::rabbitmq_exporter`](#prometheus--rabbitmq_exporter): This module manages prometheus rabbitmq_exporter
+* [`prometheus::redis_exporter`](#prometheus--redis_exporter): This module manages prometheus node redis_exporter
+* [`prometheus::run_service`](#prometheus--run_service): This class is meant to be called from prometheus. It ensure the service is running
+* [`prometheus::sachet`](#prometheus--sachet): This module manages prometheus sachet (https://github.com/messagebird/sachet)
+* [`prometheus::server`](#prometheus--server): class to manage the actual prometheus server. This class gets called from the init.pp
+* [`prometheus::snmp_exporter`](#prometheus--snmp_exporter): This module manages prometheus snmp_exporter
+* [`prometheus::ssh_exporter`](#prometheus--ssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
+* [`prometheus::ssl_exporter`](#prometheus--ssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
+* [`prometheus::statsd_exporter`](#prometheus--statsd_exporter): This module manages prometheus statsd_exporter
+* [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
+* [`prometheus::varnish_exporter`](#prometheus--varnish_exporter): This module manages prometheus varnish_exporter
 
 #### Private Classes
 
@@ -65,19 +66,19 @@ restarting the whole service when a config changes
 
 ### Defined types
 
-* [`prometheus::alerts`](#prometheusalerts): This module manages prometheus alert files for prometheus
-* [`prometheus::daemon`](#prometheusdaemon): This define managed prometheus daemons that don't have their own class
-* [`prometheus::scrape_job`](#prometheusscrape_job): This define is used to export prometheus scrape settings from nodes to be scraped to the node
+* [`prometheus::alerts`](#prometheus--alerts): This module manages prometheus alert files for prometheus
+* [`prometheus::daemon`](#prometheus--daemon): This define managed prometheus daemons that don't have their own class
+* [`prometheus::scrape_job`](#prometheus--scrape_job): This define is used to export prometheus scrape settings from nodes to be scraped to the node
 running prometheus itself.
 This can be used to make prometheus find instances of your running service or application.
 
 ### Data types
 
-* [`Prometheus::GsUri`](#prometheusgsuri)
-* [`Prometheus::Initstyle`](#prometheusinitstyle)
-* [`Prometheus::Install`](#prometheusinstall): type to enforce the different installation methods for our exporters.
-* [`Prometheus::S3Uri`](#prometheuss3uri)
-* [`Prometheus::Uri`](#prometheusuri)
+* [`Prometheus::GsUri`](#Prometheus--GsUri)
+* [`Prometheus::Initstyle`](#Prometheus--Initstyle)
+* [`Prometheus::Install`](#Prometheus--Install): type to enforce the different installation methods for our exporters.
+* [`Prometheus::S3Uri`](#Prometheus--S3Uri)
+* [`Prometheus::Uri`](#Prometheus--Uri)
 
 ## Classes
 
@@ -89,94 +90,94 @@ This module manages prometheus
 
 The following parameters are available in the `prometheus` class:
 
-* [`configname`](#configname)
-* [`manage_user`](#manage_user)
-* [`user`](#user)
-* [`manage_group`](#manage_group)
-* [`purge_config_dir`](#purge_config_dir)
-* [`group`](#group)
-* [`bin_dir`](#bin_dir)
-* [`shared_dir`](#shared_dir)
-* [`arch`](#arch)
-* [`version`](#version)
-* [`install_method`](#install_method)
-* [`os`](#os)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`download_extension`](#download_extension)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`config_dir`](#config_dir)
-* [`localstorage`](#localstorage)
-* [`extra_options`](#extra_options)
-* [`config_hash`](#config_hash)
-* [`config_defaults`](#config_defaults)
-* [`config_template`](#config_template)
-* [`config_mode`](#config_mode)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`manage_service`](#manage_service)
-* [`restart_on_change`](#restart_on_change)
-* [`init_style`](#init_style)
-* [`global_config`](#global_config)
-* [`rule_files`](#rule_files)
-* [`scrape_configs`](#scrape_configs)
-* [`include_default_scrape_configs`](#include_default_scrape_configs)
-* [`remote_read_configs`](#remote_read_configs)
-* [`remote_write_configs`](#remote_write_configs)
-* [`alerts`](#alerts)
-* [`extra_alerts`](#extra_alerts)
-* [`alert_relabel_config`](#alert_relabel_config)
-* [`alertmanagers_config`](#alertmanagers_config)
-* [`storage_retention`](#storage_retention)
-* [`external_url`](#external_url)
-* [`extract_command`](#extract_command)
-* [`collect_tag`](#collect_tag)
-* [`collect_scrape_jobs`](#collect_scrape_jobs)
-* [`max_open_files`](#max_open_files)
-* [`usershell`](#usershell)
-* [`web_listen_address`](#web_listen_address)
-* [`web_read_timeout`](#web_read_timeout)
-* [`web_max_connections`](#web_max_connections)
-* [`web_route_prefix`](#web_route_prefix)
-* [`web_user_assets`](#web_user_assets)
-* [`web_enable_lifecycle`](#web_enable_lifecycle)
-* [`web_enable_admin_api`](#web_enable_admin_api)
-* [`web_page_title`](#web_page_title)
-* [`web_cors_origin`](#web_cors_origin)
-* [`storage_retention_size`](#storage_retention_size)
-* [`storage_no_lockfile`](#storage_no_lockfile)
-* [`storage_allow_overlapping_blocks`](#storage_allow_overlapping_blocks)
-* [`storage_wal_compression`](#storage_wal_compression)
-* [`storage_flush_deadline`](#storage_flush_deadline)
-* [`storage_read_sample_limit`](#storage_read_sample_limit)
-* [`storage_read_concurrent_limit`](#storage_read_concurrent_limit)
-* [`storage_read_max_bytes_in_frame`](#storage_read_max_bytes_in_frame)
-* [`alert_for_outage_tolerance`](#alert_for_outage_tolerance)
-* [`alert_for_grace_period`](#alert_for_grace_period)
-* [`alert_resend_delay`](#alert_resend_delay)
-* [`alertmanager_notification_queue_capacity`](#alertmanager_notification_queue_capacity)
-* [`alertmanager_timeout`](#alertmanager_timeout)
-* [`alertmanager_url`](#alertmanager_url)
-* [`query_lookback_delta`](#query_lookback_delta)
-* [`query_timeout`](#query_timeout)
-* [`query_max_concurrency`](#query_max_concurrency)
-* [`query_max_samples`](#query_max_samples)
-* [`query_staleness_delta`](#query_staleness_delta)
-* [`web_telemetry_path`](#web_telemetry_path)
-* [`web_enable_remote_shutdown`](#web_enable_remote_shutdown)
-* [`log_level`](#log_level)
-* [`log_format`](#log_format)
-* [`config_show_diff`](#config_show_diff)
-* [`extra_groups`](#extra_groups)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`env_file_path`](#env_file_path)
-* [`manage_prometheus_server`](#manage_prometheus_server)
-* [`manage_config`](#manage_config)
+* [`configname`](#-prometheus--configname)
+* [`manage_user`](#-prometheus--manage_user)
+* [`user`](#-prometheus--user)
+* [`manage_group`](#-prometheus--manage_group)
+* [`purge_config_dir`](#-prometheus--purge_config_dir)
+* [`group`](#-prometheus--group)
+* [`bin_dir`](#-prometheus--bin_dir)
+* [`shared_dir`](#-prometheus--shared_dir)
+* [`arch`](#-prometheus--arch)
+* [`version`](#-prometheus--version)
+* [`install_method`](#-prometheus--install_method)
+* [`os`](#-prometheus--os)
+* [`download_url`](#-prometheus--download_url)
+* [`download_url_base`](#-prometheus--download_url_base)
+* [`download_extension`](#-prometheus--download_extension)
+* [`package_name`](#-prometheus--package_name)
+* [`package_ensure`](#-prometheus--package_ensure)
+* [`config_dir`](#-prometheus--config_dir)
+* [`localstorage`](#-prometheus--localstorage)
+* [`extra_options`](#-prometheus--extra_options)
+* [`config_hash`](#-prometheus--config_hash)
+* [`config_defaults`](#-prometheus--config_defaults)
+* [`config_template`](#-prometheus--config_template)
+* [`config_mode`](#-prometheus--config_mode)
+* [`service_enable`](#-prometheus--service_enable)
+* [`service_ensure`](#-prometheus--service_ensure)
+* [`service_name`](#-prometheus--service_name)
+* [`manage_service`](#-prometheus--manage_service)
+* [`restart_on_change`](#-prometheus--restart_on_change)
+* [`init_style`](#-prometheus--init_style)
+* [`global_config`](#-prometheus--global_config)
+* [`rule_files`](#-prometheus--rule_files)
+* [`scrape_configs`](#-prometheus--scrape_configs)
+* [`include_default_scrape_configs`](#-prometheus--include_default_scrape_configs)
+* [`remote_read_configs`](#-prometheus--remote_read_configs)
+* [`remote_write_configs`](#-prometheus--remote_write_configs)
+* [`alerts`](#-prometheus--alerts)
+* [`extra_alerts`](#-prometheus--extra_alerts)
+* [`alert_relabel_config`](#-prometheus--alert_relabel_config)
+* [`alertmanagers_config`](#-prometheus--alertmanagers_config)
+* [`storage_retention`](#-prometheus--storage_retention)
+* [`external_url`](#-prometheus--external_url)
+* [`extract_command`](#-prometheus--extract_command)
+* [`collect_tag`](#-prometheus--collect_tag)
+* [`collect_scrape_jobs`](#-prometheus--collect_scrape_jobs)
+* [`max_open_files`](#-prometheus--max_open_files)
+* [`usershell`](#-prometheus--usershell)
+* [`web_listen_address`](#-prometheus--web_listen_address)
+* [`web_read_timeout`](#-prometheus--web_read_timeout)
+* [`web_max_connections`](#-prometheus--web_max_connections)
+* [`web_route_prefix`](#-prometheus--web_route_prefix)
+* [`web_user_assets`](#-prometheus--web_user_assets)
+* [`web_enable_lifecycle`](#-prometheus--web_enable_lifecycle)
+* [`web_enable_admin_api`](#-prometheus--web_enable_admin_api)
+* [`web_page_title`](#-prometheus--web_page_title)
+* [`web_cors_origin`](#-prometheus--web_cors_origin)
+* [`storage_retention_size`](#-prometheus--storage_retention_size)
+* [`storage_no_lockfile`](#-prometheus--storage_no_lockfile)
+* [`storage_allow_overlapping_blocks`](#-prometheus--storage_allow_overlapping_blocks)
+* [`storage_wal_compression`](#-prometheus--storage_wal_compression)
+* [`storage_flush_deadline`](#-prometheus--storage_flush_deadline)
+* [`storage_read_sample_limit`](#-prometheus--storage_read_sample_limit)
+* [`storage_read_concurrent_limit`](#-prometheus--storage_read_concurrent_limit)
+* [`storage_read_max_bytes_in_frame`](#-prometheus--storage_read_max_bytes_in_frame)
+* [`alert_for_outage_tolerance`](#-prometheus--alert_for_outage_tolerance)
+* [`alert_for_grace_period`](#-prometheus--alert_for_grace_period)
+* [`alert_resend_delay`](#-prometheus--alert_resend_delay)
+* [`alertmanager_notification_queue_capacity`](#-prometheus--alertmanager_notification_queue_capacity)
+* [`alertmanager_timeout`](#-prometheus--alertmanager_timeout)
+* [`alertmanager_url`](#-prometheus--alertmanager_url)
+* [`query_lookback_delta`](#-prometheus--query_lookback_delta)
+* [`query_timeout`](#-prometheus--query_timeout)
+* [`query_max_concurrency`](#-prometheus--query_max_concurrency)
+* [`query_max_samples`](#-prometheus--query_max_samples)
+* [`query_staleness_delta`](#-prometheus--query_staleness_delta)
+* [`web_telemetry_path`](#-prometheus--web_telemetry_path)
+* [`web_enable_remote_shutdown`](#-prometheus--web_enable_remote_shutdown)
+* [`log_level`](#-prometheus--log_level)
+* [`log_format`](#-prometheus--log_format)
+* [`config_show_diff`](#-prometheus--config_show_diff)
+* [`extra_groups`](#-prometheus--extra_groups)
+* [`proxy_server`](#-prometheus--proxy_server)
+* [`proxy_type`](#-prometheus--proxy_type)
+* [`env_file_path`](#-prometheus--env_file_path)
+* [`manage_config`](#-prometheus--manage_config)
+* [`manage_prometheus_server`](#-prometheus--manage_prometheus_server)
 
-##### <a name="configname"></a>`configname`
+##### <a name="-prometheus--configname"></a>`configname`
 
 Data type: `String[1]`
 
@@ -184,43 +185,43 @@ the name of the configfile, defaults to prometheus.yaml or prometheus.yml on mos
 
 Default value: `'prometheus.yaml'`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user for prometheus or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--user"></a>`user`
 
 Data type: `String`
 
 User running prometheus
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create user for prometheus or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--group"></a>`group`
 
 Data type: `String`
 
 Group under which prometheus is running
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -228,13 +229,13 @@ Directory where binaries are located
 
 Default value: `'/usr/local/bin'`
 
-##### <a name="shared_dir"></a>`shared_dir`
+##### <a name="-prometheus--shared_dir"></a>`shared_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 Directory where shared files are located
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -242,7 +243,7 @@ Architecture (amd64 or i386)
 
 Default value: `$facts['os']['architecture']`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--version"></a>`version`
 
 Data type: `String`
 
@@ -250,7 +251,7 @@ Prometheus release
 
 Default value: `'2.30.3'`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--install_method"></a>`install_method`
 
 Data type: `String`
 
@@ -258,7 +259,7 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `'url'`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -266,59 +267,59 @@ Operating system (linux is supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
 
 Complete URL corresponding to the Prometheus release, default to undef
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for prometheus
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension of Prometheus binaries archive
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--package_name"></a>`package_name`
 
 Data type: `String`
 
 Prometheus package name - not available yet
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 If package, then use this for package ensurel default 'latest'
 
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-prometheus--config_dir"></a>`config_dir`
 
 Data type: `String`
 
 Prometheus configuration directory (default /etc/prometheus)
 
-##### <a name="localstorage"></a>`localstorage`
+##### <a name="-prometheus--localstorage"></a>`localstorage`
 
 Data type: `Stdlib::Absolutepath`
 
 Location of prometheus local storage (storage.local argument)
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to prometheus startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_hash"></a>`config_hash`
+##### <a name="-prometheus--config_hash"></a>`config_hash`
 
 Data type: `Hash`
 
@@ -326,7 +327,7 @@ Startup config hash
 
 Default value: `{}`
 
-##### <a name="config_defaults"></a>`config_defaults`
+##### <a name="-prometheus--config_defaults"></a>`config_defaults`
 
 Data type: `Hash`
 
@@ -334,27 +335,27 @@ Startup config defaults
 
 Default value: `{}`
 
-##### <a name="config_template"></a>`config_template`
+##### <a name="-prometheus--config_template"></a>`config_template`
 
 Data type: `String`
 
 Configuration template to use (template/prometheus.yaml.erb)
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--config_mode"></a>`config_mode`
 
 Data type: `String`
 
 Configuration file mode (default 0660)
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable or not prometheus service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -362,7 +363,7 @@ State ensured from prometheus service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--service_name"></a>`service_name`
 
 Data type: `String`
 
@@ -370,15 +371,15 @@ Name of the prometheus service (default 'prometheus')
 
 Default value: `'prometheus'`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the prometheus service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
@@ -386,9 +387,9 @@ Should puppet restart prometheus on configuration change? (default true)
 Note: this applies only to command-line options changes. Configuration
 options are always *reloaded* without restarting.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -396,51 +397,51 @@ Service startup scripts style (e.g. rc, upstart or systemd)
 
 Default value: `$facts['service_provider']`
 
-##### <a name="global_config"></a>`global_config`
+##### <a name="-prometheus--global_config"></a>`global_config`
 
 Data type: `Hash`
 
 Prometheus global configuration variables
 
-##### <a name="rule_files"></a>`rule_files`
+##### <a name="-prometheus--rule_files"></a>`rule_files`
 
 Data type: `Array`
 
 Prometheus rule files
 
-##### <a name="scrape_configs"></a>`scrape_configs`
+##### <a name="-prometheus--scrape_configs"></a>`scrape_configs`
 
 Data type: `Array`
 
 Prometheus scrape configs
 
-##### <a name="include_default_scrape_configs"></a>`include_default_scrape_configs`
+##### <a name="-prometheus--include_default_scrape_configs"></a>`include_default_scrape_configs`
 
 Data type: `Boolean`
 
 Include the module default scrape configs
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="remote_read_configs"></a>`remote_read_configs`
+##### <a name="-prometheus--remote_read_configs"></a>`remote_read_configs`
 
 Data type: `Array`
 
 Prometheus remote_read config to scrape prometheus 1.8+ instances
 
-##### <a name="remote_write_configs"></a>`remote_write_configs`
+##### <a name="-prometheus--remote_write_configs"></a>`remote_write_configs`
 
 Data type: `Array`
 
 Prometheus remote_write config to scrape prometheus 1.8+ instances
 
-##### <a name="alerts"></a>`alerts`
+##### <a name="-prometheus--alerts"></a>`alerts`
 
 Data type: `Variant[Array,Hash]`
 
 alert rules to put in alerts.rules
 
-##### <a name="extra_alerts"></a>`extra_alerts`
+##### <a name="-prometheus--extra_alerts"></a>`extra_alerts`
 
 Data type: `Hash`
 
@@ -448,19 +449,19 @@ Hash with extra alert rules to put in separate files.
 
 Default value: `{}`
 
-##### <a name="alert_relabel_config"></a>`alert_relabel_config`
+##### <a name="-prometheus--alert_relabel_config"></a>`alert_relabel_config`
 
 Data type: `Array`
 
 Prometheus alert relabel config under alerting
 
-##### <a name="alertmanagers_config"></a>`alertmanagers_config`
+##### <a name="-prometheus--alertmanagers_config"></a>`alertmanagers_config`
 
 Data type: `Array`
 
 Prometheus managers config under alerting
 
-##### <a name="storage_retention"></a>`storage_retention`
+##### <a name="-prometheus--storage_retention"></a>`storage_retention`
 
 Data type: `String`
 
@@ -468,7 +469,7 @@ How long to keep timeseries data. This is given as a duration like "100h" or "14
 prometheus 1.8.*, only durations understood by golang's time.ParseDuration are supported. Starting
 with prometheus 2, durations can also be given in days, weeks and years.
 
-##### <a name="external_url"></a>`external_url`
+##### <a name="-prometheus--external_url"></a>`external_url`
 
 Data type: `Optional[Variant[Stdlib::HTTPUrl, Stdlib::Unixpath, String[1]]]`
 
@@ -476,25 +477,25 @@ The URL under which Alertmanager is externally reachable (for example, if Alertm
 via a reverse proxy). Used for generating relative and absolute links back to Alertmanager itself.
 If omitted, relevant URL components will be derived automatically.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="extract_command"></a>`extract_command`
+##### <a name="-prometheus--extract_command"></a>`extract_command`
 
 Data type: `Optional[String[1]]`
 
 Custom command passed to the archive resource to extract the downloaded archive.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="collect_tag"></a>`collect_tag`
+##### <a name="-prometheus--collect_tag"></a>`collect_tag`
 
 Data type: `Optional[String[1]]`
 
 Only collect scrape jobs tagged with this label. Allowing to split jobs over multiple prometheuses.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="collect_scrape_jobs"></a>`collect_scrape_jobs`
+##### <a name="-prometheus--collect_scrape_jobs"></a>`collect_scrape_jobs`
 
 Data type: `Array[Hash[String[1], Any]]`
 
@@ -507,7 +508,7 @@ options can be passed as hash elements. Only the job_name is mandatory.
 
 Default value: `[]`
 
-##### <a name="max_open_files"></a>`max_open_files`
+##### <a name="-prometheus--max_open_files"></a>`max_open_files`
 
 Data type: `Optional[Integer]`
 
@@ -515,9 +516,9 @@ The maximum number of file descriptors for the prometheus server.
 Defaults to `undef`, but set to a large integer to override your default OS limit.
 Currently only implemented for systemd based service.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="usershell"></a>`usershell`
+##### <a name="-prometheus--usershell"></a>`usershell`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -526,88 +527,88 @@ shell is nologin. It can be overwritten to any valid path.
 
 Default value: `'/usr/bin/nologin'`
 
-##### <a name="web_listen_address"></a>`web_listen_address`
+##### <a name="-prometheus--web_listen_address"></a>`web_listen_address`
 
 Data type: `Optional[String[1]]`
 
 --web.listen-address="0.0.0.0:9090"
 Address to listen on for UI, API, and telemetry.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_read_timeout"></a>`web_read_timeout`
+##### <a name="-prometheus--web_read_timeout"></a>`web_read_timeout`
 
 Data type: `Optional[String[1]]`
 
 --web.read-timeout=5m
 Maximum duration before timing out read of the request, and closing idle connections.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_max_connections"></a>`web_max_connections`
+##### <a name="-prometheus--web_max_connections"></a>`web_max_connections`
 
 Data type: `Optional[String[1]]`
 
 --web.max-connections=512
 Maximum number of simultaneous connections.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_route_prefix"></a>`web_route_prefix`
+##### <a name="-prometheus--web_route_prefix"></a>`web_route_prefix`
 
 Data type: `Optional[String[1]]`
 
 --web.route-prefix=<path>
 Prefix for the internal routes of web endpoints. Defaults to path of --web.external-url.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_user_assets"></a>`web_user_assets`
+##### <a name="-prometheus--web_user_assets"></a>`web_user_assets`
 
 Data type: `Optional[String[1]]`
 
 --web.user-assets=<path>
 Path to static asset directory, available at /user.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_enable_lifecycle"></a>`web_enable_lifecycle`
+##### <a name="-prometheus--web_enable_lifecycle"></a>`web_enable_lifecycle`
 
 Data type: `Boolean`
 
 --web.enable-lifecycle
 Enable shutdown and reload via HTTP request
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="web_enable_admin_api"></a>`web_enable_admin_api`
+##### <a name="-prometheus--web_enable_admin_api"></a>`web_enable_admin_api`
 
 Data type: `Boolean`
 
 --web.enable-admin-api
 Enable API endpoints for admin control actions.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="web_page_title"></a>`web_page_title`
+##### <a name="-prometheus--web_page_title"></a>`web_page_title`
 
 Data type: `Optional[String[1]]`
 
 --web.page-title="Prometheus Time Series Collection and Processing Server"
 Document title of Prometheus instance.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_cors_origin"></a>`web_cors_origin`
+##### <a name="-prometheus--web_cors_origin"></a>`web_cors_origin`
 
 Data type: `Optional[String[1]]`
 
 --web.cors.origin=".*"
 Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2)\.com'
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="storage_retention_size"></a>`storage_retention_size`
+##### <a name="-prometheus--storage_retention_size"></a>`storage_retention_size`
 
 Data type: `Optional[String[1]]`
 
@@ -615,18 +616,18 @@ Data type: `Optional[String[1]]`
 [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB,
 MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="storage_no_lockfile"></a>`storage_no_lockfile`
+##### <a name="-prometheus--storage_no_lockfile"></a>`storage_no_lockfile`
 
 Data type: `Boolean`
 
 --storage.tsdb.no-lockfile
 Do not create lockfile in data directory.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="storage_allow_overlapping_blocks"></a>`storage_allow_overlapping_blocks`
+##### <a name="-prometheus--storage_allow_overlapping_blocks"></a>`storage_allow_overlapping_blocks`
 
 Data type: `Boolean`
 
@@ -634,27 +635,27 @@ Data type: `Boolean`
 [EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and
 vertical query merge.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="storage_wal_compression"></a>`storage_wal_compression`
+##### <a name="-prometheus--storage_wal_compression"></a>`storage_wal_compression`
 
 Data type: `Boolean`
 
 --storage.tsdb.wal-compression
 Compress the tsdb WAL.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="storage_flush_deadline"></a>`storage_flush_deadline`
+##### <a name="-prometheus--storage_flush_deadline"></a>`storage_flush_deadline`
 
 Data type: `Optional[String[1]]`
 
 --storage.remote.flush-deadline=<duration>
 How long to wait flushing sample on shutdown or config reload.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="storage_read_sample_limit"></a>`storage_read_sample_limit`
+##### <a name="-prometheus--storage_read_sample_limit"></a>`storage_read_sample_limit`
 
 Data type: `Optional[String[1]]`
 
@@ -662,18 +663,18 @@ Data type: `Optional[String[1]]`
 Maximum overall number of samples to return via the remote read interface, in a single
 query. 0 means no limit. This limit is ignored for streamed response types.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="storage_read_concurrent_limit"></a>`storage_read_concurrent_limit`
+##### <a name="-prometheus--storage_read_concurrent_limit"></a>`storage_read_concurrent_limit`
 
 Data type: `Optional[String[1]]`
 
 --storage.remote.read-concurrent-limit=10
 Maximum number of concurrent remote read calls. 0 means no limit.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="storage_read_max_bytes_in_frame"></a>`storage_read_max_bytes_in_frame`
+##### <a name="-prometheus--storage_read_max_bytes_in_frame"></a>`storage_read_max_bytes_in_frame`
 
 Data type: `Optional[String[1]]`
 
@@ -682,18 +683,18 @@ Maximum number of bytes in a single frame for streaming remote read response typ
 marshalling. Note that client might have limit on frame size as well. 1MB as recommended
 by protobuf by default.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alert_for_outage_tolerance"></a>`alert_for_outage_tolerance`
+##### <a name="-prometheus--alert_for_outage_tolerance"></a>`alert_for_outage_tolerance`
 
 Data type: `Optional[String[1]]`
 
 --rules.alert.for-outage-tolerance=1h
 Max time to tolerate prometheus outage for restoring "for" state of alert.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alert_for_grace_period"></a>`alert_for_grace_period`
+##### <a name="-prometheus--alert_for_grace_period"></a>`alert_for_grace_period`
 
 Data type: `Optional[String[1]]`
 
@@ -701,36 +702,36 @@ Data type: `Optional[String[1]]`
 Minimum duration between alert and restored "for" state. This is maintained only for
 alerts with configured "for" time greater than grace period.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alert_resend_delay"></a>`alert_resend_delay`
+##### <a name="-prometheus--alert_resend_delay"></a>`alert_resend_delay`
 
 Data type: `Optional[String[1]]`
 
 --rules.alert.resend-delay=1m
 Minimum amount of time to wait before resending an alert to Alertmanager.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alertmanager_notification_queue_capacity"></a>`alertmanager_notification_queue_capacity`
+##### <a name="-prometheus--alertmanager_notification_queue_capacity"></a>`alertmanager_notification_queue_capacity`
 
 Data type: `Optional[String[1]]`
 
 --alertmanager.notification-queue-capacity=10000
 The capacity of the queue for pending Alertmanager notifications.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alertmanager_timeout"></a>`alertmanager_timeout`
+##### <a name="-prometheus--alertmanager_timeout"></a>`alertmanager_timeout`
 
 Data type: `Optional[String[1]]`
 
 --alertmanager.timeout=10s
 Timeout for sending alerts to Alertmanager.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="alertmanager_url"></a>`alertmanager_url`
+##### <a name="-prometheus--alertmanager_url"></a>`alertmanager_url`
 
 Data type: `Optional[String[1]]`
 
@@ -738,36 +739,36 @@ Data type: `Optional[String[1]]`
 Comma-separated list of Alertmanager URLs to send notifications to.
 In Prometheus v2, Alertmanager must be discovered via service discovery
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="query_lookback_delta"></a>`query_lookback_delta`
+##### <a name="-prometheus--query_lookback_delta"></a>`query_lookback_delta`
 
 Data type: `Optional[String[1]]`
 
 --query.lookback-delta=5m
 The maximum lookback duration for retrieving metrics during expression evaluations.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="query_timeout"></a>`query_timeout`
+##### <a name="-prometheus--query_timeout"></a>`query_timeout`
 
 Data type: `Optional[String[1]]`
 
 --query.timeout=2m
 Maximum time a query may take before being aborted.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="query_max_concurrency"></a>`query_max_concurrency`
+##### <a name="-prometheus--query_max_concurrency"></a>`query_max_concurrency`
 
 Data type: `Optional[String[1]]`
 
 --query.max-concurrency=20
 Maximum number of queries executed concurrently.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="query_max_samples"></a>`query_max_samples`
+##### <a name="-prometheus--query_max_samples"></a>`query_max_samples`
 
 Data type: `Optional[String[1]]`
 
@@ -776,36 +777,36 @@ Maximum number of samples a single query can load into memory. Note that queries
 if they try to load more samples than this into memory, so this also limits the number of
 samples a query can return.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="query_staleness_delta"></a>`query_staleness_delta`
+##### <a name="-prometheus--query_staleness_delta"></a>`query_staleness_delta`
 
 Data type: `Optional[String[1]]`
 
 [REMOVED, v1 ONLY] -query.staleness-delta=5m0s
 Staleness delta allowance during expression evaluations.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_telemetry_path"></a>`web_telemetry_path`
+##### <a name="-prometheus--web_telemetry_path"></a>`web_telemetry_path`
 
 Data type: `Optional[String[1]]`
 
 [REMOVED, v1 ONLY] -web.telemetry-path="/metrics"
 Path under which to expose metrics
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="web_enable_remote_shutdown"></a>`web_enable_remote_shutdown`
+##### <a name="-prometheus--web_enable_remote_shutdown"></a>`web_enable_remote_shutdown`
 
 Data type: `Boolean`
 
 [REMOVED, v1 ONLY] -web.enable-remote-shutdown=false
 Enable remote service shutdown.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="log_level"></a>`log_level`
+##### <a name="-prometheus--log_level"></a>`log_level`
 
 Data type: `Optional[Enum['debug', 'info', 'warn', 'error', 'fatal']]`
 
@@ -813,115 +814,120 @@ Data type: `Optional[Enum['debug', 'info', 'warn', 'error', 'fatal']]`
 Only log messages with the given severity or above. One of: [debug, info, warn, error]
 Value of 'fatal' is also allowed in prometheus v1
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="log_format"></a>`log_format`
+##### <a name="-prometheus--log_format"></a>`log_format`
 
 Data type: `Optional[Enum['logfmt', 'json']]`
 
 --log.format=logfmt
 Output format of log messages. One of: [logfmt, json]
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_show_diff"></a>`config_show_diff`
+##### <a name="-prometheus--config_show_diff"></a>`config_show_diff`
 
 Data type: `Boolean`
 
 Whether to show prometheus configuration file diff in the Puppet logs.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups of which the user should be a part
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="manage_prometheus_server"></a>`manage_prometheus_server`
+##### <a name="-prometheus--manage_config"></a>`manage_config`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
-
-##### <a name="manage_config"></a>`manage_config`
+##### <a name="-prometheus--manage_prometheus_server"></a>`manage_prometheus_server`
 
 Data type: `Boolean`
 
 
 
-### <a name="prometheusalertmanager"></a>`prometheus::alertmanager`
+Default value: `false`
 
-This module manages prometheus alertmanager
+### <a name="prometheus--alertmanager"></a>`prometheus::alertmanager`
+
+Example:
+ prometheus::alertmanager::time_intervals:
+ - name: weekend
+   time_intervals:
+     - weekdays: ['saturday','sunday']
 
 #### Parameters
 
 The following parameters are available in the `prometheus::alertmanager` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`global`](#global)
-* [`group`](#group)
-* [`inhibit_rules`](#inhibit_rules)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`mute_time_intervals`](#mute_time_intervals)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`manage_config`](#manage_config)
-* [`validate_config`](#validate_config)
-* [`receivers`](#receivers)
-* [`restart_on_change`](#restart_on_change)
-* [`route`](#route)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`storage_path`](#storage_path)
-* [`templates`](#templates)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`config_dir`](#config_dir)
-* [`reload_on_change`](#reload_on_change)
+* [`arch`](#-prometheus--alertmanager--arch)
+* [`bin_dir`](#-prometheus--alertmanager--bin_dir)
+* [`config_file`](#-prometheus--alertmanager--config_file)
+* [`config_mode`](#-prometheus--alertmanager--config_mode)
+* [`download_extension`](#-prometheus--alertmanager--download_extension)
+* [`download_url`](#-prometheus--alertmanager--download_url)
+* [`download_url_base`](#-prometheus--alertmanager--download_url_base)
+* [`extra_groups`](#-prometheus--alertmanager--extra_groups)
+* [`extra_options`](#-prometheus--alertmanager--extra_options)
+* [`global`](#-prometheus--alertmanager--global)
+* [`group`](#-prometheus--alertmanager--group)
+* [`inhibit_rules`](#-prometheus--alertmanager--inhibit_rules)
+* [`init_style`](#-prometheus--alertmanager--init_style)
+* [`install_method`](#-prometheus--alertmanager--install_method)
+* [`manage_group`](#-prometheus--alertmanager--manage_group)
+* [`manage_service`](#-prometheus--alertmanager--manage_service)
+* [`manage_user`](#-prometheus--alertmanager--manage_user)
+* [`mute_time_intervals`](#-prometheus--alertmanager--mute_time_intervals)
+* [`time_intervals`](#-prometheus--alertmanager--time_intervals)
+* [`os`](#-prometheus--alertmanager--os)
+* [`package_ensure`](#-prometheus--alertmanager--package_ensure)
+* [`package_name`](#-prometheus--alertmanager--package_name)
+* [`purge_config_dir`](#-prometheus--alertmanager--purge_config_dir)
+* [`manage_config`](#-prometheus--alertmanager--manage_config)
+* [`validate_config`](#-prometheus--alertmanager--validate_config)
+* [`receivers`](#-prometheus--alertmanager--receivers)
+* [`restart_on_change`](#-prometheus--alertmanager--restart_on_change)
+* [`route`](#-prometheus--alertmanager--route)
+* [`service_enable`](#-prometheus--alertmanager--service_enable)
+* [`service_ensure`](#-prometheus--alertmanager--service_ensure)
+* [`service_name`](#-prometheus--alertmanager--service_name)
+* [`storage_path`](#-prometheus--alertmanager--storage_path)
+* [`templates`](#-prometheus--alertmanager--templates)
+* [`user`](#-prometheus--alertmanager--user)
+* [`version`](#-prometheus--alertmanager--version)
+* [`proxy_server`](#-prometheus--alertmanager--proxy_server)
+* [`proxy_type`](#-prometheus--alertmanager--proxy_type)
+* [`config_dir`](#-prometheus--alertmanager--config_dir)
+* [`reload_on_change`](#-prometheus--alertmanager--reload_on_change)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--alertmanager--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -929,7 +935,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--alertmanager--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -937,13 +943,13 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--alertmanager--config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
 The path to put the configuration file
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--alertmanager--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -951,41 +957,41 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--alertmanager--download_extension"></a>`download_extension`
 
 Data type: `String[1]`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--alertmanager--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--alertmanager--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--alertmanager--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--alertmanager--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="global"></a>`global`
+##### <a name="-prometheus--alertmanager--global"></a>`global`
 
 Data type: `Hash`
 
@@ -995,13 +1001,13 @@ prometheus::alertmanager::global:
   smtp_smarthost: 'localhost:25'
   smtp_from: 'alertmanager@localhost'
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--alertmanager--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="inhibit_rules"></a>`inhibit_rules`
+##### <a name="-prometheus--alertmanager--inhibit_rules"></a>`inhibit_rules`
 
 Data type: `Array`
 
@@ -1017,15 +1023,15 @@ prometheus::alertmanager::inhibit_rules:
     - 'cluster'
     - 'service'
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--alertmanager--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--alertmanager--install_method"></a>`install_method`
 
 Data type: `String[1]`
 
@@ -1033,41 +1039,49 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--alertmanager--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--alertmanager--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--alertmanager--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="mute_time_intervals"></a>`mute_time_intervals`
+##### <a name="-prometheus--alertmanager--mute_time_intervals"></a>`mute_time_intervals`
 
 Data type: `Array[Hash]`
 
 Array of mute time intervals
+Not applied if time_intervals is defined
 Example:
 prometheus::alertmanager::mute_time_intervals:
 - name: weekend
-  weekdays: ['saturday','sunday']
+  time_intervals:
+    - weekdays: ['saturday','sunday']
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--alertmanager--time_intervals"></a>`time_intervals`
+
+Data type: `Array[Hash]`
+
+Array of time intervals, only supported with 0.24.0 and newer
+
+##### <a name="-prometheus--alertmanager--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -1075,43 +1089,43 @@ Operating system (linux is the only one supported)
 
 Default value: `$prometheus::os`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--alertmanager--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--alertmanager--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--alertmanager--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_config"></a>`manage_config`
+##### <a name="-prometheus--alertmanager--manage_config"></a>`manage_config`
 
 Data type: `Boolean`
 
 Whether Puppet should manage Alertmanager config
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="validate_config"></a>`validate_config`
+##### <a name="-prometheus--alertmanager--validate_config"></a>`validate_config`
 
 Data type: `Boolean`
 
 Whether Puppet should validate the config with amtool when it is not installed with the URL method
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="receivers"></a>`receivers`
+##### <a name="-prometheus--alertmanager--receivers"></a>`receivers`
 
 Data type: `Array`
 
@@ -1122,15 +1136,15 @@ prometheus::alertmanager::receivers:
   email_configs:
     - to: 'root@localhost'
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--alertmanager--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="route"></a>`route`
+##### <a name="-prometheus--alertmanager--route"></a>`route`
 
 Data type: `Hash`
 
@@ -1146,15 +1160,15 @@ prometheus::alertmanager::route:
   repeat_interval: '3h'
   receiver: 'Admin'
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--alertmanager--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--alertmanager--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -1162,7 +1176,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--alertmanager--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -1170,61 +1184,61 @@ Name of the alertmanager service (default 'alertmanager')
 
 Default value: `'alertmanager'`
 
-##### <a name="storage_path"></a>`storage_path`
+##### <a name="-prometheus--alertmanager--storage_path"></a>`storage_path`
 
 Data type: `Stdlib::Absolutepath`
 
 The storage path to pass to the alertmanager. Defaults to '/var/lib/alertmanager'
 
-##### <a name="templates"></a>`templates`
+##### <a name="-prometheus--alertmanager--templates"></a>`templates`
 
 Data type: `Array`
 
 The array of template files. Defaults to [ "${config_dir}/*.tmpl" ]
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--alertmanager--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--alertmanager--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--alertmanager--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--alertmanager--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-prometheus--alertmanager--config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="reload_on_change"></a>`reload_on_change`
+##### <a name="-prometheus--alertmanager--reload_on_change"></a>`reload_on_change`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-### <a name="prometheusapache_exporter"></a>`prometheus::apache_exporter`
+### <a name="prometheus--apache_exporter"></a>`prometheus::apache_exporter`
 
 This module manages prometheus apache_exporter
 
@@ -1232,40 +1246,40 @@ This module manages prometheus apache_exporter
 
 The following parameters are available in the `prometheus::apache_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`scrape_uri`](#scrape_uri)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--apache_exporter--arch)
+* [`bin_dir`](#-prometheus--apache_exporter--bin_dir)
+* [`config_mode`](#-prometheus--apache_exporter--config_mode)
+* [`download_extension`](#-prometheus--apache_exporter--download_extension)
+* [`download_url`](#-prometheus--apache_exporter--download_url)
+* [`download_url_base`](#-prometheus--apache_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--apache_exporter--extra_groups)
+* [`extra_options`](#-prometheus--apache_exporter--extra_options)
+* [`group`](#-prometheus--apache_exporter--group)
+* [`init_style`](#-prometheus--apache_exporter--init_style)
+* [`install_method`](#-prometheus--apache_exporter--install_method)
+* [`manage_group`](#-prometheus--apache_exporter--manage_group)
+* [`manage_service`](#-prometheus--apache_exporter--manage_service)
+* [`manage_user`](#-prometheus--apache_exporter--manage_user)
+* [`os`](#-prometheus--apache_exporter--os)
+* [`package_ensure`](#-prometheus--apache_exporter--package_ensure)
+* [`package_name`](#-prometheus--apache_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--apache_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--apache_exporter--restart_on_change)
+* [`scrape_uri`](#-prometheus--apache_exporter--scrape_uri)
+* [`service_enable`](#-prometheus--apache_exporter--service_enable)
+* [`service_ensure`](#-prometheus--apache_exporter--service_ensure)
+* [`service_name`](#-prometheus--apache_exporter--service_name)
+* [`user`](#-prometheus--apache_exporter--user)
+* [`version`](#-prometheus--apache_exporter--version)
+* [`proxy_server`](#-prometheus--apache_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--apache_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--apache_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--apache_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--apache_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--apache_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--apache_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--apache_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -1273,7 +1287,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--apache_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -1281,7 +1295,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--apache_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -1289,55 +1303,55 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--apache_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--apache_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--apache_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--apache_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--apache_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--apache_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--apache_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--apache_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -1345,31 +1359,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--apache_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--apache_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--apache_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--apache_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -1377,49 +1391,49 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--apache_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--apache_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--apache_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--apache_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="scrape_uri"></a>`scrape_uri`
+##### <a name="-prometheus--apache_exporter--scrape_uri"></a>`scrape_uri`
 
 Data type: `String[1]`
 
 The URI for the Apache status page
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--apache_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--apache_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -1427,7 +1441,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--apache_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -1435,51 +1449,51 @@ Name of the node exporter service (default 'apache_exporter')
 
 Default value: `'apache_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--apache_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--apache_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--apache_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--apache_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--apache_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--apache_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--apache_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -1487,7 +1501,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9117`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--apache_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -1495,15 +1509,15 @@ Data type: `String[1]`
 
 Default value: `'apache'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--apache_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusbeanstalkd_exporter"></a>`prometheus::beanstalkd_exporter`
+### <a name="prometheus--beanstalkd_exporter"></a>`prometheus::beanstalkd_exporter`
 
 This module manages prometheus beanstalkd_exporter
 
@@ -1511,42 +1525,42 @@ This module manages prometheus beanstalkd_exporter
 
 The following parameters are available in the `prometheus::beanstalkd_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config`](#config)
-* [`mapping_config`](#mapping_config)
-* [`beanstalkd_address`](#beanstalkd_address)
-* [`exporter_listen`](#exporter_listen)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--beanstalkd_exporter--arch)
+* [`bin_dir`](#-prometheus--beanstalkd_exporter--bin_dir)
+* [`config`](#-prometheus--beanstalkd_exporter--config)
+* [`mapping_config`](#-prometheus--beanstalkd_exporter--mapping_config)
+* [`beanstalkd_address`](#-prometheus--beanstalkd_exporter--beanstalkd_address)
+* [`exporter_listen`](#-prometheus--beanstalkd_exporter--exporter_listen)
+* [`download_extension`](#-prometheus--beanstalkd_exporter--download_extension)
+* [`download_url`](#-prometheus--beanstalkd_exporter--download_url)
+* [`download_url_base`](#-prometheus--beanstalkd_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--beanstalkd_exporter--extra_groups)
+* [`extra_options`](#-prometheus--beanstalkd_exporter--extra_options)
+* [`group`](#-prometheus--beanstalkd_exporter--group)
+* [`init_style`](#-prometheus--beanstalkd_exporter--init_style)
+* [`install_method`](#-prometheus--beanstalkd_exporter--install_method)
+* [`manage_group`](#-prometheus--beanstalkd_exporter--manage_group)
+* [`manage_service`](#-prometheus--beanstalkd_exporter--manage_service)
+* [`manage_user`](#-prometheus--beanstalkd_exporter--manage_user)
+* [`os`](#-prometheus--beanstalkd_exporter--os)
+* [`package_ensure`](#-prometheus--beanstalkd_exporter--package_ensure)
+* [`package_name`](#-prometheus--beanstalkd_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--beanstalkd_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--beanstalkd_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--beanstalkd_exporter--service_enable)
+* [`service_ensure`](#-prometheus--beanstalkd_exporter--service_ensure)
+* [`service_name`](#-prometheus--beanstalkd_exporter--service_name)
+* [`user`](#-prometheus--beanstalkd_exporter--user)
+* [`version`](#-prometheus--beanstalkd_exporter--version)
+* [`proxy_server`](#-prometheus--beanstalkd_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--beanstalkd_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--beanstalkd_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--beanstalkd_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--beanstalkd_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--beanstalkd_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--beanstalkd_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--beanstalkd_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -1554,7 +1568,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--beanstalkd_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -1562,79 +1576,79 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config"></a>`config`
+##### <a name="-prometheus--beanstalkd_exporter--config"></a>`config`
 
 Data type: `String[1]`
 
 Path to configuration file that stores beanstalkd address
 
-##### <a name="mapping_config"></a>`mapping_config`
+##### <a name="-prometheus--beanstalkd_exporter--mapping_config"></a>`mapping_config`
 
 Data type: `String[1]`
 
 Path to configuration file with tubes mappings (not implemented)
 
-##### <a name="beanstalkd_address"></a>`beanstalkd_address`
+##### <a name="-prometheus--beanstalkd_exporter--beanstalkd_address"></a>`beanstalkd_address`
 
 Data type: `String[1]`
 
 Address of beanstalkd, defaults to localhost
 
-##### <a name="exporter_listen"></a>`exporter_listen`
+##### <a name="-prometheus--beanstalkd_exporter--exporter_listen"></a>`exporter_listen`
 
 Data type: `String[1]`
 
 Address to bind beanstalkd_exporter to. Default is different than upstream (*:9371)
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--beanstalkd_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--beanstalkd_exporter--download_url"></a>`download_url`
 
 Data type: `Variant[Undef,String]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--beanstalkd_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--beanstalkd_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--beanstalkd_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--beanstalkd_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--beanstalkd_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--beanstalkd_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -1642,31 +1656,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--beanstalkd_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--beanstalkd_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--beanstalkd_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--beanstalkd_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -1674,43 +1688,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--beanstalkd_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--beanstalkd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--beanstalkd_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--beanstalkd_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--beanstalkd_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--beanstalkd_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -1718,57 +1732,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--beanstalkd_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the beanstalkd exporter service (default 'beanstalkd_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--beanstalkd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--beanstalkd_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--beanstalkd_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--beanstalkd_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--beanstalkd_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--beanstalkd_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--beanstalkd_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -1776,7 +1790,7 @@ Data type: `Stdlib::Port`
 
 Default value: `8080`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--beanstalkd_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -1784,15 +1798,15 @@ Data type: `String[1]`
 
 Default value: `'beanstalkd'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--beanstalkd_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusbind_exporter"></a>`prometheus::bind_exporter`
+### <a name="prometheus--bind_exporter"></a>`prometheus::bind_exporter`
 
 Class: prometheus::bind_exporter
 
@@ -1802,39 +1816,39 @@ This module manages prometheus bind_exporter
 
 The following parameters are available in the `prometheus::bind_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`env_vars`](#env_vars)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
+* [`arch`](#-prometheus--bind_exporter--arch)
+* [`bin_dir`](#-prometheus--bind_exporter--bin_dir)
+* [`config_mode`](#-prometheus--bind_exporter--config_mode)
+* [`download_extension`](#-prometheus--bind_exporter--download_extension)
+* [`download_url`](#-prometheus--bind_exporter--download_url)
+* [`download_url_base`](#-prometheus--bind_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--bind_exporter--extra_groups)
+* [`extra_options`](#-prometheus--bind_exporter--extra_options)
+* [`env_vars`](#-prometheus--bind_exporter--env_vars)
+* [`group`](#-prometheus--bind_exporter--group)
+* [`init_style`](#-prometheus--bind_exporter--init_style)
+* [`install_method`](#-prometheus--bind_exporter--install_method)
+* [`manage_group`](#-prometheus--bind_exporter--manage_group)
+* [`manage_service`](#-prometheus--bind_exporter--manage_service)
+* [`manage_user`](#-prometheus--bind_exporter--manage_user)
+* [`os`](#-prometheus--bind_exporter--os)
+* [`package_ensure`](#-prometheus--bind_exporter--package_ensure)
+* [`package_name`](#-prometheus--bind_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--bind_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--bind_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--bind_exporter--service_enable)
+* [`service_ensure`](#-prometheus--bind_exporter--service_ensure)
+* [`service_name`](#-prometheus--bind_exporter--service_name)
+* [`user`](#-prometheus--bind_exporter--user)
+* [`version`](#-prometheus--bind_exporter--version)
+* [`export_scrape_job`](#-prometheus--bind_exporter--export_scrape_job)
+* [`scrape_job_name`](#-prometheus--bind_exporter--scrape_job_name)
+* [`scrape_port`](#-prometheus--bind_exporter--scrape_port)
+* [`scrape_job_labels`](#-prometheus--bind_exporter--scrape_job_labels)
+* [`proxy_server`](#-prometheus--bind_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--bind_exporter--proxy_type)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--bind_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -1842,7 +1856,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--bind_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -1850,7 +1864,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--bind_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -1858,7 +1872,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--bind_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -1866,15 +1880,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--bind_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Stdlib::HTTPSUrl]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--bind_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Stdlib::HTTPSUrl`
 
@@ -1882,7 +1896,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/prometheus-community/bind_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--bind_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -1890,15 +1904,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--bind_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--bind_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String, Scalar]`
 
@@ -1906,7 +1920,7 @@ The environment variable to pass to the daemon
 
 Default value: `{}`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--bind_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -1914,7 +1928,7 @@ Group under which the binary is running
 
 Default value: `'bind-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--bind_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -1922,7 +1936,7 @@ Service startup scripts style (e.g. rc, upstart or systemd)
 
 Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--bind_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -1930,31 +1944,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--bind_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--bind_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--bind_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--bind_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -1962,7 +1976,7 @@ Operating system (linux is the only one supported)
 
 Default value: `$prometheus::os`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--bind_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -1970,7 +1984,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--bind_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -1978,31 +1992,31 @@ The binary package name - not available yet
 
 Default value: `'bind_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--bind_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--bind_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--bind_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--bind_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `String[1]`
 
@@ -2010,7 +2024,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--bind_exporter--service_name"></a>`service_name`
 
 Data type: `String`
 
@@ -2018,7 +2032,7 @@ Name of the node exporter service (default 'bind_exporter')
 
 Default value: `'bind_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--bind_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -2026,7 +2040,7 @@ User which runs the service
 
 Default value: `'bind-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--bind_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -2034,16 +2048,16 @@ The binary release version
 
 Default value: `'0.4.0'`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--bind_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 Whether to export a `prometheus::scrape_job` to puppetDB for
 collecting on your prometheus server.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--bind_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -2053,7 +2067,7 @@ puppet module, the jobs to be collected are configured with
 
 Default value: `'bind'`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--bind_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -2063,7 +2077,7 @@ overriding `extra_options`.
 
 Default value: `9119`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--bind_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
@@ -2071,25 +2085,25 @@ Labels to configure on the scrape job. If not set, the
 `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will
 be used.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--bind_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--bind_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusbird_exporter"></a>`prometheus::bird_exporter`
+### <a name="prometheus--bird_exporter"></a>`prometheus::bird_exporter`
 
 This module manages prometheus bird exporter
 
@@ -2111,41 +2125,41 @@ class { 'prometheus::bird_exporter':
 
 The following parameters are available in the `prometheus::bird_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`env_vars`](#env_vars)
-* [`env_file_path`](#env_file_path)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--bird_exporter--arch)
+* [`bin_dir`](#-prometheus--bird_exporter--bin_dir)
+* [`download_extension`](#-prometheus--bird_exporter--download_extension)
+* [`download_url`](#-prometheus--bird_exporter--download_url)
+* [`download_url_base`](#-prometheus--bird_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--bird_exporter--extra_groups)
+* [`extra_options`](#-prometheus--bird_exporter--extra_options)
+* [`group`](#-prometheus--bird_exporter--group)
+* [`init_style`](#-prometheus--bird_exporter--init_style)
+* [`install_method`](#-prometheus--bird_exporter--install_method)
+* [`manage_group`](#-prometheus--bird_exporter--manage_group)
+* [`manage_service`](#-prometheus--bird_exporter--manage_service)
+* [`manage_user`](#-prometheus--bird_exporter--manage_user)
+* [`os`](#-prometheus--bird_exporter--os)
+* [`package_ensure`](#-prometheus--bird_exporter--package_ensure)
+* [`package_name`](#-prometheus--bird_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--bird_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--bird_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--bird_exporter--service_enable)
+* [`service_ensure`](#-prometheus--bird_exporter--service_ensure)
+* [`service_name`](#-prometheus--bird_exporter--service_name)
+* [`user`](#-prometheus--bird_exporter--user)
+* [`version`](#-prometheus--bird_exporter--version)
+* [`env_vars`](#-prometheus--bird_exporter--env_vars)
+* [`env_file_path`](#-prometheus--bird_exporter--env_file_path)
+* [`proxy_server`](#-prometheus--bird_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--bird_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--bird_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--bird_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--bird_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--bird_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--bird_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--bird_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--bird_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -2153,7 +2167,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--bird_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -2161,7 +2175,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--bird_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -2169,15 +2183,15 @@ Extension for the release binary archive
 
 Default value: `''`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--bird_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--bird_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -2185,7 +2199,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/czerwonk/bird_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--bird_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -2193,7 +2207,7 @@ Extra groups to add the binary user to
 
 Default value: `['bird']`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--bird_exporter--extra_options"></a>`extra_options`
 
 Data type: `String[1]`
 
@@ -2201,7 +2215,7 @@ Extra options added to the startup command
 
 Default value: `'-bird.v2 -web.listen-address=127.0.0.1:9324 -format.new=true'`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--bird_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -2209,15 +2223,15 @@ Group under which the binary is running
 
 Default value: `'bird-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--bird_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--bird_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -2225,31 +2239,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `'url'`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--bird_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--bird_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--bird_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--bird_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -2257,7 +2271,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--bird_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -2265,7 +2279,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'installed'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--bird_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -2273,31 +2287,31 @@ The binary package name - not available yet
 
 Default value: `'bird_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--bird_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--bird_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--bird_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--bird_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -2305,7 +2319,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--bird_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -2313,7 +2327,7 @@ Name of the bird exporter service (default 'bird_exporter')
 
 Default value: `'bird_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--bird_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -2321,7 +2335,7 @@ User which runs the service
 
 Default value: `'bird-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--bird_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -2329,7 +2343,7 @@ The binary release version
 
 Default value: `'1.2.5'`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--bird_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
 
@@ -2337,7 +2351,7 @@ hash with custom environment variables thats passed to the exporter via init scr
 
 Default value: `{}`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--bird_exporter--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -2345,39 +2359,39 @@ The path to the file with the environmetn variable that is read from the init sc
 
 Default value: `$prometheus::env_file_path`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--bird_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--bird_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--bird_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--bird_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--bird_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -2385,7 +2399,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9324`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--bird_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -2393,23 +2407,23 @@ Data type: `String[1]`
 
 Default value: `'bird'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--bird_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--bird_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusblackbox_exporter"></a>`prometheus::blackbox_exporter`
+### <a name="prometheus--blackbox_exporter"></a>`prometheus::blackbox_exporter`
 
 Example for configuring named blackbox modules via hiera
 details of the format: https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
@@ -2428,40 +2442,40 @@ prometheus::blackbox_exporter::modules:
 
 The following parameters are available in the `prometheus::blackbox_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`modules`](#modules)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`config_mode`](#config_mode)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--blackbox_exporter--arch)
+* [`bin_dir`](#-prometheus--blackbox_exporter--bin_dir)
+* [`config_file`](#-prometheus--blackbox_exporter--config_file)
+* [`download_extension`](#-prometheus--blackbox_exporter--download_extension)
+* [`download_url`](#-prometheus--blackbox_exporter--download_url)
+* [`download_url_base`](#-prometheus--blackbox_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--blackbox_exporter--extra_groups)
+* [`extra_options`](#-prometheus--blackbox_exporter--extra_options)
+* [`group`](#-prometheus--blackbox_exporter--group)
+* [`init_style`](#-prometheus--blackbox_exporter--init_style)
+* [`install_method`](#-prometheus--blackbox_exporter--install_method)
+* [`manage_group`](#-prometheus--blackbox_exporter--manage_group)
+* [`manage_service`](#-prometheus--blackbox_exporter--manage_service)
+* [`manage_user`](#-prometheus--blackbox_exporter--manage_user)
+* [`modules`](#-prometheus--blackbox_exporter--modules)
+* [`os`](#-prometheus--blackbox_exporter--os)
+* [`package_ensure`](#-prometheus--blackbox_exporter--package_ensure)
+* [`package_name`](#-prometheus--blackbox_exporter--package_name)
+* [`restart_on_change`](#-prometheus--blackbox_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--blackbox_exporter--service_enable)
+* [`service_ensure`](#-prometheus--blackbox_exporter--service_ensure)
+* [`service_name`](#-prometheus--blackbox_exporter--service_name)
+* [`user`](#-prometheus--blackbox_exporter--user)
+* [`version`](#-prometheus--blackbox_exporter--version)
+* [`config_mode`](#-prometheus--blackbox_exporter--config_mode)
+* [`proxy_server`](#-prometheus--blackbox_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--blackbox_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--blackbox_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--blackbox_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--blackbox_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--blackbox_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--blackbox_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--blackbox_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -2469,7 +2483,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--blackbox_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -2477,61 +2491,61 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--blackbox_exporter--config_file"></a>`config_file`
 
 Data type: `String[1]`
 
 Absolute path to configuration file (blackbox module definitions)
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--blackbox_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--blackbox_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--blackbox_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--blackbox_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--blackbox_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--blackbox_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--blackbox_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--blackbox_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -2539,31 +2553,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--blackbox_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--blackbox_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--blackbox_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="modules"></a>`modules`
+##### <a name="-prometheus--blackbox_exporter--modules"></a>`modules`
 
 Data type: `Hash`
 
@@ -2571,7 +2585,7 @@ Structured, array of blackbox module definitions for different probe types
 
 Default value: `{}`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--blackbox_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -2579,35 +2593,35 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--blackbox_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--blackbox_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--blackbox_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--blackbox_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--blackbox_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -2615,7 +2629,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--blackbox_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -2623,19 +2637,19 @@ Name of the node exporter service (default 'blackbox_exporter')
 
 Default value: `'blackbox_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--blackbox_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--blackbox_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--blackbox_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -2643,39 +2657,39 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--blackbox_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--blackbox_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--blackbox_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--blackbox_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--blackbox_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -2683,7 +2697,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9115`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--blackbox_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -2691,15 +2705,15 @@ Data type: `String[1]`
 
 Default value: `'blackbox'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--blackbox_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheuscollectd_exporter"></a>`prometheus::collectd_exporter`
+### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
 This module manages prometheus node collectd_exporter
 
@@ -2707,37 +2721,37 @@ This module manages prometheus node collectd_exporter
 
 The following parameters are available in the `prometheus::collectd_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`options`](#options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--collectd_exporter--arch)
+* [`bin_dir`](#-prometheus--collectd_exporter--bin_dir)
+* [`download_extension`](#-prometheus--collectd_exporter--download_extension)
+* [`download_url`](#-prometheus--collectd_exporter--download_url)
+* [`download_url_base`](#-prometheus--collectd_exporter--download_url_base)
+* [`options`](#-prometheus--collectd_exporter--options)
+* [`group`](#-prometheus--collectd_exporter--group)
+* [`init_style`](#-prometheus--collectd_exporter--init_style)
+* [`install_method`](#-prometheus--collectd_exporter--install_method)
+* [`manage_group`](#-prometheus--collectd_exporter--manage_group)
+* [`manage_service`](#-prometheus--collectd_exporter--manage_service)
+* [`manage_user`](#-prometheus--collectd_exporter--manage_user)
+* [`os`](#-prometheus--collectd_exporter--os)
+* [`package_ensure`](#-prometheus--collectd_exporter--package_ensure)
+* [`package_name`](#-prometheus--collectd_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--collectd_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--collectd_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--collectd_exporter--service_enable)
+* [`service_ensure`](#-prometheus--collectd_exporter--service_ensure)
+* [`service_name`](#-prometheus--collectd_exporter--service_name)
+* [`user`](#-prometheus--collectd_exporter--user)
+* [`version`](#-prometheus--collectd_exporter--version)
+* [`proxy_server`](#-prometheus--collectd_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--collectd_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--collectd_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--collectd_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--collectd_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--collectd_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--collectd_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--collectd_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -2745,7 +2759,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--collectd_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -2753,47 +2767,47 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--collectd_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--collectd_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[String[1]]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--collectd_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--collectd_exporter--options"></a>`options`
 
 Data type: `String`
 
 Options added to the startup command
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--collectd_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--collectd_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--collectd_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -2801,31 +2815,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--collectd_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--collectd_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--collectd_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--collectd_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -2833,43 +2847,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--collectd_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--collectd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--collectd_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--collectd_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--collectd_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--collectd_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -2877,57 +2891,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--collectd_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the collectd exporter service (default 'collectd_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--collectd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--collectd_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--collectd_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--collectd_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--collectd_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--collectd_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--collectd_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -2935,7 +2949,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9103`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--collectd_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -2943,19 +2957,19 @@ Data type: `String[1]`
 
 Default value: `'collectd'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--collectd_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusconfig"></a>`prometheus::config`
+### <a name="prometheus--config"></a>`prometheus::config`
 
 Configuration class for prometheus monitoring system
 
-### <a name="prometheusconsul_exporter"></a>`prometheus::consul_exporter`
+### <a name="prometheus--consul_exporter"></a>`prometheus::consul_exporter`
 
 This module manages prometheus node consul_exporter
 
@@ -2963,43 +2977,43 @@ This module manages prometheus node consul_exporter
 
 The following parameters are available in the `prometheus::consul_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`consul_server`](#consul_server)
-* [`consul_health_summary`](#consul_health_summary)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`log_level`](#log_level)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`web_listen_address`](#web_listen_address)
-* [`web_telemetry_path`](#web_telemetry_path)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--consul_exporter--arch)
+* [`bin_dir`](#-prometheus--consul_exporter--bin_dir)
+* [`consul_server`](#-prometheus--consul_exporter--consul_server)
+* [`consul_health_summary`](#-prometheus--consul_exporter--consul_health_summary)
+* [`download_extension`](#-prometheus--consul_exporter--download_extension)
+* [`download_url`](#-prometheus--consul_exporter--download_url)
+* [`download_url_base`](#-prometheus--consul_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--consul_exporter--extra_groups)
+* [`extra_options`](#-prometheus--consul_exporter--extra_options)
+* [`group`](#-prometheus--consul_exporter--group)
+* [`init_style`](#-prometheus--consul_exporter--init_style)
+* [`install_method`](#-prometheus--consul_exporter--install_method)
+* [`log_level`](#-prometheus--consul_exporter--log_level)
+* [`manage_group`](#-prometheus--consul_exporter--manage_group)
+* [`manage_service`](#-prometheus--consul_exporter--manage_service)
+* [`manage_user`](#-prometheus--consul_exporter--manage_user)
+* [`os`](#-prometheus--consul_exporter--os)
+* [`package_ensure`](#-prometheus--consul_exporter--package_ensure)
+* [`package_name`](#-prometheus--consul_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--consul_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--consul_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--consul_exporter--service_enable)
+* [`service_ensure`](#-prometheus--consul_exporter--service_ensure)
+* [`service_name`](#-prometheus--consul_exporter--service_name)
+* [`user`](#-prometheus--consul_exporter--user)
+* [`version`](#-prometheus--consul_exporter--version)
+* [`web_listen_address`](#-prometheus--consul_exporter--web_listen_address)
+* [`web_telemetry_path`](#-prometheus--consul_exporter--web_telemetry_path)
+* [`proxy_server`](#-prometheus--consul_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--consul_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--consul_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--consul_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--consul_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--consul_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--consul_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--consul_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -3007,7 +3021,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--consul_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -3015,67 +3029,67 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="consul_server"></a>`consul_server`
+##### <a name="-prometheus--consul_exporter--consul_server"></a>`consul_server`
 
 Data type: `String[1]`
 
 HTTP API address of a Consul server or agent. (prefix with https:// to connect over HTTPS) (default "http://localhost:8500")
 
-##### <a name="consul_health_summary"></a>`consul_health_summary`
+##### <a name="-prometheus--consul_exporter--consul_health_summary"></a>`consul_health_summary`
 
 Data type: `Boolean`
 
 Generate a health summary for each service instance. Needs n+1 queries to collect all information. (default true)
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--consul_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--consul_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--consul_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--consul_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--consul_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--consul_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--consul_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--consul_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -3083,37 +3097,37 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="log_level"></a>`log_level`
+##### <a name="-prometheus--consul_exporter--log_level"></a>`log_level`
 
 Data type: `String[1]`
 
 Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal] (default "info")
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--consul_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--consul_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--consul_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--consul_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -3121,43 +3135,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--consul_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--consul_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--consul_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--consul_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--consul_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--consul_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -3165,69 +3179,69 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--consul_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the consul exporter service (default 'consul_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--consul_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--consul_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="web_listen_address"></a>`web_listen_address`
+##### <a name="-prometheus--consul_exporter--web_listen_address"></a>`web_listen_address`
 
 Data type: `String[1]`
 
 Address to listen on for web interface and telemetry. (default ":9107")
 
-##### <a name="web_telemetry_path"></a>`web_telemetry_path`
+##### <a name="-prometheus--consul_exporter--web_telemetry_path"></a>`web_telemetry_path`
 
 Data type: `String[1]`
 
 Path under which to expose metrics. (default "/metrics")
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--consul_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--consul_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--consul_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--consul_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--consul_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -3235,7 +3249,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9107`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--consul_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -3243,15 +3257,15 @@ Data type: `String[1]`
 
 Default value: `'consul'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--consul_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusdellhw_exporter"></a>`prometheus::dellhw_exporter`
+### <a name="prometheus--dellhw_exporter"></a>`prometheus::dellhw_exporter`
 
 This module manages prometheus node dellhw_exporter
 
@@ -3259,41 +3273,41 @@ This module manages prometheus node dellhw_exporter
 
 The following parameters are available in the `prometheus::dellhw_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`omreport_path`](#omreport_path)
-* [`scrape_ipadress`](#scrape_ipadress)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--dellhw_exporter--arch)
+* [`bin_dir`](#-prometheus--dellhw_exporter--bin_dir)
+* [`download_extension`](#-prometheus--dellhw_exporter--download_extension)
+* [`download_url`](#-prometheus--dellhw_exporter--download_url)
+* [`download_url_base`](#-prometheus--dellhw_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--dellhw_exporter--extra_groups)
+* [`extra_options`](#-prometheus--dellhw_exporter--extra_options)
+* [`group`](#-prometheus--dellhw_exporter--group)
+* [`init_style`](#-prometheus--dellhw_exporter--init_style)
+* [`install_method`](#-prometheus--dellhw_exporter--install_method)
+* [`manage_group`](#-prometheus--dellhw_exporter--manage_group)
+* [`manage_service`](#-prometheus--dellhw_exporter--manage_service)
+* [`manage_user`](#-prometheus--dellhw_exporter--manage_user)
+* [`os`](#-prometheus--dellhw_exporter--os)
+* [`package_ensure`](#-prometheus--dellhw_exporter--package_ensure)
+* [`package_name`](#-prometheus--dellhw_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--dellhw_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--dellhw_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--dellhw_exporter--service_enable)
+* [`service_ensure`](#-prometheus--dellhw_exporter--service_ensure)
+* [`service_name`](#-prometheus--dellhw_exporter--service_name)
+* [`user`](#-prometheus--dellhw_exporter--user)
+* [`version`](#-prometheus--dellhw_exporter--version)
+* [`omreport_path`](#-prometheus--dellhw_exporter--omreport_path)
+* [`scrape_ipadress`](#-prometheus--dellhw_exporter--scrape_ipadress)
+* [`proxy_server`](#-prometheus--dellhw_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--dellhw_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--dellhw_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--dellhw_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--dellhw_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--dellhw_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--dellhw_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--dellhw_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--dellhw_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -3301,7 +3315,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--dellhw_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -3309,7 +3323,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--dellhw_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -3317,15 +3331,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--dellhw_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--dellhw_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -3333,7 +3347,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/galexrt/dellhw_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--dellhw_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -3341,15 +3355,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--dellhw_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--dellhw_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -3357,15 +3371,15 @@ Group under which the binary is running
 
 Default value: `'dellhw-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--dellhw_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--dellhw_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -3373,31 +3387,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--dellhw_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--dellhw_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--dellhw_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--dellhw_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -3405,7 +3419,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--dellhw_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -3413,7 +3427,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'present'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--dellhw_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -3421,31 +3435,31 @@ The binary package name - not available yet
 
 Default value: `'dellhw_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--dellhw_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--dellhw_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--dellhw_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--dellhw_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -3453,7 +3467,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--dellhw_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -3461,7 +3475,7 @@ Name of the dellhw exporter service (default 'dellhw_exporter')
 
 Default value: `'dellhw_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--dellhw_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -3469,7 +3483,7 @@ User which runs the service
 
 Default value: `'dellhw-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--dellhw_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -3477,7 +3491,7 @@ The binary release version
 
 Default value: `'1.6.0'`
 
-##### <a name="omreport_path"></a>`omreport_path`
+##### <a name="-prometheus--dellhw_exporter--omreport_path"></a>`omreport_path`
 
 Data type: `Stdlib::Unixpath`
 
@@ -3485,7 +3499,7 @@ The file path to the omReport executable (default "/opt/dell/srvadmin/bin/omrepo
 
 Default value: `'/opt/dell/srvadmin/bin/omreport'`
 
-##### <a name="scrape_ipadress"></a>`scrape_ipadress`
+##### <a name="-prometheus--dellhw_exporter--scrape_ipadress"></a>`scrape_ipadress`
 
 Data type: `String`
 
@@ -3493,39 +3507,39 @@ The ip address that the exporter will to listen to (default '')
 
 Default value: `''`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--dellhw_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--dellhw_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--dellhw_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--dellhw_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--dellhw_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -3533,7 +3547,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9137`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--dellhw_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -3541,23 +3555,23 @@ Data type: `String[1]`
 
 Default value: `'dellhw'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--dellhw_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--dellhw_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheuselasticsearch_exporter"></a>`prometheus::elasticsearch_exporter`
+### <a name="prometheus--elasticsearch_exporter"></a>`prometheus::elasticsearch_exporter`
 
 This module manages prometheus elasticsearch_exporter
 
@@ -3565,41 +3579,41 @@ This module manages prometheus elasticsearch_exporter
 
 The following parameters are available in the `prometheus::elasticsearch_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`cnf_uri`](#cnf_uri)
-* [`cnf_timeout`](#cnf_timeout)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`user`](#user)
-* [`version`](#version)
-* [`use_kingpin`](#use_kingpin)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`service_name`](#service_name)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--elasticsearch_exporter--arch)
+* [`bin_dir`](#-prometheus--elasticsearch_exporter--bin_dir)
+* [`cnf_uri`](#-prometheus--elasticsearch_exporter--cnf_uri)
+* [`cnf_timeout`](#-prometheus--elasticsearch_exporter--cnf_timeout)
+* [`download_extension`](#-prometheus--elasticsearch_exporter--download_extension)
+* [`download_url`](#-prometheus--elasticsearch_exporter--download_url)
+* [`download_url_base`](#-prometheus--elasticsearch_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--elasticsearch_exporter--extra_groups)
+* [`extra_options`](#-prometheus--elasticsearch_exporter--extra_options)
+* [`group`](#-prometheus--elasticsearch_exporter--group)
+* [`init_style`](#-prometheus--elasticsearch_exporter--init_style)
+* [`install_method`](#-prometheus--elasticsearch_exporter--install_method)
+* [`manage_group`](#-prometheus--elasticsearch_exporter--manage_group)
+* [`manage_service`](#-prometheus--elasticsearch_exporter--manage_service)
+* [`manage_user`](#-prometheus--elasticsearch_exporter--manage_user)
+* [`os`](#-prometheus--elasticsearch_exporter--os)
+* [`package_ensure`](#-prometheus--elasticsearch_exporter--package_ensure)
+* [`package_name`](#-prometheus--elasticsearch_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--elasticsearch_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--elasticsearch_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--elasticsearch_exporter--service_enable)
+* [`service_ensure`](#-prometheus--elasticsearch_exporter--service_ensure)
+* [`user`](#-prometheus--elasticsearch_exporter--user)
+* [`version`](#-prometheus--elasticsearch_exporter--version)
+* [`use_kingpin`](#-prometheus--elasticsearch_exporter--use_kingpin)
+* [`proxy_server`](#-prometheus--elasticsearch_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--elasticsearch_exporter--proxy_type)
+* [`service_name`](#-prometheus--elasticsearch_exporter--service_name)
+* [`export_scrape_job`](#-prometheus--elasticsearch_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--elasticsearch_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--elasticsearch_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--elasticsearch_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--elasticsearch_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--elasticsearch_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -3607,7 +3621,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--elasticsearch_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -3615,67 +3629,67 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="cnf_uri"></a>`cnf_uri`
+##### <a name="-prometheus--elasticsearch_exporter--cnf_uri"></a>`cnf_uri`
 
 Data type: `String[1]`
 
 The URI to obtain elasticsearch stats from
 
-##### <a name="cnf_timeout"></a>`cnf_timeout`
+##### <a name="-prometheus--elasticsearch_exporter--cnf_timeout"></a>`cnf_timeout`
 
 Data type: `String[1]`
 
 Timeout for trying to get stats from elasticsearch URI
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--elasticsearch_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--elasticsearch_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--elasticsearch_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--elasticsearch_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--elasticsearch_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--elasticsearch_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--elasticsearch_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--elasticsearch_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -3683,31 +3697,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--elasticsearch_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--elasticsearch_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--elasticsearch_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--elasticsearch_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -3715,43 +3729,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--elasticsearch_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--elasticsearch_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--elasticsearch_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--elasticsearch_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--elasticsearch_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--elasticsearch_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -3759,19 +3773,19 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--elasticsearch_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--elasticsearch_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="use_kingpin"></a>`use_kingpin`
+##### <a name="-prometheus--elasticsearch_exporter--use_kingpin"></a>`use_kingpin`
 
 Data type: `Boolean`
 
@@ -3779,45 +3793,45 @@ Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
 this param to define how we call the es.uri and es.timeout in the $options
 https://github.com/justwatchcom/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--elasticsearch_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--elasticsearch_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--elasticsearch_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--elasticsearch_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--elasticsearch_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--elasticsearch_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -3825,7 +3839,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9114`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--elasticsearch_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -3833,15 +3847,15 @@ Data type: `String[1]`
 
 Default value: `'elasticsearch'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--elasticsearch_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusgraphite_exporter"></a>`prometheus::graphite_exporter`
+### <a name="prometheus--graphite_exporter"></a>`prometheus::graphite_exporter`
 
 This module manages prometheus node graphite_exporter
 
@@ -3849,37 +3863,37 @@ This module manages prometheus node graphite_exporter
 
 The following parameters are available in the `prometheus::graphite_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`options`](#options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--graphite_exporter--arch)
+* [`bin_dir`](#-prometheus--graphite_exporter--bin_dir)
+* [`download_extension`](#-prometheus--graphite_exporter--download_extension)
+* [`download_url`](#-prometheus--graphite_exporter--download_url)
+* [`download_url_base`](#-prometheus--graphite_exporter--download_url_base)
+* [`options`](#-prometheus--graphite_exporter--options)
+* [`group`](#-prometheus--graphite_exporter--group)
+* [`init_style`](#-prometheus--graphite_exporter--init_style)
+* [`install_method`](#-prometheus--graphite_exporter--install_method)
+* [`manage_group`](#-prometheus--graphite_exporter--manage_group)
+* [`manage_service`](#-prometheus--graphite_exporter--manage_service)
+* [`manage_user`](#-prometheus--graphite_exporter--manage_user)
+* [`os`](#-prometheus--graphite_exporter--os)
+* [`package_ensure`](#-prometheus--graphite_exporter--package_ensure)
+* [`package_name`](#-prometheus--graphite_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--graphite_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--graphite_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--graphite_exporter--service_enable)
+* [`service_ensure`](#-prometheus--graphite_exporter--service_ensure)
+* [`service_name`](#-prometheus--graphite_exporter--service_name)
+* [`user`](#-prometheus--graphite_exporter--user)
+* [`version`](#-prometheus--graphite_exporter--version)
+* [`proxy_server`](#-prometheus--graphite_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--graphite_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--graphite_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--graphite_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--graphite_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--graphite_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--graphite_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--graphite_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -3887,7 +3901,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--graphite_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -3895,47 +3909,47 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--graphite_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--graphite_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--graphite_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--graphite_exporter--options"></a>`options`
 
 Data type: `String`
 
 Options added to the startup command
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--graphite_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--graphite_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--graphite_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -3943,31 +3957,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--graphite_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--graphite_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--graphite_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--graphite_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -3975,43 +3989,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--graphite_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--graphite_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--graphite_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--graphite_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--graphite_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--graphite_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -4019,57 +4033,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--graphite_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the graphite exporter service (default 'graphite_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--graphite_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--graphite_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--graphite_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--graphite_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--graphite_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--graphite_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--graphite_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -4077,7 +4091,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9108`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--graphite_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -4085,15 +4099,15 @@ Data type: `String[1]`
 
 Default value: `'graphite'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--graphite_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusgrok_exporter"></a>`prometheus::grok_exporter`
+### <a name="prometheus--grok_exporter"></a>`prometheus::grok_exporter`
 
 This module manages prometheus grok_exporter
 
@@ -4101,41 +4115,41 @@ This module manages prometheus grok_exporter
 
 The following parameters are available in the `prometheus::grok_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config`](#config)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--grok_exporter--arch)
+* [`bin_dir`](#-prometheus--grok_exporter--bin_dir)
+* [`config`](#-prometheus--grok_exporter--config)
+* [`config_file`](#-prometheus--grok_exporter--config_file)
+* [`config_mode`](#-prometheus--grok_exporter--config_mode)
+* [`download_extension`](#-prometheus--grok_exporter--download_extension)
+* [`download_url`](#-prometheus--grok_exporter--download_url)
+* [`download_url_base`](#-prometheus--grok_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--grok_exporter--extra_groups)
+* [`extra_options`](#-prometheus--grok_exporter--extra_options)
+* [`group`](#-prometheus--grok_exporter--group)
+* [`init_style`](#-prometheus--grok_exporter--init_style)
+* [`install_method`](#-prometheus--grok_exporter--install_method)
+* [`manage_group`](#-prometheus--grok_exporter--manage_group)
+* [`manage_service`](#-prometheus--grok_exporter--manage_service)
+* [`manage_user`](#-prometheus--grok_exporter--manage_user)
+* [`os`](#-prometheus--grok_exporter--os)
+* [`package_ensure`](#-prometheus--grok_exporter--package_ensure)
+* [`package_name`](#-prometheus--grok_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--grok_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--grok_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--grok_exporter--service_enable)
+* [`service_ensure`](#-prometheus--grok_exporter--service_ensure)
+* [`service_name`](#-prometheus--grok_exporter--service_name)
+* [`user`](#-prometheus--grok_exporter--user)
+* [`version`](#-prometheus--grok_exporter--version)
+* [`proxy_server`](#-prometheus--grok_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--grok_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--grok_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--grok_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--grok_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--grok_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--grok_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--grok_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -4143,7 +4157,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--grok_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -4151,20 +4165,22 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config"></a>`config`
+##### <a name="-prometheus--grok_exporter--config"></a>`config`
 
 Data type: `Hash`
 
 Hash of configuration, see https://github.com/fstab/grok_exporter/blob/master/CONFIG.md
 for available options
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--grok_exporter--config_file"></a>`config_file`
 
 Data type: `String[1]`
 
 Path to config file, it will be generated from config param
 
-##### <a name="config_mode"></a>`config_mode`
+Default value: `'/etc/grok-exporter.yaml'`
+
+##### <a name="-prometheus--grok_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -4172,55 +4188,63 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--grok_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+Default value: `'zip'`
+
+##### <a name="-prometheus--grok_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--grok_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+Default value: `'https://github.com/fstab/grok_exporter/releases'`
+
+##### <a name="-prometheus--grok_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+Default value: `[]`
+
+##### <a name="-prometheus--grok_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--grok_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+Default value: `'grok-exporter'`
+
+##### <a name="-prometheus--grok_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--grok_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -4228,31 +4252,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--grok_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--grok_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--grok_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--grok_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -4260,43 +4284,47 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--grok_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+Default value: `'latest'`
+
+##### <a name="-prometheus--grok_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+Default value: `'grok_exporter'`
+
+##### <a name="-prometheus--grok_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--grok_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--grok_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--grok_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -4304,7 +4332,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--grok_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -4312,51 +4340,55 @@ Name of the node exporter service (default 'grok_exporter')
 
 Default value: `'grok_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--grok_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+Default value: `'grok-exporter'`
+
+##### <a name="-prometheus--grok_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+Default value: `'1.0.0.RC4'`
+
+##### <a name="-prometheus--grok_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--grok_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--grok_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--grok_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--grok_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -4364,7 +4396,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9144`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--grok_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -4372,15 +4404,15 @@ Data type: `String[1]`
 
 Default value: `'grok'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--grok_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheushaproxy_exporter"></a>`prometheus::haproxy_exporter`
+### <a name="prometheus--haproxy_exporter"></a>`prometheus::haproxy_exporter`
 
 This module manages prometheus haproxy_exporter
 
@@ -4388,39 +4420,39 @@ This module manages prometheus haproxy_exporter
 
 The following parameters are available in the `prometheus::haproxy_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`cnf_scrape_uri`](#cnf_scrape_uri)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--haproxy_exporter--arch)
+* [`bin_dir`](#-prometheus--haproxy_exporter--bin_dir)
+* [`cnf_scrape_uri`](#-prometheus--haproxy_exporter--cnf_scrape_uri)
+* [`download_extension`](#-prometheus--haproxy_exporter--download_extension)
+* [`download_url`](#-prometheus--haproxy_exporter--download_url)
+* [`download_url_base`](#-prometheus--haproxy_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--haproxy_exporter--extra_groups)
+* [`extra_options`](#-prometheus--haproxy_exporter--extra_options)
+* [`group`](#-prometheus--haproxy_exporter--group)
+* [`init_style`](#-prometheus--haproxy_exporter--init_style)
+* [`install_method`](#-prometheus--haproxy_exporter--install_method)
+* [`manage_group`](#-prometheus--haproxy_exporter--manage_group)
+* [`manage_service`](#-prometheus--haproxy_exporter--manage_service)
+* [`manage_user`](#-prometheus--haproxy_exporter--manage_user)
+* [`os`](#-prometheus--haproxy_exporter--os)
+* [`package_ensure`](#-prometheus--haproxy_exporter--package_ensure)
+* [`package_name`](#-prometheus--haproxy_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--haproxy_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--haproxy_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--haproxy_exporter--service_enable)
+* [`service_ensure`](#-prometheus--haproxy_exporter--service_ensure)
+* [`service_name`](#-prometheus--haproxy_exporter--service_name)
+* [`user`](#-prometheus--haproxy_exporter--user)
+* [`version`](#-prometheus--haproxy_exporter--version)
+* [`proxy_server`](#-prometheus--haproxy_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--haproxy_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--haproxy_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--haproxy_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--haproxy_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--haproxy_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--haproxy_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--haproxy_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -4428,7 +4460,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--haproxy_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -4436,61 +4468,61 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="cnf_scrape_uri"></a>`cnf_scrape_uri`
+##### <a name="-prometheus--haproxy_exporter--cnf_scrape_uri"></a>`cnf_scrape_uri`
 
 Data type: `Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]]`
 
 The URI to obtain HAProxy stats from
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--haproxy_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--haproxy_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--haproxy_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--haproxy_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--haproxy_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--haproxy_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--haproxy_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--haproxy_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -4498,31 +4530,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--haproxy_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--haproxy_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--haproxy_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--haproxy_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -4530,43 +4562,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--haproxy_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--haproxy_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--haproxy_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--haproxy_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--haproxy_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--haproxy_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -4574,57 +4606,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--haproxy_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the haproxy exporter service (default 'haproxy_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--haproxy_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--haproxy_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--haproxy_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--haproxy_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--haproxy_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--haproxy_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--haproxy_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -4632,7 +4664,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9101`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--haproxy_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -4640,22 +4672,22 @@ Data type: `String[1]`
 
 Default value: `'haproxy'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--haproxy_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusinstall"></a>`prometheus::install`
+### <a name="prometheus--install"></a>`prometheus::install`
 
 Install prometheus via different methods with parameters from init
 Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
 implement the package install method as well
 The package method needs specific yum or apt repo settings which are not made yet by the module
 
-### <a name="prometheusipmi_exporter"></a>`prometheus::ipmi_exporter`
+### <a name="prometheus--ipmi_exporter"></a>`prometheus::ipmi_exporter`
 
 This module manages prometheus node ipmi_exporter (https://github.com/soundcloud/ipmi_exporter)
 
@@ -4663,44 +4695,44 @@ This module manages prometheus node ipmi_exporter (https://github.com/soundcloud
 
 The following parameters are available in the `prometheus::ipmi_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`modules`](#modules)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
-* [`unprivileged`](#unprivileged)
-* [`script_dir`](#script_dir)
+* [`arch`](#-prometheus--ipmi_exporter--arch)
+* [`bin_dir`](#-prometheus--ipmi_exporter--bin_dir)
+* [`config_file`](#-prometheus--ipmi_exporter--config_file)
+* [`config_mode`](#-prometheus--ipmi_exporter--config_mode)
+* [`download_extension`](#-prometheus--ipmi_exporter--download_extension)
+* [`download_url`](#-prometheus--ipmi_exporter--download_url)
+* [`download_url_base`](#-prometheus--ipmi_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--ipmi_exporter--extra_groups)
+* [`extra_options`](#-prometheus--ipmi_exporter--extra_options)
+* [`group`](#-prometheus--ipmi_exporter--group)
+* [`init_style`](#-prometheus--ipmi_exporter--init_style)
+* [`install_method`](#-prometheus--ipmi_exporter--install_method)
+* [`manage_group`](#-prometheus--ipmi_exporter--manage_group)
+* [`manage_service`](#-prometheus--ipmi_exporter--manage_service)
+* [`manage_user`](#-prometheus--ipmi_exporter--manage_user)
+* [`modules`](#-prometheus--ipmi_exporter--modules)
+* [`os`](#-prometheus--ipmi_exporter--os)
+* [`package_ensure`](#-prometheus--ipmi_exporter--package_ensure)
+* [`package_name`](#-prometheus--ipmi_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--ipmi_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--ipmi_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--ipmi_exporter--service_enable)
+* [`service_ensure`](#-prometheus--ipmi_exporter--service_ensure)
+* [`service_name`](#-prometheus--ipmi_exporter--service_name)
+* [`user`](#-prometheus--ipmi_exporter--user)
+* [`version`](#-prometheus--ipmi_exporter--version)
+* [`proxy_server`](#-prometheus--ipmi_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--ipmi_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--ipmi_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--ipmi_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--ipmi_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--ipmi_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--ipmi_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--ipmi_exporter--bin_name)
+* [`unprivileged`](#-prometheus--ipmi_exporter--unprivileged)
+* [`script_dir`](#-prometheus--ipmi_exporter--script_dir)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--ipmi_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -4708,7 +4740,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--ipmi_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -4716,7 +4748,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--ipmi_exporter--config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -4724,7 +4756,7 @@ Path to IPMI exporter configuration file
 
 Default value: `'/etc/ipmi_exporter.yaml'`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--ipmi_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -4732,7 +4764,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--ipmi_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -4740,15 +4772,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--ipmi_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--ipmi_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -4756,7 +4788,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/prometheus-community/ipmi_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--ipmi_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -4764,15 +4796,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--ipmi_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--ipmi_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -4780,15 +4812,15 @@ Group under which the binary is running
 
 Default value: `'ipmi-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--ipmi_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--ipmi_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -4796,31 +4828,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--ipmi_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--ipmi_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--ipmi_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="modules"></a>`modules`
+##### <a name="-prometheus--ipmi_exporter--modules"></a>`modules`
 
 Data type: `Hash`
 
@@ -4828,7 +4860,7 @@ Hash of IPMI exporter modules
 
 Default value: `{}`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--ipmi_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -4836,7 +4868,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--ipmi_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -4844,7 +4876,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--ipmi_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -4852,31 +4884,31 @@ The binary package name - not available yet
 
 Default value: `'ipmi_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--ipmi_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--ipmi_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--ipmi_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--ipmi_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -4884,7 +4916,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--ipmi_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -4892,7 +4924,7 @@ Name of the node exporter service (default 'ipmi_exporter')
 
 Default value: `'ipmi_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--ipmi_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -4900,7 +4932,7 @@ User which runs the service
 
 Default value: `'ipmi-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--ipmi_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -4908,39 +4940,39 @@ The binary release version
 
 Default value: `'1.4.0'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--ipmi_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--ipmi_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--ipmi_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--ipmi_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--ipmi_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -4948,7 +4980,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9290`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--ipmi_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -4956,31 +4988,31 @@ Data type: `String[1]`
 
 Default value: `'ipmi'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--ipmi_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--ipmi_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="unprivileged"></a>`unprivileged`
+##### <a name="-prometheus--ipmi_exporter--unprivileged"></a>`unprivileged`
 
 Data type: `Boolean`
 
 
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="script_dir"></a>`script_dir`
+##### <a name="-prometheus--ipmi_exporter--script_dir"></a>`script_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -4988,7 +5020,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `'/usr/local/bin'`
 
-### <a name="prometheusipsec_exporter"></a>`prometheus::ipsec_exporter`
+### <a name="prometheus--ipsec_exporter"></a>`prometheus::ipsec_exporter`
 
 This module manages prometheus node ipsec_exporter
 
@@ -4996,38 +5028,38 @@ This module manages prometheus node ipsec_exporter
 
 The following parameters are available in the `prometheus::ipsec_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`options`](#options)
-* [`extra_groups`](#extra_groups)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--ipsec_exporter--arch)
+* [`bin_dir`](#-prometheus--ipsec_exporter--bin_dir)
+* [`download_extension`](#-prometheus--ipsec_exporter--download_extension)
+* [`download_url`](#-prometheus--ipsec_exporter--download_url)
+* [`download_url_base`](#-prometheus--ipsec_exporter--download_url_base)
+* [`options`](#-prometheus--ipsec_exporter--options)
+* [`extra_groups`](#-prometheus--ipsec_exporter--extra_groups)
+* [`group`](#-prometheus--ipsec_exporter--group)
+* [`init_style`](#-prometheus--ipsec_exporter--init_style)
+* [`install_method`](#-prometheus--ipsec_exporter--install_method)
+* [`manage_group`](#-prometheus--ipsec_exporter--manage_group)
+* [`manage_service`](#-prometheus--ipsec_exporter--manage_service)
+* [`manage_user`](#-prometheus--ipsec_exporter--manage_user)
+* [`os`](#-prometheus--ipsec_exporter--os)
+* [`package_ensure`](#-prometheus--ipsec_exporter--package_ensure)
+* [`package_name`](#-prometheus--ipsec_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--ipsec_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--ipsec_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--ipsec_exporter--service_enable)
+* [`service_ensure`](#-prometheus--ipsec_exporter--service_ensure)
+* [`service_name`](#-prometheus--ipsec_exporter--service_name)
+* [`user`](#-prometheus--ipsec_exporter--user)
+* [`version`](#-prometheus--ipsec_exporter--version)
+* [`proxy_server`](#-prometheus--ipsec_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--ipsec_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--ipsec_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--ipsec_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--ipsec_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--ipsec_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--ipsec_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--ipsec_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -5035,7 +5067,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--ipsec_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::AbsolutePath`
 
@@ -5043,7 +5075,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--ipsec_exporter--download_extension"></a>`download_extension`
 
 Data type: `String[1]`
 
@@ -5051,15 +5083,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--ipsec_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--ipsec_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -5067,7 +5099,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/dennisstritzke/ipsec_exporter/releases'`
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--ipsec_exporter--options"></a>`options`
 
 Data type: `String`
 
@@ -5075,7 +5107,7 @@ Options added to the startup command
 
 Default value: `''`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--ipsec_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -5083,7 +5115,7 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--ipsec_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -5091,15 +5123,15 @@ Group under which the binary is running
 
 Default value: `'ipsec-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--ipsec_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--ipsec_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -5107,31 +5139,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--ipsec_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--ipsec_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--ipsec_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--ipsec_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -5139,7 +5171,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--ipsec_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -5147,7 +5179,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--ipsec_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -5155,31 +5187,31 @@ The binary package name - not available yet
 
 Default value: `'ipsec_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--ipsec_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--ipsec_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--ipsec_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--ipsec_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -5187,7 +5219,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--ipsec_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -5195,7 +5227,7 @@ Name of the ipsec exporter service (default 'ipsec_exporter')
 
 Default value: `'ipsec_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--ipsec_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -5203,7 +5235,7 @@ User which runs the service
 
 Default value: `'ipsec-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--ipsec_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -5211,39 +5243,39 @@ The binary release version
 
 Default value: `'0.3.2'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--ipsec_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--ipsec_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--ipsec_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--ipsec_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--ipsec_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -5251,7 +5283,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9536`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--ipsec_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -5259,15 +5291,224 @@ Data type: `String[1]`
 
 Default value: `'ipsec'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--ipsec_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusmemcached_exporter"></a>`prometheus::memcached_exporter`
+### <a name="prometheus--jmx_exporter"></a>`prometheus::jmx_exporter`
+
+Installs and configures the Prometheus JMX exporter
+
+* **See also**
+  * https://github.com/prometheus/jmx_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::jmx_exporter` class:
+
+* [`version`](#-prometheus--jmx_exporter--version)
+* [`config_file_location`](#-prometheus--jmx_exporter--config_file_location)
+* [`service_name`](#-prometheus--jmx_exporter--service_name)
+* [`user`](#-prometheus--jmx_exporter--user)
+* [`group`](#-prometheus--jmx_exporter--group)
+* [`extra_groups`](#-prometheus--jmx_exporter--extra_groups)
+* [`java_bin_path`](#-prometheus--jmx_exporter--java_bin_path)
+* [`configuration`](#-prometheus--jmx_exporter--configuration)
+* [`deployment`](#-prometheus--jmx_exporter--deployment)
+* [`os`](#-prometheus--jmx_exporter--os)
+* [`arch`](#-prometheus--jmx_exporter--arch)
+* [`bin_dir`](#-prometheus--jmx_exporter--bin_dir)
+* [`config_mode`](#-prometheus--jmx_exporter--config_mode)
+* [`restart_on_change`](#-prometheus--jmx_exporter--restart_on_change)
+* [`manage_user`](#-prometheus--jmx_exporter--manage_user)
+* [`manage_group`](#-prometheus--jmx_exporter--manage_group)
+* [`manage_service`](#-prometheus--jmx_exporter--manage_service)
+* [`port`](#-prometheus--jmx_exporter--port)
+* [`download_url`](#-prometheus--jmx_exporter--download_url)
+* [`proxy_server`](#-prometheus--jmx_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--jmx_exporter--proxy_type)
+* [`java_options`](#-prometheus--jmx_exporter--java_options)
+
+##### <a name="-prometheus--jmx_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+Version of JMX exporter to download
+
+##### <a name="-prometheus--jmx_exporter--config_file_location"></a>`config_file_location`
+
+Data type: `Stdlib::Absolutepath`
+
+Location where the jmx-exporter configuration should be placed
+
+Default value: `'/etc/jmx-exporter.yaml'`
+
+##### <a name="-prometheus--jmx_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+System service name for jmx exporter httpserver deployment
+
+Default value: `'jmx_exporter'`
+
+##### <a name="-prometheus--jmx_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+Service user for httpserver deployment
+
+Default value: `'jmx_exporter'`
+
+##### <a name="-prometheus--jmx_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Service group for httpserver deployment
+
+Default value: `'jmx-exporter'`
+
+##### <a name="-prometheus--jmx_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Additional groups for httpserver deployment service user
+
+Default value: `[]`
+
+##### <a name="-prometheus--jmx_exporter--java_bin_path"></a>`java_bin_path`
+
+Data type: `Stdlib::Absolutepath`
+
+Path to JAVA (required for httpserver deployment)
+
+Default value: `'/usr/bin/java'`
+
+##### <a name="-prometheus--jmx_exporter--configuration"></a>`configuration`
+
+Data type: `Hash`
+
+jmx-exporter configuration (see website for details)
+
+Default value: `{}`
+
+##### <a name="-prometheus--jmx_exporter--deployment"></a>`deployment`
+
+Data type: `Enum['javaagent', 'httpserver']`
+
+Way of deploying jmx-exporter. Defaults to standalone httpserver deployment. If set to javaagent, requires
+additional configuration on the target jmx service
+
+Default value: `'httpserver'`
+
+##### <a name="-prometheus--jmx_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--jmx_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--jmx_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--jmx_exporter--config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+File mode for jmx exporter configuration file
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="-prometheus--jmx_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Restart jmx exporter service when the configuration file was updated
+
+Default value: `true`
+
+##### <a name="-prometheus--jmx_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Manage service user
+
+Default value: `true`
+
+##### <a name="-prometheus--jmx_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Manage service group
+
+Default value: `true`
+
+##### <a name="-prometheus--jmx_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Manage service
+
+Default value: `true`
+
+##### <a name="-prometheus--jmx_exporter--port"></a>`port`
+
+Data type: `Optional[Stdlib::Port::Unprivileged]`
+
+Port that the JMX exporter should listen on (required for httpserver deployment)
+
+Default value: `undef`
+
+##### <a name="-prometheus--jmx_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Download URL for JMX exporter
+
+Default value: `undef`
+
+##### <a name="-prometheus--jmx_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--jmx_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--jmx_exporter--java_options"></a>`java_options`
+
+Data type: `Optional[String]`
+
+Optional options for the JVM of the standalone jmx exporter
+
+Default value: `undef`
+
+### <a name="prometheus--memcached_exporter"></a>`prometheus::memcached_exporter`
 
 This module manages prometheus node memcached_exporter
 
@@ -5275,39 +5516,39 @@ This module manages prometheus node memcached_exporter
 
 The following parameters are available in the `prometheus::memcached_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--memcached_exporter--arch)
+* [`bin_dir`](#-prometheus--memcached_exporter--bin_dir)
+* [`download_extension`](#-prometheus--memcached_exporter--download_extension)
+* [`download_url`](#-prometheus--memcached_exporter--download_url)
+* [`download_url_base`](#-prometheus--memcached_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--memcached_exporter--extra_groups)
+* [`extra_options`](#-prometheus--memcached_exporter--extra_options)
+* [`group`](#-prometheus--memcached_exporter--group)
+* [`init_style`](#-prometheus--memcached_exporter--init_style)
+* [`install_method`](#-prometheus--memcached_exporter--install_method)
+* [`manage_group`](#-prometheus--memcached_exporter--manage_group)
+* [`manage_service`](#-prometheus--memcached_exporter--manage_service)
+* [`manage_user`](#-prometheus--memcached_exporter--manage_user)
+* [`os`](#-prometheus--memcached_exporter--os)
+* [`package_ensure`](#-prometheus--memcached_exporter--package_ensure)
+* [`package_name`](#-prometheus--memcached_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--memcached_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--memcached_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--memcached_exporter--service_enable)
+* [`service_ensure`](#-prometheus--memcached_exporter--service_ensure)
+* [`service_name`](#-prometheus--memcached_exporter--service_name)
+* [`user`](#-prometheus--memcached_exporter--user)
+* [`version`](#-prometheus--memcached_exporter--version)
+* [`proxy_server`](#-prometheus--memcached_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--memcached_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--memcached_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--memcached_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--memcached_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--memcached_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--memcached_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--memcached_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--memcached_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -5315,7 +5556,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--memcached_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -5323,7 +5564,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--memcached_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -5331,15 +5572,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--memcached_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--memcached_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -5347,7 +5588,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/prometheus/memcached_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--memcached_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -5355,15 +5596,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--memcached_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--memcached_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -5371,15 +5612,15 @@ Group under which the binary is running
 
 Default value: `'memcached-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--memcached_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--memcached_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -5387,31 +5628,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--memcached_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--memcached_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--memcached_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--memcached_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -5419,7 +5660,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--memcached_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -5427,7 +5668,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'present'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--memcached_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -5435,31 +5676,31 @@ The binary package name - not available yet
 
 Default value: `'memcached_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--memcached_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--memcached_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--memcached_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--memcached_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -5467,7 +5708,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--memcached_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -5475,7 +5716,7 @@ Name of the memcached exporter service (default 'memcached_exporter')
 
 Default value: `'memcached_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--memcached_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -5483,7 +5724,7 @@ User which runs the service
 
 Default value: `'memcached-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--memcached_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -5491,39 +5732,39 @@ The binary release version
 
 Default value: `'0.6.0'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--memcached_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--memcached_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--memcached_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--memcached_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--memcached_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -5531,7 +5772,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9150`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--memcached_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -5539,23 +5780,23 @@ Data type: `String[1]`
 
 Default value: `'memcached'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--memcached_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--memcached_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusmesos_exporter"></a>`prometheus::mesos_exporter`
+### <a name="prometheus--mesos_exporter"></a>`prometheus::mesos_exporter`
 
 This module manages prometheus mesos_exporter
 
@@ -5563,40 +5804,40 @@ This module manages prometheus mesos_exporter
 
 The following parameters are available in the `prometheus::mesos_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`server_type`](#server_type)
-* [`cnf_scrape_uri`](#cnf_scrape_uri)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--mesos_exporter--arch)
+* [`bin_dir`](#-prometheus--mesos_exporter--bin_dir)
+* [`server_type`](#-prometheus--mesos_exporter--server_type)
+* [`cnf_scrape_uri`](#-prometheus--mesos_exporter--cnf_scrape_uri)
+* [`download_extension`](#-prometheus--mesos_exporter--download_extension)
+* [`download_url`](#-prometheus--mesos_exporter--download_url)
+* [`download_url_base`](#-prometheus--mesos_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--mesos_exporter--extra_groups)
+* [`extra_options`](#-prometheus--mesos_exporter--extra_options)
+* [`group`](#-prometheus--mesos_exporter--group)
+* [`init_style`](#-prometheus--mesos_exporter--init_style)
+* [`install_method`](#-prometheus--mesos_exporter--install_method)
+* [`manage_group`](#-prometheus--mesos_exporter--manage_group)
+* [`manage_service`](#-prometheus--mesos_exporter--manage_service)
+* [`manage_user`](#-prometheus--mesos_exporter--manage_user)
+* [`os`](#-prometheus--mesos_exporter--os)
+* [`package_ensure`](#-prometheus--mesos_exporter--package_ensure)
+* [`package_name`](#-prometheus--mesos_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--mesos_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--mesos_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--mesos_exporter--service_enable)
+* [`service_ensure`](#-prometheus--mesos_exporter--service_ensure)
+* [`service_name`](#-prometheus--mesos_exporter--service_name)
+* [`user`](#-prometheus--mesos_exporter--user)
+* [`version`](#-prometheus--mesos_exporter--version)
+* [`proxy_server`](#-prometheus--mesos_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--mesos_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--mesos_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--mesos_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--mesos_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--mesos_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--mesos_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--mesos_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -5604,7 +5845,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--mesos_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -5612,67 +5853,67 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="server_type"></a>`server_type`
+##### <a name="-prometheus--mesos_exporter--server_type"></a>`server_type`
 
 Data type: `String[1]`
 
 Specify target type master or slave
 
-##### <a name="cnf_scrape_uri"></a>`cnf_scrape_uri`
+##### <a name="-prometheus--mesos_exporter--cnf_scrape_uri"></a>`cnf_scrape_uri`
 
 Data type: `String[1]`
 
 The URI to obtain mesos stats from
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--mesos_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--mesos_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--mesos_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--mesos_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--mesos_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--mesos_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--mesos_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--mesos_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -5680,31 +5921,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--mesos_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--mesos_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--mesos_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--mesos_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -5712,43 +5953,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--mesos_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--mesos_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--mesos_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--mesos_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--mesos_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--mesos_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -5756,57 +5997,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--mesos_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the mesos exporter service (default 'mesos_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--mesos_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--mesos_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--mesos_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--mesos_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--mesos_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--mesos_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--mesos_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -5814,7 +6055,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9105`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--mesos_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -5822,15 +6063,15 @@ Data type: `String[1]`
 
 Default value: `'mesos'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--mesos_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusmongodb_exporter"></a>`prometheus::mongodb_exporter`
+### <a name="prometheus--mongodb_exporter"></a>`prometheus::mongodb_exporter`
 
 This module manages prometheus mongodb_exporter
 
@@ -5838,40 +6079,40 @@ This module manages prometheus mongodb_exporter
 
 The following parameters are available in the `prometheus::mongodb_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`cnf_uri`](#cnf_uri)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`use_kingpin`](#use_kingpin)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--mongodb_exporter--arch)
+* [`bin_dir`](#-prometheus--mongodb_exporter--bin_dir)
+* [`cnf_uri`](#-prometheus--mongodb_exporter--cnf_uri)
+* [`download_extension`](#-prometheus--mongodb_exporter--download_extension)
+* [`download_url`](#-prometheus--mongodb_exporter--download_url)
+* [`download_url_base`](#-prometheus--mongodb_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--mongodb_exporter--extra_groups)
+* [`extra_options`](#-prometheus--mongodb_exporter--extra_options)
+* [`group`](#-prometheus--mongodb_exporter--group)
+* [`init_style`](#-prometheus--mongodb_exporter--init_style)
+* [`install_method`](#-prometheus--mongodb_exporter--install_method)
+* [`manage_group`](#-prometheus--mongodb_exporter--manage_group)
+* [`manage_service`](#-prometheus--mongodb_exporter--manage_service)
+* [`manage_user`](#-prometheus--mongodb_exporter--manage_user)
+* [`os`](#-prometheus--mongodb_exporter--os)
+* [`package_ensure`](#-prometheus--mongodb_exporter--package_ensure)
+* [`package_name`](#-prometheus--mongodb_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--mongodb_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--mongodb_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--mongodb_exporter--service_enable)
+* [`service_ensure`](#-prometheus--mongodb_exporter--service_ensure)
+* [`service_name`](#-prometheus--mongodb_exporter--service_name)
+* [`user`](#-prometheus--mongodb_exporter--user)
+* [`version`](#-prometheus--mongodb_exporter--version)
+* [`use_kingpin`](#-prometheus--mongodb_exporter--use_kingpin)
+* [`proxy_server`](#-prometheus--mongodb_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--mongodb_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--mongodb_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--mongodb_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--mongodb_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--mongodb_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--mongodb_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--mongodb_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -5879,7 +6120,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--mongodb_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -5887,7 +6128,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="cnf_uri"></a>`cnf_uri`
+##### <a name="-prometheus--mongodb_exporter--cnf_uri"></a>`cnf_uri`
 
 Data type: `String[1]`
 
@@ -5895,7 +6136,7 @@ The URI to obtain MongoDB stats from
 
 Default value: `'mongodb://localhost:27017'`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--mongodb_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -5903,15 +6144,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--mongodb_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--mongodb_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -5919,7 +6160,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/percona/mongodb_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--mongodb_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
@@ -5927,15 +6168,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--mongodb_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--mongodb_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -5943,15 +6184,15 @@ Group under which the binary is running
 
 Default value: `'mongodb-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--mongodb_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--mongodb_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -5959,31 +6200,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--mongodb_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--mongodb_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--mongodb_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--mongodb_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -5991,7 +6232,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--mongodb_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -5999,7 +6240,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--mongodb_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -6007,31 +6248,31 @@ The binary package name - not available yet
 
 Default value: `'mongodb_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--mongodb_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--mongodb_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--mongodb_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--mongodb_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -6039,7 +6280,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--mongodb_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -6047,7 +6288,7 @@ Name of the mongodb exporter service (default 'mongodb_exporter')
 
 Default value: `'mongodb_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--mongodb_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -6055,7 +6296,7 @@ User which runs the service
 
 Default value: `'mongodb-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--mongodb_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -6063,7 +6304,7 @@ The binary release version
 
 Default value: `'0.20.4'`
 
-##### <a name="use_kingpin"></a>`use_kingpin`
+##### <a name="-prometheus--mongodb_exporter--use_kingpin"></a>`use_kingpin`
 
 Data type: `Boolean`
 
@@ -6071,41 +6312,41 @@ Since version 0.7.0, the mongodb exporter uses kingpin, thus
 this param to define how we call the mongodb.uri in the $options
 https://github.com/percona/mongodb_exporter/blob/v0.7.0/CHANGELOG.md
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--mongodb_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--mongodb_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--mongodb_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--mongodb_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--mongodb_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -6113,7 +6354,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9216`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--mongodb_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -6121,15 +6362,15 @@ Data type: `String[1]`
 
 Default value: `'mongodb'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--mongodb_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusmysqld_exporter"></a>`prometheus::mysqld_exporter`
+### <a name="prometheus--mysqld_exporter"></a>`prometheus::mysqld_exporter`
 
 manages prometheus mysqld_exporter
 
@@ -6140,45 +6381,45 @@ manages prometheus mysqld_exporter
 
 The following parameters are available in the `prometheus::mysqld_exporter` class:
 
-* [`cnf_config_path`](#cnf_config_path)
-* [`cnf_host`](#cnf_host)
-* [`cnf_password`](#cnf_password)
-* [`cnf_port`](#cnf_port)
-* [`cnf_socket`](#cnf_socket)
-* [`cnf_user`](#cnf_user)
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`cnf_config_path`](#-prometheus--mysqld_exporter--cnf_config_path)
+* [`cnf_host`](#-prometheus--mysqld_exporter--cnf_host)
+* [`cnf_password`](#-prometheus--mysqld_exporter--cnf_password)
+* [`cnf_port`](#-prometheus--mysqld_exporter--cnf_port)
+* [`cnf_socket`](#-prometheus--mysqld_exporter--cnf_socket)
+* [`cnf_user`](#-prometheus--mysqld_exporter--cnf_user)
+* [`arch`](#-prometheus--mysqld_exporter--arch)
+* [`bin_dir`](#-prometheus--mysqld_exporter--bin_dir)
+* [`config_mode`](#-prometheus--mysqld_exporter--config_mode)
+* [`download_extension`](#-prometheus--mysqld_exporter--download_extension)
+* [`download_url`](#-prometheus--mysqld_exporter--download_url)
+* [`download_url_base`](#-prometheus--mysqld_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--mysqld_exporter--extra_groups)
+* [`extra_options`](#-prometheus--mysqld_exporter--extra_options)
+* [`group`](#-prometheus--mysqld_exporter--group)
+* [`init_style`](#-prometheus--mysqld_exporter--init_style)
+* [`install_method`](#-prometheus--mysqld_exporter--install_method)
+* [`manage_group`](#-prometheus--mysqld_exporter--manage_group)
+* [`manage_service`](#-prometheus--mysqld_exporter--manage_service)
+* [`manage_user`](#-prometheus--mysqld_exporter--manage_user)
+* [`os`](#-prometheus--mysqld_exporter--os)
+* [`package_ensure`](#-prometheus--mysqld_exporter--package_ensure)
+* [`package_name`](#-prometheus--mysqld_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--mysqld_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--mysqld_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--mysqld_exporter--service_enable)
+* [`service_ensure`](#-prometheus--mysqld_exporter--service_ensure)
+* [`service_name`](#-prometheus--mysqld_exporter--service_name)
+* [`user`](#-prometheus--mysqld_exporter--user)
+* [`version`](#-prometheus--mysqld_exporter--version)
+* [`proxy_server`](#-prometheus--mysqld_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--mysqld_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--mysqld_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--mysqld_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--mysqld_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--mysqld_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--mysqld_exporter--scrape_job_labels)
 
-##### <a name="cnf_config_path"></a>`cnf_config_path`
+##### <a name="-prometheus--mysqld_exporter--cnf_config_path"></a>`cnf_config_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -6186,7 +6427,7 @@ The path to put the my.cnf file
 
 Default value: `'/etc/.my.cnf'`
 
-##### <a name="cnf_host"></a>`cnf_host`
+##### <a name="-prometheus--mysqld_exporter--cnf_host"></a>`cnf_host`
 
 Data type: `Stdlib::Host`
 
@@ -6194,7 +6435,7 @@ The mysql host.
 
 Default value: `localhost`
 
-##### <a name="cnf_password"></a>`cnf_password`
+##### <a name="-prometheus--mysqld_exporter--cnf_password"></a>`cnf_password`
 
 Data type: `Variant[Sensitive[String],String]`
 
@@ -6202,7 +6443,7 @@ The mysql user password.
 
 Default value: `'password'`
 
-##### <a name="cnf_port"></a>`cnf_port`
+##### <a name="-prometheus--mysqld_exporter--cnf_port"></a>`cnf_port`
 
 Data type: `Stdlib::Port`
 
@@ -6210,15 +6451,15 @@ The port for which the mysql host is running.
 
 Default value: `3306`
 
-##### <a name="cnf_socket"></a>`cnf_socket`
+##### <a name="-prometheus--mysqld_exporter--cnf_socket"></a>`cnf_socket`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 The socket which the mysql host is running. If defined, host and port are not used.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="cnf_user"></a>`cnf_user`
+##### <a name="-prometheus--mysqld_exporter--cnf_user"></a>`cnf_user`
 
 Data type: `String[1]`
 
@@ -6226,7 +6467,7 @@ The mysql user to use when connecting.
 
 Default value: `login`
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--mysqld_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -6234,7 +6475,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--mysqld_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -6242,7 +6483,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--mysqld_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -6250,55 +6491,55 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--mysqld_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--mysqld_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--mysqld_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--mysqld_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--mysqld_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--mysqld_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--mysqld_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--mysqld_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -6306,31 +6547,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--mysqld_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--mysqld_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--mysqld_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--mysqld_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -6338,43 +6579,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--mysqld_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--mysqld_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--mysqld_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--mysqld_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--mysqld_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--mysqld_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -6382,57 +6623,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--mysqld_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the mysqld exporter service (default 'mysqld_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--mysqld_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--mysqld_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--mysqld_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--mysqld_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--mysqld_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--mysqld_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--mysqld_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -6440,7 +6681,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9104`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--mysqld_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -6448,15 +6689,15 @@ Data type: `String[1]`
 
 Default value: `'mysql'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--mysqld_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusnginx_prometheus_exporter"></a>`prometheus::nginx_prometheus_exporter`
+### <a name="prometheus--nginx_prometheus_exporter"></a>`prometheus::nginx_prometheus_exporter`
 
 This module manages prometheus nginx exporter
 
@@ -6464,43 +6705,43 @@ This module manages prometheus nginx exporter
 
 The following parameters are available in the `prometheus::nginx_prometheus_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`scrape_uri`](#scrape_uri)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
-* [`env_vars`](#env_vars)
-* [`env_file_path`](#env_file_path)
+* [`arch`](#-prometheus--nginx_prometheus_exporter--arch)
+* [`bin_dir`](#-prometheus--nginx_prometheus_exporter--bin_dir)
+* [`config_mode`](#-prometheus--nginx_prometheus_exporter--config_mode)
+* [`download_extension`](#-prometheus--nginx_prometheus_exporter--download_extension)
+* [`download_url`](#-prometheus--nginx_prometheus_exporter--download_url)
+* [`download_url_base`](#-prometheus--nginx_prometheus_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--nginx_prometheus_exporter--extra_groups)
+* [`extra_options`](#-prometheus--nginx_prometheus_exporter--extra_options)
+* [`group`](#-prometheus--nginx_prometheus_exporter--group)
+* [`init_style`](#-prometheus--nginx_prometheus_exporter--init_style)
+* [`install_method`](#-prometheus--nginx_prometheus_exporter--install_method)
+* [`manage_group`](#-prometheus--nginx_prometheus_exporter--manage_group)
+* [`manage_service`](#-prometheus--nginx_prometheus_exporter--manage_service)
+* [`manage_user`](#-prometheus--nginx_prometheus_exporter--manage_user)
+* [`os`](#-prometheus--nginx_prometheus_exporter--os)
+* [`package_ensure`](#-prometheus--nginx_prometheus_exporter--package_ensure)
+* [`package_name`](#-prometheus--nginx_prometheus_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--nginx_prometheus_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--nginx_prometheus_exporter--restart_on_change)
+* [`scrape_uri`](#-prometheus--nginx_prometheus_exporter--scrape_uri)
+* [`service_enable`](#-prometheus--nginx_prometheus_exporter--service_enable)
+* [`service_ensure`](#-prometheus--nginx_prometheus_exporter--service_ensure)
+* [`service_name`](#-prometheus--nginx_prometheus_exporter--service_name)
+* [`user`](#-prometheus--nginx_prometheus_exporter--user)
+* [`version`](#-prometheus--nginx_prometheus_exporter--version)
+* [`proxy_server`](#-prometheus--nginx_prometheus_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--nginx_prometheus_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--nginx_prometheus_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--nginx_prometheus_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--nginx_prometheus_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--nginx_prometheus_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--nginx_prometheus_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--nginx_prometheus_exporter--bin_name)
+* [`env_vars`](#-prometheus--nginx_prometheus_exporter--env_vars)
+* [`env_file_path`](#-prometheus--nginx_prometheus_exporter--env_file_path)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--nginx_prometheus_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -6508,7 +6749,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--nginx_prometheus_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -6516,7 +6757,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--nginx_prometheus_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -6524,7 +6765,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--nginx_prometheus_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -6532,15 +6773,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--nginx_prometheus_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--nginx_prometheus_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -6548,7 +6789,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/nginxinc/nginx-prometheus-exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--nginx_prometheus_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -6556,15 +6797,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--nginx_prometheus_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--nginx_prometheus_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -6572,15 +6813,15 @@ Group under which the binary is running
 
 Default value: `'nginx-prometheus-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--nginx_prometheus_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--nginx_prometheus_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -6588,31 +6829,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--nginx_prometheus_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--nginx_prometheus_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--nginx_prometheus_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--nginx_prometheus_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -6620,7 +6861,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--nginx_prometheus_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -6628,7 +6869,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--nginx_prometheus_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -6636,23 +6877,23 @@ The binary package name - not available yet
 
 Default value: `'nginx-prometheus-exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--nginx_prometheus_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--nginx_prometheus_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="scrape_uri"></a>`scrape_uri`
+##### <a name="-prometheus--nginx_prometheus_exporter--scrape_uri"></a>`scrape_uri`
 
 Data type: `String[1]`
 
@@ -6660,15 +6901,15 @@ The URI for the nginx status or nginx plus api page
 
 Default value: `'http://localhost:8080/stub_status'`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--nginx_prometheus_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--nginx_prometheus_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -6676,7 +6917,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--nginx_prometheus_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -6684,7 +6925,7 @@ Name of the nginx prometheus exporter service (default 'nginx_prometheus_exporte
 
 Default value: `'nginx_prometheus_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--nginx_prometheus_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -6692,7 +6933,7 @@ User which runs the service
 
 Default value: `'nginx-prometheus-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--nginx_prometheus_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -6700,39 +6941,39 @@ The binary release version
 
 Default value: `'0.9.0'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--nginx_prometheus_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--nginx_prometheus_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--nginx_prometheus_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--nginx_prometheus_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--nginx_prometheus_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -6740,7 +6981,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9113`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--nginx_prometheus_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -6748,15 +6989,15 @@ Data type: `String[1]`
 
 Default value: `'nginx'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--nginx_prometheus_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--nginx_prometheus_exporter--bin_name"></a>`bin_name`
 
 Data type: `String[1]`
 
@@ -6764,7 +7005,7 @@ Data type: `String[1]`
 
 Default value: `'nginx-prometheus-exporter'`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--nginx_prometheus_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
 
@@ -6772,7 +7013,7 @@ Data type: `Hash[String[1], Scalar]`
 
 Default value: `{}`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--nginx_prometheus_exporter--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -6780,7 +7021,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::env_file_path`
 
-### <a name="prometheusnginx_vts_exporter"></a>`prometheus::nginx_vts_exporter`
+### <a name="prometheus--nginx_vts_exporter"></a>`prometheus::nginx_vts_exporter`
 
 This module manages prometheus nginx_vts_exporter
 
@@ -6788,39 +7029,39 @@ This module manages prometheus nginx_vts_exporter
 
 The following parameters are available in the `prometheus::nginx_vts_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`nginx_scrape_uri`](#nginx_scrape_uri)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--nginx_vts_exporter--arch)
+* [`bin_dir`](#-prometheus--nginx_vts_exporter--bin_dir)
+* [`nginx_scrape_uri`](#-prometheus--nginx_vts_exporter--nginx_scrape_uri)
+* [`download_extension`](#-prometheus--nginx_vts_exporter--download_extension)
+* [`download_url`](#-prometheus--nginx_vts_exporter--download_url)
+* [`download_url_base`](#-prometheus--nginx_vts_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--nginx_vts_exporter--extra_groups)
+* [`extra_options`](#-prometheus--nginx_vts_exporter--extra_options)
+* [`group`](#-prometheus--nginx_vts_exporter--group)
+* [`init_style`](#-prometheus--nginx_vts_exporter--init_style)
+* [`install_method`](#-prometheus--nginx_vts_exporter--install_method)
+* [`manage_group`](#-prometheus--nginx_vts_exporter--manage_group)
+* [`manage_service`](#-prometheus--nginx_vts_exporter--manage_service)
+* [`manage_user`](#-prometheus--nginx_vts_exporter--manage_user)
+* [`os`](#-prometheus--nginx_vts_exporter--os)
+* [`package_ensure`](#-prometheus--nginx_vts_exporter--package_ensure)
+* [`package_name`](#-prometheus--nginx_vts_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--nginx_vts_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--nginx_vts_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--nginx_vts_exporter--service_enable)
+* [`service_ensure`](#-prometheus--nginx_vts_exporter--service_ensure)
+* [`service_name`](#-prometheus--nginx_vts_exporter--service_name)
+* [`user`](#-prometheus--nginx_vts_exporter--user)
+* [`version`](#-prometheus--nginx_vts_exporter--version)
+* [`proxy_server`](#-prometheus--nginx_vts_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--nginx_vts_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--nginx_vts_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--nginx_vts_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--nginx_vts_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--nginx_vts_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--nginx_vts_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--nginx_vts_exporter--arch"></a>`arch`
 
 Data type: `String`
 
@@ -6828,7 +7069,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--nginx_vts_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `String`
 
@@ -6836,39 +7077,39 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="nginx_scrape_uri"></a>`nginx_scrape_uri`
+##### <a name="-prometheus--nginx_vts_exporter--nginx_scrape_uri"></a>`nginx_scrape_uri`
 
 Data type: `String`
 
 The URI to obtain nginx JSON stats from
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--nginx_vts_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--nginx_vts_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--nginx_vts_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `String`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--nginx_vts_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--nginx_vts_exporter--extra_options"></a>`extra_options`
 
 Data type: `String`
 
@@ -6876,21 +7117,21 @@ Extra options added to the startup command
 
 Default value: `''`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--nginx_vts_exporter--group"></a>`group`
 
 Data type: `String`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--nginx_vts_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--nginx_vts_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -6898,31 +7139,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--nginx_vts_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--nginx_vts_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--nginx_vts_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--nginx_vts_exporter--os"></a>`os`
 
 Data type: `String`
 
@@ -6930,43 +7171,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--nginx_vts_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--nginx_vts_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--nginx_vts_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--nginx_vts_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--nginx_vts_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--nginx_vts_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `String`
 
@@ -6974,57 +7215,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--nginx_vts_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the nginx-vts exporter service (default 'nginx-vts-exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--nginx_vts_exporter--user"></a>`user`
 
 Data type: `String`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--nginx_vts_exporter--version"></a>`version`
 
 Data type: `String`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--nginx_vts_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--nginx_vts_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--nginx_vts_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--nginx_vts_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--nginx_vts_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -7032,7 +7273,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9913`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--nginx_vts_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -7040,15 +7281,15 @@ Data type: `String[1]`
 
 Default value: `'nginx_vts'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--nginx_vts_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusnode_exporter"></a>`prometheus::node_exporter`
+### <a name="prometheus--node_exporter"></a>`prometheus::node_exporter`
 
 This module manages prometheus node node_exporter
 
@@ -7056,59 +7297,59 @@ This module manages prometheus node node_exporter
 
 The following parameters are available in the `prometheus::node_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`collectors`](#collectors)
-* [`collectors_enable`](#collectors_enable)
-* [`collectors_disable`](#collectors_disable)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`env_vars`](#env_vars)
-* [`env_file_path`](#env_file_path)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
-* [`use_tls_server_config`](#use_tls_server_config)
-* [`tls_cert_file`](#tls_cert_file)
-* [`tls_key_file`](#tls_key_file)
-* [`tls_client_ca_file`](#tls_client_ca_file)
-* [`tls_client_auth_type`](#tls_client_auth_type)
-* [`web_config_file`](#web_config_file)
-* [`tls_min_version`](#tls_min_version)
-* [`tls_max_version`](#tls_max_version)
-* [`tls_cipher_suites`](#tls_cipher_suites)
-* [`tls_curve_preferences`](#tls_curve_preferences)
-* [`tls_prefer_server_cipher_suites`](#tls_prefer_server_cipher_suites)
-* [`use_http_server_config`](#use_http_server_config)
-* [`http2`](#http2)
-* [`http2_headers`](#http2_headers)
-* [`basic_auth_users`](#basic_auth_users)
+* [`arch`](#-prometheus--node_exporter--arch)
+* [`bin_dir`](#-prometheus--node_exporter--bin_dir)
+* [`collectors`](#-prometheus--node_exporter--collectors)
+* [`collectors_enable`](#-prometheus--node_exporter--collectors_enable)
+* [`collectors_disable`](#-prometheus--node_exporter--collectors_disable)
+* [`download_extension`](#-prometheus--node_exporter--download_extension)
+* [`download_url`](#-prometheus--node_exporter--download_url)
+* [`download_url_base`](#-prometheus--node_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--node_exporter--extra_groups)
+* [`extra_options`](#-prometheus--node_exporter--extra_options)
+* [`group`](#-prometheus--node_exporter--group)
+* [`init_style`](#-prometheus--node_exporter--init_style)
+* [`install_method`](#-prometheus--node_exporter--install_method)
+* [`manage_group`](#-prometheus--node_exporter--manage_group)
+* [`manage_service`](#-prometheus--node_exporter--manage_service)
+* [`manage_user`](#-prometheus--node_exporter--manage_user)
+* [`os`](#-prometheus--node_exporter--os)
+* [`package_ensure`](#-prometheus--node_exporter--package_ensure)
+* [`package_name`](#-prometheus--node_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--node_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--node_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--node_exporter--service_enable)
+* [`service_ensure`](#-prometheus--node_exporter--service_ensure)
+* [`service_name`](#-prometheus--node_exporter--service_name)
+* [`user`](#-prometheus--node_exporter--user)
+* [`version`](#-prometheus--node_exporter--version)
+* [`env_vars`](#-prometheus--node_exporter--env_vars)
+* [`env_file_path`](#-prometheus--node_exporter--env_file_path)
+* [`proxy_server`](#-prometheus--node_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--node_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--node_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--node_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--node_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--node_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--node_exporter--bin_name)
+* [`use_tls_server_config`](#-prometheus--node_exporter--use_tls_server_config)
+* [`tls_cert_file`](#-prometheus--node_exporter--tls_cert_file)
+* [`tls_key_file`](#-prometheus--node_exporter--tls_key_file)
+* [`tls_client_ca_file`](#-prometheus--node_exporter--tls_client_ca_file)
+* [`tls_client_auth_type`](#-prometheus--node_exporter--tls_client_auth_type)
+* [`web_config_file`](#-prometheus--node_exporter--web_config_file)
+* [`tls_min_version`](#-prometheus--node_exporter--tls_min_version)
+* [`tls_max_version`](#-prometheus--node_exporter--tls_max_version)
+* [`tls_cipher_suites`](#-prometheus--node_exporter--tls_cipher_suites)
+* [`tls_curve_preferences`](#-prometheus--node_exporter--tls_curve_preferences)
+* [`tls_prefer_server_cipher_suites`](#-prometheus--node_exporter--tls_prefer_server_cipher_suites)
+* [`use_http_server_config`](#-prometheus--node_exporter--use_http_server_config)
+* [`http2`](#-prometheus--node_exporter--http2)
+* [`http2_headers`](#-prometheus--node_exporter--http2_headers)
+* [`basic_auth_users`](#-prometheus--node_exporter--basic_auth_users)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--node_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -7116,7 +7357,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -7124,16 +7365,16 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="collectors"></a>`collectors`
+##### <a name="-prometheus--node_exporter--collectors"></a>`collectors`
 
 Data type: `Optional[Array[String]]`
 
 deprecated, unused kept for migration scenatrios
 will be removed in next release
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="collectors_enable"></a>`collectors_enable`
+##### <a name="-prometheus--node_exporter--collectors_enable"></a>`collectors_enable`
 
 Data type: `Array[String]`
 
@@ -7142,7 +7383,7 @@ https://github.com/prometheus/node_exporter#enabled-by-default
 
 Default value: `[]`
 
-##### <a name="collectors_disable"></a>`collectors_disable`
+##### <a name="-prometheus--node_exporter--collectors_disable"></a>`collectors_disable`
 
 Data type: `Array[String]`
 
@@ -7151,47 +7392,47 @@ https://github.com/prometheus/node_exporter#enabled-by-default
 
 Default value: `[]`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--node_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--node_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--node_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--node_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--node_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--node_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--node_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -7199,7 +7440,7 @@ Service startup scripts style (e.g. rc, upstart or systemd)
 
 Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--node_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -7207,31 +7448,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--node_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--node_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--node_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--node_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -7239,43 +7480,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--node_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--node_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--node_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--node_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--node_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--node_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -7283,7 +7524,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--node_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -7291,19 +7532,19 @@ Name of the node exporter service (default 'node_exporter')
 
 Default value: `'node_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--node_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--node_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--node_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
 
@@ -7311,7 +7552,7 @@ hash with custom environment variables thats passed to the exporter via init scr
 
 Default value: `{}`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--node_exporter--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -7319,39 +7560,39 @@ The path to the file with the environmetn variable that is read from the init sc
 
 Default value: `$prometheus::env_file_path`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--node_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--node_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--node_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--node_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--node_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -7359,7 +7600,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9100`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--node_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -7367,55 +7608,55 @@ Data type: `String[1]`
 
 Default value: `'node'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--node_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--node_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="use_tls_server_config"></a>`use_tls_server_config`
+##### <a name="-prometheus--node_exporter--use_tls_server_config"></a>`use_tls_server_config`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="tls_cert_file"></a>`tls_cert_file`
-
-Data type: `Optional[Stdlib::Absolutepath]`
-
-
-
-Default value: ``undef``
-
-##### <a name="tls_key_file"></a>`tls_key_file`
+##### <a name="-prometheus--node_exporter--tls_cert_file"></a>`tls_cert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_client_ca_file"></a>`tls_client_ca_file`
+##### <a name="-prometheus--node_exporter--tls_key_file"></a>`tls_key_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_client_auth_type"></a>`tls_client_auth_type`
+##### <a name="-prometheus--node_exporter--tls_client_ca_file"></a>`tls_client_ca_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter--tls_client_auth_type"></a>`tls_client_auth_type`
 
 Data type: `String[1]`
 
@@ -7423,7 +7664,7 @@ Data type: `String[1]`
 
 Default value: `'RequireAndVerifyClientCert'`
 
-##### <a name="web_config_file"></a>`web_config_file`
+##### <a name="-prometheus--node_exporter--web_config_file"></a>`web_config_file`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -7431,7 +7672,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `'/etc/node_exporter_web-config.yml'`
 
-##### <a name="tls_min_version"></a>`tls_min_version`
+##### <a name="-prometheus--node_exporter--tls_min_version"></a>`tls_min_version`
 
 Data type: `String[1]`
 
@@ -7439,7 +7680,7 @@ Data type: `String[1]`
 
 Default value: `'TLS12'`
 
-##### <a name="tls_max_version"></a>`tls_max_version`
+##### <a name="-prometheus--node_exporter--tls_max_version"></a>`tls_max_version`
 
 Data type: `String[1]`
 
@@ -7447,63 +7688,63 @@ Data type: `String[1]`
 
 Default value: `'TLS13'`
 
-##### <a name="tls_cipher_suites"></a>`tls_cipher_suites`
+##### <a name="-prometheus--node_exporter--tls_cipher_suites"></a>`tls_cipher_suites`
 
 Data type: `Optional[Array[String[1]]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_curve_preferences"></a>`tls_curve_preferences`
+##### <a name="-prometheus--node_exporter--tls_curve_preferences"></a>`tls_curve_preferences`
 
 Data type: `Optional[Array[String[1]]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_prefer_server_cipher_suites"></a>`tls_prefer_server_cipher_suites`
-
-Data type: `Boolean`
-
-
-
-Default value: ``true``
-
-##### <a name="use_http_server_config"></a>`use_http_server_config`
+##### <a name="-prometheus--node_exporter--tls_prefer_server_cipher_suites"></a>`tls_prefer_server_cipher_suites`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `true`
 
-##### <a name="http2"></a>`http2`
+##### <a name="-prometheus--node_exporter--use_http_server_config"></a>`use_http_server_config`
 
 Data type: `Boolean`
 
 
 
-Default value: ``true``
+Default value: `false`
 
-##### <a name="http2_headers"></a>`http2_headers`
+##### <a name="-prometheus--node_exporter--http2"></a>`http2`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--node_exporter--http2_headers"></a>`http2_headers`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="basic_auth_users"></a>`basic_auth_users`
+##### <a name="-prometheus--node_exporter--basic_auth_users"></a>`basic_auth_users`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusopenldap_exporter"></a>`prometheus::openldap_exporter`
+### <a name="prometheus--openldap_exporter"></a>`prometheus::openldap_exporter`
 
 This module manages prometheus openldap_exporter
 
@@ -7511,38 +7752,38 @@ This module manages prometheus openldap_exporter
 
 The following parameters are available in the `prometheus::openldap_exporter` class:
 
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`options`](#options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`ldap_binddn`](#ldap_binddn)
-* [`ldap_password`](#ldap_password)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`bin_dir`](#-prometheus--openldap_exporter--bin_dir)
+* [`download_extension`](#-prometheus--openldap_exporter--download_extension)
+* [`download_url`](#-prometheus--openldap_exporter--download_url)
+* [`download_url_base`](#-prometheus--openldap_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--openldap_exporter--extra_groups)
+* [`options`](#-prometheus--openldap_exporter--options)
+* [`group`](#-prometheus--openldap_exporter--group)
+* [`init_style`](#-prometheus--openldap_exporter--init_style)
+* [`install_method`](#-prometheus--openldap_exporter--install_method)
+* [`manage_group`](#-prometheus--openldap_exporter--manage_group)
+* [`manage_service`](#-prometheus--openldap_exporter--manage_service)
+* [`manage_user`](#-prometheus--openldap_exporter--manage_user)
+* [`os`](#-prometheus--openldap_exporter--os)
+* [`package_ensure`](#-prometheus--openldap_exporter--package_ensure)
+* [`package_name`](#-prometheus--openldap_exporter--package_name)
+* [`restart_on_change`](#-prometheus--openldap_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--openldap_exporter--service_enable)
+* [`service_ensure`](#-prometheus--openldap_exporter--service_ensure)
+* [`service_name`](#-prometheus--openldap_exporter--service_name)
+* [`user`](#-prometheus--openldap_exporter--user)
+* [`version`](#-prometheus--openldap_exporter--version)
+* [`ldap_binddn`](#-prometheus--openldap_exporter--ldap_binddn)
+* [`ldap_password`](#-prometheus--openldap_exporter--ldap_password)
+* [`proxy_server`](#-prometheus--openldap_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--openldap_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--openldap_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--openldap_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--openldap_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--openldap_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--openldap_exporter--scrape_job_labels)
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--openldap_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -7550,7 +7791,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--openldap_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -7558,15 +7799,15 @@ Extension for the release binary archive
 
 Default value: `''`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--openldap_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--openldap_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -7574,7 +7815,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/tomcz/openldap_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--openldap_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -7582,7 +7823,7 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--openldap_exporter--options"></a>`options`
 
 Data type: `String`
 
@@ -7591,7 +7832,7 @@ Do not use for user/password authentication
 
 Default value: `''`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--openldap_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -7599,15 +7840,15 @@ Group under which the binary is running
 
 Default value: `'openldap-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--openldap_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--openldap_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -7615,31 +7856,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--openldap_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--openldap_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--openldap_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--openldap_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -7647,7 +7888,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--openldap_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -7655,7 +7896,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--openldap_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -7663,23 +7904,23 @@ The binary package name - not available yet
 
 Default value: `'openldap_exporter'`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--openldap_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--openldap_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--openldap_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -7687,7 +7928,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--openldap_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -7695,7 +7936,7 @@ Name of the node exporter service (default 'openldap_exporter')
 
 Default value: `'openldap_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--openldap_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -7703,7 +7944,7 @@ User which runs the service
 
 Default value: `'openldap-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--openldap_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -7711,55 +7952,55 @@ The binary release version
 
 Default value: `'2.1'`
 
-##### <a name="ldap_binddn"></a>`ldap_binddn`
+##### <a name="-prometheus--openldap_exporter--ldap_binddn"></a>`ldap_binddn`
 
 Data type: `Optional[String[1]]`
 
 DN (LDAP User) used to authenticate to openldap cn=monitor tree
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="ldap_password"></a>`ldap_password`
+##### <a name="-prometheus--openldap_exporter--ldap_password"></a>`ldap_password`
 
 Data type: `Optional[String[1]]`
 
 Password used to authenticate to openldap cn=monitor tree
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--openldap_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--openldap_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--openldap_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--openldap_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--openldap_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -7767,7 +8008,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9330`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--openldap_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -7775,15 +8016,15 @@ Data type: `String[1]`
 
 Default value: `'openldap'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--openldap_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusopenvpn_exporter"></a>`prometheus::openvpn_exporter`
+### <a name="prometheus--openvpn_exporter"></a>`prometheus::openvpn_exporter`
 
 This module manages prometheus node openvpn_exporter
 
@@ -7791,40 +8032,40 @@ This module manages prometheus node openvpn_exporter
 
 The following parameters are available in the `prometheus::openvpn_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`status_paths`](#status_paths)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--openvpn_exporter--arch)
+* [`bin_dir`](#-prometheus--openvpn_exporter--bin_dir)
+* [`status_paths`](#-prometheus--openvpn_exporter--status_paths)
+* [`download_extension`](#-prometheus--openvpn_exporter--download_extension)
+* [`download_url`](#-prometheus--openvpn_exporter--download_url)
+* [`download_url_base`](#-prometheus--openvpn_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--openvpn_exporter--extra_groups)
+* [`extra_options`](#-prometheus--openvpn_exporter--extra_options)
+* [`group`](#-prometheus--openvpn_exporter--group)
+* [`init_style`](#-prometheus--openvpn_exporter--init_style)
+* [`install_method`](#-prometheus--openvpn_exporter--install_method)
+* [`manage_group`](#-prometheus--openvpn_exporter--manage_group)
+* [`manage_service`](#-prometheus--openvpn_exporter--manage_service)
+* [`manage_user`](#-prometheus--openvpn_exporter--manage_user)
+* [`os`](#-prometheus--openvpn_exporter--os)
+* [`package_ensure`](#-prometheus--openvpn_exporter--package_ensure)
+* [`package_name`](#-prometheus--openvpn_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--openvpn_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--openvpn_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--openvpn_exporter--service_enable)
+* [`service_ensure`](#-prometheus--openvpn_exporter--service_ensure)
+* [`service_name`](#-prometheus--openvpn_exporter--service_name)
+* [`user`](#-prometheus--openvpn_exporter--user)
+* [`version`](#-prometheus--openvpn_exporter--version)
+* [`proxy_server`](#-prometheus--openvpn_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--openvpn_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--openvpn_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--openvpn_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--openvpn_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--openvpn_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--openvpn_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--openvpn_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--openvpn_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -7832,7 +8073,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--openvpn_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -7840,7 +8081,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="status_paths"></a>`status_paths`
+##### <a name="-prometheus--openvpn_exporter--status_paths"></a>`status_paths`
 
 Data type: `Array[Stdlib::Absolutepath]`
 
@@ -7848,7 +8089,7 @@ The openvpn status files to monitor with this exporter
 
 Default value: `[]`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--openvpn_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -7856,15 +8097,15 @@ Extension for the release binary archive
 
 Default value: `''`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--openvpn_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--openvpn_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -7872,7 +8113,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/wandera/openvpn_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--openvpn_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -7880,15 +8121,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--openvpn_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--openvpn_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -7896,15 +8137,15 @@ Group under which the binary is running
 
 Default value: `'openvpn-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--openvpn_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--openvpn_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -7912,31 +8153,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--openvpn_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--openvpn_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--openvpn_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--openvpn_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -7944,7 +8185,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--openvpn_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -7952,7 +8193,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--openvpn_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -7960,31 +8201,31 @@ The binary package name - not available yet
 
 Default value: `'openvpn_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--openvpn_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--openvpn_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--openvpn_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--openvpn_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -7992,7 +8233,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--openvpn_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -8000,7 +8241,7 @@ Name of the openvpn exporter service (default 'openvpn_exporter')
 
 Default value: `'openvpn_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--openvpn_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -8008,7 +8249,7 @@ User which runs the service
 
 Default value: `'openvpn-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--openvpn_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -8016,39 +8257,39 @@ The binary release version
 
 Default value: `'v0.3.0.3'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--openvpn_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--openvpn_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--openvpn_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--openvpn_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--openvpn_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -8056,7 +8297,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9176`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--openvpn_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -8064,23 +8305,23 @@ Data type: `String[1]`
 
 Default value: `'node'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--openvpn_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--openvpn_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusphp_fpm_exporter"></a>`prometheus::php_fpm_exporter`
+### <a name="prometheus--php_fpm_exporter"></a>`prometheus::php_fpm_exporter`
 
 This module manages prometheus php-fpm exporter
 
@@ -8088,43 +8329,43 @@ This module manages prometheus php-fpm exporter
 
 The following parameters are available in the `prometheus::php_fpm_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`scrape_uri`](#scrape_uri)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
-* [`env_vars`](#env_vars)
-* [`env_file_path`](#env_file_path)
+* [`arch`](#-prometheus--php_fpm_exporter--arch)
+* [`bin_dir`](#-prometheus--php_fpm_exporter--bin_dir)
+* [`config_mode`](#-prometheus--php_fpm_exporter--config_mode)
+* [`download_extension`](#-prometheus--php_fpm_exporter--download_extension)
+* [`download_url`](#-prometheus--php_fpm_exporter--download_url)
+* [`download_url_base`](#-prometheus--php_fpm_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--php_fpm_exporter--extra_groups)
+* [`extra_options`](#-prometheus--php_fpm_exporter--extra_options)
+* [`group`](#-prometheus--php_fpm_exporter--group)
+* [`init_style`](#-prometheus--php_fpm_exporter--init_style)
+* [`install_method`](#-prometheus--php_fpm_exporter--install_method)
+* [`manage_group`](#-prometheus--php_fpm_exporter--manage_group)
+* [`manage_service`](#-prometheus--php_fpm_exporter--manage_service)
+* [`manage_user`](#-prometheus--php_fpm_exporter--manage_user)
+* [`os`](#-prometheus--php_fpm_exporter--os)
+* [`package_ensure`](#-prometheus--php_fpm_exporter--package_ensure)
+* [`package_name`](#-prometheus--php_fpm_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--php_fpm_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--php_fpm_exporter--restart_on_change)
+* [`scrape_uri`](#-prometheus--php_fpm_exporter--scrape_uri)
+* [`service_enable`](#-prometheus--php_fpm_exporter--service_enable)
+* [`service_ensure`](#-prometheus--php_fpm_exporter--service_ensure)
+* [`service_name`](#-prometheus--php_fpm_exporter--service_name)
+* [`user`](#-prometheus--php_fpm_exporter--user)
+* [`version`](#-prometheus--php_fpm_exporter--version)
+* [`proxy_server`](#-prometheus--php_fpm_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--php_fpm_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--php_fpm_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--php_fpm_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--php_fpm_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--php_fpm_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--php_fpm_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--php_fpm_exporter--bin_name)
+* [`env_vars`](#-prometheus--php_fpm_exporter--env_vars)
+* [`env_file_path`](#-prometheus--php_fpm_exporter--env_file_path)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--php_fpm_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -8132,7 +8373,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--php_fpm_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -8140,7 +8381,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--php_fpm_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -8148,7 +8389,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--php_fpm_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -8156,15 +8397,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--php_fpm_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--php_fpm_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -8172,7 +8413,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/hipages/php-fpm_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--php_fpm_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -8180,15 +8421,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--php_fpm_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--php_fpm_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -8196,15 +8437,15 @@ Group under which the binary is running
 
 Default value: `'php-fpm_exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--php_fpm_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--php_fpm_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -8212,31 +8453,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--php_fpm_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--php_fpm_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--php_fpm_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--php_fpm_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -8244,7 +8485,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--php_fpm_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -8252,7 +8493,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--php_fpm_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -8260,23 +8501,23 @@ The binary package name - not available yet
 
 Default value: `'php-fpm_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--php_fpm_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--php_fpm_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="scrape_uri"></a>`scrape_uri`
+##### <a name="-prometheus--php_fpm_exporter--scrape_uri"></a>`scrape_uri`
 
 Data type: `String[1]`
 
@@ -8284,15 +8525,15 @@ The URI for the nginx status or nginx plus api page
 
 Default value: `'tcp://127.0.0.1:9000/status'`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--php_fpm_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--php_fpm_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -8300,7 +8541,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--php_fpm_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -8308,7 +8549,7 @@ Name of the php-fpm exporter service (default 'php-fpm_exporter')
 
 Default value: `'php-fpm_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--php_fpm_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -8316,7 +8557,7 @@ User which runs the service
 
 Default value: `'php-fpm_exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--php_fpm_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -8324,39 +8565,39 @@ The binary release version
 
 Default value: `'2.0.4'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--php_fpm_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--php_fpm_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--php_fpm_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--php_fpm_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--php_fpm_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -8364,7 +8605,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9253`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--php_fpm_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -8372,15 +8613,15 @@ Data type: `String[1]`
 
 Default value: `'php-fpm'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--php_fpm_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--php_fpm_exporter--bin_name"></a>`bin_name`
 
 Data type: `String[1]`
 
@@ -8388,7 +8629,7 @@ Data type: `String[1]`
 
 Default value: `'php-fpm_exporter'`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--php_fpm_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
 
@@ -8396,7 +8637,7 @@ Data type: `Hash[String[1], Scalar]`
 
 Default value: `{}`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--php_fpm_exporter--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -8404,7 +8645,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::env_file_path`
 
-### <a name="prometheuspostfix_exporter"></a>`prometheus::postfix_exporter`
+### <a name="prometheus--postfix_exporter"></a>`prometheus::postfix_exporter`
 
 manages prometheus postfix_exporter
 
@@ -8423,34 +8664,34 @@ include prometheus::postfix_exporter
 
 The following parameters are available in the `prometheus::postfix_exporter` class:
 
-* [`install_method`](#install_method)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`download_extension`](#download_extension)
-* [`version`](#version)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`manage_user`](#manage_user)
-* [`user`](#user)
-* [`manage_group`](#manage_group)
-* [`group`](#group)
-* [`extra_groups`](#extra_groups)
-* [`manage_service`](#manage_service)
-* [`init_style`](#init_style)
-* [`service_name`](#service_name)
-* [`service_ensure`](#service_ensure)
-* [`service_enable`](#service_enable)
-* [`extra_options`](#extra_options)
-* [`restart_on_change`](#restart_on_change)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
+* [`install_method`](#-prometheus--postfix_exporter--install_method)
+* [`download_url`](#-prometheus--postfix_exporter--download_url)
+* [`download_url_base`](#-prometheus--postfix_exporter--download_url_base)
+* [`download_extension`](#-prometheus--postfix_exporter--download_extension)
+* [`version`](#-prometheus--postfix_exporter--version)
+* [`package_ensure`](#-prometheus--postfix_exporter--package_ensure)
+* [`package_name`](#-prometheus--postfix_exporter--package_name)
+* [`manage_user`](#-prometheus--postfix_exporter--manage_user)
+* [`user`](#-prometheus--postfix_exporter--user)
+* [`manage_group`](#-prometheus--postfix_exporter--manage_group)
+* [`group`](#-prometheus--postfix_exporter--group)
+* [`extra_groups`](#-prometheus--postfix_exporter--extra_groups)
+* [`manage_service`](#-prometheus--postfix_exporter--manage_service)
+* [`init_style`](#-prometheus--postfix_exporter--init_style)
+* [`service_name`](#-prometheus--postfix_exporter--service_name)
+* [`service_ensure`](#-prometheus--postfix_exporter--service_ensure)
+* [`service_enable`](#-prometheus--postfix_exporter--service_enable)
+* [`extra_options`](#-prometheus--postfix_exporter--extra_options)
+* [`restart_on_change`](#-prometheus--postfix_exporter--restart_on_change)
+* [`export_scrape_job`](#-prometheus--postfix_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--postfix_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--postfix_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--postfix_exporter--scrape_job_labels)
+* [`proxy_server`](#-prometheus--postfix_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--postfix_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--postfix_exporter--scrape_host)
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--postfix_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -8458,15 +8699,15 @@ Installation method: `url` or `package`. (Note `package` is not available on mos
 
 Default value: `'url'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--postfix_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Stdlib::HTTPUrl]`
 
 Complete URL corresponding to the where the release can be downloaded. (This option is only relevant when `install_method` is `url`.)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--postfix_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Stdlib::HTTPUrl`
 
@@ -8474,7 +8715,7 @@ Base URL for the binary archive. (This option is only relevant when `install_met
 
 Default value: `'https://github.com/kumina/postfix_exporter/releases'`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--postfix_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -8482,7 +8723,7 @@ Extension for the release binary archive. (This option is only relevant when `in
 
 Default value: `''`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--postfix_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -8490,7 +8731,7 @@ The binary release version. (This option is only relevant when `install_method` 
 
 Default value: `'0.2.0'`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--postfix_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -8498,7 +8739,7 @@ Used when `install_method` is `package`.
 
 Default value: `'installed'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--postfix_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -8506,15 +8747,15 @@ Used when `install_method` is `package`.
 
 Default value: `'postfix_exporter'`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--postfix_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create and manage the exporter's user. This can eg. be set to `false` if your package already creates a user for you.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--postfix_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -8522,15 +8763,15 @@ User which runs the service.
 
 Default value: `'postfix-exporter'`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--postfix_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create and manage the exporter's group. This can eg. be set to `false` if your package already creates a group for you.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--postfix_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -8538,7 +8779,7 @@ Group to run the service as.
 
 Default value: `'postfix-exporter'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--postfix_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
@@ -8546,15 +8787,15 @@ Extra groups to add the exporter user to.
 
 Default value: `[]`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--postfix_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service?
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--postfix_exporter--init_style"></a>`init_style`
 
 Data type: `Optional[Prometheus::Initstyle]`
 
@@ -8562,9 +8803,9 @@ Service startup scripts style. When not set, the correct default for your OS wil
 Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 Typically this can be used when a package is already providing the file.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--postfix_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -8572,7 +8813,7 @@ The name of the service.
 
 Default value: `'postfix_exporter'`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--postfix_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -8580,15 +8821,15 @@ Desired state for the service.
 
 Default value: `'running'`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--postfix_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--postfix_exporter--extra_options"></a>`extra_options`
 
 Data type: `String`
 
@@ -8596,23 +8837,23 @@ Extra options added to the startup command. Override these if you want to monito
 
 Default value: `'--systemd.enable --systemd.unit=\'postfix.service\' --postfix.logfile_path=\'\''`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--postfix_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change?
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--postfix_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 Whether to export a `prometheus::scrape_job` to puppetDB for collecting on your prometheus server.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--postfix_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -8620,7 +8861,7 @@ The port to use in the scrape job.  This won't normally need to be changed unles
 
 Default value: `9154`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--postfix_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -8628,39 +8869,39 @@ The name of the scrape job. When configuring prometheus with this puppet module,
 
 Default value: `'postfix'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--postfix_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 Labels to configure on the scrape job. If not set, the `prometheus::daemon` default (`{ 'alias' => $scrape_host }`) will be used.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--postfix_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--postfix_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--postfix_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheuspostgres_exporter"></a>`prometheus::postgres_exporter`
+### <a name="prometheus--postgres_exporter"></a>`prometheus::postgres_exporter`
 
 This module manages prometheus node postgres_exporter
 
@@ -8668,43 +8909,43 @@ This module manages prometheus node postgres_exporter
 
 The following parameters are available in the `prometheus::postgres_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`data_source_custom`](#data_source_custom)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`postgres_user`](#postgres_user)
-* [`postgres_pass`](#postgres_pass)
-* [`postgres_auth_method`](#postgres_auth_method)
-* [`data_source_uri`](#data_source_uri)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`options`](#options)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--postgres_exporter--arch)
+* [`bin_dir`](#-prometheus--postgres_exporter--bin_dir)
+* [`data_source_custom`](#-prometheus--postgres_exporter--data_source_custom)
+* [`download_extension`](#-prometheus--postgres_exporter--download_extension)
+* [`download_url`](#-prometheus--postgres_exporter--download_url)
+* [`download_url_base`](#-prometheus--postgres_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--postgres_exporter--extra_groups)
+* [`group`](#-prometheus--postgres_exporter--group)
+* [`init_style`](#-prometheus--postgres_exporter--init_style)
+* [`install_method`](#-prometheus--postgres_exporter--install_method)
+* [`manage_group`](#-prometheus--postgres_exporter--manage_group)
+* [`manage_service`](#-prometheus--postgres_exporter--manage_service)
+* [`manage_user`](#-prometheus--postgres_exporter--manage_user)
+* [`os`](#-prometheus--postgres_exporter--os)
+* [`package_ensure`](#-prometheus--postgres_exporter--package_ensure)
+* [`package_name`](#-prometheus--postgres_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--postgres_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--postgres_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--postgres_exporter--service_enable)
+* [`service_ensure`](#-prometheus--postgres_exporter--service_ensure)
+* [`service_name`](#-prometheus--postgres_exporter--service_name)
+* [`user`](#-prometheus--postgres_exporter--user)
+* [`version`](#-prometheus--postgres_exporter--version)
+* [`postgres_user`](#-prometheus--postgres_exporter--postgres_user)
+* [`postgres_pass`](#-prometheus--postgres_exporter--postgres_pass)
+* [`postgres_auth_method`](#-prometheus--postgres_exporter--postgres_auth_method)
+* [`data_source_uri`](#-prometheus--postgres_exporter--data_source_uri)
+* [`proxy_server`](#-prometheus--postgres_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--postgres_exporter--proxy_type)
+* [`options`](#-prometheus--postgres_exporter--options)
+* [`export_scrape_job`](#-prometheus--postgres_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--postgres_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--postgres_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--postgres_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--postgres_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--postgres_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -8712,7 +8953,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--postgres_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -8720,7 +8961,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="data_source_custom"></a>`data_source_custom`
+##### <a name="-prometheus--postgres_exporter--data_source_custom"></a>`data_source_custom`
 
 Data type: `Hash[String[1],String[1]]`
 
@@ -8728,47 +8969,47 @@ Hash of key:value pair to use for alternate environment variables when using par
 
 Default value: `{}`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--postgres_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--postgres_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--postgres_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--postgres_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--postgres_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--postgres_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--postgres_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -8776,31 +9017,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--postgres_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--postgres_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--postgres_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--postgres_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -8808,43 +9049,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--postgres_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--postgres_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--postgres_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--postgres_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--postgres_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--postgres_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -8852,7 +9093,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--postgres_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -8860,35 +9101,35 @@ Name of the node exporter service (default 'postgres_exporter')
 
 Default value: `'postgres_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--postgres_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--postgres_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="postgres_user"></a>`postgres_user`
+##### <a name="-prometheus--postgres_exporter--postgres_user"></a>`postgres_user`
 
 Data type: `Optional[String]`
 
 User to authenticate against postgres
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="postgres_pass"></a>`postgres_pass`
+##### <a name="-prometheus--postgres_exporter--postgres_pass"></a>`postgres_pass`
 
 Data type: `Optional[String]`
 
 Password to authenticate against postgres
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="postgres_auth_method"></a>`postgres_auth_method`
+##### <a name="-prometheus--postgres_exporter--postgres_auth_method"></a>`postgres_auth_method`
 
 Data type: `Enum['custom', 'env', 'file']`
 
@@ -8896,29 +9137,29 @@ method for presenting username and password to the exporter
 This can be file, or env (default 'env')
 Using 'custom' requires 'data_source_custom' values
 
-##### <a name="data_source_uri"></a>`data_source_uri`
+##### <a name="-prometheus--postgres_exporter--data_source_uri"></a>`data_source_uri`
 
 Data type: `String[1]`
 
 Uri on howto connect to the database
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--postgres_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--postgres_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--postgres_exporter--options"></a>`options`
 
 Data type: `String`
 
@@ -8926,23 +9167,23 @@ Data type: `String`
 
 Default value: `''`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--postgres_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--postgres_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--postgres_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -8950,7 +9191,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9187`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--postgres_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -8958,15 +9199,15 @@ Data type: `String[1]`
 
 Default value: `'postgres'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--postgres_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusprocess_exporter"></a>`prometheus::process_exporter`
+### <a name="prometheus--process_exporter"></a>`prometheus::process_exporter`
 
 This module manages prometheus process_exporter
 
@@ -8999,42 +9240,42 @@ class { 'prometheus::process_exporter':
 
 The following parameters are available in the `prometheus::process_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`hash_watched_processes`](#hash_watched_processes)
-* [`watched_processes`](#watched_processes)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`config_path`](#config_path)
-* [`config_mode`](#config_mode)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--process_exporter--arch)
+* [`bin_dir`](#-prometheus--process_exporter--bin_dir)
+* [`download_extension`](#-prometheus--process_exporter--download_extension)
+* [`download_url`](#-prometheus--process_exporter--download_url)
+* [`download_url_base`](#-prometheus--process_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--process_exporter--extra_groups)
+* [`extra_options`](#-prometheus--process_exporter--extra_options)
+* [`group`](#-prometheus--process_exporter--group)
+* [`init_style`](#-prometheus--process_exporter--init_style)
+* [`install_method`](#-prometheus--process_exporter--install_method)
+* [`manage_group`](#-prometheus--process_exporter--manage_group)
+* [`manage_service`](#-prometheus--process_exporter--manage_service)
+* [`manage_user`](#-prometheus--process_exporter--manage_user)
+* [`os`](#-prometheus--process_exporter--os)
+* [`package_ensure`](#-prometheus--process_exporter--package_ensure)
+* [`package_name`](#-prometheus--process_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--process_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--process_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--process_exporter--service_enable)
+* [`service_ensure`](#-prometheus--process_exporter--service_ensure)
+* [`service_name`](#-prometheus--process_exporter--service_name)
+* [`user`](#-prometheus--process_exporter--user)
+* [`version`](#-prometheus--process_exporter--version)
+* [`hash_watched_processes`](#-prometheus--process_exporter--hash_watched_processes)
+* [`watched_processes`](#-prometheus--process_exporter--watched_processes)
+* [`proxy_server`](#-prometheus--process_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--process_exporter--proxy_type)
+* [`config_path`](#-prometheus--process_exporter--config_path)
+* [`config_mode`](#-prometheus--process_exporter--config_mode)
+* [`export_scrape_job`](#-prometheus--process_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--process_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--process_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--process_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--process_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--process_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -9042,7 +9283,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--process_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -9050,55 +9291,55 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--process_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--process_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--process_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--process_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--process_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--process_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--process_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--process_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -9106,31 +9347,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--process_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--process_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--process_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--process_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -9138,43 +9379,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--process_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--process_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--process_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--process_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--process_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--process_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -9182,25 +9423,25 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--process_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the process exporter service (default 'process-exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--process_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--process_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="hash_watched_processes"></a>`hash_watched_processes`
+##### <a name="-prometheus--process_exporter--hash_watched_processes"></a>`hash_watched_processes`
 
 Data type: `Hash`
 
@@ -9209,7 +9450,7 @@ Don't set if you want to use only the Array version of it (watched_processes)
 
 Default value: `{}`
 
-##### <a name="watched_processes"></a>`watched_processes`
+##### <a name="-prometheus--process_exporter--watched_processes"></a>`watched_processes`
 
 Data type: `Array`
 
@@ -9218,29 +9459,29 @@ Has no effect if hash_watched_processes is set
 
 Default value: `[]`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--process_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--process_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_path"></a>`config_path`
+##### <a name="-prometheus--process_exporter--config_path"></a>`config_path`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--process_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -9248,23 +9489,23 @@ Data type: `String[1]`
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--process_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--process_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--process_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -9272,7 +9513,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9256`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--process_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -9280,15 +9521,15 @@ Data type: `String[1]`
 
 Default value: `'process'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--process_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheuspuppetdb_exporter"></a>`prometheus::puppetdb_exporter`
+### <a name="prometheus--puppetdb_exporter"></a>`prometheus::puppetdb_exporter`
 
 This module manages prometheus node puppetdb_exporter
 
@@ -9296,40 +9537,40 @@ This module manages prometheus node puppetdb_exporter
 
 The following parameters are available in the `prometheus::puppetdb_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`puppetdb_url`](#puppetdb_url)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--puppetdb_exporter--arch)
+* [`bin_dir`](#-prometheus--puppetdb_exporter--bin_dir)
+* [`download_extension`](#-prometheus--puppetdb_exporter--download_extension)
+* [`download_url`](#-prometheus--puppetdb_exporter--download_url)
+* [`download_url_base`](#-prometheus--puppetdb_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--puppetdb_exporter--extra_groups)
+* [`extra_options`](#-prometheus--puppetdb_exporter--extra_options)
+* [`group`](#-prometheus--puppetdb_exporter--group)
+* [`init_style`](#-prometheus--puppetdb_exporter--init_style)
+* [`install_method`](#-prometheus--puppetdb_exporter--install_method)
+* [`manage_group`](#-prometheus--puppetdb_exporter--manage_group)
+* [`manage_service`](#-prometheus--puppetdb_exporter--manage_service)
+* [`manage_user`](#-prometheus--puppetdb_exporter--manage_user)
+* [`os`](#-prometheus--puppetdb_exporter--os)
+* [`package_ensure`](#-prometheus--puppetdb_exporter--package_ensure)
+* [`package_name`](#-prometheus--puppetdb_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--puppetdb_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--puppetdb_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--puppetdb_exporter--service_enable)
+* [`service_ensure`](#-prometheus--puppetdb_exporter--service_ensure)
+* [`service_name`](#-prometheus--puppetdb_exporter--service_name)
+* [`user`](#-prometheus--puppetdb_exporter--user)
+* [`version`](#-prometheus--puppetdb_exporter--version)
+* [`puppetdb_url`](#-prometheus--puppetdb_exporter--puppetdb_url)
+* [`proxy_server`](#-prometheus--puppetdb_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--puppetdb_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--puppetdb_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--puppetdb_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--puppetdb_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--puppetdb_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--puppetdb_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--puppetdb_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--puppetdb_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -9337,7 +9578,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--puppetdb_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -9345,7 +9586,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--puppetdb_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -9353,15 +9594,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--puppetdb_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--puppetdb_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -9369,7 +9610,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/camptocamp/prometheus-puppetdb-exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--puppetdb_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -9377,15 +9618,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--puppetdb_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--puppetdb_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -9393,750 +9634,7 @@ Group under which the binary is running
 
 Default value: `'puppetdb-exporter'`
 
-##### <a name="init_style"></a>`init_style`
-
-Data type: `Prometheus::Initstyle`
-
-Service startup scripts style (e.g. rc, upstart or systemd)
-
-Default value: `$facts['service_provider']`
-
-##### <a name="install_method"></a>`install_method`
-
-Data type: `Prometheus::Install`
-
-Installation method: url or package (only url is supported currently)
-
-Default value: `$prometheus::install_method`
-
-##### <a name="manage_group"></a>`manage_group`
-
-Data type: `Boolean`
-
-Whether to create a group for or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-Should puppet manage the service? (default true)
-
-Default value: ``true``
-
-##### <a name="manage_user"></a>`manage_user`
-
-Data type: `Boolean`
-
-Whether to create user or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="os"></a>`os`
-
-Data type: `String[1]`
-
-Operating system (linux is the only one supported)
-
-Default value: `downcase($facts['kernel'])`
-
-##### <a name="package_ensure"></a>`package_ensure`
-
-Data type: `String[1]`
-
-If package, then use this for package ensure default 'latest'
-
-Default value: `'present'`
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-The binary package name - not available yet
-
-Default value: `'puppetdb_exporter'`
-
-##### <a name="purge_config_dir"></a>`purge_config_dir`
-
-Data type: `Boolean`
-
-Purge config files no longer generated by Puppet
-
-Default value: ``true``
-
-##### <a name="restart_on_change"></a>`restart_on_change`
-
-Data type: `Boolean`
-
-Should puppet restart the service on configuration change? (default true)
-
-Default value: ``true``
-
-##### <a name="service_enable"></a>`service_enable`
-
-Data type: `Boolean`
-
-Whether to enable the service from puppet (default true)
-
-Default value: ``true``
-
-##### <a name="service_ensure"></a>`service_ensure`
-
-Data type: `Stdlib::Ensure::Service`
-
-State ensured for the service (default 'running')
-
-Default value: `'running'`
-
-##### <a name="service_name"></a>`service_name`
-
-Data type: `String[1]`
-
-Name of the puppetdb exporter service (default 'puppetdb_exporter')
-
-Default value: `'puppetdb_exporter'`
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-User which runs the service
-
-Default value: `'puppetdb-exporter'`
-
-##### <a name="version"></a>`version`
-
-Data type: `String[1]`
-
-The binary release version
-
-Default value: `'1.1.0'`
-
-##### <a name="puppetdb_url"></a>`puppetdb_url`
-
-Data type: `Stdlib::HTTPUrl`
-
-The URI to PuppetDB with http/https protocol at the beginning and `/pdb/query` at the end
-
-Default value: `'http://127.0.0.1:8080/pdb/query'`
-
-##### <a name="proxy_server"></a>`proxy_server`
-
-Data type: `Optional[String[1]]`
-
-Optional proxy server, with port number if needed. ie: https://example.com:8080
-
-Default value: ``undef``
-
-##### <a name="proxy_type"></a>`proxy_type`
-
-Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
-
-Optional proxy server type (none|http|https|ftp)
-
-Default value: ``undef``
-
-##### <a name="export_scrape_job"></a>`export_scrape_job`
-
-Data type: `Boolean`
-
-
-
-Default value: ``false``
-
-##### <a name="scrape_host"></a>`scrape_host`
-
-Data type: `Optional[Stdlib::Host]`
-
-
-
-Default value: ``undef``
-
-##### <a name="scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9635`
-
-##### <a name="scrape_job_name"></a>`scrape_job_name`
-
-Data type: `String[1]`
-
-
-
-Default value: `'puppetdb'`
-
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="bin_name"></a>`bin_name`
-
-Data type: `Optional[String[1]]`
-
-
-
-Default value: ``undef``
-
-### <a name="prometheuspushgateway"></a>`prometheus::pushgateway`
-
-This module manages prometheus node pushgateway
-
-#### Parameters
-
-The following parameters are available in the `prometheus::pushgateway` class:
-
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-
-##### <a name="arch"></a>`arch`
-
-Data type: `String[1]`
-
-Architecture (amd64 or i386)
-
-Default value: `$prometheus::real_arch`
-
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `String[1]`
-
-Directory where binaries are located
-
-Default value: `$prometheus::bin_dir`
-
-##### <a name="download_extension"></a>`download_extension`
-
-Data type: `String[1]`
-
-Extension for the release binary archive
-
-##### <a name="download_url"></a>`download_url`
-
-Data type: `Optional[String]`
-
-Complete URL corresponding to the where the release binary archive can be downloaded
-
-Default value: ``undef``
-
-##### <a name="download_url_base"></a>`download_url_base`
-
-Data type: `String[1]`
-
-Base URL for the binary archive
-
-##### <a name="extra_groups"></a>`extra_groups`
-
-Data type: `Array`
-
-Extra groups to add the binary user to
-
-##### <a name="extra_options"></a>`extra_options`
-
-Data type: `Optional[String[1]]`
-
-Extra options added to the startup command
-
-Default value: ``undef``
-
-##### <a name="group"></a>`group`
-
-Data type: `String[1]`
-
-Group under which the binary is running
-
-##### <a name="init_style"></a>`init_style`
-
-Data type: `Prometheus::Initstyle`
-
-Service startup scripts style (e.g. rc, upstart or systemd)
-
-Default value: `$facts['service_provider']`
-
-##### <a name="install_method"></a>`install_method`
-
-Data type: `String[1]`
-
-Installation method: url or package (only url is supported currently)
-
-Default value: `$prometheus::install_method`
-
-##### <a name="manage_group"></a>`manage_group`
-
-Data type: `Boolean`
-
-Whether to create a group for or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-Should puppet manage the service? (default true)
-
-Default value: ``true``
-
-##### <a name="manage_user"></a>`manage_user`
-
-Data type: `Boolean`
-
-Whether to create user or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="os"></a>`os`
-
-Data type: `String[1]`
-
-Operating system (linux is the only one supported)
-
-Default value: `$prometheus::os`
-
-##### <a name="package_ensure"></a>`package_ensure`
-
-Data type: `String[1]`
-
-If package, then use this for package ensure default 'latest'
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-The binary package name - not available yet
-
-##### <a name="restart_on_change"></a>`restart_on_change`
-
-Data type: `Boolean`
-
-Should puppet restart the service on configuration change? (default true)
-
-Default value: ``true``
-
-##### <a name="service_enable"></a>`service_enable`
-
-Data type: `Boolean`
-
-Whether to enable the service from puppet (default true)
-
-Default value: ``true``
-
-##### <a name="service_ensure"></a>`service_ensure`
-
-Data type: `Stdlib::Ensure::Service`
-
-State ensured for the service (default 'running')
-
-Default value: `'running'`
-
-##### <a name="service_name"></a>`service_name`
-
-Data type: `String[1]`
-
-Name of the node exporter service (default 'pushgateway')
-
-Default value: `'pushgateway'`
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-User which runs the service
-
-##### <a name="version"></a>`version`
-
-Data type: `String[1]`
-
-The binary release version
-
-##### <a name="proxy_server"></a>`proxy_server`
-
-Data type: `Optional[String[1]]`
-
-Optional proxy server, with port number if needed. ie: https://example.com:8080
-
-Default value: ``undef``
-
-##### <a name="proxy_type"></a>`proxy_type`
-
-Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
-
-Optional proxy server type (none|http|https|ftp)
-
-Default value: ``undef``
-
-### <a name="prometheuspushprox_client"></a>`prometheus::pushprox_client`
-
-This module manages prometheus pushprox_client
-
-#### Parameters
-
-The following parameters are available in the `prometheus::pushprox_client` class:
-
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`env_vars`](#env_vars)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`proxy_url`](#proxy_url)
-
-##### <a name="arch"></a>`arch`
-
-Data type: `String[1]`
-
-Architecture (amd64 or i386)
-
-Default value: `$prometheus::real_arch`
-
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-Directory where binaries are located
-
-Default value: `$prometheus::bin_dir`
-
-##### <a name="config_mode"></a>`config_mode`
-
-Data type: `String[1]`
-
-The permissions of the configuration files
-
-Default value: `$prometheus::config_mode`
-
-##### <a name="download_extension"></a>`download_extension`
-
-Data type: `String[1]`
-
-Extension for the release binary archive
-
-##### <a name="download_url"></a>`download_url`
-
-Data type: `Optional[String]`
-
-Complete URL corresponding to the where the release binary archive can be downloaded
-
-Default value: ``undef``
-
-##### <a name="download_url_base"></a>`download_url_base`
-
-Data type: `Prometheus::Uri`
-
-Base URL for the binary archive
-
-##### <a name="extra_groups"></a>`extra_groups`
-
-Data type: `Array[String[1]]`
-
-Extra groups to add the binary user to
-
-##### <a name="extra_options"></a>`extra_options`
-
-Data type: `Optional[String[1]]`
-
-Extra options added to the startup command
-
-Default value: ``undef``
-
-##### <a name="group"></a>`group`
-
-Data type: `String[1]`
-
-Group under which the binary is running
-
-##### <a name="init_style"></a>`init_style`
-
-Data type: `Prometheus::Initstyle`
-
-Service startup scripts style (e.g. rc, upstart or systemd)
-
-Default value: `$facts['service_provider']`
-
-##### <a name="install_method"></a>`install_method`
-
-Data type: `String[1]`
-
-Installation method: url or package (only url is supported currently)
-
-Default value: `$prometheus::install_method`
-
-##### <a name="manage_group"></a>`manage_group`
-
-Data type: `Boolean`
-
-Whether to create a group for or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-Should puppet manage the service? (default true)
-
-Default value: ``true``
-
-##### <a name="manage_user"></a>`manage_user`
-
-Data type: `Boolean`
-
-Whether to create user or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="os"></a>`os`
-
-Data type: `String[1]`
-
-Operating system (linux is the only one supported)
-
-Default value: `$prometheus::os`
-
-##### <a name="package_ensure"></a>`package_ensure`
-
-Data type: `String[1]`
-
-If package, then use this for package ensure default 'latest'
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-The binary package name - not available yet
-
-##### <a name="purge_config_dir"></a>`purge_config_dir`
-
-Data type: `Boolean`
-
-Purge config files no longer generated by Puppet
-
-Default value: ``true``
-
-##### <a name="restart_on_change"></a>`restart_on_change`
-
-Data type: `Boolean`
-
-Should puppet restart the service on configuration change? (default true)
-
-Default value: ``true``
-
-##### <a name="service_enable"></a>`service_enable`
-
-Data type: `Boolean`
-
-Whether to enable the service from puppet (default true)
-
-Default value: ``true``
-
-##### <a name="service_ensure"></a>`service_ensure`
-
-Data type: `Stdlib::Ensure::Service`
-
-State ensured for the service (default 'running')
-
-Default value: `'running'`
-
-##### <a name="service_name"></a>`service_name`
-
-Data type: `String[1]`
-
-Name of the pushprox_client service (default 'pushprox_client')
-
-Default value: `'pushprox_client'`
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-User which runs the service
-
-##### <a name="version"></a>`version`
-
-Data type: `String[1]`
-
-The binary release version
-
-##### <a name="env_vars"></a>`env_vars`
-
-Data type: `Hash[String, Scalar]`
-
-The environment variable to pass to the daemon
-
-Default value: `{}`
-
-##### <a name="proxy_server"></a>`proxy_server`
-
-Data type: `Optional[String[1]]`
-
-Optional proxy server, with port number if needed. ie: https://example.com:8080
-
-Default value: ``undef``
-
-##### <a name="proxy_type"></a>`proxy_type`
-
-Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
-
-Optional proxy server type (none|http|https|ftp)
-
-Default value: ``undef``
-
-##### <a name="proxy_url"></a>`proxy_url`
-
-Data type: `String[1]`
-
-
-
-### <a name="prometheuspushprox_proxy"></a>`prometheus::pushprox_proxy`
-
-This module manages prometheus pushprox_proxy
-
-#### Parameters
-
-The following parameters are available in the `prometheus::pushprox_proxy` class:
-
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-
-##### <a name="arch"></a>`arch`
-
-Data type: `String[1]`
-
-Architecture (amd64 or i386)
-
-Default value: `$prometheus::real_arch`
-
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-Directory where binaries are located
-
-Default value: `$prometheus::bin_dir`
-
-##### <a name="config_mode"></a>`config_mode`
-
-Data type: `String[1]`
-
-The permissions of the configuration files
-
-Default value: `$prometheus::config_mode`
-
-##### <a name="download_extension"></a>`download_extension`
-
-Data type: `String[1]`
-
-Extension for the release binary archive
-
-##### <a name="download_url"></a>`download_url`
-
-Data type: `Optional[String]`
-
-Complete URL corresponding to the where the release binary archive can be downloaded
-
-Default value: ``undef``
-
-##### <a name="download_url_base"></a>`download_url_base`
-
-Data type: `Prometheus::Uri`
-
-Base URL for the binary archive
-
-##### <a name="extra_groups"></a>`extra_groups`
-
-Data type: `Array[String[1]]`
-
-Extra groups to add the binary user to
-
-##### <a name="extra_options"></a>`extra_options`
-
-Data type: `Optional[String[1]]`
-
-Extra options added to the startup command
-
-Default value: ``undef``
-
-##### <a name="group"></a>`group`
-
-Data type: `String[1]`
-
-Group under which the binary is running
-
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--puppetdb_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -10144,238 +9642,7 @@ Service startup scripts style (e.g. rc, upstart or systemd)
 
 Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
-
-Data type: `String[1]`
-
-Installation method: url or package (only url is supported currently)
-
-Default value: `$prometheus::install_method`
-
-##### <a name="manage_group"></a>`manage_group`
-
-Data type: `Boolean`
-
-Whether to create a group for or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-Should puppet manage the service? (default true)
-
-Default value: ``true``
-
-##### <a name="manage_user"></a>`manage_user`
-
-Data type: `Boolean`
-
-Whether to create user or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="os"></a>`os`
-
-Data type: `String[1]`
-
-Operating system (linux is the only one supported)
-
-Default value: `$prometheus::os`
-
-##### <a name="package_ensure"></a>`package_ensure`
-
-Data type: `String[1]`
-
-If package, then use this for package ensure default 'latest'
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-The binary package name - not available yet
-
-##### <a name="purge_config_dir"></a>`purge_config_dir`
-
-Data type: `Boolean`
-
-Purge config files no longer generated by Puppet
-
-Default value: ``true``
-
-##### <a name="restart_on_change"></a>`restart_on_change`
-
-Data type: `Boolean`
-
-Should puppet restart the service on configuration change? (default true)
-
-Default value: ``true``
-
-##### <a name="service_enable"></a>`service_enable`
-
-Data type: `Boolean`
-
-Whether to enable the service from puppet (default true)
-
-Default value: ``true``
-
-##### <a name="service_ensure"></a>`service_ensure`
-
-Data type: `Stdlib::Ensure::Service`
-
-State ensured for the service (default 'running')
-
-Default value: `'running'`
-
-##### <a name="service_name"></a>`service_name`
-
-Data type: `String[1]`
-
-Name of the pushprox_proxy service (default 'pushprox_proxy')
-
-Default value: `'pushprox_proxy'`
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-User which runs the service
-
-##### <a name="version"></a>`version`
-
-Data type: `String[1]`
-
-The binary release version
-
-##### <a name="proxy_server"></a>`proxy_server`
-
-Data type: `Optional[String[1]]`
-
-Optional proxy server, with port number if needed. ie: https://example.com:8080
-
-Default value: ``undef``
-
-##### <a name="proxy_type"></a>`proxy_type`
-
-Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
-
-Optional proxy server type (none|http|https|ftp)
-
-Default value: ``undef``
-
-### <a name="prometheusrabbitmq_exporter"></a>`prometheus::rabbitmq_exporter`
-
-This module manages prometheus rabbitmq_exporter
-
-#### Parameters
-
-The following parameters are available in the `prometheus::rabbitmq_exporter` class:
-
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`rabbit_url`](#rabbit_url)
-* [`rabbit_user`](#rabbit_user)
-* [`rabbit_password`](#rabbit_password)
-* [`queues_include_regex`](#queues_include_regex)
-* [`queues_exclude_regex`](#queues_exclude_regex)
-* [`rabbit_capabilities`](#rabbit_capabilities)
-* [`rabbit_exporters`](#rabbit_exporters)
-* [`extra_env_vars`](#extra_env_vars)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-
-##### <a name="arch"></a>`arch`
-
-Data type: `String[1]`
-
-Architecture (amd64 or i386)
-
-Default value: `$prometheus::real_arch`
-
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-Directory where binaries are located
-
-Default value: `$prometheus::bin_dir`
-
-##### <a name="download_extension"></a>`download_extension`
-
-Data type: `String`
-
-Extension for the release binary archive
-
-##### <a name="download_url"></a>`download_url`
-
-Data type: `Optional[Prometheus::Uri]`
-
-Complete URL corresponding to the where the release binary archive can be downloaded
-
-Default value: ``undef``
-
-##### <a name="download_url_base"></a>`download_url_base`
-
-Data type: `Prometheus::Uri`
-
-Base URL for the binary archive
-
-##### <a name="extra_groups"></a>`extra_groups`
-
-Data type: `Array[String]`
-
-Extra groups to add the binary user to
-
-##### <a name="extra_options"></a>`extra_options`
-
-Data type: `Optional[String[1]]`
-
-Extra options added to the startup command
-
-Default value: ``undef``
-
-##### <a name="group"></a>`group`
-
-Data type: `String[1]`
-
-Group under which the binary is running
-
-##### <a name="init_style"></a>`init_style`
-
-Data type: `Prometheus::Initstyle`
-
-Service startup scripts style (e.g. rc, upstart or systemd)
-
-Default value: `$facts['service_provider']`
-
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--puppetdb_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -10383,31 +9650,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--puppetdb_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--puppetdb_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--puppetdb_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--puppetdb_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -10415,43 +9682,47 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--puppetdb_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+Default value: `'present'`
+
+##### <a name="-prometheus--puppetdb_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+Default value: `'puppetdb_exporter'`
+
+##### <a name="-prometheus--puppetdb_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--puppetdb_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--puppetdb_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--puppetdb_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -10459,69 +9730,1039 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--puppetdb_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
-Name of the rabbitmq exporter service (default 'rabbitmq_exporter')
+Name of the puppetdb exporter service (default 'puppetdb_exporter')
 
-##### <a name="user"></a>`user`
+Default value: `'puppetdb_exporter'`
+
+##### <a name="-prometheus--puppetdb_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+Default value: `'puppetdb-exporter'`
+
+##### <a name="-prometheus--puppetdb_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="rabbit_url"></a>`rabbit_url`
+Default value: `'1.1.0'`
+
+##### <a name="-prometheus--puppetdb_exporter--puppetdb_url"></a>`puppetdb_url`
+
+Data type: `Stdlib::HTTPUrl`
+
+The URI to PuppetDB with http/https protocol at the beginning and `/pdb/query` at the end
+
+Default value: `'http://127.0.0.1:8080/pdb/query'`
+
+##### <a name="-prometheus--puppetdb_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--puppetdb_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--puppetdb_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--puppetdb_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--puppetdb_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9635`
+
+##### <a name="-prometheus--puppetdb_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'puppetdb'`
+
+##### <a name="-prometheus--puppetdb_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--puppetdb_exporter--bin_name"></a>`bin_name`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `undef`
+
+### <a name="prometheus--pushgateway"></a>`prometheus::pushgateway`
+
+This module manages prometheus node pushgateway
+
+#### Parameters
+
+The following parameters are available in the `prometheus::pushgateway` class:
+
+* [`arch`](#-prometheus--pushgateway--arch)
+* [`bin_dir`](#-prometheus--pushgateway--bin_dir)
+* [`download_extension`](#-prometheus--pushgateway--download_extension)
+* [`download_url`](#-prometheus--pushgateway--download_url)
+* [`download_url_base`](#-prometheus--pushgateway--download_url_base)
+* [`extra_groups`](#-prometheus--pushgateway--extra_groups)
+* [`extra_options`](#-prometheus--pushgateway--extra_options)
+* [`group`](#-prometheus--pushgateway--group)
+* [`init_style`](#-prometheus--pushgateway--init_style)
+* [`install_method`](#-prometheus--pushgateway--install_method)
+* [`manage_group`](#-prometheus--pushgateway--manage_group)
+* [`manage_service`](#-prometheus--pushgateway--manage_service)
+* [`manage_user`](#-prometheus--pushgateway--manage_user)
+* [`os`](#-prometheus--pushgateway--os)
+* [`package_ensure`](#-prometheus--pushgateway--package_ensure)
+* [`package_name`](#-prometheus--pushgateway--package_name)
+* [`restart_on_change`](#-prometheus--pushgateway--restart_on_change)
+* [`service_enable`](#-prometheus--pushgateway--service_enable)
+* [`service_ensure`](#-prometheus--pushgateway--service_ensure)
+* [`service_name`](#-prometheus--pushgateway--service_name)
+* [`user`](#-prometheus--pushgateway--user)
+* [`version`](#-prometheus--pushgateway--version)
+* [`proxy_server`](#-prometheus--pushgateway--proxy_server)
+* [`proxy_type`](#-prometheus--pushgateway--proxy_type)
+
+##### <a name="-prometheus--pushgateway--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--pushgateway--bin_dir"></a>`bin_dir`
+
+Data type: `String[1]`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--pushgateway--download_extension"></a>`download_extension`
+
+Data type: `String[1]`
+
+Extension for the release binary archive
+
+##### <a name="-prometheus--pushgateway--download_url"></a>`download_url`
+
+Data type: `Optional[String]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushgateway--download_url_base"></a>`download_url_base`
+
+Data type: `String[1]`
+
+Base URL for the binary archive
+
+##### <a name="-prometheus--pushgateway--extra_groups"></a>`extra_groups`
+
+Data type: `Array`
+
+Extra groups to add the binary user to
+
+##### <a name="-prometheus--pushgateway--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushgateway--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+##### <a name="-prometheus--pushgateway--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--pushgateway--install_method"></a>`install_method`
+
+Data type: `String[1]`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--pushgateway--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushgateway--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushgateway--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushgateway--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `$prometheus::os`
+
+##### <a name="-prometheus--pushgateway--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+##### <a name="-prometheus--pushgateway--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+##### <a name="-prometheus--pushgateway--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushgateway--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushgateway--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--pushgateway--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'pushgateway')
+
+Default value: `'pushgateway'`
+
+##### <a name="-prometheus--pushgateway--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+##### <a name="-prometheus--pushgateway--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+##### <a name="-prometheus--pushgateway--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushgateway--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+### <a name="prometheus--pushprox_client"></a>`prometheus::pushprox_client`
+
+This module manages prometheus pushprox_client
+
+#### Parameters
+
+The following parameters are available in the `prometheus::pushprox_client` class:
+
+* [`arch`](#-prometheus--pushprox_client--arch)
+* [`bin_dir`](#-prometheus--pushprox_client--bin_dir)
+* [`config_mode`](#-prometheus--pushprox_client--config_mode)
+* [`download_extension`](#-prometheus--pushprox_client--download_extension)
+* [`download_url`](#-prometheus--pushprox_client--download_url)
+* [`download_url_base`](#-prometheus--pushprox_client--download_url_base)
+* [`extra_groups`](#-prometheus--pushprox_client--extra_groups)
+* [`extra_options`](#-prometheus--pushprox_client--extra_options)
+* [`group`](#-prometheus--pushprox_client--group)
+* [`init_style`](#-prometheus--pushprox_client--init_style)
+* [`install_method`](#-prometheus--pushprox_client--install_method)
+* [`manage_group`](#-prometheus--pushprox_client--manage_group)
+* [`manage_service`](#-prometheus--pushprox_client--manage_service)
+* [`manage_user`](#-prometheus--pushprox_client--manage_user)
+* [`os`](#-prometheus--pushprox_client--os)
+* [`package_ensure`](#-prometheus--pushprox_client--package_ensure)
+* [`package_name`](#-prometheus--pushprox_client--package_name)
+* [`purge_config_dir`](#-prometheus--pushprox_client--purge_config_dir)
+* [`restart_on_change`](#-prometheus--pushprox_client--restart_on_change)
+* [`service_enable`](#-prometheus--pushprox_client--service_enable)
+* [`service_ensure`](#-prometheus--pushprox_client--service_ensure)
+* [`service_name`](#-prometheus--pushprox_client--service_name)
+* [`user`](#-prometheus--pushprox_client--user)
+* [`version`](#-prometheus--pushprox_client--version)
+* [`env_vars`](#-prometheus--pushprox_client--env_vars)
+* [`proxy_server`](#-prometheus--pushprox_client--proxy_server)
+* [`proxy_type`](#-prometheus--pushprox_client--proxy_type)
+* [`proxy_url`](#-prometheus--pushprox_client--proxy_url)
+
+##### <a name="-prometheus--pushprox_client--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--pushprox_client--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--pushprox_client--config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+The permissions of the configuration files
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="-prometheus--pushprox_client--download_extension"></a>`download_extension`
+
+Data type: `String[1]`
+
+Extension for the release binary archive
+
+##### <a name="-prometheus--pushprox_client--download_url"></a>`download_url`
+
+Data type: `Optional[String]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_client--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+##### <a name="-prometheus--pushprox_client--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Extra groups to add the binary user to
+
+##### <a name="-prometheus--pushprox_client--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_client--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+##### <a name="-prometheus--pushprox_client--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--pushprox_client--install_method"></a>`install_method`
+
+Data type: `String[1]`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--pushprox_client--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `$prometheus::os`
+
+##### <a name="-prometheus--pushprox_client--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+##### <a name="-prometheus--pushprox_client--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+##### <a name="-prometheus--pushprox_client--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_client--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--pushprox_client--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the pushprox_client service (default 'pushprox_client')
+
+Default value: `'pushprox_client'`
+
+##### <a name="-prometheus--pushprox_client--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+##### <a name="-prometheus--pushprox_client--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+##### <a name="-prometheus--pushprox_client--env_vars"></a>`env_vars`
+
+Data type: `Hash[String, Scalar]`
+
+The environment variable to pass to the daemon
+
+Default value: `{}`
+
+##### <a name="-prometheus--pushprox_client--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_client--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_client--proxy_url"></a>`proxy_url`
+
+Data type: `String[1]`
+
+
+
+### <a name="prometheus--pushprox_proxy"></a>`prometheus::pushprox_proxy`
+
+This module manages prometheus pushprox_proxy
+
+#### Parameters
+
+The following parameters are available in the `prometheus::pushprox_proxy` class:
+
+* [`arch`](#-prometheus--pushprox_proxy--arch)
+* [`bin_dir`](#-prometheus--pushprox_proxy--bin_dir)
+* [`config_mode`](#-prometheus--pushprox_proxy--config_mode)
+* [`download_extension`](#-prometheus--pushprox_proxy--download_extension)
+* [`download_url`](#-prometheus--pushprox_proxy--download_url)
+* [`download_url_base`](#-prometheus--pushprox_proxy--download_url_base)
+* [`extra_groups`](#-prometheus--pushprox_proxy--extra_groups)
+* [`extra_options`](#-prometheus--pushprox_proxy--extra_options)
+* [`group`](#-prometheus--pushprox_proxy--group)
+* [`init_style`](#-prometheus--pushprox_proxy--init_style)
+* [`install_method`](#-prometheus--pushprox_proxy--install_method)
+* [`manage_group`](#-prometheus--pushprox_proxy--manage_group)
+* [`manage_service`](#-prometheus--pushprox_proxy--manage_service)
+* [`manage_user`](#-prometheus--pushprox_proxy--manage_user)
+* [`os`](#-prometheus--pushprox_proxy--os)
+* [`package_ensure`](#-prometheus--pushprox_proxy--package_ensure)
+* [`package_name`](#-prometheus--pushprox_proxy--package_name)
+* [`purge_config_dir`](#-prometheus--pushprox_proxy--purge_config_dir)
+* [`restart_on_change`](#-prometheus--pushprox_proxy--restart_on_change)
+* [`service_enable`](#-prometheus--pushprox_proxy--service_enable)
+* [`service_ensure`](#-prometheus--pushprox_proxy--service_ensure)
+* [`service_name`](#-prometheus--pushprox_proxy--service_name)
+* [`user`](#-prometheus--pushprox_proxy--user)
+* [`version`](#-prometheus--pushprox_proxy--version)
+* [`proxy_server`](#-prometheus--pushprox_proxy--proxy_server)
+* [`proxy_type`](#-prometheus--pushprox_proxy--proxy_type)
+
+##### <a name="-prometheus--pushprox_proxy--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--pushprox_proxy--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--pushprox_proxy--config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+The permissions of the configuration files
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="-prometheus--pushprox_proxy--download_extension"></a>`download_extension`
+
+Data type: `String[1]`
+
+Extension for the release binary archive
+
+##### <a name="-prometheus--pushprox_proxy--download_url"></a>`download_url`
+
+Data type: `Optional[String]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_proxy--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+##### <a name="-prometheus--pushprox_proxy--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Extra groups to add the binary user to
+
+##### <a name="-prometheus--pushprox_proxy--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_proxy--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+##### <a name="-prometheus--pushprox_proxy--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--pushprox_proxy--install_method"></a>`install_method`
+
+Data type: `String[1]`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--pushprox_proxy--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `$prometheus::os`
+
+##### <a name="-prometheus--pushprox_proxy--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+##### <a name="-prometheus--pushprox_proxy--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+##### <a name="-prometheus--pushprox_proxy--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--pushprox_proxy--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--pushprox_proxy--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the pushprox_proxy service (default 'pushprox_proxy')
+
+Default value: `'pushprox_proxy'`
+
+##### <a name="-prometheus--pushprox_proxy--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+##### <a name="-prometheus--pushprox_proxy--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+##### <a name="-prometheus--pushprox_proxy--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--pushprox_proxy--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+### <a name="prometheus--rabbitmq_exporter"></a>`prometheus::rabbitmq_exporter`
+
+This module manages prometheus rabbitmq_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::rabbitmq_exporter` class:
+
+* [`arch`](#-prometheus--rabbitmq_exporter--arch)
+* [`bin_dir`](#-prometheus--rabbitmq_exporter--bin_dir)
+* [`download_extension`](#-prometheus--rabbitmq_exporter--download_extension)
+* [`download_url`](#-prometheus--rabbitmq_exporter--download_url)
+* [`download_url_base`](#-prometheus--rabbitmq_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--rabbitmq_exporter--extra_groups)
+* [`extra_options`](#-prometheus--rabbitmq_exporter--extra_options)
+* [`group`](#-prometheus--rabbitmq_exporter--group)
+* [`init_style`](#-prometheus--rabbitmq_exporter--init_style)
+* [`install_method`](#-prometheus--rabbitmq_exporter--install_method)
+* [`manage_group`](#-prometheus--rabbitmq_exporter--manage_group)
+* [`manage_service`](#-prometheus--rabbitmq_exporter--manage_service)
+* [`manage_user`](#-prometheus--rabbitmq_exporter--manage_user)
+* [`os`](#-prometheus--rabbitmq_exporter--os)
+* [`package_ensure`](#-prometheus--rabbitmq_exporter--package_ensure)
+* [`package_name`](#-prometheus--rabbitmq_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--rabbitmq_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--rabbitmq_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--rabbitmq_exporter--service_enable)
+* [`service_ensure`](#-prometheus--rabbitmq_exporter--service_ensure)
+* [`service_name`](#-prometheus--rabbitmq_exporter--service_name)
+* [`user`](#-prometheus--rabbitmq_exporter--user)
+* [`version`](#-prometheus--rabbitmq_exporter--version)
+* [`rabbit_url`](#-prometheus--rabbitmq_exporter--rabbit_url)
+* [`rabbit_user`](#-prometheus--rabbitmq_exporter--rabbit_user)
+* [`rabbit_password`](#-prometheus--rabbitmq_exporter--rabbit_password)
+* [`queues_include_regex`](#-prometheus--rabbitmq_exporter--queues_include_regex)
+* [`queues_exclude_regex`](#-prometheus--rabbitmq_exporter--queues_exclude_regex)
+* [`rabbit_capabilities`](#-prometheus--rabbitmq_exporter--rabbit_capabilities)
+* [`rabbit_exporters`](#-prometheus--rabbitmq_exporter--rabbit_exporters)
+* [`extra_env_vars`](#-prometheus--rabbitmq_exporter--extra_env_vars)
+* [`proxy_server`](#-prometheus--rabbitmq_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--rabbitmq_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--rabbitmq_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--rabbitmq_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--rabbitmq_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--rabbitmq_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--rabbitmq_exporter--scrape_job_labels)
+
+##### <a name="-prometheus--rabbitmq_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--rabbitmq_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--rabbitmq_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+##### <a name="-prometheus--rabbitmq_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--rabbitmq_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+##### <a name="-prometheus--rabbitmq_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+##### <a name="-prometheus--rabbitmq_exporter--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--rabbitmq_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+##### <a name="-prometheus--rabbitmq_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--rabbitmq_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--rabbitmq_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--rabbitmq_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+##### <a name="-prometheus--rabbitmq_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+##### <a name="-prometheus--rabbitmq_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--rabbitmq_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--rabbitmq_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the rabbitmq exporter service (default 'rabbitmq_exporter')
+
+##### <a name="-prometheus--rabbitmq_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+##### <a name="-prometheus--rabbitmq_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+##### <a name="-prometheus--rabbitmq_exporter--rabbit_url"></a>`rabbit_url`
 
 Data type: `String[1]`
 
 URL of the RabbitMQ management plugin
 
-##### <a name="rabbit_user"></a>`rabbit_user`
+##### <a name="-prometheus--rabbitmq_exporter--rabbit_user"></a>`rabbit_user`
 
 Data type: `String[1]`
 
 User to authenticate against RabbitMQ
 
-##### <a name="rabbit_password"></a>`rabbit_password`
+##### <a name="-prometheus--rabbitmq_exporter--rabbit_password"></a>`rabbit_password`
 
 Data type: `String[1]`
 
 Password to authenticate against RabbitMQ
 
-##### <a name="queues_include_regex"></a>`queues_include_regex`
+##### <a name="-prometheus--rabbitmq_exporter--queues_include_regex"></a>`queues_include_regex`
 
 Data type: `String[1]`
 
 Regular expression used by the exported to chose which queues to export
 
-##### <a name="queues_exclude_regex"></a>`queues_exclude_regex`
+##### <a name="-prometheus--rabbitmq_exporter--queues_exclude_regex"></a>`queues_exclude_regex`
 
 Data type: `String[1]`
 
 Regular expression used by the exported to chose which queues NOT to export
 
-##### <a name="rabbit_capabilities"></a>`rabbit_capabilities`
+##### <a name="-prometheus--rabbitmq_exporter--rabbit_capabilities"></a>`rabbit_capabilities`
 
 Data type: `Array[String]`
 
 Special capabilities supported by the RabbitMQ version. See README for more details.
 (default '')
 
-##### <a name="rabbit_exporters"></a>`rabbit_exporters`
+##### <a name="-prometheus--rabbitmq_exporter--rabbit_exporters"></a>`rabbit_exporters`
 
 Data type: `Array[String]`
 
 Which exporter modules should be loaded by default
 (default 'exchange,node,overview,queue')
 
-##### <a name="extra_env_vars"></a>`extra_env_vars`
+##### <a name="-prometheus--rabbitmq_exporter--extra_env_vars"></a>`extra_env_vars`
 
 Data type: `Hash[String,String]`
 
@@ -10530,39 +10771,39 @@ Additional environment variables that should be supplied to the exporter, as a h
 
 Default value: `{}`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--rabbitmq_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--rabbitmq_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--rabbitmq_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--rabbitmq_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--rabbitmq_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -10570,7 +10811,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9090`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--rabbitmq_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -10578,15 +10819,15 @@ Data type: `String[1]`
 
 Default value: `'rabbitmq'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--rabbitmq_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusredis_exporter"></a>`prometheus::redis_exporter`
+### <a name="prometheus--redis_exporter"></a>`prometheus::redis_exporter`
 
 This module manages prometheus node redis_exporter
 
@@ -10594,40 +10835,40 @@ This module manages prometheus node redis_exporter
 
 The following parameters are available in the `prometheus::redis_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`addr`](#addr)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`namespace`](#namespace)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--redis_exporter--arch)
+* [`bin_dir`](#-prometheus--redis_exporter--bin_dir)
+* [`addr`](#-prometheus--redis_exporter--addr)
+* [`download_extension`](#-prometheus--redis_exporter--download_extension)
+* [`download_url`](#-prometheus--redis_exporter--download_url)
+* [`download_url_base`](#-prometheus--redis_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--redis_exporter--extra_groups)
+* [`extra_options`](#-prometheus--redis_exporter--extra_options)
+* [`group`](#-prometheus--redis_exporter--group)
+* [`init_style`](#-prometheus--redis_exporter--init_style)
+* [`install_method`](#-prometheus--redis_exporter--install_method)
+* [`manage_group`](#-prometheus--redis_exporter--manage_group)
+* [`manage_service`](#-prometheus--redis_exporter--manage_service)
+* [`manage_user`](#-prometheus--redis_exporter--manage_user)
+* [`namespace`](#-prometheus--redis_exporter--namespace)
+* [`os`](#-prometheus--redis_exporter--os)
+* [`package_ensure`](#-prometheus--redis_exporter--package_ensure)
+* [`package_name`](#-prometheus--redis_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--redis_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--redis_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--redis_exporter--service_enable)
+* [`service_ensure`](#-prometheus--redis_exporter--service_ensure)
+* [`service_name`](#-prometheus--redis_exporter--service_name)
+* [`user`](#-prometheus--redis_exporter--user)
+* [`version`](#-prometheus--redis_exporter--version)
+* [`proxy_server`](#-prometheus--redis_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--redis_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--redis_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--redis_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--redis_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--redis_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--redis_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--redis_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -10635,7 +10876,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--redis_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -10643,39 +10884,39 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="addr"></a>`addr`
+##### <a name="-prometheus--redis_exporter--addr"></a>`addr`
 
 Data type: `Array[String]`
 
 Array of address of one or more redis nodes. Defaults to redis://localhost:6379
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--redis_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--redis_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--redis_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--redis_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--redis_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
@@ -10683,301 +10924,15 @@ Extra options added to the startup command
 For a full list of the exporter's supported extra options
 please refer to https://github.com/oliver006/redis_exporter
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--redis_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
-
-Data type: `Prometheus::Initstyle`
-
-Service startup scripts style (e.g. rc, upstart or systemd)
-
-Default value: `$facts['service_provider']`
-
-##### <a name="install_method"></a>`install_method`
-
-Data type: `Prometheus::Install`
-
-Installation method: url or package (only url is supported currently)
-
-Default value: `$prometheus::install_method`
-
-##### <a name="manage_group"></a>`manage_group`
-
-Data type: `Boolean`
-
-Whether to create a group for or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-Should puppet manage the service? (default true)
-
-Default value: ``true``
-
-##### <a name="manage_user"></a>`manage_user`
-
-Data type: `Boolean`
-
-Whether to create user or rely on external code for that
-
-Default value: ``true``
-
-##### <a name="namespace"></a>`namespace`
-
-Data type: `String[1]`
-
-Namespace for the metrics, defaults to `redis`.
-
-Default value: `'redis'`
-
-##### <a name="os"></a>`os`
-
-Data type: `String[1]`
-
-Operating system (linux is the only one supported)
-
-Default value: `downcase($facts['kernel'])`
-
-##### <a name="package_ensure"></a>`package_ensure`
-
-Data type: `String[1]`
-
-If package, then use this for package ensure default 'latest'
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-The binary package name - not available yet
-
-##### <a name="purge_config_dir"></a>`purge_config_dir`
-
-Data type: `Boolean`
-
-Purge config files no longer generated by Puppet
-
-Default value: ``true``
-
-##### <a name="restart_on_change"></a>`restart_on_change`
-
-Data type: `Boolean`
-
-Should puppet restart the service on configuration change? (default true)
-
-Default value: ``true``
-
-##### <a name="service_enable"></a>`service_enable`
-
-Data type: `Boolean`
-
-Whether to enable the service from puppet (default true)
-
-Default value: ``true``
-
-##### <a name="service_ensure"></a>`service_ensure`
-
-Data type: `Stdlib::Ensure::Service`
-
-State ensured for the service (default 'running')
-
-Default value: `'running'`
-
-##### <a name="service_name"></a>`service_name`
-
-Data type: `String[1]`
-
-Name of the node exporter service (default 'redis_exporter')
-
-Default value: `'redis_exporter'`
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-User which runs the service
-
-##### <a name="version"></a>`version`
-
-Data type: `String[1]`
-
-The binary release version
-
-##### <a name="proxy_server"></a>`proxy_server`
-
-Data type: `Optional[String[1]]`
-
-Optional proxy server, with port number if needed. ie: https://example.com:8080
-
-Default value: ``undef``
-
-##### <a name="proxy_type"></a>`proxy_type`
-
-Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
-
-Optional proxy server type (none|http|https|ftp)
-
-Default value: ``undef``
-
-##### <a name="export_scrape_job"></a>`export_scrape_job`
-
-Data type: `Boolean`
-
-
-
-Default value: ``false``
-
-##### <a name="scrape_host"></a>`scrape_host`
-
-Data type: `Optional[Stdlib::Host]`
-
-
-
-Default value: ``undef``
-
-##### <a name="scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9121`
-
-##### <a name="scrape_job_name"></a>`scrape_job_name`
-
-Data type: `String[1]`
-
-
-
-Default value: `'redis'`
-
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-### <a name="prometheusrun_service"></a>`prometheus::run_service`
-
-This class is meant to be called from prometheus. It ensure the service is running
-
-### <a name="prometheussachet"></a>`prometheus::sachet`
-
-This module manages prometheus sachet (https://github.com/messagebird/sachet)
-
-#### Parameters
-
-The following parameters are available in the `prometheus::sachet` class:
-
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`templates`](#templates)
-* [`receivers`](#receivers)
-* [`providers`](#providers)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`config_dir`](#config_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`listen_port`](#listen_port)
-* [`bin_name`](#bin_name)
-
-##### <a name="arch"></a>`arch`
-
-Data type: `String[1]`
-
-Architecture (amd64 or i386)
-
-Default value: `$prometheus::real_arch`
-
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-Directory where binaries are located
-
-Default value: `$prometheus::bin_dir`
-
-##### <a name="download_extension"></a>`download_extension`
-
-Data type: `String`
-
-Extension for the release binary archive
-
-Default value: `'tar.gz'`
-
-##### <a name="download_url"></a>`download_url`
-
-Data type: `Optional[Prometheus::Uri]`
-
-Complete URL corresponding to the where the release binary archive can be downloaded
-
-Default value: ``undef``
-
-##### <a name="download_url_base"></a>`download_url_base`
-
-Data type: `Prometheus::Uri`
-
-Base URL for the binary archive
-
-Default value: `'https://github.com/messagebird/sachet/releases'`
-
-##### <a name="extra_groups"></a>`extra_groups`
-
-Data type: `Array[String]`
-
-Extra groups to add the binary user to
-
-Default value: `[]`
-
-##### <a name="extra_options"></a>`extra_options`
-
-Data type: `Optional[String[1]]`
-
-Extra options added to the startup command
-
-Default value: ``undef``
-
-##### <a name="group"></a>`group`
-
-Data type: `String[1]`
-
-Group under which the binary is running
-
-Default value: `'sachet'`
-
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--redis_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -10985,7 +10940,7 @@ Service startup scripts style (e.g. rc, upstart or systemd)
 
 Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--redis_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -10993,31 +10948,39 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--redis_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--redis_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--redis_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--redis_exporter--namespace"></a>`namespace`
+
+Data type: `String[1]`
+
+Namespace for the metrics, defaults to `redis`.
+
+Default value: `'redis'`
+
+##### <a name="-prometheus--redis_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -11025,7 +10988,285 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--redis_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+##### <a name="-prometheus--redis_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+##### <a name="-prometheus--redis_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--redis_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--redis_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--redis_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--redis_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'redis_exporter')
+
+Default value: `'redis_exporter'`
+
+##### <a name="-prometheus--redis_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+##### <a name="-prometheus--redis_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+##### <a name="-prometheus--redis_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--redis_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--redis_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--redis_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--redis_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9121`
+
+##### <a name="-prometheus--redis_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'redis'`
+
+##### <a name="-prometheus--redis_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+### <a name="prometheus--run_service"></a>`prometheus::run_service`
+
+This class is meant to be called from prometheus. It ensure the service is running
+
+### <a name="prometheus--sachet"></a>`prometheus::sachet`
+
+This module manages prometheus sachet (https://github.com/messagebird/sachet)
+
+#### Parameters
+
+The following parameters are available in the `prometheus::sachet` class:
+
+* [`arch`](#-prometheus--sachet--arch)
+* [`bin_dir`](#-prometheus--sachet--bin_dir)
+* [`download_extension`](#-prometheus--sachet--download_extension)
+* [`download_url`](#-prometheus--sachet--download_url)
+* [`download_url_base`](#-prometheus--sachet--download_url_base)
+* [`extra_groups`](#-prometheus--sachet--extra_groups)
+* [`extra_options`](#-prometheus--sachet--extra_options)
+* [`group`](#-prometheus--sachet--group)
+* [`init_style`](#-prometheus--sachet--init_style)
+* [`install_method`](#-prometheus--sachet--install_method)
+* [`manage_group`](#-prometheus--sachet--manage_group)
+* [`manage_service`](#-prometheus--sachet--manage_service)
+* [`manage_user`](#-prometheus--sachet--manage_user)
+* [`os`](#-prometheus--sachet--os)
+* [`package_ensure`](#-prometheus--sachet--package_ensure)
+* [`package_name`](#-prometheus--sachet--package_name)
+* [`purge_config_dir`](#-prometheus--sachet--purge_config_dir)
+* [`templates`](#-prometheus--sachet--templates)
+* [`receivers`](#-prometheus--sachet--receivers)
+* [`providers`](#-prometheus--sachet--providers)
+* [`restart_on_change`](#-prometheus--sachet--restart_on_change)
+* [`service_enable`](#-prometheus--sachet--service_enable)
+* [`service_ensure`](#-prometheus--sachet--service_ensure)
+* [`service_name`](#-prometheus--sachet--service_name)
+* [`user`](#-prometheus--sachet--user)
+* [`version`](#-prometheus--sachet--version)
+* [`proxy_server`](#-prometheus--sachet--proxy_server)
+* [`proxy_type`](#-prometheus--sachet--proxy_type)
+* [`config_dir`](#-prometheus--sachet--config_dir)
+* [`config_file`](#-prometheus--sachet--config_file)
+* [`config_mode`](#-prometheus--sachet--config_mode)
+* [`listen_port`](#-prometheus--sachet--listen_port)
+* [`bin_name`](#-prometheus--sachet--bin_name)
+
+##### <a name="-prometheus--sachet--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--sachet--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--sachet--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--sachet--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--sachet--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/messagebird/sachet/releases'`
+
+##### <a name="-prometheus--sachet--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--sachet--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--sachet--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'sachet'`
+
+##### <a name="-prometheus--sachet--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--sachet--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--sachet--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--sachet--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--sachet--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--sachet--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--sachet--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -11033,7 +11274,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--sachet--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -11041,15 +11282,15 @@ The binary package name - not available yet
 
 Default value: `'sachet'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--sachet--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="templates"></a>`templates`
+##### <a name="-prometheus--sachet--templates"></a>`templates`
 
 Data type: `Array`
 
@@ -11075,7 +11316,7 @@ prometheus::sachet::templates:
 
 Default value: `[]`
 
-##### <a name="receivers"></a>`receivers`
+##### <a name="-prometheus--sachet--receivers"></a>`receivers`
 
 Data type: `Array`
 
@@ -11088,7 +11329,7 @@ prometheus::sachet::receivers:
 
 Default value: `[]`
 
-##### <a name="providers"></a>`providers`
+##### <a name="-prometheus--sachet--providers"></a>`providers`
 
 Data type: `Hash`
 
@@ -11101,23 +11342,23 @@ prometheus::sachet::providers:
 
 Default value: `{}`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--sachet--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--sachet--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--sachet--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -11125,7 +11366,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--sachet--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -11133,7 +11374,7 @@ Name of the node exporter service (default 'sachet')
 
 Default value: `'sachet'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--sachet--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -11141,7 +11382,7 @@ User which runs the service
 
 Default value: `'sachet'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--sachet--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -11149,23 +11390,23 @@ The binary release version
 
 Default value: `'0.2.6'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--sachet--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--sachet--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-prometheus--sachet--config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11173,7 +11414,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `'/etc/sachet'`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--sachet--config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11181,7 +11422,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `'/etc/sachet/sachet.yaml'`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--sachet--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -11189,7 +11430,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="listen_port"></a>`listen_port`
+##### <a name="-prometheus--sachet--listen_port"></a>`listen_port`
 
 Data type: `Stdlib::Port`
 
@@ -11197,15 +11438,15 @@ Data type: `Stdlib::Port`
 
 Default value: `9876`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--sachet--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusserver"></a>`prometheus::server`
+### <a name="prometheus--server"></a>`prometheus::server`
 
 class to manage the actual prometheus server. This class gets called from the init.pp
 
@@ -11213,57 +11454,57 @@ class to manage the actual prometheus server. This class gets called from the in
 
 The following parameters are available in the `prometheus::server` class:
 
-* [`configname`](#configname)
-* [`user`](#user)
-* [`group`](#group)
-* [`extra_groups`](#extra_groups)
-* [`bin_dir`](#bin_dir)
-* [`shared_dir`](#shared_dir)
-* [`version`](#version)
-* [`install_method`](#install_method)
-* [`download_url_base`](#download_url_base)
-* [`download_extension`](#download_extension)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`config_dir`](#config_dir)
-* [`localstorage`](#localstorage)
-* [`config_template`](#config_template)
-* [`config_mode`](#config_mode)
-* [`global_config`](#global_config)
-* [`rule_files`](#rule_files)
-* [`scrape_configs`](#scrape_configs)
-* [`include_default_scrape_configs`](#include_default_scrape_configs)
-* [`remote_read_configs`](#remote_read_configs)
-* [`remote_write_configs`](#remote_write_configs)
-* [`alerts`](#alerts)
-* [`alert_relabel_config`](#alert_relabel_config)
-* [`alertmanagers_config`](#alertmanagers_config)
-* [`storage_retention`](#storage_retention)
-* [`env_file_path`](#env_file_path)
-* [`extra_alerts`](#extra_alerts)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`manage_service`](#manage_service)
-* [`restart_on_change`](#restart_on_change)
-* [`init_style`](#init_style)
-* [`extra_options`](#extra_options)
-* [`config_hash`](#config_hash)
-* [`config_defaults`](#config_defaults)
-* [`os`](#os)
-* [`download_url`](#download_url)
-* [`arch`](#arch)
-* [`manage_group`](#manage_group)
-* [`purge_config_dir`](#purge_config_dir)
-* [`manage_user`](#manage_user)
-* [`manage_config`](#manage_config)
-* [`external_url`](#external_url)
-* [`collect_scrape_jobs`](#collect_scrape_jobs)
-* [`collect_tag`](#collect_tag)
-* [`max_open_files`](#max_open_files)
-* [`usershell`](#usershell)
+* [`configname`](#-prometheus--server--configname)
+* [`user`](#-prometheus--server--user)
+* [`group`](#-prometheus--server--group)
+* [`extra_groups`](#-prometheus--server--extra_groups)
+* [`bin_dir`](#-prometheus--server--bin_dir)
+* [`shared_dir`](#-prometheus--server--shared_dir)
+* [`version`](#-prometheus--server--version)
+* [`install_method`](#-prometheus--server--install_method)
+* [`download_url_base`](#-prometheus--server--download_url_base)
+* [`download_extension`](#-prometheus--server--download_extension)
+* [`package_name`](#-prometheus--server--package_name)
+* [`package_ensure`](#-prometheus--server--package_ensure)
+* [`config_dir`](#-prometheus--server--config_dir)
+* [`localstorage`](#-prometheus--server--localstorage)
+* [`config_template`](#-prometheus--server--config_template)
+* [`config_mode`](#-prometheus--server--config_mode)
+* [`global_config`](#-prometheus--server--global_config)
+* [`rule_files`](#-prometheus--server--rule_files)
+* [`scrape_configs`](#-prometheus--server--scrape_configs)
+* [`include_default_scrape_configs`](#-prometheus--server--include_default_scrape_configs)
+* [`remote_read_configs`](#-prometheus--server--remote_read_configs)
+* [`remote_write_configs`](#-prometheus--server--remote_write_configs)
+* [`alerts`](#-prometheus--server--alerts)
+* [`alert_relabel_config`](#-prometheus--server--alert_relabel_config)
+* [`alertmanagers_config`](#-prometheus--server--alertmanagers_config)
+* [`storage_retention`](#-prometheus--server--storage_retention)
+* [`env_file_path`](#-prometheus--server--env_file_path)
+* [`extra_alerts`](#-prometheus--server--extra_alerts)
+* [`service_enable`](#-prometheus--server--service_enable)
+* [`service_ensure`](#-prometheus--server--service_ensure)
+* [`service_name`](#-prometheus--server--service_name)
+* [`manage_service`](#-prometheus--server--manage_service)
+* [`restart_on_change`](#-prometheus--server--restart_on_change)
+* [`init_style`](#-prometheus--server--init_style)
+* [`extra_options`](#-prometheus--server--extra_options)
+* [`config_hash`](#-prometheus--server--config_hash)
+* [`config_defaults`](#-prometheus--server--config_defaults)
+* [`os`](#-prometheus--server--os)
+* [`download_url`](#-prometheus--server--download_url)
+* [`arch`](#-prometheus--server--arch)
+* [`manage_group`](#-prometheus--server--manage_group)
+* [`purge_config_dir`](#-prometheus--server--purge_config_dir)
+* [`manage_user`](#-prometheus--server--manage_user)
+* [`manage_config`](#-prometheus--server--manage_config)
+* [`external_url`](#-prometheus--server--external_url)
+* [`collect_scrape_jobs`](#-prometheus--server--collect_scrape_jobs)
+* [`collect_tag`](#-prometheus--server--collect_tag)
+* [`max_open_files`](#-prometheus--server--max_open_files)
+* [`usershell`](#-prometheus--server--usershell)
 
-##### <a name="configname"></a>`configname`
+##### <a name="-prometheus--server--configname"></a>`configname`
 
 Data type: `String`
 
@@ -11271,7 +11512,7 @@ Data type: `String`
 
 Default value: `$prometheus::configname`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--server--user"></a>`user`
 
 Data type: `String`
 
@@ -11279,7 +11520,7 @@ Data type: `String`
 
 Default value: `$prometheus::user`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--server--group"></a>`group`
 
 Data type: `String`
 
@@ -11287,7 +11528,7 @@ Data type: `String`
 
 Default value: `$prometheus::group`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--server--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
@@ -11295,7 +11536,7 @@ Data type: `Array`
 
 Default value: `$prometheus::extra_groups`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--server--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11303,7 +11544,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="shared_dir"></a>`shared_dir`
+##### <a name="-prometheus--server--shared_dir"></a>`shared_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11311,7 +11552,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::shared_dir`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--server--version"></a>`version`
 
 Data type: `String`
 
@@ -11319,7 +11560,7 @@ Data type: `String`
 
 Default value: `$prometheus::version`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--server--install_method"></a>`install_method`
 
 Data type: `String`
 
@@ -11327,7 +11568,7 @@ Data type: `String`
 
 Default value: `$prometheus::install_method`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--server--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -11335,7 +11576,7 @@ Data type: `Prometheus::Uri`
 
 Default value: `$prometheus::download_url_base`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--server--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -11343,7 +11584,7 @@ Data type: `String`
 
 Default value: `$prometheus::download_extension`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--server--package_name"></a>`package_name`
 
 Data type: `String`
 
@@ -11351,7 +11592,7 @@ Data type: `String`
 
 Default value: `$prometheus::package_name`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--server--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
@@ -11359,7 +11600,7 @@ Data type: `String`
 
 Default value: `$prometheus::package_ensure`
 
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-prometheus--server--config_dir"></a>`config_dir`
 
 Data type: `String`
 
@@ -11367,7 +11608,7 @@ Data type: `String`
 
 Default value: `$prometheus::config_dir`
 
-##### <a name="localstorage"></a>`localstorage`
+##### <a name="-prometheus--server--localstorage"></a>`localstorage`
 
 Data type: `Variant[Stdlib::Absolutepath, Boolean[false]]`
 
@@ -11375,7 +11616,7 @@ Data type: `Variant[Stdlib::Absolutepath, Boolean[false]]`
 
 Default value: `$prometheus::localstorage`
 
-##### <a name="config_template"></a>`config_template`
+##### <a name="-prometheus--server--config_template"></a>`config_template`
 
 Data type: `String`
 
@@ -11383,7 +11624,7 @@ Data type: `String`
 
 Default value: `$prometheus::config_template`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--server--config_mode"></a>`config_mode`
 
 Data type: `String`
 
@@ -11391,7 +11632,7 @@ Data type: `String`
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="global_config"></a>`global_config`
+##### <a name="-prometheus--server--global_config"></a>`global_config`
 
 Data type: `Hash`
 
@@ -11399,7 +11640,7 @@ Data type: `Hash`
 
 Default value: `$prometheus::global_config`
 
-##### <a name="rule_files"></a>`rule_files`
+##### <a name="-prometheus--server--rule_files"></a>`rule_files`
 
 Data type: `Array`
 
@@ -11407,7 +11648,7 @@ Data type: `Array`
 
 Default value: `$prometheus::rule_files`
 
-##### <a name="scrape_configs"></a>`scrape_configs`
+##### <a name="-prometheus--server--scrape_configs"></a>`scrape_configs`
 
 Data type: `Array`
 
@@ -11415,7 +11656,7 @@ Data type: `Array`
 
 Default value: `$prometheus::scrape_configs`
 
-##### <a name="include_default_scrape_configs"></a>`include_default_scrape_configs`
+##### <a name="-prometheus--server--include_default_scrape_configs"></a>`include_default_scrape_configs`
 
 Data type: `Boolean`
 
@@ -11423,7 +11664,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::include_default_scrape_configs`
 
-##### <a name="remote_read_configs"></a>`remote_read_configs`
+##### <a name="-prometheus--server--remote_read_configs"></a>`remote_read_configs`
 
 Data type: `Array`
 
@@ -11431,7 +11672,7 @@ Data type: `Array`
 
 Default value: `$prometheus::remote_read_configs`
 
-##### <a name="remote_write_configs"></a>`remote_write_configs`
+##### <a name="-prometheus--server--remote_write_configs"></a>`remote_write_configs`
 
 Data type: `Array`
 
@@ -11439,7 +11680,7 @@ Data type: `Array`
 
 Default value: `$prometheus::remote_write_configs`
 
-##### <a name="alerts"></a>`alerts`
+##### <a name="-prometheus--server--alerts"></a>`alerts`
 
 Data type: `Variant[Array,Hash]`
 
@@ -11447,7 +11688,7 @@ Data type: `Variant[Array,Hash]`
 
 Default value: `$prometheus::alerts`
 
-##### <a name="alert_relabel_config"></a>`alert_relabel_config`
+##### <a name="-prometheus--server--alert_relabel_config"></a>`alert_relabel_config`
 
 Data type: `Array`
 
@@ -11455,7 +11696,7 @@ Data type: `Array`
 
 Default value: `$prometheus::alert_relabel_config`
 
-##### <a name="alertmanagers_config"></a>`alertmanagers_config`
+##### <a name="-prometheus--server--alertmanagers_config"></a>`alertmanagers_config`
 
 Data type: `Array`
 
@@ -11463,7 +11704,7 @@ Data type: `Array`
 
 Default value: `$prometheus::alertmanagers_config`
 
-##### <a name="storage_retention"></a>`storage_retention`
+##### <a name="-prometheus--server--storage_retention"></a>`storage_retention`
 
 Data type: `Variant[String, Boolean[false]]`
 
@@ -11471,7 +11712,7 @@ Data type: `Variant[String, Boolean[false]]`
 
 Default value: `$prometheus::storage_retention`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--server--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11479,7 +11720,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::env_file_path`
 
-##### <a name="extra_alerts"></a>`extra_alerts`
+##### <a name="-prometheus--server--extra_alerts"></a>`extra_alerts`
 
 Data type: `Hash`
 
@@ -11487,7 +11728,7 @@ Data type: `Hash`
 
 Default value: `$prometheus::extra_alerts`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--server--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
@@ -11495,7 +11736,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::service_enable`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--server--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -11503,7 +11744,7 @@ Data type: `Stdlib::Ensure::Service`
 
 Default value: `$prometheus::service_ensure`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--server--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -11511,7 +11752,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::service_name`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--server--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
@@ -11519,7 +11760,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::manage_service`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--server--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
@@ -11527,15 +11768,15 @@ Data type: `Boolean`
 
 Default value: `$prometheus::restart_on_change`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--server--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--server--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
@@ -11543,7 +11784,7 @@ Data type: `Optional[String[1]]`
 
 Default value: `$prometheus::extra_options`
 
-##### <a name="config_hash"></a>`config_hash`
+##### <a name="-prometheus--server--config_hash"></a>`config_hash`
 
 Data type: `Hash`
 
@@ -11551,7 +11792,7 @@ Data type: `Hash`
 
 Default value: `$prometheus::config_hash`
 
-##### <a name="config_defaults"></a>`config_defaults`
+##### <a name="-prometheus--server--config_defaults"></a>`config_defaults`
 
 Data type: `Hash`
 
@@ -11559,7 +11800,7 @@ Data type: `Hash`
 
 Default value: `$prometheus::config_defaults`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--server--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -11567,7 +11808,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::os`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--server--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
 
@@ -11575,7 +11816,7 @@ Data type: `Optional[String]`
 
 Default value: `$prometheus::download_url`
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--server--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -11583,7 +11824,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--server--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
@@ -11591,7 +11832,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::manage_group`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--server--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
@@ -11599,7 +11840,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::purge_config_dir`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--server--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
@@ -11607,7 +11848,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::manage_user`
 
-##### <a name="manage_config"></a>`manage_config`
+##### <a name="-prometheus--server--manage_config"></a>`manage_config`
 
 Data type: `Boolean`
 
@@ -11615,7 +11856,7 @@ Data type: `Boolean`
 
 Default value: `$prometheus::manage_config`
 
-##### <a name="external_url"></a>`external_url`
+##### <a name="-prometheus--server--external_url"></a>`external_url`
 
 Data type: `Optional[Variant[Stdlib::HTTPurl, Stdlib::Unixpath, String[1]]]`
 
@@ -11623,7 +11864,7 @@ Data type: `Optional[Variant[Stdlib::HTTPurl, Stdlib::Unixpath, String[1]]]`
 
 Default value: `$prometheus::external_url`
 
-##### <a name="collect_scrape_jobs"></a>`collect_scrape_jobs`
+##### <a name="-prometheus--server--collect_scrape_jobs"></a>`collect_scrape_jobs`
 
 Data type: `Optional[Array[Hash[String[1], Any]]]`
 
@@ -11631,7 +11872,7 @@ Data type: `Optional[Array[Hash[String[1], Any]]]`
 
 Default value: `$prometheus::collect_scrape_jobs`
 
-##### <a name="collect_tag"></a>`collect_tag`
+##### <a name="-prometheus--server--collect_tag"></a>`collect_tag`
 
 Data type: `Optional[String[1]]`
 
@@ -11639,7 +11880,7 @@ Data type: `Optional[String[1]]`
 
 Default value: `$prometheus::collect_tag`
 
-##### <a name="max_open_files"></a>`max_open_files`
+##### <a name="-prometheus--server--max_open_files"></a>`max_open_files`
 
 Data type: `Optional[Integer]`
 
@@ -11647,7 +11888,7 @@ Data type: `Optional[Integer]`
 
 Default value: `$prometheus::max_open_files`
 
-##### <a name="usershell"></a>`usershell`
+##### <a name="-prometheus--server--usershell"></a>`usershell`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11655,7 +11896,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::usershell`
 
-### <a name="prometheussnmp_exporter"></a>`prometheus::snmp_exporter`
+### <a name="prometheus--snmp_exporter"></a>`prometheus::snmp_exporter`
 
 This module manages prometheus snmp_exporter
 
@@ -11663,41 +11904,41 @@ This module manages prometheus snmp_exporter
 
 The following parameters are available in the `prometheus::snmp_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`config_template`](#config_template)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--snmp_exporter--arch)
+* [`bin_dir`](#-prometheus--snmp_exporter--bin_dir)
+* [`config_file`](#-prometheus--snmp_exporter--config_file)
+* [`config_mode`](#-prometheus--snmp_exporter--config_mode)
+* [`config_template`](#-prometheus--snmp_exporter--config_template)
+* [`download_extension`](#-prometheus--snmp_exporter--download_extension)
+* [`download_url`](#-prometheus--snmp_exporter--download_url)
+* [`download_url_base`](#-prometheus--snmp_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--snmp_exporter--extra_groups)
+* [`extra_options`](#-prometheus--snmp_exporter--extra_options)
+* [`group`](#-prometheus--snmp_exporter--group)
+* [`init_style`](#-prometheus--snmp_exporter--init_style)
+* [`install_method`](#-prometheus--snmp_exporter--install_method)
+* [`manage_group`](#-prometheus--snmp_exporter--manage_group)
+* [`manage_service`](#-prometheus--snmp_exporter--manage_service)
+* [`manage_user`](#-prometheus--snmp_exporter--manage_user)
+* [`os`](#-prometheus--snmp_exporter--os)
+* [`package_ensure`](#-prometheus--snmp_exporter--package_ensure)
+* [`package_name`](#-prometheus--snmp_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--snmp_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--snmp_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--snmp_exporter--service_enable)
+* [`service_ensure`](#-prometheus--snmp_exporter--service_ensure)
+* [`service_name`](#-prometheus--snmp_exporter--service_name)
+* [`user`](#-prometheus--snmp_exporter--user)
+* [`version`](#-prometheus--snmp_exporter--version)
+* [`proxy_server`](#-prometheus--snmp_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--snmp_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--snmp_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--snmp_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--snmp_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--snmp_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--snmp_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--snmp_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -11705,7 +11946,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--snmp_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11713,13 +11954,13 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--snmp_exporter--config_file"></a>`config_file`
 
 Data type: `String[1]`
 
 Absolute path to configuration file
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--snmp_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -11727,61 +11968,61 @@ Configuration file mode (default 0660)
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="config_template"></a>`config_template`
+##### <a name="-prometheus--snmp_exporter--config_template"></a>`config_template`
 
 Data type: `String`
 
 Configuration template to use. If empty, uses upstream config (default "")
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--snmp_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--snmp_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--snmp_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--snmp_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--snmp_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--snmp_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--snmp_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--snmp_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -11789,31 +12030,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--snmp_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--snmp_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--snmp_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--snmp_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -11821,43 +12062,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--snmp_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--snmp_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--snmp_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--snmp_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--snmp_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--snmp_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -11865,57 +12106,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--snmp_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the snmp exporter service (default 'snmp_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--snmp_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--snmp_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--snmp_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--snmp_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--snmp_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--snmp_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--snmp_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -11923,7 +12164,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9116`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--snmp_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -11931,15 +12172,15 @@ Data type: `String[1]`
 
 Default value: `'snmp'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--snmp_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusssh_exporter"></a>`prometheus::ssh_exporter`
+### <a name="prometheus--ssh_exporter"></a>`prometheus::ssh_exporter`
 
 This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
 
@@ -11947,42 +12188,42 @@ This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exp
 
 The following parameters are available in the `prometheus::ssh_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`modules`](#modules)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--ssh_exporter--arch)
+* [`bin_dir`](#-prometheus--ssh_exporter--bin_dir)
+* [`config_file`](#-prometheus--ssh_exporter--config_file)
+* [`config_mode`](#-prometheus--ssh_exporter--config_mode)
+* [`download_extension`](#-prometheus--ssh_exporter--download_extension)
+* [`download_url`](#-prometheus--ssh_exporter--download_url)
+* [`download_url_base`](#-prometheus--ssh_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--ssh_exporter--extra_groups)
+* [`extra_options`](#-prometheus--ssh_exporter--extra_options)
+* [`group`](#-prometheus--ssh_exporter--group)
+* [`init_style`](#-prometheus--ssh_exporter--init_style)
+* [`install_method`](#-prometheus--ssh_exporter--install_method)
+* [`manage_group`](#-prometheus--ssh_exporter--manage_group)
+* [`manage_service`](#-prometheus--ssh_exporter--manage_service)
+* [`manage_user`](#-prometheus--ssh_exporter--manage_user)
+* [`modules`](#-prometheus--ssh_exporter--modules)
+* [`os`](#-prometheus--ssh_exporter--os)
+* [`package_ensure`](#-prometheus--ssh_exporter--package_ensure)
+* [`package_name`](#-prometheus--ssh_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--ssh_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--ssh_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--ssh_exporter--service_enable)
+* [`service_ensure`](#-prometheus--ssh_exporter--service_ensure)
+* [`service_name`](#-prometheus--ssh_exporter--service_name)
+* [`user`](#-prometheus--ssh_exporter--user)
+* [`version`](#-prometheus--ssh_exporter--version)
+* [`proxy_server`](#-prometheus--ssh_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--ssh_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--ssh_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--ssh_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--ssh_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--ssh_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--ssh_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--ssh_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--ssh_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -11990,7 +12231,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--ssh_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -11998,7 +12239,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--ssh_exporter--config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -12006,7 +12247,7 @@ Path to SSH exporter configuration file
 
 Default value: `'/etc/ssh_exporter.yaml'`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--ssh_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -12014,7 +12255,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--ssh_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -12022,15 +12263,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--ssh_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--ssh_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -12038,7 +12279,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/treydock/ssh_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--ssh_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -12046,15 +12287,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--ssh_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--ssh_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -12062,15 +12303,15 @@ Group under which the binary is running
 
 Default value: `'ssh-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--ssh_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--ssh_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -12078,31 +12319,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--ssh_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--ssh_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--ssh_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="modules"></a>`modules`
+##### <a name="-prometheus--ssh_exporter--modules"></a>`modules`
 
 Data type: `Hash`
 
@@ -12110,7 +12351,7 @@ Hash of SSH exporter modules
 
 Default value: `{}`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--ssh_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -12118,7 +12359,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--ssh_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -12126,7 +12367,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--ssh_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -12134,31 +12375,31 @@ The binary package name - not available yet
 
 Default value: `'ssh_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--ssh_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--ssh_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--ssh_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--ssh_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -12166,7 +12407,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--ssh_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -12174,7 +12415,7 @@ Name of the node exporter service (default 'ssh_exporter')
 
 Default value: `'ssh_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--ssh_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -12182,7 +12423,7 @@ User which runs the service
 
 Default value: `'ssh-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--ssh_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -12190,39 +12431,39 @@ The binary release version
 
 Default value: `'1.2.0'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--ssh_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--ssh_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--ssh_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--ssh_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--ssh_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -12230,7 +12471,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9312`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--ssh_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -12238,23 +12479,23 @@ Data type: `String[1]`
 
 Default value: `'ssh'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--ssh_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--ssh_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusssl_exporter"></a>`prometheus::ssl_exporter`
+### <a name="prometheus--ssl_exporter"></a>`prometheus::ssl_exporter`
 
 This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
 
@@ -12262,42 +12503,42 @@ This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_e
 
 The following parameters are available in the `prometheus::ssl_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_file`](#config_file)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`modules`](#modules)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`scrape_host`](#scrape_host)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
+* [`arch`](#-prometheus--ssl_exporter--arch)
+* [`bin_dir`](#-prometheus--ssl_exporter--bin_dir)
+* [`config_file`](#-prometheus--ssl_exporter--config_file)
+* [`config_mode`](#-prometheus--ssl_exporter--config_mode)
+* [`download_extension`](#-prometheus--ssl_exporter--download_extension)
+* [`download_url`](#-prometheus--ssl_exporter--download_url)
+* [`download_url_base`](#-prometheus--ssl_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--ssl_exporter--extra_groups)
+* [`extra_options`](#-prometheus--ssl_exporter--extra_options)
+* [`group`](#-prometheus--ssl_exporter--group)
+* [`init_style`](#-prometheus--ssl_exporter--init_style)
+* [`install_method`](#-prometheus--ssl_exporter--install_method)
+* [`manage_group`](#-prometheus--ssl_exporter--manage_group)
+* [`manage_service`](#-prometheus--ssl_exporter--manage_service)
+* [`manage_user`](#-prometheus--ssl_exporter--manage_user)
+* [`modules`](#-prometheus--ssl_exporter--modules)
+* [`os`](#-prometheus--ssl_exporter--os)
+* [`package_ensure`](#-prometheus--ssl_exporter--package_ensure)
+* [`package_name`](#-prometheus--ssl_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--ssl_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--ssl_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--ssl_exporter--service_enable)
+* [`service_ensure`](#-prometheus--ssl_exporter--service_ensure)
+* [`service_name`](#-prometheus--ssl_exporter--service_name)
+* [`user`](#-prometheus--ssl_exporter--user)
+* [`version`](#-prometheus--ssl_exporter--version)
+* [`proxy_server`](#-prometheus--ssl_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--ssl_exporter--proxy_type)
+* [`scrape_host`](#-prometheus--ssl_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--ssl_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--ssl_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--ssl_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--ssl_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--ssl_exporter--bin_name)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--ssl_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -12305,7 +12546,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--ssl_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -12313,7 +12554,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_file"></a>`config_file`
+##### <a name="-prometheus--ssl_exporter--config_file"></a>`config_file`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -12321,7 +12562,7 @@ Path to SSL exporter configuration file
 
 Default value: `'/etc/ssl_exporter.yaml'`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--ssl_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -12329,7 +12570,7 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--ssl_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -12337,15 +12578,15 @@ Extension for the release binary archive
 
 Default value: `'tar.gz'`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--ssl_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--ssl_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -12353,7 +12594,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/ribbybibby/ssl_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--ssl_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -12361,15 +12602,15 @@ Extra groups to add the binary user to
 
 Default value: `[]`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--ssl_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--ssl_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -12377,15 +12618,15 @@ Group under which the binary is running
 
 Default value: `'ssl-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--ssl_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--ssl_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -12393,31 +12634,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--ssl_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--ssl_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--ssl_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="modules"></a>`modules`
+##### <a name="-prometheus--ssl_exporter--modules"></a>`modules`
 
 Data type: `Hash`
 
@@ -12425,7 +12666,7 @@ Hash of SSL exporter modules
 
 Default value: `{}`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--ssl_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -12433,7 +12674,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--ssl_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -12441,7 +12682,7 @@ If package, then use this for package ensure default 'latest'
 
 Default value: `'latest'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--ssl_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -12449,31 +12690,31 @@ The binary package name - not available yet
 
 Default value: `'ssl_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--ssl_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--ssl_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--ssl_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--ssl_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -12481,7 +12722,7 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--ssl_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -12489,7 +12730,7 @@ Name of the node exporter service (default 'ssk_exporter')
 
 Default value: `'ssl_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--ssl_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -12497,7 +12738,7 @@ User which runs the service
 
 Default value: `'ssl-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--ssl_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -12505,39 +12746,39 @@ The binary release version
 
 Default value: `'2.2.1'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--ssl_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--ssl_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--ssl_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--ssl_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--ssl_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -12545,7 +12786,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9219`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--ssl_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -12553,23 +12794,23 @@ Data type: `String[1]`
 
 Default value: `'ssl'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--ssl_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--ssl_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusstatsd_exporter"></a>`prometheus::statsd_exporter`
+### <a name="prometheus--statsd_exporter"></a>`prometheus::statsd_exporter`
 
 This module manages prometheus statsd_exporter
 
@@ -12577,41 +12818,41 @@ This module manages prometheus statsd_exporter
 
 The following parameters are available in the `prometheus::statsd_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`config_mode`](#config_mode)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`mappings`](#mappings)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`mapping_config_path`](#mapping_config_path)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--statsd_exporter--arch)
+* [`bin_dir`](#-prometheus--statsd_exporter--bin_dir)
+* [`config_mode`](#-prometheus--statsd_exporter--config_mode)
+* [`download_extension`](#-prometheus--statsd_exporter--download_extension)
+* [`download_url`](#-prometheus--statsd_exporter--download_url)
+* [`download_url_base`](#-prometheus--statsd_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--statsd_exporter--extra_groups)
+* [`extra_options`](#-prometheus--statsd_exporter--extra_options)
+* [`group`](#-prometheus--statsd_exporter--group)
+* [`init_style`](#-prometheus--statsd_exporter--init_style)
+* [`install_method`](#-prometheus--statsd_exporter--install_method)
+* [`manage_group`](#-prometheus--statsd_exporter--manage_group)
+* [`manage_service`](#-prometheus--statsd_exporter--manage_service)
+* [`manage_user`](#-prometheus--statsd_exporter--manage_user)
+* [`os`](#-prometheus--statsd_exporter--os)
+* [`package_ensure`](#-prometheus--statsd_exporter--package_ensure)
+* [`package_name`](#-prometheus--statsd_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--statsd_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--statsd_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--statsd_exporter--service_enable)
+* [`service_ensure`](#-prometheus--statsd_exporter--service_ensure)
+* [`service_name`](#-prometheus--statsd_exporter--service_name)
+* [`mappings`](#-prometheus--statsd_exporter--mappings)
+* [`user`](#-prometheus--statsd_exporter--user)
+* [`version`](#-prometheus--statsd_exporter--version)
+* [`proxy_server`](#-prometheus--statsd_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--statsd_exporter--proxy_type)
+* [`mapping_config_path`](#-prometheus--statsd_exporter--mapping_config_path)
+* [`export_scrape_job`](#-prometheus--statsd_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--statsd_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--statsd_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--statsd_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--statsd_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--statsd_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -12619,7 +12860,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--statsd_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -12627,7 +12868,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="config_mode"></a>`config_mode`
+##### <a name="-prometheus--statsd_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
 
@@ -12635,55 +12876,55 @@ The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--statsd_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--statsd_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--statsd_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--statsd_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--statsd_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--statsd_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--statsd_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--statsd_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -12691,31 +12932,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--statsd_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--statsd_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--statsd_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--statsd_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -12723,43 +12964,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--statsd_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--statsd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--statsd_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--statsd_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--statsd_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--statsd_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -12767,13 +13008,13 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--statsd_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the statsd exporter service (default 'statsd_exporter')
 
-##### <a name="mappings"></a>`mappings`
+##### <a name="-prometheus--statsd_exporter--mappings"></a>`mappings`
 
 Data type: `Array[Hash]`
 
@@ -12784,57 +13025,57 @@ The hiera array for mappings:
       processor: '$2'
       action: '$1'
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--statsd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--statsd_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--statsd_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--statsd_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="mapping_config_path"></a>`mapping_config_path`
+##### <a name="-prometheus--statsd_exporter--mapping_config_path"></a>`mapping_config_path`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--statsd_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--statsd_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--statsd_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -12842,7 +13083,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9102`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--statsd_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -12850,15 +13091,15 @@ Data type: `String[1]`
 
 Default value: `'statsd'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--statsd_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="prometheusunbound_exporter"></a>`prometheus::unbound_exporter`
+### <a name="prometheus--unbound_exporter"></a>`prometheus::unbound_exporter`
 
 This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
 
@@ -12869,39 +13110,39 @@ This module manages prometheus unbound exporter. The exporter needs to be compil
 
 The following parameters are available in the `prometheus::unbound_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`bin_name`](#bin_name)
-* [`env_vars`](#env_vars)
+* [`arch`](#-prometheus--unbound_exporter--arch)
+* [`bin_dir`](#-prometheus--unbound_exporter--bin_dir)
+* [`download_extension`](#-prometheus--unbound_exporter--download_extension)
+* [`download_url`](#-prometheus--unbound_exporter--download_url)
+* [`download_url_base`](#-prometheus--unbound_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--unbound_exporter--extra_groups)
+* [`extra_options`](#-prometheus--unbound_exporter--extra_options)
+* [`group`](#-prometheus--unbound_exporter--group)
+* [`init_style`](#-prometheus--unbound_exporter--init_style)
+* [`install_method`](#-prometheus--unbound_exporter--install_method)
+* [`manage_group`](#-prometheus--unbound_exporter--manage_group)
+* [`manage_service`](#-prometheus--unbound_exporter--manage_service)
+* [`manage_user`](#-prometheus--unbound_exporter--manage_user)
+* [`os`](#-prometheus--unbound_exporter--os)
+* [`package_ensure`](#-prometheus--unbound_exporter--package_ensure)
+* [`package_name`](#-prometheus--unbound_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--unbound_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--unbound_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--unbound_exporter--service_enable)
+* [`service_ensure`](#-prometheus--unbound_exporter--service_ensure)
+* [`service_name`](#-prometheus--unbound_exporter--service_name)
+* [`user`](#-prometheus--unbound_exporter--user)
+* [`version`](#-prometheus--unbound_exporter--version)
+* [`proxy_server`](#-prometheus--unbound_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--unbound_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--unbound_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--unbound_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--unbound_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--unbound_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--unbound_exporter--bin_name)
+* [`env_vars`](#-prometheus--unbound_exporter--env_vars)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--unbound_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -12909,7 +13150,7 @@ Architecture
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--unbound_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -12917,7 +13158,7 @@ Directory where binaries are located
 
 Default value: `'/usr/local/bin'`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--unbound_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -12925,15 +13166,15 @@ Extension for the release binary archive
 
 Default value: `''`
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--unbound_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--unbound_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
@@ -12941,7 +13182,7 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/kumina/unbound_exporter/releases'`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--unbound_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
@@ -12949,15 +13190,15 @@ Extra groups to add the binary user to
 
 Default value: `['unbound']`
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--unbound_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--unbound_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -12965,15 +13206,15 @@ Group under which the binary is running
 
 Default value: `'unbound-exporter'`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--unbound_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--unbound_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -12981,31 +13222,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `'none'`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--unbound_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--unbound_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service?
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--unbound_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--unbound_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -13013,7 +13254,7 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--unbound_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -13021,7 +13262,7 @@ If package, then use this for package ensure
 
 Default value: `'installed'`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--unbound_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
@@ -13029,31 +13270,31 @@ The binary package name - not available yet
 
 Default value: `'unbound_exporter'`
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--unbound_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--unbound_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change?
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--unbound_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--unbound_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -13061,7 +13302,7 @@ State ensured for the service
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--unbound_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
@@ -13069,7 +13310,7 @@ Name of the unbound exporter service
 
 Default value: `'unbound_exporter'`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--unbound_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -13077,7 +13318,7 @@ User which runs the service
 
 Default value: `'unbound-exporter'`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--unbound_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -13085,31 +13326,31 @@ The binary release version
 
 Default value: `'0.3'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--unbound_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--unbound_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--unbound_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--unbound_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -13117,7 +13358,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9167`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--unbound_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -13125,23 +13366,23 @@ Data type: `String[1]`
 
 Default value: `'unbound'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--unbound_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--unbound_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--unbound_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash`
 
@@ -13149,7 +13390,7 @@ Data type: `Hash`
 
 Default value: `{ 'GODEBUG' => 'x509ignoreCN=0' }`
 
-### <a name="prometheusvarnish_exporter"></a>`prometheus::varnish_exporter`
+### <a name="prometheus--varnish_exporter"></a>`prometheus::varnish_exporter`
 
 This module manages prometheus varnish_exporter
 
@@ -13157,38 +13398,38 @@ This module manages prometheus varnish_exporter
 
 The following parameters are available in the `prometheus::varnish_exporter` class:
 
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`download_extension`](#download_extension)
-* [`download_url`](#download_url)
-* [`download_url_base`](#download_url_base)
-* [`extra_groups`](#extra_groups)
-* [`extra_options`](#extra_options)
-* [`group`](#group)
-* [`init_style`](#init_style)
-* [`install_method`](#install_method)
-* [`manage_group`](#manage_group)
-* [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
-* [`os`](#os)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`purge_config_dir`](#purge_config_dir)
-* [`restart_on_change`](#restart_on_change)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`version`](#version)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
+* [`arch`](#-prometheus--varnish_exporter--arch)
+* [`bin_dir`](#-prometheus--varnish_exporter--bin_dir)
+* [`download_extension`](#-prometheus--varnish_exporter--download_extension)
+* [`download_url`](#-prometheus--varnish_exporter--download_url)
+* [`download_url_base`](#-prometheus--varnish_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--varnish_exporter--extra_groups)
+* [`extra_options`](#-prometheus--varnish_exporter--extra_options)
+* [`group`](#-prometheus--varnish_exporter--group)
+* [`init_style`](#-prometheus--varnish_exporter--init_style)
+* [`install_method`](#-prometheus--varnish_exporter--install_method)
+* [`manage_group`](#-prometheus--varnish_exporter--manage_group)
+* [`manage_service`](#-prometheus--varnish_exporter--manage_service)
+* [`manage_user`](#-prometheus--varnish_exporter--manage_user)
+* [`os`](#-prometheus--varnish_exporter--os)
+* [`package_ensure`](#-prometheus--varnish_exporter--package_ensure)
+* [`package_name`](#-prometheus--varnish_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--varnish_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--varnish_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--varnish_exporter--service_enable)
+* [`service_ensure`](#-prometheus--varnish_exporter--service_ensure)
+* [`service_name`](#-prometheus--varnish_exporter--service_name)
+* [`user`](#-prometheus--varnish_exporter--user)
+* [`version`](#-prometheus--varnish_exporter--version)
+* [`proxy_server`](#-prometheus--varnish_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--varnish_exporter--proxy_type)
+* [`export_scrape_job`](#-prometheus--varnish_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--varnish_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--varnish_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--varnish_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--varnish_exporter--scrape_job_labels)
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--varnish_exporter--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -13196,7 +13437,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--varnish_exporter--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13204,55 +13445,55 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--varnish_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
 
-##### <a name="download_url"></a>`download_url`
+##### <a name="-prometheus--varnish_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="download_url_base"></a>`download_url_base`
+##### <a name="-prometheus--varnish_exporter--download_url_base"></a>`download_url_base`
 
 Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--varnish_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
 
-##### <a name="extra_options"></a>`extra_options`
+##### <a name="-prometheus--varnish_exporter--extra_options"></a>`extra_options`
 
 Data type: `Optional[String[1]]`
 
 Extra options added to the startup command
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--varnish_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--varnish_exporter--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
 Service startup scripts style (e.g. rc, upstart or systemd)
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--varnish_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -13260,31 +13501,31 @@ Installation method: url or package (only url is supported currently)
 
 Default value: `$prometheus::install_method`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--varnish_exporter--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--varnish_exporter--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--varnish_exporter--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--varnish_exporter--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -13292,43 +13533,43 @@ Operating system (linux is the only one supported)
 
 Default value: `downcase($facts['kernel'])`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--varnish_exporter--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--varnish_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
-##### <a name="purge_config_dir"></a>`purge_config_dir`
+##### <a name="-prometheus--varnish_exporter--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
 
 Purge config files no longer generated by Puppet
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_change"></a>`restart_on_change`
+##### <a name="-prometheus--varnish_exporter--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
 
 Should puppet restart the service on configuration change? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--varnish_exporter--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--varnish_exporter--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -13336,57 +13577,57 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-prometheus--varnish_exporter--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 Name of the varnish exporter service (default 'varnish_exporter')
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--varnish_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--varnish_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--varnish_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--varnish_exporter--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--varnish_exporter--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--varnish_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--varnish_exporter--scrape_port"></a>`scrape_port`
 
 Data type: `Stdlib::Port`
 
@@ -13394,7 +13635,7 @@ Data type: `Stdlib::Port`
 
 Default value: `9131`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--varnish_exporter--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -13402,17 +13643,17 @@ Data type: `String[1]`
 
 Default value: `'varnish'`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--varnish_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
 ## Defined types
 
-### <a name="prometheusalerts"></a>`prometheus::alerts`
+### <a name="prometheus--alerts"></a>`prometheus::alerts`
 
 This module manages prometheus alert files for prometheus
 
@@ -13420,20 +13661,20 @@ This module manages prometheus alert files for prometheus
 
 The following parameters are available in the `prometheus::alerts` defined type:
 
-* [`alerts`](#alerts)
-* [`location`](#location)
-* [`version`](#version)
-* [`user`](#user)
-* [`group`](#group)
-* [`bin_dir`](#bin_dir)
+* [`alerts`](#-prometheus--alerts--alerts)
+* [`location`](#-prometheus--alerts--location)
+* [`version`](#-prometheus--alerts--version)
+* [`user`](#-prometheus--alerts--user)
+* [`group`](#-prometheus--alerts--group)
+* [`bin_dir`](#-prometheus--alerts--bin_dir)
 
-##### <a name="alerts"></a>`alerts`
+##### <a name="-prometheus--alerts--alerts"></a>`alerts`
 
 Data type: `Variant[Array,Hash]`
 
 Array (< prometheus 2.0.0) or Hash (>= prometheus 2.0.0) of alerts (see README).
 
-##### <a name="location"></a>`location`
+##### <a name="-prometheus--alerts--location"></a>`location`
 
 Data type: `String[1]`
 
@@ -13441,7 +13682,7 @@ Where to create the alert file for prometheus
 
 Default value: `"${prometheus::config_dir}/rules"`
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--alerts--version"></a>`version`
 
 Data type: `String[1]`
 
@@ -13449,7 +13690,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::version`
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--alerts--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -13457,7 +13698,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::user`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--alerts--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -13465,7 +13706,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::group`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--alerts--bin_dir"></a>`bin_dir`
 
 Data type: `String[1]`
 
@@ -13473,7 +13714,7 @@ Data type: `String[1]`
 
 Default value: `$prometheus::bin_dir`
 
-### <a name="prometheusdaemon"></a>`prometheus::daemon`
+### <a name="prometheus--daemon"></a>`prometheus::daemon`
 
 This define managed prometheus daemons that don't have their own class
 
@@ -13481,67 +13722,68 @@ This define managed prometheus daemons that don't have their own class
 
 The following parameters are available in the `prometheus::daemon` defined type:
 
-* [`version`](#version)
-* [`real_download_url`](#real_download_url)
-* [`notify_service`](#notify_service)
-* [`user`](#user)
-* [`install_method`](#install_method)
-* [`download_extension`](#download_extension)
-* [`os`](#os)
-* [`arch`](#arch)
-* [`bin_dir`](#bin_dir)
-* [`bin_name`](#bin_name)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`manage_user`](#manage_user)
-* [`extra_groups`](#extra_groups)
-* [`manage_group`](#manage_group)
-* [`service_ensure`](#service_ensure)
-* [`service_enable`](#service_enable)
-* [`manage_service`](#manage_service)
-* [`extract_command`](#extract_command)
-* [`extract_path`](#extract_path)
-* [`archive_bin_path`](#archive_bin_path)
-* [`init_style`](#init_style)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`group`](#group)
-* [`purge`](#purge)
-* [`options`](#options)
-* [`env_vars`](#env_vars)
-* [`env_file_path`](#env_file_path)
-* [`export_scrape_job`](#export_scrape_job)
-* [`scrape_host`](#scrape_host)
-* [`scrape_port`](#scrape_port)
-* [`scrape_job_name`](#scrape_job_name)
-* [`scrape_job_labels`](#scrape_job_labels)
-* [`usershell`](#usershell)
+* [`version`](#-prometheus--daemon--version)
+* [`real_download_url`](#-prometheus--daemon--real_download_url)
+* [`notify_service`](#-prometheus--daemon--notify_service)
+* [`user`](#-prometheus--daemon--user)
+* [`install_method`](#-prometheus--daemon--install_method)
+* [`download_extension`](#-prometheus--daemon--download_extension)
+* [`os`](#-prometheus--daemon--os)
+* [`arch`](#-prometheus--daemon--arch)
+* [`bin_dir`](#-prometheus--daemon--bin_dir)
+* [`bin_name`](#-prometheus--daemon--bin_name)
+* [`package_name`](#-prometheus--daemon--package_name)
+* [`package_ensure`](#-prometheus--daemon--package_ensure)
+* [`manage_user`](#-prometheus--daemon--manage_user)
+* [`extra_groups`](#-prometheus--daemon--extra_groups)
+* [`manage_group`](#-prometheus--daemon--manage_group)
+* [`service_ensure`](#-prometheus--daemon--service_ensure)
+* [`service_enable`](#-prometheus--daemon--service_enable)
+* [`manage_service`](#-prometheus--daemon--manage_service)
+* [`extract_command`](#-prometheus--daemon--extract_command)
+* [`extract_path`](#-prometheus--daemon--extract_path)
+* [`archive_bin_path`](#-prometheus--daemon--archive_bin_path)
+* [`init_style`](#-prometheus--daemon--init_style)
+* [`proxy_server`](#-prometheus--daemon--proxy_server)
+* [`proxy_type`](#-prometheus--daemon--proxy_type)
+* [`group`](#-prometheus--daemon--group)
+* [`manage_bin_link`](#-prometheus--daemon--manage_bin_link)
+* [`purge`](#-prometheus--daemon--purge)
+* [`options`](#-prometheus--daemon--options)
+* [`env_vars`](#-prometheus--daemon--env_vars)
+* [`env_file_path`](#-prometheus--daemon--env_file_path)
+* [`export_scrape_job`](#-prometheus--daemon--export_scrape_job)
+* [`scrape_host`](#-prometheus--daemon--scrape_host)
+* [`scrape_port`](#-prometheus--daemon--scrape_port)
+* [`scrape_job_name`](#-prometheus--daemon--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--daemon--scrape_job_labels)
+* [`usershell`](#-prometheus--daemon--usershell)
 
-##### <a name="version"></a>`version`
+##### <a name="-prometheus--daemon--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
 
-##### <a name="real_download_url"></a>`real_download_url`
+##### <a name="-prometheus--daemon--real_download_url"></a>`real_download_url`
 
 Data type: `Prometheus::Uri`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
-##### <a name="notify_service"></a>`notify_service`
+##### <a name="-prometheus--daemon--notify_service"></a>`notify_service`
 
 Data type: `Any`
 
 The service to notify when something changes in this define
 
-##### <a name="user"></a>`user`
+##### <a name="-prometheus--daemon--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
 
-##### <a name="install_method"></a>`install_method`
+##### <a name="-prometheus--daemon--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
 
@@ -13549,7 +13791,7 @@ Installation method: url or package
 
 Default value: `$prometheus::install_method`
 
-##### <a name="download_extension"></a>`download_extension`
+##### <a name="-prometheus--daemon--download_extension"></a>`download_extension`
 
 Data type: `String`
 
@@ -13557,7 +13799,7 @@ Extension for the release binary archive
 
 Default value: `$prometheus::download_extension`
 
-##### <a name="os"></a>`os`
+##### <a name="-prometheus--daemon--os"></a>`os`
 
 Data type: `String[1]`
 
@@ -13565,7 +13807,7 @@ Operating system (linux is the only one supported)
 
 Default value: `$prometheus::os`
 
-##### <a name="arch"></a>`arch`
+##### <a name="-prometheus--daemon--arch"></a>`arch`
 
 Data type: `String[1]`
 
@@ -13573,7 +13815,7 @@ Architecture (amd64 or i386)
 
 Default value: `$prometheus::real_arch`
 
-##### <a name="bin_dir"></a>`bin_dir`
+##### <a name="-prometheus--daemon--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13581,7 +13823,7 @@ Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
 
-##### <a name="bin_name"></a>`bin_name`
+##### <a name="-prometheus--daemon--bin_name"></a>`bin_name`
 
 Data type: `String[1]`
 
@@ -13589,15 +13831,15 @@ The name of the binary to execute
 
 Default value: `$name`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-prometheus--daemon--package_name"></a>`package_name`
 
 Data type: `Optional[String]`
 
 The binary package name
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-prometheus--daemon--package_ensure"></a>`package_ensure`
 
 Data type: `String[1]`
 
@@ -13605,15 +13847,15 @@ If package, then use this for package ensure default 'installed'
 
 Default value: `'installed'`
 
-##### <a name="manage_user"></a>`manage_user`
+##### <a name="-prometheus--daemon--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="extra_groups"></a>`extra_groups`
+##### <a name="-prometheus--daemon--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
@@ -13621,15 +13863,15 @@ Extra groups of which the user should be a part
 
 Default value: `[]`
 
-##### <a name="manage_group"></a>`manage_group`
+##### <a name="-prometheus--daemon--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
 
 Whether to create a group for or rely on external code for that
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-prometheus--daemon--service_ensure"></a>`service_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -13637,23 +13879,23 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-prometheus--daemon--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service from puppet (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-prometheus--daemon--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Should puppet manage the service? (default true)
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="extract_command"></a>`extract_command`
+##### <a name="-prometheus--daemon--extract_command"></a>`extract_command`
 
 Data type: `Optional[String[1]]`
 
@@ -13661,7 +13903,7 @@ Custom command passed to the archive resource to extract the downloaded archive.
 
 Default value: `$prometheus::extract_command`
 
-##### <a name="extract_path"></a>`extract_path`
+##### <a name="-prometheus--daemon--extract_path"></a>`extract_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13669,7 +13911,7 @@ Path where to find extracted binary
 
 Default value: `'/opt'`
 
-##### <a name="archive_bin_path"></a>`archive_bin_path`
+##### <a name="-prometheus--daemon--archive_bin_path"></a>`archive_bin_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13677,7 +13919,7 @@ Path to the binary in the downloaded archive.
 
 Default value: `"/opt/${name}-${version}.${os}-${arch}/${name}"`
 
-##### <a name="init_style"></a>`init_style`
+##### <a name="-prometheus--daemon--init_style"></a>`init_style`
 
 Data type: `Prometheus::Initstyle`
 
@@ -13685,39 +13927,47 @@ Service startup scripts style (e.g. rc, upstart or systemd).
 Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 Typically this can be used when a package is already providing the file.
 
-Default value: `$facts['service_provider']`
+Default value: `$prometheus::init_style`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-prometheus--daemon--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
 
 Optional proxy server, with port number if needed. ie: https://example.com:8080
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--daemon--proxy_type"></a>`proxy_type`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="group"></a>`group`
+##### <a name="-prometheus--daemon--group"></a>`group`
 
 Data type: `String[1]`
 
 
 
-##### <a name="purge"></a>`purge`
+##### <a name="-prometheus--daemon--manage_bin_link"></a>`manage_bin_link`
 
 Data type: `Boolean`
 
 
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="options"></a>`options`
+##### <a name="-prometheus--daemon--purge"></a>`purge`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--daemon--options"></a>`options`
 
 Data type: `String`
 
@@ -13725,7 +13975,7 @@ Data type: `String`
 
 Default value: `''`
 
-##### <a name="env_vars"></a>`env_vars`
+##### <a name="-prometheus--daemon--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
 
@@ -13733,7 +13983,7 @@ Data type: `Hash[String[1], Scalar]`
 
 Default value: `{}`
 
-##### <a name="env_file_path"></a>`env_file_path`
+##### <a name="-prometheus--daemon--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13741,15 +13991,15 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::env_file_path`
 
-##### <a name="export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--daemon--export_scrape_job"></a>`export_scrape_job`
 
 Data type: `Boolean`
 
 
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="scrape_host"></a>`scrape_host`
+##### <a name="-prometheus--daemon--scrape_host"></a>`scrape_host`
 
 Data type: `Stdlib::Host`
 
@@ -13757,15 +14007,15 @@ Data type: `Stdlib::Host`
 
 Default value: `$facts['networking']['fqdn']`
 
-##### <a name="scrape_port"></a>`scrape_port`
+##### <a name="-prometheus--daemon--scrape_port"></a>`scrape_port`
 
 Data type: `Optional[Stdlib::Port]`
 
 
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="scrape_job_name"></a>`scrape_job_name`
+##### <a name="-prometheus--daemon--scrape_job_name"></a>`scrape_job_name`
 
 Data type: `String[1]`
 
@@ -13773,7 +14023,7 @@ Data type: `String[1]`
 
 Default value: `$name`
 
-##### <a name="scrape_job_labels"></a>`scrape_job_labels`
+##### <a name="-prometheus--daemon--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Hash`
 
@@ -13781,7 +14031,7 @@ Data type: `Hash`
 
 Default value: `{ 'alias' => $scrape_host }`
 
-##### <a name="usershell"></a>`usershell`
+##### <a name="-prometheus--daemon--usershell"></a>`usershell`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -13789,7 +14039,7 @@ Data type: `Stdlib::Absolutepath`
 
 Default value: `$prometheus::usershell`
 
-### <a name="prometheusscrape_job"></a>`prometheus::scrape_job`
+### <a name="prometheus--scrape_job"></a>`prometheus::scrape_job`
 
 This define is used to export prometheus scrape settings from nodes to be scraped to the node
 running prometheus itself.
@@ -13799,25 +14049,25 @@ This can be used to make prometheus find instances of your running service or ap
 
 The following parameters are available in the `prometheus::scrape_job` defined type:
 
-* [`job_name`](#job_name)
-* [`targets`](#targets)
-* [`labels`](#labels)
-* [`collect_dir`](#collect_dir)
+* [`job_name`](#-prometheus--scrape_job--job_name)
+* [`targets`](#-prometheus--scrape_job--targets)
+* [`labels`](#-prometheus--scrape_job--labels)
+* [`collect_dir`](#-prometheus--scrape_job--collect_dir)
 
-##### <a name="job_name"></a>`job_name`
+##### <a name="-prometheus--scrape_job--job_name"></a>`job_name`
 
 Data type: `String[1]`
 
 The name of the scrape job. This will be used when collecting resources on the prometheus node.
 Corresponds to the prometheus::collect_scrape_jobs parameter.
 
-##### <a name="targets"></a>`targets`
+##### <a name="-prometheus--scrape_job--targets"></a>`targets`
 
 Data type: `Array[String[1]]`
 
 Array of hosts and ports in the form "host:port"
 
-##### <a name="labels"></a>`labels`
+##### <a name="-prometheus--scrape_job--labels"></a>`labels`
 
 Data type: `Hash[String[1], String[1]]`
 
@@ -13825,64 +14075,44 @@ Labels added to the scraped metrics on the prometheus side, as label:values pair
 
 Default value: `{}`
 
-##### <a name="collect_dir"></a>`collect_dir`
+##### <a name="-prometheus--scrape_job--collect_dir"></a>`collect_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 Directory used for collecting scrape definitions.
 NOTE: this is a prometheus setting and will be overridden during collection.
 
-Default value: ``undef``
+Default value: `undef`
 
 ## Data types
 
-### <a name="prometheusgsuri"></a>`Prometheus::GsUri`
+### <a name="Prometheus--GsUri"></a>`Prometheus::GsUri`
 
 The Prometheus::GsUri data type.
 
-Alias of
+Alias of `Pattern[/^gs:\/\//]`
 
-```puppet
-Pattern[/^gs:\/\//]
-```
-
-### <a name="prometheusinitstyle"></a>`Prometheus::Initstyle`
+### <a name="Prometheus--Initstyle"></a>`Prometheus::Initstyle`
 
 The Prometheus::Initstyle data type.
 
-Alias of
+Alias of `Enum['sysv', 'systemd', 'sles', 'launchd', 'upstart', 'none']`
 
-```puppet
-Enum['sysv', 'systemd', 'sles', 'launchd', 'upstart', 'none']
-```
-
-### <a name="prometheusinstall"></a>`Prometheus::Install`
+### <a name="Prometheus--Install"></a>`Prometheus::Install`
 
 type to enforce the different installation methods for our exporters.
 
-Alias of
+Alias of `Enum['url', 'package', 'none']`
 
-```puppet
-Enum['url', 'package', 'none']
-```
-
-### <a name="prometheuss3uri"></a>`Prometheus::S3Uri`
+### <a name="Prometheus--S3Uri"></a>`Prometheus::S3Uri`
 
 The Prometheus::S3Uri data type.
 
-Alias of
+Alias of `Pattern[/^s3:\/\//]`
 
-```puppet
-Pattern[/^s3:\/\//]
-```
-
-### <a name="prometheusuri"></a>`Prometheus::Uri`
+### <a name="Prometheus--Uri"></a>`Prometheus::Uri`
 
 The Prometheus::Uri data type.
 
-Alias of
-
-```puppet
-Variant[Stdlib::Filesource, Stdlib::HTTPUrl, Stdlib::HTTPSUrl, Prometheus::S3Uri, Prometheus::GsUri]
-```
+Alias of `Variant[Stdlib::Filesource, Stdlib::HTTPUrl, Stdlib::HTTPSUrl, Prometheus::S3Uri, Prometheus::GsUri]`
 
