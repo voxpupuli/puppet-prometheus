@@ -56,7 +56,7 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::snmp_exporter (
-  String[1] $config_file,
+  Stdlib::Absolutepath $config_file,
   String $config_template,
   String $download_extension,
   Prometheus::Uri $download_url_base,
