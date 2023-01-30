@@ -58,7 +58,7 @@ class prometheus::collectd_exporter (
   String[1] $version,
   String $options,
   String[1] $os                                              = downcase($facts['kernel']),
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Prometheus::Install $install_method                        = $prometheus::install_method,
   Optional[String[1]] $download_url                          = undef,
   String[1] $arch                                            = $prometheus::real_arch,

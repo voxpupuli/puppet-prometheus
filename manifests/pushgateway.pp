@@ -60,7 +60,7 @@ class prometheus::pushgateway (
   Boolean $service_enable                                    = true,
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   String[1] $service_name                                    = 'pushgateway',
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   String[1] $install_method                                  = $prometheus::install_method,
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,

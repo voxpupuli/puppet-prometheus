@@ -69,7 +69,7 @@ define prometheus::daemon (
   Boolean $manage_group                                      = true,
   Boolean $purge                                             = true,
   String $options                                            = '', # lint:ignore:params_empty_string_assignment
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   Boolean $service_enable                                    = true,
   Boolean $manage_service                                    = true,

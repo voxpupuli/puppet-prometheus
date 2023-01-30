@@ -65,7 +65,7 @@ class prometheus::ssh_exporter (
   String[1] $group                                           = 'ssh-exporter',
   Prometheus::Uri $download_url_base                         = 'https://github.com/treydock/ssh_exporter/releases',
   Array[String] $extra_groups                                = [],
-  Prometheus::Initstyle $init_style                          = $facts['service_provider'],
+  Prometheus::Initstyle $init_style                          = $prometheus::init_style,
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
