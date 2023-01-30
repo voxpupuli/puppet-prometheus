@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v12.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.5.0) (2023-01-30)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.4.0...v12.5.0)
+
+**Implemented enhancements:**
+
+- bump puppet/systemd to \< 5.0.0 [\#645](https://github.com/voxpupuli/puppet-prometheus/pull/645) ([jhoblitt](https://github.com/jhoblitt))
+- Adapt web.config.file option for node\_exporter versions higher than 1.5.0 [\#644](https://github.com/voxpupuli/puppet-prometheus/pull/644) ([Pigueiras](https://github.com/Pigueiras))
+- feat: Support JMX exporter [\#636](https://github.com/voxpupuli/puppet-prometheus/pull/636) ([dploeger](https://github.com/dploeger))
+- Support time\_intervals with alertmanager \>= 0.24.0 [\#618](https://github.com/voxpupuli/puppet-prometheus/pull/618) ([treydock](https://github.com/treydock))
+
+**Fixed bugs:**
+
+- Replace $facts\['service\_provider'\] by $prometheus::init\_style \(except init.pp\) [\#642](https://github.com/voxpupuli/puppet-prometheus/pull/642) ([phaedriel](https://github.com/phaedriel))
+
+**Closed issues:**
+
+- Support JMX exporter [\#635](https://github.com/voxpupuli/puppet-prometheus/issues/635)
+- Toplevel parameter init\_style ignored [\#629](https://github.com/voxpupuli/puppet-prometheus/issues/629)
+
+**Merged pull requests:**
+
+- Debian OS family: Install apt-transport-https during CI [\#628](https://github.com/voxpupuli/puppet-prometheus/pull/628) ([bastelfreak](https://github.com/bastelfreak))
+- prometheus: Move hiera data to class [\#624](https://github.com/voxpupuli/puppet-prometheus/pull/624) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v12.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.4.0) (2022-06-03)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.3.0...v12.4.0)
