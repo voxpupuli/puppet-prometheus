@@ -61,6 +61,7 @@ define prometheus::daemon (
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   String[1] $bin_name                                        = $name,
+  Boolean $manage_bin_link                                   = true,
   Optional[String] $package_name                             = undef,
   String[1] $package_ensure                                  = 'installed',
   Boolean $manage_user                                       = true,
@@ -123,10 +124,13 @@ define prometheus::daemon (
         group => 0, # 0 instead of root because OS X uses "wheel".
         mode  => '0555',
       }
-      -> file { "${bin_dir}/${name}":
-        ensure => link,
-        notify => $notify_service,
-        target => $archive_bin_path,
+      if $manage_bin_link {
+        file { "${bin_dir}/${name}":
+          ensure  => link,
+          notify  => $notify_service,
+          target  => $archive_bin_path,
+          require => File[$archive_bin_path],
+        }
       }
     }
     'package': {
@@ -190,7 +194,7 @@ define prometheus::daemon (
       }
       # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
       # and camptocamp/systemd only creates this relationship when managing the service
-      if $manage_service and versioncmp($facts['puppetversion'],'6.1.0') < 0 {
+      if $manage_service and versioncmp($facts['puppetversion'], '6.1.0') < 0 {
         Class['systemd::systemctl::daemon_reload'] -> Service[$name]
       }
     }
@@ -267,8 +271,8 @@ define prometheus::daemon (
   }
 
   $real_provider = $init_style ? {
-    'sles'  => 'redhat',  # mimics puppet's default behaviour
-    'sysv'  => 'redhat',  # all currently used cases for 'sysv' are redhat-compatible
+    'sles'  => 'redhat', # mimics puppet's default behaviour
+    'sysv'  => 'redhat', # all currently used cases for 'sysv' are redhat-compatible
     'none'  => undef,
     default => $init_style,
   }
