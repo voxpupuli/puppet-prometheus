@@ -16,6 +16,10 @@ group :development do
 end
 
 group :system_tests do
+  gem 'beaker-puppet', git: 'https://github.com/bastelfreak/beaker-puppet', branch: 'eol'
+  gem 'beaker-puppet_install_helper', git: 'https://github.com/bastelfreak/beaker-puppet_install_helper', branch: 'beaker5'
+  gem 'beaker-pe', git: 'https://github.com/bastelfreak/beaker-pe', branch: 'beaker5'
+  gem 'beaker', '~> 5.1'
   gem 'voxpupuli-acceptance', '~> 1.0',  :require => false
 end
 
