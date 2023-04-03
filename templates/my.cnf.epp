@@ -4,6 +4,9 @@
   Stdlib::Port $cnf_port,
   Stdlib::Host $cnf_host,
   Optional[Stdlib::Absolutepath] $cnf_socket = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_ca = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_cert = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_key = undef,
 | -%>
 # THIS FILE IS MANAGED BY PUPPET
 [client]
@@ -20,4 +23,12 @@ socket = <%= $cnf_socket %>
 <%- } else { -%>
 host = <%= $cnf_host %>
 port = <%= $cnf_port %>
+<% } -%>
+<% if $cnf_ssl_ca { -%>
+ssl-ca = <%= $cnf_ssl_ca %>
+<% } -%>
+<%# client ssl cert and key, only used if both provided %>
+<% if $cnf_ssl_cert and $cnf_ssl_key { -%>
+ssl-cert = <%= $cnf_ssl_cert %>
+ssl-key = <%= $cnf_ssl_key %>
 <% } -%>
