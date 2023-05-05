@@ -108,7 +108,12 @@ class prometheus::rabbitmq_exporter (
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
-  $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}_${os}-${arch}.${download_extension}")
+  if versioncmp($version, '0.9') < 0 {
+    $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}.${os}-${arch}.${download_extension}")
+  } else {
+    $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}-${version}_${os}-${arch}.${download_extension}")
+  }
+  
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
