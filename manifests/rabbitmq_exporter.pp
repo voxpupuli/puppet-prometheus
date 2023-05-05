@@ -1,4 +1,4 @@
-s# @summary This module manages prometheus rabbitmq_exporter
+# @summary This module manages prometheus rabbitmq_exporter
 # @param arch
 #  Architecture (amd64 or i386)
 # @param bin_dir
