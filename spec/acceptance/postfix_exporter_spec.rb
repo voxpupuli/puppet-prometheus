@@ -5,7 +5,7 @@ require 'spec_helper_acceptance'
 describe 'prometheus postfix exporter' do
   describe 'install postfix' do
     before do
-      install_module_from_forge('puppet/postfix', '>= 1.8.0 < 3.0.0')
+      install_puppet_module_via_pmt_on(host, 'puppet/postfix')
     end
 
     it do
