@@ -279,7 +279,7 @@ class prometheus::config {
   # $scrape_configs in the template
   $collected_scrape_jobs = $prometheus::server::collect_scrape_jobs.map |$job_definition| {
     $job_name = $job_definition['job_name']
-    merge($job_definition, {
+    stdlib::merge($job_definition, {
         file_sd_configs => [{
             files => ["${prometheus::config_dir}/file_sd_config.d/${job_name}_*.yaml"]
         }]
