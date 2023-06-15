@@ -5,7 +5,7 @@ require 'spec_helper_acceptance'
 describe 'prometheus postfix exporter' do
   describe 'install postfix' do
     before do
-      install_puppet_module_via_pmt_on(host, 'puppet/postfix')
+      shell('puppet module install puppet/postfix')
     end
 
     it do
