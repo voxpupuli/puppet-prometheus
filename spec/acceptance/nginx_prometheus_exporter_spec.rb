@@ -4,8 +4,8 @@ require 'spec_helper_acceptance'
 
 describe 'prometheus nginx exporter' do
   it 'nginx_prometheus_exporter works idempotently with no errors' do
-    install_module_from_forge('puppetlabs/apt', '>= 8.2.0 < 9.0.0')
-    install_module_from_forge('puppet/nginx', '>= 3.2.1 < 4.0.0')
+    shell('puppet module install puppetlabs/apt')
+    shell('puppet module install puppet/nginx')
     pp = <<-EOS
   class { 'prometheus::nginx_prometheus_exporter':
     scrape_uri => 'http://localhost:8888/stub_status',
