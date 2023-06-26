@@ -4,12 +4,36 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v13.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v13.0.0) (2023-06-26)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.5.0...v13.0.0)
+
+**Breaking changes:**
+
+- Drop Ubuntu 16.04 \(EOL\) [\#668](https://github.com/voxpupuli/puppet-prometheus/pull/668) ([smortex](https://github.com/smortex))
+- Drop Debian 9 \(EOL\) [\#667](https://github.com/voxpupuli/puppet-prometheus/pull/667) ([smortex](https://github.com/smortex))
+- puppetlabs/stdlib: Require 9.x [\#665](https://github.com/voxpupuli/puppet-prometheus/pull/665) ([hashworks](https://github.com/hashworks))
+- Drop Puppet 6 support [\#660](https://github.com/voxpupuli/puppet-prometheus/pull/660) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Ubuntu 22.04 support [\#672](https://github.com/voxpupuli/puppet-prometheus/pull/672) ([bastelfreak](https://github.com/bastelfreak))
+- Add EL9 support [\#671](https://github.com/voxpupuli/puppet-prometheus/pull/671) ([bastelfreak](https://github.com/bastelfreak))
+- Add puppet 8 support [\#670](https://github.com/voxpupuli/puppet-prometheus/pull/670) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- blackbox\_exporter: Move hiera data to class [\#675](https://github.com/voxpupuli/puppet-prometheus/pull/675) ([bastelfreak](https://github.com/bastelfreak))
+- postgres\_exporter: Move hiera data to class [\#674](https://github.com/voxpupuli/puppet-prometheus/pull/674) ([bastelfreak](https://github.com/bastelfreak))
+- redis\_exporter: Move hiera data to class [\#673](https://github.com/voxpupuli/puppet-prometheus/pull/673) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v12.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.5.0) (2023-01-30)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.4.0...v12.5.0)
 
 **Implemented enhancements:**
 
+- Add AlmaLinux/Rocky 8 support [\#649](https://github.com/voxpupuli/puppet-prometheus/pull/649) ([bastelfreak](https://github.com/bastelfreak))
 - bump puppet/systemd to \< 5.0.0 [\#645](https://github.com/voxpupuli/puppet-prometheus/pull/645) ([jhoblitt](https://github.com/jhoblitt))
 - Adapt web.config.file option for node\_exporter versions higher than 1.5.0 [\#644](https://github.com/voxpupuli/puppet-prometheus/pull/644) ([Pigueiras](https://github.com/Pigueiras))
 - feat: Support JMX exporter [\#636](https://github.com/voxpupuli/puppet-prometheus/pull/636) ([dploeger](https://github.com/dploeger))
@@ -26,6 +50,12 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- varnish\_exporter: Move hiera data to class [\#653](https://github.com/voxpupuli/puppet-prometheus/pull/653) ([bastelfreak](https://github.com/bastelfreak))
+- graphite\_exporter: Move hiera data to class [\#652](https://github.com/voxpupuli/puppet-prometheus/pull/652) ([bastelfreak](https://github.com/bastelfreak))
+- collectd\_exporter: Move hiera data to class [\#651](https://github.com/voxpupuli/puppet-prometheus/pull/651) ([bastelfreak](https://github.com/bastelfreak))
+- apache\_exporter: Move hiera data to class [\#650](https://github.com/voxpupuli/puppet-prometheus/pull/650) ([bastelfreak](https://github.com/bastelfreak))
+- config\_file: Enforce Stdlib::Absolutepath [\#648](https://github.com/voxpupuli/puppet-prometheus/pull/648) ([bastelfreak](https://github.com/bastelfreak))
+- grok\_exporter: Move hiera data to class [\#647](https://github.com/voxpupuli/puppet-prometheus/pull/647) ([bastelfreak](https://github.com/bastelfreak))
 - Debian OS family: Install apt-transport-https during CI [\#628](https://github.com/voxpupuli/puppet-prometheus/pull/628) ([bastelfreak](https://github.com/bastelfreak))
 - prometheus: Move hiera data to class [\#624](https://github.com/voxpupuli/puppet-prometheus/pull/624) ([bastelfreak](https://github.com/bastelfreak))
 
