@@ -9029,6 +9029,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--postgres_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -9043,17 +9045,23 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus-community/postgres_exporter/releases'`
+
 ##### <a name="-prometheus--postgres_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
 
+Default value: `[]`
+
 ##### <a name="-prometheus--postgres_exporter--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'postgres-exporter'`
 
 ##### <a name="-prometheus--postgres_exporter--init_style"></a>`init_style`
 
@@ -9109,11 +9117,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--postgres_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'postgres_exporter'`
 
 ##### <a name="-prometheus--postgres_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -9161,11 +9173,15 @@ Data type: `String[1]`
 
 User which runs the service
 
+Default value: `'postgres-exporter'`
+
 ##### <a name="-prometheus--postgres_exporter--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.5.1'`
 
 ##### <a name="-prometheus--postgres_exporter--postgres_user"></a>`postgres_user`
 
@@ -9191,11 +9207,15 @@ method for presenting username and password to the exporter
 This can be file, or env (default 'env')
 Using 'custom' requires 'data_source_custom' values
 
+Default value: `'env'`
+
 ##### <a name="-prometheus--postgres_exporter--data_source_uri"></a>`data_source_uri`
 
 Data type: `String[1]`
 
 Uri on howto connect to the database
+
+Default value: `'host=/var/run/postgresql/ sslmode=disable'`
 
 ##### <a name="-prometheus--postgres_exporter--proxy_server"></a>`proxy_server`
 
