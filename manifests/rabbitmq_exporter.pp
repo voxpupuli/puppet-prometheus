@@ -124,7 +124,7 @@ class prometheus::rabbitmq_exporter (
     'RABBIT_EXPORTERS'    => join($rabbit_exporters, ','),
   }
 
-  $real_env_vars = merge($env_vars, $extra_env_vars)
+  $real_env_vars = stdlib::merge($env_vars, $extra_env_vars)
 
   prometheus::daemon { 'rabbitmq_exporter':
     install_method     => $install_method,

@@ -29,7 +29,7 @@ define prometheus::alerts (
       owner        => 'root',
       group        => $group,
       notify       => Class['prometheus::service_reload'],
-      content      => $alerts.to_yaml,
+      content      => $alerts.stdlib::to_yaml,
       validate_cmd => "${bin_dir}/promtool check rules %",
       require      => Class['prometheus::install'],
       before       => Class['prometheus::config'],
