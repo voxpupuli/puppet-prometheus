@@ -279,11 +279,11 @@ class prometheus::config {
   # $scrape_configs in the template
   $collected_scrape_jobs = $prometheus::server::collect_scrape_jobs.map |$job_definition| {
     $job_name = $job_definition['job_name']
-    stdlib::merge($job_definition, {
+    $job_definition + {
         file_sd_configs => [{
             files => ["${prometheus::config_dir}/file_sd_config.d/${job_name}_*.yaml"]
         }]
-    })
+    }
   }
 
   if versioncmp($prometheus::server::version, '2.0.0') >= 0 {
