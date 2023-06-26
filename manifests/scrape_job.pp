@@ -18,7 +18,7 @@ define prometheus::scrape_job (
   Hash[String[1], String[1]] $labels = {},
   Stdlib::Absolutepath $collect_dir  = undef,
 ) {
-  $config = to_yaml([
+  $config = stdlib::to_yaml([
       {
         targets => $targets,
         labels  => $labels,

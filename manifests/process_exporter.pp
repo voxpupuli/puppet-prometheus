@@ -120,7 +120,7 @@ class prometheus::process_exporter (
   if $hash_watched_processes.empty() {
     $config_path_content = template('prometheus/process-exporter.yaml.erb')
   } else {
-    $config_path_content = $hash_watched_processes.to_yaml
+    $config_path_content = $hash_watched_processes.stdlib::to_yaml
   }
 
   file { $config_path:

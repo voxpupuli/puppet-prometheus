@@ -199,7 +199,7 @@ class prometheus::node_exporter (
   } else {
     file { $web_config_file:
       ensure  => file,
-      content => $web_config_content.to_yaml,
+      content => $web_config_content.stdlib::to_yaml,
     }
 
     if versioncmp($version, '1.5.0') >= 0 {
