@@ -229,14 +229,4 @@ prometheus::statsd_exporter::service_name: 'statsd_exporter'
 prometheus::statsd_exporter::user: 'statsd-exporter'
 prometheus::statsd_exporter::version: '0.17.0'
 prometheus::storage_retention: '360h' # 15d; "d" suffix is only supported with prom >= 2.*
-prometheus::blackbox_exporter::user: 'blackbox-exporter'
-prometheus::blackbox_exporter::group: 'blackbox-exporter'
-prometheus::blackbox_exporter::download_extension: 'tar.gz'
-prometheus::blackbox_exporter::download_url_base: 'https://github.com/prometheus/blackbox_exporter/releases'
-prometheus::blackbox_exporter::extra_groups: []
-prometheus::blackbox_exporter::package_ensure: 'latest'
-prometheus::blackbox_exporter::package_name: 'blackbox_exporter'
-prometheus::blackbox_exporter::modules: {}
-prometheus::blackbox_exporter::config_file: '/etc/blackbox-exporter.yaml'
-prometheus::blackbox_exporter::version: '0.17.0'
 prometheus::user: 'prometheus'
