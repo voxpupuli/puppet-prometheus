@@ -259,7 +259,7 @@ class prometheus::config {
   }
 
   $prometheus::server::collect_scrape_jobs.each |Hash $job_definition| {
-    if ! 'job_name' in $job_definition {
+    if ! ('job_name' in $job_definition) {
       fail('collected scrape job has no job_name!')
     }
 
