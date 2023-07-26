@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v13.1.1]
+
+- allow to run on macOS M2 arm architecture
+
 ## [v13.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v13.1.0) (2023-07-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.0.0...v13.1.0)
