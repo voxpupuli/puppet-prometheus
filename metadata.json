@@ -14,11 +14,11 @@
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 1.1.1 <= 5.1.0"
+      "version_requirement": ">= 1.1.1 < 6.0.0"
     },
     {
       "name": "puppet/archive",
-      "version_requirement": ">= 2.2.0 <= 7.0.0"
+      "version_requirement": ">= 2.2.0 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
