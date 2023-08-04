@@ -11613,6 +11613,8 @@ The following parameters are available in the `prometheus::server` class:
 * [`collect_tag`](#-prometheus--server--collect_tag)
 * [`max_open_files`](#-prometheus--server--max_open_files)
 * [`usershell`](#-prometheus--server--usershell)
+* [`proxy_server`](#-prometheus--server--proxy_server)
+* [`proxy_type`](#-prometheus--server--proxy_type)
 
 ##### <a name="-prometheus--server--configname"></a>`configname`
 
@@ -12005,6 +12007,22 @@ Data type: `Stdlib::Absolutepath`
 
 
 Default value: `$prometheus::usershell`
+
+##### <a name="-prometheus--server--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `$prometheus::proxy_server`
+
+##### <a name="-prometheus--server--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+
+
+Default value: `$prometheus::proxy_type`
 
 ### <a name="prometheus--snmp_exporter"></a>`prometheus::snmp_exporter`
 

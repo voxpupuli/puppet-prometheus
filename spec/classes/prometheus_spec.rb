@@ -15,7 +15,7 @@ describe 'prometheus' do
                      '/etc/prometheus/prometheus.yaml'
                    end
 
-      [{ manage_prometheus_server: true, version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'] }].each do |parameters|
+      [{ manage_prometheus_server: true, version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'], proxy_server: 'proxy.test', proxy_type: 'https' }].each do |parameters|
         context "with parameters #{parameters}" do
           let(:params) do
             parameters
@@ -51,7 +51,9 @@ describe 'prometheus' do
               'source' => "https://github.com/prometheus/prometheus/releases/download/v#{prom_version}/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}.tar.gz",
               'checksum_verify' => false,
               'creates' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus",
-              'cleanup' => true
+              'cleanup' => true,
+              'proxy_server' => 'proxy.test',
+              'proxy_type' => 'https'
             ).that_comes_before("File[/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus]")
           }
 
