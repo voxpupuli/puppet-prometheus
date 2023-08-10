@@ -174,7 +174,10 @@ The following parameters are available in the `prometheus` class:
 * [`proxy_server`](#-prometheus--proxy_server)
 * [`proxy_type`](#-prometheus--proxy_type)
 * [`env_file_path`](#-prometheus--env_file_path)
+* [`manage_config_dir`](#-prometheus--manage_config_dir)
+* [`manage_init_file`](#-prometheus--manage_init_file)
 * [`manage_config`](#-prometheus--manage_config)
+* [`manage_localstorage`](#-prometheus--manage_localstorage)
 * [`manage_prometheus_server`](#-prometheus--manage_prometheus_server)
 
 ##### <a name="-prometheus--configname"></a>`configname`
@@ -903,7 +906,31 @@ Data type: `Stdlib::Absolutepath`
 
 
 
+##### <a name="-prometheus--manage_config_dir"></a>`manage_config_dir`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--manage_init_file"></a>`manage_init_file`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
 ##### <a name="-prometheus--manage_config"></a>`manage_config`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--manage_localstorage"></a>`manage_localstorage`
 
 Data type: `Boolean`
 
@@ -11621,7 +11648,9 @@ The following parameters are available in the `prometheus::server` class:
 * [`package_name`](#-prometheus--server--package_name)
 * [`package_ensure`](#-prometheus--server--package_ensure)
 * [`config_dir`](#-prometheus--server--config_dir)
+* [`manage_config_dir`](#-prometheus--server--manage_config_dir)
 * [`localstorage`](#-prometheus--server--localstorage)
+* [`manage_localstorage`](#-prometheus--server--manage_localstorage)
 * [`config_template`](#-prometheus--server--config_template)
 * [`config_mode`](#-prometheus--server--config_mode)
 * [`global_config`](#-prometheus--server--global_config)
@@ -11659,6 +11688,7 @@ The following parameters are available in the `prometheus::server` class:
 * [`usershell`](#-prometheus--server--usershell)
 * [`proxy_server`](#-prometheus--server--proxy_server)
 * [`proxy_type`](#-prometheus--server--proxy_type)
+* [`manage_init_file`](#-prometheus--server--manage_init_file)
 
 ##### <a name="-prometheus--server--configname"></a>`configname`
 
@@ -11764,6 +11794,14 @@ Data type: `String`
 
 Default value: `$prometheus::config_dir`
 
+##### <a name="-prometheus--server--manage_config_dir"></a>`manage_config_dir`
+
+Data type: `Boolean`
+
+
+
+Default value: `$prometheus::manage_config_dir`
+
 ##### <a name="-prometheus--server--localstorage"></a>`localstorage`
 
 Data type: `Variant[Stdlib::Absolutepath, Boolean[false]]`
@@ -11771,6 +11809,14 @@ Data type: `Variant[Stdlib::Absolutepath, Boolean[false]]`
 
 
 Default value: `$prometheus::localstorage`
+
+##### <a name="-prometheus--server--manage_localstorage"></a>`manage_localstorage`
+
+Data type: `Boolean`
+
+
+
+Default value: `$prometheus::manage_localstorage`
 
 ##### <a name="-prometheus--server--config_template"></a>`config_template`
 
@@ -12067,6 +12113,14 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 
 Default value: `$prometheus::proxy_type`
+
+##### <a name="-prometheus--server--manage_init_file"></a>`manage_init_file`
+
+Data type: `Boolean`
+
+
+
+Default value: `$prometheus::manage_init_file`
 
 ### <a name="prometheus--snmp_exporter"></a>`prometheus::snmp_exporter`
 

@@ -189,63 +189,65 @@ class prometheus::config {
     }
   }
 
-  case $prometheus::server::init_style { # lint:ignore:case_without_default
-    'upstart': {
-      file { '/etc/init/prometheus.conf':
-        ensure  => file,
-        mode    => '0444',
-        owner   => 'root',
-        group   => 'root',
-        content => template('prometheus/prometheus.upstart.erb'),
-        notify  => $notify,
+  if $prometheus::server::manage_init_file {
+    case $prometheus::server::init_style {
+      'upstart': {
+        file { '/etc/init/prometheus.conf':
+          ensure  => file,
+          mode    => '0444',
+          owner   => 'root',
+          group   => 'root',
+          content => template('prometheus/prometheus.upstart.erb'),
+          notify  => $notify,
+        }
+        file { '/etc/init.d/prometheus':
+          ensure => link,
+          target => '/lib/init/upstart-job',
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0755',
+          notify => $notify,
+        }
       }
-      file { '/etc/init.d/prometheus':
-        ensure => link,
-        target => '/lib/init/upstart-job',
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0755',
-        notify => $notify,
+      'systemd': {
+        systemd::unit_file { 'prometheus.service':
+          content => epp("${module_name}/prometheus.systemd.epp", {
+              'user'           => $prometheus::server::user,
+              'group'          => $prometheus::server::group,
+              'daemon_flags'   => $daemon_flags,
+              'max_open_files' => $max_open_files,
+              'bin_dir'        => $prometheus::server::bin_dir,
+          }),
+          notify  => $notify,
+        }
+        if versioncmp($facts['puppetversion'],'6.1.0') < 0 {
+          # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
+          # and camptocamp/systemd only creates this relationship when managing the service
+          Class['systemd::systemctl::daemon_reload'] -> Class['prometheus::run_service']
+        }
       }
+      'sysv', 'sles': {
+        file { "/etc/init.d/${prometheus::server::service_name}":
+          ensure  => file,
+          mode    => '0555',
+          owner   => 'root',
+          group   => 'root',
+          content => template("prometheus/prometheus.${prometheus::server::init_style}.erb"),
+          notify  => $notify,
+        }
+      }
+      'launchd': {
+        file { '/Library/LaunchDaemons/io.prometheus.daemon.plist':
+          ensure  => file,
+          mode    => '0644',
+          owner   => 'root',
+          group   => 'wheel',
+          content => template('prometheus/prometheus.launchd.erb'),
+          notify  => $notify,
+        }
+      }
+      default, 'none': {}
     }
-    'systemd': {
-      systemd::unit_file { 'prometheus.service':
-        content => epp("${module_name}/prometheus.systemd.epp", {
-            'user'           => $prometheus::server::user,
-            'group'          => $prometheus::server::group,
-            'daemon_flags'   => $daemon_flags,
-            'max_open_files' => $max_open_files,
-            'bin_dir'        => $prometheus::server::bin_dir,
-        }),
-        notify  => $notify,
-      }
-      if versioncmp($facts['puppetversion'],'6.1.0') < 0 {
-        # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
-        # and camptocamp/systemd only creates this relationship when managing the service
-        Class['systemd::systemctl::daemon_reload'] -> Class['prometheus::run_service']
-      }
-    }
-    'sysv', 'sles': {
-      file { "/etc/init.d/${prometheus::server::service_name}":
-        ensure  => file,
-        mode    => '0555',
-        owner   => 'root',
-        group   => 'root',
-        content => template("prometheus/prometheus.${prometheus::server::init_style}.erb"),
-        notify  => $notify,
-      }
-    }
-    'launchd': {
-      file { '/Library/LaunchDaemons/io.prometheus.daemon.plist':
-        ensure  => file,
-        mode    => '0644',
-        owner   => 'root',
-        group   => 'wheel',
-        content => template('prometheus/prometheus.launchd.erb'),
-        notify  => $notify,
-      }
-    }
-    'none': {}
   }
 
   # TODO: promtool currently does not support checking the syntax of file_sd_config "includes".

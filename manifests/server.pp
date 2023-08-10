@@ -13,7 +13,9 @@ class prometheus::server (
   String $package_name                                                          = $prometheus::package_name,
   String $package_ensure                                                        = $prometheus::package_ensure,
   String $config_dir                                                            = $prometheus::config_dir,
+  Boolean $manage_config_dir                                                    = $prometheus::manage_config_dir,
   Variant[Stdlib::Absolutepath, Boolean[false]] $localstorage                   = $prometheus::localstorage,
+  Boolean $manage_localstorage                                                  = $prometheus::manage_localstorage,
   String $config_template                                                       = $prometheus::config_template,
   String $config_mode                                                           = $prometheus::config_mode,
   Hash $global_config                                                           = $prometheus::global_config,
@@ -51,6 +53,7 @@ class prometheus::server (
   Stdlib::Absolutepath $usershell                                               = $prometheus::usershell,
   Optional[String[1]] $proxy_server                                             = $prometheus::proxy_server,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = $prometheus::proxy_type,
+  Boolean $manage_init_file                                                     = $prometheus::manage_init_file,
 ) inherits prometheus {
   if( versioncmp($version, '1.0.0') == -1 ) {
     $real_download_url = pick($download_url,
