@@ -199,6 +199,8 @@ Data type: `String`
 
 User running prometheus
 
+Default value: `'prometheus'`
+
 ##### <a name="-prometheus--manage_group"></a>`manage_group`
 
 Data type: `Boolean`
@@ -221,6 +223,8 @@ Data type: `String`
 
 Group under which prometheus is running
 
+Default value: `'prometheus'`
+
 ##### <a name="-prometheus--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
@@ -234,6 +238,8 @@ Default value: `'/usr/local/bin'`
 Data type: `Stdlib::Absolutepath`
 
 Directory where shared files are located
+
+Default value: `'/usr/local/share/prometheus'`
 
 ##### <a name="-prometheus--arch"></a>`arch`
 
@@ -281,11 +287,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for prometheus
 
+Default value: `'https://github.com/prometheus/prometheus/releases'`
+
 ##### <a name="-prometheus--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension of Prometheus binaries archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--package_name"></a>`package_name`
 
@@ -293,11 +303,15 @@ Data type: `String`
 
 Prometheus package name - not available yet
 
+Default value: `'prometheus'`
+
 ##### <a name="-prometheus--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 If package, then use this for package ensurel default 'latest'
+
+Default value: `'latest'`
 
 ##### <a name="-prometheus--config_dir"></a>`config_dir`
 
@@ -305,11 +319,15 @@ Data type: `String`
 
 Prometheus configuration directory (default /etc/prometheus)
 
+Default value: `'/etc/prometheus'`
+
 ##### <a name="-prometheus--localstorage"></a>`localstorage`
 
 Data type: `Stdlib::Absolutepath`
 
 Location of prometheus local storage (storage.local argument)
+
+Default value: `'/var/lib/prometheus'`
 
 ##### <a name="-prometheus--extra_options"></a>`extra_options`
 
@@ -341,11 +359,15 @@ Data type: `String`
 
 Configuration template to use (template/prometheus.yaml.erb)
 
+Default value: `'prometheus/prometheus.yaml.erb'`
+
 ##### <a name="-prometheus--config_mode"></a>`config_mode`
 
 Data type: `String`
 
 Configuration file mode (default 0660)
+
+Default value: `'0640'`
 
 ##### <a name="-prometheus--service_enable"></a>`service_enable`
 
@@ -403,17 +425,23 @@ Data type: `Hash`
 
 Prometheus global configuration variables
 
+Default value: `{ 'scrape_interval' => '15s', 'evaluation_interval' => '15s', 'external_labels' => { 'monitor' => 'master' } }`
+
 ##### <a name="-prometheus--rule_files"></a>`rule_files`
 
 Data type: `Array`
 
 Prometheus rule files
 
+Default value: `[]`
+
 ##### <a name="-prometheus--scrape_configs"></a>`scrape_configs`
 
 Data type: `Array`
 
 Prometheus scrape configs
+
+Default value: `[]`
 
 ##### <a name="-prometheus--include_default_scrape_configs"></a>`include_default_scrape_configs`
 
@@ -429,17 +457,23 @@ Data type: `Array`
 
 Prometheus remote_read config to scrape prometheus 1.8+ instances
 
+Default value: `[]`
+
 ##### <a name="-prometheus--remote_write_configs"></a>`remote_write_configs`
 
 Data type: `Array`
 
 Prometheus remote_write config to scrape prometheus 1.8+ instances
 
+Default value: `[]`
+
 ##### <a name="-prometheus--alerts"></a>`alerts`
 
 Data type: `Variant[Array,Hash]`
 
 alert rules to put in alerts.rules
+
+Default value: `{}`
 
 ##### <a name="-prometheus--extra_alerts"></a>`extra_alerts`
 
@@ -455,11 +489,15 @@ Data type: `Array`
 
 Prometheus alert relabel config under alerting
 
+Default value: `[]`
+
 ##### <a name="-prometheus--alertmanagers_config"></a>`alertmanagers_config`
 
 Data type: `Array`
 
 Prometheus managers config under alerting
+
+Default value: `[]`
 
 ##### <a name="-prometheus--storage_retention"></a>`storage_retention`
 
@@ -468,6 +506,8 @@ Data type: `String`
 How long to keep timeseries data. This is given as a duration like "100h" or "14d". Until
 prometheus 1.8.*, only durations understood by golang's time.ParseDuration are supported. Starting
 with prometheus 2, durations can also be given in days, weeks and years.
+
+Default value: `'360h'`
 
 ##### <a name="-prometheus--external_url"></a>`external_url`
 
@@ -839,6 +879,8 @@ Data type: `Array`
 
 Extra groups of which the user should be a part
 
+Default value: `[]`
+
 ##### <a name="-prometheus--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -866,6 +908,8 @@ Data type: `Stdlib::Absolutepath`
 Data type: `Boolean`
 
 
+
+Default value: `true`
 
 ##### <a name="-prometheus--manage_prometheus_server"></a>`manage_prometheus_server`
 

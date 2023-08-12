@@ -15,8 +15,6 @@ prometheus::pushprox_proxy::package_ensure: 'latest'
 prometheus::pushprox_proxy::package_name: 'pushprox_proxy'
 prometheus::pushprox_proxy::user: 'pushprox_proxy'
 prometheus::pushprox_proxy::version: '0.1.0'
-prometheus::alert_relabel_config: []
-prometheus::alertmanagers_config: []
 prometheus::alertmanager::config_dir: '/etc/alertmanager'
 prometheus::alertmanager::manage_config: true
 prometheus::alertmanager::config_file: "%{hiera('prometheus::alertmanager::config_dir')}/alertmanager.yaml"
@@ -57,11 +55,6 @@ prometheus::alertmanager::storage_path: '/var/lib/alertmanager'
 prometheus::alertmanager::templates: [ "%{lookup('prometheus::alertmanager::config_dir')}/*.tmpl" ]
 prometheus::alertmanager::user: 'alertmanager'
 prometheus::alertmanager::version: '0.21.0'
-prometheus::alerts: {}
-prometheus::config_dir: '/etc/prometheus'
-prometheus::config_mode: '0640'
-prometheus::config_show_diff: true
-prometheus::config_template: 'prometheus/prometheus.yaml.erb'
 prometheus::consul_exporter::consul_health_summary: true
 prometheus::consul_exporter::consul_server: 'localhost:8500'
 prometheus::consul_exporter::download_extension: 'tar.gz'
@@ -76,8 +69,6 @@ prometheus::consul_exporter::user: 'consul-exporter'
 prometheus::consul_exporter::version: '0.7.1'
 prometheus::consul_exporter::web_listen_address: ':9107'
 prometheus::consul_exporter::web_telemetry_path: '/metrics'
-prometheus::download_extension: 'tar.gz'
-prometheus::download_url_base: 'https://github.com/prometheus/prometheus/releases'
 prometheus::elasticsearch_exporter::cnf_uri: 'http://localhost:9200'
 prometheus::elasticsearch_exporter::cnf_timeout: '5s'
 prometheus::elasticsearch_exporter::download_extension: 'tar.gz'
@@ -90,16 +81,6 @@ prometheus::elasticsearch_exporter::service_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::user: 'elasticsearch-exporter'
 prometheus::elasticsearch_exporter::version: '1.1.0'
 prometheus::elasticsearch_exporter::use_kingpin: true
-prometheus::extra_groups: []
-prometheus::global_config:
-  'scrape_interval': '15s'
-  'evaluation_interval': '15s'
-  'external_labels':
-    'monitor': 'master'
-prometheus::group: 'prometheus'
-prometheus::include_default_scrape_configs: true
-prometheus::localstorage: '/var/lib/prometheus'
-prometheus::manage_config: true
 prometheus::mesos_exporter::server_type: 'master'
 prometheus::mesos_exporter::cnf_scrape_uri: 'http://localhost:5050'
 prometheus::mesos_exporter::download_extension: 'tar.gz'
@@ -199,13 +180,6 @@ prometheus::beanstalkd_exporter::user: 'beanstalkd-exporter'
 prometheus::beanstalkd_exporter::version: '1.0.5'
 prometheus::beanstalkd_exporter::mapping_config: '/etc/beanstalkd-exporter-mapping.conf'
 prometheus::beanstalkd_exporter::config: '/etc/beanstalkd-exporter.conf'
-prometheus::package_ensure: 'latest'
-prometheus::package_name: 'prometheus'
-prometheus::rule_files: []
-prometheus::scrape_configs: []
-prometheus::remote_read_configs: []
-prometheus::remote_write_configs: []
-prometheus::shared_dir: '/usr/local/share/prometheus'
 prometheus::snmp_exporter::config_file: '/etc/snmp-exporter.yaml'
 prometheus::snmp_exporter::config_template: ''
 prometheus::snmp_exporter::download_extension: 'tar.gz'
@@ -228,5 +202,3 @@ prometheus::statsd_exporter::package_name: 'statsd_exporter'
 prometheus::statsd_exporter::service_name: 'statsd_exporter'
 prometheus::statsd_exporter::user: 'statsd-exporter'
 prometheus::statsd_exporter::version: '0.17.0'
-prometheus::storage_retention: '360h' # 15d; "d" suffix is only supported with prom >= 2.*
-prometheus::user: 'prometheus'
