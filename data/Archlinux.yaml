@@ -1,7 +1,12 @@
 ---
+prometheus::manage_localstorage: false
+prometheus::server::manage_user: false
+prometheus::server::manage_group: false
+prometheus::server::package_ensure: 'installed'
+prometheus::server::manage_config_dir: false
+prometheus::server::manage_init_file: false
 prometheus::configname: 'prometheus.yml'
-prometheus::server::init_style: 'none'
-prometheus::version: '2.10.0'
+prometheus::version: '2.46.0'
 prometheus::install_method: 'package'
 prometheus::bin_dir: '/usr/bin'
 prometheus::env_file_path: '/etc/conf.d'

@@ -18,13 +18,15 @@ describe 'prometheus::server' do
 
         prom_version = parameters[:version] || '1.5.2'
         prom_major = prom_version[0]
-        it { is_expected.to contain_class('systemd') }
+        context 'on non Archlinux', if: facts[:os]['name'] != 'Archlinux' do
+          it { is_expected.to contain_class('systemd') }
 
-        it {
-          expect(subject).to contain_systemd__unit_file('prometheus.service').with(
-            'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
-          )
-        }
+          it {
+            expect(subject).to contain_systemd__unit_file('prometheus.service').with(
+              'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
+            )
+          }
+        end
 
         it {
           content = catalogue.resource('file', 'prometheus.yaml').send(:parameters)[:content]
@@ -42,7 +44,7 @@ describe 'prometheus::server' do
           }
         end
 
-        describe 'max_open_files' do
+        describe 'max_open_files', if: facts[:os]['name'] != 'Archlinux' do
           context 'by default' do
             it {
               content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
@@ -50,7 +52,7 @@ describe 'prometheus::server' do
             }
           end
 
-          context 'when set to 1000000' do
+          context 'when set to 1000000', if: facts[:os]['name'] != 'Archlinux' do
             let(:params) do
               super().merge('max_open_files' => 1_000_000)
             end
@@ -62,7 +64,7 @@ describe 'prometheus::server' do
           end
         end
 
-        describe 'tsdb-disabled' do
+        describe 'tsdb-disabled', if: facts[:os]['name'] != 'Archlinux' do
           context 'by default' do
             it {
               content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
@@ -71,7 +73,7 @@ describe 'prometheus::server' do
             }
           end
 
-          context 'when retention set to false' do
+          context 'when retention set to false', if: facts[:os]['name'] != 'Archlinux' do
             let(:params) do
               super().merge('storage_retention' => false)
             end
@@ -82,7 +84,7 @@ describe 'prometheus::server' do
             }
           end
 
-          context 'when storage path set to false' do
+          context 'when storage path set to false', if: facts[:os]['name'] != 'Archlinux' do
             let(:params) do
               super().merge('localstorage' => false)
             end

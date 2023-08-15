@@ -6,7 +6,7 @@
 class prometheus::install {
   assert_private()
 
-  if $prometheus::server::localstorage {
+  if $prometheus::server::localstorage and $prometheus::server::manage_localstorage {
     file { $prometheus::server::localstorage:
       ensure => 'directory',
       owner  => $prometheus::server::user,
@@ -59,6 +59,7 @@ class prometheus::install {
       package { $prometheus::server::package_name:
         ensure => $prometheus::server::package_ensure,
         notify => $prometheus::server::notify_service,
+        before => File["${prometheus::server::config_dir}/rules"],
       }
       if $prometheus::server::manage_user {
         User[$prometheus::server::user] -> Package[$prometheus::server::package_name]
@@ -87,13 +88,15 @@ class prometheus::install {
         system => true,
     })
   }
-  file { $prometheus::server::config_dir:
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => $prometheus::server::group,
-    mode    => $prometheus::server::config_mode,
-    purge   => $prometheus::server::purge_config_dir,
-    recurse => $prometheus::server::purge_config_dir,
-    force   => $prometheus::server::purge_config_dir,
+  if $prometheus::server::manage_config_dir {
+    file { $prometheus::server::config_dir:
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => $prometheus::server::group,
+      mode    => $prometheus::server::config_mode,
+      purge   => $prometheus::server::purge_config_dir,
+      recurse => $prometheus::server::purge_config_dir,
+      force   => $prometheus::server::purge_config_dir,
+    }
   }
 }
