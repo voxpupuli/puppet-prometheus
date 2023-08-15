@@ -192,11 +192,6 @@ define prometheus::daemon (
         content => template('prometheus/daemon.systemd.erb'),
         notify  => $notify_service,
       }
-      # Puppet 5 doesn't have https://tickets.puppetlabs.com/browse/PUP-3483
-      # and camptocamp/systemd only creates this relationship when managing the service
-      if $manage_service and versioncmp($facts['puppetversion'], '6.1.0') < 0 {
-        Class['systemd::systemctl::daemon_reload'] -> Service[$name]
-      }
     }
     'sysv': {
       file { "/etc/init.d/${name}":
