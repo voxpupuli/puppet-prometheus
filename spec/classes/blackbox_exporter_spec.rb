@@ -41,6 +41,23 @@ describe 'prometheus::blackbox_exporter' do
             verify_contents(catalogue, '/etc/blackbox-exporter.yaml', ['---', 'modules:', '  http_2xx:', '    prober: http'])
           }
         end
+
+        context 'with tls set in web-config.yml' do
+          let(:params) do
+            {
+              web_config_content: {
+                tls_server_config: {
+                  cert_file: '/etc/blackbox_exporter/foo.cert',
+                  key_file: '/etc/blackbox_exporter/foo.key'
+                }
+              }
+            }
+          end
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_file('/etc/blackbox_exporter_web-config.yml').with(ensure: 'file') }
+          it { is_expected.to contain_prometheus__daemon('blackbox_exporter').with(options: '--config.file=/etc/blackbox-exporter.yaml --web.config.file=/etc/blackbox_exporter_web-config.yml') }
+        end
       end
     end
   end

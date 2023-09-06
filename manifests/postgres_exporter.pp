@@ -59,6 +59,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param web_config_file
+#  Path of file where the web-config will be saved to
+# @param web_config_content
+#  Unless empty the content of the web-config yaml which will handed over as option to the exporter
 class prometheus::postgres_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/prometheus-community/postgres_exporter/releases',
@@ -95,6 +99,8 @@ class prometheus::postgres_exporter (
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Stdlib::Absolutepath $web_config_file                      = '/etc/postgres_exporter_web-config.yml',
+  Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
   $release = "v${version}"
 
@@ -108,6 +114,31 @@ class prometheus::postgres_exporter (
     true    => Service[$service_name],
     default => undef,
   }
+
+  $_web_config_ensure = $web_config_content.empty ? {
+    true    => absent,
+    default => file,
+  }
+
+  file { $web_config_file:
+    ensure  => $_web_config_ensure,
+    owner   => $user,
+    group   => $group,
+    mode    => '0640',
+    content => $web_config_content.stdlib::to_yaml,
+    notify  => $notify_service,
+  }
+
+  $_web_config = if $web_config_content.empty {
+    ''
+  } else {
+    "--web.config.file=${$web_config_file}"
+  }
+
+  $_options = [
+    $options,
+    $_web_config,
+  ].filter |$x| { !$x.empty }.join(' ')
 
   case $postgres_auth_method {
     'env': {
@@ -183,7 +214,7 @@ class prometheus::postgres_exporter (
     group              => $group,
     manage_group       => $manage_group,
     purge              => $purge_config_dir,
-    options            => $options,
+    options            => $_options,
     init_style         => $init_style,
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,

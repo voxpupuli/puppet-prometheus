@@ -27,6 +27,23 @@ describe 'prometheus::elasticsearch_exporter' do
         describe 'install correct binary' do
           it { is_expected.to contain_file('/usr/local/bin/elasticsearch_exporter').with('target' => '/opt/elasticsearch_exporter-1.0.0.linux-amd64/elasticsearch_exporter') }
         end
+
+        context 'with tls set in web-config.yml' do
+          let(:params) do
+            super().merge(
+              web_config_content: {
+                tls_server_config: {
+                  cert_file: '/etc/elasticsearch_exporter/foo.cert',
+                  key_file: '/etc/elasticsearch_exporter/foo.key'
+                }
+              }
+            )
+          end
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_file('/etc/elasticsearch_exporter_web-config.yml').with(ensure: 'file') }
+          it { is_expected.to contain_prometheus__daemon('elasticsearch_exporter').with(options: '--es.uri=http://localhost:9200 --es.timeout=5s --web.config.file=/etc/elasticsearch_exporter_web-config.yml') }
+        end
       end
     end
   end

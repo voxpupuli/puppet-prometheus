@@ -62,6 +62,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param web_config_file
+#  Path of file where the web-config will be saved to
+# @param web_config_content
+#  Unless empty the content of the web-config yaml which will handed over as option to the exporter
 class prometheus::node_exporter (
   String $download_extension,
   Prometheus::Uri $download_url_base,
@@ -99,27 +103,8 @@ class prometheus::node_exporter (
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
-
-  ### TLS
-  Boolean $use_tls_server_config                     = false,
-  Optional[Stdlib::Absolutepath] $tls_cert_file      = undef,
-  Optional[Stdlib::Absolutepath] $tls_key_file       = undef,
-  Optional[Stdlib::Absolutepath] $tls_client_ca_file = undef,
-  String[1] $tls_client_auth_type                    = 'RequireAndVerifyClientCert',
-  Stdlib::Absolutepath $web_config_file              = '/etc/node_exporter_web-config.yml',
-  String[1] $tls_min_version                         = 'TLS12',
-  String[1] $tls_max_version                         = 'TLS13',
-  Optional[Array[String[1]]] $tls_cipher_suites      = undef,
-  Optional[Array[String[1]]] $tls_curve_preferences  = undef,
-  Boolean $tls_prefer_server_cipher_suites           = true,
-
-  ### HTTP/2
-  Boolean $use_http_server_config = false,
-  Boolean $http2                  = true,
-  Optional[Hash] $http2_headers   = undef,
-
-  ### Basic Auth
-  Optional[Hash] $basic_auth_users = undef,
+  Stdlib::Absolutepath $web_config_file                      = '/etc/node_exporter_web-config.yml',
+  Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -147,65 +132,27 @@ class prometheus::node_exporter (
     "--no-collector.${collector}"
   }
 
-  if $use_tls_server_config {
-    # if tls is enabled, these values have to be set and cannot be undef anymore
-    $valid_tls_cert_file        = assert_type(Stdlib::Absolutepath, $tls_cert_file)
-    $valid_tls_key_file         = assert_type(Stdlib::Absolutepath, $tls_key_file)
-
-    $tls_server_config = {
-      tls_server_config => {
-        cert_file        => $valid_tls_cert_file,
-        key_file         => $valid_tls_key_file,
-        client_ca_file   => $tls_client_ca_file,
-        client_auth_type => $tls_client_auth_type,
-        min_version      => $tls_min_version,
-        max_version      => $tls_max_version,
-        cipher_suites    => $tls_cipher_suites,
-        prefer_server_cipher_suites => $tls_prefer_server_cipher_suites,
-        curve_preferences           => $tls_curve_preferences,
-      },
-    }
-  } else {
-    $tls_server_config = {}
+  $_web_config_ensure = $web_config_content.empty ? {
+    true    => absent,
+    default => file,
   }
 
-  if $use_http_server_config {
-    $http_server_config = {
-      http_server_config => {
-        http2   => $http2,
-        headers => $http2_headers,
-      },
-    }
-  } else {
-    $http_server_config = {}
+  file { $web_config_file:
+    ensure  => $_web_config_ensure,
+    owner   => $user,
+    group   => $group,
+    mode    => '0640',
+    content => $web_config_content.stdlib::to_yaml,
+    notify  => $notify_service,
   }
 
-  if $basic_auth_users =~ Undef {
-    $basic_auth_config = {}
+  $_web_config = if $web_config_content.empty {
+    ''
   } else {
-    $basic_auth_config = {
-      basic_auth_users => $basic_auth_users,
-    }
-  }
-
-  $web_config_content = $tls_server_config + $http_server_config + $basic_auth_config
-
-  if empty($web_config_content) {
-    file { $web_config_file:
-      ensure  => absent,
-    }
-
-    $web_config = ''
-  } else {
-    file { $web_config_file:
-      ensure  => file,
-      content => $web_config_content.stdlib::to_yaml,
-    }
-
     if versioncmp($version, '1.5.0') >= 0 {
-      $web_config = "--web.config.file=${$web_config_file}"
+      "--web.config.file=${$web_config_file}"
     } else {
-      $web_config = "--web.config=${$web_config_file}"
+      "--web.config=${$web_config_file}"
     }
   }
 
@@ -213,8 +160,8 @@ class prometheus::node_exporter (
     $extra_options,
     $cmd_collectors_enable.join(' '),
     $cmd_collectors_disable.join(' '),
-    $web_config,
-  ].join(' ')
+    $_web_config,
+  ].filter |$x| { !$x.empty }.join(' ')
 
   prometheus::daemon { $service_name:
     install_method     => $install_method,
