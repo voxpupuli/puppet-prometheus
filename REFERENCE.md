@@ -56,6 +56,7 @@
 * [`prometheus::systemd_exporter`](#prometheus--systemd_exporter): This module manages prometheus node redis_exporter
 * [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter.
 * [`prometheus::varnish_exporter`](#prometheus--varnish_exporter): This module manages prometheus varnish_exporter
+* [`prometheus::wireguard_exporter`](#prometheus--wireguard_exporter): This module manages prometheus wireguard_exporter
 
 #### Private Classes
 
@@ -14197,6 +14198,429 @@ Data type: `String[1]`
 Default value: `'varnish'`
 
 ##### <a name="-prometheus--varnish_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+### <a name="prometheus--wireguard_exporter"></a>`prometheus::wireguard_exporter`
+
+This module manages prometheus wireguard_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::wireguard_exporter` class:
+
+* [`arch`](#-prometheus--wireguard_exporter--arch)
+* [`bin_dir`](#-prometheus--wireguard_exporter--bin_dir)
+* [`extra_groups`](#-prometheus--wireguard_exporter--extra_groups)
+* [`extra_options`](#-prometheus--wireguard_exporter--extra_options)
+* [`group`](#-prometheus--wireguard_exporter--group)
+* [`init_style`](#-prometheus--wireguard_exporter--init_style)
+* [`install_method`](#-prometheus--wireguard_exporter--install_method)
+* [`manage_group`](#-prometheus--wireguard_exporter--manage_group)
+* [`manage_service`](#-prometheus--wireguard_exporter--manage_service)
+* [`manage_user`](#-prometheus--wireguard_exporter--manage_user)
+* [`os`](#-prometheus--wireguard_exporter--os)
+* [`package_ensure`](#-prometheus--wireguard_exporter--package_ensure)
+* [`package_name`](#-prometheus--wireguard_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--wireguard_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--wireguard_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--wireguard_exporter--service_enable)
+* [`service_ensure`](#-prometheus--wireguard_exporter--service_ensure)
+* [`service_name`](#-prometheus--wireguard_exporter--service_name)
+* [`user`](#-prometheus--wireguard_exporter--user)
+* [`version`](#-prometheus--wireguard_exporter--version)
+* [`env_vars`](#-prometheus--wireguard_exporter--env_vars)
+* [`env_file_path`](#-prometheus--wireguard_exporter--env_file_path)
+* [`proxy_server`](#-prometheus--wireguard_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--wireguard_exporter--proxy_type)
+* [`download_url`](#-prometheus--wireguard_exporter--download_url)
+* [`scrape_host`](#-prometheus--wireguard_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--wireguard_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--wireguard_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--wireguard_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--wireguard_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--wireguard_exporter--bin_name)
+* [`use_tls_server_config`](#-prometheus--wireguard_exporter--use_tls_server_config)
+* [`tls_cert_file`](#-prometheus--wireguard_exporter--tls_cert_file)
+* [`tls_key_file`](#-prometheus--wireguard_exporter--tls_key_file)
+* [`tls_client_ca_file`](#-prometheus--wireguard_exporter--tls_client_ca_file)
+* [`tls_client_auth_type`](#-prometheus--wireguard_exporter--tls_client_auth_type)
+* [`web_config_file`](#-prometheus--wireguard_exporter--web_config_file)
+* [`tls_min_version`](#-prometheus--wireguard_exporter--tls_min_version)
+* [`tls_max_version`](#-prometheus--wireguard_exporter--tls_max_version)
+* [`tls_cipher_suites`](#-prometheus--wireguard_exporter--tls_cipher_suites)
+* [`tls_curve_preferences`](#-prometheus--wireguard_exporter--tls_curve_preferences)
+* [`tls_prefer_server_cipher_suites`](#-prometheus--wireguard_exporter--tls_prefer_server_cipher_suites)
+* [`use_http_server_config`](#-prometheus--wireguard_exporter--use_http_server_config)
+* [`http2`](#-prometheus--wireguard_exporter--http2)
+* [`http2_headers`](#-prometheus--wireguard_exporter--http2_headers)
+* [`basic_auth_users`](#-prometheus--wireguard_exporter--basic_auth_users)
+
+##### <a name="-prometheus--wireguard_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--wireguard_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--wireguard_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--wireguard_exporter--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'wireguard_exporter'`
+
+##### <a name="-prometheus--wireguard_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `'none'`
+
+##### <a name="-prometheus--wireguard_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `'package'`
+
+##### <a name="-prometheus--wireguard_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `false`
+
+##### <a name="-prometheus--wireguard_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service?
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `false`
+
+##### <a name="-prometheus--wireguard_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--wireguard_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'installed'`
+
+##### <a name="-prometheus--wireguard_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'prometheus-wireguard-exporter'`
+
+##### <a name="-prometheus--wireguard_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change?
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service
+
+Default value: `'running'`
+
+##### <a name="-prometheus--wireguard_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the wireguard exporter service
+
+Default value: `'prometheus-wireguard-exporter'`
+
+##### <a name="-prometheus--wireguard_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'wireguard_exporter'`
+
+##### <a name="-prometheus--wireguard_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'3.6.6'`
+
+##### <a name="-prometheus--wireguard_exporter--env_vars"></a>`env_vars`
+
+Data type: `Hash[String[1], Scalar]`
+
+hash with custom environment variables thats passed to the exporter via init script / unit file
+
+Default value: `{}`
+
+##### <a name="-prometheus--wireguard_exporter--env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to the file with the environmetn variable that is read from the init script/systemd unit
+
+Default value: `$prometheus::env_file_path`
+
+##### <a name="-prometheus--wireguard_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--download_url"></a>`download_url`
+
+Data type: `Prometheus::Uri`
+
+
+
+Default value: `'https://github.com/MindFlavor/prometheus_wireguard_exporter/releases/tag/3.6.6'`
+
+##### <a name="-prometheus--wireguard_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--wireguard_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9586`
+
+##### <a name="-prometheus--wireguard_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'wireguard'`
+
+##### <a name="-prometheus--wireguard_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--bin_name"></a>`bin_name`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--use_tls_server_config"></a>`use_tls_server_config`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--wireguard_exporter--tls_cert_file"></a>`tls_cert_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--tls_key_file"></a>`tls_key_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--tls_client_ca_file"></a>`tls_client_ca_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--tls_client_auth_type"></a>`tls_client_auth_type`
+
+Data type: `String[1]`
+
+
+
+Default value: `'RequireAndVerifyClientCert'`
+
+##### <a name="-prometheus--wireguard_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `'/etc/wireguard_exporter_web-config.yml'`
+
+##### <a name="-prometheus--wireguard_exporter--tls_min_version"></a>`tls_min_version`
+
+Data type: `String[1]`
+
+
+
+Default value: `'TLS12'`
+
+##### <a name="-prometheus--wireguard_exporter--tls_max_version"></a>`tls_max_version`
+
+Data type: `String[1]`
+
+
+
+Default value: `'TLS13'`
+
+##### <a name="-prometheus--wireguard_exporter--tls_cipher_suites"></a>`tls_cipher_suites`
+
+Data type: `Optional[Array[String[1]]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--tls_curve_preferences"></a>`tls_curve_preferences`
+
+Data type: `Optional[Array[String[1]]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--tls_prefer_server_cipher_suites"></a>`tls_prefer_server_cipher_suites`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--use_http_server_config"></a>`use_http_server_config`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--wireguard_exporter--http2"></a>`http2`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--wireguard_exporter--http2_headers"></a>`http2_headers`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--wireguard_exporter--basic_auth_users"></a>`basic_auth_users`
 
 Data type: `Optional[Hash]`
 
