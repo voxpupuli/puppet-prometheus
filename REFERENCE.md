@@ -6276,7 +6276,7 @@ Default value: `$prometheus::bin_dir`
 
 Data type: `String[1]`
 
-Name of the binary to execute
+The name of the binary to execute
 
 Default value: `'mongodb_exporter'`
 
