@@ -29,6 +29,16 @@
 #  Whether to create user or rely on external code for that
 # @param modules
 #  Structured, array of blackbox module definitions for different probe types
+# @param export_scrape_job
+#  Whether to export a scrape job for this service
+# @param scrape_host
+#  Hostname or IP address to scrape
+# @param scrape_port
+#  Host port to scrape
+# @param scrape_job_name
+#  Name of the scrape job to export, if export_scrape_job is true
+# @param scrape_job_labels
+#  Labels to add to the scrape job, if export_scrape_job is true
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
