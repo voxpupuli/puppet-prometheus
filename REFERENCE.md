@@ -53,6 +53,7 @@
 * [`prometheus::ssh_exporter`](#prometheus--ssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
 * [`prometheus::ssl_exporter`](#prometheus--ssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
 * [`prometheus::statsd_exporter`](#prometheus--statsd_exporter): This module manages prometheus statsd_exporter
+* [`prometheus::systemd_exporter`](#prometheus--systemd_exporter): This module manages prometheus node redis_exporter
 * [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter.
 * [`prometheus::varnish_exporter`](#prometheus--varnish_exporter): This module manages prometheus varnish_exporter
 
@@ -13322,6 +13323,269 @@ Data type: `String[1]`
 Default value: `'statsd'`
 
 ##### <a name="-prometheus--statsd_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+### <a name="prometheus--systemd_exporter"></a>`prometheus::systemd_exporter`
+
+This module manages prometheus node redis_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::systemd_exporter` class:
+
+* [`arch`](#-prometheus--systemd_exporter--arch)
+* [`bin_dir`](#-prometheus--systemd_exporter--bin_dir)
+* [`download_extension`](#-prometheus--systemd_exporter--download_extension)
+* [`download_url`](#-prometheus--systemd_exporter--download_url)
+* [`download_url_base`](#-prometheus--systemd_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--systemd_exporter--extra_groups)
+* [`extra_options`](#-prometheus--systemd_exporter--extra_options)
+* [`group`](#-prometheus--systemd_exporter--group)
+* [`init_style`](#-prometheus--systemd_exporter--init_style)
+* [`install_method`](#-prometheus--systemd_exporter--install_method)
+* [`manage_group`](#-prometheus--systemd_exporter--manage_group)
+* [`manage_service`](#-prometheus--systemd_exporter--manage_service)
+* [`manage_user`](#-prometheus--systemd_exporter--manage_user)
+* [`namespace`](#-prometheus--systemd_exporter--namespace)
+* [`os`](#-prometheus--systemd_exporter--os)
+* [`package_name`](#-prometheus--systemd_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--systemd_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--systemd_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--systemd_exporter--service_enable)
+* [`service_ensure`](#-prometheus--systemd_exporter--service_ensure)
+* [`service_name`](#-prometheus--systemd_exporter--service_name)
+* [`user`](#-prometheus--systemd_exporter--user)
+* [`version`](#-prometheus--systemd_exporter--version)
+* [`export_scrape_job`](#-prometheus--systemd_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--systemd_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--systemd_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--systemd_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--systemd_exporter--scrape_job_labels)
+
+##### <a name="-prometheus--systemd_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--systemd_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `String[1]`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--systemd_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--systemd_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--systemd_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/povilasv/systemd_exporter/releases'`
+
+##### <a name="-prometheus--systemd_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--systemd_exporter--extra_options"></a>`extra_options`
+
+Data type: `String`
+
+Extra options added to the startup command
+For a full list of the exporter's supported extra options
+please refer to https://github.com/oliver006/redis_exporter
+
+Default value: `''`
+
+##### <a name="-prometheus--systemd_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'systemd-exporter'`
+
+##### <a name="-prometheus--systemd_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$facts['service_provider']`
+
+##### <a name="-prometheus--systemd_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--systemd_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--namespace"></a>`namespace`
+
+Data type: `String[1]`
+
+Namespace for the metrics, defaults to `redis`.
+
+Default value: `'systemd'`
+
+##### <a name="-prometheus--systemd_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--systemd_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'systemd_exporter'`
+
+##### <a name="-prometheus--systemd_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--systemd_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--systemd_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'redis_exporter')
+
+Default value: `'systemd_exporter'`
+
+##### <a name="-prometheus--systemd_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'systemd-exporter'`
+
+##### <a name="-prometheus--systemd_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'0.5.0'`
+
+##### <a name="-prometheus--systemd_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--systemd_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--systemd_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9558`
+
+##### <a name="-prometheus--systemd_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'systemd'`
+
+##### <a name="-prometheus--systemd_exporter--scrape_job_labels"></a>`scrape_job_labels`
 
 Data type: `Optional[Hash]`
 
