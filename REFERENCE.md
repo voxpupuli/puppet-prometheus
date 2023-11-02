@@ -23,10 +23,7 @@
 * [`prometheus::graphite_exporter`](#prometheus--graphite_exporter): This module manages prometheus node graphite_exporter
 * [`prometheus::grok_exporter`](#prometheus--grok_exporter): This module manages prometheus grok_exporter
 * [`prometheus::haproxy_exporter`](#prometheus--haproxy_exporter): This module manages prometheus haproxy_exporter
-* [`prometheus::install`](#prometheus--install): Install prometheus via different methods with parameters from init
-Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
-implement the package install method as well
-The package method needs specific yum or apt repo settings which are not made yet by the module
+* [`prometheus::install`](#prometheus--install): Install prometheus
 * [`prometheus::ipmi_exporter`](#prometheus--ipmi_exporter): This module manages prometheus node ipmi_exporter (https://github.com/soundcloud/ipmi_exporter)
 * [`prometheus::ipsec_exporter`](#prometheus--ipsec_exporter): This module manages prometheus node ipsec_exporter
 * [`prometheus::jmx_exporter`](#prometheus--jmx_exporter): Installs and configures the Prometheus JMX exporter
@@ -56,7 +53,7 @@ The package method needs specific yum or apt repo settings which are not made ye
 * [`prometheus::ssh_exporter`](#prometheus--ssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
 * [`prometheus::ssl_exporter`](#prometheus--ssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
 * [`prometheus::statsd_exporter`](#prometheus--statsd_exporter): This module manages prometheus statsd_exporter
-* [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
+* [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter.
 * [`prometheus::varnish_exporter`](#prometheus--varnish_exporter): This module manages prometheus varnish_exporter
 
 #### Private Classes
@@ -68,17 +65,15 @@ restarting the whole service when a config changes
 
 * [`prometheus::alerts`](#prometheus--alerts): This module manages prometheus alert files for prometheus
 * [`prometheus::daemon`](#prometheus--daemon): This define managed prometheus daemons that don't have their own class
-* [`prometheus::scrape_job`](#prometheus--scrape_job): This define is used to export prometheus scrape settings from nodes to be scraped to the node
-running prometheus itself.
-This can be used to make prometheus find instances of your running service or application.
+* [`prometheus::scrape_job`](#prometheus--scrape_job): This module manages prometheus scrape jobs.
 
 ### Data types
 
-* [`Prometheus::GsUri`](#Prometheus--GsUri)
-* [`Prometheus::Initstyle`](#Prometheus--Initstyle)
+* [`Prometheus::GsUri`](#Prometheus--GsUri): Type for a Google Cloud Storage URI
+* [`Prometheus::Initstyle`](#Prometheus--Initstyle): A type to represent the init style of a Prometheus service
 * [`Prometheus::Install`](#Prometheus--Install): type to enforce the different installation methods for our exporters.
-* [`Prometheus::S3Uri`](#Prometheus--S3Uri)
-* [`Prometheus::Uri`](#Prometheus--Uri)
+* [`Prometheus::S3Uri`](#Prometheus--S3Uri): Type for S3 URIs
+* [`Prometheus::Uri`](#Prometheus--Uri): A URI that can be used to fetch a Prometheus configuration file
 
 ## Classes
 
@@ -980,11 +975,13 @@ The following parameters are available in the `prometheus::alertmanager` class:
 * [`os`](#-prometheus--alertmanager--os)
 * [`package_ensure`](#-prometheus--alertmanager--package_ensure)
 * [`package_name`](#-prometheus--alertmanager--package_name)
+* [`config_dir`](#-prometheus--alertmanager--config_dir)
 * [`purge_config_dir`](#-prometheus--alertmanager--purge_config_dir)
 * [`manage_config`](#-prometheus--alertmanager--manage_config)
 * [`validate_config`](#-prometheus--alertmanager--validate_config)
 * [`receivers`](#-prometheus--alertmanager--receivers)
 * [`restart_on_change`](#-prometheus--alertmanager--restart_on_change)
+* [`reload_on_change`](#-prometheus--alertmanager--reload_on_change)
 * [`route`](#-prometheus--alertmanager--route)
 * [`service_enable`](#-prometheus--alertmanager--service_enable)
 * [`service_ensure`](#-prometheus--alertmanager--service_ensure)
@@ -995,8 +992,6 @@ The following parameters are available in the `prometheus::alertmanager` class:
 * [`version`](#-prometheus--alertmanager--version)
 * [`proxy_server`](#-prometheus--alertmanager--proxy_server)
 * [`proxy_type`](#-prometheus--alertmanager--proxy_type)
-* [`config_dir`](#-prometheus--alertmanager--config_dir)
-* [`reload_on_change`](#-prometheus--alertmanager--reload_on_change)
 
 ##### <a name="-prometheus--alertmanager--arch"></a>`arch`
 
@@ -1172,6 +1167,12 @@ Data type: `String[1]`
 
 The binary package name - not available yet
 
+##### <a name="-prometheus--alertmanager--config_dir"></a>`config_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+The directory to put the configuration files
+
 ##### <a name="-prometheus--alertmanager--purge_config_dir"></a>`purge_config_dir`
 
 Data type: `Boolean`
@@ -1214,6 +1215,14 @@ Data type: `Boolean`
 Should puppet restart the service on configuration change? (default true)
 
 Default value: `true`
+
+##### <a name="-prometheus--alertmanager--reload_on_change"></a>`reload_on_change`
+
+Data type: `Boolean`
+
+Should puppet reload the service on configuration change? (default false)
+
+Default value: `false`
 
 ##### <a name="-prometheus--alertmanager--route"></a>`route`
 
@@ -1294,20 +1303,6 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
-
-##### <a name="-prometheus--alertmanager--config_dir"></a>`config_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="-prometheus--alertmanager--reload_on_change"></a>`reload_on_change`
-
-Data type: `Boolean`
-
-
-
-Default value: `false`
 
 ### <a name="prometheus--apache_exporter"></a>`prometheus::apache_exporter`
 
@@ -2514,8 +2509,6 @@ Default value: `undef`
 
 ### <a name="prometheus--blackbox_exporter"></a>`prometheus::blackbox_exporter`
 
-Example for configuring named blackbox modules via hiera
-details of the format: https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
 prometheus::blackbox_exporter::modules:
   simple_ssl:
     prober: http
@@ -2526,6 +2519,15 @@ prometheus::blackbox_exporter::modules:
     prober: tcp
     tcp:
       preferred_ip_protocol: ip4
+@ see https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
+
+#### Examples
+
+##### Example for configuring named blackbox modules via hiera
+
+```puppet
+
+```
 
 #### Parameters
 
@@ -2546,6 +2548,11 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`manage_service`](#-prometheus--blackbox_exporter--manage_service)
 * [`manage_user`](#-prometheus--blackbox_exporter--manage_user)
 * [`modules`](#-prometheus--blackbox_exporter--modules)
+* [`export_scrape_job`](#-prometheus--blackbox_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--blackbox_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--blackbox_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--blackbox_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--blackbox_exporter--scrape_job_labels)
 * [`os`](#-prometheus--blackbox_exporter--os)
 * [`package_ensure`](#-prometheus--blackbox_exporter--package_ensure)
 * [`package_name`](#-prometheus--blackbox_exporter--package_name)
@@ -2558,11 +2565,6 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`config_mode`](#-prometheus--blackbox_exporter--config_mode)
 * [`proxy_server`](#-prometheus--blackbox_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--blackbox_exporter--proxy_type)
-* [`export_scrape_job`](#-prometheus--blackbox_exporter--export_scrape_job)
-* [`scrape_host`](#-prometheus--blackbox_exporter--scrape_host)
-* [`scrape_port`](#-prometheus--blackbox_exporter--scrape_port)
-* [`scrape_job_name`](#-prometheus--blackbox_exporter--scrape_job_name)
-* [`scrape_job_labels`](#-prometheus--blackbox_exporter--scrape_job_labels)
 
 ##### <a name="-prometheus--blackbox_exporter--arch"></a>`arch`
 
@@ -2684,6 +2686,46 @@ Structured, array of blackbox module definitions for different probe types
 
 Default value: `{}`
 
+##### <a name="-prometheus--blackbox_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+Whether to export a scrape job for this service
+
+Default value: `false`
+
+##### <a name="-prometheus--blackbox_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+Hostname or IP address to scrape
+
+Default value: `undef`
+
+##### <a name="-prometheus--blackbox_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+Host port to scrape
+
+Default value: `9115`
+
+##### <a name="-prometheus--blackbox_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+Name of the scrape job to export, if export_scrape_job is true
+
+Default value: `'blackbox'`
+
+##### <a name="-prometheus--blackbox_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+Labels to add to the scrape job, if export_scrape_job is true
+
+Default value: `undef`
+
 ##### <a name="-prometheus--blackbox_exporter--os"></a>`os`
 
 Data type: `String[1]`
@@ -2777,46 +2819,6 @@ Default value: `undef`
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
 Optional proxy server type (none|http|https|ftp)
-
-Default value: `undef`
-
-##### <a name="-prometheus--blackbox_exporter--export_scrape_job"></a>`export_scrape_job`
-
-Data type: `Boolean`
-
-
-
-Default value: `false`
-
-##### <a name="-prometheus--blackbox_exporter--scrape_host"></a>`scrape_host`
-
-Data type: `Optional[Stdlib::Host]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--blackbox_exporter--scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9115`
-
-##### <a name="-prometheus--blackbox_exporter--scrape_job_name"></a>`scrape_job_name`
-
-Data type: `String[1]`
-
-
-
-Default value: `'blackbox'`
-
-##### <a name="-prometheus--blackbox_exporter--scrape_job_labels"></a>`scrape_job_labels`
-
-Data type: `Optional[Hash]`
-
-
 
 Default value: `undef`
 
@@ -4826,8 +4828,10 @@ Default value: `undef`
 ### <a name="prometheus--install"></a>`prometheus::install`
 
 Install prometheus via different methods with parameters from init
+
 Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
 implement the package install method as well
+
 The package method needs specific yum or apt repo settings which are not made yet by the module
 
 ### <a name="prometheus--ipmi_exporter"></a>`prometheus::ipmi_exporter`
@@ -13327,7 +13331,9 @@ Default value: `undef`
 
 ### <a name="prometheus--unbound_exporter"></a>`prometheus::unbound_exporter`
 
-This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
+This module manages prometheus unbound exporter.
+
+* **Note** The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
 
 * **See also**
   * https://github.com/kumina/unbound_exporter
@@ -14285,7 +14291,9 @@ Default value: `$prometheus::usershell`
 
 ### <a name="prometheus--scrape_job"></a>`prometheus::scrape_job`
 
-This define is used to export prometheus scrape settings from nodes to be scraped to the node
+This module manages prometheus scrape jobs.
+
+* **Note** This define is used to export prometheus scrape settings from nodes to be scraped to the node
 running prometheus itself.
 This can be used to make prometheus find instances of your running service or application.
 
@@ -14332,13 +14340,13 @@ Default value: `undef`
 
 ### <a name="Prometheus--GsUri"></a>`Prometheus::GsUri`
 
-The Prometheus::GsUri data type.
+Type for a Google Cloud Storage URI
 
 Alias of `Pattern[/^gs:\/\//]`
 
 ### <a name="Prometheus--Initstyle"></a>`Prometheus::Initstyle`
 
-The Prometheus::Initstyle data type.
+A type to represent the init style of a Prometheus service
 
 Alias of `Enum['sysv', 'systemd', 'sles', 'launchd', 'upstart', 'none']`
 
@@ -14350,13 +14358,13 @@ Alias of `Enum['url', 'package', 'none']`
 
 ### <a name="Prometheus--S3Uri"></a>`Prometheus::S3Uri`
 
-The Prometheus::S3Uri data type.
+Type for S3 URIs
 
 Alias of `Pattern[/^s3:\/\//]`
 
 ### <a name="Prometheus--Uri"></a>`Prometheus::Uri`
 
-The Prometheus::Uri data type.
+A URI that can be used to fetch a Prometheus configuration file
 
 Alias of `Variant[Stdlib::Filesource, Stdlib::HTTPUrl, Stdlib::HTTPSUrl, Prometheus::S3Uri, Prometheus::GsUri]`
 
