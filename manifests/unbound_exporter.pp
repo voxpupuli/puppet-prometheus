@@ -1,6 +1,5 @@
-#
-# @summary This module manages prometheus unbound exporter. The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
-#
+# @summary This module manages prometheus unbound exporter.
+# @note The exporter needs to be compiled by hand! (https://github.com/kumina/unbound_exporter/issues/21)
 # @param arch
 #  Architecture
 # @param bin_dir
