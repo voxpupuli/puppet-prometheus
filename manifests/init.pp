@@ -312,16 +312,13 @@ class prometheus (
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
 ) {
   case $arch {
-    'x86_64', 'amd64': { $real_arch = 'amd64' }
-    'i386':            { $real_arch = '386' }
-    'aarch64':         { $real_arch = 'arm64' }
-    'armv7l':          { $real_arch = 'armv7' }
-    'armv6l':          { $real_arch = 'armv6' }
-    'armv5l':          { $real_arch = 'armv5' }
-    'ppc64le':         { $real_arch = 'ppc64le' }
-    default:           {
-      fail("Unsupported kernel architecture: ${arch}")
-    }
+    'x86_64':  { $real_arch = 'amd64' }
+    'i386':    { $real_arch = '386' }
+    'aarch64': { $real_arch = 'arm64' }
+    'armv7l':  { $real_arch = 'armv7' }
+    'armv6l':  { $real_arch = 'armv6' }
+    'armv5l':  { $real_arch = 'armv5' }
+    default:   { $real_arch = $arch }
   }
 
   if $manage_prometheus_server {
