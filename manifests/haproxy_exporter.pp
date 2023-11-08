@@ -90,7 +90,8 @@ class prometheus::haproxy_exporter (
     default => undef,
   }
 
-  $options = "--haproxy.scrape-uri=\"${cnf_scrape_uri}\" ${extra_options}"
+  $scrape_uri_quoted = String($cnf_scrape_uri, '%p')
+  $options = "--haproxy.scrape-uri=${scrape_uri_quoted} ${extra_options}"
 
   prometheus::daemon { $service_name:
     install_method     => $install_method,

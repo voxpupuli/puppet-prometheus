@@ -52,6 +52,7 @@ describe 'prometheus::haproxy_exporter' do
             end
 
             it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_prometheus__daemon('haproxy_exporter').with('options' => "--haproxy.scrape-uri='#{value}' ") }
           end
         end
 
