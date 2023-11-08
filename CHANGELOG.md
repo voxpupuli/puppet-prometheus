@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v13.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v13.4.0) (2023-11-08)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.3.0...v13.4.0)
+
+**Implemented enhancements:**
+
+- Update puppet-strings documentation [\#700](https://github.com/voxpupuli/puppet-prometheus/pull/700) ([JGodin-C2C](https://github.com/JGodin-C2C))
+- Add systemd\_exporter [\#661](https://github.com/voxpupuli/puppet-prometheus/pull/661) ([JGodin-C2C](https://github.com/JGodin-C2C))
+
 ## [v13.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v13.3.0) (2023-08-19)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.2.0...v13.3.0)
