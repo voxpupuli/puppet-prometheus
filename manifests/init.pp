@@ -311,14 +311,14 @@ class prometheus (
   Optional[String[1]] $proxy_server                                             = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
 ) {
-  case $arch {
-    'x86_64':  { $real_arch = 'amd64' }
-    'i386':    { $real_arch = '386' }
-    'aarch64': { $real_arch = 'arm64' }
-    'armv7l':  { $real_arch = 'armv7' }
-    'armv6l':  { $real_arch = 'armv6' }
-    'armv5l':  { $real_arch = 'armv5' }
-    default:   { $real_arch = $arch }
+  $real_arch = $arch ? {
+    'x86_64'  => 'amd64',
+    'i386'    => '386',
+    'aarch64' => 'arm64',
+    'armv7l'  => 'armv7',
+    'armv6l'  => 'armv6',
+    'armv5l'  => 'armv5',
+    default   => $arch,
   }
 
   if $manage_prometheus_server {
