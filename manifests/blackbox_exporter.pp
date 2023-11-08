@@ -29,6 +29,16 @@
 #  Whether to create user or rely on external code for that
 # @param modules
 #  Structured, array of blackbox module definitions for different probe types
+# @param export_scrape_job
+#  Whether to export a scrape job for this service
+# @param scrape_host
+#  Hostname or IP address to scrape
+# @param scrape_port
+#  Host port to scrape
+# @param scrape_job_name
+#  Name of the scrape job to export, if export_scrape_job is true
+# @param scrape_job_labels
+#  Labels to add to the scrape job, if export_scrape_job is true
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -53,9 +63,7 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
-# Example for configuring named blackbox modules via hiera
-# details of the format: https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
-# @example
+# @example  Example for configuring named blackbox modules via hiera
 # prometheus::blackbox_exporter::modules:
 #   simple_ssl:
 #     prober: http
@@ -66,6 +74,7 @@
 #     prober: tcp
 #     tcp:
 #       preferred_ip_protocol: ip4
+# @ see https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md
 class prometheus::blackbox_exporter (
   Stdlib::Absolutepath $config_file = '/etc/blackbox-exporter.yaml',
   String $download_extension = 'tar.gz',

@@ -1,12 +1,15 @@
-# @summary
-#   Install prometheus via different methods with parameters from init
-#   Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
-#   implement the package install method as well
-#   The package method needs specific yum or apt repo settings which are not made yet by the module
+# @summary Install prometheus
+#
+# Install prometheus via different methods with parameters from init
+#
+# Currently only the install from url is implemented, when Prometheus will deliver packages for some Linux distros I will
+# implement the package install method as well
+#
+# The package method needs specific yum or apt repo settings which are not made yet by the module
 class prometheus::install {
   assert_private()
 
-  if $prometheus::server::localstorage {
+  if $prometheus::server::localstorage and $prometheus::server::manage_localstorage {
     file { $prometheus::server::localstorage:
       ensure => 'directory',
       owner  => $prometheus::server::user,
@@ -25,6 +28,8 @@ class prometheus::install {
         creates         => "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus",
         cleanup         => true,
         extract_command => $prometheus::extract_command,
+        proxy_server    => $prometheus::server::proxy_server,
+        proxy_type      => $prometheus::server::proxy_type,
       }
       -> file {
         "/opt/prometheus-${prometheus::server::version}.${prometheus::server::os}-${prometheus::server::real_arch}/prometheus":
@@ -57,6 +62,7 @@ class prometheus::install {
       package { $prometheus::server::package_name:
         ensure => $prometheus::server::package_ensure,
         notify => $prometheus::server::notify_service,
+        before => File["${prometheus::server::config_dir}/rules"],
       }
       if $prometheus::server::manage_user {
         User[$prometheus::server::user] -> Package[$prometheus::server::package_name]
@@ -85,13 +91,15 @@ class prometheus::install {
         system => true,
     })
   }
-  file { $prometheus::server::config_dir:
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => $prometheus::server::group,
-    mode    => $prometheus::server::config_mode,
-    purge   => $prometheus::server::purge_config_dir,
-    recurse => $prometheus::server::purge_config_dir,
-    force   => $prometheus::server::purge_config_dir,
+  if $prometheus::server::manage_config_dir {
+    file { $prometheus::server::config_dir:
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => $prometheus::server::group,
+      mode    => $prometheus::server::config_mode,
+      purge   => $prometheus::server::purge_config_dir,
+      recurse => $prometheus::server::purge_config_dir,
+      force   => $prometheus::server::purge_config_dir,
+    }
   }
 }

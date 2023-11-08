@@ -15,7 +15,7 @@ describe 'prometheus' do
                      '/etc/prometheus/prometheus.yaml'
                    end
 
-      [{ manage_prometheus_server: true, version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'] }].each do |parameters|
+      [{ manage_prometheus_server: true, version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'], proxy_server: 'proxy.test', proxy_type: 'https' }].each do |parameters|
         context "with parameters #{parameters}" do
           let(:params) do
             parameters
@@ -28,15 +28,18 @@ describe 'prometheus' do
           it { is_expected.to contain_class('prometheus::server') }
           it { is_expected.to contain_class('prometheus::service_reload') }
 
-          # prometheus::install
-          it {
-            expect(subject).to contain_file('/var/lib/prometheus').with(
-              'ensure' => 'directory',
-              'owner' => 'prometheus',
-              'group' => 'prometheus',
-              'mode' => '0755'
-            )
-          }
+          if facts[:os]['name'] == 'Archlinux'
+            it { expect(subject).not_to contain_file('/var/lib/prometheus') }
+          else
+            it {
+              expect(subject).to contain_file('/var/lib/prometheus').with(
+                'ensure' => 'directory',
+                'owner' => 'prometheus',
+                'group' => 'prometheus',
+                'mode' => '0755'
+              )
+            }
+          end
 
           prom_version = parameters[:version] || '1.5.2'
           prom_major = prom_version[0]
@@ -51,7 +54,9 @@ describe 'prometheus' do
               'source' => "https://github.com/prometheus/prometheus/releases/download/v#{prom_version}/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}.tar.gz",
               'checksum_verify' => false,
               'creates' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus",
-              'cleanup' => true
+              'cleanup' => true,
+              'proxy_server' => 'proxy.test',
+              'proxy_type' => 'https'
             ).that_comes_before("File[/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus]")
           }
 
@@ -93,25 +98,25 @@ describe 'prometheus' do
             ).that_notifies('Service[prometheus]')
           }
 
-          it {
-            expect(subject).to contain_user('prometheus').with(
-              'ensure' => 'present',
-              'system' => true,
-              'groups' => []
-            )
-          }
-
-          it {
-            expect(subject).to contain_group('prometheus').with(
-              'ensure' => 'present',
-              'system' => true
-            )
-          }
-
           if facts[:os]['name'] == 'Archlinux'
-
+            it { expect(subject).not_to contain_user('prometheus') }
             it { is_expected.not_to contain_systemd__unit_file('prometheus.service') }
           else
+            it {
+              expect(subject).to contain_user('prometheus').with(
+                'ensure' => 'present',
+                'system' => true,
+                'groups' => []
+              )
+            }
+
+            it {
+              expect(subject).to contain_group('prometheus').with(
+                'ensure' => 'present',
+                'system' => true
+              )
+            }
+
             it {
               expect(subject).to contain_class('systemd')
             }
@@ -143,16 +148,20 @@ describe 'prometheus' do
             end
           end
 
-          it {
-            expect(subject).to contain_file('/etc/prometheus').with(
-              'ensure' => 'directory',
-              'owner' => 'root',
-              'group' => 'prometheus',
-              'purge' => true,
-              'recurse' => true,
-              'force' => true
-            )
-          }
+          if facts[:os]['name'] == 'Archlinux'
+            it { expect(subject).not_to contain_file('/etc/prometheus') }
+          else
+            it {
+              expect(subject).to contain_file('/etc/prometheus').with(
+                'ensure' => 'directory',
+                'owner' => 'root',
+                'group' => 'prometheus',
+                'purge' => true,
+                'recurse' => true,
+                'force' => true
+              )
+            }
+          end
 
           it {
             expect(subject).to contain_file('prometheus.yaml').with(

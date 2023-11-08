@@ -75,8 +75,8 @@ describe 'prometheus::sachet' do
             install_method: 'url',
             templates: [{
               name: 'notifications',
-              template: "{{ define \"telegram_message\" }}\n"\
-                        "{{ .Status | title }}: {{ .CommonAnnotations.summary }}\n"\
+              template: "{{ define \"telegram_message\" }}\n" \
+                        "{{ .Status | title }}: {{ .CommonAnnotations.summary }}\n" \
                         '{{ end }}'
             }],
             receivers: [{

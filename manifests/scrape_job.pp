@@ -1,5 +1,6 @@
-# @summary
-#   This define is used to export prometheus scrape settings from nodes to be scraped to the node
+# @summary This module manages prometheus scrape jobs.
+#
+# @note  This define is used to export prometheus scrape settings from nodes to be scraped to the node
 #   running prometheus itself.
 #   This can be used to make prometheus find instances of your running service or application.
 # @param job_name

@@ -1,6 +1,6 @@
 {
   "name": "puppet-prometheus",
-  "version": "13.1.1-rc0",
+  "version": "13.3.1-rc0",
   "author": "Vox Pupuli",
   "summary": "This module installs, configures and manages the Prometheus service.",
   "license": "Apache-2.0",
@@ -14,11 +14,11 @@
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 1.1.1 <= 5.1.0"
+      "version_requirement": ">= 1.1.1 < 6.0.0"
     },
     {
       "name": "puppet/archive",
-      "version_requirement": ">= 2.2.0 <= 7.0.0"
+      "version_requirement": ">= 2.2.0 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
