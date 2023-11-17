@@ -29,6 +29,16 @@
 #  Should puppet manage the service? (default true)
 # @param manage_user
 #  Whether to create user or rely on external code for that
+# @param export_scrape_job
+#  Whether to export a scrape job for this service
+# @param scrape_host
+#  Hostname or IP address to scrape
+# @param scrape_port
+#  Host port to scrape
+# @param scrape_job_name
+#  Name of the scrape job to export, if export_scrape_job is true
+# @param scrape_job_labels
+#  Labels to add to the scrape job, if export_scrape_job is true
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -43,6 +53,8 @@
 #  Whether to enable the service from puppet (default true)
 # @param service_ensure
 #  State ensured for the service (default 'running')
+# @param service_name
+#  Name of the node exporter service
 # @param user
 #  User which runs the service
 # @param version
@@ -55,6 +67,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param web_config_file
+#  Path of file where the web-config will be saved to
+# @param web_config_content
+#  Unless empty the content of the web-config yaml which will handed over as option to the exporter
 class prometheus::elasticsearch_exporter (
   String[1] $cnf_uri,
   String[1] $cnf_timeout,
@@ -89,6 +105,8 @@ class prometheus::elasticsearch_exporter (
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Stdlib::Absolutepath $web_config_file                      = '/etc/elasticsearch_exporter_web-config.yml',
+  Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
   #Please provide the download_url for versions < 0.9.0
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -103,7 +121,32 @@ class prometheus::elasticsearch_exporter (
     false => '-',
   }
 
-  $options = "${flag_prefix}es.uri=${cnf_uri} ${flag_prefix}es.timeout=${cnf_timeout} ${extra_options}"
+  $_web_config_ensure = $web_config_content.empty ? {
+    true    => absent,
+    default => file,
+  }
+
+  file { $web_config_file:
+    ensure  => $_web_config_ensure,
+    owner   => $user,
+    group   => $group,
+    mode    => '0640',
+    content => $web_config_content.stdlib::to_yaml,
+    notify  => $notify_service,
+  }
+
+  $_web_config = if $web_config_content.empty {
+    ''
+  } else {
+    "${flag_prefix}web.config.file=${$web_config_file}"
+  }
+
+  $options = [
+    "${flag_prefix}es.uri=${cnf_uri}",
+    "${flag_prefix}es.timeout=${cnf_timeout}",
+    $extra_options,
+    $_web_config,
+  ].filter |$x| { !$x.empty }.join(' ')
 
   prometheus::daemon { 'elasticsearch_exporter':
     install_method     => $install_method,

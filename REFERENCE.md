@@ -75,6 +75,9 @@ restarting the whole service when a config changes
 * [`Prometheus::Install`](#Prometheus--Install): type to enforce the different installation methods for our exporters.
 * [`Prometheus::S3Uri`](#Prometheus--S3Uri): Type for S3 URIs
 * [`Prometheus::Uri`](#Prometheus--Uri): A URI that can be used to fetch a Prometheus configuration file
+* [`Prometheus::Web_config`](#Prometheus--Web_config): webconfig for the exporter
+* [`Prometheus::Web_config::Http_server_config`](#Prometheus--Web_config--Http_server_config): http_server_config of a exporter webconfig
+* [`Prometheus::Web_config::Tls_server_config`](#Prometheus--Web_config--Tls_server_config): tls_server_config of a exporter webconfig
 
 ## Classes
 
@@ -1340,6 +1343,8 @@ The following parameters are available in the `prometheus::apache_exporter` clas
 * [`version`](#-prometheus--apache_exporter--version)
 * [`proxy_server`](#-prometheus--apache_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--apache_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--apache_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--apache_exporter--web_config_content)
 * [`export_scrape_job`](#-prometheus--apache_exporter--export_scrape_job)
 * [`scrape_host`](#-prometheus--apache_exporter--scrape_host)
 * [`scrape_port`](#-prometheus--apache_exporter--scrape_port)
@@ -1561,6 +1566,22 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--apache_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/apache_exporter_web-config.yml'`
+
+##### <a name="-prometheus--apache_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
 
 ##### <a name="-prometheus--apache_exporter--export_scrape_job"></a>`export_scrape_job`
 
@@ -2566,6 +2587,8 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`config_mode`](#-prometheus--blackbox_exporter--config_mode)
 * [`proxy_server`](#-prometheus--blackbox_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--blackbox_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--blackbox_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--blackbox_exporter--web_config_content)
 
 ##### <a name="-prometheus--blackbox_exporter--arch"></a>`arch`
 
@@ -2822,6 +2845,22 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--blackbox_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/blackbox_exporter_web-config.yml'`
+
+##### <a name="-prometheus--blackbox_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
 
 ### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
@@ -3722,6 +3761,11 @@ The following parameters are available in the `prometheus::elasticsearch_exporte
 * [`manage_group`](#-prometheus--elasticsearch_exporter--manage_group)
 * [`manage_service`](#-prometheus--elasticsearch_exporter--manage_service)
 * [`manage_user`](#-prometheus--elasticsearch_exporter--manage_user)
+* [`export_scrape_job`](#-prometheus--elasticsearch_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--elasticsearch_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--elasticsearch_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--elasticsearch_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--elasticsearch_exporter--scrape_job_labels)
 * [`os`](#-prometheus--elasticsearch_exporter--os)
 * [`package_ensure`](#-prometheus--elasticsearch_exporter--package_ensure)
 * [`package_name`](#-prometheus--elasticsearch_exporter--package_name)
@@ -3729,17 +3773,14 @@ The following parameters are available in the `prometheus::elasticsearch_exporte
 * [`restart_on_change`](#-prometheus--elasticsearch_exporter--restart_on_change)
 * [`service_enable`](#-prometheus--elasticsearch_exporter--service_enable)
 * [`service_ensure`](#-prometheus--elasticsearch_exporter--service_ensure)
+* [`service_name`](#-prometheus--elasticsearch_exporter--service_name)
 * [`user`](#-prometheus--elasticsearch_exporter--user)
 * [`version`](#-prometheus--elasticsearch_exporter--version)
 * [`use_kingpin`](#-prometheus--elasticsearch_exporter--use_kingpin)
 * [`proxy_server`](#-prometheus--elasticsearch_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--elasticsearch_exporter--proxy_type)
-* [`service_name`](#-prometheus--elasticsearch_exporter--service_name)
-* [`export_scrape_job`](#-prometheus--elasticsearch_exporter--export_scrape_job)
-* [`scrape_host`](#-prometheus--elasticsearch_exporter--scrape_host)
-* [`scrape_port`](#-prometheus--elasticsearch_exporter--scrape_port)
-* [`scrape_job_name`](#-prometheus--elasticsearch_exporter--scrape_job_name)
-* [`scrape_job_labels`](#-prometheus--elasticsearch_exporter--scrape_job_labels)
+* [`web_config_file`](#-prometheus--elasticsearch_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--elasticsearch_exporter--web_config_content)
 
 ##### <a name="-prometheus--elasticsearch_exporter--arch"></a>`arch`
 
@@ -3849,6 +3890,46 @@ Whether to create user or rely on external code for that
 
 Default value: `true`
 
+##### <a name="-prometheus--elasticsearch_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+Whether to export a scrape job for this service
+
+Default value: `false`
+
+##### <a name="-prometheus--elasticsearch_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+Hostname or IP address to scrape
+
+Default value: `undef`
+
+##### <a name="-prometheus--elasticsearch_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+Host port to scrape
+
+Default value: `9114`
+
+##### <a name="-prometheus--elasticsearch_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+Name of the scrape job to export, if export_scrape_job is true
+
+Default value: `'elasticsearch'`
+
+##### <a name="-prometheus--elasticsearch_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+Labels to add to the scrape job, if export_scrape_job is true
+
+Default value: `undef`
+
 ##### <a name="-prometheus--elasticsearch_exporter--os"></a>`os`
 
 Data type: `String[1]`
@@ -3901,6 +3982,12 @@ State ensured for the service (default 'running')
 
 Default value: `'running'`
 
+##### <a name="-prometheus--elasticsearch_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service
+
 ##### <a name="-prometheus--elasticsearch_exporter--user"></a>`user`
 
 Data type: `String[1]`
@@ -3937,51 +4024,21 @@ Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
 
-##### <a name="-prometheus--elasticsearch_exporter--service_name"></a>`service_name`
+##### <a name="-prometheus--elasticsearch_exporter--web_config_file"></a>`web_config_file`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
+Path of file where the web-config will be saved to
 
+Default value: `'/etc/elasticsearch_exporter_web-config.yml'`
 
-##### <a name="-prometheus--elasticsearch_exporter--export_scrape_job"></a>`export_scrape_job`
+##### <a name="-prometheus--elasticsearch_exporter--web_config_content"></a>`web_config_content`
 
-Data type: `Boolean`
+Data type: `Prometheus::Web_config`
 
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
 
-
-Default value: `false`
-
-##### <a name="-prometheus--elasticsearch_exporter--scrape_host"></a>`scrape_host`
-
-Data type: `Optional[Stdlib::Host]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--elasticsearch_exporter--scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9114`
-
-##### <a name="-prometheus--elasticsearch_exporter--scrape_job_name"></a>`scrape_job_name`
-
-Data type: `String[1]`
-
-
-
-Default value: `'elasticsearch'`
-
-##### <a name="-prometheus--elasticsearch_exporter--scrape_job_labels"></a>`scrape_job_labels`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: `undef`
+Default value: `{}`
 
 ### <a name="prometheus--graphite_exporter"></a>`prometheus::graphite_exporter`
 
@@ -4592,6 +4649,8 @@ The following parameters are available in the `prometheus::haproxy_exporter` cla
 * [`version`](#-prometheus--haproxy_exporter--version)
 * [`proxy_server`](#-prometheus--haproxy_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--haproxy_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--haproxy_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--haproxy_exporter--web_config_content)
 * [`export_scrape_job`](#-prometheus--haproxy_exporter--export_scrape_job)
 * [`scrape_host`](#-prometheus--haproxy_exporter--scrape_host)
 * [`scrape_port`](#-prometheus--haproxy_exporter--scrape_port)
@@ -4785,6 +4844,22 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--haproxy_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/haproxy_exporter_web-config.yml'`
+
+##### <a name="-prometheus--haproxy_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
 
 ##### <a name="-prometheus--haproxy_exporter--export_scrape_job"></a>`export_scrape_job`
 
@@ -6561,6 +6636,8 @@ The following parameters are available in the `prometheus::mysqld_exporter` clas
 * [`version`](#-prometheus--mysqld_exporter--version)
 * [`proxy_server`](#-prometheus--mysqld_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--mysqld_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--mysqld_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--mysqld_exporter--web_config_content)
 * [`export_scrape_job`](#-prometheus--mysqld_exporter--export_scrape_job)
 * [`scrape_host`](#-prometheus--mysqld_exporter--scrape_host)
 * [`scrape_port`](#-prometheus--mysqld_exporter--scrape_port)
@@ -6804,6 +6881,22 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--mysqld_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/mysqld_exporter_web-config.yml'`
+
+##### <a name="-prometheus--mysqld_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
 
 ##### <a name="-prometheus--mysqld_exporter--export_scrape_job"></a>`export_scrape_job`
 
@@ -7475,27 +7568,14 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`env_file_path`](#-prometheus--node_exporter--env_file_path)
 * [`proxy_server`](#-prometheus--node_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--node_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--node_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--node_exporter--web_config_content)
 * [`scrape_host`](#-prometheus--node_exporter--scrape_host)
 * [`export_scrape_job`](#-prometheus--node_exporter--export_scrape_job)
 * [`scrape_port`](#-prometheus--node_exporter--scrape_port)
 * [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
 * [`scrape_job_labels`](#-prometheus--node_exporter--scrape_job_labels)
 * [`bin_name`](#-prometheus--node_exporter--bin_name)
-* [`use_tls_server_config`](#-prometheus--node_exporter--use_tls_server_config)
-* [`tls_cert_file`](#-prometheus--node_exporter--tls_cert_file)
-* [`tls_key_file`](#-prometheus--node_exporter--tls_key_file)
-* [`tls_client_ca_file`](#-prometheus--node_exporter--tls_client_ca_file)
-* [`tls_client_auth_type`](#-prometheus--node_exporter--tls_client_auth_type)
-* [`web_config_file`](#-prometheus--node_exporter--web_config_file)
-* [`tls_min_version`](#-prometheus--node_exporter--tls_min_version)
-* [`tls_max_version`](#-prometheus--node_exporter--tls_max_version)
-* [`tls_cipher_suites`](#-prometheus--node_exporter--tls_cipher_suites)
-* [`tls_curve_preferences`](#-prometheus--node_exporter--tls_curve_preferences)
-* [`tls_prefer_server_cipher_suites`](#-prometheus--node_exporter--tls_prefer_server_cipher_suites)
-* [`use_http_server_config`](#-prometheus--node_exporter--use_http_server_config)
-* [`http2`](#-prometheus--node_exporter--http2)
-* [`http2_headers`](#-prometheus--node_exporter--http2_headers)
-* [`basic_auth_users`](#-prometheus--node_exporter--basic_auth_users)
 
 ##### <a name="-prometheus--node_exporter--arch"></a>`arch`
 
@@ -7724,6 +7804,22 @@ Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
 
+##### <a name="-prometheus--node_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/node_exporter_web-config.yml'`
+
+##### <a name="-prometheus--node_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
+
 ##### <a name="-prometheus--node_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -7767,126 +7863,6 @@ Default value: `undef`
 ##### <a name="-prometheus--node_exporter--bin_name"></a>`bin_name`
 
 Data type: `Optional[String[1]]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--use_tls_server_config"></a>`use_tls_server_config`
-
-Data type: `Boolean`
-
-
-
-Default value: `false`
-
-##### <a name="-prometheus--node_exporter--tls_cert_file"></a>`tls_cert_file`
-
-Data type: `Optional[Stdlib::Absolutepath]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--tls_key_file"></a>`tls_key_file`
-
-Data type: `Optional[Stdlib::Absolutepath]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--tls_client_ca_file"></a>`tls_client_ca_file`
-
-Data type: `Optional[Stdlib::Absolutepath]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--tls_client_auth_type"></a>`tls_client_auth_type`
-
-Data type: `String[1]`
-
-
-
-Default value: `'RequireAndVerifyClientCert'`
-
-##### <a name="-prometheus--node_exporter--web_config_file"></a>`web_config_file`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-Default value: `'/etc/node_exporter_web-config.yml'`
-
-##### <a name="-prometheus--node_exporter--tls_min_version"></a>`tls_min_version`
-
-Data type: `String[1]`
-
-
-
-Default value: `'TLS12'`
-
-##### <a name="-prometheus--node_exporter--tls_max_version"></a>`tls_max_version`
-
-Data type: `String[1]`
-
-
-
-Default value: `'TLS13'`
-
-##### <a name="-prometheus--node_exporter--tls_cipher_suites"></a>`tls_cipher_suites`
-
-Data type: `Optional[Array[String[1]]]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--tls_curve_preferences"></a>`tls_curve_preferences`
-
-Data type: `Optional[Array[String[1]]]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--tls_prefer_server_cipher_suites"></a>`tls_prefer_server_cipher_suites`
-
-Data type: `Boolean`
-
-
-
-Default value: `true`
-
-##### <a name="-prometheus--node_exporter--use_http_server_config"></a>`use_http_server_config`
-
-Data type: `Boolean`
-
-
-
-Default value: `false`
-
-##### <a name="-prometheus--node_exporter--http2"></a>`http2`
-
-Data type: `Boolean`
-
-
-
-Default value: `true`
-
-##### <a name="-prometheus--node_exporter--http2_headers"></a>`http2_headers`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--node_exporter--basic_auth_users"></a>`basic_auth_users`
-
-Data type: `Optional[Hash]`
 
 
 
@@ -9086,6 +9062,8 @@ The following parameters are available in the `prometheus::postgres_exporter` cl
 * [`data_source_uri`](#-prometheus--postgres_exporter--data_source_uri)
 * [`proxy_server`](#-prometheus--postgres_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--postgres_exporter--proxy_type)
+* [`web_config_file`](#-prometheus--postgres_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--postgres_exporter--web_config_content)
 * [`options`](#-prometheus--postgres_exporter--options)
 * [`export_scrape_job`](#-prometheus--postgres_exporter--export_scrape_job)
 * [`scrape_host`](#-prometheus--postgres_exporter--scrape_host)
@@ -9326,6 +9304,22 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--postgres_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+Path of file where the web-config will be saved to
+
+Default value: `'/etc/postgres_exporter_web-config.yml'`
+
+##### <a name="-prometheus--postgres_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Prometheus::Web_config`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `{}`
 
 ##### <a name="-prometheus--postgres_exporter--options"></a>`options`
 
@@ -14631,4 +14625,67 @@ Alias of `Pattern[/^s3:\/\//]`
 A URI that can be used to fetch a Prometheus configuration file
 
 Alias of `Variant[Stdlib::Filesource, Stdlib::HTTPUrl, Stdlib::HTTPSUrl, Prometheus::S3Uri, Prometheus::GsUri]`
+
+### <a name="Prometheus--Web_config"></a>`Prometheus::Web_config`
+
+webconfig for the exporter
+
+* **See also**
+  * https://github.com/prometheus/exporter-toolkit/blob/v0.10.0/docs/web-configuration.md
+
+Alias of
+
+```puppet
+Struct[{
+    Optional[tls_server_config] => Prometheus::Web_config::Tls_server_config,
+    Optional[http_server_config] => Prometheus::Web_config::Http_server_config,
+    Optional[basic_auth_users] => Hash[String[1],String[1],1],
+}]
+```
+
+### <a name="Prometheus--Web_config--Http_server_config"></a>`Prometheus::Web_config::Http_server_config`
+
+http_server_config of a exporter webconfig
+
+* **See also**
+  * https://github.com/prometheus/exporter-toolkit/blob/v0.10.0/docs/web-configuration.md
+
+Alias of
+
+```puppet
+Struct[{
+    Optional[http2] => Boolean,
+    Optional[headers] => Struct[{
+        Optional['Content-Security-Policy'] => String[1],
+        Optional['X-Frame-Options'] => String[1],
+        Optional['X-Content-Type-Options'] => String[1],
+        Optional['X-XSS-Protection'] => String[1],
+        Optional['Strict-Transport-Security'] => String[1],
+    }]
+}]
+```
+
+### <a name="Prometheus--Web_config--Tls_server_config"></a>`Prometheus::Web_config::Tls_server_config`
+
+tls_server_config of a exporter webconfig
+
+* **See also**
+  * https://github.com/prometheus/exporter-toolkit/blob/v0.10.0/docs/web-configuration.md
+
+Alias of
+
+```puppet
+Struct[{
+    cert_file => Stdlib::Absolutepath,
+    key_file => Stdlib::Absolutepath,
+    Optional[client_ca_file] => Stdlib::Absolutepath,
+    Optional[client_auth_type] => String[1],
+    Optional[client_allowed_sans] => Array[String[1],1],
+    Optional[min_version] => String[1],
+    Optional[max_version] => String[1],
+    Optional[cipher_suites] => Array[String[1],1],
+    Optional[prefer_server_cipher_suites] => Boolean,
+    Optional[curve_preferences] => Array[String[1],1],
+}]
+```
 

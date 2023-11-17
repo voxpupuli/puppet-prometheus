@@ -63,6 +63,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param web_config_file
+#  Path of file where the web-config will be saved to
+# @param web_config_content
+#  Unless empty the content of the web-config yaml which will handed over as option to the exporter
 # @example  Example for configuring named blackbox modules via hiera
 # prometheus::blackbox_exporter::modules:
 #   simple_ssl:
@@ -108,13 +112,14 @@ class prometheus::blackbox_exporter (
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Stdlib::Absolutepath $web_config_file                      = '/etc/blackbox_exporter_web-config.yml',
+  Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
   # Prometheus added a 'v' on the release name at 0.1.0 of blackbox
-  if versioncmp ($version, '0.1.0') >= 0 {
-    $release = "v${version}"
-  }
-  else {
-    $release = $version
+  $release = if versioncmp ($version, '0.1.0') >= 0 {
+    "v${version}"
+  } else {
+    $version
   }
   $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
@@ -122,7 +127,31 @@ class prometheus::blackbox_exporter (
     default => undef,
   }
 
-  $options = "--config.file=${config_file} ${extra_options}"
+  $_web_config_ensure = $web_config_content.empty ? {
+    true    => absent,
+    default => file,
+  }
+
+  file { $web_config_file:
+    ensure  => $_web_config_ensure,
+    owner   => $user,
+    group   => $group,
+    mode    => '0640',
+    content => $web_config_content.stdlib::to_yaml,
+    notify  => $notify_service,
+  }
+
+  $_web_config = if $web_config_content.empty {
+    ''
+  } else {
+    "--web.config.file=${$web_config_file}"
+  }
+
+  $options = [
+    "--config.file=${config_file}",
+    $extra_options,
+    $_web_config,
+  ].filter |$x| { !$x.empty }.join(' ')
 
   file { $config_file:
     ensure  => file,

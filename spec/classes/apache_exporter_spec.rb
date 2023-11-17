@@ -47,7 +47,7 @@ describe 'prometheus::apache_exporter' do
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('apache-exporter') }
           it { is_expected.to contain_user('apache-exporter') }
-          it { is_expected.to contain_prometheus__daemon('apache_exporter').with('options' => "-scrape_uri 'http://localhost/server-status/?auto' ") }
+          it { is_expected.to contain_prometheus__daemon('apache_exporter').with('options' => "-scrape_uri 'http://localhost/server-status/?auto'") }
           it { is_expected.to contain_service('apache_exporter') }
         end
 
@@ -101,6 +101,63 @@ describe 'prometheus::apache_exporter' do
         describe 'uses argument prefix correctly' do
           it { is_expected.to contain_prometheus__daemon('apache_exporter').with('options' => "--scrape_uri 'http://127.0.0.1/server-status/?auto' --test") }
         end
+      end
+
+      context 'with tls set in web-config.yml version low than 1.0.0' do
+        let(:params) do
+          {
+            version: '0.0.9',
+            web_config_content: {
+              tls_server_config: {
+                cert_file: '/etc/apache_exporter/foo.cert',
+                key_file: '/etc/apache_exporter/foo.key'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/apache_exporter_web-config.yml').with(ensure: 'file') }
+
+        it { is_expected.to contain_prometheus__daemon('apache_exporter').with(options: "-scrape_uri 'http://localhost/server-status/?auto' --web.config=/etc/apache_exporter_web-config.yml") }
+      end
+
+      context 'with tls set in web-config.yml version equal to 1.0.0' do
+        let(:params) do
+          {
+            version: '1.0.0',
+            web_config_content: {
+              tls_server_config: {
+                cert_file: '/etc/apache_exporter/foo.cert',
+                key_file: '/etc/apache_exporter/foo.key'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/apache_exporter_web-config.yml').with(ensure: 'file') }
+
+        it { is_expected.to contain_prometheus__daemon('apache_exporter').with(options: "--scrape_uri 'http://localhost/server-status/?auto' --web.config.file=/etc/apache_exporter_web-config.yml") }
+      end
+
+      context 'with tls set in web-config.yml version higher than 1.0.0' do
+        let(:params) do
+          {
+            version: '1.0.1',
+            web_config_content: {
+              tls_server_config: {
+                cert_file: '/etc/apache_exporter/foo.cert',
+                key_file: '/etc/apache_exporter/foo.key'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/apache_exporter_web-config.yml').with(ensure: 'file') }
+
+        it { is_expected.to contain_prometheus__daemon('apache_exporter').with(options: "--scrape_uri 'http://localhost/server-status/?auto' --web.config.file=/etc/apache_exporter_web-config.yml") }
       end
     end
   end

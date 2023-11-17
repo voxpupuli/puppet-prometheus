@@ -63,6 +63,23 @@ describe 'prometheus::haproxy_exporter' do
           it { is_expected.to raise_error(Puppet::Error) }
         end
       end
+
+      context 'with tls set in web-config.yml' do
+        let(:params) do
+          {
+            web_config_content: {
+              tls_server_config: {
+                cert_file: '/etc/haproxy_exporter/foo.cert',
+                key_file: '/etc/haproxy_exporter/foo.key'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_file('/etc/haproxy_exporter_web-config.yml').with(ensure: 'file') }
+        it { is_expected.to contain_prometheus__daemon('haproxy_exporter').with(options: '--haproxy.scrape-uri="http://localhost:1234/haproxy?stats;csv" --web.config.file=/etc/haproxy_exporter_web-config.yml') }
+      end
     end
   end
 end

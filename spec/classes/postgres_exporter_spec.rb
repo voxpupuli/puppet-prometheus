@@ -30,6 +30,23 @@ describe 'prometheus::postgres_exporter' do
           it { is_expected.to contain_group('postgres-exporter') }
           it { is_expected.to contain_service('postgres_exporter') }
         end
+
+        context 'with tls set in web-config.yml' do
+          let(:params) do
+            super().merge(
+              web_config_content: {
+                tls_server_config: {
+                  cert_file: '/etc/postgres_exporter/foo.cert',
+                  key_file: '/etc/postgres_exporter/foo.key'
+                }
+              }
+            )
+          end
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_file('/etc/postgres_exporter_web-config.yml').with(ensure: 'file') }
+          it { is_expected.to contain_prometheus__daemon('postgres_exporter').with(options: '--web.config.file=/etc/postgres_exporter_web-config.yml') }
+        end
       end
     end
   end

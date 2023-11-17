@@ -51,6 +51,10 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param web_config_file
+#  Path of file where the web-config will be saved to
+# @param web_config_content
+#  Unless empty the content of the web-config yaml which will handed over as option to the exporter
 class prometheus::haproxy_exporter (
   Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]] $cnf_scrape_uri,
   String $download_extension,
@@ -83,6 +87,8 @@ class prometheus::haproxy_exporter (
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Stdlib::Absolutepath $web_config_file                      = '/etc/haproxy_exporter_web-config.yml',
+  Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
@@ -90,7 +96,31 @@ class prometheus::haproxy_exporter (
     default => undef,
   }
 
-  $options = "--haproxy.scrape-uri=\"${cnf_scrape_uri}\" ${extra_options}"
+  $_web_config_ensure = $web_config_content.empty ? {
+    true    => absent,
+    default => file,
+  }
+
+  file { $web_config_file:
+    ensure  => $_web_config_ensure,
+    owner   => $user,
+    group   => $group,
+    mode    => '0640',
+    content => $web_config_content.stdlib::to_yaml,
+    notify  => $notify_service,
+  }
+
+  $_web_config = if $web_config_content.empty {
+    ''
+  } else {
+    "--web.config.file=${$web_config_file}"
+  }
+
+  $options = [
+    "--haproxy.scrape-uri=\"${cnf_scrape_uri}\"",
+    $extra_options,
+    $_web_config,
+  ].filter |$x| { !$x.empty }.join(' ')
 
   prometheus::daemon { $service_name:
     install_method     => $install_method,
