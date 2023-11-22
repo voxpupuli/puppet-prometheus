@@ -5,6 +5,7 @@ class prometheus::config {
   $max_open_files = $prometheus::server::max_open_files
 
   $prometheus_v2 = versioncmp($prometheus::server::version, '2.0.0') >= 0
+  $enable_tracing = $prometheus::server::enable_tracing
 
   if $prometheus::server::include_default_scrape_configs {
     $default_scrape_configs = [
