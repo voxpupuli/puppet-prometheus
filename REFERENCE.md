@@ -126,7 +126,7 @@ The following parameters are available in the `prometheus` class:
 * [`remote_read_configs`](#-prometheus--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--remote_write_configs)
 * [`enable_tracing`](#-prometheus--enable_tracing)
-* [`tracing_configs`](#-prometheus--tracing_configs)
+* [`tracing_config`](#-prometheus--tracing_config)
 * [`alerts`](#-prometheus--alerts)
 * [`extra_alerts`](#-prometheus--extra_alerts)
 * [`alert_relabel_config`](#-prometheus--alert_relabel_config)
@@ -479,7 +479,7 @@ Prometheus enables experimental tracing in Prometheus config file
 
 Default value: `false`
 
-##### <a name="-prometheus--tracing_configs"></a>`tracing_configs`
+##### <a name="-prometheus--tracing_config"></a>`tracing_config`
 
 Data type: `Hash`
 
@@ -11677,7 +11677,7 @@ The following parameters are available in the `prometheus::server` class:
 * [`remote_read_configs`](#-prometheus--server--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--server--remote_write_configs)
 * [`enable_tracing`](#-prometheus--server--enable_tracing)
-* [`tracing_configs`](#-prometheus--server--tracing_configs)
+* [`tracing_config`](#-prometheus--server--tracing_config)
 * [`alerts`](#-prometheus--server--alerts)
 * [`alert_relabel_config`](#-prometheus--server--alert_relabel_config)
 * [`alertmanagers_config`](#-prometheus--server--alertmanagers_config)
@@ -11909,13 +11909,13 @@ Data type: `Boolean`
 
 Default value: `$prometheus::enable_tracing`
 
-##### <a name="-prometheus--server--tracing_configs"></a>`tracing_configs`
+##### <a name="-prometheus--server--tracing_config"></a>`tracing_config`
 
 Data type: `Hash`
 
 
 
-Default value: `$prometheus::tracing_configs`
+Default value: `$prometheus::tracing_config`
 
 ##### <a name="-prometheus--server--alerts"></a>`alerts`
 

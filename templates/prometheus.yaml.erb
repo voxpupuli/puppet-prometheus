@@ -4,7 +4,7 @@
 <% scrape_configs = scope.lookupvar('::prometheus::config::scrape_configs') -%>
 <% remote_read_configs = scope.lookupvar('::prometheus::server::remote_read_configs') -%>
 <% remote_write_configs = scope.lookupvar('::prometheus::server::remote_write_configs') -%>
-<% tracing_configs = scope.lookupvar('::prometheus::server::tracing_configs') -%>
+<% tracing_config = scope.lookupvar('::prometheus::server::tracing_config') -%>
 <% full_config = {
   'global'=>global_config,
   'rule_files'=>rule_files,
@@ -22,7 +22,7 @@ if @prometheus_v2
     full_config['remote_write'] = remote_write_configs
 end
 if @enable_tracing
-    full_config['tracing'] = tracing_configs
+    full_config['tracing'] = tracing_config
 end
  -%>
 <%= if @prometheus_v2
