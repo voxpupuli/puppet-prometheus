@@ -125,6 +125,8 @@ The following parameters are available in the `prometheus` class:
 * [`include_default_scrape_configs`](#-prometheus--include_default_scrape_configs)
 * [`remote_read_configs`](#-prometheus--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--remote_write_configs)
+* [`enable_tracing`](#-prometheus--enable_tracing)
+* [`tracing_configs`](#-prometheus--tracing_configs)
 * [`alerts`](#-prometheus--alerts)
 * [`extra_alerts`](#-prometheus--extra_alerts)
 * [`alert_relabel_config`](#-prometheus--alert_relabel_config)
@@ -468,6 +470,18 @@ Data type: `Array`
 Prometheus remote_write config to scrape prometheus 1.8+ instances
 
 Default value: `[]`
+
+##### <a name="-prometheus--enable_tracing"></a>`enable_tracing`
+
+Data type: `Boolean`
+
+Prometheus enables experimental tracing in Prometheus config file
+
+##### <a name="-prometheus--tracing_configs"></a>`tracing_configs`
+
+Data type: `Hash`
+
+Prometheus tracing configuration for the Prometheus config file
 
 ##### <a name="-prometheus--alerts"></a>`alerts`
 
@@ -11658,6 +11672,8 @@ The following parameters are available in the `prometheus::server` class:
 * [`include_default_scrape_configs`](#-prometheus--server--include_default_scrape_configs)
 * [`remote_read_configs`](#-prometheus--server--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--server--remote_write_configs)
+* [`enable_tracing`](#-prometheus--server--enable_tracing)
+* [`tracing_configs`](#-prometheus--server--tracing_configs)
 * [`alerts`](#-prometheus--server--alerts)
 * [`alert_relabel_config`](#-prometheus--server--alert_relabel_config)
 * [`alertmanagers_config`](#-prometheus--server--alertmanagers_config)
@@ -11880,6 +11896,22 @@ Data type: `Array`
 
 
 Default value: `$prometheus::remote_write_configs`
+
+##### <a name="-prometheus--server--enable_tracing"></a>`enable_tracing`
+
+Data type: `Boolean`
+
+
+
+Default value: `$prometheus::enable_tracing`
+
+##### <a name="-prometheus--server--tracing_configs"></a>`tracing_configs`
+
+Data type: `Hash`
+
+
+
+Default value: `$prometheus::tracing_configs`
 
 ##### <a name="-prometheus--server--alerts"></a>`alerts`
 
