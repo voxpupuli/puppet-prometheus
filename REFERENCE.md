@@ -477,11 +477,15 @@ Data type: `Boolean`
 
 Prometheus enables experimental tracing in Prometheus config file
 
+Default value: `false`
+
 ##### <a name="-prometheus--tracing_configs"></a>`tracing_configs`
 
 Data type: `Hash`
 
 Prometheus tracing configuration for the Prometheus config file
+
+Default value: `{}`
 
 ##### <a name="-prometheus--alerts"></a>`alerts`
 
