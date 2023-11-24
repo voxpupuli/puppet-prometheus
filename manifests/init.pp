@@ -73,6 +73,10 @@
 #  Prometheus remote_read config to scrape prometheus 1.8+ instances
 # @param remote_write_configs
 #  Prometheus remote_write config to scrape prometheus 1.8+ instances
+# @param enable_tracing
+#  Prometheus enables experimental tracing in Prometheus config file
+# @param tracing_config
+#  Prometheus tracing configuration for the Prometheus config file
 # @param alerts
 #  alert rules to put in alerts.rules
 # @param extra_alerts
@@ -230,6 +234,8 @@ class prometheus (
   Array $scrape_configs = [],
   Array $remote_read_configs = [],
   Array $remote_write_configs = [],
+  Boolean $enable_tracing = false,
+  Hash $tracing_config = {},
   Stdlib::Absolutepath $shared_dir = '/usr/local/share/prometheus',
   String $storage_retention = '360h',
   String $user = 'prometheus',

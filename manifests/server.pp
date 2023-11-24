@@ -24,6 +24,8 @@ class prometheus::server (
   Boolean $include_default_scrape_configs                                       = $prometheus::include_default_scrape_configs,
   Array $remote_read_configs                                                    = $prometheus::remote_read_configs,
   Array $remote_write_configs                                                   = $prometheus::remote_write_configs,
+  Boolean $enable_tracing                                                       = $prometheus::enable_tracing,
+  Hash $tracing_config                                                          = $prometheus::tracing_config,
   Variant[Array,Hash] $alerts                                                   = $prometheus::alerts,
   Array $alert_relabel_config                                                   = $prometheus::alert_relabel_config,
   Array $alertmanagers_config                                                   = $prometheus::alertmanagers_config,
