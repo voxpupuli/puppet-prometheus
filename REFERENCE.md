@@ -6322,6 +6322,7 @@ The following parameters are available in the `prometheus::mongodb_exporter` cla
 
 * [`arch`](#-prometheus--mongodb_exporter--arch)
 * [`bin_dir`](#-prometheus--mongodb_exporter--bin_dir)
+* [`bin_name`](#-prometheus--mongodb_exporter--bin_name)
 * [`cnf_uri`](#-prometheus--mongodb_exporter--cnf_uri)
 * [`download_extension`](#-prometheus--mongodb_exporter--download_extension)
 * [`download_url`](#-prometheus--mongodb_exporter--download_url)
@@ -6368,6 +6369,14 @@ Data type: `Stdlib::Absolutepath`
 Directory where binaries are located
 
 Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--mongodb_exporter--bin_name"></a>`bin_name`
+
+Data type: `String[1]`
+
+The name of the binary to execute
+
+Default value: `'mongodb_exporter'`
 
 ##### <a name="-prometheus--mongodb_exporter--cnf_uri"></a>`cnf_uri`
 
