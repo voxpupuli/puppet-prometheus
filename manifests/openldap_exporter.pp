@@ -86,7 +86,7 @@ class prometheus::openldap_exporter (
   if versioncmp($version, '2.2.1') >= 0 {
     $real_download_extension = 'gz'
     $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${os}-${prometheus::real_arch}.gz")
-    $extract_path = "/opt/openldap_exporter-${version}.${os}-${prometheus::real_arch}"
+    $extract_path = "${prometheus::basepath}/openldap_exporter-${version}.${os}-${prometheus::real_arch}"
     $archive_bin_path = "${extract_path}/openldap_exporter-${os}-${prometheus::real_arch}"
     $extract_command = "gzip -cd %s > ${archive_bin_path}"
     file { $extract_path:

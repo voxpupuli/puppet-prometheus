@@ -98,7 +98,7 @@ class prometheus::mongodb_exporter (
   if versioncmp($version, '0.7.0') < 0 or versioncmp($version, '0.20.4') >= 0 {
     $archive_bin_path = undef  # use default
   } else {
-    $archive_bin_path = '/opt/mongodb_exporter'
+    $archive_bin_path = "${prometheus::basepath}/mongodb_exporter"
   }
 
   $notify_service = $restart_on_change ? {

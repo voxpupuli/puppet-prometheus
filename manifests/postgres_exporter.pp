@@ -169,7 +169,7 @@ class prometheus::postgres_exporter (
     # postgres_exporter lacks.
     # TODO: patch prometheus::daemon to support custom extract directories
     $exporter_install_method = 'none'
-    $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"
+    $install_dir = "${prometheus::basepath}/${service_name}-${version}.${os}-${arch}"
     file { $install_dir:
       ensure => 'directory',
       owner  => 'root',

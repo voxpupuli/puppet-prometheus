@@ -105,7 +105,7 @@ class prometheus::php_fpm_exporter (
     # php-fpm_exporter lacks currently as of version 2.0.4
     # TODO: patch prometheus::daemon to support custom extract directories
     $real_install_method = 'none'
-    $install_dir = "/opt/${package_name}-${version}.${os}-${arch}"
+    $install_dir = "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}"
     file { $install_dir:
       ensure => 'directory',
       owner  => 'root',

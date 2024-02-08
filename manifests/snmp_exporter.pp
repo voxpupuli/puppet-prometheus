@@ -105,12 +105,12 @@ class prometheus::snmp_exporter (
   }
 
   $_source = $config_template ? {
-    ''      => "file:/opt/snmp_exporter-${version}.${os}-${arch}/snmp.yml",
+    ''      => "file:${prometheus::basepath}/snmp_exporter-${version}.${os}-${arch}/snmp.yml",
     default => undef,
   }
 
   $_require = $config_template ? {
-    ''      => File["/opt/snmp_exporter-${version}.${os}-${arch}/snmp_exporter"],
+    ''      => File["${prometheus::basepath}/snmp_exporter-${version}.${os}-${arch}/snmp_exporter"],
     default => undef,
   }
 

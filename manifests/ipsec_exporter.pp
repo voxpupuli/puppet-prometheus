@@ -88,7 +88,7 @@ class prometheus::ipsec_exporter (
   }
   else {
     $release          = "v${version}"
-    $archive_bin_path = "/opt/ipsec_exporter-v${version}.${os}-${arch}"
+    $archive_bin_path = "${prometheus::basepath}/ipsec_exporter-v${version}.${os}-${arch}"
   }
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${release}.${os}-${arch}.${download_extension}")
 

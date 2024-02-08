@@ -123,7 +123,7 @@ class prometheus::puppetdb_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
-    archive_bin_path   => "/opt/prometheus-puppetdb-exporter-${version}.${os}-${arch}/prometheus-puppetdb-exporter",
+    archive_bin_path   => "${prometheus::basepath}/prometheus-puppetdb-exporter-${version}.${os}-${arch}/prometheus-puppetdb-exporter",
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
   }

@@ -46,7 +46,7 @@
 # @param version
 #  The binary release version
 # @param omreport_path
-#  The file path to the omReport executable (default "/opt/dell/srvadmin/bin/omreport")
+#  The file path to the omReport executable (default "/opt/prometheus/dell/srvadmin/bin/omreport")
 # @param scrape_ipadress
 #  The ip address that the exporter will to listen to (default '')
 # @param proxy_server
@@ -84,7 +84,7 @@ class prometheus::dellhw_exporter (
   String[1] $scrape_job_name                                 = 'dellhw',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $bin_name                              = undef,
-  Stdlib::Unixpath $omreport_path                            = '/opt/dell/srvadmin/bin/omreport',
+  Stdlib::Unixpath $omreport_path                            = "${prometheus::basepath}/dell/srvadmin/bin/omreport",
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
@@ -127,7 +127,7 @@ class prometheus::dellhw_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
-    archive_bin_path   => "/opt/dellhw_exporter-${version}.${os}-${arch}/dellhw_exporter",
+    archive_bin_path   => "${prometheus::basepath}/dellhw_exporter-${version}.${os}-${arch}/dellhw_exporter",
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
   }

@@ -110,7 +110,7 @@ class prometheus::redis_exporter (
       # redis_exporter lacks before version 1.0.0
       # TODO: patch prometheus::daemon to support custom extract directories
       $real_install_method = 'none'
-      $install_dir = "/opt/${service_name}-${version}.${os}-${arch}"
+      $install_dir = "${prometheus::basepath}/${service_name}-${version}.${os}-${arch}"
       file { $install_dir:
         ensure => 'directory',
         owner  => 'root',
