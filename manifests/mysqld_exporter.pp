@@ -12,6 +12,12 @@
 #  The socket which the mysql host is running. If defined, host and port are not used.
 # @param cnf_user
 #  The mysql user to use when connecting.
+# @param cnf_ssl_ca
+#  The path name of the Certificate Authority (CA) certificate file in PEM format. The file may contain a list of trusted SSL Certificate Authorities.
+# @param cnf_ssl_cert
+#  The path name of the client SSL public key certificate file in PEM format.
+# @param cnf_ssl_key
+#  The path name of the client SSL private key file in PEM format.
 # @param arch
 #  Architecture (amd64 or i386)
 # @param bin_dir
@@ -84,6 +90,9 @@ class prometheus::mysqld_exporter (
   String[1] $cnf_user                                        = login,
   Variant[Sensitive[String],String] $cnf_password            = 'password',
   Optional[Stdlib::Absolutepath] $cnf_socket                 = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_ca                 = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_cert               = undef,
+  Optional[Stdlib::Absolutepath] $cnf_ssl_key                = undef,
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
@@ -130,6 +139,9 @@ class prometheus::mysqld_exporter (
           'cnf_port'     => $cnf_port,
           'cnf_host'     => $cnf_host,
           'cnf_socket'   => $cnf_socket,
+          'cnf_ssl_ca'   => $cnf_ssl_ca,
+          'cnf_ssl_cert' => $cnf_ssl_cert,
+          'cnf_ssl_key'  => $cnf_ssl_key,
         },
       )
     ),

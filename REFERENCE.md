@@ -6638,6 +6638,9 @@ The following parameters are available in the `prometheus::mysqld_exporter` clas
 * [`cnf_port`](#-prometheus--mysqld_exporter--cnf_port)
 * [`cnf_socket`](#-prometheus--mysqld_exporter--cnf_socket)
 * [`cnf_user`](#-prometheus--mysqld_exporter--cnf_user)
+* [`cnf_ssl_ca`](#-prometheus--mysqld_exporter--cnf_ssl_ca)
+* [`cnf_ssl_cert`](#-prometheus--mysqld_exporter--cnf_ssl_cert)
+* [`cnf_ssl_key`](#-prometheus--mysqld_exporter--cnf_ssl_key)
 * [`arch`](#-prometheus--mysqld_exporter--arch)
 * [`bin_dir`](#-prometheus--mysqld_exporter--bin_dir)
 * [`config_mode`](#-prometheus--mysqld_exporter--config_mode)
@@ -6719,6 +6722,30 @@ Data type: `String[1]`
 The mysql user to use when connecting.
 
 Default value: `login`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_ca"></a>`cnf_ssl_ca`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the Certificate Authority (CA) certificate file in PEM format. The file may contain a list of trusted SSL Certificate Authorities.
+
+Default value: `undef`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_cert"></a>`cnf_ssl_cert`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the client SSL public key certificate file in PEM format.
+
+Default value: `undef`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_key"></a>`cnf_ssl_key`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the client SSL private key file in PEM format.
+
+Default value: `undef`
 
 ##### <a name="-prometheus--mysqld_exporter--arch"></a>`arch`
 
