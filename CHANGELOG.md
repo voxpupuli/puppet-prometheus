@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v14.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v14.0.0) (2024-03-25)
+## [v14.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v14.0.0) (2024-03-26)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.4.0...v14.0.0)
 
@@ -21,11 +21,6 @@ These should not affect the functionality of the module.
 - mongodb\_exporter: make service name and binary path configureable [\#699](https://github.com/voxpupuli/puppet-prometheus/pull/699) ([ansgarwiechers](https://github.com/ansgarwiechers))
 - Implement wireguard exporter [\#695](https://github.com/voxpupuli/puppet-prometheus/pull/695) ([bastelfreak](https://github.com/bastelfreak))
 - Add OracleLinux support [\#687](https://github.com/voxpupuli/puppet-prometheus/pull/687) ([bastelfreak](https://github.com/bastelfreak))
-
-**Closed issues:**
-
-- mongodb\_exporter doesn't allow overriding service and binary name [\#698](https://github.com/voxpupuli/puppet-prometheus/issues/698)
-- module uses deprecated legacy function `has_keys` [\#677](https://github.com/voxpupuli/puppet-prometheus/issues/677)
 
 **Merged pull requests:**
 
