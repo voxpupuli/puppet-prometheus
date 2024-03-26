@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v14.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v14.0.0) (2024-03-26)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.4.0...v14.0.0)
+
+**Breaking changes:**
+
+- Drop Ubuntu 18.04, allow systemd 6.x [\#704](https://github.com/voxpupuli/puppet-prometheus/pull/704) ([griggi-ws](https://github.com/griggi-ws))
+- Rework web-config support for multiple exporters [\#693](https://github.com/voxpupuli/puppet-prometheus/pull/693) ([cruelsmith](https://github.com/cruelsmith))
+
+**Implemented enhancements:**
+
+- add option to enable tracing in Prometheus config [\#705](https://github.com/voxpupuli/puppet-prometheus/pull/705) ([fbegyn](https://github.com/fbegyn))
+- Add Debian 12 support [\#703](https://github.com/voxpupuli/puppet-prometheus/pull/703) ([bastelfreak](https://github.com/bastelfreak))
+- Cleanup architecture selection, dont fail on unknown architecture [\#702](https://github.com/voxpupuli/puppet-prometheus/pull/702) ([bastelfreak](https://github.com/bastelfreak))
+- mongodb\_exporter: make service name and binary path configureable [\#699](https://github.com/voxpupuli/puppet-prometheus/pull/699) ([ansgarwiechers](https://github.com/ansgarwiechers))
+- Implement wireguard exporter [\#695](https://github.com/voxpupuli/puppet-prometheus/pull/695) ([bastelfreak](https://github.com/bastelfreak))
+- Add OracleLinux support [\#687](https://github.com/voxpupuli/puppet-prometheus/pull/687) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Remove legacy top-scope syntax [\#706](https://github.com/voxpupuli/puppet-prometheus/pull/706) ([smortex](https://github.com/smortex))
+
 ## [v13.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v13.4.0) (2023-11-08)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.3.0...v13.4.0)
