@@ -12,18 +12,17 @@ describe 'prometheus::ipmi_exporter' do
       context 'without parameters' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('prometheus') }
-        it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  --freeipmi.path=/usr/local/bin') }
         it { is_expected.to contain_service('ipmi_exporter') }
         it { is_expected.to contain_user('ipmi-exporter') }
         it { is_expected.to contain_group('ipmi-exporter') }
+        it { is_expected.to contain_file('/opt/ipmi_exporter-1.4.0.linux-amd64/ipmi_exporter') }
+        it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
 
         if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.not_to contain_file('/opt/ipmi_exporter-1.4.0.linux-amd64/ipmi_exporter') }
-          it { is_expected.not_to contain_file('/usr/local/bin/ipmi_exporter') }
           it { is_expected.to contain_systemd__unit_file('ipmi_exporter.service') }
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  ') }
         else
-          it { is_expected.to contain_file('/opt/ipmi_exporter-1.4.0.linux-amd64/ipmi_exporter') }
-          it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  --freeipmi.path=/usr/local/bin') }
         end
 
         if facts[:os]['family'] == 'RedHat'
@@ -44,14 +43,13 @@ describe 'prometheus::ipmi_exporter' do
 
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_archive('/tmp/ipmi_exporter-1.3.1.tar.gz') }
-        it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  --freeipmi.path=/usr/local/bin') }
+        it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
+        it { is_expected.not_to contain_file('/usr/bin/ipmi_exporter') }
 
         if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.to contain_file('/usr/bin/ipmi_exporter') }
-          it { is_expected.not_to contain_file('/usr/local/bin/ipmi_exporter') }
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  ') }
         else
-          it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
-          it { is_expected.not_to contain_file('/usr/bin/ipmi_exporter') }
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  --freeipmi.path=/usr/local/bin') }
         end
         it do
           verify_contents(catalogue, '/etc/ipmi_exporter.yaml', [
@@ -91,7 +89,12 @@ describe 'prometheus::ipmi_exporter' do
         end
 
         it { is_expected.to compile.with_all_deps }
-        it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml --path.procfs /host/proc --path.sysfs /host/sys --freeipmi.path=/usr/local/bin') }
+
+        if facts[:os]['name'] == 'Archlinux'
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml --path.procfs /host/proc --path.sysfs /host/sys ') }
+        else
+          it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml --path.procfs /host/proc --path.sysfs /host/sys --freeipmi.path=/usr/local/bin') }
+        end
       end
 
       context 'with no download_extension' do

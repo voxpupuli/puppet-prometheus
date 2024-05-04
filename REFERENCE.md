@@ -4965,13 +4965,13 @@ The following parameters are available in the `prometheus::ipmi_exporter` class:
 * [`version`](#-prometheus--ipmi_exporter--version)
 * [`proxy_server`](#-prometheus--ipmi_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--ipmi_exporter--proxy_type)
+* [`unprivileged`](#-prometheus--ipmi_exporter--unprivileged)
 * [`scrape_host`](#-prometheus--ipmi_exporter--scrape_host)
 * [`export_scrape_job`](#-prometheus--ipmi_exporter--export_scrape_job)
 * [`scrape_port`](#-prometheus--ipmi_exporter--scrape_port)
 * [`scrape_job_name`](#-prometheus--ipmi_exporter--scrape_job_name)
 * [`scrape_job_labels`](#-prometheus--ipmi_exporter--scrape_job_labels)
 * [`bin_name`](#-prometheus--ipmi_exporter--bin_name)
-* [`unprivileged`](#-prometheus--ipmi_exporter--unprivileged)
 * [`script_dir`](#-prometheus--ipmi_exporter--script_dir)
 
 ##### <a name="-prometheus--ipmi_exporter--arch"></a>`arch`
@@ -5198,6 +5198,14 @@ Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
 
+##### <a name="-prometheus--ipmi_exporter--unprivileged"></a>`unprivileged`
+
+Data type: `Boolean`
+
+If true, run the exporter as an unprivileged user and add sudoers entries
+
+Default value: `true`
+
 ##### <a name="-prometheus--ipmi_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -5245,14 +5253,6 @@ Data type: `Optional[String[1]]`
 
 
 Default value: `undef`
-
-##### <a name="-prometheus--ipmi_exporter--unprivileged"></a>`unprivileged`
-
-Data type: `Boolean`
-
-
-
-Default value: `true`
 
 ##### <a name="-prometheus--ipmi_exporter--script_dir"></a>`script_dir`
 

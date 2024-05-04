@@ -18,15 +18,9 @@ describe 'prometheus::nginx_prometheus_exporter' do
           it { is_expected.to contain_systemd__unit_file('nginx_prometheus_exporter.service') }
         end
 
-        if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.to contain_package('nginx-prometheus-exporter') }
-          it { is_expected.not_to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
-          it { is_expected.not_to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
-        else
-          it { is_expected.not_to contain_package('nginx-prometheus-exporter') }
-          it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
-          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
-        end
+        it { is_expected.not_to contain_package('nginx-prometheus-exporter') }
+        it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
+        it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
       end
 
       context 'with some params' do

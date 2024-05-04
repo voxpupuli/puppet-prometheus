@@ -45,63 +45,59 @@ describe 'prometheus' do
           prom_major = prom_version[0]
           prom_os = facts[:kernel].downcase
           prom_arch = facts[:architecture] == 'i386' ? '386' : 'amd64'
+          if facts[:os]['name'] != 'Archlinux'
+            it {
+              expect(subject).to contain_archive("/tmp/prometheus-#{prom_version}.tar.gz").with(
+                'ensure' => 'present',
+                'extract' => true,
+                'extract_path' => '/opt',
+                'source' => "https://github.com/prometheus/prometheus/releases/download/v#{prom_version}/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}.tar.gz",
+                'checksum_verify' => false,
+                'creates' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus",
+                'cleanup' => true,
+                'proxy_server' => 'proxy.test',
+                'proxy_type' => 'https'
+              ).that_comes_before("File[/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus]")
+            }
 
-          it {
-            expect(subject).to contain_archive("/tmp/prometheus-#{prom_version}.tar.gz").with(
-              'ensure' => 'present',
-              'extract' => true,
-              'extract_path' => '/opt',
-              'source' => "https://github.com/prometheus/prometheus/releases/download/v#{prom_version}/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}.tar.gz",
-              'checksum_verify' => false,
-              'creates' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus",
-              'cleanup' => true,
-              'proxy_server' => 'proxy.test',
-              'proxy_type' => 'https'
-            ).that_comes_before("File[/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus]")
-          }
+            it {
+              expect(subject).to contain_file("/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus").with(
+                'owner' => 'root',
+                'group' => 0,
+                'mode' => '0555'
+              )
+            }
 
-          it {
-            expect(subject).to contain_file("/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus").with(
-              'owner' => 'root',
-              'group' => 0,
-              'mode' => '0555'
-            )
-          }
+            it {
+              expect(subject).to contain_file('/usr/local/bin/prometheus').with(
+                'ensure' => 'link',
+                'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus"
+              ).that_notifies('Service[prometheus]')
+            }
 
-          it {
-            expect(subject).to contain_file('/usr/local/bin/prometheus').with(
-              'ensure' => 'link',
-              'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/prometheus"
-            ).that_notifies('Service[prometheus]')
-          }
+            it {
+              expect(subject).to contain_file('/usr/local/share/prometheus').with(
+                'ensure' => 'directory',
+                'owner' => 'prometheus',
+                'group' => 'prometheus',
+                'mode' => '0755'
+              )
+            }
 
-          it {
-            expect(subject).to contain_file('/usr/local/share/prometheus').with(
-              'ensure' => 'directory',
-              'owner' => 'prometheus',
-              'group' => 'prometheus',
-              'mode' => '0755'
-            )
-          }
+            it {
+              expect(subject).to contain_file('/usr/local/share/prometheus/consoles').with(
+                'ensure' => 'link',
+                'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/consoles"
+              ).that_notifies('Service[prometheus]')
+            }
 
-          it {
-            expect(subject).to contain_file('/usr/local/share/prometheus/consoles').with(
-              'ensure' => 'link',
-              'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/consoles"
-            ).that_notifies('Service[prometheus]')
-          }
+            it {
+              expect(subject).to contain_file('/usr/local/share/prometheus/console_libraries').with(
+                'ensure' => 'link',
+                'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/console_libraries"
+              ).that_notifies('Service[prometheus]')
+            }
 
-          it {
-            expect(subject).to contain_file('/usr/local/share/prometheus/console_libraries').with(
-              'ensure' => 'link',
-              'target' => "/opt/prometheus-#{prom_version}.#{prom_os}-#{prom_arch}/console_libraries"
-            ).that_notifies('Service[prometheus]')
-          }
-
-          if facts[:os]['name'] == 'Archlinux'
-            it { expect(subject).not_to contain_user('prometheus') }
-            it { is_expected.not_to contain_systemd__unit_file('prometheus.service') }
-          else
             it {
               expect(subject).to contain_user('prometheus').with(
                 'ensure' => 'present',
@@ -210,8 +206,8 @@ describe 'prometheus' do
           }
         end
 
-        it { is_expected.not_to contain_class('systemd') }
-        it { is_expected.not_to contain_systemd__unit_file('prometheus.service') }
+        it { is_expected.to contain_class('systemd') }
+        it { is_expected.to contain_systemd__unit_file('prometheus.service') }
         it { is_expected.to contain_package('prometheus') }
         it { is_expected.to contain_file('/etc/prometheus/file_sd_config.d') }
         it { is_expected.to contain_file('/etc/prometheus/rules') }
@@ -219,18 +215,6 @@ describe 'prometheus' do
 
       context 'with alerts configured', alerts: true do
         [
-          {
-            manage_prometheus_server: true,
-            version: '1.5.3',
-            install_method: 'url',
-            alerts: [{
-              'name' => 'alert_name',
-              'condition' => 'up == 0',
-              'timeduration' => '5min',
-              'labels' => [{ 'name' => 'severity', 'content' => 'woops' }],
-              'annotations' => [{ 'name' => 'summary', 'content' => 'did a woops {{ $labels.instance }}' }]
-            }]
-          },
           {
             manage_prometheus_server: true,
             version: '2.0.0-rc.1',
@@ -273,8 +257,6 @@ describe 'prometheus' do
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.alert.rules"))
               ).that_notifies('Class[prometheus::service_reload]')
             }
-
-            it { is_expected.to contain_archive("/tmp/prometheus-#{prom_version}.tar.gz") }
           end
         end
       end

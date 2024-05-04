@@ -55,6 +55,8 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param unprivileged
+#  If true, run the exporter as an unprivileged user and add sudoers entries
 class prometheus::ipmi_exporter (
   Stdlib::Absolutepath $config_file                          = '/etc/ipmi_exporter.yaml',
   String[1] $package_name                                    = 'ipmi_exporter',
