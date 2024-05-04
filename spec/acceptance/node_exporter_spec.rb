@@ -2,6 +2,12 @@
 
 require 'spec_helper_acceptance'
 
+service_name = if host_inventory['facter']['os']['name'] == 'Archlinux'
+  'prometheus-node-exporter'
+else
+  'node_exporter'
+end
+
 describe 'prometheus node_exporter' do
   it 'node_exporter works idempotently with no errors' do
     pp = 'include prometheus::node_exporter'
@@ -10,7 +16,7 @@ describe 'prometheus node_exporter' do
     apply_manifest(pp, catch_changes: true)
   end
 
-  describe service('node_exporter') do
+  describe service(service_name.to_s) do
     it { is_expected.to be_running }
     it { is_expected.to be_enabled }
   end
@@ -28,7 +34,7 @@ describe 'prometheus node_exporter' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe service('node_exporter') do
+    describe service(service_name.to_s) do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
@@ -44,7 +50,7 @@ describe 'prometheus node_exporter' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe service('node_exporter') do
+    describe service(service_name.to_s) do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
@@ -63,7 +69,7 @@ describe 'prometheus node_exporter' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe service('node_exporter') do
+    describe service(service_name.to_s) do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
