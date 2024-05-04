@@ -26,3 +26,5 @@ prometheus::bird_exporter::manage_user: false
 prometheus::bird_exporter::manage_group: false
 prometheus::bird_exporter::init_style: 'none'
 prometheus::bird_exporter::service_name: 'prometheus-bird-exporter'
+prometheus::alertmanager::config_file: "%{hiera('prometheus::alertmanager::config_dir')}/alertmanager.yml"
+prometheus::alertmanager::templates: [ "%{lookup('prometheus::alertmanager::config_dir')}/template/*.tmpl" ]

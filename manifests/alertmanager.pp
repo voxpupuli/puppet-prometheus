@@ -197,6 +197,17 @@ class prometheus::alertmanager (
     recurse => $purge_config_dir,
   }
 
+  # arch package comes with a separate template directory
+  if $facts['os']['name'] == 'Archlinux' {
+    file { "${config_dir}/template":
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => $group,
+      purge   => $purge_config_dir,
+      recurse => $purge_config_dir,
+    }
+  }
+
   if (( versioncmp($version, '0.10.0') >= 0 ) and ( $install_method == 'url' )) {
     # If version >= 0.10.0 then install amtool - Alertmanager validation tool
     file { "${bin_dir}/amtool":

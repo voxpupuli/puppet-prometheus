@@ -9,6 +9,12 @@ describe 'prometheus::alertmanager' do
         facts.merge(os_specific_facts(facts))
       end
 
+      config_file = if facts[:os]['family'] == 'Archlinux'
+                      '/etc/alertmanager/alertmanager.yml'
+                    else
+                      '/etc/alertmanager/alertmanager.yaml'
+                    end
+
       context 'with version specified' do
         let(:params) do
           {
@@ -36,12 +42,12 @@ describe 'prometheus::alertmanager' do
 
         describe 'config file contents' do
           it {
-            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Service[alertmanager]')
-            verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', ['---', 'global:', '  smtp_smarthost: localhost:25', '  smtp_from: alertmanager@localhost'])
+            expect(subject).to contain_file(config_file.to_s).with_notify('Service[alertmanager]')
+            verify_contents(catalogue, config_file.to_s, ['---', 'global:', '  smtp_smarthost: localhost:25', '  smtp_from: alertmanager@localhost'])
           }
 
           it {
-            expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml').with_content(%r{mute_time_intervals})
+            expect(subject).not_to contain_file(config_file.to_s).with_content(%r{mute_time_intervals})
           }
         end
 
@@ -71,7 +77,7 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
+          verify_contents(catalogue, config_file.to_s, [
                             'mute_time_intervals:',
                             '- name: weekend',
                             '  time_intervals:',
@@ -99,10 +105,10 @@ describe 'prometheus::alertmanager' do
           }
         end
 
-        it { is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without(content: %r{mute_time_intervals}) }
+        it { is_expected.to contain_file(config_file.to_s).without(content: %r{mute_time_intervals}) }
 
         it {
-          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
+          verify_contents(catalogue, config_file.to_s, [
                             'time_intervals:',
                             '- name: weekend',
                             '  time_intervals:',
@@ -117,7 +123,7 @@ describe 'prometheus::alertmanager' do
         let(:params) { { reload_on_change: true } }
 
         it {
-          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Exec[alertmanager-reload]')
+          expect(subject).to contain_file(config_file.to_s).with_notify('Exec[alertmanager-reload]')
         }
       end
 
@@ -138,7 +144,7 @@ describe 'prometheus::alertmanager' do
             end
 
             it {
-              expect(subject).not_to contain_file('/etc/alertmanager/alertmanager.yaml')
+              expect(subject).not_to contain_file(config_file.to_s)
             }
           end
         end
@@ -154,7 +160,7 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').without_validate_cmd
+          expect(subject).to contain_file(config_file.to_s).without_validate_cmd
         }
       end
 
@@ -169,7 +175,7 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_validate_cmd('/bin/amtool check-config --alertmanager.url=\'\' %')
+          expect(subject).to contain_file(config_file.to_s).with_validate_cmd('/bin/amtool check-config --alertmanager.url=\'\' %')
         }
       end
     end
