@@ -76,8 +76,8 @@ define prometheus::daemon (
   Hash[String[1], Scalar] $env_vars                          = {},
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $extract_command                       = $prometheus::extract_command,
-  Stdlib::Absolutepath $extract_path                         = '/opt',
-  Stdlib::Absolutepath $archive_bin_path                     = "/opt/${name}-${version}.${os}-${arch}/${name}",
+  Stdlib::Absolutepath $extract_path                         = $prometheus::basepath,
+  Stdlib::Absolutepath $archive_bin_path                     = "${prometheus::basepath}/${name}-${version}.${os}-${arch}/${name}",
   Boolean $export_scrape_job                                 = false,
   Stdlib::Host $scrape_host                                  = $facts['networking']['fqdn'],
   Optional[Stdlib::Port] $scrape_port                        = undef,
@@ -90,17 +90,17 @@ define prometheus::daemon (
   case $install_method {
     'url': {
       if $download_extension == '' {
-        file { "/opt/${name}-${version}.${os}-${arch}":
+        file { "${prometheus::basepath}/${name}-${version}.${os}-${arch}":
           ensure => directory,
           owner  => 'root',
           group  => 0, # 0 instead of root because OS X uses "wheel".
           mode   => '0755',
         }
-        -> archive { "/opt/${name}-${version}.${os}-${arch}/${name}":
+        -> archive { "${prometheus::basepath}/${name}-${version}.${os}-${arch}/${name}":
           ensure          => present,
           source          => $real_download_url,
           checksum_verify => false,
-          before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
+          before          => File["${prometheus::basepath}/${name}-${version}.${os}-${arch}/${name}"],
           proxy_server    => $proxy_server,
           proxy_type      => $proxy_type,
         }

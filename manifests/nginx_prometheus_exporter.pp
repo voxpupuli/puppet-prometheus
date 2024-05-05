@@ -104,7 +104,7 @@ class prometheus::nginx_prometheus_exporter (
     # nginx_prometheus_exporter lacks currently as of version 0.9.0
     # TODO: patch prometheus::daemon to support custom extract directories
     $real_install_method = 'none'
-    $install_dir = "/opt/${package_name}-${version}.${os}-${arch}"
+    $install_dir = "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}"
     file { $install_dir:
       ensure => 'directory',
       owner  => 'root',

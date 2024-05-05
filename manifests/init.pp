@@ -224,6 +224,8 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param clean_url_releases
+#  If this variable is activated, the releases are no longer installed under /opt but under /opt/prometheus. In addition, all releases that are no longer used are automatically deleted.
 class prometheus (
   Stdlib::Absolutepath $env_file_path,
   Array $extra_groups = [],
@@ -316,6 +318,7 @@ class prometheus (
   Boolean $include_default_scrape_configs                                       = true,
   Optional[String[1]] $proxy_server                                             = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
+  Boolean $clean_url_releases                                                   = false,
 ) {
   $real_arch = $arch ? {
     'x86_64'  => 'amd64',
@@ -325,6 +328,23 @@ class prometheus (
     'armv6l'  => 'armv6',
     'armv5l'  => 'armv5',
     default   => $arch,
+  }
+
+  if $clean_url_releases {
+    $basepath = '/opt/prometheus'
+
+    file { $basepath:
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      backup  => false,
+      force   => true,
+      purge   => true,
+      recurse => true,
+    }
+  } else {
+    $basepath = '/opt'
   }
 
   if $manage_prometheus_server {
