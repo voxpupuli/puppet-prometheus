@@ -6678,7 +6678,7 @@ Data type: `Stdlib::Absolutepath`
 
 The path to put the my.cnf file
 
-Default value: `'/etc/.my.cnf'`
+Default value: `'/etc/mysqld_exporter-my.cnf'`
 
 ##### <a name="-prometheus--mysqld_exporter--cnf_host"></a>`cnf_host`
 
