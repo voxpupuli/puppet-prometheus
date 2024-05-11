@@ -26,10 +26,10 @@ prometheus::alertmanager::global:
   'smtp_from': 'alertmanager@localhost'
 prometheus::alertmanager::group: 'alertmanager'
 prometheus::alertmanager::inhibit_rules:
-  - 'source_match':
-      'severity': 'critical'
-    'target_match':
-      'severity': 'warning'
+  - 'source_matchers':
+      - 'severity = critical'
+    'target_matchers':
+      - 'severity = warning'
     'equal':
       - 'alertname'
       - 'cluster'
@@ -54,7 +54,7 @@ prometheus::alertmanager::time_intervals: []
 prometheus::alertmanager::storage_path: '/var/lib/alertmanager'
 prometheus::alertmanager::templates: [ "%{lookup('prometheus::alertmanager::config_dir')}/*.tmpl" ]
 prometheus::alertmanager::user: 'alertmanager'
-prometheus::alertmanager::version: '0.21.0'
+prometheus::alertmanager::version: '0.27.0'
 prometheus::consul_exporter::consul_health_summary: true
 prometheus::consul_exporter::consul_server: 'localhost:8500'
 prometheus::consul_exporter::download_extension: 'tar.gz'
