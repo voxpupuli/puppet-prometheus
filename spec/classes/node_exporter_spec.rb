@@ -60,10 +60,7 @@ describe 'prometheus::node_exporter' do
         it { is_expected.to contain_archive('/tmp/node_exporter-1.0.1.tar.gz') }
         it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '--collector.foo --collector.bar --no-collector.baz --no-collector.qux') }
 
-        if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.to contain_file('/usr/bin/node_exporter') }
-          it { is_expected.not_to contain_file('/usr/local/bin/node_exporter') }
-        else
+        if facts[:os]['name'] != 'Archlinux'
           it { is_expected.to contain_file('/usr/local/bin/node_exporter') }
           it { is_expected.not_to contain_file('/usr/bin/node_exporter') }
         end

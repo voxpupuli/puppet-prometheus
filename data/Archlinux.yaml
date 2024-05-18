@@ -4,11 +4,10 @@ prometheus::server::manage_user: false
 prometheus::server::manage_group: false
 prometheus::server::package_ensure: 'installed'
 prometheus::server::manage_config_dir: false
-prometheus::server::manage_init_file: false
+prometheus::server::manage_init_file: true
 prometheus::configname: 'prometheus.yml'
-prometheus::version: '2.46.0'
-prometheus::install_method: 'package'
-prometheus::bin_dir: '/usr/bin'
+prometheus::server::install_method: 'package'
+prometheus::server::bin_dir: '/usr/bin'
 prometheus::env_file_path: '/etc/conf.d'
 prometheus::node_exporter::package_name: 'prometheus-node-exporter'
 prometheus::node_exporter::install_method: 'package'
@@ -26,3 +25,11 @@ prometheus::bird_exporter::manage_user: false
 prometheus::bird_exporter::manage_group: false
 prometheus::bird_exporter::init_style: 'none'
 prometheus::bird_exporter::service_name: 'prometheus-bird-exporter'
+prometheus::memcached_exporter::install_method: 'package'
+prometheus::memcached_exporter::package_name: 'prometheus-memcached-exporter'
+prometheus::memcached_exporter::manage_user: false
+prometheus::memcached_exporter::manage_group: false
+prometheus::memcached_exporter::init_style: 'none'
+prometheus::memcached_exporter::service_name: 'prometheus-memcached-exporter'
+prometheus::varnish_exporter::extra_options: '-no-exit'
+prometheus::ipmi_exporter::unprivileged: false # Set to false because it breaks sudo in acceptance testing

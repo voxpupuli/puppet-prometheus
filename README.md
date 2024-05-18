@@ -406,10 +406,7 @@ In version 0.1.14 of this module the alertmanager was configured to run as the s
 
 Do not use version 1.0.0 of Prometheus: https://groups.google.com/forum/#!topic/prometheus-developers/vuSIxxUDff8 ; it is not compatible with this module!
 
-Even if the module has templates for several linux distributions, only RedHat family distributions were tested.
-
-This module has unit tests for CentOS/RHEL, Debian, Ubuntu and Archlinux. Acceptance tests are executed for CentOS, Debian and Ubuntu. Other operating systems may work but are untested.
-
+Postfix is not supported on Archlinux because it relies on puppet-postfix, which does not support Archlinux.
 
 ## Development
 

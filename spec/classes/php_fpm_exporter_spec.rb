@@ -18,15 +18,9 @@ describe 'prometheus::php_fpm_exporter' do
           it { is_expected.to contain_systemd__unit_file('php-fpm_exporter.service') }
         end
 
-        if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.to contain_package('php-fpm_exporter') }
-          it { is_expected.not_to contain_archive('/tmp/php-fpm_exporter-2.0.4.tar.gz') }
-          it { is_expected.not_to contain_file('/opt/php-fpm_exporter-2.0.4.linux-amd64') }
-        else
-          it { is_expected.not_to contain_package('php-fpm_exporter') }
-          it { is_expected.to contain_archive('/tmp/php-fpm_exporter-2.0.4.tar.gz') }
-          it { is_expected.to contain_file('/opt/php-fpm_exporter-2.0.4.linux-amd64') }
-        end
+        it { is_expected.not_to contain_package('php-fpm_exporter') }
+        it { is_expected.to contain_archive('/tmp/php-fpm_exporter-2.0.4.tar.gz') }
+        it { is_expected.to contain_file('/opt/php-fpm_exporter-2.0.4.linux-amd64') }
       end
 
       context 'with some params' do

@@ -2,7 +2,7 @@
 
 require 'spec_helper_acceptance'
 
-describe 'prometheus postfix exporter' do
+describe 'prometheus postfix exporter', if: host_inventory['facter']['os']['name'] != 'Archlinux' do
   describe 'install postfix' do
     before do
       shell('puppet module install puppet/postfix')

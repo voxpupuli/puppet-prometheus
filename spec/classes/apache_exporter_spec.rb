@@ -18,15 +18,9 @@ describe 'prometheus::apache_exporter' do
           it { is_expected.to contain_systemd__unit_file('apache_exporter.service') }
         end
 
-        if facts[:os]['name'] == 'Archlinux'
-          it { is_expected.to contain_package('apache_exporter') }
-          it { is_expected.not_to contain_archive('/tmp/apache_exporter-0.8.0.tar.gz') }
-          it { is_expected.not_to contain_file('/opt/apache_exporter-0.8.0.linux-amd64/apache_exporter') }
-        else
-          it { is_expected.not_to contain_package('apache-exporter') }
-          it { is_expected.to contain_archive('/tmp/apache_exporter-0.8.0.tar.gz') }
-          it { is_expected.to contain_file('/opt/apache_exporter-0.8.0.linux-amd64/apache_exporter') }
-        end
+        it { is_expected.not_to contain_package('apache-exporter') }
+        it { is_expected.to contain_archive('/tmp/apache_exporter-0.8.0.tar.gz') }
+        it { is_expected.to contain_file('/opt/apache_exporter-0.8.0.linux-amd64/apache_exporter') }
       end
 
       context 'with some params' do

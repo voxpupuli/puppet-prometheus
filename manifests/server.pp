@@ -80,7 +80,8 @@ class prometheus::server (
 
   $extra_alerts.each | String $alerts_file_name, Hash $alerts_config | {
     prometheus::alerts { $alerts_file_name:
-      alerts   => $alerts_config,
+      alerts  => $alerts_config,
+      bin_dir => $bin_dir,
     }
   }
   $extra_rule_files = suffix(prefix(keys($extra_alerts), "${config_dir}/rules/"), '.rules')
@@ -90,6 +91,7 @@ class prometheus::server (
       alerts   => $alerts,
       location => $config_dir,
       version  => $version,
+      bin_dir  => $bin_dir,
     }
     $_rule_files = concat(["${config_dir}/alert.rules"], $extra_rule_files, $rule_files)
   }
