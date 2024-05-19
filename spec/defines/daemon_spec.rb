@@ -128,16 +128,6 @@ describe 'prometheus::daemon' do
                 %r{SOMEVAR="42"\n}
               )
             }
-          elsif ['centos-7-x86_64', 'redhat-7-x86_64'].include?(os)
-            it {
-              expect(subject).to contain_file('/etc/sysconfig/smurf_exporter').with(
-                'mode' => '0644',
-                'owner' => 'root',
-                'group' => '0'
-              ).with_content(
-                %r{SOMEVAR="42"\n}
-              )
-            }
           end
 
           it {

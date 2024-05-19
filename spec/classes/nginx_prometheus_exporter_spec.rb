@@ -11,13 +11,7 @@ describe 'prometheus::nginx_prometheus_exporter' do
 
       context 'with all defaults' do
         it { is_expected.to compile.with_all_deps }
-
-        if facts[:os]['release']['major'].to_i == 6
-          it { is_expected.to contain_file('/etc/init.d/nginx_prometheus_exporter') }
-        else
-          it { is_expected.to contain_systemd__unit_file('nginx_prometheus_exporter.service') }
-        end
-
+        it { is_expected.to contain_systemd__unit_file('nginx_prometheus_exporter.service') }
         it { is_expected.not_to contain_package('nginx-prometheus-exporter') }
         it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
         it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
