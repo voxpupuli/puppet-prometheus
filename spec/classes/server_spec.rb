@@ -9,7 +9,7 @@ describe 'prometheus::server' do
         facts.merge(os_specific_facts(facts))
       end
 
-      parameters = { version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', init_style: 'systemd', configname: 'prometheus.yaml' }
+      parameters = { version: '2.52.0', bin_dir: '/usr/local/bin', install_method: 'url', init_style: 'systemd', configname: 'prometheus.yaml' }
 
       context "with parameters #{parameters}" do
         let(:params) do

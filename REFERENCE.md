@@ -161,14 +161,10 @@ The following parameters are available in the `prometheus` class:
 * [`alert_resend_delay`](#-prometheus--alert_resend_delay)
 * [`alertmanager_notification_queue_capacity`](#-prometheus--alertmanager_notification_queue_capacity)
 * [`alertmanager_timeout`](#-prometheus--alertmanager_timeout)
-* [`alertmanager_url`](#-prometheus--alertmanager_url)
 * [`query_lookback_delta`](#-prometheus--query_lookback_delta)
 * [`query_timeout`](#-prometheus--query_timeout)
 * [`query_max_concurrency`](#-prometheus--query_max_concurrency)
 * [`query_max_samples`](#-prometheus--query_max_samples)
-* [`query_staleness_delta`](#-prometheus--query_staleness_delta)
-* [`web_telemetry_path`](#-prometheus--web_telemetry_path)
-* [`web_enable_remote_shutdown`](#-prometheus--web_enable_remote_shutdown)
 * [`log_level`](#-prometheus--log_level)
 * [`log_format`](#-prometheus--log_format)
 * [`config_show_diff`](#-prometheus--config_show_diff)
@@ -260,7 +256,7 @@ Data type: `String`
 
 Prometheus release
 
-Default value: `'2.30.3'`
+Default value: `'2.52.0'`
 
 ##### <a name="-prometheus--install_method"></a>`install_method`
 
@@ -490,7 +486,7 @@ Default value: `{}`
 
 ##### <a name="-prometheus--alerts"></a>`alerts`
 
-Data type: `Variant[Array,Hash]`
+Data type: `Hash`
 
 alert rules to put in alerts.rules
 
@@ -792,16 +788,6 @@ Timeout for sending alerts to Alertmanager.
 
 Default value: `undef`
 
-##### <a name="-prometheus--alertmanager_url"></a>`alertmanager_url`
-
-Data type: `Optional[String[1]]`
-
-[REMOVED, v1 ONLY] -alertmanager.url
-Comma-separated list of Alertmanager URLs to send notifications to.
-In Prometheus v2, Alertmanager must be discovered via service discovery
-
-Default value: `undef`
-
 ##### <a name="-prometheus--query_lookback_delta"></a>`query_lookback_delta`
 
 Data type: `Optional[String[1]]`
@@ -837,43 +823,16 @@ Data type: `Optional[String[1]]`
 Maximum number of samples a single query can load into memory. Note that queries will fail
 if they try to load more samples than this into memory, so this also limits the number of
 samples a query can return.
-
-Default value: `undef`
-
-##### <a name="-prometheus--query_staleness_delta"></a>`query_staleness_delta`
-
-Data type: `Optional[String[1]]`
-
-[REMOVED, v1 ONLY] -query.staleness-delta=5m0s
-Staleness delta allowance during expression evaluations.
-
-Default value: `undef`
-
-##### <a name="-prometheus--web_telemetry_path"></a>`web_telemetry_path`
-
-Data type: `Optional[String[1]]`
-
-[REMOVED, v1 ONLY] -web.telemetry-path="/metrics"
-Path under which to expose metrics
-
-Default value: `undef`
-
-##### <a name="-prometheus--web_enable_remote_shutdown"></a>`web_enable_remote_shutdown`
-
-Data type: `Boolean`
-
-[REMOVED, v1 ONLY] -web.enable-remote-shutdown=false
 Enable remote service shutdown.
 
-Default value: `false`
+Default value: `undef`
 
 ##### <a name="-prometheus--log_level"></a>`log_level`
 
-Data type: `Optional[Enum['debug', 'info', 'warn', 'error', 'fatal']]`
+Data type: `Optional[Enum['debug', 'info', 'warn', 'error']]`
 
 --log.level=info
 Only log messages with the given severity or above. One of: [debug, info, warn, error]
-Value of 'fatal' is also allowed in prometheus v1
 
 Default value: `undef`
 
@@ -14647,9 +14606,9 @@ The following parameters are available in the `prometheus::alerts` defined type:
 
 ##### <a name="-prometheus--alerts--alerts"></a>`alerts`
 
-Data type: `Variant[Array,Hash]`
+Data type: `Hash`
 
-Array (< prometheus 2.0.0) or Hash (>= prometheus 2.0.0) of alerts (see README).
+alert definitions
 
 ##### <a name="-prometheus--alerts--location"></a>`location`
 

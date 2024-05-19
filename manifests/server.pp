@@ -57,13 +57,8 @@ class prometheus::server (
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = $prometheus::proxy_type,
   Boolean $manage_init_file                                                     = $prometheus::manage_init_file,
 ) inherits prometheus {
-  if( versioncmp($version, '1.0.0') == -1 ) {
-    $real_download_url = pick($download_url,
-    "${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
-  } else {
-    $real_download_url = pick($download_url,
-    "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
-  }
+  $real_download_url = pick($download_url,
+  "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
