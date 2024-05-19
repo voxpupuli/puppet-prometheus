@@ -24,8 +24,6 @@ describe 'prometheus::smartctl_exporter' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_file('/usr/local/bin/smartctl_exporter').with('target' => '/opt/smartctl_exporter-0.12.0.linux-amd64/smartctl_exporter') }
           it { is_expected.to contain_prometheus__daemon('smartctl_exporter') }
-          it { is_expected.to contain_user('root') }
-          it { is_expected.to contain_group('root') }
           it { is_expected.to contain_service('smartctl_exporter') }
         end
 
