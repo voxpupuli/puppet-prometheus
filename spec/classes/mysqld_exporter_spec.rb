@@ -11,7 +11,7 @@ describe 'prometheus::mysqld_exporter' do
 
       context 'default' do
         describe 'options is correct' do
-          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '--config.my-cnf=/etc/.my.cnf') }
+          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '--config.my-cnf=/etc/mysqld_exporter-my.cnf') }
         end
       end
 
@@ -23,7 +23,7 @@ describe 'prometheus::mysqld_exporter' do
         end
 
         describe 'options is correct' do
-          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '-config.my-cnf=/etc/.my.cnf') }
+          it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with('options' => '-config.my-cnf=/etc/mysqld_exporter-my.cnf') }
         end
       end
 
@@ -35,7 +35,7 @@ describe 'prometheus::mysqld_exporter' do
         end
 
         it do
-          content = catalogue.resource('file', '/etc/.my.cnf').send(:parameters)[:content]
+          content = catalogue.resource('file', '/etc/mysqld_exporter-my.cnf').send(:parameters)[:content]
           expect(content).to include('secret')
         end
       end
@@ -55,7 +55,7 @@ describe 'prometheus::mysqld_exporter' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_file('/etc/mysqld_exporter_web-config.yml').with(ensure: 'file') }
 
-        it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with(options: '--config.my-cnf=/etc/.my.cnf --web.config.file=/etc/mysqld_exporter_web-config.yml') }
+        it { is_expected.to contain_prometheus__daemon('mysqld_exporter').with(options: '--config.my-cnf=/etc/mysqld_exporter-my.cnf --web.config.file=/etc/mysqld_exporter_web-config.yml') }
       end
     end
   end

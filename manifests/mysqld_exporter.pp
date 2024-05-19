@@ -78,7 +78,7 @@ class prometheus::mysqld_exporter (
   String[1] $service_name,
   String[1] $user,
   String[1] $version,
-  Stdlib::Absolutepath $cnf_config_path                      = '/etc/.my.cnf',
+  Stdlib::Absolutepath $cnf_config_path                      = '/etc/mysqld_exporter-my.cnf',
   Stdlib::Host $cnf_host                                     = localhost,
   Stdlib::Port $cnf_port                                     = 3306,
   String[1] $cnf_user                                        = login,
