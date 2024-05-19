@@ -49,6 +49,7 @@
 * [`prometheus::run_service`](#prometheus--run_service): This class is meant to be called from prometheus. It ensure the service is running
 * [`prometheus::sachet`](#prometheus--sachet): This module manages prometheus sachet (https://github.com/messagebird/sachet)
 * [`prometheus::server`](#prometheus--server): class to manage the actual prometheus server. This class gets called from the init.pp
+* [`prometheus::smartctl_exporter`](#prometheus--smartctl_exporter): This module manages prometheus node smartctl_exporter
 * [`prometheus::snmp_exporter`](#prometheus--snmp_exporter): This module manages prometheus snmp_exporter
 * [`prometheus::ssh_exporter`](#prometheus--ssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
 * [`prometheus::ssl_exporter`](#prometheus--ssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
@@ -12166,6 +12167,403 @@ Data type: `Boolean`
 
 
 Default value: `$prometheus::manage_init_file`
+
+### <a name="prometheus--smartctl_exporter"></a>`prometheus::smartctl_exporter`
+
+This module manages prometheus node smartctl_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::smartctl_exporter` class:
+
+* [`arch`](#-prometheus--smartctl_exporter--arch)
+* [`bin_dir`](#-prometheus--smartctl_exporter--bin_dir)
+* [`smartctl_path`](#-prometheus--smartctl_exporter--smartctl_path)
+* [`smartctl_interval`](#-prometheus--smartctl_exporter--smartctl_interval)
+* [`smartctl_rescan`](#-prometheus--smartctl_exporter--smartctl_rescan)
+* [`smartctl_device`](#-prometheus--smartctl_exporter--smartctl_device)
+* [`smartctl_device_exclude`](#-prometheus--smartctl_exporter--smartctl_device_exclude)
+* [`smartctl_device_include`](#-prometheus--smartctl_exporter--smartctl_device_include)
+* [`web_telemetry_path`](#-prometheus--smartctl_exporter--web_telemetry_path)
+* [`web_systemd_socket`](#-prometheus--smartctl_exporter--web_systemd_socket)
+* [`web_listen_address`](#-prometheus--smartctl_exporter--web_listen_address)
+* [`web_config_file`](#-prometheus--smartctl_exporter--web_config_file)
+* [`web_config_content`](#-prometheus--smartctl_exporter--web_config_content)
+* [`log_level`](#-prometheus--smartctl_exporter--log_level)
+* [`log_format`](#-prometheus--smartctl_exporter--log_format)
+* [`download_extension`](#-prometheus--smartctl_exporter--download_extension)
+* [`download_url`](#-prometheus--smartctl_exporter--download_url)
+* [`download_url_base`](#-prometheus--smartctl_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--smartctl_exporter--extra_groups)
+* [`group`](#-prometheus--smartctl_exporter--group)
+* [`init_style`](#-prometheus--smartctl_exporter--init_style)
+* [`install_method`](#-prometheus--smartctl_exporter--install_method)
+* [`manage_group`](#-prometheus--smartctl_exporter--manage_group)
+* [`manage_service`](#-prometheus--smartctl_exporter--manage_service)
+* [`manage_user`](#-prometheus--smartctl_exporter--manage_user)
+* [`os`](#-prometheus--smartctl_exporter--os)
+* [`package_ensure`](#-prometheus--smartctl_exporter--package_ensure)
+* [`package_name`](#-prometheus--smartctl_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--smartctl_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--smartctl_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--smartctl_exporter--service_enable)
+* [`service_ensure`](#-prometheus--smartctl_exporter--service_ensure)
+* [`service_name`](#-prometheus--smartctl_exporter--service_name)
+* [`user`](#-prometheus--smartctl_exporter--user)
+* [`version`](#-prometheus--smartctl_exporter--version)
+* [`proxy_server`](#-prometheus--smartctl_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--smartctl_exporter--proxy_type)
+* [`options`](#-prometheus--smartctl_exporter--options)
+* [`export_scrape_job`](#-prometheus--smartctl_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--smartctl_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--smartctl_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--smartctl_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--smartctl_exporter--scrape_job_labels)
+
+##### <a name="-prometheus--smartctl_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (See supported archictectures at https://github.com/prometheus-community/smartctl_exporter/releases)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--smartctl_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_path"></a>`smartctl_path`
+
+Data type: `Optional[String[1]]`
+
+Directory where smartctl binary is located, default /usr/sbin/smartctl
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_interval"></a>`smartctl_interval`
+
+Data type: `Optional[String[1]]`
+
+The interval between smartctl polls, default 60s
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_rescan"></a>`smartctl_rescan`
+
+Data type: `Optional[String[1]]`
+
+The interval between rescanning for new/disappeared devices. If the interval is smaller than 1s no rescanning takes place.
+If any devices are configured with smartctl.device also no rescanning takes place. Default 10m
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_device"></a>`smartctl_device`
+
+Data type: `Array[String[1]]`
+
+The list of devices to monitor. If not supplied, the exporter will scan the host for available devices.
+
+Default value: `[]`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_device_exclude"></a>`smartctl_device_exclude`
+
+Data type: `Optional[String[1]]`
+
+Regexp of devices to exclude from automatic scanning. (mutually exclusive to device-include)
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--smartctl_device_include"></a>`smartctl_device_include`
+
+Data type: `Optional[String[1]]`
+
+Regexp of devices to include for automatic scanning. (mutually exclusive to device-exclude)
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--web_telemetry_path"></a>`web_telemetry_path`
+
+Data type: `Optional[String[1]]`
+
+Path under which to expose metrics. Default is /metrics
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--web_systemd_socket"></a>`web_systemd_socket`
+
+Data type: `Optional[String[1]]`
+
+Use systemd socket activation listeners instead of port listeners (Linux only).
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--web_listen_address"></a>`web_listen_address`
+
+Data type: `Array[String[1]]`
+
+Addresses on which to expose metrics and web interface. Repeatable for multiple addresses. Defaults to :9633
+
+Default value: `[]`
+
+##### <a name="-prometheus--smartctl_exporter--web_config_file"></a>`web_config_file`
+
+Data type: `Stdlib::Absolutepath`
+
+[EXPERIMENTAL] Path to configuration file that can enable TLS or authentication.
+
+Default value: `'/etc/smartctl_exporter_web-config.yml'`
+
+##### <a name="-prometheus--smartctl_exporter--web_config_content"></a>`web_config_content`
+
+Data type: `Optional[Hash]`
+
+Unless empty the content of the web-config yaml which will handed over as option to the exporter
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--log_level"></a>`log_level`
+
+Data type: `Optional[Enum['debug','info','warn','error']]`
+
+Only log messages with the given severity or above. One of: [debug, info, warn, error]. Default info
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--log_format"></a>`log_format`
+
+Data type: `Optional[Enum['logfmt','json']]`
+
+Output format of log messages. One of: [logfmt, json]. Default logfmt
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--smartctl_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/prometheus-community/smartctl_exporter/releases'`
+
+##### <a name="-prometheus--smartctl_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--smartctl_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running. Default 'root' (or 'wheel' on Darwin), unlikely to work without root.
+
+Default value: `'root'`
+
+##### <a name="-prometheus--smartctl_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--smartctl_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--smartctl_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that. Default false due to script needing root.
+
+Default value: `false`
+
+##### <a name="-prometheus--smartctl_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--smartctl_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that. Default false due to script needing root.
+
+Default value: `false`
+
+##### <a name="-prometheus--smartctl_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--smartctl_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="-prometheus--smartctl_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'smartctl_exporter'`
+
+##### <a name="-prometheus--smartctl_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--smartctl_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--smartctl_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--smartctl_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--smartctl_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'smartctl_exporter')
+
+Default value: `'smartctl_exporter'`
+
+##### <a name="-prometheus--smartctl_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service (default 'root', unlikely to work without root)
+
+Default value: `'root'`
+
+##### <a name="-prometheus--smartctl_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'0.12.0'`
+
+##### <a name="-prometheus--smartctl_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--options"></a>`options`
+
+Data type: `String`
+
+
+
+Default value: `''`
+
+##### <a name="-prometheus--smartctl_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--smartctl_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--smartctl_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9633`
+
+##### <a name="-prometheus--smartctl_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'smartctl'`
+
+##### <a name="-prometheus--smartctl_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
 
 ### <a name="prometheus--snmp_exporter"></a>`prometheus::snmp_exporter`
 
