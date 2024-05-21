@@ -13287,7 +13287,7 @@ Name of the statsd exporter service (default 'statsd_exporter')
 
 ##### <a name="-prometheus--statsd_exporter--mappings"></a>`mappings`
 
-Data type: `Array[Hash]`
+Data type: `Optional[Array[Hash]]`
 
 The hiera array for mappings:
   - map: 'test.dispatcher.*.*.*'
@@ -13295,6 +13295,8 @@ The hiera array for mappings:
     labels:
       processor: '$2'
       action: '$1'
+
+Default value: `undef`
 
 ##### <a name="-prometheus--statsd_exporter--user"></a>`user`
 
