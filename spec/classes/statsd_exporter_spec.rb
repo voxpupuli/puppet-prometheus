@@ -104,9 +104,8 @@ describe 'prometheus::statsd_exporter' do
         end
 
         describe 'not install config' do
-          it { should_not contain_file('/etc/statsd-exporter-mapping.yaml') }
+          it { is_expected.not_to contain_file('/etc/statsd-exporter-mapping.yaml') }
         end
-
       end
 
       context 'with older version that does not support posix like option flags specified' do
