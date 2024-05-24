@@ -5,6 +5,6 @@ file_line { '/etc/hosts-squid':
 
 if $facts['os']['family'] == 'Debian' {
   package { 'apt-transport-https':
-    ensure => 'installed'
+    ensure => 'installed',
   }
 }
