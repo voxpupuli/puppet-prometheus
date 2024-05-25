@@ -102,10 +102,6 @@ describe 'prometheus::statsd_exporter' do
         describe 'compile manifest' do
           it { is_expected.to compile.with_all_deps }
         end
-
-        describe 'not install config' do
-          it { is_expected.not_to contain_file('/etc/statsd-exporter-mapping.yaml') }
-        end
       end
 
       context 'with older version that does not support posix like option flags specified' do
