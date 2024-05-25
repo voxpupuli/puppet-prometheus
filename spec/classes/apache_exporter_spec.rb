@@ -11,13 +11,7 @@ describe 'prometheus::apache_exporter' do
 
       context 'with all defaults' do
         it { is_expected.to compile.with_all_deps }
-
-        if facts[:os]['release']['major'].to_i == 6
-          it { is_expected.to contain_file('/etc/init.d/apache_exporter') }
-        else
-          it { is_expected.to contain_systemd__unit_file('apache_exporter.service') }
-        end
-
+        it { is_expected.to contain_systemd__unit_file('apache_exporter.service') }
         it { is_expected.not_to contain_package('apache-exporter') }
         it { is_expected.to contain_archive('/tmp/apache_exporter-0.8.0.tar.gz') }
         it { is_expected.to contain_file('/opt/apache_exporter-0.8.0.linux-amd64/apache_exporter') }
