@@ -15,7 +15,7 @@ describe 'prometheus' do
                      '/etc/prometheus/prometheus.yaml'
                    end
 
-      [{ manage_prometheus_server: true, version: '2.0.0-rc.1', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'], proxy_server: 'proxy.test', proxy_type: 'https' }].each do |parameters|
+      [{ manage_prometheus_server: true, version: '2.52.0', bin_dir: '/usr/local/bin', install_method: 'url', rule_files: ['/etc/prometheus/rules.d/*.rules'], proxy_server: 'proxy.test', proxy_type: 'https' }].each do |parameters|
         context "with parameters #{parameters}" do
           let(:params) do
             parameters
@@ -200,7 +200,7 @@ describe 'prometheus' do
         let :params do
           {
             manage_prometheus_server: true,
-            version: '2.0.0-rc.1',
+            version: '2.52.0',
             rule_files: ['/etc/prometheus/rules.d/*.rules'],
             init_style: 'systemd'
           }
@@ -217,7 +217,7 @@ describe 'prometheus' do
         [
           {
             manage_prometheus_server: true,
-            version: '2.0.0-rc.1',
+            version: '2.52.0',
             install_method: 'url',
             alerts: {
               'groups' => [{
@@ -265,7 +265,7 @@ describe 'prometheus' do
         [
           {
             manage_prometheus_server: true,
-            version: '2.0.0-rc.1',
+            version: '2.52.0',
             remote_write_configs: [
               'url' => 'http://domain.tld/path'
             ]
@@ -299,7 +299,7 @@ describe 'prometheus' do
             manage_config: false
           },
           {
-            version: '2.0.0-rc.1',
+            version: '2.52.0',
             manage_config: false
           }
         ].each do |parameters|
@@ -446,72 +446,6 @@ describe 'prometheus' do
                 'owner' => 'root',
                 'group' => 'root',
                 'content' => File.read(fixtures('files/cli', 'prometheus2_6_retention.systemd'))
-              )
-            }
-          end
-        end
-
-        context 'prometheus v1' do
-          version = '1.7.0'
-          context 'with extra args write-in', if: facts[:service_provider] == 'systemd' do
-            let(:params) do
-              {
-                manage_prometheus_server: true,
-                version: version,
-                init_style: 'systemd',
-                bin_dir: '/usr/local/bin',
-                extra_options: '-web.telemetry-path=/metrics'
-              }
-            end
-
-            it {
-              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure' => 'file',
-                'mode' => '0444',
-                'owner' => 'root',
-                'group' => 'root',
-                'content' => File.read(fixtures('files/cli', 'prometheus1_extra.systemd'))
-              )
-            }
-          end
-
-          context 'with all valid params', if: facts[:service_provider] == 'systemd' do
-            let(:params) do
-              {
-                manage_prometheus_server: true,
-                version: version,
-                init_style: 'systemd',
-                bin_dir: '/usr/local/bin',
-                config_dir: '/etc/prometheus',
-                configname: 'prometheus_123.yaml',
-                shared_dir: '/opt/prometheus',
-                external_url: 'https://prometheus.reverse-proxy.company.systems',
-                web_listen_address: '127.0.0.1:9099',
-                web_read_timeout: '2m',
-                web_max_connections: '256',
-                web_route_prefix: 'internal',
-                web_user_assets: 'static',
-                web_telemetry_path: '/telemetry',
-                web_enable_remote_shutdown: true,
-                localstorage: '/opt/prometheus/data/',
-                storage_retention: '14d',
-                alertmanager_notification_queue_capacity: '10000',
-                alertmanager_timeout: '10s',
-                alertmanager_url: 'https://alertmanager.company.systems',
-                query_timeout: '2m',
-                query_max_concurrency: '30',
-                query_staleness_delta: '5m',
-                log_level: 'fatal'
-              }
-            end
-
-            it {
-              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
-                'ensure' => 'file',
-                'mode' => '0444',
-                'owner' => 'root',
-                'group' => 'root',
-                'content' => File.read(fixtures('files/cli', 'prometheus1_all.systemd'))
               )
             }
           end

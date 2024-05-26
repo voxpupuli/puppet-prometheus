@@ -183,10 +183,6 @@
 # @param alertmanager_timeout
 #  --alertmanager.timeout=10s
 #  Timeout for sending alerts to Alertmanager.
-# @param alertmanager_url
-#  [REMOVED, v1 ONLY] -alertmanager.url
-#  Comma-separated list of Alertmanager URLs to send notifications to.
-#  In Prometheus v2, Alertmanager must be discovered via service discovery
 # @param query_lookback_delta
 #  --query.lookback-delta=5m
 #  The maximum lookback duration for retrieving metrics during expression evaluations.
@@ -201,19 +197,10 @@
 #  Maximum number of samples a single query can load into memory. Note that queries will fail
 #  if they try to load more samples than this into memory, so this also limits the number of
 #  samples a query can return.
-# @param query_staleness_delta
-#  [REMOVED, v1 ONLY] -query.staleness-delta=5m0s
-#  Staleness delta allowance during expression evaluations.
-# @param web_telemetry_path
-#  [REMOVED, v1 ONLY] -web.telemetry-path="/metrics"
-#  Path under which to expose metrics
-# @param web_enable_remote_shutdown
-#  [REMOVED, v1 ONLY] -web.enable-remote-shutdown=false
 #  Enable remote service shutdown.
 # @param log_level
 #  --log.level=info
 #  Only log messages with the given severity or above. One of: [debug, info, warn, error]
-#  Value of 'fatal' is also allowed in prometheus v1
 # @param log_format
 #  --log.format=logfmt
 #  Output format of log messages. One of: [logfmt, json]
@@ -248,13 +235,13 @@ class prometheus (
   String $config_dir = '/etc/prometheus',
   Boolean $manage_config_dir = true,
   Boolean $manage_init_file = true,
-  Variant[Array,Hash] $alerts = {},
+  Hash $alerts = {},
   Boolean $manage_config = true,
   String $group = 'prometheus',
   Stdlib::Absolutepath $localstorage = '/var/lib/prometheus',
   Boolean $manage_localstorage                                                  = true,
   Stdlib::Absolutepath $bin_dir                                                 = '/usr/local/bin',
-  String $version                                                               = '2.30.3',
+  String $version                                                               = '2.52.0',
   String $install_method                                                        = 'url',
   String $service_name                                                          = 'prometheus',
   Boolean $manage_prometheus_server                                             = false,
@@ -284,15 +271,11 @@ class prometheus (
   Optional[String[1]] $alert_resend_delay                                       = undef,
   Optional[String[1]] $alertmanager_notification_queue_capacity                 = undef,
   Optional[String[1]] $alertmanager_timeout                                     = undef,
-  Optional[String[1]] $alertmanager_url                                         = undef, #v1 only
   Optional[String[1]] $query_lookback_delta                                     = undef,
   Optional[String[1]] $query_timeout                                            = undef,
   Optional[String[1]] $query_max_concurrency                                    = undef,
   Optional[String[1]] $query_max_samples                                        = undef,
-  Optional[String[1]] $query_staleness_delta                                    = undef, #v1 only
-  Optional[String[1]] $web_telemetry_path                                       = undef, #v1 only
-  Boolean $web_enable_remote_shutdown                                           = false, #v1 only
-  Optional[Enum['debug', 'info', 'warn', 'error', 'fatal']] $log_level          = undef,
+  Optional[Enum['debug', 'info', 'warn', 'error']] $log_level                   = undef,
   Optional[Enum['logfmt', 'json']] $log_format                                  = undef,
   Hash $extra_alerts                                                            = {},
   Hash $config_hash                                                             = {},
