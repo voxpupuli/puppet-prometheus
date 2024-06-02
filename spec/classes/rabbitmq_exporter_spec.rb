@@ -34,6 +34,21 @@ describe 'prometheus::rabbitmq_exporter' do
           it { is_expected.to contain_group('rabbitmq-exporter') }
           it { is_expected.to contain_service('rabbitmq_exporter') }
         end
+
+        describe 'create env_var file' do
+          it 'sets publish_port env_var to scrape_port value' do
+            rabbitmq_env = if facts[:os]['family'] == 'RedHat'
+                             catalogue.resource('File', '/etc/sysconfig/rabbitmq_exporter').send(:parameters)[:content]
+                           elsif facts[:os]['name'] == 'Archlinux'
+                             catalogue.resource('File', '/etc/conf.d/rabbitmq_exporter').send(:parameters)[:content]
+                           elsif facts[:os]['name'] == 'Darwin'
+                             catalogue.resource('File', '/etc/rabbitmq_exporter').send(:parameters)[:content]
+                           else
+                             catalogue.resource('File', '/etc/default/rabbitmq_exporter').send(:parameters)[:content]
+                           end
+            expect(rabbitmq_env).to include('PUBLISH_PORT="9419"')
+          end
+        end
       end
     end
   end
