@@ -10958,7 +10958,7 @@ Data type: `Stdlib::Port`
 
 
 
-Default value: `9090`
+Default value: `9419`
 
 ##### <a name="-prometheus--rabbitmq_exporter--scrape_job_name"></a>`scrape_job_name`
 
