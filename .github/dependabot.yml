@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "renovatebot/github-action"
+    ignore:
+      - dependency-name: 'actions/checkout'
+      - dependency-name: 'ruby/setup-ruby'
+      - dependency-name: 'voxpupuli/gha-puppet'
