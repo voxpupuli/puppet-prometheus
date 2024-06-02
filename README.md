@@ -100,7 +100,7 @@ or:
 
 ```puppet
 class { 'prometheus::node_exporter':
-  version            => '0.12.0',
+  version            => '0.27.0',
   collectors_disable => ['loadavg', 'mdadm'],
 }
 ```
