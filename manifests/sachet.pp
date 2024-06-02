@@ -93,6 +93,7 @@ class prometheus::sachet (
   String[1] $package_ensure                                  = 'latest',
   String[1] $package_name                                    = 'sachet',
   String[1] $user                                            = 'sachet',
+  # renovate: depName=messagebird/sachet
   String[1] $version                                         = '0.2.6',
   Array $receivers                                           = [],
   Hash $providers                                            = {},

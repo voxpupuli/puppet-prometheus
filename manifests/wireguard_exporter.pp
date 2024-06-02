@@ -33,6 +33,7 @@ class prometheus::wireguard_exporter (
   String[1] $package_ensure = 'installed',
   String[1] $package_name = 'prometheus-wireguard-exporter',
   String[1] $user = 'wireguard_exporter',
+  # renovate: depName=MindFlavor/prometheus_wireguard_exporter
   String[1] $version = '3.6.6',
   Boolean $purge_config_dir = true,
   Boolean $restart_on_change = true,
