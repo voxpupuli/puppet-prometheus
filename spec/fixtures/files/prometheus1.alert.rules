@@ -1,9 +1,0 @@
-ALERT alert_name
-    IF up == 0
-    FOR 5min
-    LABELS {
-            severity = "woops",
-        }
-    ANNOTATIONS {
-            summary = "did a woops {{ $labels.instance }}",
-        }

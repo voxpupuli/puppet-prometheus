@@ -171,6 +171,9 @@ The following parameters are available in the `prometheus` class:
 * [`extra_groups`](#-prometheus--extra_groups)
 * [`proxy_server`](#-prometheus--proxy_server)
 * [`proxy_type`](#-prometheus--proxy_type)
+* [`systemd_service_options`](#-prometheus--systemd_service_options)
+* [`systemd_unit_options`](#-prometheus--systemd_unit_options)
+* [`systemd_install_options`](#-prometheus--systemd_install_options)
 * [`env_file_path`](#-prometheus--env_file_path)
 * [`manage_config_dir`](#-prometheus--manage_config_dir)
 * [`manage_init_file`](#-prometheus--manage_init_file)
@@ -876,6 +879,33 @@ Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
+
+##### <a name="-prometheus--systemd_service_options"></a>`systemd_service_options`
+
+Data type: `Systemd::Unit::Service`
+
+Options for the service section of prometheus systemd unit file. Can be used to add custom options
+or to override default. Only used when init_style is set to systemd.
+
+Default value: `{}`
+
+##### <a name="-prometheus--systemd_unit_options"></a>`systemd_unit_options`
+
+Data type: `Systemd::Unit::Unit`
+
+Options for the unit section of prometheus systemd unit file. Can be used to add custom options
+or to override default. Only used when init_style is set to systemd.
+
+Default value: `{}`
+
+##### <a name="-prometheus--systemd_install_options"></a>`systemd_install_options`
+
+Data type: `Systemd::Unit::Install`
+
+Options for the install section of prometheus systemd unit file. Can be used to add custom options
+or to override default. Only used when init_style is set to systemd.
+
+Default value: `{}`
 
 ##### <a name="-prometheus--env_file_path"></a>`env_file_path`
 

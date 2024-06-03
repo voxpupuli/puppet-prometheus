@@ -124,15 +124,42 @@ class prometheus::config {
         }
       }
       'systemd': {
-        systemd::unit_file { 'prometheus.service':
-          content => epp("${module_name}/prometheus.systemd.epp", {
-              'user'           => $prometheus::server::user,
-              'group'          => $prometheus::server::group,
-              'daemon_flags'   => $daemon_flags,
-              'max_open_files' => $max_open_files,
-              'bin_dir'        => $prometheus::server::bin_dir,
-          }),
-          notify  => $notify,
+        if $max_open_files {
+          $systemd_service_options = $prometheus::systemd_service_options + { 'LimitNOFILE' => $max_open_files }
+        } else {
+          $systemd_service_options = $prometheus::systemd_service_options
+        }
+        systemd::manage_unit { 'prometheus.service':
+          unit_entry    => {
+            'Description' => 'Prometheus Monitoring framework',
+            'Wants'       => 'basic.target',
+            'After'       => ['basic.target', 'network.target'],
+          } + $prometheus::systemd_unit_options,
+          service_entry => {
+            'User'                   => $prometheus::server::user,
+            'Group'                  => $prometheus::server::group,
+            'ExecStart'              => sprintf('%s/prometheus %s', $prometheus::server::bin_dir,  $daemon_flags.join(' ')),
+            'ExecReload'             => '/bin/kill -HUP $MAINPID',
+            'KillMode'               => 'process',
+            'Restart'                => 'always',
+            'NoNewPrivileges'        => true,
+            'ProtectHome'            => true,
+            'ProtectSystem'          => 'full',
+            'ProtectHostname'        => true,
+            'ProtectControlGroups'   => true,
+            'ProtectKernelModules'   => true,
+            'ProtectKernelTunables'  => true,
+            'LockPersonality'        => true,
+            'RestrictRealtime'       => true,
+            'RestrictNamespaces'     => true,
+            'MemoryDenyWriteExecute' => true,
+            'PrivateDevices'         => true,
+            'CapabilityBoundingSet'  => '',
+          } + $systemd_service_options,
+          install_entry => {
+            'WantedBy' => 'multi-user.target',
+          } + $prometheus::systemd_install_options,
+          notify        => $notify,
         }
       }
       'sysv', 'sles': {
