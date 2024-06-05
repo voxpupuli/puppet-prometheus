@@ -14,9 +14,10 @@ jobs:
     timeout-minutes: 40
     outputs:
       puppet_unit_test_matrix: ${{ steps.get-outputs.outputs.puppet_unit_test_matrix }}
-      github_action_test_matrix: ${{ steps.get-outputs.outputs.github_action_test_matrix }}
+      puppet_beaker_test_matrix: ${{ steps.get-outputs.outputs.puppet_beaker_test_matrix }}
     env:
       BUNDLE_WITHOUT: development:system_tests:release
+      PUPPET_GEM_VERSION: ">= 7.0"
     steps:
       - uses: actions/checkout@v4
       - name: Setup ruby
@@ -63,7 +64,7 @@ jobs:
       fail-fast: false
       matrix:
         include: ${{fromJson(needs.setup_matrix.outputs.puppet_beaker_test_matrix)}}
-    name: ${{ matrix.puppet.name }} - ${{ matrix.setfile.name }}
+    name: "${{ matrix.name }}"
     steps:
       - uses: actions/checkout@v4
       - name: Setup ruby
@@ -75,9 +76,7 @@ jobs:
         run: ./scripts/start-squid.sh
       - name: Run tests
         run: bundle exec rake beaker
-        env:
-          BEAKER_PUPPET_COLLECTION: ${{ matrix.puppet.collection }}
-          BEAKER_setfile: ${{ matrix.setfile.value }}
+        env: ${{ matrix.env }}
       - name: squid logs
         run: docker logs squid --tail 50
         if: always()
