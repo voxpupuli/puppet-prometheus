@@ -102,7 +102,7 @@ describe 'prometheus::daemon' do
             ).with_content(
               %r{User=smurf_user\n}
             ).with_content(
-              %r{ExecStart=/usr/local/bin/smurf_exporter\n\nExecReload=}
+              %r{ExecStart=/usr/local/bin/smurf_exporter \nExecReload=}
             )
           }
 
@@ -114,6 +114,18 @@ describe 'prometheus::daemon' do
             it {
               expect(subject).to contain_systemd__unit_file('smurf_exporter.service').with_content(
                 %r{ExecStart=/usr/local/bin/notsmurf_exporter}
+              )
+            }
+          end
+
+          context 'with options' do
+            let(:params) do
+              super().merge(options: '--foo bar')
+            end
+
+            it {
+              expect(subject).to contain_systemd__unit_file('smurf_exporter.service').with_content(
+                %r{ExecStart=/usr/local/bin/smurf_exporter --foo bar}
               )
             }
           end

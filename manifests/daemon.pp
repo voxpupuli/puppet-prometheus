@@ -188,9 +188,25 @@ define prometheus::daemon (
     }
     'systemd': {
       include 'systemd'
-      systemd::unit_file { "${name}.service":
-        content => template('prometheus/daemon.systemd.erb'),
-        notify  => $notify_service,
+      systemd::manage_unit { "${name}.service":
+        unit_entry    => {
+          'Description' => "Prometheus ${name}",
+          'Wants'       => 'network-online.target',
+          'After'       => 'network-online.target',
+        },
+        service_entry => {
+          'User'            => $user,
+          'Group'           => $group,
+          'EnvironmentFile' => "-${env_file_path}/${name}",
+          'ExecStart'       => sprintf('%s/%s %s', $bin_dir, $bin_name, $options),
+          'ExecReload'      => '/bin/kill -HUP $MAINPID',
+          'KillMode'        => 'process',
+          'Restart'         => 'always',
+        },
+        install_entry => {
+          'WantedBy' => 'multi-user.target',
+        },
+        notify        => $notify_service,
       }
     }
     'sysv': {

@@ -118,7 +118,8 @@ describe 'prometheus' do
             }
 
             it {
-              expect(subject).to contain_systemd__unit_file('prometheus.service').with(
+              expect(subject).to contain_systemd__unit_file('prometheus.service')
+              expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
                 'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
               )
             }
@@ -290,6 +291,27 @@ describe 'prometheus' do
             }
           end
         end
+      end
+
+      context 'with systemd options set' do
+        let(:params) do
+          {
+            manage_prometheus_server: true,
+            version: '2.52.0',
+            systemd_service_options: { 'DevicePolicy' => 'auto' },
+            systemd_unit_options: { 'RefuseManualStart' => true },
+            systemd_install_options: { 'Alias' => 'foobar.service' }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+
+        it {
+          is_expected.to contain_file('/etc/systemd/system/prometheus.service').
+            with_content(%r{DevicePolicy=auto}).
+            with_content(%r{RefuseManualStart=true}).
+            with_content(%r{Alias=foobar.service})
+        }
       end
 
       context 'with manage_config => false' do

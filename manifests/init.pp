@@ -211,6 +211,15 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param systemd_service_options
+#  Options for the service section of prometheus systemd unit file. Can be used to add custom options
+#  or to override default. Only used when init_style is set to systemd.
+# @param systemd_unit_options
+#  Options for the unit section of prometheus systemd unit file. Can be used to add custom options
+#  or to override default. Only used when init_style is set to systemd.
+# @param systemd_install_options
+#  Options for the install section of prometheus systemd unit file. Can be used to add custom options
+#  or to override default. Only used when init_style is set to systemd.
 class prometheus (
   Stdlib::Absolutepath $env_file_path,
   Array $extra_groups = [],
@@ -285,6 +294,9 @@ class prometheus (
   Array[Hash[String[1], Any]] $collect_scrape_jobs                              = [],
   Optional[String[1]] $collect_tag                                              = undef,
   Optional[Integer] $max_open_files                                             = undef,
+  Systemd::Unit::Service $systemd_service_options                               = {},
+  Systemd::Unit::Unit $systemd_unit_options                                     = {},
+  Systemd::Unit::Install $systemd_install_options                               = {},
   String[1] $configname                                                         = 'prometheus.yaml',
   Boolean $service_enable                                                       = true,
   Boolean $manage_service                                                       = true,
