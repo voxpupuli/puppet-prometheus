@@ -4,6 +4,59 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [Unreleased](https://github.com/voxpupuli/puppet-prometheus/tree/HEAD)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v14.0.0...HEAD)
+
+**Breaking changes:**
+
+- Remove support for alertmanager \< 0.13.0 [\#720](https://github.com/voxpupuli/puppet-prometheus/issues/720)
+- Remove prometheus 1.x support [\#718](https://github.com/voxpupuli/puppet-prometheus/issues/718)
+- drop suport for redis\_exporter \< 1.0.0 [\#732](https://github.com/voxpupuli/puppet-prometheus/pull/732) ([TheMeier](https://github.com/TheMeier))
+- drop support for alertmanager \< 0.13.0 [\#731](https://github.com/voxpupuli/puppet-prometheus/pull/731) ([TheMeier](https://github.com/TheMeier))
+- drop support for prometheus 1.x, update prometheus version to 2.52.0 [\#728](https://github.com/voxpupuli/puppet-prometheus/pull/728) ([TheMeier](https://github.com/TheMeier))
+- drop Debian 10 support [\#727](https://github.com/voxpupuli/puppet-prometheus/pull/727) ([TheMeier](https://github.com/TheMeier))
+- drop RedHat and CentOS 7 & 8 support [\#726](https://github.com/voxpupuli/puppet-prometheus/pull/726) ([TheMeier](https://github.com/TheMeier))
+- update alertmanager to 0.21.0-\>0.27.0 [\#725](https://github.com/voxpupuli/puppet-prometheus/pull/725) ([TheMeier](https://github.com/TheMeier))
+- Change default port from 9090 to 9419 [\#637](https://github.com/voxpupuli/puppet-prometheus/pull/637) ([mindriot88](https://github.com/mindriot88))
+
+**Implemented enhancements:**
+
+- deprecation of `source_match(_re)` and `target_match(_re)`  [\#697](https://github.com/voxpupuli/puppet-prometheus/issues/697)
+- Propose to add configuration for http proxy [\#129](https://github.com/voxpupuli/puppet-prometheus/issues/129)
+- Do not manage prometheus.yml [\#128](https://github.com/voxpupuli/puppet-prometheus/issues/128)
+- replace templates for systemd units with systemd::manage\_unit [\#735](https://github.com/voxpupuli/puppet-prometheus/pull/735) ([TheMeier](https://github.com/TheMeier))
+- remove code for puppet \< 7 [\#724](https://github.com/voxpupuli/puppet-prometheus/pull/724) ([TheMeier](https://github.com/TheMeier))
+- Fix arch acceptance test [\#719](https://github.com/voxpupuli/puppet-prometheus/pull/719) ([TheMeier](https://github.com/TheMeier))
+- update puppet-systemd upper bound to 8.0.0 [\#716](https://github.com/voxpupuli/puppet-prometheus/pull/716) ([TheMeier](https://github.com/TheMeier))
+
+**Fixed bugs:**
+
+- alertmanager receivers incorrect syntax [\#539](https://github.com/voxpupuli/puppet-prometheus/issues/539)
+- Invalid systemd configuration options used [\#431](https://github.com/voxpupuli/puppet-prometheus/issues/431)
+- fix syntax of altermanager::receivers [\#723](https://github.com/voxpupuli/puppet-prometheus/pull/723) ([TheMeier](https://github.com/TheMeier))
+- change path or my.cnf for mysqld\_exporter [\#722](https://github.com/voxpupuli/puppet-prometheus/pull/722) ([TheMeier](https://github.com/TheMeier))
+
+**Closed issues:**
+
+- replace systemd unit templates with systemd::manage\_unit [\#734](https://github.com/voxpupuli/puppet-prometheus/issues/734)
+- "job\_name: prometheus" duplication [\#730](https://github.com/voxpupuli/puppet-prometheus/issues/730)
+- Drop support for redis\_exporter \< 1.0.0 [\#729](https://github.com/voxpupuli/puppet-prometheus/issues/729)
+- Received SIGTERM, exiting gracefully [\#712](https://github.com/voxpupuli/puppet-prometheus/issues/712)
+- node\_exporter change default port 9100 [\#708](https://github.com/voxpupuli/puppet-prometheus/issues/708)
+- Get rid of puppet 5 and lower artifacts [\#688](https://github.com/voxpupuli/puppet-prometheus/issues/688)
+- Use `systemctl` instead of `service` in Arch Linux [\#612](https://github.com/voxpupuli/puppet-prometheus/issues/612)
+- what's the way to define rules in separate file under prometheus rules directory? [\#537](https://github.com/voxpupuli/puppet-prometheus/issues/537)
+- How can I enable Push Gateway? [\#503](https://github.com/voxpupuli/puppet-prometheus/issues/503)
+- Systemd dependencies cycle with rabbitmq and rabbitmq-exporter [\#434](https://github.com/voxpupuli/puppet-prometheus/issues/434)
+- Promxy [\#423](https://github.com/voxpupuli/puppet-prometheus/issues/423)
+- parameter 'init\_style' expects a String\[1\] value, got String [\#363](https://github.com/voxpupuli/puppet-prometheus/issues/363)
+- prometheus::apache\_exporter, php-fpm exporters  [\#238](https://github.com/voxpupuli/puppet-prometheus/issues/238)
+- prometheus::mysqld\_exporter::cnf\_config\_path should not overwrite existing my.cnf file [\#226](https://github.com/voxpupuli/puppet-prometheus/issues/226)
+- Running dual instances for v1.8 -\> 2.1 migration [\#156](https://github.com/voxpupuli/puppet-prometheus/issues/156)
+- support alerts manager version \>= 0.12.0 [\#154](https://github.com/voxpupuli/puppet-prometheus/issues/154)
+- prometheus.yaml broken syntax when generated from hiera [\#108](https://github.com/voxpupuli/puppet-prometheus/issues/108)
+
 ## [v14.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v14.0.0) (2024-03-26)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.4.0...v14.0.0)
