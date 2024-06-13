@@ -5171,7 +5171,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.4.0'`
+Default value: `'1.8.0'`
 
 ##### <a name="-prometheus--ipmi_exporter--proxy_server"></a>`proxy_server`
 
