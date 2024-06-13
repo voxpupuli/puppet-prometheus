@@ -108,7 +108,7 @@ prometheus::haproxy_exporter::package_name: 'haproxy_exporter'
 prometheus::haproxy_exporter::service_name: 'haproxy_exporter'
 prometheus::haproxy_exporter::user: 'haproxy-user'
 # renovate: depName=prometheus/haproxy_exporter
-prometheus::haproxy_exporter::version: '0.11.0'
+prometheus::haproxy_exporter::version: '0.15.0'
 prometheus::nginx_vts_exporter::nginx_scrape_uri: 'http://localhost/status/format/json'
 prometheus::nginx_vts_exporter::download_extension: 'tar.gz'
 prometheus::nginx_vts_exporter::download_url_base: 'https://github.com/hnlq715/nginx-vts-exporter/releases'
