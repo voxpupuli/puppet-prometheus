@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v15.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v15.0.0) (2024-06-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v14.0.0...v15.0.0)
+
+**Breaking changes:**
+
+- Remove support for alertmanager \< 0.13.0 [\#720](https://github.com/voxpupuli/puppet-prometheus/issues/720)
+- Remove prometheus 1.x support [\#718](https://github.com/voxpupuli/puppet-prometheus/issues/718)
+- drop suport for redis\_exporter \< 1.0.0 [\#732](https://github.com/voxpupuli/puppet-prometheus/pull/732) ([TheMeier](https://github.com/TheMeier))
+- drop support for alertmanager \< 0.13.0 [\#731](https://github.com/voxpupuli/puppet-prometheus/pull/731) ([TheMeier](https://github.com/TheMeier))
+- drop support for prometheus 1.x, update prometheus version to 2.52.0 [\#728](https://github.com/voxpupuli/puppet-prometheus/pull/728) ([TheMeier](https://github.com/TheMeier))
+- drop Debian 10 support [\#727](https://github.com/voxpupuli/puppet-prometheus/pull/727) ([TheMeier](https://github.com/TheMeier))
+- drop RedHat and CentOS 7 & 8 support [\#726](https://github.com/voxpupuli/puppet-prometheus/pull/726) ([TheMeier](https://github.com/TheMeier))
+- update alertmanager to 0.21.0-\>0.27.0 [\#725](https://github.com/voxpupuli/puppet-prometheus/pull/725) ([TheMeier](https://github.com/TheMeier))
+- Change default port from 9090 to 9419 [\#637](https://github.com/voxpupuli/puppet-prometheus/pull/637) ([mindriot88](https://github.com/mindriot88))
+
+**Implemented enhancements:**
+
+- deprecation of `source_match(_re)` and `target_match(_re)`  [\#697](https://github.com/voxpupuli/puppet-prometheus/issues/697)
+- replace templates for systemd units with systemd::manage\_unit [\#735](https://github.com/voxpupuli/puppet-prometheus/pull/735) ([TheMeier](https://github.com/TheMeier))
+- remove code for puppet \< 7 [\#724](https://github.com/voxpupuli/puppet-prometheus/pull/724) ([TheMeier](https://github.com/TheMeier))
+- Fix Archlinux acceptance test [\#719](https://github.com/voxpupuli/puppet-prometheus/pull/719) ([TheMeier](https://github.com/TheMeier))
+- update puppet-systemd upper bound to 8.0.0 [\#716](https://github.com/voxpupuli/puppet-prometheus/pull/716) ([TheMeier](https://github.com/TheMeier))
+
+**Fixed bugs:**
+
+- fix syntax of altermanager::receivers [\#723](https://github.com/voxpupuli/puppet-prometheus/pull/723) ([TheMeier](https://github.com/TheMeier))
+- change path or my.cnf for mysqld\_exporter [\#722](https://github.com/voxpupuli/puppet-prometheus/pull/722) ([TheMeier](https://github.com/TheMeier))
+
 ## [v14.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v14.0.0) (2024-03-26)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v13.4.0...v14.0.0)
