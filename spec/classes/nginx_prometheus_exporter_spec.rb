@@ -13,8 +13,8 @@ describe 'prometheus::nginx_prometheus_exporter' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_systemd__unit_file('nginx_prometheus_exporter.service') }
         it { is_expected.not_to contain_package('nginx-prometheus-exporter') }
-        it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
-        it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
+        it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.11.0.tar.gz') }
+        it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.11.0.linux-amd64') }
       end
 
       context 'with some params' do
@@ -29,7 +29,7 @@ describe 'prometheus::nginx_prometheus_exporter' do
 
         describe 'with specific params' do
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
+          it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.11.0.tar.gz') }
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('nginx-prometheus-exporter') }
           it { is_expected.to contain_user('nginx-prometheus-exporter') }
@@ -38,8 +38,8 @@ describe 'prometheus::nginx_prometheus_exporter' do
         end
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/nginx-prometheus-exporter').with('target' => '/opt/nginx-prometheus-exporter-0.9.0.linux-amd64/nginx-prometheus-exporter') }
-          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
+          it { is_expected.to contain_file('/usr/local/bin/nginx-prometheus-exporter').with('target' => '/opt/nginx-prometheus-exporter-0.11.0.linux-amd64/nginx-prometheus-exporter') }
+          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.11.0.linux-amd64') }
         end
       end
 
@@ -57,7 +57,7 @@ describe 'prometheus::nginx_prometheus_exporter' do
 
         describe 'with specific params' do
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.9.0.tar.gz') }
+          it { is_expected.to contain_archive('/tmp/nginx-prometheus-exporter-0.11.0.tar.gz') }
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('nginx-prometheus-exporter') }
           it { is_expected.to contain_user('nginx-prometheus-exporter') }
@@ -66,8 +66,8 @@ describe 'prometheus::nginx_prometheus_exporter' do
         end
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/nginx-prometheus-exporter').with('target' => '/opt/nginx-prometheus-exporter-0.9.0.linux-amd64/nginx-prometheus-exporter') }
-          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.9.0.linux-amd64') }
+          it { is_expected.to contain_file('/usr/local/bin/nginx-prometheus-exporter').with('target' => '/opt/nginx-prometheus-exporter-0.11.0.linux-amd64/nginx-prometheus-exporter') }
+          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.11.0.linux-amd64') }
         end
       end
     end
