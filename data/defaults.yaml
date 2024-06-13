@@ -7,7 +7,7 @@ prometheus::pushprox_client::package_ensure: 'latest'
 prometheus::pushprox_client::package_name: 'pushprox_client'
 prometheus::pushprox_client::user: 'pushprox_client'
 # renovate: depName=prometheus-community/PushProx
-prometheus::pushprox_client::version: '0.1.0'
+prometheus::pushprox_client::version: '0.2.0'
 prometheus::pushprox_proxy::download_extension: 'tar.gz'
 prometheus::pushprox_proxy::download_url_base: 'https://github.com/prometheus-community/PushProx/releases'
 prometheus::pushprox_proxy::extra_groups: []
@@ -16,7 +16,7 @@ prometheus::pushprox_proxy::package_ensure: 'latest'
 prometheus::pushprox_proxy::package_name: 'pushprox_proxy'
 prometheus::pushprox_proxy::user: 'pushprox_proxy'
 # renovate: depName=prometheus-community/PushProx
-prometheus::pushprox_proxy::version: '0.1.0'
+prometheus::pushprox_proxy::version: '0.2.0'
 prometheus::alertmanager::config_dir: '/etc/alertmanager'
 prometheus::alertmanager::manage_config: true
 prometheus::alertmanager::config_file: "%{hiera('prometheus::alertmanager::config_dir')}/alertmanager.yaml"
