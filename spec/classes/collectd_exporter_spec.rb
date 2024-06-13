@@ -25,7 +25,7 @@ describe 'prometheus::collectd_exporter' do
           }
         end
 
-        it { is_expected.to contain_archive('/tmp/collectd_exporter-0.5.0.tar.gz') }
+        it { is_expected.to contain_archive('/tmp/collectd_exporter-0.6.0.tar.gz') }
       end
     end
   end
