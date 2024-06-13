@@ -5472,7 +5472,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.3.2'`
+Default value: `'0.4.0'`
 
 ##### <a name="-prometheus--ipsec_exporter--proxy_server"></a>`proxy_server`
 
