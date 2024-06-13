@@ -19,6 +19,7 @@
   - [Example](#example)
   - [Known issues](#known-issues)
   - [Development](#development)
+    - [Component versions](#component-versions)
   - [Transfer Notice](#transfer-notice)
 
 ----
@@ -268,6 +269,11 @@ Postfix is not supported on Archlinux because it relies on puppet-postfix, which
 ## Development
 
 See https://voxpupuli.org/docs/how_to_run_tests/ for information on how to run test locally.
+
+### Component versions
+
+For this repository a renovate github action is enabled. It will create PRs for updating the versions of the components. Each version defintion (in data/defaults.yaml or in the manifests directly) has a comment in the form of `# renovate: depName=<github-repo-slug>` which is used by renovate to identify the components to update. If new components (usually exporters) are added, please ensure to add the comment to the version definition.
+The PRs created by renovate have to be classified on a case-by-case basis by the reiviewer. Most of these PRs should be simple einhancements, but some might require more attention and be classiefied as backward-incompatible.
 
 ## Transfer Notice
 This plugin was originally authored by [brutus333](https://github.com/brutus333/)

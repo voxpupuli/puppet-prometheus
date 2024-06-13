@@ -88,6 +88,7 @@ class prometheus::blackbox_exporter (
   String[1] $package_ensure = 'latest',
   String[1] $package_name = 'blackbox_exporter',
   String[1] $user = 'blackbox-exporter',
+  # renovate: depName=prometheus/blackbox_exporter
   String[1] $version = '0.17.0',
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
