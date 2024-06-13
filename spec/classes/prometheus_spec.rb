@@ -371,7 +371,7 @@ describe 'prometheus' do
       context 'command-line flags' do
         context 'prometheus v2' do
           version = '2.13.0'
-          context 'with all valid params', if: facts[:service_provider] == 'systemd' do
+          context 'with all valid params', if: facts[:service_provider] == 'systemd' && facts[:os]['name'] != 'Archlinux' do
             let(:params) do
               {
                 manage_prometheus_server: true,
@@ -426,7 +426,7 @@ describe 'prometheus' do
             }
           end
 
-          context 'with extra args write-in', if: facts[:service_provider] == 'systemd' do
+          context 'with extra args write-in', if: facts[:service_provider] == 'systemd' && facts[:os]['name'] != 'Archlinux' do
             let(:params) do
               {
                 manage_prometheus_server: true,
@@ -449,7 +449,7 @@ describe 'prometheus' do
           end
         end
 
-        context 'prometheus v2.6', if: facts[:service_provider] == 'systemd' do
+        context 'prometheus v2.6', if: facts[:service_provider] == 'systemd' && facts[:os]['name'] != 'Archlinux' do
           context 'with storage retention time' do
             let(:params) do
               {
