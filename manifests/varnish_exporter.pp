@@ -57,7 +57,6 @@ class prometheus::varnish_exporter (
   String[1] $package_name                                    = 'prometheus_varnish_exporter',
   String[1] $service_name                                    = 'prometheus_varnish_exporter',
   String[1] $user                                            = 'varnish_exporter',
-  # renovate: depName=jonnenauha/prometheus_varnish_exporter
   String[1] $version                                         = '1.5.2',
   Prometheus::Uri $download_url_base                         = 'https://github.com/jonnenauha/prometheus_varnish_exporter/releases',
   Boolean $purge_config_dir                                  = true,

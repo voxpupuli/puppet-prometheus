@@ -55,7 +55,6 @@ class prometheus::graphite_exporter (
   String[1] $package_name                                    = 'graphite_exporter',
   String[1] $service_name                                    = 'graphite_exporter',
   String[1] $user                                            = 'graphite-exporter',
-  # renovate: depName=prometheus/graphite_exporter
   String[1] $version                                         = '0.9.0',
   String $options                                            = '', # lint:ignore:params_empty_string_assignment
   String[1] $os                                              = downcase($facts['kernel']),

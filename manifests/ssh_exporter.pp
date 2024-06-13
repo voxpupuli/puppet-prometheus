@@ -59,7 +59,6 @@ class prometheus::ssh_exporter (
   Stdlib::Absolutepath $config_file                          = '/etc/ssh_exporter.yaml',
   String[1] $package_name                                    = 'ssh_exporter',
   String $download_extension                                 = 'tar.gz',
-  # renovate: depName=treydock/ssh_exporter
   String[1] $version                                         = '1.2.0',
   String[1] $package_ensure                                  = 'latest',
   String[1] $user                                            = 'ssh-exporter',

@@ -66,7 +66,6 @@ class prometheus::apache_exporter (
   String[1] $package_ensure                                  = 'latest',
   String[1] $package_name                                    = 'apache_exporter',
   String[1] $user                                            = 'apache-exporter',
-  # renovate: depName=Lusitaniae/apache_exporter
   String[1] $version                                         = '0.8.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,

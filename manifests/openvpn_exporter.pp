@@ -59,7 +59,6 @@ class prometheus::openvpn_exporter (
   String[1] $package_ensure                                  = 'latest',
   String[1] $package_name                                    = 'openvpn_exporter',
   String[1] $user                                            = 'openvpn-exporter',
-  # renovate: depName=wandera/openvpn_exporter
   String[1] $version                                         = 'v0.3.0.3',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,

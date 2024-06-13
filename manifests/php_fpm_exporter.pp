@@ -62,7 +62,6 @@ class prometheus::php_fpm_exporter (
   String[1] $package_ensure                                  = 'latest',
   String[1] $package_name                                    = 'php-fpm_exporter',
   String[1] $user                                            = 'php-fpm_exporter',
-  # renovate: depName=hipages/php-fpm_exporter
   String[1] $version                                         = '2.0.4',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,

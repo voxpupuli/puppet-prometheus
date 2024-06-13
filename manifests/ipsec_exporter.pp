@@ -58,7 +58,6 @@ class prometheus::ipsec_exporter (
   String[1] $package_name                                    = 'ipsec_exporter',
   String[1] $service_name                                    = 'ipsec_exporter',
   String[1] $user                                            = 'ipsec-exporter',
-  # renovate: depName=dennisstritzke/ipsec_exporter
   String[1] $version                                         = '0.3.2',
   String[1] $os                                              = downcase($facts['kernel']),
   String $options                                            = '', # lint:ignore:params_empty_string_assignment
