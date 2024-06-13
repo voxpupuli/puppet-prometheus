@@ -70,7 +70,7 @@ prometheus::consul_exporter::package_name: 'consul_exporter'
 prometheus::consul_exporter::service_name: 'consul_exporter'
 prometheus::consul_exporter::user: 'consul-exporter'
 # renovate: depName=prometheus/consul_exporter
-prometheus::consul_exporter::version: '0.7.1'
+prometheus::consul_exporter::version: '0.12.0'
 prometheus::consul_exporter::web_listen_address: ':9107'
 prometheus::consul_exporter::web_telemetry_path: '/metrics'
 prometheus::elasticsearch_exporter::cnf_uri: 'http://localhost:9200'
