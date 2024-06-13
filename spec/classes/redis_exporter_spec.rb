@@ -12,7 +12,7 @@ describe 'prometheus::redis_exporter' do
       context 'with version specified' do
         let(:params) do
           {
-            version: '1.9.0',
+            version: '1.61.0',
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
@@ -23,8 +23,8 @@ describe 'prometheus::redis_exporter' do
         it { is_expected.to compile.with_all_deps }
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/redis_exporter').with('target' => '/opt/redis_exporter-v1.9.0.linux-amd64/redis_exporter') }
-          it { is_expected.to contain_archive('/tmp/redis_exporter-v1.9.0.tar.gz') }
+          it { is_expected.to contain_file('/usr/local/bin/redis_exporter').with('target' => '/opt/redis_exporter-v1.61.0.linux-amd64/redis_exporter') }
+          it { is_expected.to contain_archive('/tmp/redis_exporter-v1.61.0.tar.gz') }
         end
 
         describe 'required resources' do
