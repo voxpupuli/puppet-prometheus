@@ -12689,7 +12689,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.2.0'`
+Default value: `'1.5.0'`
 
 ##### <a name="-prometheus--ssh_exporter--proxy_server"></a>`proxy_server`
 
