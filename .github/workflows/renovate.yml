@@ -8,12 +8,6 @@ on:
 
 jobs:
   renovate:
-    permissions:
-      contents: read
-      issues: read
-      pull-requests: write
-      repository-projects: read
-      statuses: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,6 +16,8 @@ jobs:
         uses: renovatebot/github-action@v40.1.12
         with:
           configurationFile: renovate-config.json
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PCCIBOT_PAT_REPO_PUBLIC_REPO }}
+          renovate-image: ghcr.io/renovatebot/renovate
+          renovate-version: 37-full
     env:
       LOG_LEVEL: 'debug'

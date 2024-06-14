@@ -2,15 +2,24 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "onboarding": false,
   "requireConfig": "optional",
-  "repositories": ["voxpupuli/puppet-prometheus"],
-  "extends": ["config:recommended"],
-  "enabledManagers": ["custom.regex"],
+  "repositories": [
+    "voxpupuli/puppet-prometheus"
+  ],
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "custom.regex"
+  ],
   "prHourlyLimit": 10,
   "prConcurrentLimit": 20,
+  "branchConcurrentLimit": 30,
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["defaults.yaml"],
+      "fileMatch": [
+        "defaults.yaml"
+      ],
       "matchStrings": [
         "# renovate: depName=(?<depName>[^\\s]+?)\\s+[a-z0-9:_]+?::version:\\s+['\"]?(?<currentValue>[\\w+\\.]*)"
       ],
@@ -18,12 +27,26 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [".*_exporter.pp"],
+      "fileMatch": [
+        ".*_exporter.pp"
+      ],
       "matchStrings": [
         "# renovate: depName=(?<depName>[^\\s]+?)\\s+String\\[1\\]\\s+\\$version\\s+=\\s+['\"]?(?<currentValue>[\\w+\\.]*)"
       ],
       "datasourceTemplate": "github-releases"
     }
-
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "bundle install",
+      "bundle exec gem install rake",
+      "bundle exec rake strings:generate:reference"
+      ],
+    "executionMode": "branch"
+  },
+  "allowedPostUpgradeCommands": [
+    "^bundle install$",
+    "^bundle exec gem install rake$",
+    "^bundle exec rake strings:generate:reference$"
   ]
 }
