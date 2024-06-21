@@ -44,6 +44,27 @@ describe 'prometheus::server' do
           }
         end
 
+        describe 'scrape_config_files' do
+          context 'by default' do
+            it {
+              content = catalogue.resource('file', 'prometheus.yaml').send(:parameters)[:content]
+              expect(content).not_to include('scrape_config_files:')
+            }
+          end
+
+          context 'when set with a glob' do
+            let(:params) do
+              super().merge(scrape_config_files: ['/etc/prometheus/scrape_configs.d/*.yaml'])
+            end
+
+            it {
+              content = catalogue.resource('file', 'prometheus.yaml').send(:parameters)[:content]
+              expect(content).to include('scrape_config_files:')
+              expect(content).to include('- "/etc/prometheus/scrape_configs.d/*.yaml"')
+            }
+          end
+        end
+
         describe 'max_open_files', if: facts[:os]['name'] != 'Archlinux' do
           context 'by default' do
             it {

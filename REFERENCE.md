@@ -123,6 +123,7 @@ The following parameters are available in the `prometheus` class:
 * [`global_config`](#-prometheus--global_config)
 * [`rule_files`](#-prometheus--rule_files)
 * [`scrape_configs`](#-prometheus--scrape_configs)
+* [`scrape_config_files`](#-prometheus--scrape_config_files)
 * [`include_default_scrape_configs`](#-prometheus--include_default_scrape_configs)
 * [`remote_read_configs`](#-prometheus--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--remote_write_configs)
@@ -446,6 +447,15 @@ Data type: `Array`
 Prometheus scrape configs
 
 Default value: `[]`
+
+##### <a name="-prometheus--scrape_config_files"></a>`scrape_config_files`
+
+Data type: `Optional[Array]`
+
+Specifies an Array of file globs. Scrape configs are read from all matching files and appended to
+the list of scrape configs.
+
+Default value: `undef`
 
 ##### <a name="-prometheus--include_default_scrape_configs"></a>`include_default_scrape_configs`
 
@@ -11672,6 +11682,7 @@ The following parameters are available in the `prometheus::server` class:
 * [`global_config`](#-prometheus--server--global_config)
 * [`rule_files`](#-prometheus--server--rule_files)
 * [`scrape_configs`](#-prometheus--server--scrape_configs)
+* [`scrape_config_files`](#-prometheus--server--scrape_config_files)
 * [`include_default_scrape_configs`](#-prometheus--server--include_default_scrape_configs)
 * [`remote_read_configs`](#-prometheus--server--remote_read_configs)
 * [`remote_write_configs`](#-prometheus--server--remote_write_configs)
@@ -11875,6 +11886,14 @@ Data type: `Array`
 
 
 Default value: `$prometheus::scrape_configs`
+
+##### <a name="-prometheus--server--scrape_config_files"></a>`scrape_config_files`
+
+Data type: `Optional[Array]`
+
+
+
+Default value: `$prometheus::scrape_config_files`
 
 ##### <a name="-prometheus--server--include_default_scrape_configs"></a>`include_default_scrape_configs`
 
