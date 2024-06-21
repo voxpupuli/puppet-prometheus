@@ -13004,7 +13004,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'2.2.1'`
+Default value: `'2.4.3'`
 
 ##### <a name="-prometheus--ssl_exporter--proxy_server"></a>`proxy_server`
 
