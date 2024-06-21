@@ -149,7 +149,7 @@ prometheus::rabbitmq_exporter::package_name: 'rabbitmq_exporter'
 prometheus::rabbitmq_exporter::service_name: 'rabbitmq_exporter'
 prometheus::rabbitmq_exporter::user: 'rabbitmq-exporter'
 # renovate: depName=kbudde/rabbitmq_exporter
-prometheus::rabbitmq_exporter::version: '0.29.0'
+prometheus::rabbitmq_exporter::version: '1.0.0'
 prometheus::rabbitmq_exporter::rabbit_url: 'http://localhost:15672'
 prometheus::rabbitmq_exporter::rabbit_user: 'guest'
 prometheus::rabbitmq_exporter::rabbit_password: 'guest'
