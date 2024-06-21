@@ -8091,7 +8091,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'2.1'`
+Default value: `'2.2.2'`
 
 ##### <a name="-prometheus--openldap_exporter--ldap_binddn"></a>`ldap_binddn`
 
