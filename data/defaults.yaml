@@ -139,7 +139,7 @@ prometheus::pushgateway::package_ensure: 'latest'
 prometheus::pushgateway::package_name: 'pushgateway'
 prometheus::pushgateway::user: 'pushgateway'
 # renovate: depName=prometheus/pushgateway
-prometheus::pushgateway::version: '1.2.0'
+prometheus::pushgateway::version: '1.9.0'
 prometheus::rabbitmq_exporter::download_extension: 'tar.gz'
 prometheus::rabbitmq_exporter::download_url_base: 'https://github.com/kbudde/rabbitmq_exporter/releases'
 prometheus::rabbitmq_exporter::extra_groups: []
