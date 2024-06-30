@@ -111,15 +111,15 @@ prometheus::haproxy_exporter::user: 'haproxy-user'
 prometheus::haproxy_exporter::version: '0.15.0'
 prometheus::nginx_vts_exporter::nginx_scrape_uri: 'http://localhost/status/format/json'
 prometheus::nginx_vts_exporter::download_extension: 'tar.gz'
-prometheus::nginx_vts_exporter::download_url_base: 'https://github.com/hnlq715/nginx-vts-exporter/releases'
+prometheus::nginx_vts_exporter::download_url_base: 'https://github.com/sysulq/nginx-vts-exporter/releases'
 prometheus::nginx_vts_exporter::extra_groups: []
 prometheus::nginx_vts_exporter::group: 'nginx-vts-exporter'
 prometheus::nginx_vts_exporter::package_ensure: 'latest'
 prometheus::nginx_vts_exporter::package_name: 'nginx-vts-exporter'
 prometheus::nginx_vts_exporter::service_name: 'nginx-vts-exporter'
 prometheus::nginx_vts_exporter::user: 'nginx-vts-exporter'
-# renovate: depName=hnlq715/nginx-vts-exporter
-prometheus::nginx_vts_exporter::version: '0.10.3'
+# renovate: depName=sysulq/nginx-vts-exporter
+prometheus::nginx_vts_exporter::version: '0.10.8'
 prometheus::process_exporter::download_extension: 'tar.gz'
 prometheus::process_exporter::download_url_base: 'https://github.com/ncabatoff/process-exporter/releases'
 prometheus::process_exporter::extra_groups: []
