@@ -129,7 +129,7 @@ prometheus::process_exporter::package_name: 'process-exporter'
 prometheus::process_exporter::service_name: 'process-exporter'
 prometheus::process_exporter::user: 'process-exporter'
 # renovate: depName=ncabatoff/process-exporter
-prometheus::process_exporter::version: '0.6.0'
+prometheus::process_exporter::version: '0.8.2'
 prometheus::process_exporter::config_path: '/etc/process-exporter.yaml'
 prometheus::pushgateway::download_extension: 'tar.gz'
 prometheus::pushgateway::download_url_base: 'https://github.com/prometheus/pushgateway/releases'
