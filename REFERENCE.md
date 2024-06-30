@@ -2160,7 +2160,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.4.0'`
+Default value: `'0.7.0'`
 
 ##### <a name="-prometheus--bind_exporter--export_scrape_job"></a>`export_scrape_job`
 

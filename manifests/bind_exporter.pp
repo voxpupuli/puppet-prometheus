@@ -102,7 +102,7 @@ class prometheus::bind_exporter (
   String[1] $package_name                                    = 'bind_exporter',
   String[1] $user                                            = 'bind-exporter',
   # renovate: depName=prometheus-community/bind_exporter
-  String[1] $version                                         = '0.4.0',
+  String[1] $version                                         = '0.7.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
