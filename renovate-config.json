@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "labels": ["enhancement"],
   "onboarding": false,
   "requireConfig": "optional",
   "repositories": [
