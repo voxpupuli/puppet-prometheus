@@ -99,7 +99,7 @@ class prometheus::haproxy_exporter (
   }
   deprecation(
     'prometheus::haproxy_exporter',
-    'haproxy exporter is deprecated and will be remove in the next major release. See https://github.com/prometheus/haproxy_exporter?tab=readme-ov-file#official-prometheus-exporter',
+    'haproxy exporter is deprecated and will be removed in the next major release. See https://github.com/prometheus/haproxy_exporter?tab=readme-ov-file#official-prometheus-exporter',
     false
   )
 
