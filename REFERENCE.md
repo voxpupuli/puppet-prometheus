@@ -13851,7 +13851,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.3'`
+Default value: `'0.4.6'`
 
 ##### <a name="-prometheus--unbound_exporter--proxy_server"></a>`proxy_server`
 
