@@ -228,6 +228,7 @@ class prometheus (
   String $package_name = 'prometheus',
   Array $rule_files = [],
   Array $scrape_configs = [],
+  Optional[Array] $scrape_config_files = undef,
   Array $remote_read_configs = [],
   Array $remote_write_configs = [],
   Boolean $enable_tracing = false,
