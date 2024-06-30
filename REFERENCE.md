@@ -8706,7 +8706,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'2.0.4'`
+Default value: `'2.2.0'`
 
 ##### <a name="-prometheus--php_fpm_exporter--proxy_server"></a>`proxy_server`
 
