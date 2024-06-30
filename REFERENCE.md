@@ -4627,6 +4627,8 @@ Default value: `undef`
 
 This module manages prometheus haproxy_exporter
 
+* **Note** This class is deprecated.
+
 #### Parameters
 
 The following parameters are available in the `prometheus::haproxy_exporter` class:

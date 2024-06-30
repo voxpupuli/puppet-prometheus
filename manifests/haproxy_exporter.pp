@@ -55,6 +55,8 @@
 #  Path of file where the web-config will be saved to
 # @param web_config_content
 #  Unless empty the content of the web-config yaml which will handed over as option to the exporter
+# @note
+#    This class is deprecated.
 class prometheus::haproxy_exporter (
   Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]] $cnf_scrape_uri,
   String $download_extension,
@@ -95,6 +97,11 @@ class prometheus::haproxy_exporter (
     true    => Service[$service_name],
     default => undef,
   }
+  deprecation(
+    'prometheus::haproxy_exporter',
+    'haproxy exporter is deprecated and will be remove in the next major release. See https://github.com/prometheus/haproxy_exporter?tab=readme-ov-file#official-prometheus-exporter',
+    false
+  )
 
   $_web_config_ensure = $web_config_content.empty ? {
     true    => absent,
