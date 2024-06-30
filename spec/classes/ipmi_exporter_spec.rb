@@ -15,7 +15,7 @@ describe 'prometheus::ipmi_exporter' do
         it { is_expected.to contain_service('ipmi_exporter') }
         it { is_expected.to contain_user('ipmi-exporter') }
         it { is_expected.to contain_group('ipmi-exporter') }
-        it { is_expected.to contain_file('/opt/ipmi_exporter-1.4.0.linux-amd64/ipmi_exporter') }
+        it { is_expected.to contain_file('/opt/ipmi_exporter-1.8.0.linux-amd64/ipmi_exporter') }
         it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
 
         if facts[:os]['name'] == 'Archlinux'
