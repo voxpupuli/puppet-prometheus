@@ -4014,7 +4014,7 @@ Data type: `Boolean`
 
 Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
 this param to define how we call the es.uri and es.timeout in the $options
-https://github.com/justwatchcom/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
+https://github.com/prometheus-community/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 
 ##### <a name="-prometheus--elasticsearch_exporter--proxy_server"></a>`proxy_server`
 

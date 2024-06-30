@@ -76,14 +76,14 @@ prometheus::consul_exporter::web_telemetry_path: '/metrics'
 prometheus::elasticsearch_exporter::cnf_uri: 'http://localhost:9200'
 prometheus::elasticsearch_exporter::cnf_timeout: '5s'
 prometheus::elasticsearch_exporter::download_extension: 'tar.gz'
-prometheus::elasticsearch_exporter::download_url_base: 'https://github.com/justwatchcom/elasticsearch_exporter/releases'
+prometheus::elasticsearch_exporter::download_url_base: 'https://github.com/prometheus-community/elasticsearch_exporter/releases'
 prometheus::elasticsearch_exporter::extra_groups: []
 prometheus::elasticsearch_exporter::group: 'elasticsearch-exporter'
 prometheus::elasticsearch_exporter::package_ensure: 'latest'
 prometheus::elasticsearch_exporter::package_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::service_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::user: 'elasticsearch-exporter'
-# renovate: depName=justwatchcom/elasticsearch_exporter
+# renovate: depName=prometheus-community/elasticsearch_exporter
 prometheus::elasticsearch_exporter::version: '1.7.0'
 prometheus::elasticsearch_exporter::use_kingpin: true
 prometheus::mesos_exporter::server_type: 'master'
