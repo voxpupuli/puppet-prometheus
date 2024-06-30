@@ -62,7 +62,7 @@
 # @param use_kingpin
 #  Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
 #  this param to define how we call the es.uri and es.timeout in the $options
-#  https://github.com/justwatchcom/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
+#  https://github.com/prometheus-community/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 # @param proxy_server
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
