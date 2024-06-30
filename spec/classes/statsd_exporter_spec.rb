@@ -88,6 +88,22 @@ describe 'prometheus::statsd_exporter' do
         end
       end
 
+      context 'with no mappings' do
+        let(:params) do
+          {
+            version: '0.8.0',
+            arch: 'amd64',
+            os: 'linux',
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
+          }
+        end
+
+        describe 'compile manifest' do
+          it { is_expected.to compile.with_all_deps }
+        end
+      end
+
       context 'with older version that does not support posix like option flags specified' do
         let(:params) do
           {

@@ -67,9 +67,9 @@ class prometheus::statsd_exporter (
   String[1] $package_ensure,
   String[1] $package_name,
   String[1] $service_name,
-  Array[Hash] $mappings,
   String[1] $user,
   String[1] $version,
+  Optional[Array[Hash]] $mappings                            = undef,
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   String[1] $config_mode                                     = $prometheus::config_mode,
@@ -105,13 +105,15 @@ class prometheus::statsd_exporter (
     default => undef,
   }
 
-  file { $mapping_config_path:
-    ensure  => 'file',
-    mode    => $config_mode,
-    owner   => 'root',
-    group   => $group,
-    content => stdlib::to_yaml({ mappings => $mappings }),
-    notify  => $notify_service,
+  if $mappings {
+    file { $mapping_config_path:
+      ensure  => 'file',
+      mode    => $config_mode,
+      owner   => 'root',
+      group   => $group,
+      content => stdlib::to_yaml({ mappings => $mappings }),
+      notify  => $notify_service,
+    }
   }
 
   # Switched to POSIX like flags in version 0.7.0
