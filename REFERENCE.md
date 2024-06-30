@@ -7295,6 +7295,8 @@ Default value: `$prometheus::env_file_path`
 
 This module manages prometheus nginx_vts_exporter
 
+* **Note** This class is deprecated.
+
 #### Parameters
 
 The following parameters are available in the `prometheus::nginx_vts_exporter` class:
