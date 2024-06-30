@@ -14138,7 +14138,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.5.2'`
+Default value: `'1.6.1'`
 
 ##### <a name="-prometheus--varnish_exporter--proxy_server"></a>`proxy_server`
 
