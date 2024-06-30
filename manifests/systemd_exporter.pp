@@ -55,7 +55,7 @@ class prometheus::systemd_exporter (
   String[1] $package_name                 = 'systemd_exporter',
   String[1] $user                         = 'systemd-exporter',
   # renovate: depName=povilasv/systemd_exporter
-  String[1] $version                      = '0.5.0',
+  String[1] $version                      = '0.6.0',
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,
