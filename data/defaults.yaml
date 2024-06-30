@@ -217,4 +217,4 @@ prometheus::statsd_exporter::package_name: 'statsd_exporter'
 prometheus::statsd_exporter::service_name: 'statsd_exporter'
 prometheus::statsd_exporter::user: 'statsd-exporter'
 # renovate: depName=prometheus/statsd_exporter
-prometheus::statsd_exporter::version: '0.17.0'
+prometheus::statsd_exporter::version: '0.26.1'
