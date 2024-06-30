@@ -5963,7 +5963,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.6.0'`
+Default value: `'0.14.4'`
 
 ##### <a name="-prometheus--memcached_exporter--proxy_server"></a>`proxy_server`
 

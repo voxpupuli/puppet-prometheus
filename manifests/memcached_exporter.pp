@@ -58,7 +58,7 @@ class prometheus::memcached_exporter (
   String[1] $package_name                                    = 'memcached_exporter',
   String[1] $user                                            = 'memcached-exporter',
   # renovate: depName=prometheus/memcached_exporter
-  String[1] $version                                         = '0.6.0',
+  String[1] $version                                         = '0.14.4',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
