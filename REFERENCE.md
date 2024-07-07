@@ -7199,7 +7199,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.11.0'`
+Default value: `'1.2.0'`
 
 ##### <a name="-prometheus--nginx_prometheus_exporter--proxy_server"></a>`proxy_server`
 
