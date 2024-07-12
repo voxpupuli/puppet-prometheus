@@ -205,7 +205,7 @@ prometheus::snmp_exporter::package_name: 'snmp_exporter'
 prometheus::snmp_exporter::service_name: 'snmp_exporter'
 prometheus::snmp_exporter::user: 'snmp-exporter'
 # renovate: depName=prometheus/snmp_exporter
-prometheus::snmp_exporter::version: '0.18.0'
+prometheus::snmp_exporter::version: '0.26.0'
 prometheus::statsd_exporter::download_extension: 'tar.gz'
 prometheus::statsd_exporter::download_url_base: 'https://github.com/prometheus/statsd_exporter/releases'
 prometheus::statsd_exporter::extra_groups: []
