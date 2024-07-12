@@ -170,7 +170,7 @@ prometheus::mysqld_exporter::package_name: 'mysqld_exporter'
 prometheus::mysqld_exporter::service_name: 'mysqld_exporter'
 prometheus::mysqld_exporter::user: 'mysqld-exporter'
 # renovate: depName=prometheus/mysqld_exporter
-prometheus::mysqld_exporter::version: '0.12.1'
+prometheus::mysqld_exporter::version: '0.15.1'
 prometheus::node_exporter::download_extension: 'tar.gz'
 prometheus::node_exporter::download_url_base: 'https://github.com/prometheus/node_exporter/releases'
 prometheus::node_exporter::extra_groups: []
