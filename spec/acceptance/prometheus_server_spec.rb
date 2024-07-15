@@ -45,6 +45,13 @@ describe 'prometheus server basics' do
     end
   end
 
+  it 'can access static files' do
+    shell('curl -s http://127.0.0.1:9090/graph') do |r|
+      expect(r.stdout).to match(%r{doctype html})
+      expect(r.exit_code).to eq(0)
+    end
+  end
+
   describe 'updating configuration to enable Admin API' do
     it 'prometheus server via main class works idempotently with no errors' do
       pp = "class{'prometheus': manage_prometheus_server => true, web_enable_admin_api => true }"
