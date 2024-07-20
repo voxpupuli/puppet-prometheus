@@ -2603,6 +2603,8 @@ The following parameters are available in the `prometheus::blackbox_exporter` cl
 * [`user`](#-prometheus--blackbox_exporter--user)
 * [`version`](#-prometheus--blackbox_exporter--version)
 * [`config_mode`](#-prometheus--blackbox_exporter--config_mode)
+* [`env_vars`](#-prometheus--blackbox_exporter--env_vars)
+* [`env_file_path`](#-prometheus--blackbox_exporter--env_file_path)
 * [`proxy_server`](#-prometheus--blackbox_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--blackbox_exporter--proxy_type)
 * [`web_config_file`](#-prometheus--blackbox_exporter--web_config_file)
@@ -2847,6 +2849,22 @@ Data type: `String[1]`
 The permissions of the configuration files
 
 Default value: `$prometheus::config_mode`
+
+##### <a name="-prometheus--blackbox_exporter--env_vars"></a>`env_vars`
+
+Data type: `Hash[String[1], Scalar]`
+
+hash with custom environment variables thats passed to the exporter via init script / unit file
+
+Default value: `{}`
+
+##### <a name="-prometheus--blackbox_exporter--env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to the file with the environmetn variable that is read from the init script/systemd unit
+
+Default value: `$prometheus::env_file_path`
 
 ##### <a name="-prometheus--blackbox_exporter--proxy_server"></a>`proxy_server`
 
