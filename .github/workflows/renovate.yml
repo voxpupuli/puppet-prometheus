@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.6
       - name: Renovate
-        uses: renovatebot/github-action@v40.2.2
+        uses: renovatebot/github-action@v40.2.4
         with:
           configurationFile: renovate-config.json
           token: ${{ secrets.PCCIBOT_PAT_REPO_PUBLIC_REPO }}
