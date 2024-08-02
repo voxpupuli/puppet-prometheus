@@ -120,6 +120,8 @@ class prometheus::nginx_prometheus_exporter (
       checksum_verify => false,
       creates         => "${install_dir}/${package_name}",
       cleanup         => true,
+      proxy_server    => $proxy_server,
+      proxy_type      => $proxy_type,
     }
     -> file { "${bin_dir}/${package_name}":
       ensure => link,
