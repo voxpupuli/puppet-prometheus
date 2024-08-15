@@ -77,7 +77,6 @@ class prometheus::rabbitmq_exporter (
   String[1] $service_name,
   String $download_extension,
   String[1] $user,
-  String[1] $version,
   String[1] $rabbit_url,
   String[1] $rabbit_user,
   String[1] $rabbit_password,
@@ -85,6 +84,8 @@ class prometheus::rabbitmq_exporter (
   String[1] $queues_exclude_regex,
   Array[String] $rabbit_capabilities,
   Array[String] $rabbit_exporters,
+  # renovate: depName=kbudde/rabbitmq_exporter
+  String[1] $version                                         = '0.29.0',
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   Optional[Prometheus::Uri] $download_url                    = undef,

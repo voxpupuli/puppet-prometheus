@@ -69,7 +69,8 @@ class prometheus::statsd_exporter (
   String[1] $service_name,
   Array[Hash] $mappings,
   String[1] $user,
-  String[1] $version,
+  # renovate: depName=prometheus/statsd_exporter
+  String[1] $version                                         = '0.26.1',
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   String[1] $config_mode                                     = $prometheus::config_mode,

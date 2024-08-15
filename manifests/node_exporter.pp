@@ -74,7 +74,8 @@ class prometheus::node_exporter (
   String[1] $package_ensure,
   String[1] $package_name,
   String[1] $user,
-  String[1] $version,
+  # renovate: depName=prometheus/node_exporter
+  String[1] $version                                         = '1.8.1',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,

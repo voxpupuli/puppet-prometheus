@@ -135,7 +135,8 @@ class prometheus::alertmanager (
   Stdlib::Absolutepath $storage_path,
   Array $templates,
   String[1] $user,
-  String[1] $version,
+  # renovate: depName=prometheus/alertmanager
+  String[1] $version                                         = '0.27.0',
   Boolean $service_enable                                    = true,
   Stdlib::Ensure::Service $service_ensure                    = 'running',
   String[1] $service_name                                    = 'alertmanager',
