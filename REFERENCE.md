@@ -7619,9 +7619,9 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`proxy_type`](#-prometheus--node_exporter--proxy_type)
 * [`web_config_file`](#-prometheus--node_exporter--web_config_file)
 * [`web_config_content`](#-prometheus--node_exporter--web_config_content)
+* [`scrape_port`](#-prometheus--node_exporter--scrape_port)
 * [`scrape_host`](#-prometheus--node_exporter--scrape_host)
 * [`export_scrape_job`](#-prometheus--node_exporter--export_scrape_job)
-* [`scrape_port`](#-prometheus--node_exporter--scrape_port)
 * [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
 * [`scrape_job_labels`](#-prometheus--node_exporter--scrape_job_labels)
 * [`bin_name`](#-prometheus--node_exporter--bin_name)
@@ -7821,6 +7821,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'1.8.1'`
+
 ##### <a name="-prometheus--node_exporter--env_vars"></a>`env_vars`
 
 Data type: `Hash[String[1], Scalar]`
@@ -7869,6 +7871,15 @@ Unless empty the content of the web-config yaml which will handed over as option
 
 Default value: `{}`
 
+##### <a name="-prometheus--node_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
+If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
+
+Default value: `9100`
+
 ##### <a name="-prometheus--node_exporter--scrape_host"></a>`scrape_host`
 
 Data type: `Optional[Stdlib::Host]`
@@ -7884,14 +7895,6 @@ Data type: `Boolean`
 
 
 Default value: `false`
-
-##### <a name="-prometheus--node_exporter--scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9100`
 
 ##### <a name="-prometheus--node_exporter--scrape_job_name"></a>`scrape_job_name`
 
