@@ -19,16 +19,6 @@
     {
       "customType": "regex",
       "fileMatch": [
-        "defaults.yaml"
-      ],
-      "matchStrings": [
-        "# renovate: depName=(?<depName>[^\\s]+?)\\s+[a-z0-9:_]+?::version:\\s+['\"]?(?<currentValue>[\\w+\\.]*)"
-      ],
-      "datasourceTemplate": "github-releases"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
         ".*_exporter.pp"
       ],
       "matchStrings": [

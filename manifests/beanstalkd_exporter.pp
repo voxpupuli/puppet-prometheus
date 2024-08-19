@@ -66,11 +66,12 @@ class prometheus::beanstalkd_exporter (
   String[1] $package_name,
   String[1] $service_name,
   String[1] $user,
-  String[1] $version,
   String[1] $config,
   String[1] $mapping_config,
   String[1] $beanstalkd_address,
   String[1] $exporter_listen,
+  # renovate: depName=messagebird/beanstalkd_exporter
+  String[1] $version                                         = '1.0.5',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,

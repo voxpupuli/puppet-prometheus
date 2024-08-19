@@ -1310,6 +1310,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'0.27.0'`
+
 ##### <a name="-prometheus--alertmanager--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -1873,6 +1875,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'1.0.5'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--proxy_server"></a>`proxy_server`
 
@@ -3400,6 +3404,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'0.12.0'`
+
 ##### <a name="-prometheus--consul_exporter--web_listen_address"></a>`web_listen_address`
 
 Data type: `String[1]`
@@ -4035,6 +4041,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'1.7.0'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--use_kingpin"></a>`use_kingpin`
 
@@ -4866,6 +4874,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.15.0'`
 
 ##### <a name="-prometheus--haproxy_exporter--proxy_server"></a>`proxy_server`
 
@@ -6276,6 +6286,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'1.1.2'`
+
 ##### <a name="-prometheus--mesos_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -6913,6 +6925,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'0.15.1'`
+
 ##### <a name="-prometheus--mysqld_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -7523,6 +7537,8 @@ Data type: `String`
 
 The binary release version
 
+Default value: `'0.10.3'`
+
 ##### <a name="-prometheus--nginx_vts_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -7820,6 +7836,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'1.8.1'`
 
 ##### <a name="-prometheus--node_exporter--env_vars"></a>`env_vars`
 
@@ -9652,6 +9670,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'0.8.2'`
+
 ##### <a name="-prometheus--process_exporter--hash_watched_processes"></a>`hash_watched_processes`
 
 Data type: `Hash`
@@ -10229,6 +10249,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'1.9.0'`
 
 ##### <a name="-prometheus--pushgateway--proxy_server"></a>`proxy_server`
 
@@ -10928,6 +10950,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.29.0'`
 
 ##### <a name="-prometheus--rabbitmq_exporter--rabbit_url"></a>`rabbit_url`
 
@@ -12425,6 +12449,8 @@ Data type: `String[1]`
 
 The binary release version
 
+Default value: `'0.26.0'`
+
 ##### <a name="-prometheus--snmp_exporter--proxy_server"></a>`proxy_server`
 
 Data type: `Optional[String[1]]`
@@ -13337,6 +13363,8 @@ User which runs the service
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.26.1'`
 
 ##### <a name="-prometheus--statsd_exporter--proxy_server"></a>`proxy_server`
 

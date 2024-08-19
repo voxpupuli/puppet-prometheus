@@ -77,7 +77,8 @@ class prometheus::mysqld_exporter (
   String[1] $package_name,
   String[1] $service_name,
   String[1] $user,
-  String[1] $version,
+  # renovate: depName=prometheus/mysqld_exporter
+  String[1] $version                                         = '0.15.1',
   Stdlib::Absolutepath $cnf_config_path                      = '/etc/mysqld_exporter-my.cnf',
   Stdlib::Host $cnf_host                                     = localhost,
   Stdlib::Port $cnf_port                                     = 3306,

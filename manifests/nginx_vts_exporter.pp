@@ -63,7 +63,8 @@ class prometheus::nginx_vts_exporter (
   String[1]        $package_name,
   String[1]        $service_name,
   String           $user,
-  String           $version,
+  # renovate: depName=hnlq715/nginx-vts-exporter
+  String           $version                                  = '0.10.3',
   Boolean          $purge_config_dir                         = true,
   Boolean          $restart_on_change                        = true,
   Boolean          $service_enable                           = true,
