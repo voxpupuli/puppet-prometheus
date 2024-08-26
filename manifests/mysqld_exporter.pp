@@ -168,7 +168,7 @@ class prometheus::mysqld_exporter (
     $_web_config,
   ].filter |$x| { !$x.empty }.join(' ')
 
-  prometheus::daemon { 'mysqld_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
