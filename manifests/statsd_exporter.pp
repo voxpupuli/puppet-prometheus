@@ -123,7 +123,7 @@ class prometheus::statsd_exporter (
   }
   $options = "${option_prefix}statsd.mapping-config=\'${prometheus::statsd_exporter::mapping_config_path}\' ${prometheus::statsd_exporter::extra_options}"
 
-  prometheus::daemon { 'statsd_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

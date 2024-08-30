@@ -96,7 +96,7 @@ class prometheus::mesos_exporter (
 
   $options = "-${server_type} ${cnf_scrape_uri} ${extra_options}"
 
-  prometheus::daemon { 'mesos_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

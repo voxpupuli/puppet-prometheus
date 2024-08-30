@@ -113,15 +113,15 @@ class prometheus::beanstalkd_exporter (
   file { $config:
     ensure  => $real_file_ensure,
     content => $beanstalkd_address,
-    before  => Prometheus::Daemon['beanstalkd_exporter'],
+    before  => Prometheus::Daemon[$service_name],
   }
 
   file { $mapping_config:
     ensure => $real_file_ensure,
-    before => Prometheus::Daemon['beanstalkd_exporter'],
+    before => Prometheus::Daemon[$service_name],
   }
 
-  prometheus::daemon { 'beanstalkd_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
