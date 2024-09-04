@@ -12,7 +12,7 @@ describe 'prometheus::elasticsearch_exporter' do
       context 'with version specified' do
         let(:params) do
           {
-            version: '1.0.0',
+            version: '1.7.0',
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
@@ -25,7 +25,7 @@ describe 'prometheus::elasticsearch_exporter' do
         end
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/elasticsearch_exporter').with('target' => '/opt/elasticsearch_exporter-1.0.0.linux-amd64/elasticsearch_exporter') }
+          it { is_expected.to contain_file('/usr/local/bin/elasticsearch_exporter').with('target' => '/opt/elasticsearch_exporter-1.7.0.linux-amd64/elasticsearch_exporter') }
         end
 
         context 'with tls set in web-config.yml' do

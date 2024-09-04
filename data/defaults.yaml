@@ -79,7 +79,6 @@ prometheus::elasticsearch_exporter::package_ensure: 'latest'
 prometheus::elasticsearch_exporter::package_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::service_name: 'elasticsearch_exporter'
 prometheus::elasticsearch_exporter::user: 'elasticsearch-exporter'
-prometheus::elasticsearch_exporter::use_kingpin: true
 prometheus::mesos_exporter::server_type: 'master'
 prometheus::mesos_exporter::cnf_scrape_uri: 'http://localhost:5050'
 prometheus::mesos_exporter::download_extension: 'tar.gz'

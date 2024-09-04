@@ -59,10 +59,6 @@
 #  User which runs the service
 # @param version
 #  The binary release version
-# @param use_kingpin
-#  Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
-#  this param to define how we call the es.uri and es.timeout in the $options
-#  https://github.com/prometheus-community/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 # @param proxy_server
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
@@ -82,7 +78,6 @@ class prometheus::elasticsearch_exporter (
   String[1] $package_name,
   String[1] $service_name,
   String[1] $user,
-  Boolean $use_kingpin,
   # renovate: depName=prometheus-community/elasticsearch_exporter
   String[1] $version                                         = '1.7.0',
   Boolean $purge_config_dir                                  = true,
@@ -109,17 +104,11 @@ class prometheus::elasticsearch_exporter (
   Stdlib::Absolutepath $web_config_file                      = '/etc/elasticsearch_exporter_web-config.yml',
   Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
-  #Please provide the download_url for versions < 0.9.0
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
-  }
-
-  $flag_prefix = $use_kingpin ? {
-    true  => '--',
-    false => '-',
   }
 
   $_web_config_ensure = $web_config_content.empty ? {
@@ -139,12 +128,12 @@ class prometheus::elasticsearch_exporter (
   $_web_config = if $web_config_content.empty {
     ''
   } else {
-    "${flag_prefix}web.config.file=${$web_config_file}"
+    "--web.config.file=${$web_config_file}"
   }
 
   $options = [
-    "${flag_prefix}es.uri=${cnf_uri}",
-    "${flag_prefix}es.timeout=${cnf_timeout}",
+    "--es.uri=${cnf_uri}",
+    "--es.timeout=${cnf_timeout}",
     $extra_options,
     $_web_config,
   ].filter |$x| { !$x.empty }.join(' ')
