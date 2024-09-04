@@ -3818,7 +3818,6 @@ The following parameters are available in the `prometheus::elasticsearch_exporte
 * [`service_name`](#-prometheus--elasticsearch_exporter--service_name)
 * [`user`](#-prometheus--elasticsearch_exporter--user)
 * [`version`](#-prometheus--elasticsearch_exporter--version)
-* [`use_kingpin`](#-prometheus--elasticsearch_exporter--use_kingpin)
 * [`proxy_server`](#-prometheus--elasticsearch_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--elasticsearch_exporter--proxy_type)
 * [`web_config_file`](#-prometheus--elasticsearch_exporter--web_config_file)
@@ -4043,14 +4042,6 @@ Data type: `String[1]`
 The binary release version
 
 Default value: `'1.7.0'`
-
-##### <a name="-prometheus--elasticsearch_exporter--use_kingpin"></a>`use_kingpin`
-
-Data type: `Boolean`
-
-Since version 1.1.0, the elasticsearch exporter uses kingpin, thus
-this param to define how we call the es.uri and es.timeout in the $options
-https://github.com/prometheus-community/elasticsearch_exporter/blob/v1.1.0/CHANGELOG.md
 
 ##### <a name="-prometheus--elasticsearch_exporter--proxy_server"></a>`proxy_server`
 
