@@ -66,6 +66,9 @@
 #  Path of file where the web-config will be saved to
 # @param web_config_content
 #  Unless empty the content of the web-config yaml which will handed over as option to the exporter
+# @param scrape_port
+#  Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
+#  If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
 class prometheus::node_exporter (
   String $download_extension,
   Prometheus::Uri $download_url_base,
@@ -157,11 +160,17 @@ class prometheus::node_exporter (
     }
   }
 
+  if $scrape_port != 9100 {
+    $listen_address = "--web.listen-address=':${scrape_port}'"
+  } else {
+    $listen_address = ''
+  }
   $options = [
     $extra_options,
     $cmd_collectors_enable.join(' '),
     $cmd_collectors_disable.join(' '),
     $_web_config,
+    $listen_address,
   ].filter |$x| { !$x.empty }.join(' ')
 
   prometheus::daemon { $service_name:

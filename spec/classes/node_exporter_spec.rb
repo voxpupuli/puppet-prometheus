@@ -193,6 +193,22 @@ describe 'prometheus::node_exporter' do
           it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '--web.config.file=/etc/node_exporter_web-config.yml') }
         end
       end
+
+      context 'with non default scrape port' do
+        let(:params) do
+          {
+            scrape_port: 9101
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+
+        if facts[:os]['name'] == 'Archlinux'
+          it { is_expected.to contain_prometheus__daemon('prometheus-node-exporter').with(options: '--web.listen-address=\':9101\'') }
+        else
+          it { is_expected.to contain_prometheus__daemon('node_exporter').with(options: '--web.listen-address=\':9101\'') }
+        end
+      end
     end
   end
 end
