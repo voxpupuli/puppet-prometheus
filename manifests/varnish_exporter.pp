@@ -89,7 +89,7 @@ class prometheus::varnish_exporter (
   }
 
   $options = " ${extra_options}"
-  prometheus::daemon { $package_name:
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

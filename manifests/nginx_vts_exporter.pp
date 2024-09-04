@@ -101,7 +101,7 @@ class prometheus::nginx_vts_exporter (
 
   $options = "-nginx.scrape_uri=\"${nginx_scrape_uri}\" ${extra_options}"
 
-  prometheus::daemon { 'nginx-vts-exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

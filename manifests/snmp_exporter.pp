@@ -126,7 +126,7 @@ class prometheus::snmp_exporter (
     notify  => $notify_service,
   }
 
-  prometheus::daemon { 'snmp_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

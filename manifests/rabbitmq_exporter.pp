@@ -128,7 +128,7 @@ class prometheus::rabbitmq_exporter (
 
   $real_env_vars = stdlib::merge($env_vars, $extra_env_vars)
 
-  prometheus::daemon { 'rabbitmq_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,

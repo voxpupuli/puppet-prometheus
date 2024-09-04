@@ -113,9 +113,7 @@ class prometheus::jmx_exporter (
     default => "${java_options} "
   }
 
-  $_name = 'jmx_exporter'
-
-  prometheus::daemon { $_name:
+  prometheus::daemon { $service_name:
     notify_service     => $notify_service,
     install_method     => 'url',
     version            => $version,
@@ -132,7 +130,7 @@ class prometheus::jmx_exporter (
     manage_bin_link    => false,
     bin_dir            => dirname($java_bin_path),
     bin_name           => basename($java_bin_path),
-    options            => "${_java_options}-jar /opt/${_name}-${version}.${os}-${arch}/${_name} ${port} ${config_file_location}",
+    options            => "${_java_options}-jar /opt/${service_name}-${version}.${os}-${arch}/${service_name} ${port} ${config_file_location}",
     os                 => $os,
     arch               => $arch,
   }

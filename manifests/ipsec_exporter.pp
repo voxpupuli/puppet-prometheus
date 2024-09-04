@@ -98,7 +98,7 @@ class prometheus::ipsec_exporter (
     default => undef,
   }
 
-  prometheus::daemon { 'ipsec_exporter':
+  prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
