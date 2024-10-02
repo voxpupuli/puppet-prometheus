@@ -570,7 +570,7 @@ Default value: `undef`
 Data type: `Array[Hash[String[1], Any]]`
 
 Array of scrape_configs. Format, e.g.:
-- job_name: some_exporter
+- job_name: node (for node_exporter; use redis for redis_exporter and so on)
   scheme: https
 The jobs defined here will be used to collect resources exported via prometheus::daemon,
 creating the appropriate prometheus scrape configs for each endpoint. All scrape_config
