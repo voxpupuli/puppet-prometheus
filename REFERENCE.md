@@ -8486,7 +8486,7 @@ Data type: `String[1]`
 
 
 
-Default value: `'node'`
+Default value: `'openvpn'`
 
 ##### <a name="-prometheus--openvpn_exporter--scrape_job_labels"></a>`scrape_job_labels`
 

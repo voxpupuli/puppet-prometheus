@@ -80,7 +80,7 @@ class prometheus::openvpn_exporter (
   Optional[Stdlib::Host] $scrape_host                        = undef,
   Boolean $export_scrape_job                                 = false,
   Stdlib::Port $scrape_port                                  = 9176,
-  String[1] $scrape_job_name                                 = 'node',
+  String[1] $scrape_job_name                                 = 'openvpn',
   Optional[Hash] $scrape_job_labels                          = undef,
   Optional[String[1]] $bin_name                              = undef,
   Optional[String[1]] $proxy_server                          = undef,
