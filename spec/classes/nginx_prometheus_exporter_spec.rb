@@ -70,6 +70,21 @@ describe 'prometheus::nginx_prometheus_exporter' do
           it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-0.11.0.linux-amd64') }
         end
       end
+
+      context 'with version >= 1.0.0' do
+        let(:params) do
+          {
+            version: '1.2.0',
+          }
+        end
+
+        it { is_expected.to contain_prometheus__daemon('nginx_prometheus_exporter').with('options' => "--nginx.scrape-uri 'http://localhost:8080/stub_status' ") }
+
+        describe 'install correct binary' do
+          it { is_expected.to contain_file('/usr/local/bin/nginx-prometheus-exporter').with('target' => '/opt/nginx-prometheus-exporter-1.2.0.linux-amd64/nginx-prometheus-exporter') }
+          it { is_expected.to contain_file('/opt/nginx-prometheus-exporter-1.2.0.linux-amd64') }
+        end
+      end
     end
   end
 end

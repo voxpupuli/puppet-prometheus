@@ -97,7 +97,11 @@ class prometheus::nginx_prometheus_exporter (
     default => undef,
   }
 
-  $options = "--nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  if versioncmp($version, '1.0.0') >= 0 {
+    $options = "--nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  } else {
+    $options = "-nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  }
 
   $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
   $archive_bin_path = "${extract_path}/${bin_name}"
