@@ -33,7 +33,7 @@ describe 'prometheus::nginx_prometheus_exporter' do
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('nginx-prometheus-exporter') }
           it { is_expected.to contain_user('nginx-prometheus-exporter') }
-          it { is_expected.to contain_prometheus__daemon('nginx_prometheus_exporter').with('options' => "-nginx.scrape-uri 'http://localhost:8080/stub_status' ") }
+          it { is_expected.to contain_prometheus__daemon('nginx_prometheus_exporter').with('options' => "--nginx.scrape-uri 'http://localhost:8080/stub_status' ") }
           it { is_expected.to contain_service('nginx_prometheus_exporter') }
         end
 
@@ -61,7 +61,7 @@ describe 'prometheus::nginx_prometheus_exporter' do
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to contain_group('nginx-prometheus-exporter') }
           it { is_expected.to contain_user('nginx-prometheus-exporter') }
-          it { is_expected.to contain_prometheus__daemon('nginx_prometheus_exporter').with('options' => "-nginx.scrape-uri 'http://127.0.0.1/stub_status' -test") }
+          it { is_expected.to contain_prometheus__daemon('nginx_prometheus_exporter').with('options' => "--nginx.scrape-uri 'http://127.0.0.1/stub_status' -test") }
           it { is_expected.to contain_service('nginx_prometheus_exporter') }
         end
 
