@@ -45,10 +45,20 @@ describe 'prometheus server basics' do
     end
   end
 
-  it 'can access static files' do
-    shell('curl -s http://127.0.0.1:9090/graph') do |r|
-      expect(r.stdout).to match(%r{doctype html})
-      expect(r.exit_code).to eq(0)
+  if host_inventory['facter']['os']['name'] == 'Archlinux'
+    # Archlinux ships promethes >= 3.0.0
+    it 'can access static files' do
+      shell('curl -s http://127.0.0.1:9090/query') do |r|
+        expect(r.stdout).to match(%r{doctype html})
+        expect(r.exit_code).to eq(0)
+      end
+    end
+  else
+    it 'can access static files' do
+      shell('curl -s http://127.0.0.1:9090/graph') do |r|
+        expect(r.stdout).to match(%r{doctype html})
+        expect(r.exit_code).to eq(0)
+      end
     end
   end
 
