@@ -67,7 +67,7 @@ class prometheus::apache_exporter (
   String[1] $package_name                                    = 'apache_exporter',
   String[1] $user                                            = 'apache-exporter',
   # renovate: depName=Lusitaniae/apache_exporter
-  String[1] $version                                         = '0.8.0',
+  String[1] $version                                         = '1.0.9',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
@@ -94,8 +94,14 @@ class prometheus::apache_exporter (
   Stdlib::Absolutepath $web_config_file                      = '/etc/apache_exporter_web-config.yml',
   Prometheus::Web_config $web_config_content                 = {},
 ) inherits prometheus {
-  #Please provide the download_url for versions < 0.9.0
-  $real_download_url    = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  if( versioncmp($version, '1.0.0') == -1 ) {
+    fail("Version ${version} is not supported. Please use version 1.0.0 or newer.")
+  }
+
+  $real_download_url    = pick(
+    $download_url,
+    "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}"
+  )
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
@@ -118,21 +124,11 @@ class prometheus::apache_exporter (
   $_web_config = if $web_config_content.empty {
     ''
   } else {
-    if versioncmp($version, '1.0.0') >= 0 {
-      "--web.config.file=${$web_config_file}"
-    } else {
-      "--web.config=${$web_config_file}"
-    }
-  }
-
-  $_scrape_uri = if versioncmp($version, '0.8.0') < 0 {
-    "-scrape_uri '${scrape_uri}'"
-  } else {
-    "--scrape_uri '${scrape_uri}'"
+    "--web.config.file=${$web_config_file}"
   }
 
   $options = [
-    $_scrape_uri,
+    "--scrape_uri '${scrape_uri}'",
     $extra_options,
     $_web_config,
   ].filter |$x| { !$x.empty }.join(' ')
