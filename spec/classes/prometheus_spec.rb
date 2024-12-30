@@ -28,6 +28,18 @@ describe 'prometheus' do
           it { is_expected.to contain_class('prometheus::server') }
           it { is_expected.to contain_class('prometheus::service_reload') }
 
+          if facts[:os]['name'] != 'Archlinux'
+            it {
+              is_expected.to contain_user('prometheus').with(
+                'ensure' => 'present',
+                'system' => true,
+                'groups' => [],
+                'managehome' => true,
+                'home' => '/var/lib/prometheus'
+              )
+            }
+          end
+
           if facts[:os]['name'] == 'Archlinux'
             it { expect(subject).not_to contain_file('/var/lib/prometheus') }
           else
