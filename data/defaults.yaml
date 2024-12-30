@@ -148,7 +148,6 @@ prometheus::mysqld_exporter::extra_groups: []
 prometheus::mysqld_exporter::group: 'mysqld-exporter'
 prometheus::mysqld_exporter::package_ensure: 'latest'
 prometheus::mysqld_exporter::package_name: 'mysqld_exporter'
-prometheus::mysqld_exporter::service_name: 'mysqld_exporter'
 prometheus::mysqld_exporter::user: 'mysqld-exporter'
 prometheus::node_exporter::download_extension: 'tar.gz'
 prometheus::node_exporter::download_url_base: 'https://github.com/prometheus/node_exporter/releases'

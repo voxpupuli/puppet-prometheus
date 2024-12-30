@@ -6950,6 +6950,9 @@ The following parameters are available in the `prometheus::mysqld_exporter` clas
 * [`proxy_type`](#-prometheus--mysqld_exporter--proxy_type)
 * [`web_config_file`](#-prometheus--mysqld_exporter--web_config_file)
 * [`web_config_content`](#-prometheus--mysqld_exporter--web_config_content)
+* [`cnf_ssl_ca`](#-prometheus--mysqld_exporter--cnf_ssl_ca)
+* [`cnf_ssl_cert`](#-prometheus--mysqld_exporter--cnf_ssl_cert)
+* [`cnf_ssl_key`](#-prometheus--mysqld_exporter--cnf_ssl_key)
 * [`export_scrape_job`](#-prometheus--mysqld_exporter--export_scrape_job)
 * [`scrape_host`](#-prometheus--mysqld_exporter--scrape_host)
 * [`scrape_port`](#-prometheus--mysqld_exporter--scrape_port)
@@ -7096,7 +7099,7 @@ Default value: `true`
 
 Data type: `Boolean`
 
-Should puppet manage the service? (default true)
+Should puppet manage the service?
 
 Default value: `true`
 
@@ -7140,7 +7143,7 @@ Default value: `true`
 
 Data type: `Boolean`
 
-Should puppet restart the service on configuration change? (default true)
+Should puppet restart the service on configuration change?
 
 Default value: `true`
 
@@ -7148,7 +7151,7 @@ Default value: `true`
 
 Data type: `Boolean`
 
-Whether to enable the service from puppet (default true)
+Whether to enable the service from puppet
 
 Default value: `true`
 
@@ -7156,7 +7159,7 @@ Default value: `true`
 
 Data type: `Stdlib::Ensure::Service`
 
-State ensured for the service (default 'running')
+State ensured for the service
 
 Default value: `'running'`
 
@@ -7164,7 +7167,9 @@ Default value: `'running'`
 
 Data type: `String[1]`
 
-Name of the mysqld exporter service (default 'mysqld_exporter')
+Name of the mysqld exporter service
+
+Default value: `'mysqld_exporter'`
 
 ##### <a name="-prometheus--mysqld_exporter--user"></a>`user`
 
@@ -7184,7 +7189,7 @@ Default value: `'0.15.1'`
 
 Data type: `Optional[String[1]]`
 
-Optional proxy server, with port number if needed. ie: https://example.com:8080
+proxy server, with port number if needed. ie: https://example.com:8080
 
 Default value: `undef`
 
@@ -7192,7 +7197,7 @@ Default value: `undef`
 
 Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
 
-Optional proxy server type (none|http|https|ftp)
+proxy server type
 
 Default value: `undef`
 
@@ -7211,6 +7216,30 @@ Data type: `Prometheus::Web_config`
 Unless empty the content of the web-config yaml which will handed over as option to the exporter
 
 Default value: `{}`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_ca"></a>`cnf_ssl_ca`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the Certificate Authority (CA) certificate file in PEM format.
+
+Default value: `undef`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_cert"></a>`cnf_ssl_cert`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the client SSL public key certificate file in PEM format.
+
+Default value: `undef`
+
+##### <a name="-prometheus--mysqld_exporter--cnf_ssl_key"></a>`cnf_ssl_key`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path name of the client SSL private key file in PEM format.
+
+Default value: `undef`
 
 ##### <a name="-prometheus--mysqld_exporter--export_scrape_job"></a>`export_scrape_job`
 

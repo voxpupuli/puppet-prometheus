@@ -37,6 +37,24 @@ describe 'prometheus::mysqld_exporter' do
         it do
           content = catalogue.resource('file', '/etc/mysqld_exporter-my.cnf').send(:parameters)[:content]
           expect(content).to include('secret')
+          expect(content).not_to include('ssl-ca')
+        end
+      end
+
+      context 'with tls parameters for exporter' do
+        let(:params) do
+          {
+            cnf_ssl_ca: '/foo/bar/ca.pem',
+            cnf_ssl_cert: '/foo/bar/cert.pem',
+            cnf_ssl_key: '/foo/bar/key.pem'
+          }
+        end
+
+        it do
+          content = catalogue.resource('file', '/etc/mysqld_exporter-my.cnf').send(:parameters)[:content]
+          expect(content).to include('ssl-ca = "/foo/bar/ca.pem"')
+          expect(content).to include('ssl-cert = "/foo/bar/cert.pem"')
+          expect(content).to include('ssl-key = "/foo/bar/key.pem"')
         end
       end
 
