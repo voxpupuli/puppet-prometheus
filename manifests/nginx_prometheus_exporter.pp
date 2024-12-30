@@ -63,7 +63,7 @@ class prometheus::nginx_prometheus_exporter (
   String[1] $package_name                                    = 'nginx-prometheus-exporter',
   String[1] $user                                            = 'nginx-prometheus-exporter',
   # renovate: depName=nginxinc/nginx-prometheus-exporter
-  String[1] $version                                         = '0.11.0',
+  String[1] $version                                         = '1.2.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
