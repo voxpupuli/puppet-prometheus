@@ -24,6 +24,7 @@
 * [`prometheus::grok_exporter`](#prometheus--grok_exporter): This module manages prometheus grok_exporter
 * [`prometheus::haproxy_exporter`](#prometheus--haproxy_exporter): This module manages prometheus haproxy_exporter
 * [`prometheus::install`](#prometheus--install): Install prometheus
+* [`prometheus::iperf3_exporter`](#prometheus--iperf3_exporter): This module manages prometheus node iperf3_exporter
 * [`prometheus::ipmi_exporter`](#prometheus--ipmi_exporter): This module manages prometheus node ipmi_exporter (https://github.com/soundcloud/ipmi_exporter)
 * [`prometheus::ipsec_exporter`](#prometheus--ipsec_exporter): This module manages prometheus node ipsec_exporter
 * [`prometheus::jmx_exporter`](#prometheus--jmx_exporter): Installs and configures the Prometheus JMX exporter
@@ -4948,6 +4949,267 @@ Currently only the install from url is implemented, when Prometheus will deliver
 implement the package install method as well
 
 The package method needs specific yum or apt repo settings which are not made yet by the module
+
+### <a name="prometheus--iperf3_exporter"></a>`prometheus::iperf3_exporter`
+
+This module manages prometheus node iperf3_exporter
+
+#### Parameters
+
+The following parameters are available in the `prometheus::iperf3_exporter` class:
+
+* [`arch`](#-prometheus--iperf3_exporter--arch)
+* [`bin_dir`](#-prometheus--iperf3_exporter--bin_dir)
+* [`download_extension`](#-prometheus--iperf3_exporter--download_extension)
+* [`download_url`](#-prometheus--iperf3_exporter--download_url)
+* [`download_url_base`](#-prometheus--iperf3_exporter--download_url_base)
+* [`options`](#-prometheus--iperf3_exporter--options)
+* [`extra_groups`](#-prometheus--iperf3_exporter--extra_groups)
+* [`group`](#-prometheus--iperf3_exporter--group)
+* [`init_style`](#-prometheus--iperf3_exporter--init_style)
+* [`install_method`](#-prometheus--iperf3_exporter--install_method)
+* [`manage_group`](#-prometheus--iperf3_exporter--manage_group)
+* [`manage_service`](#-prometheus--iperf3_exporter--manage_service)
+* [`manage_user`](#-prometheus--iperf3_exporter--manage_user)
+* [`os`](#-prometheus--iperf3_exporter--os)
+* [`package_ensure`](#-prometheus--iperf3_exporter--package_ensure)
+* [`package_name`](#-prometheus--iperf3_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--iperf3_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--iperf3_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--iperf3_exporter--service_enable)
+* [`service_ensure`](#-prometheus--iperf3_exporter--service_ensure)
+* [`service_name`](#-prometheus--iperf3_exporter--service_name)
+* [`user`](#-prometheus--iperf3_exporter--user)
+* [`version`](#-prometheus--iperf3_exporter--version)
+* [`export_scrape_job`](#-prometheus--iperf3_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--iperf3_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--iperf3_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--iperf3_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--iperf3_exporter--scrape_job_labels)
+
+##### <a name="-prometheus--iperf3_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (amd64 or i386)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--iperf3_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::AbsolutePath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--iperf3_exporter--download_extension"></a>`download_extension`
+
+Data type: `String[1]`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--iperf3_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--iperf3_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/edgard/iperf3_exporter/releases'`
+
+##### <a name="-prometheus--iperf3_exporter--options"></a>`options`
+
+Data type: `Optional[String[1]]`
+
+Options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--iperf3_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String[1]]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--iperf3_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'iperf3-exporter'`
+
+##### <a name="-prometheus--iperf3_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$facts['service_provider']`
+
+##### <a name="-prometheus--iperf3_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--iperf3_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--iperf3_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="-prometheus--iperf3_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'iperf3_exporter'`
+
+##### <a name="-prometheus--iperf3_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--iperf3_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--iperf3_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the iperf3 exporter service (default 'iperf3_exporter')
+
+Default value: `'iperf3_exporter'`
+
+##### <a name="-prometheus--iperf3_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'iperf3-exporter'`
+
+##### <a name="-prometheus--iperf3_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'0.1.3'`
+
+##### <a name="-prometheus--iperf3_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--iperf3_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--iperf3_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9579`
+
+##### <a name="-prometheus--iperf3_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'iperf3'`
+
+##### <a name="-prometheus--iperf3_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
 
 ### <a name="prometheus--ipmi_exporter"></a>`prometheus::ipmi_exporter`
 
