@@ -40,11 +40,11 @@ describe 'prometheus nginx exporter' do
 
     if os == 'centos-7-x86_64'
       describe process('nginx-prometheus-exporter') do
-        its(:args) { is_expected.to match %r{\ -nginx.scrape-uri http://localhost:8888/stub_status} }
+        its(:args) { is_expected.to match %r{\ --nginx.scrape-uri http://localhost:8888/stub_status} }
       end
     else
       describe process('nginx-prometheu') do
-        its(:args) { is_expected.to match %r{\ -nginx.scrape-uri http://localhost:8888/stub_status} }
+        its(:args) { is_expected.to match %r{\ --nginx.scrape-uri http://localhost:8888/stub_status} }
       end
     end
   end

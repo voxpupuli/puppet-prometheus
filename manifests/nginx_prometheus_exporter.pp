@@ -97,7 +97,7 @@ class prometheus::nginx_prometheus_exporter (
     default => undef,
   }
 
-  $options = "-nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  $options = "--nginx.scrape-uri '${scrape_uri}' ${extra_options}"
 
   if $install_method == 'url' {
     # Not a big fan of copypasting but prometheus::daemon takes for granted
