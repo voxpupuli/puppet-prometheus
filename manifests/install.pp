@@ -79,6 +79,8 @@ class prometheus::install {
         system => true,
         groups => $prometheus::server::extra_groups,
         shell  => $prometheus::server::usershell,
+        managehome => true,
+        home       => $prometheus::server::localstorage,
     })
 
     if $prometheus::server::manage_group {
