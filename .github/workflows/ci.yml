@@ -1,91 +1,22 @@
 ---
-name: CI
+  # Managed by modulesync - DO NOT EDIT
+  # https://voxpupuli.org/docs/updating-files-managed-with-modulesync/
 
-on: pull_request
+  name: CI
 
-concurrency:
-  group: ${{ github.ref_name }}
-  cancel-in-progress: true
+  # yamllint disable-line rule:truthy
+  on:
+    pull_request: {}
+    push:
+      branches:
+        - main
+        - master
 
-jobs:
-  setup_matrix:
-    name: 'Setup Test Matrix'
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    outputs:
-      puppet_unit_test_matrix: ${{ steps.get-outputs.outputs.puppet_unit_test_matrix }}
-      puppet_beaker_test_matrix: ${{ steps.get-outputs.outputs.puppet_beaker_test_matrix }}
-    env:
-      BUNDLE_WITHOUT: development:system_tests:release
-      PUPPET_GEM_VERSION: ">= 7.0"
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      - name: Run static validations
-        run: bundle exec rake validate lint check
-      - name: Run rake rubocop
-        run: bundle exec rake rubocop
-      - name: Setup Test Matrix
-        id: get-outputs
-        run: bundle exec metadata2gha --pidfile-workaround false --domain example.com
+  concurrency:
+    group: ${{ github.ref_name }}
+    cancel-in-progress: true
 
-  unit:
-    needs: setup_matrix
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{fromJson(needs.setup_matrix.outputs.puppet_unit_test_matrix)}}
-    env:
-      BUNDLE_WITHOUT: development:system_tests:release
-      PUPPET_VERSION: "~> ${{ matrix.puppet }}.0"
-    name: Puppet ${{ matrix.puppet }} (Ruby ${{ matrix.ruby }})
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
-      - name: Run tests
-        run: bundle exec rake parallel_spec
-
-  acceptance:
-    needs: setup_matrix
-    runs-on: ubuntu-20.04
-    env:
-      BUNDLE_WITHOUT: development:test:release
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{fromJson(needs.setup_matrix.outputs.puppet_beaker_test_matrix)}}
-    name: "${{ matrix.name }}"
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      - name: Start squid
-        run: ./scripts/start-squid.sh
-      - name: Run tests
-        run: bundle exec rake beaker
-        env: ${{ matrix.env }}
-      - name: squid logs
-        run: docker logs squid --tail 50
-        if: always()
-
-  tests:
-    needs:
-      - unit
-      - acceptance
-    runs-on: ubuntu-latest
-    name: Test suite
-    steps:
-      - run: echo Test suite completed
+  jobs:
+    puppet:
+      name: Puppet
+      uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v3
