@@ -4,6 +4,73 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v16.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.0.0) (2024-12-30)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v15.0.0...v16.0.0)
+
+**Breaking changes:**
+
+- remove support for apache\_exporter \< 1.0.0 [\#826](https://github.com/voxpupuli/puppet-prometheus/pull/826) ([TheMeier](https://github.com/TheMeier))
+- remove code options for elasticsearch\_exporter \< 1.1.0 [\#804](https://github.com/voxpupuli/puppet-prometheus/pull/804) ([TheMeier](https://github.com/TheMeier))
+- Update dependency prometheus/snmp\_exporter to v0.26.0 [\#774](https://github.com/voxpupuli/puppet-prometheus/pull/774) ([pccibot](https://github.com/pccibot))
+
+**Implemented enhancements:**
+
+- add options to set tls parameters for mysql config used by mysqld\_exporter [\#832](https://github.com/voxpupuli/puppet-prometheus/pull/832) ([TheMeier](https://github.com/TheMeier))
+- manage homedirectory for prometheus user when manage\_user is true [\#831](https://github.com/voxpupuli/puppet-prometheus/pull/831) ([TheMeier](https://github.com/TheMeier))
+- use default modulesync template for ci.yml [\#830](https://github.com/voxpupuli/puppet-prometheus/pull/830) ([TheMeier](https://github.com/TheMeier))
+- puppet/systemd: allow 8.x [\#823](https://github.com/voxpupuli/puppet-prometheus/pull/823) ([jay7x](https://github.com/jay7x))
+- use $service\_name instead of a hard-coded name for prometheus::daemon [\#803](https://github.com/voxpupuli/puppet-prometheus/pull/803) ([saz](https://github.com/saz))
+- Replace hardcoded mysqld\_exporter service name with $service\_name variable [\#802](https://github.com/voxpupuli/puppet-prometheus/pull/802) ([saz](https://github.com/saz))
+- feat: move all exporter version from data into the manifests [\#800](https://github.com/voxpupuli/puppet-prometheus/pull/800) ([TheMeier](https://github.com/TheMeier))
+- feat: add --web.listen-address flag to node\_exporter if the scrape port is changed [\#799](https://github.com/voxpupuli/puppet-prometheus/pull/799) ([TheMeier](https://github.com/TheMeier))
+- Update nginx\_prometheus\_exporter.pp to use proxy server [\#796](https://github.com/voxpupuli/puppet-prometheus/pull/796) ([schiznik](https://github.com/schiznik))
+- expose the env\_vars and env\_file\_path parameters to the blackbox\_exporter [\#791](https://github.com/voxpupuli/puppet-prometheus/pull/791) ([lukebigum](https://github.com/lukebigum))
+- support the new scrape\_config\_files option, prom ~v2.45 [\#782](https://github.com/voxpupuli/puppet-prometheus/pull/782) ([lukebigum](https://github.com/lukebigum))
+- Update dependency treydock/ssh\_exporter to v1.5.0 [\#779](https://github.com/voxpupuli/puppet-prometheus/pull/779) ([pccibot](https://github.com/pccibot))
+- Update dependency tomcz/openldap\_exporter to v2.2.2 [\#778](https://github.com/voxpupuli/puppet-prometheus/pull/778) ([pccibot](https://github.com/pccibot))
+- Update dependency ribbybibby/ssl\_exporter to v2.4.3 [\#776](https://github.com/voxpupuli/puppet-prometheus/pull/776) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/statsd\_exporter to v0.26.1 [\#775](https://github.com/voxpupuli/puppet-prometheus/pull/775) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/pushgateway to v1.9.0 [\#773](https://github.com/voxpupuli/puppet-prometheus/pull/773) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/node\_exporter to v1.8.1 [\#772](https://github.com/voxpupuli/puppet-prometheus/pull/772) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/mysqld\_exporter to v0.15.1 [\#771](https://github.com/voxpupuli/puppet-prometheus/pull/771) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/memcached\_exporter to v0.14.4 [\#770](https://github.com/voxpupuli/puppet-prometheus/pull/770) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/haproxy\_exporter to v0.15.0 [\#769](https://github.com/voxpupuli/puppet-prometheus/pull/769) ([pccibot](https://github.com/pccibot))
+- deprecate nginx-vts-exporter [\#768](https://github.com/voxpupuli/puppet-prometheus/pull/768) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/graphite\_exporter to v0.15.1 [\#767](https://github.com/voxpupuli/puppet-prometheus/pull/767) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/consul\_exporter to v0.12.0 [\#763](https://github.com/voxpupuli/puppet-prometheus/pull/763) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/collectd\_exporter to v0.6.0 [\#762](https://github.com/voxpupuli/puppet-prometheus/pull/762) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus/blackbox\_exporter to v0.25.0 [\#761](https://github.com/voxpupuli/puppet-prometheus/pull/761) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus-community/ipmi\_exporter to v1.8.0 [\#759](https://github.com/voxpupuli/puppet-prometheus/pull/759) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus-community/bind\_exporter to v0.7.0 [\#758](https://github.com/voxpupuli/puppet-prometheus/pull/758) ([pccibot](https://github.com/pccibot))
+- Update dependency prometheus-community/PushProx to v0.2.0 [\#757](https://github.com/voxpupuli/puppet-prometheus/pull/757) ([pccibot](https://github.com/pccibot))
+- Update dependency povilasv/systemd\_exporter to v0.6.0 [\#756](https://github.com/voxpupuli/puppet-prometheus/pull/756) ([pccibot](https://github.com/pccibot))
+- Update dependency percona/mongodb\_exporter to v0.40.0 [\#755](https://github.com/voxpupuli/puppet-prometheus/pull/755) ([pccibot](https://github.com/pccibot))
+- Update dependency oliver006/redis\_exporter to v1.61.0 [\#754](https://github.com/voxpupuli/puppet-prometheus/pull/754) ([pccibot](https://github.com/pccibot))
+- Update dependency nginxinc/nginx-prometheus-exporter to v0.11.0 [\#751](https://github.com/voxpupuli/puppet-prometheus/pull/751) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency ncabatoff/process-exporter to v0.8.2 [\#750](https://github.com/voxpupuli/puppet-prometheus/pull/750) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency kumina/unbound\_exporter to v0.4.6 [\#749](https://github.com/voxpupuli/puppet-prometheus/pull/749) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency justwatchcom/elasticsearch\_exporter to v1.7.0 [\#748](https://github.com/voxpupuli/puppet-prometheus/pull/748) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency jonnenauha/prometheus\_varnish\_exporter to v1.6.1 [\#747](https://github.com/voxpupuli/puppet-prometheus/pull/747) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency hipages/php-fpm\_exporter to v2.2.0 [\#746](https://github.com/voxpupuli/puppet-prometheus/pull/746) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency galexrt/dellhw\_exporter to v1.13.12 [\#745](https://github.com/voxpupuli/puppet-prometheus/pull/745) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dependency dennisstritzke/ipsec\_exporter to v0.4.0 [\#744](https://github.com/voxpupuli/puppet-prometheus/pull/744) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Add iperf3 exporter [\#608](https://github.com/voxpupuli/puppet-prometheus/pull/608) ([onstring](https://github.com/onstring))
+
+**Fixed bugs:**
+
+- Fix scrape\_job\_name for openvpn exporter [\#812](https://github.com/voxpupuli/puppet-prometheus/pull/812) ([drkp](https://github.com/drkp))
+- fix: missing `WorkDirectory` in systemd unit file for archliinux [\#793](https://github.com/voxpupuli/puppet-prometheus/pull/793) ([TheMeier](https://github.com/TheMeier))
+
+**Closed issues:**
+
+- keeping exporter versions up-to-date [\#666](https://github.com/voxpupuli/puppet-prometheus/issues/666)
+- mysqld\_exporter configuration for ssl not possible [\#604](https://github.com/voxpupuli/puppet-prometheus/issues/604)
+
+**Merged pull requests:**
+
+- Make documentation on collect\_scrape\_jobs clearer [\#811](https://github.com/voxpupuli/puppet-prometheus/pull/811) ([j-dr3](https://github.com/j-dr3))
+
 ## [v15.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v15.0.0) (2024-06-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v14.0.0...v15.0.0)
@@ -12,13 +79,13 @@ These should not affect the functionality of the module.
 
 - Remove support for alertmanager \< 0.13.0 [\#720](https://github.com/voxpupuli/puppet-prometheus/issues/720)
 - Remove prometheus 1.x support [\#718](https://github.com/voxpupuli/puppet-prometheus/issues/718)
+- Change default port from 9090 to 9419 [\#637](https://github.com/voxpupuli/puppet-prometheus/pull/637) ([mindriot88](https://github.com/mindriot88))
 - drop suport for redis\_exporter \< 1.0.0 [\#732](https://github.com/voxpupuli/puppet-prometheus/pull/732) ([TheMeier](https://github.com/TheMeier))
 - drop support for alertmanager \< 0.13.0 [\#731](https://github.com/voxpupuli/puppet-prometheus/pull/731) ([TheMeier](https://github.com/TheMeier))
 - drop support for prometheus 1.x, update prometheus version to 2.52.0 [\#728](https://github.com/voxpupuli/puppet-prometheus/pull/728) ([TheMeier](https://github.com/TheMeier))
 - drop Debian 10 support [\#727](https://github.com/voxpupuli/puppet-prometheus/pull/727) ([TheMeier](https://github.com/TheMeier))
 - drop RedHat and CentOS 7 & 8 support [\#726](https://github.com/voxpupuli/puppet-prometheus/pull/726) ([TheMeier](https://github.com/TheMeier))
 - update alertmanager to 0.21.0-\>0.27.0 [\#725](https://github.com/voxpupuli/puppet-prometheus/pull/725) ([TheMeier](https://github.com/TheMeier))
-- Change default port from 9090 to 9419 [\#637](https://github.com/voxpupuli/puppet-prometheus/pull/637) ([mindriot88](https://github.com/mindriot88))
 
 **Implemented enhancements:**
 
