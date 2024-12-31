@@ -100,40 +100,17 @@ class prometheus::php_fpm_exporter (
 
   $options = "server --phpfpm.scrape-uri '${scrape_uri}' ${extra_options}"
 
-  if $install_method == 'url' {
-    # Not a big fan of copypasting but prometheus::daemon takes for granted
-    # a specific path embedded in the prometheus *_exporter tarball, which
-    # php-fpm_exporter lacks currently as of version 2.0.4
-    # TODO: patch prometheus::daemon to support custom extract directories
-    $real_install_method = 'none'
-    $install_dir = "/opt/${package_name}-${version}.${os}-${arch}"
-    file { $install_dir:
-      ensure => 'directory',
-      owner  => 'root',
-      group  => 0, # 0 instead of root because OS X uses "wheel".
-      mode   => '0555',
-    }
-    -> archive { "/tmp/${package_name}-${version}.${download_extension}":
-      ensure          => present,
-      extract         => true,
-      extract_path    => $install_dir,
-      source          => $real_download_url,
-      checksum_verify => false,
-      creates         => "${install_dir}/${package_name}",
-      cleanup         => true,
-    }
-    -> file { "${bin_dir}/${package_name}":
-      ensure => link,
-      notify => $notify_service,
-      target => "${install_dir}/${package_name}",
-      before => Prometheus::Daemon[$service_name],
-    }
-  } else {
-    $real_install_method = $install_method
-  }
+  $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
+  $archive_bin_path = "${extract_path}/${bin_name}"
 
-  prometheus::daemon { $service_name:
-    install_method     => $real_install_method,
+  file { $extract_path:
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 0, # 0 instead of root because OS X uses "wheel".
+    mode   => '0555',
+  }
+  -> prometheus::daemon { $service_name:
+    install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,
@@ -164,5 +141,7 @@ class prometheus::php_fpm_exporter (
     env_file_path      => $env_file_path,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
+    extract_path       => $extract_path,
+    archive_bin_path   => $archive_bin_path,
   }
 }

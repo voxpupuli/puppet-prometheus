@@ -84,21 +84,22 @@ describe 'prometheus::node_exporter' do
       context 'with version specified' do
         let(:params) do
           {
-            version: '0.13.0',
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
             service_name: 'node_exporter',
-            install_method: 'url'
+            install_method: 'url',
+            package_name: 'node_exporter', # reuired to override defaults for Archlinux
+            bin_name: 'node_exporter' # reuired to override defaults for Archlinux
           }
         end
 
         it { is_expected.to compile.with_all_deps }
-        it { is_expected.to contain_archive('/tmp/node_exporter-0.13.0.tar.gz') }
-        it { is_expected.to contain_file('/opt/node_exporter-0.13.0.linux-amd64/node_exporter') }
+        it { is_expected.to contain_archive('/tmp/node_exporter-1.8.1.tar.gz') }
+        it { is_expected.to contain_file('/opt/node_exporter-1.8.1.linux-amd64/node_exporter') }
 
         describe 'install correct binary' do
-          it { is_expected.to contain_file('/usr/local/bin/node_exporter').with('target' => '/opt/node_exporter-0.13.0.linux-amd64/node_exporter') }
+          it { is_expected.to contain_file('/usr/local/bin/node_exporter').with('target' => '/opt/node_exporter-1.8.1.linux-amd64/node_exporter') }
         end
       end
 

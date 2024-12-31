@@ -125,7 +125,7 @@ define prometheus::daemon (
         mode  => '0555',
       }
       if $manage_bin_link {
-        file { "${bin_dir}/${name}":
+        file { "${bin_dir}/${bin_name}":
           ensure  => link,
           notify  => $notify_service,
           target  => $archive_bin_path,
