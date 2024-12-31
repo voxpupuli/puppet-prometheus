@@ -68,6 +68,8 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @note
+# This class is deprecated and will be removed in a future release.
 class prometheus::rabbitmq_exporter (
   Prometheus::Uri $download_url_base,
   Array[String] $extra_groups,
@@ -109,6 +111,12 @@ class prometheus::rabbitmq_exporter (
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
+  deprecation(
+    'promtheus::rabbitmq_exporter',
+    'This class is deprecated and will be removed in a future release. See https://github.com/kbudde/rabbitmq_exporter/issues/383 for details',
+    false
+  )
+
   if versioncmp($version, '1.0.0') >= 0 {
     $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
     $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
