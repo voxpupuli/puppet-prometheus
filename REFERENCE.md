@@ -9861,6 +9861,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--process_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -9875,11 +9877,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/ncabatoff/process-exporter/releases'`
+
 ##### <a name="-prometheus--process_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--process_exporter--extra_options"></a>`extra_options`
 
@@ -9894,6 +9900,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--init_style"></a>`init_style`
 
@@ -9949,11 +9957,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--process_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -9993,11 +10005,15 @@ Data type: `String[1]`
 
 Name of the process exporter service (default 'process-exporter')
 
+Default value: `'process-exporter'`
+
 ##### <a name="-prometheus--process_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--version"></a>`version`
 
@@ -10046,6 +10062,8 @@ Default value: `undef`
 Data type: `Stdlib::Absolutepath`
 
 
+
+Default value: `'/etc/process-exporter.yaml'`
 
 ##### <a name="-prometheus--process_exporter--config_mode"></a>`config_mode`
 
