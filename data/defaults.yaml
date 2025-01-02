@@ -116,13 +116,6 @@ prometheus::process_exporter::package_name: 'process-exporter'
 prometheus::process_exporter::service_name: 'process-exporter'
 prometheus::process_exporter::user: 'process-exporter'
 prometheus::process_exporter::config_path: '/etc/process-exporter.yaml'
-prometheus::pushgateway::download_extension: 'tar.gz'
-prometheus::pushgateway::download_url_base: 'https://github.com/prometheus/pushgateway/releases'
-prometheus::pushgateway::extra_groups: []
-prometheus::pushgateway::group: 'pushgateway'
-prometheus::pushgateway::package_ensure: 'latest'
-prometheus::pushgateway::package_name: 'pushgateway'
-prometheus::pushgateway::user: 'pushgateway'
 prometheus::rabbitmq_exporter::download_extension: 'tar.gz'
 prometheus::rabbitmq_exporter::download_url_base: 'https://github.com/kbudde/rabbitmq_exporter/releases'
 prometheus::rabbitmq_exporter::extra_groups: []

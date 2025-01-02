@@ -10447,6 +10447,8 @@ Data type: `String[1]`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--pushgateway--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
@@ -10461,11 +10463,15 @@ Data type: `String[1]`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/pushgateway/releases'`
+
 ##### <a name="-prometheus--pushgateway--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--pushgateway--extra_options"></a>`extra_options`
 
@@ -10480,6 +10486,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--init_style"></a>`init_style`
 
@@ -10535,11 +10543,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--pushgateway--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--restart_on_change"></a>`restart_on_change`
 
@@ -10578,6 +10590,8 @@ Default value: `'pushgateway'`
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--version"></a>`version`
 

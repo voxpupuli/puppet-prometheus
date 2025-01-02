@@ -48,13 +48,13 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::pushgateway (
-  String[1] $download_extension,
-  String[1] $download_url_base,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $user,
+  String[1] $download_extension = 'tar.gz',
+  String[1] $download_url_base = 'https://github.com/prometheus/pushgateway/releases',
+  Array $extra_groups = [],
+  String[1] $group = 'pushgateway',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'pushgateway',
+  String[1] $user = 'pushgateway',
   # renovate: depName=prometheus/pushgateway
   String[1] $version                                         = '1.9.0',
   Boolean $restart_on_change                                 = true,
