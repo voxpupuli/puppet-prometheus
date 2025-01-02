@@ -111,7 +111,7 @@ class prometheus::rabbitmq_exporter (
 ) inherits prometheus {
   if versioncmp($version, '1.0.0') >= 0 {
     $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
-    $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
+    $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
     file { $extract_path:
       ensure => 'directory',
       owner  => 'root',
