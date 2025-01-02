@@ -1,6 +1,7 @@
 # puppet-prometheus
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-prometheus.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-prometheus)
+[![Build Status](https://github.com/voxpupuli/puppet-prometheus/workflows/CI/badge.svg)](https://github.com/voxpupuli/puppet-prometheus/actions?query=workflow%3ACI)
+[![Release](https://github.com/voxpupuli/puppet-prometheus/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/puppet-prometheus/actions/workflows/release.yml)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/prometheus.svg)](https://forge.puppetlabs.com/puppet/prometheus)
 [![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/prometheus.svg)](https://forge.puppetlabs.com/puppet/prometheus)
 [![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/prometheus.svg)](https://forge.puppetlabs.com/puppet/prometheus)
