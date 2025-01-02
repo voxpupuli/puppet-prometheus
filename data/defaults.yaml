@@ -178,13 +178,3 @@ prometheus::snmp_exporter::package_ensure: 'latest'
 prometheus::snmp_exporter::package_name: 'snmp_exporter'
 prometheus::snmp_exporter::service_name: 'snmp_exporter'
 prometheus::snmp_exporter::user: 'snmp-exporter'
-prometheus::statsd_exporter::download_extension: 'tar.gz'
-prometheus::statsd_exporter::download_url_base: 'https://github.com/prometheus/statsd_exporter/releases'
-prometheus::statsd_exporter::extra_groups: []
-prometheus::statsd_exporter::group: 'statsd-exporter'
-prometheus::statsd_exporter::mapping_config_path: '/etc/statsd-exporter-mapping.yaml'
-prometheus::statsd_exporter::mappings: []
-prometheus::statsd_exporter::package_ensure: 'latest'
-prometheus::statsd_exporter::package_name: 'statsd_exporter'
-prometheus::statsd_exporter::service_name: 'statsd_exporter'
-prometheus::statsd_exporter::user: 'statsd-exporter'

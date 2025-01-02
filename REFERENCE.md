@@ -13492,6 +13492,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--statsd_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -13506,11 +13508,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/statsd_exporter/releases'`
+
 ##### <a name="-prometheus--statsd_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--statsd_exporter--extra_options"></a>`extra_options`
 
@@ -13525,6 +13531,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'statsd-exporter'`
 
 ##### <a name="-prometheus--statsd_exporter--init_style"></a>`init_style`
 
@@ -13580,11 +13588,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--statsd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'statsd_exporter'`
 
 ##### <a name="-prometheus--statsd_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -13624,6 +13636,8 @@ Data type: `String[1]`
 
 Name of the statsd exporter service (default 'statsd_exporter')
 
+Default value: `'statsd_exporter'`
+
 ##### <a name="-prometheus--statsd_exporter--mappings"></a>`mappings`
 
 Data type: `Array[Hash]`
@@ -13635,11 +13649,15 @@ The hiera array for mappings:
       processor: '$2'
       action: '$1'
 
+Default value: `[]`
+
 ##### <a name="-prometheus--statsd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'statsd-exporter'`
 
 ##### <a name="-prometheus--statsd_exporter--version"></a>`version`
 
@@ -13670,6 +13688,8 @@ Default value: `undef`
 Data type: `Stdlib::Absolutepath`
 
 
+
+Default value: `'/etc/statsd-exporter-mapping.yaml'`
 
 ##### <a name="-prometheus--statsd_exporter--export_scrape_job"></a>`export_scrape_job`
 
