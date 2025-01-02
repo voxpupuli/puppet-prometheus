@@ -12568,6 +12568,8 @@ Data type: `Stdlib::Absolutepath`
 
 Absolute path to configuration file
 
+Default value: `'/etc/snmp-exporter.yaml'`
+
 ##### <a name="-prometheus--snmp_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
@@ -12578,15 +12580,19 @@ Default value: `$prometheus::config_mode`
 
 ##### <a name="-prometheus--snmp_exporter--config_template"></a>`config_template`
 
-Data type: `String`
+Data type: `String[0]`
 
 Configuration template to use. If empty, uses upstream config (default "")
 
+Default value: `''`
+
 ##### <a name="-prometheus--snmp_exporter--download_extension"></a>`download_extension`
 
-Data type: `String`
+Data type: `String[0]`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--snmp_exporter--download_url"></a>`download_url`
 
@@ -12602,11 +12608,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/snmp_exporter/releases'`
+
 ##### <a name="-prometheus--snmp_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--snmp_exporter--extra_options"></a>`extra_options`
 
@@ -12621,6 +12631,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `snmp-exporter`
 
 ##### <a name="-prometheus--snmp_exporter--init_style"></a>`init_style`
 
@@ -12676,11 +12688,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--snmp_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'snmp_exporter'`
 
 ##### <a name="-prometheus--snmp_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -12720,11 +12736,15 @@ Data type: `String[1]`
 
 Name of the snmp exporter service (default 'snmp_exporter')
 
+Default value: `'snmp_exporter'`
+
 ##### <a name="-prometheus--snmp_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'snmp-exporter'`
 
 ##### <a name="-prometheus--snmp_exporter--version"></a>`version`
 
