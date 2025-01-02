@@ -58,18 +58,18 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::beanstalkd_exporter (
-  String $download_extension,
-  Prometheus::Uri $download_url_base,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $service_name,
-  String[1] $user,
-  String[1] $config,
-  String[1] $mapping_config,
-  String[1] $beanstalkd_address,
-  String[1] $exporter_listen,
+  String[0] $download_extension = '', # lint:ignore:params_empty_string_assignment
+  Prometheus::Uri $download_url_base = 'https://github.com/messagebird/beanstalkd_exporter/releases',
+  Array $extra_groups = [],
+  String[1] $group = 'beanstalkd-exporter',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'beanstalkd_exporter',
+  String[1] $service_name = 'beanstalkd_exporter',
+  String[1] $user = 'beanstalkd-exporter',
+  Stdlib::Absolutepath $config = '/etc/beanstalkd-exporter.conf',
+  Stdlib::Absolutepath $mapping_config = '/etc/beanstalkd-exporter-mapping.conf',
+  String[1] $beanstalkd_address = '127.0.0.1:11300',
+  String[1] $exporter_listen = ':9371',
   # renovate: depName=messagebird/beanstalkd_exporter
   String[1] $version                                         = '1.0.5',
   Boolean $purge_config_dir                                  = true,

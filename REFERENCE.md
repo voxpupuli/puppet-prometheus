@@ -1705,15 +1705,19 @@ Default value: `$prometheus::bin_dir`
 
 ##### <a name="-prometheus--beanstalkd_exporter--config"></a>`config`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Path to configuration file that stores beanstalkd address
 
+Default value: `'/etc/beanstalkd-exporter.conf'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--mapping_config"></a>`mapping_config`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Path to configuration file with tubes mappings (not implemented)
+
+Default value: `'/etc/beanstalkd-exporter-mapping.conf'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--beanstalkd_address"></a>`beanstalkd_address`
 
@@ -1721,17 +1725,23 @@ Data type: `String[1]`
 
 Address of beanstalkd, defaults to localhost
 
+Default value: `'127.0.0.1:11300'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--exporter_listen"></a>`exporter_listen`
 
 Data type: `String[1]`
 
 Address to bind beanstalkd_exporter to. Default is different than upstream (*:9371)
 
+Default value: `':9371'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--download_extension"></a>`download_extension`
 
-Data type: `String`
+Data type: `String[0]`
 
 Extension for the release binary archive
+
+Default value: `''`
 
 ##### <a name="-prometheus--beanstalkd_exporter--download_url"></a>`download_url`
 
@@ -1747,11 +1757,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/messagebird/beanstalkd_exporter/releases'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--beanstalkd_exporter--extra_options"></a>`extra_options`
 
@@ -1766,6 +1780,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'beanstalkd-exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--init_style"></a>`init_style`
 
@@ -1821,11 +1837,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'beanstalkd_exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -1865,11 +1885,15 @@ Data type: `String[1]`
 
 Name of the beanstalkd exporter service (default 'beanstalkd_exporter')
 
+Default value: `'beanstalkd_exporter'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'beanstalkd-exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--version"></a>`version`
 
