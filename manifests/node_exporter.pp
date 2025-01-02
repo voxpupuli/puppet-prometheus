@@ -70,13 +70,13 @@
 #  Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
 #  If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
 class prometheus::node_exporter (
-  String $download_extension,
-  Prometheus::Uri $download_url_base,
-  Array[String] $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $user,
+  String $download_extension = 'tar.gz',
+  Prometheus::Uri $download_url_base = 'https://github.com/prometheus/node_exporter/releases',
+  Array[String] $extra_groups = [],
+  String[1] $group = 'node-exporter',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'node_exporter',
+  String[1] $user = 'node-exporter',
   # renovate: depName=prometheus/node_exporter
   String[1] $version                                         = '1.8.1',
   Boolean $purge_config_dir                                  = true,

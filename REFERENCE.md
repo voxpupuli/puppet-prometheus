@@ -7997,6 +7997,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--node_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -8011,11 +8013,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/node_exporter/releases'`
+
 ##### <a name="-prometheus--node_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--node_exporter--extra_options"></a>`extra_options`
 
@@ -8030,6 +8036,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'node-exporter'`
 
 ##### <a name="-prometheus--node_exporter--init_style"></a>`init_style`
 
@@ -8085,11 +8093,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--node_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'node_exporter'`
 
 ##### <a name="-prometheus--node_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -8136,6 +8148,8 @@ Default value: `'node_exporter'`
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'node-exporter'`
 
 ##### <a name="-prometheus--node_exporter--version"></a>`version`
 
