@@ -68,6 +68,8 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @note
+# This class is deprecated and will be removed in a future release.
 class prometheus::rabbitmq_exporter (
   Prometheus::Uri $download_url_base,
   Array[String] $extra_groups,
@@ -109,7 +111,27 @@ class prometheus::rabbitmq_exporter (
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
-  $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  deprecation(
+    'promtheus::rabbitmq_exporter',
+    'This class is deprecated and will be removed in a future release. See https://github.com/kbudde/rabbitmq_exporter/issues/383 for details',
+    false
+  )
+
+  if versioncmp($version, '1.0.0') >= 0 {
+    $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
+    $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
+    file { $extract_path:
+      ensure => 'directory',
+      owner  => 'root',
+      group  => 0, # 0 instead of root because OS X uses "wheel".
+      mode   => '0555',
+      before => Prometheus::Daemon[$service_name],
+    }
+  } else {
+    $extract_path = '/opt'
+    $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  }
+
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
@@ -158,5 +180,6 @@ class prometheus::rabbitmq_exporter (
     scrape_job_labels  => $scrape_job_labels,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
+    extract_path       => $extract_path,
   }
 }
