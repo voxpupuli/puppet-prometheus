@@ -75,13 +75,13 @@
 # @param cnf_ssl_key
 #  The path name of the client SSL private key file in PEM format.
 class prometheus::mysqld_exporter (
-  String $download_extension,
-  Prometheus::Uri $download_url_base,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $user,
+  String $download_extension = 'tar.gz',
+  Prometheus::Uri $download_url_base = 'https://github.com/prometheus/mysqld_exporter/releases',
+  Array $extra_groups = [],
+  String[1] $group = 'mysqld-exporter',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'mysqld_exporter',
+  String[1] $user = 'mysqld-exporter',
   # renovate: depName=prometheus/mysqld_exporter
   String[1] $version                                         = '0.15.1',
   String[1] $service_name = 'mysqld_exporter',

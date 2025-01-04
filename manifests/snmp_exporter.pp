@@ -56,16 +56,16 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::snmp_exporter (
-  Stdlib::Absolutepath $config_file,
-  String $config_template,
-  String $download_extension,
-  Prometheus::Uri $download_url_base,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $service_name,
-  String[1] $user,
+  Stdlib::Absolutepath $config_file = '/etc/snmp-exporter.yaml',
+  String[0] $config_template = '', # lint:ignore:params_empty_string_assignment
+  String[0] $download_extension = 'tar.gz',
+  Prometheus::Uri $download_url_base = 'https://github.com/prometheus/snmp_exporter/releases',
+  Array $extra_groups = [],
+  String[1] $group = snmp-exporter,
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'snmp_exporter',
+  String[1] $service_name = 'snmp_exporter',
+  String[1] $user = 'snmp-exporter',
   # renovate: depName=prometheus/snmp_exporter
   String[1] $version                                         = '0.26.0',
   Boolean $purge_config_dir                                  = true,

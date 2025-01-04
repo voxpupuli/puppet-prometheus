@@ -58,15 +58,15 @@
 # @note
 #    This class is deprecated.
 class prometheus::haproxy_exporter (
-  Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]] $cnf_scrape_uri,
-  String $download_extension,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $user,
-  String[1] $service_name,
-  Prometheus::Uri $download_url_base,
+  Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]] $cnf_scrape_uri = 'http://localhost:1234/haproxy?stats;csv',
+  String $download_extension = 'tar.gz',
+  Array $extra_groups = [],
+  String[1] $group = 'haproxy-exporter',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'haproxy_exporter',
+  String[1] $user = 'haproxy-user',
+  String[1] $service_name = 'haproxy_exporter',
+  Prometheus::Uri $download_url_base = 'https://github.com/prometheus/haproxy_exporter/releases',
   # renovate: depName=prometheus/haproxy_exporter
   String[1] $version                                         = '0.15.0',
   Boolean $purge_config_dir                                  = true,

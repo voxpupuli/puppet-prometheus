@@ -75,15 +75,15 @@
 #     ]
 #   }
 class prometheus::process_exporter (
-  String $download_extension,
-  Prometheus::Uri $download_url_base,
-  Array $extra_groups,
-  String[1] $group,
-  String[1] $package_ensure,
-  String[1] $package_name,
-  String[1] $service_name,
-  String[1] $user,
-  Stdlib::Absolutepath $config_path,
+  String $download_extension = 'tar.gz',
+  Prometheus::Uri $download_url_base = 'https://github.com/ncabatoff/process-exporter/releases',
+  Array $extra_groups = [],
+  String[1] $group = 'process-exporter',
+  String[1] $package_ensure = 'latest',
+  String[1] $package_name = 'process-exporter',
+  String[1] $service_name = 'process-exporter',
+  String[1] $user = 'process-exporter',
+  Stdlib::Absolutepath $config_path = '/etc/process-exporter.yaml',
   # renovate: depName=ncabatoff/process-exporter
   String[1] $version                                         = '0.8.2',
   Array $watched_processes                                   = [],

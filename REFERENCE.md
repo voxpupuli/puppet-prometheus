@@ -1705,15 +1705,19 @@ Default value: `$prometheus::bin_dir`
 
 ##### <a name="-prometheus--beanstalkd_exporter--config"></a>`config`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Path to configuration file that stores beanstalkd address
 
+Default value: `'/etc/beanstalkd-exporter.conf'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--mapping_config"></a>`mapping_config`
 
-Data type: `String[1]`
+Data type: `Stdlib::Absolutepath`
 
 Path to configuration file with tubes mappings (not implemented)
+
+Default value: `'/etc/beanstalkd-exporter-mapping.conf'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--beanstalkd_address"></a>`beanstalkd_address`
 
@@ -1721,17 +1725,23 @@ Data type: `String[1]`
 
 Address of beanstalkd, defaults to localhost
 
+Default value: `'127.0.0.1:11300'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--exporter_listen"></a>`exporter_listen`
 
 Data type: `String[1]`
 
 Address to bind beanstalkd_exporter to. Default is different than upstream (*:9371)
 
+Default value: `':9371'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--download_extension"></a>`download_extension`
 
-Data type: `String`
+Data type: `String[0]`
 
 Extension for the release binary archive
+
+Default value: `''`
 
 ##### <a name="-prometheus--beanstalkd_exporter--download_url"></a>`download_url`
 
@@ -1747,11 +1757,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/messagebird/beanstalkd_exporter/releases'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--beanstalkd_exporter--extra_options"></a>`extra_options`
 
@@ -1766,6 +1780,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'beanstalkd-exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--init_style"></a>`init_style`
 
@@ -1821,11 +1837,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'beanstalkd_exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -1865,11 +1885,15 @@ Data type: `String[1]`
 
 Name of the beanstalkd exporter service (default 'beanstalkd_exporter')
 
+Default value: `'beanstalkd_exporter'`
+
 ##### <a name="-prometheus--beanstalkd_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'beanstalkd-exporter'`
 
 ##### <a name="-prometheus--beanstalkd_exporter--version"></a>`version`
 
@@ -4717,11 +4741,15 @@ Data type: `Variant[Stdlib::HTTPUrl, Pattern[/unix:(?:\/.+)+/]]`
 
 The URI to obtain HAProxy stats from
 
+Default value: `'http://localhost:1234/haproxy?stats;csv'`
+
 ##### <a name="-prometheus--haproxy_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--haproxy_exporter--download_url"></a>`download_url`
 
@@ -4737,11 +4765,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/haproxy_exporter/releases'`
+
 ##### <a name="-prometheus--haproxy_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--haproxy_exporter--extra_options"></a>`extra_options`
 
@@ -4756,6 +4788,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'haproxy-exporter'`
 
 ##### <a name="-prometheus--haproxy_exporter--init_style"></a>`init_style`
 
@@ -4811,11 +4845,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--haproxy_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'haproxy_exporter'`
 
 ##### <a name="-prometheus--haproxy_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -4855,11 +4893,15 @@ Data type: `String[1]`
 
 Name of the haproxy exporter service (default 'haproxy_exporter')
 
+Default value: `'haproxy_exporter'`
+
 ##### <a name="-prometheus--haproxy_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'haproxy-user'`
 
 ##### <a name="-prometheus--haproxy_exporter--version"></a>`version`
 
@@ -7037,6 +7079,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--mysqld_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -7051,11 +7095,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/mysqld_exporter/releases'`
+
 ##### <a name="-prometheus--mysqld_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--mysqld_exporter--extra_options"></a>`extra_options`
 
@@ -7070,6 +7118,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'mysqld-exporter'`
 
 ##### <a name="-prometheus--mysqld_exporter--init_style"></a>`init_style`
 
@@ -7125,11 +7175,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--mysqld_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'mysqld_exporter'`
 
 ##### <a name="-prometheus--mysqld_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -7176,6 +7230,8 @@ Default value: `'mysqld_exporter'`
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'mysqld-exporter'`
 
 ##### <a name="-prometheus--mysqld_exporter--version"></a>`version`
 
@@ -7973,6 +8029,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--node_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -7987,11 +8045,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/node_exporter/releases'`
+
 ##### <a name="-prometheus--node_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--node_exporter--extra_options"></a>`extra_options`
 
@@ -8006,6 +8068,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'node-exporter'`
 
 ##### <a name="-prometheus--node_exporter--init_style"></a>`init_style`
 
@@ -8061,11 +8125,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--node_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'node_exporter'`
 
 ##### <a name="-prometheus--node_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -8112,6 +8180,8 @@ Default value: `'node_exporter'`
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'node-exporter'`
 
 ##### <a name="-prometheus--node_exporter--version"></a>`version`
 
@@ -9809,6 +9879,8 @@ Data type: `String`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--process_exporter--download_url"></a>`download_url`
 
 Data type: `Optional[Prometheus::Uri]`
@@ -9823,11 +9895,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/ncabatoff/process-exporter/releases'`
+
 ##### <a name="-prometheus--process_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--process_exporter--extra_options"></a>`extra_options`
 
@@ -9842,6 +9918,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--init_style"></a>`init_style`
 
@@ -9897,11 +9975,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--process_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -9941,11 +10023,15 @@ Data type: `String[1]`
 
 Name of the process exporter service (default 'process-exporter')
 
+Default value: `'process-exporter'`
+
 ##### <a name="-prometheus--process_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'process-exporter'`
 
 ##### <a name="-prometheus--process_exporter--version"></a>`version`
 
@@ -9994,6 +10080,8 @@ Default value: `undef`
 Data type: `Stdlib::Absolutepath`
 
 
+
+Default value: `'/etc/process-exporter.yaml'`
 
 ##### <a name="-prometheus--process_exporter--config_mode"></a>`config_mode`
 
@@ -10395,6 +10483,8 @@ Data type: `String[1]`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--pushgateway--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
@@ -10409,11 +10499,15 @@ Data type: `String[1]`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/pushgateway/releases'`
+
 ##### <a name="-prometheus--pushgateway--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--pushgateway--extra_options"></a>`extra_options`
 
@@ -10428,6 +10522,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--init_style"></a>`init_style`
 
@@ -10483,11 +10579,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--pushgateway--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--restart_on_change"></a>`restart_on_change`
 
@@ -10526,6 +10626,8 @@ Default value: `'pushgateway'`
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'pushgateway'`
 
 ##### <a name="-prometheus--pushgateway--version"></a>`version`
 
@@ -12568,6 +12670,8 @@ Data type: `Stdlib::Absolutepath`
 
 Absolute path to configuration file
 
+Default value: `'/etc/snmp-exporter.yaml'`
+
 ##### <a name="-prometheus--snmp_exporter--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
@@ -12578,15 +12682,19 @@ Default value: `$prometheus::config_mode`
 
 ##### <a name="-prometheus--snmp_exporter--config_template"></a>`config_template`
 
-Data type: `String`
+Data type: `String[0]`
 
 Configuration template to use. If empty, uses upstream config (default "")
 
+Default value: `''`
+
 ##### <a name="-prometheus--snmp_exporter--download_extension"></a>`download_extension`
 
-Data type: `String`
+Data type: `String[0]`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--snmp_exporter--download_url"></a>`download_url`
 
@@ -12602,11 +12710,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/snmp_exporter/releases'`
+
 ##### <a name="-prometheus--snmp_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--snmp_exporter--extra_options"></a>`extra_options`
 
@@ -12621,6 +12733,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `snmp-exporter`
 
 ##### <a name="-prometheus--snmp_exporter--init_style"></a>`init_style`
 
@@ -12676,11 +12790,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--snmp_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'snmp_exporter'`
 
 ##### <a name="-prometheus--snmp_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -12720,11 +12838,15 @@ Data type: `String[1]`
 
 Name of the snmp exporter service (default 'snmp_exporter')
 
+Default value: `'snmp_exporter'`
+
 ##### <a name="-prometheus--snmp_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'snmp-exporter'`
 
 ##### <a name="-prometheus--snmp_exporter--version"></a>`version`
 
