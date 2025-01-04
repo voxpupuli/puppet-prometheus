@@ -13,11 +13,14 @@
 # @param collect_dir
 #  Directory used for collecting scrape definitions.
 #  NOTE: this is a prometheus setting and will be overridden during collection.
+# @param ensure
+#  Whether the scrape job should be present or absent.
 define prometheus::scrape_job (
   String[1] $job_name,
   Array[String[1]] $targets,
   Hash[String[1], String[1]] $labels = {},
   Stdlib::Absolutepath $collect_dir  = undef,
+  Enum['present', 'absent'] $ensure = 'present',
 ) {
   $config = stdlib::to_yaml([
       {
@@ -26,7 +29,7 @@ define prometheus::scrape_job (
       },
   ])
   file { "${collect_dir}/${job_name}_${name}.yaml":
-    ensure  => file,
+    ensure  => stdlib::ensure($ensure, 'file'),
     owner   => 'root',
     group   => $prometheus::group,
     mode    => $prometheus::config_mode,

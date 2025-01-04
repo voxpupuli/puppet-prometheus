@@ -49,10 +49,12 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param ensure
+#  Whether to install or remove the instance
 define prometheus::daemon (
   String[1] $version,
   Prometheus::Uri $real_download_url,
-  $notify_service,
+  Variant[Type[Exec],Type[Service],Undef] $notify_service,
   String[1] $user,
   String[1] $group,
   Prometheus::Install $install_method                        = $prometheus::install_method,
@@ -86,18 +88,22 @@ define prometheus::daemon (
   Stdlib::Absolutepath $usershell                            = $prometheus::usershell,
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Enum['present', 'absent'] $ensure                          = 'present',
 ) {
+  $real_package_ensure = $ensure ? { 'absent' => 'absent', default => $package_ensure }
+  $real_service_ensure = $ensure ? { 'absent' => 'stopped', default => $service_ensure }
+
   case $install_method {
     'url': {
       if $download_extension == '' {
         file { "/opt/${name}-${version}.${os}-${arch}":
-          ensure => directory,
+          ensure => stdlib::ensure($ensure, 'directory'),
           owner  => 'root',
           group  => 0, # 0 instead of root because OS X uses "wheel".
           mode   => '0755',
         }
         -> archive { "/opt/${name}-${version}.${os}-${arch}/${name}":
-          ensure          => present,
+          ensure          => $ensure,
           source          => $real_download_url,
           checksum_verify => false,
           before          => File["/opt/${name}-${version}.${os}-${arch}/${name}"],
@@ -106,7 +112,7 @@ define prometheus::daemon (
         }
       } else {
         archive { "/tmp/${name}-${version}.${download_extension}":
-          ensure          => present,
+          ensure          => $ensure,
           extract         => true,
           extract_path    => $extract_path,
           source          => $real_download_url,
@@ -120,13 +126,14 @@ define prometheus::daemon (
         }
       }
       file { $archive_bin_path:
-        owner => 'root',
-        group => 0, # 0 instead of root because OS X uses "wheel".
-        mode  => '0555',
+        ensure => stdlib::ensure($ensure, 'file'),
+        owner  => 'root',
+        group  => 0, # 0 instead of root because OS X uses "wheel".
+        mode   => '0555',
       }
       if $manage_bin_link {
         file { "${bin_dir}/${bin_name}":
-          ensure  => link,
+          ensure  => stdlib::ensure($ensure, 'link'),
           notify  => $notify_service,
           target  => $archive_bin_path,
           require => File[$archive_bin_path],
@@ -135,7 +142,7 @@ define prometheus::daemon (
     }
     'package': {
       package { $package_name:
-        ensure => $package_ensure,
+        ensure => $real_package_ensure,
         notify => $notify_service,
       }
       if $manage_user {
@@ -148,23 +155,28 @@ define prometheus::daemon (
   if $manage_user {
     # if we manage the service, we need to reload it if our user changes
     # important for cases where another group gets added
-    if $manage_service {
+    if $manage_service and $real_service_ensure == 'running' {
       User[$user] ~> $notify_service
     }
     ensure_resource('user', [$user], {
-        ensure => 'present',
+        ensure => $ensure,
         system => true,
         groups => $extra_groups,
         shell  => $usershell,
     })
 
     if $manage_group {
-      Group[$group] -> User[$user]
+      if $ensure == 'present' {
+        Group[$group] -> User[$user]
+      } else {
+        User[$user] -> Group[$group]
+        Service[$name] -> User[$user]
+      }
     }
   }
   if $manage_group {
     ensure_resource('group', [$group], {
-        ensure => 'present',
+        ensure => $ensure,
         system => true,
     })
   }
@@ -172,23 +184,31 @@ define prometheus::daemon (
   case $init_style { # lint:ignore:case_without_default
     'upstart': {
       file { "/etc/init/${name}.conf":
+        ensure  => stdlib::ensure($ensure, 'file'),
         mode    => '0444',
         owner   => 'root',
         group   => 'root',
         content => template('prometheus/daemon.upstart.erb'),
-        notify  => $notify_service,
       }
       file { "/etc/init.d/${name}":
-        ensure => link,
+        ensure => stdlib::ensure($ensure, 'file'),
         target => '/lib/init/upstart-job',
         owner  => 'root',
         group  => 'root',
         mode   => '0755',
       }
+      if $notify_service !~ Undef {
+        if $ensure == 'present' {
+          File["/etc/init/${name}.conf"] ~> $notify_service
+        } else {
+          $notify_service -> File["/etc/init/${name}.conf"]
+        }
+      }
     }
     'systemd': {
       include 'systemd'
       systemd::manage_unit { "${name}.service":
+        ensure        => $ensure,
         unit_entry    => {
           'Description' => "Prometheus ${name}",
           'Wants'       => 'network-online.target',
@@ -206,34 +226,61 @@ define prometheus::daemon (
         install_entry => {
           'WantedBy' => 'multi-user.target',
         },
-        notify        => $notify_service,
+      }
+      if $notify_service !~ Undef {
+        if $ensure == 'present' {
+          Systemd::Manage_unit["${name}.service"] ~> $notify_service
+        } else {
+          $notify_service -> Systemd::Manage_unit["${name}.service"]
+        }
       }
     }
     'sysv': {
       file { "/etc/init.d/${name}":
+        ensure  => stdlib::ensure($ensure, 'file'),
         mode    => '0555',
         owner   => 'root',
         group   => 'root',
         content => template('prometheus/daemon.sysv.erb'),
-        notify  => $notify_service,
+      }
+      if $notify_service !~ Undef {
+        if $ensure == 'present' {
+          File["/etc/init.d/${name}"] ~> $notify_service
+        } else {
+          $notify_service -> File["/etc/init.d/${name}"]
+        }
       }
     }
     'sles': {
       file { "/etc/init.d/${name}":
+        ensure  => stdlib::ensure($ensure, 'file'),
         mode    => '0555',
         owner   => 'root',
         group   => 'root',
         content => template('prometheus/daemon.sles.erb'),
-        notify  => $notify_service,
+      }
+      if $notify_service !~ Undef {
+        if $ensure == 'present' {
+          File["/etc/init.d/${name}"] ~> $notify_service
+        } else {
+          $notify_service -> File["/etc/init.d/${name}"]
+        }
       }
     }
     'launchd': {
       file { "/Library/LaunchDaemons/io.${name}.daemon.plist":
+        ensure  => stdlib::ensure($ensure, 'file'),
         mode    => '0644',
         owner   => 'root',
         group   => 'wheel',
         content => template('prometheus/daemon.launchd.erb'),
-        notify  => $notify_service,
+      }
+      if $notify_service !~ Undef {
+        if $ensure == 'present' {
+          File["/Library/LaunchDaemons/io.${name}.daemon.plist"] ~> $notify_service
+        } else {
+          $notify_service -> File["/Library/LaunchDaemons/io.${name}.daemon.plist"]
+        }
       }
     }
     'none': {}
@@ -247,7 +294,7 @@ define prometheus::daemon (
     $env_vars_merged = $env_vars
   }
 
-  if $install_method == 'package' and $package_ensure in ['absent', 'purged'] {
+  if $install_method == 'package' and $real_package_ensure == 'absent' {
     # purge the environment file if the package is removed
     #
     # this is to make sure we can garbage-collect the files created by
@@ -263,6 +310,7 @@ define prometheus::daemon (
     # those files to be present, even if empty, so it's critical that
     # the file not get removed
     file { "${env_file_path}/${name}":
+      ensure  => stdlib::ensure($ensure, 'file'),
       mode    => '0644',
       owner   => 'root',
       group   => '0', # Darwin uses wheel
@@ -290,7 +338,7 @@ define prometheus::daemon (
 
   if $manage_service {
     service { $name:
-      ensure   => $service_ensure,
+      ensure   => $real_service_ensure,
       name     => $init_selector,
       enable   => $service_enable,
       provider => $real_provider,
@@ -303,6 +351,7 @@ define prometheus::daemon (
     }
 
     @@prometheus::scrape_job { "${scrape_job_name}_${scrape_host}_${scrape_port}":
+      ensure   => $ensure,
       job_name => $scrape_job_name,
       targets  => ["${scrape_host}:${scrape_port}"],
       labels   => $scrape_job_labels,
