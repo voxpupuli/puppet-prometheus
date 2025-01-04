@@ -119,7 +119,7 @@ class prometheus::rabbitmq_exporter (
 
   if versioncmp($version, '1.0.0') >= 0 {
     $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
-    $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
+    $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
     file { $extract_path:
       ensure => 'directory',
       owner  => 'root',
@@ -129,7 +129,7 @@ class prometheus::rabbitmq_exporter (
     }
   } else {
     $extract_path = '/opt'
-    $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+    $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   }
 
   $notify_service = $restart_on_change ? {
