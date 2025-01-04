@@ -11125,7 +11125,7 @@ Default value: `undef`
 
 ### <a name="prometheus--rabbitmq_exporter"></a>`prometheus::rabbitmq_exporter`
 
-This module manages prometheus rabbitmq_exporter
+This class is deprecated and will be removed in a future release.
 
 #### Parameters
 
