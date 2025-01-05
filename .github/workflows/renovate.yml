@@ -18,6 +18,6 @@ jobs:
           configurationFile: renovate-config.json
           token: ${{ secrets.PCCIBOT_PAT_REPO_PUBLIC_REPO }}
           renovate-image: ghcr.io/renovatebot/renovate
-          renovate-version: 37-full
+          renovate-version: 39-full
     env:
       LOG_LEVEL: 'debug'
