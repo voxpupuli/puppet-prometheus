@@ -3,6 +3,7 @@
   "labels": ["enhancement"],
   "onboarding": false,
   "requireConfig": "optional",
+  "platform": "github",
   "repositories": [
     "voxpupuli/puppet-prometheus"
   ],
@@ -29,6 +30,7 @@
   ],
   "postUpgradeTasks": {
     "commands": [
+      "bundle config set --global path '/tmp/vendor'",
       "bundle install",
       "bundle exec gem install rake",
       "bundle exec rake strings:generate:reference"
@@ -36,6 +38,7 @@
     "executionMode": "branch"
   },
   "allowedPostUpgradeCommands": [
+    "^bundle config set --global path '/tmp/vendor'$",
     "^bundle install$",
     "^bundle exec gem install rake$",
     "^bundle exec rake strings:generate:reference$"
