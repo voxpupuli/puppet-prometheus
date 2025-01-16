@@ -3,6 +3,7 @@
   "labels": ["enhancement"],
   "onboarding": false,
   "requireConfig": "optional",
+  "platform": "github",
   "repositories": [
     "voxpupuli/puppet-prometheus"
   ],

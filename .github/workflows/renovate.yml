@@ -16,8 +16,8 @@ jobs:
         uses: renovatebot/github-action@v41.0.12
         with:
           configurationFile: renovate-config.json
-          token: ${{ secrets.PCCIBOT_PAT_REPO_PUBLIC_REPO }}
+          token: ${{ secrets.PCCI_PAT_PROMETHEUS_RENOVATE }}
           renovate-image: ghcr.io/renovatebot/renovate
-          renovate-version: 39-full
+          renovate-version: 38-full
     env:
       LOG_LEVEL: 'debug'
