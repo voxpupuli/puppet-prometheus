@@ -74,7 +74,7 @@ class prometheus::consul_exporter (
   String[1] $web_listen_address,
   String[1] $web_telemetry_path,
   # renovate: depName=prometheus/consul_exporter
-  String[1] $version                                         = '0.12.0',
+  String[1] $version                                         = '0.13.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
