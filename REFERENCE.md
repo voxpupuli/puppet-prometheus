@@ -13787,7 +13787,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.26.1'`
+Default value: `'0.28.0'`
 
 ##### <a name="-prometheus--statsd_exporter--proxy_server"></a>`proxy_server`
 
