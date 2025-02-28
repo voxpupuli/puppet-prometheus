@@ -21,7 +21,7 @@ class prometheus::node_exporter_textfile (
   Optional[String] $seltype      = undef,
   Optional[String] $selrole      = undef,
 ) {
-  $metrics_directory = $prometheus::node_exporter::textfile_directory
+  $textfile_directory = $prometheus::node_exporter::textfile_directory
 
   file { $scrape_script_location:
     ensure   => file,
@@ -31,9 +31,9 @@ class prometheus::node_exporter_textfile (
     mode     => $mode,
     content  => epp('prometheus/scrape_metrics.sh.epp', {
       'metrics'           => $metrics,
-      'metrics_directory'  => $metrics_directory,
+      'textfile_directory'  => $textfile_directory,
     }),
-    require  => File[$metrics_directory],
+    require  => File[$textfile_directory],
     before   => File[$scrape_script_location],
     notify   => Exec['prometheus-clean-metrics'],
     seluser  => $seluser,
@@ -48,14 +48,14 @@ class prometheus::node_exporter_textfile (
     mode    => $mode,
     content => epp('prometheus/clean_metrics.sh.epp', {
       'metrics'           => $metrics,
-      'metrics_directory'  => $metrics_directory,
+      'textfile_directory'  => $textfile_directory,
     }),
     seluser => $seluser,
     seltype => $seltype,
     selrole => $selrole,
   }
 
-  file { $metrics_directory:
+  file { $textfile_directory:
     ensure  => directory,
     owner   => $owner,
     group   => $group,
@@ -72,10 +72,10 @@ class prometheus::node_exporter_textfile (
   }
 
   systemd::timer { 'prometheus-scrape-metrics.timer':
-    timer_content   => epp('prometheus/prometheus/scrape_metrics_timer.epp', {
+    timer_content   => epp('prometheus/scrape_metrics_timer.epp', {
       'on_calendar' => $on_calendar,
     }),
-    service_content => epp('prometheus/prometheus/scrape_metrics_service.epp', {
+    service_content => epp('prometheus/scrape_metrics_service.epp', {
       'scrape_script_location'  => $scrape_script_location,
     }),
   }

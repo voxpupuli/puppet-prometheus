@@ -1,12 +1,12 @@
 <% |
 Optional[Hash] $metrics = {},
-String $metrics_directory = "",
+String $textfile_directory = "",
 | -%>
 metrics=()
 <% $metrics.each |$key, $value| { -%>
 metrics+=(<%= $key %>)
 <% } -%>
-for file in <%= $metrics_directory -%>/*.prom*; do
+for file in <%= $textfile_directory -%>/*.prom*; do
   name=$(basename "$file")
   if [[ -f "$file" ]]; then
     for element in "${metrics[@]}"; do
