@@ -69,6 +69,8 @@
 # @param scrape_port
 #  Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
 #  If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
+# @param textfile_directory
+#  Sets the textfile directory using `--collector.textfile.directory`
 class prometheus::node_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/prometheus/node_exporter/releases',
@@ -109,6 +111,7 @@ class prometheus::node_exporter (
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
   Stdlib::Absolutepath $web_config_file                      = '/etc/node_exporter_web-config.yml',
   Prometheus::Web_config $web_config_content                 = {},
+  Optional[String] $textfile_directory                       = '',
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -127,6 +130,8 @@ class prometheus::node_exporter (
     true    => Service[$service_name],
     default => undef,
   }
+
+  $textfile_collector = $textfile_directory != '' ? "--collector.textfile.directory=${textfile_location}" : ''
 
   $cmd_collectors_enable = $collectors_enable.map |$collector| {
     "--collector.${collector}"
@@ -169,6 +174,7 @@ class prometheus::node_exporter (
     $extra_options,
     $cmd_collectors_enable.join(' '),
     $cmd_collectors_disable.join(' '),
+    $textfile_collector,
     $_web_config,
     $listen_address,
   ].filter |$x| { !$x.empty }.join(' ')
