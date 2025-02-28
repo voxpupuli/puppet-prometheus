@@ -1,0 +1,8 @@
+<% |
+Optional[Hash] $metrics = {},
+String $metrics_directory = "",
+| -%>
+<% $metrics.each |$key, $value| { -%>
+printf '<%= $key %> %s\n' $(<%= $value %>) > <%= $metrics_location %>/<%= $key %>.prom.$$
+mv <%= $metrics_location %>/<%= $key %>.prom.$$ <%= $metrics_location %>/<%= $key %>.prom
+<% } -%>
