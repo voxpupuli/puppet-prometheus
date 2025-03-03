@@ -4,5 +4,5 @@ String $textfile_directory = "",
 | -%>
 <% $metrics.each |$key, $value| { -%>
 printf '<%= $key %> %s\n' $(<%= $value %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
-mv <%= $metrics_location %>/<%= $key %>.prom.$$ <%= $metrics_location %>/<%= $key %>.prom
+mv <%= $textfile_directory %>/<%= $key %>.prom.$$ <%= $textfile_directory %>/<%= $key %>.prom
 <% } -%>
