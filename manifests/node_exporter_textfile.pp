@@ -90,6 +90,6 @@ class prometheus::node_exporter_textfile (
     },
     enable    => $metrics != {},
     subscribe => Systemd::Timer['prometheus-scrape-metrics.timer'],
-    require   => File[${scrape_script_location}],
+    require   => File[$scrape_script_location],
   }
 }
