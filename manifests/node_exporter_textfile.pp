@@ -14,10 +14,10 @@
 # @param selrole
 #  The SELinux role context for the files
 class prometheus::node_exporter_textfile (
-  String $scrape_script_location = '',
-  String $clean_script_location  = '',
+  String $scrape_script_location = '/usr/local/bin/scrape_metrics.sh',
+  String $clean_script_location  = '/usr/local/bin/clean_metrics.sh',
   Hash $metrics                  = {},
-  String $on_calendar            = '',
+  String $on_calendar            = '*:0/2:30',
   Optional[String] $seluser      = undef,
   Optional[String] $seltype      = undef,
   Optional[String] $selrole      = undef,
