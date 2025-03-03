@@ -37,7 +37,6 @@ class prometheus::node_exporter_textfile (
       'textfile_directory'  => $textfile_directory,
     }),
     require  => File[$textfile_directory],
-    before   => File[$scrape_script_location],
     notify   => Exec['prometheus-clean-metrics'],
     seluser  => $seluser,
     seltype  => $seltype,
