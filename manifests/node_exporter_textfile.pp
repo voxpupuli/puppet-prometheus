@@ -1,6 +1,4 @@
 # @summary This module exports metrics regularly using a systemd timer
-# @param base_directory
-#  The base directory where your scripts will reside
 # @param scrape_script_location
 #  The path where your scraping script will be
 # @param clean_script_location
@@ -9,26 +7,31 @@
 #  A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
 # @param on_calendar
 #  Determines when the systemd timer will be executed
+# @param seluser
+#  The SELinux user context for the files
+# @param seltype
+#  The SELinux type context for the files
+# @param selrole
+#  The SELinux role context for the files
 class prometheus::node_exporter_textfile (
   String $scrape_script_location = '',
   String $clean_script_location  = '',
   Hash $metrics                  = {},
   String $on_calendar            = '',
-  Optional[String] owner         = 'node-exporter',
-  Optional[String] group         = 'root',
-  Optional[String] mode          = '0750',
   Optional[String] $seluser      = undef,
   Optional[String] $seltype      = undef,
   Optional[String] $selrole      = undef,
 ) {
   $textfile_directory = $prometheus::node_exporter::textfile_directory
+  $group = $prometheus::node_exporter::group
+  $user = $prometheus::node_exporter::user
 
   file { $scrape_script_location:
     ensure   => file,
     audit    => 'content',
-    owner    => $owner,
+    owner    => $user,
     group    => $group,
-    mode     => $mode,
+    mode     => '0750',
     content  => epp('prometheus/scrape_metrics.sh.epp', {
       'metrics'           => $metrics,
       'textfile_directory'  => $textfile_directory,
@@ -43,9 +46,9 @@ class prometheus::node_exporter_textfile (
 
   file { $clean_script_location:
     ensure  => file,
-    owner   => $owner,
+    owner   => $user,
     group   => $group,
-    mode    => $mode,
+    mode    => '0750',
     content => epp('prometheus/clean_metrics.sh.epp', {
       'metrics'           => $metrics,
       'textfile_directory'  => $textfile_directory,
@@ -57,9 +60,9 @@ class prometheus::node_exporter_textfile (
 
   file { $textfile_directory:
     ensure  => directory,
-    owner   => $owner,
+    owner   => $user,
     group   => $group,
-    mode    => $mode,
+    mode    => '0750',
     require => File[$clean_script_location],
     seluser => $seluser,
     seltype => $seltype,
@@ -68,7 +71,7 @@ class prometheus::node_exporter_textfile (
 
   exec { 'prometheus-clean-metrics':
     command     => "/bin/bash ${clean_script_location}",
-    user        => $owner,
+    user        => $user,
   }
 
   systemd::timer { 'prometheus-scrape-metrics.timer':

@@ -131,7 +131,10 @@ class prometheus::node_exporter (
     default => undef,
   }
 
-  $textfile_collector = $textfile_directory != '' ? "--collector.textfile.directory=${textfile_directory}" : ''
+  $textfile_collector = $textfile_directory ? {
+    ''      => '',
+    default => "--collector.textfile.directory=${textfile_directory}"
+  }
 
   $cmd_collectors_enable = $collectors_enable.map |$collector| {
     "--collector.${collector}"
