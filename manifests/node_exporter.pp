@@ -111,7 +111,7 @@ class prometheus::node_exporter (
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
   Stdlib::Absolutepath $web_config_file                      = '/etc/node_exporter_web-config.yml',
   Prometheus::Web_config $web_config_content                 = {},
-  Optional[String] $textfile_directory                       = '',
+  Optional[String] $textfile_directory                       = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -132,7 +132,7 @@ class prometheus::node_exporter (
   }
 
   $textfile_collector = $textfile_directory ? {
-    ''      => '',
+    undef   => '',
     default => "--collector.textfile.directory=${textfile_directory}"
   }
 

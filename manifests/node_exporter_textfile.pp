@@ -1,8 +1,8 @@
 # @summary This module exports metrics regularly using a systemd timer
 # @param scrape_script_location
-#  The path where your scraping script will be
+#  The path where your scraping script is located
 # @param clean_script_location
-#  The path where the cleanup script will be
+#  The path where the cleanup script is located
 # @param metrics
 #  A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
 # @param on_calendar

@@ -35,6 +35,7 @@
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages as systemd timer to export metrics for node_exporter
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -7979,6 +7980,7 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
 * [`scrape_job_labels`](#-prometheus--node_exporter--scrape_job_labels)
 * [`bin_name`](#-prometheus--node_exporter--bin_name)
+* [`textfile_directory`](#-prometheus--node_exporter--textfile_directory)
 
 ##### <a name="-prometheus--node_exporter--arch"></a>`arch`
 
@@ -8285,6 +8287,84 @@ Default value: `undef`
 Data type: `Optional[String[1]]`
 
 
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
+
+Data type: `Optional[String[1]]`
+
+Sets the textfile directory using `--collector.textfile.directory`
+
+Default value: `undef`
+
+### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
+
+This module manages as systemd timer to export metrics for node_exporter
+
+### Parameters
+
+* [`scrape_script_location`](#-prometheus--node_exporter_textfile--scrape_script_location)
+* [`clean_script_location`](#-prometheus--node_exporter_textfile--clean_script_location)
+* [`metrics`](#-prometheus--node_exporter_textfile--metrics)
+* [`on_calendar`](#-prometheus--node_exporter_textfile--on_calendar)
+* [`seluser`](#-prometheus--node_exporter_textfile--seluser)
+* [`seltype`](#-prometheus--node_exporter_textfile--seltype)
+* [`selrole`](#-prometheus--node_exporter_textfile--selrole)
+
+##### <a name="-prometheus--node_exporter_textfile--scrape_script_location></a>`bin_dir`
+
+Data type: `String`
+
+The path where your scraping script is located
+
+Default value: `/usr/local/bin/clean_metrics.sh`
+
+##### <a name="-prometheus--node_exporter_textfile--clean_script_location"></a>`bin_dir`
+
+Data type: `String`
+
+The path where the cleanup script is located
+
+Default value: `/usr/local/bin/clean_metrics.sh`
+
+##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`bin_dir`
+
+Data type: `Hash`
+
+A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
+
+Default value: `{}`
+
+##### <a name="-prometheus--node_exporter_textfile--on_calendar"></a>`bin_dir`
+
+Data type: `String`
+
+A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
+
+Default value: `*:0/2:30`
+
+##### <a name="-prometheus--node_exporter_textfile--seluser"></a>`bin_dir`
+
+Data type: `Optional[String]`
+
+Determines when the systemd timer will be executed
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter_textfile--seltype"></a>`bin_dir`
+
+Data type: `Optional[String]`
+
+The SELinux user context for the files
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter_textfile--selrole"></a>`bin_dir`
+
+Data type: `Optional[String]`
+
+The SELinux type context for the files
 
 Default value: `undef`
 
