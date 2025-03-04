@@ -2,6 +2,7 @@
 Optional[Hash] $metrics = {},
 String $textfile_directory = "",
 | -%>
+#!/bin/bash
 metrics=()
 <% $metrics.each |$key, $value| { -%>
 metrics+=(<%= $key %>)

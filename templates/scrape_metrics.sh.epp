@@ -2,6 +2,7 @@
 Optional[Hash] $metrics = {},
 String $textfile_directory = "",
 | -%>
+#!/bin/bash
 <% $metrics.each |$key, $value| { -%>
 printf '<%= $key %> %s\n' $(<%= $value %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
 mv <%= $textfile_directory %>/<%= $key %>.prom.$$ <%= $textfile_directory %>/<%= $key %>.prom
