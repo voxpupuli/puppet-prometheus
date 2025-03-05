@@ -7947,6 +7947,7 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`collectors`](#-prometheus--node_exporter--collectors)
 * [`collectors_enable`](#-prometheus--node_exporter--collectors_enable)
 * [`collectors_disable`](#-prometheus--node_exporter--collectors_disable)
+* [`textfile_directory`](#-prometheus--node_exporter--textfile_directory)
 * [`download_extension`](#-prometheus--node_exporter--download_extension)
 * [`download_url`](#-prometheus--node_exporter--download_url)
 * [`download_url_base`](#-prometheus--node_exporter--download_url_base)
@@ -7980,7 +7981,6 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
 * [`scrape_job_labels`](#-prometheus--node_exporter--scrape_job_labels)
 * [`bin_name`](#-prometheus--node_exporter--bin_name)
-* [`textfile_directory`](#-prometheus--node_exporter--textfile_directory)
 
 ##### <a name="-prometheus--node_exporter--arch"></a>`arch`
 
@@ -8032,6 +8032,14 @@ Data type: `String`
 Extension for the release binary archive
 
 Default value: `'tar.gz'`
+
+##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
+
+Data type: `Optional[String[1]]`
+
+Sets the directory for the textfile collector using `--collector.textfile.directory`
+
+Default value: `undef`
 
 ##### <a name="-prometheus--node_exporter--download_url"></a>`download_url`
 
@@ -8290,37 +8298,29 @@ Data type: `Optional[String[1]]`
 
 Default value: `undef`
 
-##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
-
-Data type: `Optional[String[1]]`
-
-Sets the textfile directory using `--collector.textfile.directory`
-
-Default value: `undef`
-
 ### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
 
-This module manages as systemd timer to export metrics for node_exporter
+This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
 
 ### Parameters
 
-* [`scrape_script_location`](#-prometheus--node_exporter_textfile--scrape_script_location)
-* [`clean_script_location`](#-prometheus--node_exporter_textfile--clean_script_location)
+* [`update_script_location`](#-prometheus--node_exporter_textfile--update_script_location)
+* [`cleanup_script_location`](#-prometheus--node_exporter_textfile--cleanup_script_location)
 * [`metrics`](#-prometheus--node_exporter_textfile--metrics)
 * [`on_calendar`](#-prometheus--node_exporter_textfile--on_calendar)
 * [`seluser`](#-prometheus--node_exporter_textfile--seluser)
 * [`seltype`](#-prometheus--node_exporter_textfile--seltype)
 * [`selrole`](#-prometheus--node_exporter_textfile--selrole)
 
-##### <a name="-prometheus--node_exporter_textfile--scrape_script_location></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--update_script_location></a>`update_script_location`
 
 Data type: `String`
 
-The path where your scraping script is located
+The path where the updating script is located
 
-Default value: `/usr/local/bin/clean_metrics.sh`
+Default value: `/usr/local/bin/update.sh`
 
-##### <a name="-prometheus--node_exporter_textfile--clean_script_location"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--cleanup_script_location"></a>`cleanup_script_location`
 
 Data type: `String`
 
@@ -8328,43 +8328,43 @@ The path where the cleanup script is located
 
 Default value: `/usr/local/bin/clean_metrics.sh`
 
-##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`metrics`
 
 Data type: `Hash`
 
-A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
+A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data, these will be parsed in the system timer
 
 Default value: `{}`
 
-##### <a name="-prometheus--node_exporter_textfile--on_calendar"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--on_calendar"></a>`on_calendar`
 
 Data type: `String`
 
-A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
+Specification of the value of the timer 'onCalendar' attribute, which determines when the timer will be executed
 
 Default value: `*:0/2:30`
 
-##### <a name="-prometheus--node_exporter_textfile--seluser"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--seluser"></a>`seluser`
 
 Data type: `Optional[String]`
 
-Determines when the systemd timer will be executed
+The SELinux user context for the files, if SELinux is enabled on the system
 
 Default value: `undef`
 
-##### <a name="-prometheus--node_exporter_textfile--seltype"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--seltype"></a>`seltype`
 
 Data type: `Optional[String]`
 
-The SELinux user context for the files
+The SELinux type context for the files, if SELinux is enabled on the system
 
 Default value: `undef`
 
-##### <a name="-prometheus--node_exporter_textfile--selrole"></a>`bin_dir`
+##### <a name="-prometheus--node_exporter_textfile--selrole"></a>`selrole`
 
 Data type: `Optional[String]`
 
-The SELinux type context for the files
+The SELinux role context for the files, if SELinux is enabled on the system
 
 Default value: `undef`
 

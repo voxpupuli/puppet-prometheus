@@ -1,10 +1,10 @@
-# @summary This module exports metrics regularly using a systemd timer
-# @param scrape_script_location
-#  The path where your scraping script is located
-# @param clean_script_location
+# @summary ThThis module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
+# @param update_script_location
+#  The path where the scraping script is located.
+# @param cleanup_script_location
 #  The path where the cleanup script is located
 # @param metrics
-#  A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data
+#  A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data, these will be parsed in the system timer
 # @param on_calendar
 #  Determines when the systemd timer will be executed
 # @param seluser
@@ -14,8 +14,8 @@
 # @param selrole
 #  The SELinux role context for the files
 class prometheus::node_exporter_textfile (
-  String $scrape_script_location = '/usr/local/bin/scrape_metrics.sh',
-  String $clean_script_location  = '/usr/local/bin/clean_metrics.sh',
+  String $update_script_location = '/usr/local/bin/update_metrics.sh',
+  String $cleanup_script_location  = '/usr/local/bin/cleanup_metrics.sh',
   Hash $metrics                  = {},
   String $on_calendar            = '*:0/2:30',
   Optional[String] $seluser      = undef,
@@ -26,13 +26,13 @@ class prometheus::node_exporter_textfile (
   $group = $prometheus::node_exporter::group
   $user = $prometheus::node_exporter::user
 
-  file { $scrape_script_location:
+  file { $update_script_location:
     ensure   => file,
     audit    => 'content',
     owner    => $user,
     group    => $group,
     mode     => '0750',
-    content  => epp('prometheus/scrape_metrics.sh.epp', {
+    content  => epp('prometheus/update_metrics.sh.epp', {
       'metrics'           => $metrics,
       'textfile_directory'  => $textfile_directory,
     }),
@@ -43,12 +43,12 @@ class prometheus::node_exporter_textfile (
     selrole  => $selrole,
   }
 
-  file { $clean_script_location:
+  file { $cleanup_script_location:
     ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0750',
-    content => epp('prometheus/clean_metrics.sh.epp', {
+    content => epp('prometheus/cleanup_metrics.sh.epp', {
       'metrics'           => $metrics,
       'textfile_directory'  => $textfile_directory,
     }),
@@ -62,23 +62,23 @@ class prometheus::node_exporter_textfile (
     owner   => $user,
     group   => $group,
     mode    => '0750',
-    require => File[$clean_script_location],
+    require => File[$cleanup_script_location],
     seluser => $seluser,
     seltype => $seltype,
     selrole => $selrole,
   }
 
   exec { 'prometheus-clean-metrics':
-    command     => "/bin/bash ${clean_script_location}",
+    command     => "/bin/bash ${cleanup_script_location}",
     user        => $user,
   }
 
   systemd::timer { 'prometheus-scrape-metrics.timer':
-    timer_content   => epp('prometheus/scrape_metrics_timer.epp', {
+    timer_content   => epp('prometheus/update_metrics_timer.epp', {
       'on_calendar' => $on_calendar,
     }),
-    service_content => epp('prometheus/scrape_metrics_service.epp', {
-      'scrape_script_location'  => $scrape_script_location,
+    service_content => epp('prometheus/update_metrics_service.epp', {
+      'update_script_location'  => $update_script_location,
     }),
   }
 
@@ -89,6 +89,6 @@ class prometheus::node_exporter_textfile (
     },
     enable    => $metrics != {},
     subscribe => Systemd::Timer['prometheus-scrape-metrics.timer'],
-    require   => File[$scrape_script_location],
+    require   => File[$update_script_location],
   }
 }

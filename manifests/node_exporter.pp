@@ -12,6 +12,8 @@
 # @param collectors_disable
 #  disable collectors which are enabled by default
 #  https://github.com/prometheus/node_exporter#enabled-by-default
+# @param textfile_directory
+#  Sets the directory for the textfile collector using `--collector.textfile.directory`
 # @param download_extension
 #  Extension for the release binary archive
 # @param download_url
@@ -69,8 +71,6 @@
 # @param scrape_port
 #  Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
 #  If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
-# @param textfile_directory
-#  Sets the textfile directory using `--collector.textfile.directory`
 class prometheus::node_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/prometheus/node_exporter/releases',
