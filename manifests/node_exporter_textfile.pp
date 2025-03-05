@@ -1,6 +1,6 @@
 # @summary ThThis module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
 # @param update_script_location
-#  The path where the scraping script is located.
+#  The path where the updating script is located.
 # @param cleanup_script_location
 #  The path where the cleanup script is located
 # @param metrics
@@ -37,7 +37,7 @@ class prometheus::node_exporter_textfile (
       'textfile_directory'  => $textfile_directory,
     }),
     require  => File[$textfile_directory],
-    notify   => Exec['prometheus-clean-metrics'],
+    notify   => Exec['prometheus-cleanup-metrics'],
     seluser  => $seluser,
     seltype  => $seltype,
     selrole  => $selrole,
@@ -68,12 +68,12 @@ class prometheus::node_exporter_textfile (
     selrole => $selrole,
   }
 
-  exec { 'prometheus-clean-metrics':
+  exec { 'prometheus-cleanup-metrics':
     command     => "/bin/bash ${cleanup_script_location}",
     user        => $user,
   }
 
-  systemd::timer { 'prometheus-scrape-metrics.timer':
+  systemd::timer { 'prometheus-update-metrics.timer':
     timer_content   => epp('prometheus/update_metrics_timer.epp', {
       'on_calendar' => $on_calendar,
     }),
@@ -82,13 +82,13 @@ class prometheus::node_exporter_textfile (
     }),
   }
 
-  service { 'prometheus-scrape-metrics.timer':
+  service { 'prometheus-update-metrics.timer':
     ensure    => $metrics != {} ? {
       true  => running,
       false => stopped,
     },
     enable    => $metrics != {},
-    subscribe => Systemd::Timer['prometheus-scrape-metrics.timer'],
+    subscribe => Systemd::Timer['prometheus-update-metrics.timer'],
     require   => File[$update_script_location],
   }
 }
