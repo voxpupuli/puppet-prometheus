@@ -1,7 +1,7 @@
 <% |
-String $scrape_script_location = ""
+String $update_script_location = ""
 | -%>
 [Service]
 Type=oneshot
 User=node-exporter
-ExecStart=/bin/bash <%= $scrape_script_location %>
+ExecStart=/bin/bash <%= $update_script_location %>
