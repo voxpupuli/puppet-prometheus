@@ -5,7 +5,7 @@ String $textfile_directory = "",
 #!/bin/bash
 <% $metrics.each |$key, $value| { -%>
   <% if !$value['static'] { -%>
-    printf '<%= $key %> %s\n' $(<%= $value['command'] %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
-    mv <%= $textfile_directory %>/<%= $key %>.prom.$$ <%= $textfile_directory %>/<%= $key %>.prom
+printf '<%= $key %> %s\n' $(<%= $value['command'] %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
+mv <%= $textfile_directory %>/<%= $key %>.prom.$$ <%= $textfile_directory %>/<%= $key %>.prom
   <% } -%>
 <% } -%>
