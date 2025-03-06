@@ -1,10 +1,12 @@
-# @summary ThThis module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
+# @summary This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
 # @param update_script_location
 #  The path where the updating script is located.
 # @param cleanup_script_location
 #  The path where the cleanup script is located
 # @param metrics
-#  A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data, these will be parsed in the system timer
+#  A hash of metrics that willMetrics are stored as a hash where they key is the metric name. Each metric contains:
+#   - `command`: The bash command used to collect the metric
+#   - `static`: A boolean which indicates if it will be scraped regularly (`false`), or will be scraped only on puppet run (`true`)
 # @param on_calendar
 #  Determines when the systemd timer will be executed
 # @param seluser
@@ -90,5 +92,16 @@ class prometheus::node_exporter_textfile (
     enable    => $metrics != {},
     subscribe => Systemd::Timer['prometheus-update-metrics.timer'],
     require   => File[$update_script_location],
+  }
+
+  $metrics.each |$key, $value| {
+    if $value['static'] {
+      exec { "update_${key}_metric":
+        command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/${key}.prom\"",
+        refreshonly => false,
+        path        => ['/bin', '/usr/bin'],
+       require      => File[$textfile_directory]
+      }
+    }
   }
 }

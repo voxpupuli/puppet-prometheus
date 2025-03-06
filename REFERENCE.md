@@ -35,7 +35,7 @@
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
-* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages as systemd timer to export metrics for node_exporter
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -8318,7 +8318,7 @@ Data type: `String`
 
 The path where the updating script is located
 
-Default value: `/usr/local/bin/update.sh`
+Default value: `/usr/local/bin/update_metrics.sh`
 
 ##### <a name="-prometheus--node_exporter_textfile--cleanup_script_location"></a>`cleanup_script_location`
 
@@ -8332,7 +8332,9 @@ Default value: `/usr/local/bin/clean_metrics.sh`
 
 Data type: `Hash`
 
-A hash of metrics that will be exported, with the key being the attribute name, and the value being the command that gets the data, these will be parsed in the system timer
+Metrics are stored as a hash where they key is the metric name. Each metric contains:
+ - `command`: The bash command used to collect the metric
+ - `static`: A boolean which indicates if it will be scraped regularly (`false`), or will be scraped only on puppet run (`true`)
 
 Default value: `{}`
 
