@@ -4,9 +4,9 @@
 # @param cleanup_script_location
 #  The path where the cleanup script is located
 # @param metrics
-#  A hash of metrics that willMetrics are stored as a hash where they key is the metric name. Each metric contains:
-#   - `command`: The bash command used to collect the metric
-#   - `static`: A boolean which indicates if it will be scraped regularly (`false`), or will be scraped only on puppet run (`true`)
+#  A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
+#   - 'command': The bash command used to collect or update the metric.
+#   - 'static': A boolean that indicates whether the metric will be updated regularly by a timer (false), or will be updated only upon change in puppet, e.g. in hiera (true).
 # @param on_calendar
 #  Determines when the systemd timer will be executed
 # @param seluser
