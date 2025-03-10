@@ -8371,14 +8371,6 @@ The SELinux role context for the files, if SELinux is enabled on the system
 
 Default value: `undef`
 
-##### <a name="-prometheus--node_exporter_textfile--systemd"></a>`systemd`
-
-Data type: `Boolean`
-
-Defines whether or not to create the systemd timer and service
-
-Default value: `false`
-
 ### <a name="prometheus--openldap_exporter"></a>`prometheus::openldap_exporter`
 
 This module manages prometheus openldap_exporter

@@ -15,8 +15,6 @@
 #  The SELinux type context for the files
 # @param selrole
 #  The SELinux role context for the files
-# @param systemd
-#  Defines whether or not to create the systemd timer and service
 class prometheus::node_exporter_textfile (
   String $update_script_location  = '/usr/local/bin/update_metrics.sh',
   String $cleanup_script_location = '/usr/local/bin/cleanup_metrics.sh',
@@ -25,7 +23,6 @@ class prometheus::node_exporter_textfile (
   Optional[String] $seluser       = undef,
   Optional[String] $seltype       = undef,
   Optional[String] $selrole       = undef,
-  Boolean $systemd                = false,
 ) {
   $textfile_directory = $prometheus::node_exporter::textfile_directory
   $group = $prometheus::node_exporter::group
@@ -78,7 +75,7 @@ class prometheus::node_exporter_textfile (
     user        => $user,
   }
 
-  if $systemd {
+  if $prometheus::server::init_style == 'systemd' {
     systemd::timer { 'prometheus-update-metrics.timer':
       timer_content   => epp('prometheus/update_metrics_timer.epp', {
         'on_calendar' => $on_calendar,
