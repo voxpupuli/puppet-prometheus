@@ -8025,14 +8025,6 @@ https://github.com/prometheus/node_exporter#enabled-by-default
 
 Default value: `[]`
 
-##### <a name="-prometheus--node_exporter--download_extension"></a>`download_extension`
-
-Data type: `String`
-
-Extension for the release binary archive
-
-Default value: `'tar.gz'`
-
 ##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
 
 Data type: `Optional[String[1]]`
@@ -8040,6 +8032,14 @@ Data type: `Optional[String[1]]`
 Sets the directory for the textfile collector using `--collector.textfile.directory`
 
 Default value: `undef`
+
+##### <a name="-prometheus--node_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--node_exporter--download_url"></a>`download_url`
 
@@ -8311,6 +8311,7 @@ This module manages text file based metrics for node_exporter and a systemd time
 * [`seluser`](#-prometheus--node_exporter_textfile--seluser)
 * [`seltype`](#-prometheus--node_exporter_textfile--seltype)
 * [`selrole`](#-prometheus--node_exporter_textfile--selrole)
+* [`systemd`](#-prometheus--node_exporter_textfile--systemd)
 
 ##### <a name="-prometheus--node_exporter_textfile--update_script_location></a>`update_script_location`
 
@@ -8369,6 +8370,14 @@ Data type: `Optional[String]`
 The SELinux role context for the files, if SELinux is enabled on the system
 
 Default value: `undef`
+
+##### <a name="-prometheus--node_exporter_textfile--systemd"></a>`systemd`
+
+Data type: `Boolean`
+
+Defines whether or not to create the systemd timer and service
+
+Default value: `false`
 
 ### <a name="prometheus--openldap_exporter"></a>`prometheus::openldap_exporter`
 
