@@ -68,6 +68,17 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
+# @param export_scrape_job
+#   Whether to export a `prometheus::scrape_job` to puppetDB for
+#   collecting on your prometheus server.
+# @param scrape_host
+#  Hostname or IP address to scrape
+# @param scrape_port
+#  Host port to scrape
+# @param scrape_job_name
+#  Name of the scrape job to export, if export_scrape_job is true
+# @param scrape_job_labels
+#  Labels to add to the scrape job, if export_scrape_job is true
 # @note
 # This class is deprecated and will be removed in a future release.
 class prometheus::rabbitmq_exporter (

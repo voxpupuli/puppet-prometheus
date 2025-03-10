@@ -11411,7 +11411,8 @@ Default value: `undef`
 
 Data type: `Boolean`
 
-
+Whether to export a `prometheus::scrape_job` to puppetDB for
+collecting on your prometheus server.
 
 Default value: `false`
 
@@ -11419,7 +11420,7 @@ Default value: `false`
 
 Data type: `Optional[Stdlib::Host]`
 
-
+Hostname or IP address to scrape
 
 Default value: `undef`
 
@@ -11427,7 +11428,7 @@ Default value: `undef`
 
 Data type: `Stdlib::Port`
 
-
+Host port to scrape
 
 Default value: `9419`
 
@@ -11435,7 +11436,7 @@ Default value: `9419`
 
 Data type: `String[1]`
 
-
+Name of the scrape job to export, if export_scrape_job is true
 
 Default value: `'rabbitmq'`
 
@@ -11443,7 +11444,7 @@ Default value: `'rabbitmq'`
 
 Data type: `Optional[Hash]`
 
-
+Labels to add to the scrape job, if export_scrape_job is true
 
 Default value: `undef`
 
