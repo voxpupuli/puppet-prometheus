@@ -1,4 +1,5 @@
 # @summary This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
+#  If `prometheus::server::init_style` is not set to `systemd` no timer will be created, however scripts will still be created and managed.
 # @param update_script_location
 #  The path where the updating script is located.
 # @param cleanup_script_location

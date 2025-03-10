@@ -8301,6 +8301,7 @@ Default value: `undef`
 ### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
 
 This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static.
+If `prometheus::server::init_style` is not set to `systemd` no timer will be created, however scripts will still be created and managed.
 
 ### Parameters
 
