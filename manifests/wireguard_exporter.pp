@@ -132,7 +132,7 @@ class prometheus::wireguard_exporter (
 
   if empty($web_config_content) {
     file { $web_config_file:
-      ensure  => absent,
+      ensure => absent,
     }
 
     $web_config = ''
