@@ -56,7 +56,7 @@ class prometheus::collectd_exporter (
   String[1] $service_name                                    = 'collectd_exporter',
   String[1] $user                                            = 'collectd-exporter',
   # renovate: depName=prometheus/collectd_exporter
-  String[1] $version                                         = '0.6.0',
+  String[1] $version                                         = '0.7.0',
   String $options                                            = '', # lint:ignore:params_empty_string_assignment
   String[1] $os                                              = downcase($facts['kernel']),
   Prometheus::Initstyle $init_style                          = $prometheus::init_style,
