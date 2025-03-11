@@ -3429,7 +3429,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.12.0'`
+Default value: `'0.13.0'`
 
 ##### <a name="-prometheus--consul_exporter--web_listen_address"></a>`web_listen_address`
 
