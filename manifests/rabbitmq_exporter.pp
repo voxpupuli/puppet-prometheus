@@ -98,7 +98,7 @@ class prometheus::rabbitmq_exporter (
   Array[String] $rabbit_capabilities,
   Array[String] $rabbit_exporters,
   # renovate: depName=kbudde/rabbitmq_exporter
-  String[1] $version                                         = '0.29.0',
+  String[1] $version                                         = '1.0.0',
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   Optional[Prometheus::Uri] $download_url                    = undef,
