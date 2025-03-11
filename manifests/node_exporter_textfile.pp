@@ -87,7 +87,7 @@ class prometheus::node_exporter_textfile (
   }
 
   exec { 'clear_static_metrics':
-    command => "/bin/bash -c '> ${textfile_directory}/static.prom'",
+    command => "rm ${textfile_directory}/static.prom",
     path    => ['/bin', '/usr/bin'],
     require => File[$textfile_directory],
   }
