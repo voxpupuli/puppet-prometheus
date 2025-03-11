@@ -102,7 +102,7 @@ class prometheus::node_exporter_textfile (
         command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/${key}.prom\"",
         refreshonly => false,
         path        => ['/bin', '/usr/bin'],
-        require      => File[$textfile_directory],
+        require     => File[$textfile_directory],
       }
     }
   }
