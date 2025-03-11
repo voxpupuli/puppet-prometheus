@@ -66,7 +66,6 @@ class prometheus::node_exporter_textfile (
     owner   => $user,
     group   => $group,
     mode    => '0750',
-    require => File[$update_script_location],
     seluser => $seluser,
     seltype => $seltype,
     selrole => $selrole,
