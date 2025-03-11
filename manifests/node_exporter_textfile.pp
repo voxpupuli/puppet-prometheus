@@ -1,8 +1,8 @@
 # @summary Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 # @param update_script_location
 #  The path where the updating script is located.
-# @param cleanup_script_location
-#  The path where the cleanup script is located
+# @param metrics_config_path
+#  The path where the active metrics configuration file is located
 # @param metrics
 #  A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
 #   - 'command': The bash command used to collect or update the metric.
@@ -25,7 +25,7 @@ type Metric = Struct[
 
 class prometheus::node_exporter_textfile (
   Stdlib::Absolutepath $update_script_location  = '/usr/local/bin/update_metrics.sh',
-  Stdlib::Absolutepath $cleanup_script_location = '/usr/local/bin/cleanup_metrics.sh',
+  Stdlib::Absolutepath $metrics_config_path = '/etc/sysconfig/textfile_active'
   Hash[String[1], Metric] $metrics                   = {},
   String $on_calendar             = '*:0/2:30',
   Optional[String] $seluser       = undef,
@@ -42,29 +42,20 @@ class prometheus::node_exporter_textfile (
     owner   => $user,
     group   => $group,
     mode    => '0750',
-    content => epp('prometheus/update_metrics.sh.epp', {
-        'metrics'            => $metrics,
-        'textfile_directory' => $textfile_directory,
-    }),
+    source  => 'puppet:///modules/prometheus/update_metrics.sh',
     require => File[$textfile_directory],
-    notify  => Exec['prometheus-cleanup-metrics'],
+    notify  => Exec['prometheus-update-metrics'],
     seluser => $seluser,
     seltype => $seltype,
     selrole => $selrole,
   }
 
-  file { $cleanup_script_location:
+  file { $metrics_config_path:
     ensure  => file,
-    owner   => $user,
-    group   => $group,
-    mode    => '0750',
-    content => epp('prometheus/cleanup_metrics.sh.epp', {
-        'metrics'            => $metrics,
-        'textfile_directory' => $textfile_directory,
-    }),
-    seluser => $seluser,
-    seltype => $seltype,
-    selrole => $selrole,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => inline_template("<% @env_variables.each |$key, $value| -%>\n<% if ! $value['static'] -%><%= key %>=\"<%= value['command'] %>\"\n<% end -%>\n<% end -%>\n"),
   }
 
   file { $textfile_directory:
@@ -72,33 +63,39 @@ class prometheus::node_exporter_textfile (
     owner   => $user,
     group   => $group,
     mode    => '0750',
-    require => File[$cleanup_script_location],
+    require => File[$update_script_location],
     seluser => $seluser,
     seltype => $seltype,
     selrole => $selrole,
   }
 
-  exec { 'prometheus-cleanup-metrics':
-    command => "/bin/bash ${cleanup_script_location}",
+  exec { 'prometheus-update-metrics':
+    command => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
     user    => $user,
   }
 
-  systemd::timer_wrapper { 'prometheus-update-metrics-timer':
+  systemd::timer_wrapper { 'prometheus-update-metrics':
     ensure      => $metrics != {} ? {
       true  => 'present',
       false => 'absent',
     },
     on_calendar => $on_calendar,
-    command     => "/bin/bash ${update_script_location}",
+    command     => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
+  }
+
+  exec { 'clear_static_metrics':
+    command => "/bin/bash -c '> ${textfile_directory}/static.prom'",
+    path    => ['/bin', '/usr/bin'],
+    require => File[$textfile_directory],
   }
 
   $metrics.each |$key, $value| {
     if $value['static'] {
       exec { "update_${key}_metric":
-        command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/${key}.prom\"",
+        command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/static.prom\"",
         refreshonly => false,
         path        => ['/bin', '/usr/bin'],
-        require     => File[$textfile_directory],
+        require     => Exec['clear_static_metrics'],
       }
     }
   }
