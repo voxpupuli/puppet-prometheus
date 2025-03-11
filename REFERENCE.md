@@ -35,7 +35,7 @@
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
-* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages text file based metrics for node_exporter and a systemd timer for updating values if they are not static
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -8027,7 +8027,7 @@ Default value: `[]`
 
 ##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
 
-Data type: `Optional[String[1]]`
+Data type: `Optional[String]`
 
 Sets the directory for the textfile collector using `--collector.textfile.directory`
 
@@ -8302,7 +8302,9 @@ Default value: `undef`
 
 Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 
-### Parameters
+#### Parameters
+
+The following parameters are available in the `prometheus::node_exporter_textfile` class:
 
 * [`update_script_location`](#-prometheus--node_exporter_textfile--update_script_location)
 * [`cleanup_script_location`](#-prometheus--node_exporter_textfile--cleanup_script_location)
@@ -8311,15 +8313,14 @@ Manages text file metrics for node_exporter & a systemd timer (if systemd is use
 * [`seluser`](#-prometheus--node_exporter_textfile--seluser)
 * [`seltype`](#-prometheus--node_exporter_textfile--seltype)
 * [`selrole`](#-prometheus--node_exporter_textfile--selrole)
-* [`systemd`](#-prometheus--node_exporter_textfile--systemd)
 
-##### <a name="-prometheus--node_exporter_textfile--update_script_location></a>`update_script_location`
+##### <a name="-prometheus--node_exporter_textfile--update_script_location"></a>`update_script_location`
 
 Data type: `String`
 
-The path where the updating script is located
+The path where the updating script is located.
 
-Default value: `/usr/local/bin/update_metrics.sh`
+Default value: `'/usr/local/bin/update_metrics.sh'`
 
 ##### <a name="-prometheus--node_exporter_textfile--cleanup_script_location"></a>`cleanup_script_location`
 
@@ -8327,7 +8328,7 @@ Data type: `String`
 
 The path where the cleanup script is located
 
-Default value: `/usr/local/bin/clean_metrics.sh`
+Default value: `'/usr/local/bin/cleanup_metrics.sh'`
 
 ##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`metrics`
 
@@ -8336,22 +8337,22 @@ Data type: `Hash`
 A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
  - 'command': The bash command used to collect or update the metric.
  - 'static': A boolean that indicates whether the metric will be updated regularly by a timer (false), or will be updated only upon change in puppet, e.g. in hiera (true).
- 
+
 Default value: `{}`
 
 ##### <a name="-prometheus--node_exporter_textfile--on_calendar"></a>`on_calendar`
 
 Data type: `String`
 
-Specification of the value of the timer 'onCalendar' attribute, which determines when the timer will be executed
+Determines when the systemd timer will be executed
 
-Default value: `*:0/2:30`
+Default value: `'*:0/2:30'`
 
 ##### <a name="-prometheus--node_exporter_textfile--seluser"></a>`seluser`
 
 Data type: `Optional[String]`
 
-The SELinux user context for the files, if SELinux is enabled on the system
+The SELinux user context for the files
 
 Default value: `undef`
 
@@ -8359,7 +8360,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-The SELinux type context for the files, if SELinux is enabled on the system
+The SELinux type context for the files
 
 Default value: `undef`
 
@@ -8367,7 +8368,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-The SELinux role context for the files, if SELinux is enabled on the system
+The SELinux role context for the files
 
 Default value: `undef`
 
