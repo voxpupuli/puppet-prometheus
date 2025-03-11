@@ -10,12 +10,14 @@ describe 'prometheus::ipmi_exporter' do
       end
 
       context 'without parameters' do
+        let(:version) { catalogue.resource('Class[prometheus::ipmi_exporter]').parameters[:version] }
+
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('prometheus') }
         it { is_expected.to contain_service('ipmi_exporter') }
         it { is_expected.to contain_user('ipmi-exporter') }
         it { is_expected.to contain_group('ipmi-exporter') }
-        it { is_expected.to contain_file('/opt/ipmi_exporter-1.8.0.linux-amd64/ipmi_exporter') }
+        it { is_expected.to contain_file("/opt/ipmi_exporter-#{version}.linux-amd64/ipmi_exporter") }
         it { is_expected.to contain_file('/usr/local/bin/ipmi_exporter') }
 
         if facts[:os]['name'] == 'Archlinux'
