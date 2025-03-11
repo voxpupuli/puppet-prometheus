@@ -62,7 +62,7 @@ class prometheus::dellhw_exporter (
   String[1] $package_name                                    = 'dellhw_exporter',
   String[1] $user                                            = 'dellhw-exporter',
   # renovate: depName=galexrt/dellhw_exporter
-  String[1] $version                                         = '1.13.12',
+  String[1] $version                                         = '1.13.13',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
