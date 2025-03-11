@@ -4,7 +4,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
   [[ -z "$line" ]] && continue
   key="${line%%=*}"
   value="${line#*=}"
-  echo "$key $(eval $value)" >> "$2/active.prom.$$"
+  printf "$key $($value)\n" >> "$2/active.prom.$$"
 done < $1
 
 if [ -f "$2/active.prom.$$" ]; then
