@@ -19,13 +19,14 @@ describe 'prometheus::collectd_exporter' do
       end
 
       context 'with params' do
+        let(:version) { catalogue.resource('Class[prometheus::collectd_exporter]').parameters[:version] }
         let :params do
           {
             install_method: 'url'
           }
         end
 
-        it { is_expected.to contain_archive('/tmp/collectd_exporter-0.6.0.tar.gz') }
+        it { is_expected.to contain_archive("/tmp/collectd_exporter-#{version}.tar.gz") }
       end
     end
   end
