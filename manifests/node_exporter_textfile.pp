@@ -29,20 +29,20 @@ class prometheus::node_exporter_textfile (
   $user = $prometheus::node_exporter::user
 
   file { $update_script_location:
-    ensure   => file,
-    audit    => 'content',
-    owner    => $user,
-    group    => $group,
-    mode     => '0750',
-    content  => epp('prometheus/update_metrics.sh.epp', {
-      'metrics'           => $metrics,
-      'textfile_directory'  => $textfile_directory,
+    ensure  => file,
+    audit   => 'content',
+    owner   => $user,
+    group   => $group,
+    mode    => '0750',
+    content => epp('prometheus/update_metrics.sh.epp', {
+        'metrics'            => $metrics,
+        'textfile_directory' => $textfile_directory,
     }),
-    require  => File[$textfile_directory],
-    notify   => Exec['prometheus-cleanup-metrics'],
-    seluser  => $seluser,
-    seltype  => $seltype,
-    selrole  => $selrole,
+    require => File[$textfile_directory],
+    notify  => Exec['prometheus-cleanup-metrics'],
+    seluser => $seluser,
+    seltype => $seltype,
+    selrole => $selrole,
   }
 
   file { $cleanup_script_location:
@@ -51,8 +51,8 @@ class prometheus::node_exporter_textfile (
     group   => $group,
     mode    => '0750',
     content => epp('prometheus/cleanup_metrics.sh.epp', {
-      'metrics'           => $metrics,
-      'textfile_directory'  => $textfile_directory,
+        'metrics'            => $metrics,
+        'textfile_directory' => $textfile_directory,
     }),
     seluser => $seluser,
     seltype => $seltype,
@@ -71,17 +71,17 @@ class prometheus::node_exporter_textfile (
   }
 
   exec { 'prometheus-cleanup-metrics':
-    command     => "/bin/bash ${cleanup_script_location}",
-    user        => $user,
+    command => "/bin/bash ${cleanup_script_location}",
+    user    => $user,
   }
 
   if $prometheus::server::init_style == 'systemd' {
     systemd::timer { 'prometheus-update-metrics.timer':
       timer_content   => epp('prometheus/update_metrics_timer.epp', {
-        'on_calendar' => $on_calendar,
+          'on_calendar' => $on_calendar,
       }),
       service_content => epp('prometheus/update_metrics_service.epp', {
-        'update_script_location'  => $update_script_location,
+          'update_script_location'  => $update_script_location,
       }),
     }
 
@@ -102,7 +102,7 @@ class prometheus::node_exporter_textfile (
         command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/${key}.prom\"",
         refreshonly => false,
         path        => ['/bin', '/usr/bin'],
-       require      => File[$textfile_directory]
+        require      => File[$textfile_directory],
       }
     }
   }
