@@ -11336,7 +11336,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.29.0'`
+Default value: `'1.0.0'`
 
 ##### <a name="-prometheus--rabbitmq_exporter--rabbit_url"></a>`rabbit_url`
 
