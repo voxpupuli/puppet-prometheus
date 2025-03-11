@@ -1,11 +1,16 @@
 <% |
-Optional[Hash] $metrics = {},
+Hash[String[1], Struct[
+  {
+    'command' => String[1],
+    'static'  => Boolean
+  }
+]] $metrics = {},
 String $textfile_directory = "",
 | -%>
 #!/bin/bash
 <% $metrics.each |$key, $value| { -%>
-<% if !$value['static'] { -%>
-printf '<%= $key %> %s\n' $(<%= $value['command'] %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
+<% if !$value.static { -%>
+printf '<%= $key %> %s\n' $(<%= $value.command %>) > <%= $textfile_directory %>/<%= $key %>.prom.$$
 mv <%= $textfile_directory %>/<%= $key %>.prom.$$ <%= $textfile_directory %>/<%= $key %>.prom
 <% } -%>
 <% } -%>

@@ -1,4 +1,0 @@
-<% | String $on_calendar = "" | -%>
-[Timer]
-OnCalendar=<%= $on_calendar %>
-Persistent=true

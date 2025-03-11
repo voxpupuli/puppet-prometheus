@@ -15,10 +15,18 @@
 #  The SELinux type context for the files
 # @param selrole
 #  The SELinux role context for the files
+
+type Metric = Struct[
+  {
+    'command' => String[1],
+    'static'  => Boolean
+  }
+]
+
 class prometheus::node_exporter_textfile (
-  String $update_script_location  = '/usr/local/bin/update_metrics.sh',
-  String $cleanup_script_location = '/usr/local/bin/cleanup_metrics.sh',
-  Hash $metrics                   = {},
+  Stdlib::Absolutepath $update_script_location  = '/usr/local/bin/update_metrics.sh',
+  Stdlib::Absolutepath $cleanup_script_location = '/usr/local/bin/cleanup_metrics.sh',
+  Hash[String[1], Metric] $metrics                   = {},
   String $on_calendar             = '*:0/2:30',
   Optional[String] $seluser       = undef,
   Optional[String] $seltype       = undef,
@@ -75,25 +83,13 @@ class prometheus::node_exporter_textfile (
     user    => $user,
   }
 
-  if $prometheus::server::init_style == 'systemd' {
-    systemd::timer { 'prometheus-update-metrics.timer':
-      timer_content   => epp('prometheus/update_metrics_timer.epp', {
-          'on_calendar' => $on_calendar,
-      }),
-      service_content => epp('prometheus/update_metrics_service.epp', {
-          'update_script_location'  => $update_script_location,
-      }),
-    }
-
-    service { 'prometheus-update-metrics.timer':
-      ensure    => $metrics != {} ? {
-        true  => running,
-        false => stopped,
-      },
-      enable    => $metrics != {},
-      subscribe => Systemd::Timer['prometheus-update-metrics.timer'],
-      require   => File[$update_script_location],
-    }
+  systemd::timer_wrapper { 'prometheus-update-metrics-timer':
+    ensure      => $metrics != {} ? {
+      true  => 'present',
+      false => 'absent',
+    },
+    on_calendar => $on_calendar,
+    command     => "/bin/bash ${update_script_location}",
   }
 
   $metrics.each |$key, $value| {

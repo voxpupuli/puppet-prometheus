@@ -1,5 +1,10 @@
 <% |
-Optional[Hash] $metrics = {},
+Hash[String[1], Struct[
+  {
+    'command' => String[1],
+    'static'  => Boolean
+  }
+]] $metrics = {},
 String $textfile_directory = "",
 | -%>
 #!/bin/bash

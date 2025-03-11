@@ -35,7 +35,7 @@
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
-* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile)
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -73,6 +73,7 @@ restarting the whole service when a config changes
 
 ### Data types
 
+* [`Metric`](#Metric)
 * [`Prometheus::GsUri`](#Prometheus--GsUri): Type for a Google Cloud Storage URI
 * [`Prometheus::Initstyle`](#Prometheus--Initstyle): A type to represent the init style of a Prometheus service
 * [`Prometheus::Install`](#Prometheus--Install): type to enforce the different installation methods for our exporters.
@@ -8300,7 +8301,7 @@ Default value: `undef`
 
 ### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
 
-Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+The prometheus::node_exporter_textfile class.
 
 #### Parameters
 
@@ -8316,27 +8317,25 @@ The following parameters are available in the `prometheus::node_exporter_textfil
 
 ##### <a name="-prometheus--node_exporter_textfile--update_script_location"></a>`update_script_location`
 
-Data type: `String`
+Data type: `Stdlib::Absolutepath`
 
-The path where the updating script is located.
+
 
 Default value: `'/usr/local/bin/update_metrics.sh'`
 
 ##### <a name="-prometheus--node_exporter_textfile--cleanup_script_location"></a>`cleanup_script_location`
 
-Data type: `String`
+Data type: `Stdlib::Absolutepath`
 
-The path where the cleanup script is located
+
 
 Default value: `'/usr/local/bin/cleanup_metrics.sh'`
 
 ##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`metrics`
 
-Data type: `Hash`
+Data type: `Hash[String[1], Metric]`
 
-A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
- - 'command': The bash command used to collect or update the metric.
- - 'static': A boolean that indicates whether the metric will be updated regularly by a timer (false), or will be updated only upon change in puppet, e.g. in hiera (true).
+
 
 Default value: `{}`
 
@@ -8344,7 +8343,7 @@ Default value: `{}`
 
 Data type: `String`
 
-Determines when the systemd timer will be executed
+
 
 Default value: `'*:0/2:30'`
 
@@ -8352,7 +8351,7 @@ Default value: `'*:0/2:30'`
 
 Data type: `Optional[String]`
 
-The SELinux user context for the files
+
 
 Default value: `undef`
 
@@ -8360,7 +8359,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-The SELinux type context for the files
+
 
 Default value: `undef`
 
@@ -8368,7 +8367,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-The SELinux role context for the files
+
 
 Default value: `undef`
 
@@ -15631,6 +15630,19 @@ NOTE: this is a prometheus setting and will be overridden during collection.
 Default value: `undef`
 
 ## Data types
+
+### <a name="Metric"></a>`Metric`
+
+The Metric data type.
+
+Alias of
+
+```puppet
+Struct[{
+    'command' => String[1],
+    'static'  => Boolean
+  }]
+```
 
 ### <a name="Prometheus--GsUri"></a>`Prometheus::GsUri`
 
