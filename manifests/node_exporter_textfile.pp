@@ -55,7 +55,10 @@ class prometheus::node_exporter_textfile (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => inline_template("<% @metrics.each |$key, $value| { if !$value['static'] { -%><%= $key %>=\"<%= $value['command'] %>\"\n<% } } -%>"),
+    content => epp('prometheus/textfile_metrics_config.epp', {
+        'metrics' => $metrics,
+      }
+    ),
   }
 
   file { $textfile_directory:

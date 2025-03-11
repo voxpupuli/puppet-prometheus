@@ -1,0 +1,9 @@
+<% | Hash[String[1], Struct[
+  {
+    'command' => String[1],
+    'static'  => Boolean
+  }
+]] $metrics = {} | -%>
+<% $metrics.each |$key, $value| { if !$value['static'] { -%>
+<%= $key %>="<%= $value['command'] %>"
+<% } } -%>
