@@ -35,6 +35,7 @@ class prometheus::node_exporter_textfile (
   $textfile_directory = $prometheus::node_exporter::textfile_directory
   $group = $prometheus::node_exporter::group
   $user = $prometheus::node_exporter::user
+  $static_metrics = $metrics.filter |$key, $value| { $value['static'] }
 
   file { $update_script_location:
     ensure  => file,
@@ -91,14 +92,12 @@ class prometheus::node_exporter_textfile (
     require => File[$textfile_directory],
   }
 
-  $metrics.each |$key, $value| {
-    if $value['static'] {
-      exec { "update_${key}_metric":
-        command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) > ${textfile_directory}/static.prom\"",
-        refreshonly => false,
-        path        => ['/bin', '/usr/bin'],
-        require     => Exec['clear_static_metrics'],
-      }
+  $static_metrics.each |$key, $value| {
+    exec { "update_${key}_metric":
+      command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) >> ${textfile_directory}/static.prom\"",
+      refreshonly => false,
+      path        => ['/bin', '/usr/bin'],
+      require     => Exec['clear_static_metrics'],
     }
   }
 }
