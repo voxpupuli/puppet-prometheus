@@ -90,6 +90,7 @@ class prometheus::node_exporter_textfile (
     command => "rm ${textfile_directory}/static.prom",
     path    => ['/bin', '/usr/bin'],
     require => File[$textfile_directory],
+    unless  => "test -f ${textfile_directory}/static.prom",
   }
 
   $static_metrics.each |$key, $value| {

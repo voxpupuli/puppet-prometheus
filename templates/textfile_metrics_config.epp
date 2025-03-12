@@ -5,5 +5,5 @@
   }
 ]] $metrics = {} | -%>
 <% $metrics.each |$key, $value| { if !$value['static'] { -%>
-<%= $key %>="<%= $value['command'] %>"
+<%= $key %>=<%= $value['command'] %>
 <% } } -%>
