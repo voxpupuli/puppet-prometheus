@@ -35,7 +35,7 @@
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::nginx_vts_exporter`](#prometheus--nginx_vts_exporter): This module manages prometheus nginx_vts_exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
-* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -8300,14 +8300,14 @@ Default value: `undef`
 
 ### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
 
-Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+This module manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 
 #### Parameters
 
 The following parameters are available in the `prometheus::node_exporter_textfile` class:
 
 * [`update_script_location`](#-prometheus--node_exporter_textfile--update_script_location)
-* [`cleanup_script_location`](#-prometheus--node_exporter_textfile--cleanup_script_location)
+* [`metrics_config_path`](#-prometheus--node_exporter_textfile--metrics_config_path)
 * [`metrics`](#-prometheus--node_exporter_textfile--metrics)
 * [`on_calendar`](#-prometheus--node_exporter_textfile--on_calendar)
 * [`seluser`](#-prometheus--node_exporter_textfile--seluser)
@@ -8316,23 +8316,32 @@ The following parameters are available in the `prometheus::node_exporter_textfil
 
 ##### <a name="-prometheus--node_exporter_textfile--update_script_location"></a>`update_script_location`
 
-Data type: `String`
+Data type: `Stdlib::Absolutepath`
 
 The path where the updating script is located.
 
 Default value: `'/usr/local/bin/update_metrics.sh'`
 
-##### <a name="-prometheus--node_exporter_textfile--cleanup_script_location"></a>`cleanup_script_location`
+##### <a name="-prometheus--node_exporter_textfile--metrics_config_path"></a>`metrics_config_path`
 
-Data type: `String`
+Data type: `Stdlib::Absolutepath`
 
-The path where the cleanup script is located
+The path where the active metrics configuration file is located
 
-Default value: `'/usr/local/bin/cleanup_metrics.sh'`
+Default value: `'/etc/sysconfig/textfile_active'`
 
 ##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`metrics`
 
-Data type: `Hash`
+Data type:
+
+```puppet
+Hash[String[1], Struct[
+    {
+      'command' => String[1],
+      'static'  => Boolean
+    }
+  ]]
+```
 
 A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
  - 'command': The bash command used to collect or update the metric.

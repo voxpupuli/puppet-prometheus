@@ -1,7 +1,0 @@
-<% |
-String $update_script_location = ""
-| -%>
-[Service]
-Type=oneshot
-User=node-exporter
-ExecStart=/bin/bash <%= $update_script_location %>
