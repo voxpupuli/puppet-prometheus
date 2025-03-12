@@ -94,14 +94,16 @@ class prometheus::node_exporter_textfile (
     }
   } else {
     exec { 'clear-static-metrics':
-      command => "/bin/bash -c '> ${textfile_directory}/static.prom'",
-      user    => $user,
-      path    => ['/bin', '/usr/bin'],
+      command     => "/bin/bash -c '> ${textfile_directory}/static.prom'",
+      user        => $user,
+      refreshonly => false,
+      path        => ['/bin', '/usr/bin'],
     }
 
     $static_metrics.each |$key, $value| {
       exec { "update_${key}_metric":
         command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) >> ${textfile_directory}/static.prom\"",
+        user        => $user,
         refreshonly => false,
         path        => ['/bin', '/usr/bin'],
         require     => Exec['clear-static-metrics'],
