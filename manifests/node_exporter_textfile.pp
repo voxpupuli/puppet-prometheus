@@ -79,7 +79,7 @@ class prometheus::node_exporter_textfile (
   }
 
   systemd::timer_wrapper { 'prometheus-update-metrics':
-    ensure      => empty($metrics) or empty($metrics.filter |$key, $value| { !$value['static'] }) ? {
+    ensure      => empty($metrics.filter |$key, $value| { !$value['static'] }) ? {
       true  => 'absent',
       false => 'present',
     },
