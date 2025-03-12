@@ -19,10 +19,10 @@ class prometheus::node_exporter_textfile (
   Stdlib::Absolutepath $update_script_location  = '/usr/local/bin/update_metrics.sh',
   Stdlib::Absolutepath $metrics_config_path = '/etc/sysconfig/textfile_active',
   Hash[String[1], Struct[
-    {
-      'command' => String[1],
-      'static'  => Boolean
-    }
+      {
+        'command' => String[1],
+        'static'  => Boolean
+      }
   ]] $metrics                   = {},
   String $on_calendar             = '*:0/2:30',
   Optional[String] $seluser       = undef,

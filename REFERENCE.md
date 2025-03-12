@@ -8336,10 +8336,10 @@ Data type:
 
 ```puppet
 Hash[String[1], Struct[
-    {
-      'command' => String[1],
-      'static'  => Boolean
-    }
+      {
+        'command' => String[1],
+        'static'  => Boolean
+      }
   ]]
 ```
 
