@@ -79,9 +79,9 @@ class prometheus::node_exporter_textfile (
   }
 
   systemd::timer_wrapper { 'prometheus-update-metrics':
-    ensure      => empty($metrics.filter |$key, $value| { !$value['static'] }) ? {
-      true  => 'present',
-      false => 'absent',
+    ensure      => empty($metrics) or empty($metrics.filter |$key, $value| { !$value['static'] }) ? {
+      true  => 'absent',
+      false => 'present',
     },
     on_calendar => $on_calendar,
     command     => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
