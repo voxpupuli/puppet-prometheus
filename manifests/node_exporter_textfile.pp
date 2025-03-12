@@ -75,6 +75,7 @@ class prometheus::node_exporter_textfile (
   exec { 'prometheus-update-metrics':
     command => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
     user    => $user,
+    path    => ['/bin', '/usr/bin'],
   }
 
   systemd::timer_wrapper { 'prometheus-update-metrics':
@@ -92,11 +93,18 @@ class prometheus::node_exporter_textfile (
       require => File[$textfile_directory],
     }
   } else {
+    exec { 'clear-static-metrics':
+      command => "/bin/bash -c '> ${textfile_directory}/static.prom'",
+      user    => $user,
+      path    => ['/bin', '/usr/bin'],
+    }
+
     $static_metrics.each |$key, $value| {
       exec { "update_${key}_metric":
         command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) >> ${textfile_directory}/static.prom\"",
         refreshonly => false,
         path        => ['/bin', '/usr/bin'],
+        require     => Exec['clear-static-metrics'],
       }
     }
   }
