@@ -1,4 +1,4 @@
-# @summary Manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+# @summary This module manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 # @param update_script_location
 #  The path where the updating script is located.
 # @param metrics_config_path
@@ -15,18 +15,15 @@
 #  The SELinux type context for the files
 # @param selrole
 #  The SELinux role context for the files
-
-type Metric = Struct[
-  {
-    'command' => String[1],
-    'static'  => Boolean
-  }
-]
-
 class prometheus::node_exporter_textfile (
   Stdlib::Absolutepath $update_script_location  = '/usr/local/bin/update_metrics.sh',
   Stdlib::Absolutepath $metrics_config_path = '/etc/sysconfig/textfile_active',
-  Hash[String[1], Metric] $metrics                   = {},
+  Hash[String[1], Struct[
+    {
+      'command' => String[1],
+      'static'  => Boolean
+    }
+  ]] $metrics                   = {},
   String $on_calendar             = '*:0/2:30',
   Optional[String] $seluser       = undef,
   Optional[String] $seltype       = undef,
