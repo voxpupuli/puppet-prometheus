@@ -85,6 +85,7 @@ class prometheus::node_exporter_textfile (
     },
     on_calendar => $on_calendar,
     command     => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
+    user        => $user,
   }
 
   if empty($static_metrics) {
