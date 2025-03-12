@@ -86,11 +86,10 @@ class prometheus::node_exporter_textfile (
     command     => "/bin/bash ${update_script_location} ${metrics_config_path} ${textfile_directory}",
   }
 
-  exec { 'clear_static_metrics':
-    command => "rm ${textfile_directory}/static.prom",
-    path    => ['/bin', '/usr/bin'],
+  file { "${textfile_directory}/static.prom":
+    ensure  => absent,
     require => File[$textfile_directory],
-    unless  => "test -f ${textfile_directory}/static.prom",
+    before  => Exec <| |>,
   }
 
   $static_metrics.each |$key, $value| {
@@ -98,7 +97,6 @@ class prometheus::node_exporter_textfile (
       command     => "/bin/bash -c \"echo '${key} '$( ${value['command']} ) >> ${textfile_directory}/static.prom\"",
       refreshonly => false,
       path        => ['/bin', '/usr/bin'],
-      require     => Exec['clear_static_metrics'],
     }
   }
 }
