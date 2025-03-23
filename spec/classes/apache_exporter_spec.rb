@@ -8,13 +8,14 @@ describe 'prometheus::apache_exporter' do
       let(:facts) do
         facts.merge(os_specific_facts(facts))
       end
+      let(:version) { catalogue.resource('Class[prometheus::apache_exporter]').parameters[:version] }
 
       context 'with all defaults' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_systemd__unit_file('apache_exporter.service') }
         it { is_expected.not_to contain_package('apache-exporter') }
-        it { is_expected.to contain_archive('/tmp/apache_exporter-1.0.9.tar.gz') }
-        it { is_expected.to contain_file('/opt/apache_exporter-1.0.9.linux-amd64/apache_exporter') }
+        it { is_expected.to contain_archive("/tmp/apache_exporter-#{version}.tar.gz") }
+        it { is_expected.to contain_file("/opt/apache_exporter-#{version}.linux-amd64/apache_exporter") }
       end
 
       context 'with some params' do
