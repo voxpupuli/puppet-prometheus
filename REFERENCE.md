@@ -8189,7 +8189,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.9.0'`
+Default value: `'1.9.1'`
 
 ##### <a name="-prometheus--node_exporter--env_vars"></a>`env_vars`
 
