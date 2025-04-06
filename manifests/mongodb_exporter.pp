@@ -68,7 +68,7 @@ class prometheus::mongodb_exporter (
   String[1] $service_name                                    = 'mongodb_exporter',
   String[1] $user                                            = 'mongodb-exporter',
   # renovate: depName=percona/mongodb_exporter
-  String[1] $version                                         = '0.43.1',
+  String[1] $version                                         = '0.44.0',
   Boolean $use_kingpin                                       = true,
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
