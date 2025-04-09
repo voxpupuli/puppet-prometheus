@@ -2958,6 +2958,7 @@ The following parameters are available in the `prometheus::cgroup_exporter` clas
 * [`manage_service`](#-prometheus--cgroup_exporter--manage_service)
 * [`manage_user`](#-prometheus--cgroup_exporter--manage_user)
 * [`os`](#-prometheus--cgroup_exporter--os)
+* [`archive_bin_path`](#-prometheus--cgroup_exporter--archive_bin_path)
 * [`extra_options`](#-prometheus--cgroup_exporter--extra_options)
 * [`download_url`](#-prometheus--cgroup_exporter--download_url)
 * [`scrape_host`](#-prometheus--cgroup_exporter--scrape_host)
@@ -3009,7 +3010,7 @@ Data type: `String[1]`
 
 
 
-Default value: `'root'`
+Default value: `'cgroup-exporter'`
 
 ##### <a name="-prometheus--cgroup_exporter--group"></a>`group`
 
@@ -3017,7 +3018,7 @@ Data type: `String[1]`
 
 
 
-Default value: `'root'`
+Default value: `'cgroup-exporter'`
 
 ##### <a name="-prometheus--cgroup_exporter--download_url_base"></a>`download_url_base`
 
@@ -3146,6 +3147,14 @@ Data type: `String[1]`
 
 
 Default value: `downcase(fact('kernel'))`
+
+##### <a name="-prometheus--cgroup_exporter--archive_bin_path"></a>`archive_bin_path`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `"/opt/${package_name}-${version}.${os}-${arch}/${package_name}"`
 
 ##### <a name="-prometheus--cgroup_exporter--extra_options"></a>`extra_options`
 
