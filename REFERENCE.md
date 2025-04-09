@@ -15,6 +15,7 @@
 * [`prometheus::bind_exporter`](#prometheus--bind_exporter): Class: prometheus::bind_exporter  This module manages prometheus bind_exporter
 * [`prometheus::bird_exporter`](#prometheus--bird_exporter): This module manages prometheus bird exporter
 * [`prometheus::blackbox_exporter`](#prometheus--blackbox_exporter): This module manages prometheus blackbox_exporter
+* [`prometheus::cgroup_exporter`](#prometheus--cgroup_exporter): This module manages prometheus cgroup_exporter (https://github.com/treydock/cgroup_exporter)
 * [`prometheus::collectd_exporter`](#prometheus--collectd_exporter): This module manages prometheus node collectd_exporter
 * [`prometheus::config`](#prometheus--config): Configuration class for prometheus monitoring system
 * [`prometheus::consul_exporter`](#prometheus--consul_exporter): This module manages prometheus node consul_exporter
@@ -2926,6 +2927,321 @@ Data type: `Prometheus::Web_config`
 Unless empty the content of the web-config yaml which will handed over as option to the exporter
 
 Default value: `{}`
+
+### <a name="prometheus--cgroup_exporter"></a>`prometheus::cgroup_exporter`
+
+This module manages prometheus cgroup_exporter (https://github.com/treydock/cgroup_exporter)
+
+#### Parameters
+
+The following parameters are available in the `prometheus::cgroup_exporter` class:
+
+* [`package_name`](#-prometheus--cgroup_exporter--package_name)
+* [`download_extension`](#-prometheus--cgroup_exporter--download_extension)
+* [`version`](#-prometheus--cgroup_exporter--version)
+* [`package_ensure`](#-prometheus--cgroup_exporter--package_ensure)
+* [`user`](#-prometheus--cgroup_exporter--user)
+* [`group`](#-prometheus--cgroup_exporter--group)
+* [`download_url_base`](#-prometheus--cgroup_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--cgroup_exporter--extra_groups)
+* [`init_style`](#-prometheus--cgroup_exporter--init_style)
+* [`purge_config_dir`](#-prometheus--cgroup_exporter--purge_config_dir)
+* [`config_mode`](#-prometheus--cgroup_exporter--config_mode)
+* [`arch`](#-prometheus--cgroup_exporter--arch)
+* [`bin_dir`](#-prometheus--cgroup_exporter--bin_dir)
+* [`restart_on_change`](#-prometheus--cgroup_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--cgroup_exporter--service_enable)
+* [`service_ensure`](#-prometheus--cgroup_exporter--service_ensure)
+* [`service_name`](#-prometheus--cgroup_exporter--service_name)
+* [`install_method`](#-prometheus--cgroup_exporter--install_method)
+* [`manage_group`](#-prometheus--cgroup_exporter--manage_group)
+* [`manage_service`](#-prometheus--cgroup_exporter--manage_service)
+* [`manage_user`](#-prometheus--cgroup_exporter--manage_user)
+* [`os`](#-prometheus--cgroup_exporter--os)
+* [`extra_options`](#-prometheus--cgroup_exporter--extra_options)
+* [`download_url`](#-prometheus--cgroup_exporter--download_url)
+* [`scrape_host`](#-prometheus--cgroup_exporter--scrape_host)
+* [`export_scrape_job`](#-prometheus--cgroup_exporter--export_scrape_job)
+* [`scrape_port`](#-prometheus--cgroup_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--cgroup_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--cgroup_exporter--scrape_job_labels)
+* [`bin_name`](#-prometheus--cgroup_exporter--bin_name)
+* [`modules`](#-prometheus--cgroup_exporter--modules)
+* [`proxy_server`](#-prometheus--cgroup_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--cgroup_exporter--proxy_type)
+* [`cgroup_paths`](#-prometheus--cgroup_exporter--cgroup_paths)
+
+##### <a name="-prometheus--cgroup_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'cgroup_exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--cgroup_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+
+
+Default value: `'1.0.1'`
+
+##### <a name="-prometheus--cgroup_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+
+
+Default value: `'latest'`
+
+##### <a name="-prometheus--cgroup_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+
+
+Default value: `'root'`
+
+##### <a name="-prometheus--cgroup_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+
+
+Default value: `'root'`
+
+##### <a name="-prometheus--cgroup_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+
+
+Default value: `'https://github.com/treydock/cgroup_exporter/releases'`
+
+##### <a name="-prometheus--cgroup_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+
+
+Default value: `[]`
+
+##### <a name="-prometheus--cgroup_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--cgroup_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--config_mode"></a>`config_mode`
+
+Data type: `String[1]`
+
+
+
+Default value: `$prometheus::config_mode`
+
+##### <a name="-prometheus--cgroup_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--cgroup_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--cgroup_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+
+
+Default value: `'running'`
+
+##### <a name="-prometheus--cgroup_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'cgroup_exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--cgroup_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+
+
+Default value: `downcase(fact('kernel'))`
+
+##### <a name="-prometheus--cgroup_exporter--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+
+
+Default value: `false`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+
+
+Default value: `9306`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `'cgroup'`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--bin_name"></a>`bin_name`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--modules"></a>`modules`
+
+Data type: `Hash`
+
+
+
+Default value: `{}`
+
+##### <a name="-prometheus--cgroup_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--cgroup_paths"></a>`cgroup_paths`
+
+Data type: `Enum['slurm']`
+
+
+
+Default value: `'slurm'`
 
 ### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
