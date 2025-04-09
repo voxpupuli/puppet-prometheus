@@ -93,7 +93,7 @@ class prometheus::cgroup_exporter (
     proxy_type         => $proxy_type,
     archive_bin_path   => $archive_bin_path,
   }
-  -> exec {'setcap cgroup_exporter':
+  -> exec { 'setcap cgroup_exporter':
     command => "/usr/sbin/setcap cap_sys_ptrace=eip ${archive_bin_path}",
     unless  => "/usr/sbin/getcap ${archive_bin_path} | grep -q cap_sys_ptrace=eip",
   }
