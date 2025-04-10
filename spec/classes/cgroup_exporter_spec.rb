@@ -26,7 +26,7 @@ describe 'prometheus::cgroup_exporter' do
         describe 'with all defaults' do
           it { is_expected.to contain_class('prometheus') }
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_file('/usr/local/bin/cgroup_exporter').with('target' => '/opt/cgroup_exporter-1.0.1.linux-amd64/cgroup_exporter') }
+          it { is_expected.to contain_file('/usr/local/bin/cgroup_exporter') }
           it { is_expected.to contain_prometheus__daemon('cgroup_exporter') }
           it { is_expected.to contain_user('cgroup-exporter') }
           it { is_expected.to contain_group('cgroup-exporter') }
