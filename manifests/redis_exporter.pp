@@ -65,7 +65,7 @@ class prometheus::redis_exporter (
   String[1] $package_name = 'redis_exporter',
   String[1] $user = 'redis-exporter',
   # renovate: depName=oliver006/redis_exporter
-  String[1] $version = '1.69.0',
+  String[1] $version = '1.70.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
