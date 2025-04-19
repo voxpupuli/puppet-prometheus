@@ -63,7 +63,7 @@ class prometheus::nginx_prometheus_exporter (
   String[1] $package_name                                    = 'nginx-prometheus-exporter',
   String[1] $user                                            = 'nginx-prometheus-exporter',
   # renovate: depName=nginxinc/nginx-prometheus-exporter
-  String[1] $version                                         = '0.11.0',
+  String[1] $version                                         = '1.4.1',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
@@ -97,7 +97,11 @@ class prometheus::nginx_prometheus_exporter (
     default => undef,
   }
 
-  $options = "-nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  if versioncmp($version, '1.0.0') >= 0 {
+    $options = "--nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  } else {
+    $options = "-nginx.scrape-uri '${scrape_uri}' ${extra_options}"
+  }
 
   $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
   $archive_bin_path = "${extract_path}/${bin_name}"

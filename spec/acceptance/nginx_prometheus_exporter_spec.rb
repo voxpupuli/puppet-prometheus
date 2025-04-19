@@ -38,14 +38,8 @@ describe 'prometheus nginx exporter' do
     end
     # the describe process uses `ps -C` which truncates the cmd output to 15 characters on newer versions.
 
-    if os == 'centos-7-x86_64'
-      describe process('nginx-prometheus-exporter') do
-        its(:args) { is_expected.to match %r{\ -nginx.scrape-uri http://localhost:8888/stub_status} }
-      end
-    else
-      describe process('nginx-prometheu') do
-        its(:args) { is_expected.to match %r{\ -nginx.scrape-uri http://localhost:8888/stub_status} }
-      end
+    describe process('nginx-prometheu') do
+      its(:args) { is_expected.to match %r{\ --nginx.scrape-uri http://localhost:8888/stub_status} }
     end
   end
 end
