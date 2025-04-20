@@ -15207,6 +15207,7 @@ The following parameters are available in the `prometheus::daemon` defined type:
 * [`init_style`](#-prometheus--daemon--init_style)
 * [`proxy_server`](#-prometheus--daemon--proxy_server)
 * [`proxy_type`](#-prometheus--daemon--proxy_type)
+* [`ensure`](#-prometheus--daemon--ensure)
 * [`group`](#-prometheus--daemon--group)
 * [`manage_bin_link`](#-prometheus--daemon--manage_bin_link)
 * [`purge`](#-prometheus--daemon--purge)
@@ -15234,7 +15235,7 @@ Complete URL corresponding to the where the release binary archive can be downlo
 
 ##### <a name="-prometheus--daemon--notify_service"></a>`notify_service`
 
-Data type: `Any`
+Data type: `Variant[Type[Exec],Type[Service],Undef]`
 
 The service to notify when something changes in this define
 
@@ -15406,6 +15407,14 @@ Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
 
+##### <a name="-prometheus--daemon--ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+Whether to install or remove the instance
+
+Default value: `'present'`
+
 ##### <a name="-prometheus--daemon--group"></a>`group`
 
 Data type: `String[1]`
@@ -15516,6 +15525,7 @@ The following parameters are available in the `prometheus::scrape_job` defined t
 * [`targets`](#-prometheus--scrape_job--targets)
 * [`labels`](#-prometheus--scrape_job--labels)
 * [`collect_dir`](#-prometheus--scrape_job--collect_dir)
+* [`ensure`](#-prometheus--scrape_job--ensure)
 
 ##### <a name="-prometheus--scrape_job--job_name"></a>`job_name`
 
@@ -15546,6 +15556,14 @@ Directory used for collecting scrape definitions.
 NOTE: this is a prometheus setting and will be overridden during collection.
 
 Default value: `undef`
+
+##### <a name="-prometheus--scrape_job--ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+Whether the scrape job should be present or absent.
+
+Default value: `'present'`
 
 ## Data types
 
