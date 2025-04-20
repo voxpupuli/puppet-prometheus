@@ -124,8 +124,9 @@ class prometheus::haproxy_exporter (
     "--web.config.file=${$web_config_file}"
   }
 
+  $scrape_uri_quoted = String($cnf_scrape_uri, '%p')
   $options = [
-    "--haproxy.scrape-uri=\"${cnf_scrape_uri}\"",
+    "--haproxy.scrape-uri=${scrape_uri_quoted}",
     $extra_options,
     $_web_config,
   ].filter |$x| { !$x.empty }.join(' ')
