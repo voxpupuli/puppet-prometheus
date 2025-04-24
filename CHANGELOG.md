@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v16.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.2.0) (2025-04-23)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.1.0...v16.2.0)
+
+**Implemented enhancements:**
+
+- Exporters unpacked to /opt are not root:root [\#111](https://github.com/voxpupuli/puppet-prometheus/issues/111)
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.70.0 [\#898](https://github.com/voxpupuli/puppet-prometheus/pull/898) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1 [\#874](https://github.com/voxpupuli/puppet-prometheus/pull/874) ([pccibot](https://github.com/pccibot))
+- add ensure parameter to prometheus::daemon [\#846](https://github.com/voxpupuli/puppet-prometheus/pull/846) ([TheMeier](https://github.com/TheMeier))
+
+**Fixed bugs:**
+
+- haproxy\_exporter: escape cnf\_scrape\_uri to avoid malformed strings [\#621](https://github.com/voxpupuli/puppet-prometheus/pull/621) ([Arnoways](https://github.com/Arnoways))
+
 ## [v16.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.1.0) (2025-04-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.0.0...v16.1.0)
@@ -45,6 +60,7 @@ These should not affect the functionality of the module.
 - statsd\_exporter: Move data from Hiera to puppet class  [\#838](https://github.com/voxpupuli/puppet-prometheus/pull/838) ([bastelfreak](https://github.com/bastelfreak))
 - allow installation of rabbitmq\_exporter \>= 1.0.0 [\#835](https://github.com/voxpupuli/puppet-prometheus/pull/835) ([TheMeier](https://github.com/TheMeier))
 - remove custom use of archive for several exporters [\#834](https://github.com/voxpupuli/puppet-prometheus/pull/834) ([TheMeier](https://github.com/TheMeier))
+- add ensure parameter to prometheus::daemon [\#846](https://github.com/voxpupuli/puppet-prometheus/pull/846) ([TheMeier](https://github.com/TheMeier))
 
 **Merged pull requests:**
 
