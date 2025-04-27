@@ -10039,7 +10039,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.8.5'`
+Default value: `'0.8.7'`
 
 ##### <a name="-prometheus--process_exporter--hash_watched_processes"></a>`hash_watched_processes`
 
