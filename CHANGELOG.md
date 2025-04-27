@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v16.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.2.0) (2025-04-23)
+## [v16.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.0) (2025-04-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.2.0...v16.3.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency prometheus/snmp\_exporter to v0.29.0 [\#904](https://github.com/voxpupuli/puppet-prometheus/pull/904) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency ncabatoff/process-exporter to v0.8.7 [\#903](https://github.com/voxpupuli/puppet-prometheus/pull/903) ([pccibot](https://github.com/pccibot))
+
+## [v16.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.2.0) (2025-04-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.1.0...v16.2.0)
 
