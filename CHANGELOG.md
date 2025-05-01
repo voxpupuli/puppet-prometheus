@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v16.3.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.1) (2025-05-01)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.3.0...v16.3.1)
+
+**Fixed bugs:**
+
+- fix: path to postgres\_exporter binary for newer versions [\#908](https://github.com/voxpupuli/puppet-prometheus/pull/908) ([TheMeier](https://github.com/TheMeier))
+
 ## [v16.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.0) (2025-04-27)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.2.0...v16.3.0)
