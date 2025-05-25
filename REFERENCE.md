@@ -11689,7 +11689,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.72.1'`
+Default value: `'1.73.0'`
 
 ##### <a name="-prometheus--redis_exporter--proxy_server"></a>`proxy_server`
 
