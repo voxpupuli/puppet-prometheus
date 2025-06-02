@@ -47,20 +47,19 @@ describe 'prometheus::sachet' do
 
         describe 'config file contents' do
           it {
-            expect(subject).to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
-            verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
-                              '---',
-                              'templates: []',
-                              'receivers:',
-                              '- name: telegram',
-                              '  provider: telegram',
-                              '  to:',
-                              '  - \'123456789\'',
-                              '  text: "{{ .Status | title }}: {{ .CommonAnnotations.summary }}"',
-                              'providers:',
-                              '  telegram:',
-                              '    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0'
-                            ])
+            is_expected.to contain_file('/etc/sachet/sachet.yaml').
+              with_notify('Service[sachet]').
+              with_content(%r{^---\n}).
+              with_content(%r{^templates: \[\]\n}).
+              with_content(%r{^receivers:\n}).
+              with_content(%r{^- name: telegram\n}).
+              with_content(%r{^  provider: telegram\n}).
+              with_content(%r{^  to:\n}).
+              with_content(%r{^  - '123456789'\n}).
+              with_content(%r{^  text: "{{ .Status \| title }}: {{ .CommonAnnotations.summary }}"\n}).
+              with_content(%r{^providers:\n}).
+              with_content(%r{^  telegram:\n}).
+              with_content(%r{^    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0\n})
           }
         end
       end
@@ -94,28 +93,27 @@ describe 'prometheus::sachet' do
         end
 
         it {
-          expect(subject).to contain_file('/etc/sachet/templates/notifications.tmpl')
-          verify_contents(catalogue, '/etc/sachet/templates/notifications.tmpl', [
-                            '{{ define "telegram_message" }}',
-                            '{{ .Status | title }}: {{ .CommonAnnotations.summary }}',
-                            '{{ end }}'
-                          ])
+          is_expected.to contain_file('/etc/sachet/templates/notifications.tmpl').
+            with_content(%r{^{{ define "telegram_message" }}\n}).
+            with_content(%r{^{{ .Status \| title }}: {{ .CommonAnnotations.summary }}\n}).
+            with_content(%r{^{{ end }}})
+        }
 
-          expect(subject).to contain_file('/etc/sachet/sachet.yaml').with_notify('Service[sachet]')
-          verify_contents(catalogue, '/etc/sachet/sachet.yaml', [
-                            '---',
-                            'templates:',
-                            '- "/etc/sachet/templates/notifications.tmpl"',
-                            'receivers:',
-                            '- name: telegram',
-                            '  provider: telegram',
-                            '  to:',
-                            '  - \'123456789\'',
-                            '  text: \'{{ template "telegram_message" . }}\'',
-                            'providers:',
-                            '  telegram:',
-                            '    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0'
-                          ])
+        it {
+          is_expected.to contain_file('/etc/sachet/sachet.yaml').
+            with_notify('Service[sachet]').
+            with_content(%r{^---\n}).
+            with_content(%r{^templates:\n}).
+            with_content(%r{^- "/etc/sachet/templates/notifications.tmpl"\n}).
+            with_content(%r{^receivers:\n}).
+            with_content(%r{^- name: telegram\n}).
+            with_content(%r{^  provider: telegram\n}).
+            with_content(%r{^  to:\n}).
+            with_content(%r{^  - '123456789'\n}).
+            with_content(%r{^  text: '{{ template "telegram_message" . }}'\n}).
+            with_content(%r{^providers:\n}).
+            with_content(%r{^  telegram:\n}).
+            with_content(%r{^    token: 724679217:aa26V5mK3e2qkGsSlTT-iHreaa5FUyy3Z_0\n})
         }
       end
     end
