@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v16.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.4.0) (2025-06-04)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.3.1...v16.4.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.3 [\#919](https://github.com/voxpupuli/puppet-prometheus/pull/919) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.73.0 [\#916](https://github.com/voxpupuli/puppet-prometheus/pull/916) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.72.1 [\#914](https://github.com/voxpupuli/puppet-prometheus/pull/914) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.71.0 [\#912](https://github.com/voxpupuli/puppet-prometheus/pull/912) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1.4.2 [\#910](https://github.com/voxpupuli/puppet-prometheus/pull/910) ([pccibot](https://github.com/pccibot))
+
 ## [v16.3.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.1) (2025-05-01)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.3.0...v16.3.1)
