@@ -56,7 +56,7 @@ describe 'prometheus::process_exporter' do
         end
 
         describe 'has config_path file with expected content' do
-          it { is_expected.to contain_file('/etc/process-exporter.yaml').with_content(File.read(fixtures('files', 'process-exporter.yaml'))) }
+          it { is_expected.to contain_file('/etc/process-exporter.yaml').with_content(File.read(File.join('spec', 'fixtures', 'files', 'process-exporter.yaml'))) }
         end
       end
     end

@@ -57,7 +57,7 @@ describe 'prometheus::alerts' do
               'ensure' => 'file',
               'owner' => 'root',
               'group' => 'prometheus',
-              'content' => File.read(fixtures('files', "prometheus#{prom_major}.alert.rules"))
+              'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.alert.rules"))
             ) # .that_notifies('Class[prometheus::service_reload]')
           }
         end

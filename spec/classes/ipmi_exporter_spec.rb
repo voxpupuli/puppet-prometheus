@@ -53,14 +53,13 @@ describe 'prometheus::ipmi_exporter' do
         else
           it { is_expected.to contain_prometheus__daemon('ipmi_exporter').with(options: '--config.file=/etc/ipmi_exporter.yaml  --freeipmi.path=/usr/local/bin') }
         end
-        it do
-          verify_contents(catalogue, '/etc/ipmi_exporter.yaml', [
-                            'modules:',
-                            '  default:',
-                            '    collectors:',
-                            '    - bmc',
-                          ])
-        end
+        it {
+          is_expected.to contain_file('/etc/ipmi_exporter.yaml').
+            with_content(%r{^modules:\n}).
+            with_content(%r{^  default:\n}).
+            with_content(%r{^    collectors:\n}).
+            with_content(%r{^    - bmc\n})
+        }
       end
 
       context 'with version specified' do

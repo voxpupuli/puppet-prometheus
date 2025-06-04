@@ -23,7 +23,7 @@ describe 'prometheus::server' do
 
           it {
             expect(subject).to contain_systemd__unit_file('prometheus.service').with(
-              'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
+              'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.systemd"))
             )
           }
         end

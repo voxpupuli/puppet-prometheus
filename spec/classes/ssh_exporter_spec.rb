@@ -38,8 +38,12 @@ describe 'prometheus::ssh_exporter' do
           it { is_expected.to contain_file('/opt/ssh_exporter-1.2.0.linux-amd64/ssh_exporter') }
 
           it {
-            expect(subject).to contain_file('/etc/ssh_exporter.yaml')
-            verify_contents(catalogue, '/etc/ssh_exporter.yaml', ['---', 'modules:', '  default:', '    user: prometheus', '    private_key: "/home/prometheus/.ssh/id_rsa"'])
+            is_expected.to contain_file('/etc/ssh_exporter.yaml').
+              with_content(%r{^---\n}).
+              with_content(%r{^modules:\n}).
+              with_content(%r{^  default:\n}).
+              with_content(%r{^    user: prometheus\n}).
+              with_content(%r{^    private_key: "/home/prometheus/.ssh/id_rsa"\n})
           }
         end
       end

@@ -132,7 +132,7 @@ describe 'prometheus' do
             it {
               expect(subject).to contain_systemd__unit_file('prometheus.service')
               expect(subject).to contain_file('/etc/systemd/system/prometheus.service').with(
-                'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
+                'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.systemd"))
               )
             }
 
@@ -180,7 +180,7 @@ describe 'prometheus' do
               'group' => 'prometheus',
               'mode' => '0640',
               'show_diff' => true,
-              'content' => File.read(fixtures('files', "prometheus#{prom_major}.yaml"))
+              'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.yaml"))
             ).that_notifies('Class[prometheus::service_reload]')
           }
 
@@ -267,7 +267,7 @@ describe 'prometheus' do
                 'ensure' => 'file',
                 'owner' => 'root',
                 'group' => 'prometheus',
-                'content' => File.read(fixtures('files', "prometheus#{prom_major}.alert.rules"))
+                'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.alert.rules"))
               ).that_notifies('Class[prometheus::service_reload]')
             }
           end
@@ -433,7 +433,7 @@ describe 'prometheus' do
                 'mode' => '0444',
                 'owner' => 'root',
                 'group' => 'root',
-                'content' => File.read(fixtures('files/cli', 'prometheus2_all.systemd'))
+                'content' => File.read(File.join('spec', 'fixtures', 'files/cli', 'prometheus2_all.systemd'))
               )
             }
           end
@@ -455,7 +455,7 @@ describe 'prometheus' do
                 'mode' => '0444',
                 'owner' => 'root',
                 'group' => 'root',
-                'content' => File.read(fixtures('files/cli', 'prometheus2_extra.systemd'))
+                'content' => File.read(File.join('spec', 'fixtures', 'files/cli', 'prometheus2_extra.systemd'))
               )
             }
           end
@@ -479,7 +479,7 @@ describe 'prometheus' do
                 'mode' => '0444',
                 'owner' => 'root',
                 'group' => 'root',
-                'content' => File.read(fixtures('files/cli', 'prometheus2_6_retention.systemd'))
+                'content' => File.read(File.join('spec', 'fixtures', 'files/cli', 'prometheus2_6_retention.systemd'))
               )
             }
           end

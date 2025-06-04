@@ -36,8 +36,12 @@ describe 'prometheus::alertmanager' do
 
         describe 'config file contents' do
           it {
-            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').with_notify('Service[alertmanager]')
-            verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', ['---', 'global:', '  smtp_smarthost: localhost:25', '  smtp_from: alertmanager@localhost'])
+            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
+              with_notify('Service[alertmanager]').
+              with_content(%r{^---\n}).
+              with_content(%r{^global:\n}).
+              with_content(%r{^  smtp_smarthost: localhost:25\n}).
+              with_content(%r{^  smtp_from: alertmanager@localhost\n})
           }
         end
 
@@ -67,14 +71,13 @@ describe 'prometheus::alertmanager' do
         end
 
         it {
-          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
-                            'mute_time_intervals:',
-                            '- name: weekend',
-                            '  time_intervals:',
-                            '  - weekdays:',
-                            '    - saturday',
-                            '    - sunday',
-                          ])
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
+            with_content(%r{mute_time_intervals:}).
+            with_content(%r{- name: weekend}).
+            with_content(%r{  time_intervals:}).
+            with_content(%r{  - weekdays:}).
+            with_content(%r{    - saturday}).
+            with_content(%r{    - sunday})
         }
       end
 
@@ -98,14 +101,13 @@ describe 'prometheus::alertmanager' do
         it { is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without(content: %r{mute_time_intervals}) }
 
         it {
-          verify_contents(catalogue, '/etc/alertmanager/alertmanager.yaml', [
-                            'time_intervals:',
-                            '- name: weekend',
-                            '  time_intervals:',
-                            '  - weekdays:',
-                            '    - saturday',
-                            '    - sunday',
-                          ])
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
+            with_content(%r{time_intervals:}).
+            with_content(%r{- name: weekend}).
+            with_content(%r{  time_intervals:}).
+            with_content(%r{  - weekdays:}).
+            with_content(%r{    - saturday}).
+            with_content(%r{    - sunday})
         }
       end
 
