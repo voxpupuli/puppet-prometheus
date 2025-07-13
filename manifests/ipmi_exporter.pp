@@ -62,7 +62,7 @@ class prometheus::ipmi_exporter (
   String[1] $package_name                                    = 'ipmi_exporter',
   String $download_extension                                 = 'tar.gz',
   # renovate: depName=prometheus-community/ipmi_exporter
-  String[1] $version                                         = '1.10.0',
+  String[1] $version                                         = '1.10.1',
   String[1] $package_ensure                                  = 'latest',
   String[1] $user                                            = 'ipmi-exporter',
   String[1] $group                                           = 'ipmi-exporter',
