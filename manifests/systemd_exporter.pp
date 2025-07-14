@@ -88,7 +88,7 @@ class prometheus::systemd_exporter (
   $options = $extra_options
 
   prometheus::daemon { $service_name:
-    install_method     => 'url',
+    install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,

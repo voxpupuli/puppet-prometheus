@@ -59,6 +59,7 @@ class prometheus::jmx_exporter (
   String[1] $arch                                            = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
   String[1] $config_mode                                     = $prometheus::config_mode,
+  Prometheus::Install $install_method                        = $prometheus::install_method,
   Boolean $restart_on_change                                 = true,
   Boolean $manage_user                                       = true,
   Boolean $manage_group                                      = true,
@@ -115,7 +116,7 @@ class prometheus::jmx_exporter (
 
   prometheus::daemon { $service_name:
     notify_service     => $notify_service,
-    install_method     => 'url',
+    install_method     => $install_method,
     version            => $version,
     download_extension => '',
     real_download_url  => $real_download_url,
