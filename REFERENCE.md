@@ -5898,6 +5898,7 @@ The following parameters are available in the `prometheus::jmx_exporter` class:
 * [`proxy_server`](#-prometheus--jmx_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--jmx_exporter--proxy_type)
 * [`java_options`](#-prometheus--jmx_exporter--java_options)
+* [`install_method`](#-prometheus--jmx_exporter--install_method)
 
 ##### <a name="-prometheus--jmx_exporter--version"></a>`version`
 
@@ -6073,6 +6074,14 @@ Data type: `Optional[String]`
 Optional options for the JVM of the standalone jmx exporter
 
 Default value: `undef`
+
+##### <a name="-prometheus--jmx_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+
+
+Default value: `$prometheus::install_method`
 
 ### <a name="prometheus--memcached_exporter"></a>`prometheus::memcached_exporter`
 
