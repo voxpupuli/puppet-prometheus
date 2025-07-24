@@ -149,7 +149,9 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            ensure: 'absent'
+            package_ensure: 'absent',
+            service_ensure: 'stopped',
+            service_enable: false
           )
         }
       end
