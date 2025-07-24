@@ -1,3 +1,4 @@
+#
 # @summary This module manages prometheus FRR exporter
 # @param arch
 #  Architecture (amd64 or arm64)
@@ -57,6 +58,14 @@
 #  The binary release version
 # @param web_listen_address
 #  Address to listen on for web interface and telemetry
+#
+# @example Basic FRR exporter setup
+#  class { 'prometheus::frr_exporter':
+#    version => '1.8.0',
+#  }
+#
+# @see https://github.com/tynany/frr_exporter
+#
 class prometheus::frr_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/tynany/frr_exporter/releases',
