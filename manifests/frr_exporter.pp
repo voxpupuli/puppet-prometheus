@@ -58,13 +58,21 @@
 #  The binary release version
 # @param web_listen_address
 #  Address to listen on for web interface and telemetry
+# @param env_vars
+#  hash with custom environment variables thats passed to the exporter via init script / unit file
 #
-# @example Basic FRR exporter setup
+# @example configure frr_exporter to monitor BGP peers
 #  class { 'prometheus::frr_exporter':
-#    version => '1.8.0',
+#    peer_descriptions    => true,
+#    peer_types          => true,
+#    advertised_prefixes => true,
+#    frr_socket_dir      => '/var/run/frr',
+#    web_listen_address  => ':9342',
 #  }
 #
 # @see https://github.com/tynany/frr_exporter
+#
+# @author Voxpupuli Team <https://voxpupuli.org/>
 #
 class prometheus::frr_exporter (
   String $download_extension = 'tar.gz',
@@ -97,6 +105,7 @@ class prometheus::frr_exporter (
   Boolean $peer_types = true,
   Boolean $advertised_prefixes = false,
   String $log_level = 'info',
+  Hash[String, Scalar] $env_vars = {},
 ) inherits prometheus {
   $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
@@ -154,5 +163,6 @@ class prometheus::frr_exporter (
     init_style         => $init_style,
     service_name       => $service_name,
     options            => $options,
+    env_vars           => $env_vars,
   }
 }

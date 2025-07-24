@@ -9,6 +9,27 @@ describe 'prometheus::frr_exporter' do
         facts.merge(os_specific_facts(facts))
       end
 
+      context 'without parameters' do
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_class('prometheus') }
+        it { is_expected.to contain_prometheus__daemon('frr_exporter') }
+        it { is_expected.to contain_systemd__unit_file('frr_exporter.service') }
+        it { is_expected.to contain_service('frr_exporter') }
+        it { is_expected.to contain_group('frr-exporter') }
+        it { is_expected.to contain_user('frr-exporter') }
+        it { is_expected.to contain_file('/usr/local/bin/frr_exporter') }
+        it { is_expected.to contain_archive('/opt/frr_exporter-1.8.0.linux-amd64/frr_exporter') }
+        it { is_expected.to contain_file('/opt/frr_exporter-1.8.0.linux-amd64/frr_exporter') }
+        it { is_expected.to contain_file('/opt/frr_exporter-1.8.0.linux-amd64').with_ensure('directory') }
+
+        case facts[:os]['family']
+        when 'RedHat'
+          it { is_expected.not_to contain_file('/etc/sysconfig/frr_exporter') }
+        else
+          it { is_expected.not_to contain_file('/etc/default/frr_exporter') }
+        end
+      end
+
       context 'with version specified' do
         let(:params) do
           {
@@ -78,6 +99,27 @@ describe 'prometheus::frr_exporter' do
             options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.bgp.advertised-prefixes'
           )
         }
+      end
+
+      context 'with env vars' do
+        let :params do
+          {
+            env_vars: {
+              FRR_SOCKET_DIR: '/custom/frr'
+            }
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+
+        case facts[:os]['family']
+        when 'RedHat'
+          it { is_expected.to contain_file('/etc/sysconfig/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/default/frr_exporter') }
+        else
+          it { is_expected.to contain_file('/etc/default/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/sysconfig/frr_exporter') }
+        end
       end
 
       context 'with service management disabled' do
