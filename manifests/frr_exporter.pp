@@ -1,11 +1,10 @@
-#
 # @summary This module manages prometheus FRR exporter
 # @param arch
 #  Architecture (amd64 or arm64)
 # @param bin_dir
 #  Directory where binaries are located
 # @param download_extension
-#  Extension for the release archive
+#  Extension for the release binary archive
 # @param download_url
 #  Complete URL corresponding to the where the release binary archive can be downloaded
 # @param download_url_base
