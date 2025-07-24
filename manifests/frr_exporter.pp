@@ -159,10 +159,8 @@ class prometheus::frr_exporter (
     extra_groups       => $extra_groups,
     group              => $group,
     manage_group       => $manage_group,
-    purge_config_dir   => $purge_config_dir,
-    restart_on_change  => $restart_on_change,
+    purge              => $purge_config_dir,
     init_style         => $init_style,
-    service_name       => $service_name,
     options            => $options,
     env_vars           => $env_vars,
   }
