@@ -1,5 +1,6 @@
 #
 # @summary This module manages prometheus FRR exporter
+#
 # @param arch
 #  Architecture (amd64 or arm64)
 # @param bin_dir
@@ -15,9 +16,9 @@
 # @param frr_socket_dir
 #  Path to FRR socket directory for BGP monitoring
 # @param group
-#  Group under which to run the FRR exporter
+#  Group under which the binary is running
 # @param init_style
-#  Service startup scripts style
+#  Service startup scripts style (e.g. rc, upstart or systemd)
 # @param install_method
 #  Installation method: url or package (only url is supported currently)
 # @param log_level
@@ -31,7 +32,7 @@
 # @param advertised_prefixes
 #  Enable BGP advertised prefixes collection
 # @param os
-#  Operating system (linux is supported)
+#  Operating system (linux is the only one supported)
 # @param package_ensure
 #  If package, then use this for package ensure default 'latest'
 # @param package_name
