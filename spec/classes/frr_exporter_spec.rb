@@ -137,6 +137,22 @@ describe 'prometheus::frr_exporter' do
           )
         }
       end
+
+      context 'with ensure => absent' do
+        let(:params) do
+          {
+            ensure: 'absent'
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+
+        it {
+          is_expected.to contain_prometheus__daemon('frr_exporter').with(
+            ensure: 'absent'
+          )
+        }
+      end
     end
   end
 end

@@ -61,6 +61,8 @@
 #  Address to listen on for web interface and telemetry
 # @param env_vars
 #  hash with custom environment variables thats passed to the exporter via init script / unit file
+# @param ensure
+#  Whether to install or remove the FRR exporter (default 'present')
 #
 # @example configure frr_exporter to monitor BGP peers
 #  class { 'prometheus::frr_exporter':
@@ -107,6 +109,7 @@ class prometheus::frr_exporter (
   Boolean $advertised_prefixes = false,
   String $log_level = 'info',
   Hash[String, Scalar] $env_vars = {},
+  Enum['present', 'absent'] $ensure = 'present',
 ) inherits prometheus {
   $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
 
@@ -141,6 +144,7 @@ class prometheus::frr_exporter (
   $options = join($all_opts, ' ')
 
   prometheus::daemon { $service_name:
+    ensure             => $ensure,
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
