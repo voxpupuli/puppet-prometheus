@@ -143,8 +143,8 @@ class prometheus::frr_exporter (
   $all_opts = [$_frr_socket_dir_opt, $_listen_address_opt, $_telemetry_path_opt, $_log_level_opt] + $all_collector_opts
   $options = join($all_opts, ' ')
 
-  # Extract port from web_listen_address for scrape configuration
-  $scrape_port_int = Integer(regsubst($web_listen_address, '^.*:', ''))
+  # Extract port from web_listen_address for scrape configuration  
+  $scrape_port_int = Integer(split($web_listen_address, ':')[-1])
 
   if $ensure == 'present' {
     prometheus::daemon { $service_name:

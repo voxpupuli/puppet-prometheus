@@ -18,7 +18,7 @@ describe 'prometheus::frr_exporter' do
         it { is_expected.to contain_group('frr-exporter') }
         it { is_expected.to contain_user('frr-exporter') }
         it { is_expected.to contain_file('/usr/local/bin/frr_exporter') }
-        it { is_expected.to contain_archive('/opt/frr_exporter-1.8.0.linux-amd64/frr_exporter') }
+        it { is_expected.to contain_archive('/tmp/frr_exporter-1.8.0.tar.gz') }
         it { is_expected.to contain_file('/opt/frr_exporter-1.8.0.linux-amd64/frr_exporter') }
         it { is_expected.to contain_file('/opt/frr_exporter-1.8.0.linux-amd64').with_ensure('directory') }
 
