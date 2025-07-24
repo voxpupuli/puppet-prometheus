@@ -108,7 +108,7 @@ class prometheus::frr_exporter (
   Boolean $peer_types = true,
   Boolean $advertised_prefixes = false,
   String $log_level = 'info',
-  Hash[String, Scalar] $env_vars = {},
+  Hash[String[1], Scalar] $env_vars = {},
   Enum['present', 'absent'] $ensure = 'present',
 ) inherits prometheus {
   $real_download_url = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -143,6 +143,9 @@ class prometheus::frr_exporter (
   $all_opts = [$_frr_socket_dir_opt, $_listen_address_opt, $_telemetry_path_opt, $_log_level_opt] + $all_collector_opts
   $options = join($all_opts, ' ')
 
+  # Extract port from web_listen_address for scrape configuration
+  $scrape_port = regsubst($web_listen_address, '^.*:', '', 'G')
+
   if $ensure == 'present' {
     prometheus::daemon { $service_name:
       install_method     => $install_method,
@@ -167,6 +170,13 @@ class prometheus::frr_exporter (
       service_enable     => $service_enable,
       manage_service     => $manage_service,
       env_vars           => $env_vars,
+      env_file_path      => $prometheus::env_file_path,
+      export_scrape_job  => false,
+      scrape_host        => $facts['networking']['fqdn'],
+      scrape_port        => $scrape_port,
+      scrape_job_name    => 'frr',
+      scrape_job_labels  => {},
+      bin_name           => $package_name,
       archive_bin_path   => "/opt/frr_exporter-${version}.${os}-${arch}/frr_exporter",
     }
   } else {
@@ -194,6 +204,13 @@ class prometheus::frr_exporter (
       service_enable     => false,
       manage_service     => $manage_service,
       env_vars           => $env_vars,
+      env_file_path      => $prometheus::env_file_path,
+      export_scrape_job  => false,
+      scrape_host        => $facts['networking']['fqdn'],
+      scrape_port        => $scrape_port,
+      scrape_job_name    => 'frr',
+      scrape_job_labels  => {},
+      bin_name           => $package_name,
       archive_bin_path   => "/opt/frr_exporter-${version}.${os}-${arch}/frr_exporter",
     }
   }
