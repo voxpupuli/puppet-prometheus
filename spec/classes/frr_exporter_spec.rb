@@ -110,6 +110,7 @@ describe 'prometheus::frr_exporter' do
 
         it { is_expected.to compile.with_all_deps }
 
+        # rubocop:disable RSpec/RepeatedExample
         case facts[:os]['family']
         when 'RedHat'
           it { is_expected.to contain_file('/etc/sysconfig/frr_exporter') }
@@ -124,6 +125,7 @@ describe 'prometheus::frr_exporter' do
           it { is_expected.not_to contain_file('/etc/sysconfig/frr_exporter') }
           it { is_expected.not_to contain_file('/etc/conf.d/frr_exporter') }
         end
+        # rubocop:enable RSpec/RepeatedExample
       end
 
       context 'with service management disabled' do
