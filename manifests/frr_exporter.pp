@@ -101,19 +101,22 @@ class prometheus::frr_exporter (
   $_log_level_opt = "--log.level=${log_level}"
 
   # Build collector options array
-  $collector_opts = []
-  if $peer_descriptions {
-    $collector_opts += ['--collector.bgp.peer-descriptions']
+  $peer_descriptions_opt = $peer_descriptions ? {
+    true  => ['--collector.bgp.peer-descriptions'],
+    false => [],
   }
-  if $peer_types {
-    $collector_opts += ['--collector.bgp.peer-types']
+  $peer_types_opt = $peer_types ? {
+    true  => ['--collector.bgp.peer-types'],
+    false => [],
   }
-  if $next_hop_interface {
-    $collector_opts += ['--collector.bgp.next-hop-interface']
+  $next_hop_interface_opt = $next_hop_interface ? {
+    true  => ['--collector.bgp.next-hop-interface'],
+    false => [],
   }
+  $all_collector_opts = $peer_descriptions_opt + $peer_types_opt + $next_hop_interface_opt
 
   # Combine all options
-  $all_opts = [$_frr_socket_dir_opt, $_listen_address_opt, $_log_level_opt] + $collector_opts
+  $all_opts = [$_frr_socket_dir_opt, $_listen_address_opt, $_log_level_opt] + $all_collector_opts
   $options = join($all_opts, ' ')
 
   prometheus::daemon { $service_name:
