@@ -114,9 +114,15 @@ describe 'prometheus::frr_exporter' do
         when 'RedHat'
           it { is_expected.to contain_file('/etc/sysconfig/frr_exporter') }
           it { is_expected.not_to contain_file('/etc/default/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/conf.d/frr_exporter') }
+        when 'Archlinux'
+          it { is_expected.to contain_file('/etc/conf.d/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/default/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/sysconfig/frr_exporter') }
         else
           it { is_expected.to contain_file('/etc/default/frr_exporter') }
           it { is_expected.not_to contain_file('/etc/sysconfig/frr_exporter') }
+          it { is_expected.not_to contain_file('/etc/conf.d/frr_exporter') }
         end
       end
 
