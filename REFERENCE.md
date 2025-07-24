@@ -4131,6 +4131,7 @@ The following parameters are available in the `prometheus::frr_exporter` class:
 * [`download_extension`](#-prometheus--frr_exporter--download_extension)
 * [`download_url`](#-prometheus--frr_exporter--download_url)
 * [`download_url_base`](#-prometheus--frr_exporter--download_url_base)
+* [`ensure`](#-prometheus--frr_exporter--ensure)
 * [`extra_groups`](#-prometheus--frr_exporter--extra_groups)
 * [`frr_socket_dir`](#-prometheus--frr_exporter--frr_socket_dir)
 * [`group`](#-prometheus--frr_exporter--group)
@@ -4197,13 +4198,21 @@ Base URL for the binary archive
 
 Default value: `'https://github.com/tynany/frr_exporter/releases'`
 
+##### <a name="-prometheus--frr_exporter--ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+Whether to install or remove the FRR exporter (default 'present')
+
+Default value: `'present'`
+
 ##### <a name="-prometheus--frr_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String]`
 
 Extra groups to add the binary user to
 
-Default value: `['frr']`
+Default value: `[]`
 
 ##### <a name="-prometheus--frr_exporter--frr_socket_dir"></a>`frr_socket_dir`
 
