@@ -4,7 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v16.4.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.4.1) (2025-06-08)
+## [v16.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.5.0) (2025-07-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.4.1...v16.5.0)
+
+**Implemented enhancements:**
+
+- puppet/archive: Allow 8.x [\#944](https://github.com/voxpupuli/puppet-prometheus/pull/944) ([bastelfreak](https://github.com/bastelfreak))
+- chore\(deps\): update dependency prometheus-community/ipmi\_exporter to v1.10.1 [\#937](https://github.com/voxpupuli/puppet-prometheus/pull/937) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/blackbox\_exporter to v0.27.0 [\#936](https://github.com/voxpupuli/puppet-prometheus/pull/936) ([pccibot](https://github.com/pccibot))
+
+**Fixed bugs:**
+
+- fix: use install\_method param in exporters [\#940](https://github.com/voxpupuli/puppet-prometheus/pull/940) ([anantha1999](https://github.com/anantha1999))
+
+## [v16.4.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.4.1) (2025-06-10)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.4.0...v16.4.1)
 
