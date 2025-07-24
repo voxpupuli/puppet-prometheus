@@ -144,7 +144,6 @@ class prometheus::frr_exporter (
   $options = join($all_opts, ' ')
 
   prometheus::daemon { $service_name:
-    ensure             => $ensure,
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
@@ -156,16 +155,17 @@ class prometheus::frr_exporter (
     package_name       => $package_name,
     package_ensure     => $package_ensure,
     manage_user        => $manage_user,
-    service_ensure     => $service_ensure,
-    manage_service     => $manage_service,
-    service_enable     => $service_enable,
     user               => $user,
     extra_groups       => $extra_groups,
     group              => $group,
     manage_group       => $manage_group,
     purge              => $purge_config_dir,
-    init_style         => $init_style,
     options            => $options,
+    init_style         => $init_style,
+    service_ensure     => $service_ensure,
+    service_enable     => $service_enable,
+    manage_service     => $manage_service,
     env_vars           => $env_vars,
+    archive_bin_path   => "/opt/frr_exporter-${version}.${os}-${arch}/frr_exporter",
   }
 }
