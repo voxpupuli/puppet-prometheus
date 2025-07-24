@@ -15,6 +15,7 @@
 * [`prometheus::bind_exporter`](#prometheus--bind_exporter): Class: prometheus::bind_exporter  This module manages prometheus bind_exporter
 * [`prometheus::bird_exporter`](#prometheus--bird_exporter): This module manages prometheus bird exporter
 * [`prometheus::blackbox_exporter`](#prometheus--blackbox_exporter): This module manages prometheus blackbox_exporter
+* [`prometheus::frr_exporter`](#prometheus--frr_exporter): This module manages prometheus FRR exporter
 * [`prometheus::collectd_exporter`](#prometheus--collectd_exporter): This module manages prometheus node collectd_exporter
 * [`prometheus::config`](#prometheus--config): Configuration class for prometheus monitoring system
 * [`prometheus::consul_exporter`](#prometheus--consul_exporter): This module manages prometheus node consul_exporter
@@ -2926,6 +2927,289 @@ Data type: `Prometheus::Web_config`
 Unless empty the content of the web-config yaml which will handed over as option to the exporter
 
 Default value: `{}`
+
+### <a name="prometheus--frr_exporter"></a>`prometheus::frr_exporter`
+
+This module manages prometheus FRR exporter
+
+* **See also**
+  * https://github.com/tynany/frr_exporter
+
+#### Examples
+
+##### Basic FRR exporter setup
+
+```puppet
+class { 'prometheus::frr_exporter':
+  version => '1.8.0',
+}
+```
+
+#### Parameters
+
+The following parameters are available in the `prometheus::frr_exporter` class:
+
+* [`advertised_prefixes`](#-prometheus--frr_exporter--advertised_prefixes)
+* [`arch`](#-prometheus--frr_exporter--arch)
+* [`bin_dir`](#-prometheus--frr_exporter--bin_dir)
+* [`download_extension`](#-prometheus--frr_exporter--download_extension)
+* [`download_url`](#-prometheus--frr_exporter--download_url)
+* [`download_url_base`](#-prometheus--frr_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--frr_exporter--extra_groups)
+* [`frr_socket_dir`](#-prometheus--frr_exporter--frr_socket_dir)
+* [`group`](#-prometheus--frr_exporter--group)
+* [`init_style`](#-prometheus--frr_exporter--init_style)
+* [`install_method`](#-prometheus--frr_exporter--install_method)
+* [`log_level`](#-prometheus--frr_exporter--log_level)
+* [`manage_group`](#-prometheus--frr_exporter--manage_group)
+* [`manage_service`](#-prometheus--frr_exporter--manage_service)
+* [`manage_user`](#-prometheus--frr_exporter--manage_user)
+* [`os`](#-prometheus--frr_exporter--os)
+* [`package_ensure`](#-prometheus--frr_exporter--package_ensure)
+* [`package_name`](#-prometheus--frr_exporter--package_name)
+* [`peer_descriptions`](#-prometheus--frr_exporter--peer_descriptions)
+* [`peer_types`](#-prometheus--frr_exporter--peer_types)
+* [`purge_config_dir`](#-prometheus--frr_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--frr_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--frr_exporter--service_enable)
+* [`service_ensure`](#-prometheus--frr_exporter--service_ensure)
+* [`service_name`](#-prometheus--frr_exporter--service_name)
+* [`telemetry_path`](#-prometheus--frr_exporter--telemetry_path)
+* [`user`](#-prometheus--frr_exporter--user)
+* [`version`](#-prometheus--frr_exporter--version)
+* [`web_listen_address`](#-prometheus--frr_exporter--web_listen_address)
+
+##### <a name="-prometheus--frr_exporter--advertised_prefixes"></a>`advertised_prefixes`
+
+Data type: `Boolean`
+
+Enable BGP advertised prefixes collection
+
+Default value: `false`
+
+##### <a name="-prometheus--frr_exporter--arch"></a>`arch`
+
+Data type: `String`
+
+Architecture (amd64 or arm64)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--frr_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--frr_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--frr_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[String]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--frr_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/tynany/frr_exporter/releases'`
+
+##### <a name="-prometheus--frr_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `['frr']`
+
+##### <a name="-prometheus--frr_exporter--frr_socket_dir"></a>`frr_socket_dir`
+
+Data type: `String`
+
+Path to FRR socket directory for BGP monitoring
+
+Default value: `'/var/run/frr'`
+
+##### <a name="-prometheus--frr_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which to run the FRR exporter
+
+Default value: `'frr-exporter'`
+
+##### <a name="-prometheus--frr_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--frr_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--frr_exporter--log_level"></a>`log_level`
+
+Data type: `String`
+
+Log level for the exporter
+
+Default value: `'info'`
+
+##### <a name="-prometheus--frr_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is supported)
+
+Default value: `downcase($facts['kernel'])`
+
+##### <a name="-prometheus--frr_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="-prometheus--frr_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'frr_exporter'`
+
+##### <a name="-prometheus--frr_exporter--peer_descriptions"></a>`peer_descriptions`
+
+Data type: `Boolean`
+
+Enable BGP peer descriptions collection
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--peer_types"></a>`peer_types`
+
+Data type: `Boolean`
+
+Enable BGP peer types collection
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--frr_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--frr_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the FRR exporter service
+
+Default value: `'frr_exporter'`
+
+##### <a name="-prometheus--frr_exporter--telemetry_path"></a>`telemetry_path`
+
+Data type: `String`
+
+Path to expose metrics
+
+Default value: `'/metrics'`
+
+##### <a name="-prometheus--frr_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'frr-exporter'`
+
+##### <a name="-prometheus--frr_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'1.8.0'`
+
+##### <a name="-prometheus--frr_exporter--web_listen_address"></a>`web_listen_address`
+
+Data type: `String`
+
+Address to listen on for web interface and telemetry
+
+Default value: `':9342'`
 
 ### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
