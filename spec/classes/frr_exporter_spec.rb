@@ -53,7 +53,7 @@ describe 'prometheus::frr_exporter' do
             group: 'frr-exporter',
             manage_user: true,
             manage_group: true,
-            extra_groups: ['frr'],
+            extra_groups: [],
             options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types'
           )
         }
@@ -149,9 +149,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            package_ensure: 'absent',
-            service_ensure: 'stopped',
-            service_enable: false
+            ensure: 'absent'
           )
         }
       end

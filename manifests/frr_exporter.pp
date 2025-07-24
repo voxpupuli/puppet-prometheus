@@ -80,7 +80,7 @@
 class prometheus::frr_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/tynany/frr_exporter/releases',
-  Array[String] $extra_groups = ['frr'],
+  Array[String] $extra_groups = [],
   String[1] $group = 'frr-exporter',
   String[1] $package_ensure = 'latest',
   String[1] $package_name = 'frr_exporter',
@@ -144,10 +144,11 @@ class prometheus::frr_exporter (
   $options = join($all_opts, ' ')
 
   # Extract port from web_listen_address for scrape configuration
-  $scrape_port = regsubst($web_listen_address, '^.*:', '', 'G')
+  $scrape_port_int = Integer(regsubst($web_listen_address, '^.*:', ''))
 
   if $ensure == 'present' {
     prometheus::daemon { $service_name:
+      ensure             => $ensure,
       install_method     => $install_method,
       version            => $version,
       download_extension => $download_extension,
@@ -173,7 +174,7 @@ class prometheus::frr_exporter (
       env_file_path      => $prometheus::env_file_path,
       export_scrape_job  => false,
       scrape_host        => $facts['networking']['fqdn'],
-      scrape_port        => $scrape_port,
+      scrape_port        => $scrape_port_int,
       scrape_job_name    => 'frr',
       scrape_job_labels  => {},
       bin_name           => $package_name,
@@ -182,6 +183,7 @@ class prometheus::frr_exporter (
   } else {
     # Handle ensure => absent case
     prometheus::daemon { $service_name:
+      ensure             => $ensure,
       install_method     => $install_method,
       version            => $version,
       download_extension => $download_extension,
@@ -207,7 +209,7 @@ class prometheus::frr_exporter (
       env_file_path      => $prometheus::env_file_path,
       export_scrape_job  => false,
       scrape_host        => $facts['networking']['fqdn'],
-      scrape_port        => $scrape_port,
+      scrape_port        => $scrape_port_int,
       scrape_job_name    => 'frr',
       scrape_job_labels  => {},
       bin_name           => $package_name,
