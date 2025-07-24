@@ -4156,6 +4156,7 @@ The following parameters are available in the `prometheus::frr_exporter` class:
 * [`version`](#-prometheus--frr_exporter--version)
 * [`web_listen_address`](#-prometheus--frr_exporter--web_listen_address)
 * [`env_vars`](#-prometheus--frr_exporter--env_vars)
+* [`ensure`](#-prometheus--frr_exporter--ensure)
 
 ##### <a name="-prometheus--frr_exporter--arch"></a>`arch`
 
@@ -4203,7 +4204,7 @@ Data type: `Array[String]`
 
 Extra groups to add the binary user to
 
-Default value: `['frr']`
+Default value: `[]`
 
 ##### <a name="-prometheus--frr_exporter--frr_socket_dir"></a>`frr_socket_dir`
 
@@ -4391,11 +4392,19 @@ Default value: `':9342'`
 
 ##### <a name="-prometheus--frr_exporter--env_vars"></a>`env_vars`
 
-Data type: `Hash[String, Scalar]`
+Data type: `Hash[String[1], Scalar]`
 
 hash with custom environment variables thats passed to the exporter via init script / unit file
 
 Default value: `{}`
+
+##### <a name="-prometheus--frr_exporter--ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+Whether to install or remove the FRR exporter (default 'present')
+
+Default value: `'present'`
 
 ### <a name="prometheus--graphite_exporter"></a>`prometheus::graphite_exporter`
 
