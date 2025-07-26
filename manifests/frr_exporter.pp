@@ -75,7 +75,7 @@
 #
 # @see https://github.com/tynany/frr_exporter
 #
-# @author Voxpupuli Team <https://voxpupuli.org/>
+# @author Vox Pupuli Team <https://voxpupuli.org/>
 #
 class prometheus::frr_exporter (
   String $download_extension = 'tar.gz',
