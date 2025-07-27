@@ -3,14 +3,12 @@
 require 'spec_helper_acceptance'
 
 describe 'prometheus frr exporter' do
-  it 'frr_exporter works idempotently with no errors' do
-    pp = <<-EOS
-    class { 'prometheus::frr_exporter': }
-    EOS
-
-    # Run it twice and test for idempotency
-    apply_manifest(pp, catch_failures: true)
-    apply_manifest(pp, catch_changes: true)
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-PUPPET
+      class { 'prometheus::frr_exporter': }
+      PUPPET
+    end
   end
 
   describe service('frr_exporter') do
