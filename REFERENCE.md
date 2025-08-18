@@ -8288,6 +8288,7 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`web_config_file`](#-prometheus--node_exporter--web_config_file)
 * [`web_config_content`](#-prometheus--node_exporter--web_config_content)
 * [`scrape_port`](#-prometheus--node_exporter--scrape_port)
+* [`listen_address`](#-prometheus--node_exporter--listen_address)
 * [`scrape_host`](#-prometheus--node_exporter--scrape_host)
 * [`export_scrape_job`](#-prometheus--node_exporter--export_scrape_job)
 * [`scrape_job_name`](#-prometheus--node_exporter--scrape_job_name)
@@ -8561,6 +8562,19 @@ Scrape port for configuring scrape targets on the prometheus server via exported
 If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
 
 Default value: `9100`
+
+##### <a name="-prometheus--node_exporter--listen_address"></a>`listen_address`
+
+Data type: `Stdlib::IP::Address`
+
+The IP address or hostname that Prometheus should bind to for incoming requests.  
+This option is combined with `scrape_port` to form the complete listen address.  
+
+For example, if `listen_address` is set to `127.0.0.1` and `scrape_port` is `9090`,  
+Prometheus will be started with the option:  
+`--web.listen-address='127.0.0.1:9090'`  
+
+Default value: `'0.0.0.0'`
 
 ##### <a name="-prometheus--node_exporter--scrape_host"></a>`scrape_host`
 
