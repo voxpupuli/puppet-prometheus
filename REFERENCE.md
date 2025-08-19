@@ -2949,6 +2949,12 @@ The following parameters are available in the `prometheus::cgroup_exporter` clas
 * [`manage_group`](#-prometheus--cgroup_exporter--manage_group)
 * [`manage_service`](#-prometheus--cgroup_exporter--manage_service)
 * [`manage_user`](#-prometheus--cgroup_exporter--manage_user)
+* [`modules`](#-prometheus--cgroup_exporter--modules)
+* [`export_scrape_job`](#-prometheus--cgroup_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--cgroup_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--cgroup_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--cgroup_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--cgroup_exporter--scrape_job_labels)
 * [`os`](#-prometheus--cgroup_exporter--os)
 * [`package_ensure`](#-prometheus--cgroup_exporter--package_ensure)
 * [`package_name`](#-prometheus--cgroup_exporter--package_name)
@@ -2961,17 +2967,10 @@ The following parameters are available in the `prometheus::cgroup_exporter` clas
 * [`version`](#-prometheus--cgroup_exporter--version)
 * [`proxy_server`](#-prometheus--cgroup_exporter--proxy_server)
 * [`proxy_type`](#-prometheus--cgroup_exporter--proxy_type)
-* [`proxy_type`](#-prometheus--cgroup_exporter--proxy_type)
+* [`cgroup_paths`](#-prometheus--cgroup_exporter--cgroup_paths)
 * [`unprivileged`](#-prometheus--cgroup_exporter--unprivileged)
 * [`archive_bin_path`](#-prometheus--cgroup_exporter--archive_bin_path)
-* [`scrape_host`](#-prometheus--cgroup_exporter--scrape_host)
 * [`env_file_path`](#-prometheus--cgroup_exporter--env_file_path)
-* [`export_scrape_job`](#-prometheus--cgroup_exporter--export_scrape_job)
-* [`scrape_port`](#-prometheus--cgroup_exporter--scrape_port)
-* [`scrape_job_name`](#-prometheus--cgroup_exporter--scrape_job_name)
-* [`scrape_job_labels`](#-prometheus--cgroup_exporter--scrape_job_labels)
-* [`modules`](#-prometheus--cgroup_exporter--modules)
-* [`cgroup_paths`](#-prometheus--cgroup_exporter--cgroup_paths)
 
 ##### <a name="-prometheus--cgroup_exporter--arch"></a>`arch`
 
@@ -3077,6 +3076,54 @@ Whether to create user or rely on external code for that
 
 Default value: `true`
 
+##### <a name="-prometheus--cgroup_exporter--modules"></a>`modules`
+
+Data type: `Hash`
+
+Structured, array of blackbox module definitions for different probe types
+
+Default value: `{}`
+
+##### <a name="-prometheus--cgroup_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+Whether to export a scrape job for this service
+
+Default value: `false`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+Hostname or IP address to scrape
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+Host port to scrape
+
+Default value: `9306`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+Name of the scrape job to export, if export_scrape_job is true
+
+Default value: `'cgroup'`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+Labels to add to the scrape job, if export_scrape_job is true
+
+Default value: `undef`
+
 ##### <a name="-prometheus--cgroup_exporter--os"></a>`os`
 
 Data type: `String[1]`
@@ -3173,11 +3220,13 @@ Optional proxy server type (none|http|https|ftp)
 
 Default value: `undef`
 
-##### <a name="-prometheus--cgroup_exporter--proxy_type"></a>`proxy_type`
+##### <a name="-prometheus--cgroup_exporter--cgroup_paths"></a>`cgroup_paths`
+
+Data type: `Enum['slurm', 'user.slice']`
 
 cgroup paths (slurm|user.slice)
 
-Default value: `undef`
+Default value: `'slurm'`
 
 ##### <a name="-prometheus--cgroup_exporter--unprivileged"></a>`unprivileged`
 
@@ -3191,73 +3240,17 @@ Default value: `false`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Path to the binary in the downloaded archive.
 
 Default value: `"/opt/${package_name}-${version}.${os}-${arch}/${package_name}"`
-
-##### <a name="-prometheus--cgroup_exporter--scrape_host"></a>`scrape_host`
-
-Data type: `Optional[Stdlib::Host]`
-
-
-
-Default value: `undef`
 
 ##### <a name="-prometheus--cgroup_exporter--env_file_path"></a>`env_file_path`
 
 Data type: `Stdlib::Absolutepath`
 
-
+The path to the file with the environmetn variable that is read from the init script/systemd unit
 
 Default value: `$prometheus::env_file_path`
-
-##### <a name="-prometheus--cgroup_exporter--export_scrape_job"></a>`export_scrape_job`
-
-Data type: `Boolean`
-
-
-
-Default value: `false`
-
-##### <a name="-prometheus--cgroup_exporter--scrape_port"></a>`scrape_port`
-
-Data type: `Stdlib::Port`
-
-
-
-Default value: `9306`
-
-##### <a name="-prometheus--cgroup_exporter--scrape_job_name"></a>`scrape_job_name`
-
-Data type: `String[1]`
-
-
-
-Default value: `'cgroup'`
-
-##### <a name="-prometheus--cgroup_exporter--scrape_job_labels"></a>`scrape_job_labels`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: `undef`
-
-##### <a name="-prometheus--cgroup_exporter--modules"></a>`modules`
-
-Data type: `Hash`
-
-
-
-Default value: `{}`
-
-##### <a name="-prometheus--cgroup_exporter--cgroup_paths"></a>`cgroup_paths`
-
-Data type: `Enum['slurm', 'user.slice']`
-
-
-
-Default value: `'slurm'`
 
 ### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
