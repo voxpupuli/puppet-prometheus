@@ -15,6 +15,7 @@
 * [`prometheus::bind_exporter`](#prometheus--bind_exporter): Class: prometheus::bind_exporter  This module manages prometheus bind_exporter
 * [`prometheus::bird_exporter`](#prometheus--bird_exporter): This module manages prometheus bird exporter
 * [`prometheus::blackbox_exporter`](#prometheus--blackbox_exporter): This module manages prometheus blackbox_exporter
+* [`prometheus::cgroup_exporter`](#prometheus--cgroup_exporter): This module manages prometheus cgroup_exporter (https://github.com/treydock/cgroup_exporter)
 * [`prometheus::collectd_exporter`](#prometheus--collectd_exporter): This module manages prometheus node collectd_exporter
 * [`prometheus::config`](#prometheus--config): Configuration class for prometheus monitoring system
 * [`prometheus::consul_exporter`](#prometheus--consul_exporter): This module manages prometheus node consul_exporter
@@ -2926,6 +2927,330 @@ Data type: `Prometheus::Web_config`
 Unless empty the content of the web-config yaml which will handed over as option to the exporter
 
 Default value: `{}`
+
+### <a name="prometheus--cgroup_exporter"></a>`prometheus::cgroup_exporter`
+
+This module manages prometheus cgroup_exporter (https://github.com/treydock/cgroup_exporter)
+
+#### Parameters
+
+The following parameters are available in the `prometheus::cgroup_exporter` class:
+
+* [`arch`](#-prometheus--cgroup_exporter--arch)
+* [`bin_dir`](#-prometheus--cgroup_exporter--bin_dir)
+* [`download_extension`](#-prometheus--cgroup_exporter--download_extension)
+* [`download_url`](#-prometheus--cgroup_exporter--download_url)
+* [`download_url_base`](#-prometheus--cgroup_exporter--download_url_base)
+* [`extra_groups`](#-prometheus--cgroup_exporter--extra_groups)
+* [`extra_options`](#-prometheus--cgroup_exporter--extra_options)
+* [`group`](#-prometheus--cgroup_exporter--group)
+* [`init_style`](#-prometheus--cgroup_exporter--init_style)
+* [`install_method`](#-prometheus--cgroup_exporter--install_method)
+* [`manage_group`](#-prometheus--cgroup_exporter--manage_group)
+* [`manage_service`](#-prometheus--cgroup_exporter--manage_service)
+* [`manage_user`](#-prometheus--cgroup_exporter--manage_user)
+* [`modules`](#-prometheus--cgroup_exporter--modules)
+* [`export_scrape_job`](#-prometheus--cgroup_exporter--export_scrape_job)
+* [`scrape_host`](#-prometheus--cgroup_exporter--scrape_host)
+* [`scrape_port`](#-prometheus--cgroup_exporter--scrape_port)
+* [`scrape_job_name`](#-prometheus--cgroup_exporter--scrape_job_name)
+* [`scrape_job_labels`](#-prometheus--cgroup_exporter--scrape_job_labels)
+* [`os`](#-prometheus--cgroup_exporter--os)
+* [`package_ensure`](#-prometheus--cgroup_exporter--package_ensure)
+* [`package_name`](#-prometheus--cgroup_exporter--package_name)
+* [`purge_config_dir`](#-prometheus--cgroup_exporter--purge_config_dir)
+* [`restart_on_change`](#-prometheus--cgroup_exporter--restart_on_change)
+* [`service_enable`](#-prometheus--cgroup_exporter--service_enable)
+* [`service_ensure`](#-prometheus--cgroup_exporter--service_ensure)
+* [`service_name`](#-prometheus--cgroup_exporter--service_name)
+* [`user`](#-prometheus--cgroup_exporter--user)
+* [`version`](#-prometheus--cgroup_exporter--version)
+* [`proxy_server`](#-prometheus--cgroup_exporter--proxy_server)
+* [`proxy_type`](#-prometheus--cgroup_exporter--proxy_type)
+* [`cgroup_paths`](#-prometheus--cgroup_exporter--cgroup_paths)
+* [`unprivileged`](#-prometheus--cgroup_exporter--unprivileged)
+* [`archive_bin_path`](#-prometheus--cgroup_exporter--archive_bin_path)
+* [`env_file_path`](#-prometheus--cgroup_exporter--env_file_path)
+
+##### <a name="-prometheus--cgroup_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+Architecture (x86_64)
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--cgroup_exporter--bin_dir"></a>`bin_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Directory where binaries are located
+
+Default value: `$prometheus::bin_dir`
+
+##### <a name="-prometheus--cgroup_exporter--download_extension"></a>`download_extension`
+
+Data type: `String`
+
+Extension for the release binary archive
+
+Default value: `'tar.gz'`
+
+##### <a name="-prometheus--cgroup_exporter--download_url"></a>`download_url`
+
+Data type: `Optional[Prometheus::Uri]`
+
+Complete URL corresponding to the where the release binary archive can be downloaded
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--download_url_base"></a>`download_url_base`
+
+Data type: `Prometheus::Uri`
+
+Base URL for the binary archive
+
+Default value: `'https://github.com/treydock/cgroup_exporter/releases'`
+
+##### <a name="-prometheus--cgroup_exporter--extra_groups"></a>`extra_groups`
+
+Data type: `Array[String]`
+
+Extra groups to add the binary user to
+
+Default value: `[]`
+
+##### <a name="-prometheus--cgroup_exporter--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--group"></a>`group`
+
+Data type: `String[1]`
+
+Group under which the binary is running
+
+Default value: `'cgroup-exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--init_style"></a>`init_style`
+
+Data type: `Prometheus::Initstyle`
+
+Service startup scripts style (e.g. rc, upstart or systemd)
+
+Default value: `$prometheus::init_style`
+
+##### <a name="-prometheus--cgroup_exporter--install_method"></a>`install_method`
+
+Data type: `Prometheus::Install`
+
+Installation method: url or package (only url is supported currently)
+
+Default value: `$prometheus::install_method`
+
+##### <a name="-prometheus--cgroup_exporter--manage_group"></a>`manage_group`
+
+Data type: `Boolean`
+
+Whether to create a group for or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--manage_service"></a>`manage_service`
+
+Data type: `Boolean`
+
+Should puppet manage the service? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--modules"></a>`modules`
+
+Data type: `Hash`
+
+Structured, array of blackbox module definitions for different probe types
+
+Default value: `{}`
+
+##### <a name="-prometheus--cgroup_exporter--export_scrape_job"></a>`export_scrape_job`
+
+Data type: `Boolean`
+
+Whether to export a scrape job for this service
+
+Default value: `false`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_host"></a>`scrape_host`
+
+Data type: `Optional[Stdlib::Host]`
+
+Hostname or IP address to scrape
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_port"></a>`scrape_port`
+
+Data type: `Stdlib::Port`
+
+Host port to scrape
+
+Default value: `9306`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_name"></a>`scrape_job_name`
+
+Data type: `String[1]`
+
+Name of the scrape job to export, if export_scrape_job is true
+
+Default value: `'cgroup'`
+
+##### <a name="-prometheus--cgroup_exporter--scrape_job_labels"></a>`scrape_job_labels`
+
+Data type: `Optional[Hash]`
+
+Labels to add to the scrape job, if export_scrape_job is true
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase(fact('kernel'))`
+
+##### <a name="-prometheus--cgroup_exporter--package_ensure"></a>`package_ensure`
+
+Data type: `String[1]`
+
+If package, then use this for package ensure default 'latest'
+
+Default value: `'latest'`
+
+##### <a name="-prometheus--cgroup_exporter--package_name"></a>`package_name`
+
+Data type: `String[1]`
+
+The binary package name - not available yet
+
+Default value: `'cgroup_exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--purge_config_dir"></a>`purge_config_dir`
+
+Data type: `Boolean`
+
+Purge config files no longer generated by Puppet
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--restart_on_change"></a>`restart_on_change`
+
+Data type: `Boolean`
+
+Should puppet restart the service on configuration change? (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Whether to enable the service from puppet (default true)
+
+Default value: `true`
+
+##### <a name="-prometheus--cgroup_exporter--service_ensure"></a>`service_ensure`
+
+Data type: `Stdlib::Ensure::Service`
+
+State ensured for the service (default 'running')
+
+Default value: `'running'`
+
+##### <a name="-prometheus--cgroup_exporter--service_name"></a>`service_name`
+
+Data type: `String[1]`
+
+Name of the node exporter service (default 'cgroup_exporter')
+
+Default value: `'cgroup_exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--user"></a>`user`
+
+Data type: `String[1]`
+
+User which runs the service
+
+Default value: `'cgroup-exporter'`
+
+##### <a name="-prometheus--cgroup_exporter--version"></a>`version`
+
+Data type: `String[1]`
+
+The binary release version
+
+Default value: `'1.0.1'`
+
+##### <a name="-prometheus--cgroup_exporter--proxy_server"></a>`proxy_server`
+
+Data type: `Optional[String[1]]`
+
+Optional proxy server, with port number if needed. ie: https://example.com:8080
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--proxy_type"></a>`proxy_type`
+
+Data type: `Optional[Enum['none', 'http', 'https', 'ftp']]`
+
+Optional proxy server type (none|http|https|ftp)
+
+Default value: `undef`
+
+##### <a name="-prometheus--cgroup_exporter--cgroup_paths"></a>`cgroup_paths`
+
+Data type: `Enum['slurm', 'user.slice']`
+
+cgroup paths (slurm|user.slice)
+
+Default value: `'slurm'`
+
+##### <a name="-prometheus--cgroup_exporter--unprivileged"></a>`unprivileged`
+
+Data type: `Boolean`
+
+If true, run the exporter as an unprivileged user and add sudoers entrie to manage the binary exporter
+
+Default value: `false`
+
+##### <a name="-prometheus--cgroup_exporter--archive_bin_path"></a>`archive_bin_path`
+
+Data type: `Stdlib::Absolutepath`
+
+Path to the binary in the downloaded archive.
+
+Default value: `"/opt/${package_name}-${version}.${os}-${arch}/${package_name}"`
+
+##### <a name="-prometheus--cgroup_exporter--env_file_path"></a>`env_file_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to the file with the environmetn variable that is read from the init script/systemd unit
+
+Default value: `$prometheus::env_file_path`
 
 ### <a name="prometheus--collectd_exporter"></a>`prometheus::collectd_exporter`
 
