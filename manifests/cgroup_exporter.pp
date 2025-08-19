@@ -25,6 +25,18 @@
 #  Should puppet manage the service? (default true)
 # @param manage_user
 #  Whether to create user or rely on external code for that
+# @param modules
+#  Structured, array of blackbox module definitions for different probe types
+# @param export_scrape_job
+#  Whether to export a scrape job for this service
+# @param scrape_host
+#  Hostname or IP address to scrape
+# @param scrape_port
+#  Host port to scrape
+# @param scrape_job_name
+#  Name of the scrape job to export, if export_scrape_job is true
+# @param scrape_job_labels
+#  Labels to add to the scrape job, if export_scrape_job is true
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -49,10 +61,14 @@
 #  Optional proxy server, with port number if needed. ie: https://example.com:8080
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
-# @param proxy_type
+# @param cgroup_paths
 #  cgroup paths (slurm|user.slice)
 # @param unprivileged
 #  If true, run the exporter as an unprivileged user and add sudoers entrie to manage the binary exporter
+# @param archive_bin_path
+#  Path to the binary in the downloaded archive.
+# @param env_file_path
+#  The path to the file with the environmetn variable that is read from the init script/systemd unit
 class prometheus::cgroup_exporter (
   String[1]                                      $package_name       = 'cgroup_exporter',
   String                                         $download_extension = 'tar.gz',
