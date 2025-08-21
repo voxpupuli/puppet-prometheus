@@ -49,7 +49,7 @@
 #  The binary release version
 class prometheus::systemd_exporter (
   String $download_extension              = 'tar.gz',
-  Prometheus::Uri $download_url_base      = 'https://github.com/povilasv/systemd_exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/prometheus-community/systemd_exporter/releases',
   Array[String] $extra_groups             = [],
   String[1] $group                        = 'systemd-exporter',
   String[1] $package_name                 = 'systemd_exporter',
