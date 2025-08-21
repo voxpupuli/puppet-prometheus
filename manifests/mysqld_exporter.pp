@@ -137,17 +137,14 @@ class prometheus::mysqld_exporter (
     'ssl-key'  => $cnf_ssl_key,
   }.filter |$k, $v| { $v != undef }
 
+  # stdlib::deferrable_epp is used here to correctly resolve deferred variables(for example password) when rendering the template
+  # reference: https://help.puppet.com/core/8/Content/PuppetCore/template_with_deferred_values.htm
   file { $cnf_config_path:
     ensure  => file,
     mode    => $config_mode,
     owner   => $user,
     group   => $group,
-    content => Sensitive(
-      epp(
-        'prometheus/my.cnf.epp',
-        { 'settings' => $_cnf_settings }
-      )
-    ),
+    content => Sensitive(stdlib::deferrable_epp('prometheus/my.cnf.epp', { 'settings' => $_cnf_settings })),
     notify  => $notify_service,
   }
 
