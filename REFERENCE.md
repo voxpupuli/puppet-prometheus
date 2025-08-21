@@ -54,7 +54,7 @@
 * [`prometheus::ssh_exporter`](#prometheus--ssh_exporter): This module manages prometheus ssh_exporter (https://github.com/treydock/ssh_exporter)
 * [`prometheus::ssl_exporter`](#prometheus--ssl_exporter): This module manages prometheus ssl_exporter (https://github.com/ribbybibby/ssl_exporter)
 * [`prometheus::statsd_exporter`](#prometheus--statsd_exporter): This module manages prometheus statsd_exporter
-* [`prometheus::systemd_exporter`](#prometheus--systemd_exporter): This module manages prometheus node redis_exporter
+* [`prometheus::systemd_exporter`](#prometheus--systemd_exporter): This module manages prometheus systemd_exporter
 * [`prometheus::unbound_exporter`](#prometheus--unbound_exporter): This module manages prometheus unbound exporter.
 * [`prometheus::varnish_exporter`](#prometheus--varnish_exporter): This module manages prometheus varnish_exporter
 * [`prometheus::wireguard_exporter`](#prometheus--wireguard_exporter): This module manages prometheus wireguard_exporter
@@ -13845,7 +13845,7 @@ Default value: `undef`
 
 ### <a name="prometheus--systemd_exporter"></a>`prometheus::systemd_exporter`
 
-This module manages prometheus node redis_exporter
+This module manages prometheus systemd_exporter
 
 #### Parameters
 
@@ -13918,7 +13918,7 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-Default value: `'https://github.com/povilasv/systemd_exporter/releases'`
+Default value: `'https://github.com/prometheus-community/systemd_exporter/releases'`
 
 ##### <a name="-prometheus--systemd_exporter--extra_groups"></a>`extra_groups`
 
@@ -13934,7 +13934,7 @@ Data type: `String`
 
 Extra options added to the startup command
 For a full list of the exporter's supported extra options
-please refer to https://github.com/oliver006/redis_exporter
+please refer to https://github.com/prometheus-community/systemd_exporter
 
 Default value: `''`
 
@@ -13990,7 +13990,7 @@ Default value: `true`
 
 Data type: `String[1]`
 
-Namespace for the metrics, defaults to `redis`.
+Namespace for the metrics, defaults to `systemd`.
 
 Default value: `'systemd'`
 
@@ -14046,7 +14046,7 @@ Default value: `'running'`
 
 Data type: `String[1]`
 
-Name of the node exporter service (default 'redis_exporter')
+Name of the node exporter service (default 'systemd_exporter')
 
 Default value: `'systemd_exporter'`
 
