@@ -10,6 +10,8 @@ describe 'prometheus::frr_exporter' do
       end
 
       context 'without parameters' do
+        let(:version) { catalogue.resource('Class[prometheus::frr_exporter]').parameters[:version] }
+
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('prometheus') }
         it { is_expected.to contain_prometheus__daemon('frr_exporter') }
@@ -18,8 +20,8 @@ describe 'prometheus::frr_exporter' do
         it { is_expected.to contain_group('frr-exporter') }
         it { is_expected.to contain_user('frr-exporter') }
         it { is_expected.to contain_file('/usr/local/bin/frr_exporter') }
-        it { is_expected.to contain_archive('/tmp/frr_exporter-1.8.0.tar.gz') }
-        it { is_expected.to contain_file('/opt/frr_exporter-1.8.0.linux-amd64/frr_exporter') }
+        it { is_expected.to contain_archive("/tmp/frr_exporter-#{version}.tar.gz") }
+        it { is_expected.to contain_file("/opt/frr_exporter-#{version}.linux-amd64/frr_exporter") }
 
         case facts[:os]['family']
         when 'RedHat'
