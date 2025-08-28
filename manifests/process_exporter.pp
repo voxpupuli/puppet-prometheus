@@ -85,7 +85,7 @@ class prometheus::process_exporter (
   String[1] $user = 'process-exporter',
   Stdlib::Absolutepath $config_path = '/etc/process-exporter.yaml',
   # renovate: depName=ncabatoff/process-exporter
-  String[1] $version                                         = '0.8.2',
+  String[1] $version                                         = '0.8.7',
   Array $watched_processes                                   = [],
   Hash $hash_watched_processes                               = {},
   Boolean $purge_config_dir                                  = true,

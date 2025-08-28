@@ -47,7 +47,7 @@ describe 'prometheus::grok_exporter' do
           it { is_expected.to contain_service('grok_exporter') }
           it { is_expected.to contain_archive('/tmp/grok_exporter-1.0.0.RC3.zip') }
           it { is_expected.to contain_file('/opt/grok_exporter-1.0.0.RC3.linux-amd64/grok_exporter') }
-          it { is_expected.to contain_file('/etc/grok-exporter.yaml').with_content(File.read(fixtures('files', 'grok-exporter.yaml'))) }
+          it { is_expected.to contain_file('/etc/grok-exporter.yaml').with_content(File.read(File.join('spec', 'fixtures', 'files', 'grok-exporter.yaml'))) }
         end
       end
     end

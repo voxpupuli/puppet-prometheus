@@ -1,4 +1,4 @@
-# @summary This module manages prometheus node redis_exporter
+# @summary This module manages prometheus systemd_exporter
 # @param arch
 #  Architecture (amd64 or i386)
 # @param bin_dir
@@ -14,7 +14,7 @@
 # @param extra_options
 #  Extra options added to the startup command
 #  For a full list of the exporter's supported extra options
-#  please refer to https://github.com/oliver006/redis_exporter
+#  please refer to https://github.com/prometheus-community/systemd_exporter
 # @param group
 #  Group under which the binary is running
 # @param init_style
@@ -28,7 +28,7 @@
 # @param manage_user
 #  Whether to create user or rely on external code for that
 # @param namespace
-#  Namespace for the metrics, defaults to `redis`.
+#  Namespace for the metrics, defaults to `systemd`.
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_name
@@ -42,20 +42,20 @@
 # @param service_ensure
 #  State ensured for the service (default 'running')
 # @param service_name
-#  Name of the node exporter service (default 'redis_exporter')
+#  Name of the node exporter service (default 'systemd_exporter')
 # @param user
 #  User which runs the service
 # @param version
 #  The binary release version
 class prometheus::systemd_exporter (
   String $download_extension              = 'tar.gz',
-  Prometheus::Uri $download_url_base      = 'https://github.com/povilasv/systemd_exporter/releases',
+  Prometheus::Uri $download_url_base      = 'https://github.com/prometheus-community/systemd_exporter/releases',
   Array[String] $extra_groups             = [],
   String[1] $group                        = 'systemd-exporter',
   String[1] $package_name                 = 'systemd_exporter',
   String[1] $user                         = 'systemd-exporter',
   # renovate: depName=povilasv/systemd_exporter
-  String[1] $version                      = '0.6.0',
+  String[1] $version                      = '0.7.0',
   Boolean $purge_config_dir               = true,
   Boolean $restart_on_change              = true,
   Boolean $service_enable                 = true,
@@ -88,7 +88,7 @@ class prometheus::systemd_exporter (
   $options = $extra_options
 
   prometheus::daemon { $service_name:
-    install_method     => 'url',
+    install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
     os                 => $os,

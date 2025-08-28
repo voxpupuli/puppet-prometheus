@@ -38,8 +38,12 @@ describe 'prometheus::ssl_exporter' do
           it { is_expected.to contain_file('/opt/ssl_exporter-2.2.1.linux-amd64/ssl_exporter') }
 
           it {
-            expect(subject).to contain_file('/etc/ssl_exporter.yaml')
-            verify_contents(catalogue, '/etc/ssl_exporter.yaml', ['---', 'modules:', '  https:', '    prober: https', '    timeout: 5s'])
+            is_expected.to contain_file('/etc/ssl_exporter.yaml').
+              with_content(%r{^---\n}).
+              with_content(%r{^modules:\n}).
+              with_content(%r{^  https:\n}).
+              with_content(%r{^    prober: https\n}).
+              with_content(%r{^    timeout: 5s\n})
           }
         end
       end

@@ -21,7 +21,7 @@ describe 'prometheus::daemon' do
         {
           version: '1.2.3',
           real_download_url: 'https://github.com/prometheus/smurf_exporter/releases/v1.2.3/smurf_exporter-1.2.3.any.tar.gz',
-          notify_service: 'Service[smurf_exporter]',
+          notify_service: ResourceReference.new('Service[smurf_exporter]'),
           user: 'smurf_user',
           group: 'smurf_group',
           env_vars: { SOMEVAR: 42 },
@@ -169,7 +169,7 @@ describe 'prometheus::daemon' do
           {
             version: '1.2.3',
             real_download_url: 'https://github.com/prometheus/smurf_exporter/releases/v1.2.3/smurf_exporter-1.2.3.any.tar.gz',
-            notify_service: 'Service[smurf_exporter]',
+            notify_service: ResourceReference.new('Service[smurf_exporter]'),
             user: 'smurf_user',
             group: 'smurf_group',
             env_vars: { SOMEVAR: 42 },

@@ -19,13 +19,14 @@ describe 'prometheus::graphite_exporter' do
       end
 
       context 'with params' do
+        let(:version) { catalogue.resource('Class[prometheus::graphite_exporter]').parameters[:version] }
         let :params do
           {
             install_method: 'url'
           }
         end
 
-        it { is_expected.to contain_archive('/tmp/graphite_exporter-0.15.1.tar.gz') }
+        it { is_expected.to contain_archive("/tmp/graphite_exporter-#{version}.tar.gz") }
       end
     end
   end

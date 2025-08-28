@@ -72,7 +72,7 @@ class prometheus::postgres_exporter (
   String[1] $package_name = 'postgres_exporter',
   String[1] $user = 'postgres-exporter',
   # renovate: depName=prometheus-community/postgres_exporter
-  String[1] $version = '0.5.1',
+  String[1] $version = '0.17.1',
   String[1] $data_source_uri = 'host=/var/run/postgresql/ sslmode=disable',
   Enum['custom', 'env', 'file'] $postgres_auth_method = 'env',
   Hash[String[1],String[1]] $data_source_custom              = {},
@@ -107,8 +107,10 @@ class prometheus::postgres_exporter (
 
   if versioncmp($version, '0.9.0') < 0 {
     $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}_${os}-${arch}.${download_extension}")
+    $bin_path = "/opt/${package_name}_v${version}_${os}-${arch}/postgres_exporter"
   } else {
     $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+    $bin_path = "/opt/${package_name}-${version}.${os}-${arch}/postgres_exporter"
   }
 
   $notify_service = $restart_on_change ? {
@@ -194,6 +196,6 @@ class prometheus::postgres_exporter (
     scrape_job_labels  => $scrape_job_labels,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
-    archive_bin_path   => "/opt/${package_name}_v${version}_${os}-${arch}/postgres_exporter",
+    archive_bin_path   => $bin_path,
   }
 }

@@ -52,6 +52,7 @@ describe 'prometheus::haproxy_exporter' do
             end
 
             it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_prometheus__daemon('haproxy_exporter').with('options' => "--haproxy.scrape-uri='#{value}'") }
           end
         end
 
@@ -78,7 +79,7 @@ describe 'prometheus::haproxy_exporter' do
 
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_file('/etc/haproxy_exporter_web-config.yml').with(ensure: 'file') }
-        it { is_expected.to contain_prometheus__daemon('haproxy_exporter').with(options: '--haproxy.scrape-uri="http://localhost:1234/haproxy?stats;csv" --web.config.file=/etc/haproxy_exporter_web-config.yml') }
+        it { is_expected.to contain_prometheus__daemon('haproxy_exporter').with(options: '--haproxy.scrape-uri=\'http://localhost:1234/haproxy?stats;csv\' --web.config.file=/etc/haproxy_exporter_web-config.yml') }
       end
     end
   end

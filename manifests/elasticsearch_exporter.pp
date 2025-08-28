@@ -79,7 +79,7 @@ class prometheus::elasticsearch_exporter (
   String[1] $service_name,
   String[1] $user,
   # renovate: depName=prometheus-community/elasticsearch_exporter
-  String[1] $version                                         = '1.7.0',
+  String[1] $version                                         = '1.9.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,

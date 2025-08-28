@@ -4,6 +4,123 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v16.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.5.0) (2025-07-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.4.1...v16.5.0)
+
+**Implemented enhancements:**
+
+- puppet/archive: Allow 8.x [\#944](https://github.com/voxpupuli/puppet-prometheus/pull/944) ([bastelfreak](https://github.com/bastelfreak))
+- chore\(deps\): update dependency prometheus-community/ipmi\_exporter to v1.10.1 [\#937](https://github.com/voxpupuli/puppet-prometheus/pull/937) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/blackbox\_exporter to v0.27.0 [\#936](https://github.com/voxpupuli/puppet-prometheus/pull/936) ([pccibot](https://github.com/pccibot))
+
+**Fixed bugs:**
+
+- fix: use install\_method param in exporters [\#940](https://github.com/voxpupuli/puppet-prometheus/pull/940) ([anantha1999](https://github.com/anantha1999))
+
+## [v16.4.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.4.1) (2025-06-10)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.4.0...v16.4.1)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.74.0 [\#927](https://github.com/voxpupuli/puppet-prometheus/pull/927) ([pccibot](https://github.com/pccibot))
+
+**Fixed bugs:**
+
+- fix: update minimum version for stdlib to 9.2.0 [\#922](https://github.com/voxpupuli/puppet-prometheus/pull/922) ([TheMeier](https://github.com/TheMeier))
+
+## [v16.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.4.0) (2025-06-05)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.3.1...v16.4.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.3 [\#919](https://github.com/voxpupuli/puppet-prometheus/pull/919) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.73.0 [\#916](https://github.com/voxpupuli/puppet-prometheus/pull/916) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.72.1 [\#914](https://github.com/voxpupuli/puppet-prometheus/pull/914) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.71.0 [\#912](https://github.com/voxpupuli/puppet-prometheus/pull/912) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1.4.2 [\#910](https://github.com/voxpupuli/puppet-prometheus/pull/910) ([pccibot](https://github.com/pccibot))
+
+## [v16.3.1](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.1) (2025-05-01)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.3.0...v16.3.1)
+
+**Fixed bugs:**
+
+- fix: path to postgres\_exporter binary for newer versions [\#908](https://github.com/voxpupuli/puppet-prometheus/pull/908) ([TheMeier](https://github.com/TheMeier))
+
+## [v16.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.3.0) (2025-04-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.2.0...v16.3.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency prometheus/snmp\_exporter to v0.29.0 [\#904](https://github.com/voxpupuli/puppet-prometheus/pull/904) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency ncabatoff/process-exporter to v0.8.7 [\#903](https://github.com/voxpupuli/puppet-prometheus/pull/903) ([pccibot](https://github.com/pccibot))
+
+## [v16.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.2.0) (2025-04-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.1.0...v16.2.0)
+
+**Implemented enhancements:**
+
+- Exporters unpacked to /opt are not root:root [\#111](https://github.com/voxpupuli/puppet-prometheus/issues/111)
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.70.0 [\#898](https://github.com/voxpupuli/puppet-prometheus/pull/898) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1 [\#874](https://github.com/voxpupuli/puppet-prometheus/pull/874) ([pccibot](https://github.com/pccibot))
+
+**Fixed bugs:**
+
+- haproxy\_exporter: escape cnf\_scrape\_uri to avoid malformed strings [\#621](https://github.com/voxpupuli/puppet-prometheus/pull/621) ([Arnoways](https://github.com/Arnoways))
+
+## [v16.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.1.0) (2025-04-09)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.0.0...v16.1.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.44.0 [\#895](https://github.com/voxpupuli/puppet-prometheus/pull/895) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/node\_exporter to v1.9.1 [\#894](https://github.com/voxpupuli/puppet-prometheus/pull/894) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.2 [\#892](https://github.com/voxpupuli/puppet-prometheus/pull/892) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency lusitaniae/apache\_exporter to v1.0.10 [\#890](https://github.com/voxpupuli/puppet-prometheus/pull/890) ([pccibot](https://github.com/pccibot))
+- metadata.json: Add OpenVox [\#889](https://github.com/voxpupuli/puppet-prometheus/pull/889) ([jstraw](https://github.com/jstraw))
+- chore\(deps\): update dependency povilasv/systemd\_exporter to v0.7.0 [\#885](https://github.com/voxpupuli/puppet-prometheus/pull/885) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.69.0 [\#884](https://github.com/voxpupuli/puppet-prometheus/pull/884) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/graphite\_exporter to v0.16.0 [\#882](https://github.com/voxpupuli/puppet-prometheus/pull/882) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/mysqld\_exporter to v0.17.2 [\#877](https://github.com/voxpupuli/puppet-prometheus/pull/877) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/blackbox\_exporter to v0.26.0 [\#876](https://github.com/voxpupuli/puppet-prometheus/pull/876) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/statsd\_exporter to v0.28.0 [\#872](https://github.com/voxpupuli/puppet-prometheus/pull/872) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/snmp\_exporter to v0.28.0 [\#871](https://github.com/voxpupuli/puppet-prometheus/pull/871) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/node\_exporter to v1.9.0 [\#870](https://github.com/voxpupuli/puppet-prometheus/pull/870) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/mysqld\_exporter to v0.16.0 [\#869](https://github.com/voxpupuli/puppet-prometheus/pull/869) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.0 [\#868](https://github.com/voxpupuli/puppet-prometheus/pull/868) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/graphite\_exporter to v0.16.0 [\#867](https://github.com/voxpupuli/puppet-prometheus/pull/867) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/consul\_exporter to v0.13.0 [\#866](https://github.com/voxpupuli/puppet-prometheus/pull/866) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/collectd\_exporter to v0.7.0 [\#865](https://github.com/voxpupuli/puppet-prometheus/pull/865) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/ipmi\_exporter to v1.10.0 [\#863](https://github.com/voxpupuli/puppet-prometheus/pull/863) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/elasticsearch\_exporter to v1.9.0 [\#862](https://github.com/voxpupuli/puppet-prometheus/pull/862) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/bind\_exporter to v0.8.0 [\#861](https://github.com/voxpupuli/puppet-prometheus/pull/861) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.43.1 [\#860](https://github.com/voxpupuli/puppet-prometheus/pull/860) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.68.0 [\#859](https://github.com/voxpupuli/puppet-prometheus/pull/859) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency ncabatoff/process-exporter to v0.8.5 [\#858](https://github.com/voxpupuli/puppet-prometheus/pull/858) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency galexrt/dellhw\_exporter to v1.13.13 [\#857](https://github.com/voxpupuli/puppet-prometheus/pull/857) ([pccibot](https://github.com/pccibot))
+- add ensure parameter to prometheus::daemon [\#846](https://github.com/voxpupuli/puppet-prometheus/pull/846) ([TheMeier](https://github.com/TheMeier))
+- haproxy\_exporter: Move data from hiera to puppet class [\#845](https://github.com/voxpupuli/puppet-prometheus/pull/845) ([bastelfreak](https://github.com/bastelfreak))
+- process\_exporter: Move data from hiera to puppet class [\#844](https://github.com/voxpupuli/puppet-prometheus/pull/844) ([bastelfreak](https://github.com/bastelfreak))
+- pushgateway\_exporter: Move data from hiera to puppet class [\#843](https://github.com/voxpupuli/puppet-prometheus/pull/843) ([bastelfreak](https://github.com/bastelfreak))
+- mysql\_exporter: Move data from hiera to puppet class [\#842](https://github.com/voxpupuli/puppet-prometheus/pull/842) ([bastelfreak](https://github.com/bastelfreak))
+- node\_exporter: Move data from hiera to puppet class [\#841](https://github.com/voxpupuli/puppet-prometheus/pull/841) ([bastelfreak](https://github.com/bastelfreak))
+- beanstalkd\_exporter: Move data from hiera to puppet class [\#840](https://github.com/voxpupuli/puppet-prometheus/pull/840) ([bastelfreak](https://github.com/bastelfreak))
+- snmp\_exporter: Move data from hiera to puppet class [\#839](https://github.com/voxpupuli/puppet-prometheus/pull/839) ([bastelfreak](https://github.com/bastelfreak))
+- statsd\_exporter: Move data from Hiera to puppet class  [\#838](https://github.com/voxpupuli/puppet-prometheus/pull/838) ([bastelfreak](https://github.com/bastelfreak))
+- allow installation of rabbitmq\_exporter \>= 1.0.0 [\#835](https://github.com/voxpupuli/puppet-prometheus/pull/835) ([TheMeier](https://github.com/TheMeier))
+- remove custom use of archive for several exporters [\#834](https://github.com/voxpupuli/puppet-prometheus/pull/834) ([TheMeier](https://github.com/TheMeier))
+
+**Merged pull requests:**
+
+- README.md: Fix CI badges [\#837](https://github.com/voxpupuli/puppet-prometheus/pull/837) ([bastelfreak](https://github.com/bastelfreak))
+- Deprecate rabbitmq exporter [\#836](https://github.com/voxpupuli/puppet-prometheus/pull/836) ([TheMeier](https://github.com/TheMeier))
+
 ## [v16.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.0.0) (2024-12-30)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v15.0.0...v16.0.0)
@@ -16,10 +133,10 @@ These should not affect the functionality of the module.
 
 **Implemented enhancements:**
 
+- puppet/systemd: allow 8.x [\#823](https://github.com/voxpupuli/puppet-prometheus/pull/823) ([jay7x](https://github.com/jay7x))
 - add options to set tls parameters for mysql config used by mysqld\_exporter [\#832](https://github.com/voxpupuli/puppet-prometheus/pull/832) ([TheMeier](https://github.com/TheMeier))
 - manage homedirectory for prometheus user when manage\_user is true [\#831](https://github.com/voxpupuli/puppet-prometheus/pull/831) ([TheMeier](https://github.com/TheMeier))
 - use default modulesync template for ci.yml [\#830](https://github.com/voxpupuli/puppet-prometheus/pull/830) ([TheMeier](https://github.com/TheMeier))
-- puppet/systemd: allow 8.x [\#823](https://github.com/voxpupuli/puppet-prometheus/pull/823) ([jay7x](https://github.com/jay7x))
 - use $service\_name instead of a hard-coded name for prometheus::daemon [\#803](https://github.com/voxpupuli/puppet-prometheus/pull/803) ([saz](https://github.com/saz))
 - Replace hardcoded mysqld\_exporter service name with $service\_name variable [\#802](https://github.com/voxpupuli/puppet-prometheus/pull/802) ([saz](https://github.com/saz))
 - feat: move all exporter version from data into the manifests [\#800](https://github.com/voxpupuli/puppet-prometheus/pull/800) ([TheMeier](https://github.com/TheMeier))
@@ -986,7 +1103,6 @@ Debian 8 is EOL since a few months now. This release will be the last with offic
 **Merged pull requests:**
 
 - release 4.1.0 [\#159](https://github.com/voxpupuli/puppet-prometheus/pull/159) ([bastelfreak](https://github.com/bastelfreak))
-- update blackbox\_exporter.pp inline documentation [\#155](https://github.com/voxpupuli/puppet-prometheus/pull/155) ([ghost](https://github.com/ghost))
 - Ruby 1.8 compatibility \(Agent-side\) [\#146](https://github.com/voxpupuli/puppet-prometheus/pull/146) ([sathieu](https://github.com/sathieu))
 - Fail silently when service is not installed [\#145](https://github.com/voxpupuli/puppet-prometheus/pull/145) ([vladgh](https://github.com/vladgh))
 - Add support for snmp\_exporter [\#125](https://github.com/voxpupuli/puppet-prometheus/pull/125) ([sathieu](https://github.com/sathieu))
@@ -1030,7 +1146,6 @@ Debian 8 is EOL since a few months now. This release will be the last with offic
 
 **Implemented enhancements:**
 
-- add support for remote\_read [\#109](https://github.com/voxpupuli/puppet-prometheus/pull/109) ([lobeck](https://github.com/lobeck))
 - messagebird/beanstalkd\_exporter support [\#105](https://github.com/voxpupuli/puppet-prometheus/pull/105) ([TomaszUrugOlszewski](https://github.com/TomaszUrugOlszewski))
 - Add support for mesos exporter [\#59](https://github.com/voxpupuli/puppet-prometheus/pull/59) ([tahaalibra](https://github.com/tahaalibra))
 
@@ -1198,7 +1313,6 @@ Debian 8 is EOL since a few months now. This release will be the last with offic
 
 **Merged pull requests:**
 
-- allow specification of a custom template [\#25](https://github.com/voxpupuli/puppet-prometheus/pull/25) ([lobeck](https://github.com/lobeck))
 - Allow overriding shared\_dir [\#22](https://github.com/voxpupuli/puppet-prometheus/pull/22) ([roidelapluie](https://github.com/roidelapluie))
 - Remove extra blank spaces at the end of lines [\#21](https://github.com/voxpupuli/puppet-prometheus/pull/21) ([roidelapluie](https://github.com/roidelapluie))
 - Fix AlertManager Class [\#20](https://github.com/voxpupuli/puppet-prometheus/pull/20) ([lswith](https://github.com/lswith))
