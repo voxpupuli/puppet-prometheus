@@ -191,7 +191,7 @@ define prometheus::daemon (
         content => template('prometheus/daemon.upstart.erb'),
       }
       file { "/etc/init.d/${name}":
-        ensure => stdlib::ensure($ensure, 'file'),
+        ensure => stdlib::ensure($ensure, 'link'),
         target => '/lib/init/upstart-job',
         owner  => 'root',
         group  => 'root',
