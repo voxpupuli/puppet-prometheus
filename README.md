@@ -18,6 +18,7 @@
     - [Example Usage](#example-usage)
     - [Monitored Nodes](#monitored-nodes)
   - [Example](#example)
+  - [How to Automatically Generate Scrape Configs](#how-to-automatically-generate-scrape-configs)
   - [Known issues](#known-issues)
   - [Development](#development)
     - [Component versions](#component-versions)
@@ -261,6 +262,80 @@ prometheus::alertmanager::receivers:
         channel: "#channel"
         send_resolved: true
         username: 'username'
+```
+
+### How to Automatically Generate Scrape Configs
+
+You can dynamically generate scrape configurations using exported resources. For any exporter
+managed by this module, you can enable this feature with a simple parameter. This exports the
+scrape job definition from the monitored node.
+
+```puppet
+class {'prometheus::node_exporter':
+  # set this to true to export the scrape job for any
+  # prometheus exporter defined by this module
+  export_scrape_job => true,
+  # ... other parameters
+}
+```
+
+For custom exporters not managed by this module, you can
+manually define and export a `prometheus::scrape_job` resource:
+
+```puppet
+# on a node with a custom prometheus exporter
+@@prometheus::scrape_job { "myjob-${facts['networking']['fqdn']}":
+  job_name => 'myjob',
+  targets  => [
+    "${facts['networking']['fqdn']}:1234",
+  ],
+  labels   => {
+    foo => 'bar',
+  },
+}
+```
+
+On your Prometheus server, you then collect these exported resources
+by defining `prometheus::collect_scrape_jobs`. You can also add or override
+any scrape configuration parameters.
+
+```yaml
+# In your Prometheus server's Hiera data
+prometheus::collect_scrape_jobs:
+  # corresponds to the job_name from the node_exporter
+  - job_name: 'node'
+  - job_name: 'myjob'
+    # add or override any scrape parameters for this job
+    metrics_path: /custom
+    scheme: https
+```
+
+This setup instructs the Prometheus server to collect all exported
+`scrape_job` resources that match the specified `job_name` values.
+The module then generates file-based service discovery
+configurations, resulting in a `prometheus.yaml` entry similar to this:
+
+```yaml
+# /etc/prometheus/prometheus.yaml
+scrape_configs:
+- job_name: myjob
+  metrics_path: /custom
+  scheme: https
+  file_sd_configs:
+  - files:
+    - "/etc/prometheus/file_sd_config.d/myjob_*.yaml"
+# ... other jobs
+```
+
+Within the directory `/etc/prometheus/file_sd_configs.d`,
+you will find the configuration files for each target
+defined by the exported `scrape_job` resource. Example:
+
+```yaml
+- targets:
+  - <host.example.org>:1234
+  labels:
+    foo: bar
 ```
 
 ## Known issues
