@@ -109,8 +109,8 @@ class prometheus::ssl_exporter (
   }
 
   $options = join([
-      "--config.file=${config_file}",
-      $extra_options,
+    "--config.file=${config_file}",
+    $extra_options,
   ], ' ')
 
   # SSL exporter is not packaged into a directory

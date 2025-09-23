@@ -159,10 +159,10 @@ define prometheus::daemon (
       User[$user] ~> $notify_service
     }
     ensure_resource('user', [$user], {
-        ensure => $ensure,
-        system => true,
-        groups => $extra_groups,
-        shell  => $usershell,
+      ensure => $ensure,
+      system => true,
+      groups => $extra_groups,
+      shell  => $usershell,
     })
 
     if $manage_group {
@@ -176,8 +176,8 @@ define prometheus::daemon (
   }
   if $manage_group {
     ensure_resource('group', [$group], {
-        ensure => $ensure,
-        system => true,
+      ensure => $ensure,
+      system => true,
     })
   }
 

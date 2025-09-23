@@ -143,7 +143,7 @@ class prometheus::cgroup_exporter (
     sudo::conf { $service_name:
       ensure         => 'present',
       content        => join([
-          "${user} ALL = NOPASSWD: ${archive_bin_path}",
+        "${user} ALL = NOPASSWD: ${archive_bin_path}",
       ], "\n"),
       sudo_file_name => $service_name,
     }
@@ -153,8 +153,8 @@ class prometheus::cgroup_exporter (
       group   => $group,
       mode    => '0750',
       content => join([
-          '#!/bin/bash',
-          "sudo ${archive_bin_path} \"$@\"",
+        '#!/bin/bash',
+        "sudo ${archive_bin_path} \"$@\"",
       ], "\n"),
     }
 

@@ -128,13 +128,13 @@ class prometheus::ipmi_exporter (
     sudo::conf { $service_name:
       ensure         => 'present',
       content        => join([
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmimonitoring",
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sensors",
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-dcmi",
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-raw",
-          "${user} ALL = NOPASSWD: /usr/sbin/bmc-info",
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-chassis",
-          "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sel",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmimonitoring",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sensors",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmi-dcmi",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmi-raw",
+        "${user} ALL = NOPASSWD: /usr/sbin/bmc-info",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmi-chassis",
+        "${user} ALL = NOPASSWD: /usr/sbin/ipmi-sel",
       ], "\n"),
       sudo_file_name => $service_name,
     }
@@ -144,8 +144,8 @@ class prometheus::ipmi_exporter (
       group   => $group,
       mode    => '0750',
       content => join([
-          '#!/bin/bash',
-          'sudo /usr/sbin/$(basename $0) "$@"',
+        '#!/bin/bash',
+        'sudo /usr/sbin/$(basename $0) "$@"',
       ], "\n"),
     }
 
@@ -173,9 +173,9 @@ class prometheus::ipmi_exporter (
   }
 
   $options = join([
-      "--config.file=${config_file}",
-      $extra_options,
-      $unprivileged_option,
+    "--config.file=${config_file}",
+    $extra_options,
+    $unprivileged_option,
   ], ' ')
 
   prometheus::daemon { $service_name:

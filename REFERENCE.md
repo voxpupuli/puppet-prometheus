@@ -15922,9 +15922,9 @@ Alias of
 
 ```puppet
 Struct[{
-    Optional[tls_server_config] => Prometheus::Web_config::Tls_server_config,
-    Optional[http_server_config] => Prometheus::Web_config::Http_server_config,
-    Optional[basic_auth_users] => Hash[String[1],String[1],1],
+  Optional[tls_server_config] => Prometheus::Web_config::Tls_server_config,
+  Optional[http_server_config] => Prometheus::Web_config::Http_server_config,
+  Optional[basic_auth_users] => Hash[String[1],String[1],1],
 }]
 ```
 
@@ -15939,14 +15939,14 @@ Alias of
 
 ```puppet
 Struct[{
-    Optional[http2] => Boolean,
-    Optional[headers] => Struct[{
-        Optional['Content-Security-Policy'] => String[1],
-        Optional['X-Frame-Options'] => String[1],
-        Optional['X-Content-Type-Options'] => String[1],
-        Optional['X-XSS-Protection'] => String[1],
-        Optional['Strict-Transport-Security'] => String[1],
-    }]
+  Optional[http2] => Boolean,
+  Optional[headers] => Struct[{
+    Optional['Content-Security-Policy'] => String[1],
+    Optional['X-Frame-Options'] => String[1],
+    Optional['X-Content-Type-Options'] => String[1],
+    Optional['X-XSS-Protection'] => String[1],
+    Optional['Strict-Transport-Security'] => String[1],
+  }]
 }]
 ```
 
@@ -15961,16 +15961,16 @@ Alias of
 
 ```puppet
 Struct[{
-    cert_file => Stdlib::Absolutepath,
-    key_file => Stdlib::Absolutepath,
-    Optional[client_ca_file] => Stdlib::Absolutepath,
-    Optional[client_auth_type] => String[1],
-    Optional[client_allowed_sans] => Array[String[1],1],
-    Optional[min_version] => String[1],
-    Optional[max_version] => String[1],
-    Optional[cipher_suites] => Array[String[1],1],
-    Optional[prefer_server_cipher_suites] => Boolean,
-    Optional[curve_preferences] => Array[String[1],1],
+  cert_file => Stdlib::Absolutepath,
+  key_file => Stdlib::Absolutepath,
+  Optional[client_ca_file] => Stdlib::Absolutepath,
+  Optional[client_auth_type] => String[1],
+  Optional[client_allowed_sans] => Array[String[1],1],
+  Optional[min_version] => String[1],
+  Optional[max_version] => String[1],
+  Optional[cipher_suites] => Array[String[1],1],
+  Optional[prefer_server_cipher_suites] => Boolean,
+  Optional[curve_preferences] => Array[String[1],1],
 }]
 ```
 

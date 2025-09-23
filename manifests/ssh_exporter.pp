@@ -109,8 +109,8 @@ class prometheus::ssh_exporter (
   }
 
   $options = join([
-      "--config.file=${config_file}",
-      $extra_options,
+    "--config.file=${config_file}",
+    $extra_options,
   ], ' ')
 
   prometheus::daemon { $service_name:

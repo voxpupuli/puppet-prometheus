@@ -161,9 +161,9 @@ class prometheus::sachet (
     group   => $group,
     mode    => $config_mode,
     content => epp('prometheus/sachet.yaml.epp', {
-        'templates' => $templates.map |$template| { "${template_dir}/${template[name]}.tmpl" },
-        'receivers' => $receivers,
-        'providers' => $providers
+      'templates' => $templates.map |$template| { "${template_dir}/${template[name]}.tmpl" },
+      'receivers' => $receivers,
+      'providers' => $providers
     }),
     notify  => $notify_service,
     require => File[$config_dir],
