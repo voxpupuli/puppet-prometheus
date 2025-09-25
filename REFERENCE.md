@@ -7518,7 +7518,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.47.0'`
+Default value: `'0.47.1'`
 
 ##### <a name="-prometheus--mongodb_exporter--use_kingpin"></a>`use_kingpin`
 
