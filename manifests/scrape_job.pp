@@ -23,10 +23,10 @@ define prometheus::scrape_job (
   Enum['present', 'absent'] $ensure = 'present',
 ) {
   $config = stdlib::to_yaml([
-      {
-        targets => $targets,
-        labels  => $labels,
-      },
+    {
+      targets => $targets,
+      labels  => $labels,
+    },
   ])
   file { "${collect_dir}/${job_name}_${name}.yaml":
     ensure  => stdlib::ensure($ensure, 'file'),

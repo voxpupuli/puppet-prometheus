@@ -219,7 +219,7 @@ class prometheus::config {
     $job_name = $job_definition['job_name']
     $job_definition + {
       file_sd_configs => [{
-          files => ["${prometheus::config_dir}/file_sd_config.d/${job_name}_*.yaml"]
+        files => ["${prometheus::config_dir}/file_sd_config.d/${job_name}_*.yaml"]
       }]
     }
   }

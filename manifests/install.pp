@@ -75,12 +75,12 @@ class prometheus::install {
   }
   if $prometheus::server::manage_user {
     ensure_resource('user', [$prometheus::server::user], {
-        ensure => 'present',
-        system => true,
-        groups => $prometheus::server::extra_groups,
-        shell  => $prometheus::server::usershell,
-        managehome => true,
-        home       => $prometheus::server::localstorage,
+      ensure => 'present',
+      system => true,
+      groups => $prometheus::server::extra_groups,
+      shell  => $prometheus::server::usershell,
+      managehome => true,
+      home       => $prometheus::server::localstorage,
     })
 
     if $prometheus::server::manage_group {
@@ -89,8 +89,8 @@ class prometheus::install {
   }
   if $prometheus::server::manage_group {
     ensure_resource('group', [$prometheus::server::group], {
-        ensure => 'present',
-        system => true,
+      ensure => 'present',
+      system => true,
     })
   }
   if $prometheus::server::manage_config_dir {
