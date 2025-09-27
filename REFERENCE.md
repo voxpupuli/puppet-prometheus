@@ -1746,7 +1746,7 @@ Default value: `''`
 
 ##### <a name="-prometheus--beanstalkd_exporter--download_url"></a>`download_url`
 
-Data type: `Variant[Undef,String]`
+Data type: `Optional[String]`
 
 Complete URL corresponding to the where the release binary archive can be downloaded
 
