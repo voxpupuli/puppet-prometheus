@@ -31,7 +31,7 @@
 #  Group under which the binary is running
 #
 # @param init_style
-#  Service startup scripts style (e.g. rc, upstart or systemd)
+#  Service startup scripts style (e.g. rc or systemd)
 #
 # @param install_method
 #  Installation method: url or package (only url is supported currently)

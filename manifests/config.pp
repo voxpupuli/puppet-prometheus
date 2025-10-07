@@ -105,24 +105,6 @@ class prometheus::config {
 
   if $prometheus::server::manage_init_file {
     case $prometheus::server::init_style {
-      'upstart': {
-        file { '/etc/init/prometheus.conf':
-          ensure  => file,
-          mode    => '0444',
-          owner   => 'root',
-          group   => 'root',
-          content => template('prometheus/prometheus.upstart.erb'),
-          notify  => $notify,
-        }
-        file { '/etc/init.d/prometheus':
-          ensure => link,
-          target => '/lib/init/upstart-job',
-          owner  => 'root',
-          group  => 'root',
-          mode   => '0755',
-          notify => $notify,
-        }
-      }
       'systemd': {
         if $max_open_files {
           $systemd_service_options = $prometheus::systemd_service_options + { 'LimitNOFILE' => $max_open_files }
