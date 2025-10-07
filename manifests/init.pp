@@ -60,7 +60,7 @@
 #  Note: this applies only to command-line options changes. Configuration
 #  options are always *reloaded* without restarting.
 # @param init_style
-#  Service startup scripts style (e.g. rc, upstart or systemd)
+#  Service startup scripts style (e.g. rc or systemd)
 # @param global_config
 #  Prometheus global configuration variables
 # @param rule_files

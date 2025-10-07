@@ -5,7 +5,7 @@
 # @param extra_groups Extra groups to add the binary user to
 # @param extra_options Extra options added to the startup command
 # @param group Group under which the binary is running
-# @param init_style Service startup scripts style (e.g. rc, upstart or systemd)
+# @param init_style Service startup scripts style (e.g. rc or systemd)
 # @param install_method Installation method: url or package (only url is supported currently)
 # @param manage_group Whether to create a group for or rely on external code for that
 # @param manage_service Should puppet manage the service?
