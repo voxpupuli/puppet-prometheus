@@ -18,7 +18,7 @@
     - [Example Usage](#example-usage)
     - [Monitored Nodes](#monitored-nodes)
   - [Example](#example)
-  - [How to Automatically Generate Scrape Configs](#how-to-automatically-generate-scrape-configs)
+    - [How to Automatically Generate Scrape Configs](#how-to-automatically-generate-scrape-configs)
   - [Known issues](#known-issues)
   - [Development](#development)
     - [Component versions](#component-versions)
@@ -45,7 +45,7 @@ This module automates the install and configuration of Prometheus monitoring too
   * The package method was implemented, but currently there isn't any package for prometheus
 * Optionally installs a user to run it under (per exporter)
 * Installs a configuration file for prometheus daemon (/etc/prometheus/prometheus.yaml) or for alertmanager (/etc/prometheus/alert.rules)
-* Manages the services via upstart, sysv, or systemd
+* Manages the services via sysv, or systemd
 * Optionally creates alert rules
 
 ### Example Usage
