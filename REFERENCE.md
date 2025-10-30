@@ -420,7 +420,7 @@ Default value: `true`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$facts['service_provider']`
 
@@ -1115,7 +1115,7 @@ prometheus::alertmanager::inhibit_rules:
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -1447,7 +1447,7 @@ Default value: `'apache-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -1786,7 +1786,7 @@ Default value: `'beanstalkd-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -2084,7 +2084,7 @@ Default value: `'bind-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -2379,7 +2379,7 @@ Default value: `'bird-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -2714,7 +2714,7 @@ Default value: `'blackbox-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -3038,7 +3038,7 @@ Default value: `'cgroup-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -3348,7 +3348,7 @@ Default value: `'collectd-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -3640,7 +3640,7 @@ Group under which the binary is running
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -3932,7 +3932,7 @@ Default value: `'dellhw-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -4243,7 +4243,7 @@ Group under which the binary is running
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -4548,7 +4548,7 @@ Default value: `'frr-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -4826,7 +4826,7 @@ Default value: `'graphite-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -5131,7 +5131,7 @@ Default value: `'grok-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -5417,7 +5417,7 @@ Default value: `'iperf3-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$facts['service_provider']`
 
@@ -5702,7 +5702,7 @@ Default value: `'ipmi-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -6013,7 +6013,7 @@ Default value: `'ipsec-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -6511,7 +6511,7 @@ Default value: `'memcached-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -6804,7 +6804,7 @@ Group under which the binary is running
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -7094,7 +7094,7 @@ Default value: `'mongodb-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -7454,7 +7454,7 @@ Default value: `'mysqld-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -7786,7 +7786,7 @@ Default value: `'nginx-prometheus-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -8132,7 +8132,7 @@ Default value: `'node-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -8445,7 +8445,7 @@ Default value: `'openldap-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -8742,7 +8742,7 @@ Default value: `'openvpn-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -9042,7 +9042,7 @@ Default value: `'php-fpm_exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -9616,7 +9616,7 @@ Default value: `'postgres-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -9982,7 +9982,7 @@ Default value: `'process-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -10297,7 +10297,7 @@ Default value: `'puppetdb-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -10586,7 +10586,7 @@ Default value: `'pushgateway'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -10815,7 +10815,7 @@ Group under which the binary is running
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -11056,7 +11056,7 @@ Group under which the binary is running
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -11299,7 +11299,7 @@ Default value: `'redis-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -11593,7 +11593,7 @@ Default value: `'sachet'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -12473,7 +12473,7 @@ Default value: `snmp-exporter`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -12772,7 +12772,7 @@ Default value: `'ssh-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -13087,7 +13087,7 @@ Default value: `'ssl-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -13393,7 +13393,7 @@ Default value: `'statsd-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -13693,7 +13693,7 @@ Default value: `'systemd-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$facts['service_provider']`
 
@@ -13962,7 +13962,7 @@ Default value: `'unbound-exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -14249,7 +14249,7 @@ Default value: `'varnish'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `$prometheus::init_style`
 
@@ -14520,7 +14520,7 @@ Default value: `'wireguard_exporter'`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd)
+Service startup scripts style (e.g. rc or systemd)
 
 Default value: `'none'`
 
@@ -15117,7 +15117,7 @@ Default value: `"/opt/${name}-${version}.${os}-${arch}/${name}"`
 
 Data type: `Prometheus::Initstyle`
 
-Service startup scripts style (e.g. rc, upstart or systemd).
+Service startup scripts style (e.g. rc or systemd).
 Can also be set to `none` when you don't want the class to create a startup script/unit_file for you.
 Typically this can be used when a package is already providing the file.
 
@@ -15309,7 +15309,7 @@ Alias of `Pattern[/^gs:\/\//]`
 
 A type to represent the init style of a Prometheus service
 
-Alias of `Enum['sysv', 'systemd', 'sles', 'launchd', 'upstart', 'none']`
+Alias of `Enum['sysv', 'systemd', 'sles', 'launchd', 'none']`
 
 ### <a name="Prometheus--Install"></a>`Prometheus::Install`
 

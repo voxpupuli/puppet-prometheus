@@ -38,7 +38,7 @@
 #      - 'cluster'
 #      - 'service'
 # @param init_style
-#  Service startup scripts style (e.g. rc, upstart or systemd)
+#  Service startup scripts style (e.g. rc or systemd)
 # @param install_method
 #  Installation method: url or package (only url is supported currently)
 # @param manage_group
@@ -173,7 +173,7 @@ class prometheus::alertmanager (
 
   $alertmanager_reload = $prometheus::init_style ? {
     'systemd'          => "systemctl reload-or-restart ${service_name}",
-    /^(upstart|none)$/ => "service ${service_name} reload",
+    'none'             => "service ${service_name} reload",
     /^(sysv|sles)$/    => "/etc/init.d/${service_name} reload",
     'launchd'          => "launchctl stop ${service_name} && launchctl start ${service_name}",
   }

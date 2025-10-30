@@ -4,6 +4,5 @@ type Prometheus::Initstyle = Enum[
   'systemd',
   'sles',
   'launchd',
-  'upstart',
   'none',
 ]
