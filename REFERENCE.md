@@ -8398,7 +8398,7 @@ Data type: `String`
 
 Extension for the release binary archive
 
-Default value: `''`
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--openldap_exporter--download_url"></a>`download_url`
 
@@ -8414,7 +8414,7 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
-Default value: `'https://github.com/tomcz/openldap_exporter/releases'`
+Default value: `'https://github.com/hm-edu/openldap-exporter/releases'`
 
 ##### <a name="-prometheus--openldap_exporter--extra_groups"></a>`extra_groups`
 
@@ -8501,9 +8501,9 @@ Default value: `'latest'`
 
 Data type: `String[1]`
 
-The binary package name - not available yet
+The binary package name - used to reference the name in the archive.
 
-Default value: `'openldap_exporter'`
+Default value: `'openldap-exporter'`
 
 ##### <a name="-prometheus--openldap_exporter--restart_on_change"></a>`restart_on_change`
 
@@ -8551,7 +8551,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'2.2.2'`
+Default value: `'v2.5.0'`
 
 ##### <a name="-prometheus--openldap_exporter--ldap_binddn"></a>`ldap_binddn`
 

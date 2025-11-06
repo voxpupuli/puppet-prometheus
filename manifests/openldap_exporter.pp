@@ -29,7 +29,7 @@
 # @param package_ensure
 #  If package, then use this for package ensure default 'latest'
 # @param package_name
-#  The binary package name - not available yet
+#  The binary package name - used to reference the name in the archive.
 # @param restart_on_change
 #  Should puppet restart the service on configuration change? (default true)
 # @param service_enable
@@ -51,15 +51,15 @@
 # @param proxy_type
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::openldap_exporter (
-  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
+  String $download_extension                                 = 'tar.gz',
   Array[String] $extra_groups                                = [],
   String[1] $group                                           = 'openldap-exporter',
   String[1] $package_ensure                                  = 'latest',
   String[1] $user                                            = 'openldap-exporter',
-  # renovate: depName=tomcz/openldap_exporter
-  String[1] $version                                         = '2.2.2',
-  Prometheus::Uri $download_url_base                         = 'https://github.com/tomcz/openldap_exporter/releases',
-  String[1] $package_name                                    = 'openldap_exporter',
+  # renovate: depName=hm-edu/openldap-exporter
+  String[1] $version                                         = 'v2.5.0',
+  Prometheus::Uri $download_url_base                         = 'https://github.com/hm-edu/openldap-exporter/releases',
+  String[1] $package_name                                    = 'openldap-exporter',
   String[1] $service_name                                    = 'openldap_exporter',
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
@@ -83,27 +83,29 @@ class prometheus::openldap_exporter (
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 ) inherits prometheus {
-  $release = "v${version}"
-  if versioncmp($version, '2.2.1') >= 0 {
-    $real_download_extension = 'gz'
-    $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${os}-${prometheus::real_arch}.gz")
-    $extract_path = "/opt/openldap_exporter-${version}.${os}-${prometheus::real_arch}"
-    $archive_bin_path = "${extract_path}/openldap_exporter-${os}-${prometheus::real_arch}"
-    $extract_command = "gzip -cd %s > ${archive_bin_path}"
-    file { $extract_path:
-      ensure => 'directory',
-      owner  => 'root',
-      group  => 0, # 0 instead of root because OS X uses "wheel".
-      mode   => '0755',
-      before => Prometheus::Daemon[$service_name],
-    }
-  } else {
-    $real_download_extension = $download_extension
-    $real_download_url = pick($download_url,"${download_url_base}/download/${release}/${package_name}-${os}")
-    $extract_path = undef
-    $extract_command = undef
-    $archive_bin_path = undef
+  # package does not follow the $prometheus::real_arch naming for x86_64
+  # but also does not follw the $prometheus::arch naming for aarch64 and armv6l
+  # there are no other arch released
+  $real_arch = $prometheus::arch ? {
+    'aarch64' => $prometheus::real_arch,
+    'armv6l'  => $prometheus::real_arch,
+    'amd64'   => 'x86_64',
+    default   => $prometheus::arch,
   }
+  $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}_${os}_${real_arch}.${download_extension}")
+
+  # For compatibility with previous versions, we keep the previous name for the service
+  # but since the binary has changed name, we need to specify it manually.
+  $extract_path = "/opt/${service_name}-${version}.${os}-${real_arch}"
+  $archive_bin_path = "${extract_path}/${package_name}"
+  file { $extract_path:
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 0, # 0 instead of root because OS X uses "wheel".
+    mode   => '0755',
+    before => Prometheus::Daemon[$service_name],
+  }
+
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
@@ -120,11 +122,10 @@ class prometheus::openldap_exporter (
   prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
-    download_extension => $real_download_extension,
+    download_extension => $download_extension,
     os                 => $os,
     real_download_url  => $real_download_url,
     extract_path       => $extract_path,
-    extract_command    => $extract_command,
     archive_bin_path   => $archive_bin_path,
     bin_dir            => $bin_dir,
     notify_service     => $notify_service,
