@@ -4702,7 +4702,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.8.1'`
+Default value: `'1.9.0'`
 
 ##### <a name="-prometheus--frr_exporter--web_listen_address"></a>`web_listen_address`
 

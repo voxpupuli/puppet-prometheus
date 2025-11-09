@@ -86,7 +86,7 @@ class prometheus::frr_exporter (
   String[1] $package_name = 'frr_exporter',
   String[1] $user = 'frr-exporter',
   # renovate: depName=tynany/frr_exporter
-  String[1] $version = '1.8.1',
+  String[1] $version = '1.9.0',
   Boolean $purge_config_dir = true,
   Boolean $restart_on_change = true,
   Boolean $service_enable = true,
