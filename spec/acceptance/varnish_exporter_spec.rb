@@ -19,9 +19,9 @@ describe 'prometheus varnish exporter' do
   end
 
   # rubocop:disable RSpec/RepeatedExampleGroupBody,RSpec/RepeatedExampleGroupDescription
-  describe 'varnish_exporter update from 1.4 to 1.5' do
+  describe 'varnish_exporter update from 1.5 to 1.6' do
     it 'is idempotent' do
-      pp = "class{'prometheus::varnish_exporter': version => '1.4'}"
+      pp = "class{'prometheus::varnish_exporter': version => '1.5'}"
       apply_manifest(pp, catch_failures: true)
     end
 
@@ -35,7 +35,7 @@ describe 'prometheus varnish exporter' do
     end
 
     it 'is idempotent' do
-      pp = "class{'prometheus::varnish_exporter': version => '1.5'}"
+      pp = "class{'prometheus::varnish_exporter': version => '1.6'}"
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
