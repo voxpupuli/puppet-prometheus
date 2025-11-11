@@ -4,6 +4,54 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v17.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.0.0) (2025-11-11)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.5.0...v17.0.0)
+
+**Breaking changes:**
+
+- Remove Ubuntu 20.04 support [\#991](https://github.com/voxpupuli/puppet-prometheus/pull/991) ([TheMeier](https://github.com/TheMeier))
+- feat: drop support for upstart init style [\#978](https://github.com/voxpupuli/puppet-prometheus/pull/978) ([TheMeier](https://github.com/TheMeier))
+- Change openldap\_exporter to https://github.com/hm-edu/openldap-exporter [\#974](https://github.com/voxpupuli/puppet-prometheus/pull/974) ([dabelenda](https://github.com/dabelenda))
+- Drop puppet, update openvox minimum version to 8.19 [\#948](https://github.com/voxpupuli/puppet-prometheus/pull/948) ([TheMeier](https://github.com/TheMeier))
+- remove rabbitmq\_exporter [\#925](https://github.com/voxpupuli/puppet-prometheus/pull/925) ([TheMeier](https://github.com/TheMeier))
+- remove haproxy\_exporter [\#924](https://github.com/voxpupuli/puppet-prometheus/pull/924) ([TheMeier](https://github.com/TheMeier))
+- remove nginx\_vts\_exporter [\#923](https://github.com/voxpupuli/puppet-prometheus/pull/923) ([TheMeier](https://github.com/TheMeier))
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency tynany/frr\_exporter to v1.9.0 [\#993](https://github.com/voxpupuli/puppet-prometheus/pull/993) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.80.0 [\#992](https://github.com/voxpupuli/puppet-prometheus/pull/992) ([pccibot](https://github.com/pccibot))
+- Add Ubuntu 24.04 support [\#990](https://github.com/voxpupuli/puppet-prometheus/pull/990) ([TheMeier](https://github.com/TheMeier))
+- chore\(deps\): update dependency prometheus/node\_exporter to v1.10.2 [\#987](https://github.com/voxpupuli/puppet-prometheus/pull/987) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.79.0 [\#985](https://github.com/voxpupuli/puppet-prometheus/pull/985) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1.5.1 [\#984](https://github.com/voxpupuli/puppet-prometheus/pull/984) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.78.0 [\#981](https://github.com/voxpupuli/puppet-prometheus/pull/981) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/mysqld\_exporter to v0.18.0 [\#976](https://github.com/voxpupuli/puppet-prometheus/pull/976) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/postgres\_exporter to v0.18.1 [\#975](https://github.com/voxpupuli/puppet-prometheus/pull/975) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/postgres\_exporter to v0.18.0 [\#972](https://github.com/voxpupuli/puppet-prometheus/pull/972) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.77.0 [\#964](https://github.com/voxpupuli/puppet-prometheus/pull/964) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency nginxinc/nginx-prometheus-exporter to v1.5.0 [\#962](https://github.com/voxpupuli/puppet-prometheus/pull/962) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.47.1 [\#961](https://github.com/voxpupuli/puppet-prometheus/pull/961) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.76.0 [\#958](https://github.com/voxpupuli/puppet-prometheus/pull/958) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency tynany/frr\_exporter to v1.8.1 [\#957](https://github.com/voxpupuli/puppet-prometheus/pull/957) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.47.0 [\#951](https://github.com/voxpupuli/puppet-prometheus/pull/951) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.75.0 [\#950](https://github.com/voxpupuli/puppet-prometheus/pull/950) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.46.0 [\#947](https://github.com/voxpupuli/puppet-prometheus/pull/947) ([pccibot](https://github.com/pccibot))
+- Add FRR exporter support [\#943](https://github.com/voxpupuli/puppet-prometheus/pull/943) ([vietcgi](https://github.com/vietcgi))
+- Add cgroup exporter [\#897](https://github.com/voxpupuli/puppet-prometheus/pull/897) ([ncoudene](https://github.com/ncoudene))
+
+**Closed issues:**
+
+- Missing documentation for using resource collectors for generating scrape\_configs [\#967](https://github.com/voxpupuli/puppet-prometheus/issues/967)
+- drop support for nginx-vts-exporter [\#827](https://github.com/voxpupuli/puppet-prometheus/issues/827)
+
+**Merged pull requests:**
+
+- docs: Add automatic scrape configs generation section [\#968](https://github.com/voxpupuli/puppet-prometheus/pull/968) ([Pigueiras](https://github.com/Pigueiras))
+- Fix ensure type for upstart in daemon.pp [\#966](https://github.com/voxpupuli/puppet-prometheus/pull/966) ([iheartski](https://github.com/iheartski))
+- systemd\_exporter: fix comments and update download URL [\#956](https://github.com/voxpupuli/puppet-prometheus/pull/956) ([anouve](https://github.com/anouve))
+
 ## [v16.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v16.5.0) (2025-07-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.4.1...v16.5.0)
