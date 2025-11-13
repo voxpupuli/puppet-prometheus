@@ -4454,6 +4454,7 @@ The following parameters are available in the `prometheus::frr_exporter` class:
 * [`download_url`](#-prometheus--frr_exporter--download_url)
 * [`download_url_base`](#-prometheus--frr_exporter--download_url_base)
 * [`extra_groups`](#-prometheus--frr_exporter--extra_groups)
+* [`extra_options`](#-prometheus--frr_exporter--extra_options)
 * [`frr_socket_dir`](#-prometheus--frr_exporter--frr_socket_dir)
 * [`group`](#-prometheus--frr_exporter--group)
 * [`init_style`](#-prometheus--frr_exporter--init_style)
@@ -4463,6 +4464,7 @@ The following parameters are available in the `prometheus::frr_exporter` class:
 * [`manage_service`](#-prometheus--frr_exporter--manage_service)
 * [`manage_user`](#-prometheus--frr_exporter--manage_user)
 * [`advertised_prefixes`](#-prometheus--frr_exporter--advertised_prefixes)
+* [`bgp6`](#-prometheus--frr_exporter--bgp6)
 * [`os`](#-prometheus--frr_exporter--os)
 * [`package_ensure`](#-prometheus--frr_exporter--package_ensure)
 * [`package_name`](#-prometheus--frr_exporter--package_name)
@@ -4527,6 +4529,14 @@ Data type: `Array[String]`
 Extra groups to add the binary user to
 
 Default value: `[]`
+
+##### <a name="-prometheus--frr_exporter--extra_options"></a>`extra_options`
+
+Data type: `Optional[String[1]]`
+
+Extra options added to the startup command
+
+Default value: `undef`
 
 ##### <a name="-prometheus--frr_exporter--frr_socket_dir"></a>`frr_socket_dir`
 
@@ -4597,6 +4607,14 @@ Default value: `true`
 Data type: `Boolean`
 
 Enable BGP advertised prefixes collection
+
+Default value: `false`
+
+##### <a name="-prometheus--frr_exporter--bgp6"></a>`bgp6`
+
+Data type: `Boolean`
+
+Enable the bgp6 collector
 
 Default value: `false`
 
