@@ -64,7 +64,7 @@ class prometheus::unbound_exporter (
   String[1] $package_name                                    = 'unbound_exporter',
   String[1] $user                                            = 'unbound-exporter',
   # renovate: depName=kumina/unbound_exporter
-  String[1] $version                                         = '0.4.6',
+  String[1] $version                                         = '0.5.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,
