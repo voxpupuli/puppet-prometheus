@@ -2868,7 +2868,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.27.0'`
+Default value: `'0.28.0'`
 
 ##### <a name="-prometheus--blackbox_exporter--config_mode"></a>`config_mode`
 
