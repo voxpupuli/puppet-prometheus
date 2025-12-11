@@ -88,7 +88,8 @@ describe 'prometheus::frr_exporter' do
             version: '1.8.0',
             peer_descriptions: true,
             peer_types: true,
-            advertised_prefixes: true
+            advertised_prefixes: true,
+            bgp6: true
           }
         end
 
@@ -96,7 +97,23 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.bgp.advertised-prefixes'
+            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.bgp.advertised-prefixes --collector.bgp6'
+          )
+        }
+      end
+
+      context 'with extra_options' do
+        let(:params) do
+          {
+            extra_options: '--collector.vrrp',
+          }
+        end
+
+        it { is_expected.to compile.with_all_deps }
+
+        it {
+          is_expected.to contain_prometheus__daemon('frr_exporter').with(
+            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.vrrp'
           )
         }
       end
