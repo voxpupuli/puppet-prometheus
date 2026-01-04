@@ -5531,7 +5531,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.1.3'`
+Default value: `'1.3.1'`
 
 ##### <a name="-prometheus--iperf3_exporter--export_scrape_job"></a>`export_scrape_job`
 
