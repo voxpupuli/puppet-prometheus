@@ -13,6 +13,8 @@
 #  Base URL for the binary archive
 # @param extra_groups
 #  Extra groups to add the binary user to
+# @param extra_options
+#  Extra options added to the startup command
 # @param frr_socket_dir
 #  Path to FRR socket directory for BGP monitoring
 # @param group
@@ -31,6 +33,8 @@
 #  Whether to create user or rely on external code for that
 # @param advertised_prefixes
 #  Enable BGP advertised prefixes collection
+# @param bgp6
+#  Enable the bgp6 collector
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -100,6 +104,7 @@ class prometheus::frr_exporter (
   String[1] $os = downcase($facts['kernel']),
   String $arch = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir = $prometheus::bin_dir,
+  Optional[String[1]] $extra_options = undef,
   Optional[String] $download_url = undef,
   String $web_listen_address = ':9342',
   String $telemetry_path = '/metrics',
@@ -107,6 +112,7 @@ class prometheus::frr_exporter (
   Boolean $peer_descriptions = true,
   Boolean $peer_types = true,
   Boolean $advertised_prefixes = false,
+  Boolean $bgp6 = false,
   String $log_level = 'info',
   Hash[String[1], Scalar] $env_vars = {},
   Enum['present', 'absent'] $ensure = 'present',
@@ -137,11 +143,15 @@ class prometheus::frr_exporter (
     true  => ['--collector.bgp.advertised-prefixes'],
     false => [],
   }
-  $all_collector_opts = $peer_descriptions_opt + $peer_types_opt + $advertised_prefixes_opt
+  $bgp6_opt = $bgp6 ? {
+    true  => ['--collector.bgp6'],
+    false => [],
+  }
+  $all_collector_opts = $peer_descriptions_opt + $peer_types_opt + $advertised_prefixes_opt + $bgp6_opt
 
   # Combine all options
   $all_opts = [$_frr_socket_dir_opt, $_listen_address_opt, $_telemetry_path_opt, $_log_level_opt] + $all_collector_opts
-  $options = join($all_opts, ' ')
+  $options = "${all_opts.join(' ')} ${extra_options}".strip()
 
   # Extract port from web_listen_address for scrape configuration
   $scrape_port_int = Integer(split($web_listen_address, ':')[-1])
