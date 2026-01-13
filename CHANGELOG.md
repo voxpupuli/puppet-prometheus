@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v17.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.1.0) (2026-01-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v17.0.0...v17.1.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency prometheus/snmp\_exporter to v0.30.1 [\#1017](https://github.com/voxpupuli/puppet-prometheus/pull/1017) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency lusitaniae/apache\_exporter to v1.0.12 [\#1016](https://github.com/voxpupuli/puppet-prometheus/pull/1016) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/elasticsearch\_exporter to v1.10.0 [\#1008](https://github.com/voxpupuli/puppet-prometheus/pull/1008) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/blackbox\_exporter to v0.28.0 [\#1007](https://github.com/voxpupuli/puppet-prometheus/pull/1007) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.47.2 [\#1005](https://github.com/voxpupuli/puppet-prometheus/pull/1005) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency hm-edu/openldap-exporter to v2.6.0 [\#1002](https://github.com/voxpupuli/puppet-prometheus/pull/1002) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.80.1 [\#1001](https://github.com/voxpupuli/puppet-prometheus/pull/1001) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency kumina/unbound\_exporter to v0.5.0 [\#999](https://github.com/voxpupuli/puppet-prometheus/pull/999) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.4 [\#998](https://github.com/voxpupuli/puppet-prometheus/pull/998) ([pccibot](https://github.com/pccibot))
+- frr\_exporter: Add new option for collector.bgp6 [\#997](https://github.com/voxpupuli/puppet-prometheus/pull/997) ([b4ldr](https://github.com/b4ldr))
+
+**Fixed bugs:**
+
+- fix\(mysqld\_exporter\): resolve Deferred evaluation in template rendering [\#1004](https://github.com/voxpupuli/puppet-prometheus/pull/1004) ([jiayuchen888](https://github.com/jiayuchen888))
+
+**Merged pull requests:**
+
+- chore: fix lint errors [\#1011](https://github.com/voxpupuli/puppet-prometheus/pull/1011) ([TheMeier](https://github.com/TheMeier))
+
 ## [v17.0.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.0.0) (2025-11-11)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v16.5.0...v17.0.0)
