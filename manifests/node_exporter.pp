@@ -12,6 +12,8 @@
 # @param collectors_disable
 #  disable collectors which are enabled by default
 #  https://github.com/prometheus/node_exporter#enabled-by-default
+# @param textfile_directory
+#  Sets the directory for the textfile collector using `--collector.textfile.directory`
 # @param download_extension
 #  Extension for the release binary archive
 # @param download_url
@@ -109,6 +111,7 @@ class prometheus::node_exporter (
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
   Stdlib::Absolutepath $web_config_file                      = '/etc/node_exporter_web-config.yml',
   Prometheus::Web_config $web_config_content                 = {},
+  Optional[String] $textfile_directory                       = undef,
 ) inherits prometheus {
   # Prometheus added a 'v' on the realease name at 0.13.0
   if versioncmp ($version, '0.13.0') >= 0 {
@@ -126,6 +129,11 @@ class prometheus::node_exporter (
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
+  }
+
+  $textfile_collector = $textfile_directory ? {
+    undef   => '',
+    default => "--collector.textfile.directory=${textfile_directory}"
   }
 
   $cmd_collectors_enable = $collectors_enable.map |$collector| {
@@ -169,6 +177,7 @@ class prometheus::node_exporter (
     $extra_options,
     $cmd_collectors_enable.join(' '),
     $cmd_collectors_disable.join(' '),
+    $textfile_collector,
     $_web_config,
     $listen_address,
   ].filter |$x| { !$x.empty }.join(' ')

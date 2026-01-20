@@ -35,6 +35,7 @@
 * [`prometheus::mysqld_exporter`](#prometheus--mysqld_exporter): manages prometheus mysqld_exporter
 * [`prometheus::nginx_prometheus_exporter`](#prometheus--nginx_prometheus_exporter): This module manages prometheus nginx exporter
 * [`prometheus::node_exporter`](#prometheus--node_exporter): This module manages prometheus node node_exporter
+* [`prometheus::node_exporter_textfile`](#prometheus--node_exporter_textfile): This module manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
 * [`prometheus::openldap_exporter`](#prometheus--openldap_exporter): This module manages prometheus openldap_exporter
 * [`prometheus::openvpn_exporter`](#prometheus--openvpn_exporter): This module manages prometheus node openvpn_exporter
 * [`prometheus::php_fpm_exporter`](#prometheus--php_fpm_exporter): This module manages prometheus php-fpm exporter
@@ -8021,6 +8022,7 @@ The following parameters are available in the `prometheus::node_exporter` class:
 * [`collectors`](#-prometheus--node_exporter--collectors)
 * [`collectors_enable`](#-prometheus--node_exporter--collectors_enable)
 * [`collectors_disable`](#-prometheus--node_exporter--collectors_disable)
+* [`textfile_directory`](#-prometheus--node_exporter--textfile_directory)
 * [`download_extension`](#-prometheus--node_exporter--download_extension)
 * [`download_url`](#-prometheus--node_exporter--download_url)
 * [`download_url_base`](#-prometheus--node_exporter--download_url_base)
@@ -8097,6 +8099,14 @@ disable collectors which are enabled by default
 https://github.com/prometheus/node_exporter#enabled-by-default
 
 Default value: `[]`
+
+##### <a name="-prometheus--node_exporter--textfile_directory"></a>`textfile_directory`
+
+Data type: `Optional[String]`
+
+Sets the directory for the textfile collector using `--collector.textfile.directory`
+
+Default value: `undef`
 
 ##### <a name="-prometheus--node_exporter--download_extension"></a>`download_extension`
 
@@ -8360,6 +8370,89 @@ Default value: `undef`
 Data type: `Optional[String[1]]`
 
 
+
+Default value: `undef`
+
+### <a name="prometheus--node_exporter_textfile"></a>`prometheus::node_exporter_textfile`
+
+This module manages text file metrics for node_exporter & a systemd timer (if systemd is used), scripts are always created & managed.
+
+#### Parameters
+
+The following parameters are available in the `prometheus::node_exporter_textfile` class:
+
+* [`update_script_location`](#-prometheus--node_exporter_textfile--update_script_location)
+* [`metrics_config_path`](#-prometheus--node_exporter_textfile--metrics_config_path)
+* [`metrics`](#-prometheus--node_exporter_textfile--metrics)
+* [`on_calendar`](#-prometheus--node_exporter_textfile--on_calendar)
+* [`seluser`](#-prometheus--node_exporter_textfile--seluser)
+* [`seltype`](#-prometheus--node_exporter_textfile--seltype)
+* [`selrole`](#-prometheus--node_exporter_textfile--selrole)
+
+##### <a name="-prometheus--node_exporter_textfile--update_script_location"></a>`update_script_location`
+
+Data type: `Stdlib::Absolutepath`
+
+The path where the updating script is located.
+
+Default value: `'/usr/local/bin/update_metrics.sh'`
+
+##### <a name="-prometheus--node_exporter_textfile--metrics_config_path"></a>`metrics_config_path`
+
+Data type: `Stdlib::Absolutepath`
+
+The path where the active metrics configuration file is located
+
+Default value: `'/etc/sysconfig/textfile_active'`
+
+##### <a name="-prometheus--node_exporter_textfile--metrics"></a>`metrics`
+
+Data type:
+
+```puppet
+Hash[String[1], Struct[
+      {
+        'command' => String[1],
+        'static'  => Boolean
+      }
+  ]]
+```
+
+A hash of metrics where a key is a metric name and the corresponding value is a hash of two key value pairs:
+ - 'command': The bash command used to collect or update the metric.
+ - 'static': A boolean that indicates whether the metric will be updated regularly by a timer (false), or will be updated only upon change in puppet, e.g. in hiera (true).
+
+Default value: `{}`
+
+##### <a name="-prometheus--node_exporter_textfile--on_calendar"></a>`on_calendar`
+
+Data type: `String`
+
+Determines when the systemd timer will be executed
+
+Default value: `'*:0/2:30'`
+
+##### <a name="-prometheus--node_exporter_textfile--seluser"></a>`seluser`
+
+Data type: `Optional[String]`
+
+The SELinux user context for the files
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter_textfile--seltype"></a>`seltype`
+
+Data type: `Optional[String]`
+
+The SELinux type context for the files
+
+Default value: `undef`
+
+##### <a name="-prometheus--node_exporter_textfile--selrole"></a>`selrole`
+
+Data type: `Optional[String]`
+
+The SELinux role context for the files
 
 Default value: `undef`
 
