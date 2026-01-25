@@ -57,7 +57,7 @@ class prometheus::openldap_exporter (
   String[1] $package_ensure                                  = 'latest',
   String[1] $user                                            = 'openldap-exporter',
   # renovate: depName=hm-edu/openldap-exporter
-  String[1] $version                                         = 'v2.6.0',
+  String[1] $version                                         = 'v2.7.0',
   Prometheus::Uri $download_url_base                         = 'https://github.com/hm-edu/openldap-exporter/releases',
   String[1] $package_name                                    = 'openldap-exporter',
   String[1] $service_name                                    = 'openldap_exporter',
