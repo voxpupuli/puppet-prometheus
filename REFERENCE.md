@@ -9748,7 +9748,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.18.1'`
+Default value: `'0.19.0'`
 
 ##### <a name="-prometheus--postgres_exporter--postgres_user"></a>`postgres_user`
 
