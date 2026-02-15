@@ -73,7 +73,7 @@ class prometheus::cgroup_exporter (
   String[1]                                      $package_name       = 'cgroup_exporter',
   String                                         $download_extension = 'tar.gz',
   # renovate: depName=treydock/cgroup_exporter
-  String[1]                                      $version            = '1.0.1',
+  String[1]                                      $version            = '1.1.0',
   String[1]                                      $package_ensure     = 'latest',
   String[1]                                      $user               = 'cgroup-exporter',
   String[1]                                      $group              = 'cgroup-exporter',
