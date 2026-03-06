@@ -13,7 +13,7 @@ describe 'prometheus::mesos_exporter' do
         let :params do
           {
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

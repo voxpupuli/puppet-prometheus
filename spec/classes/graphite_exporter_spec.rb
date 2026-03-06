@@ -22,7 +22,7 @@ describe 'prometheus::graphite_exporter' do
         let(:version) { catalogue.resource('Class[prometheus::graphite_exporter]').parameters[:version] }
         let :params do
           {
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

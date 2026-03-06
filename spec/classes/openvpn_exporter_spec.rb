@@ -14,7 +14,7 @@ describe 'prometheus::openvpn_exporter' do
           {
             version: 'v0.3.0.3',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

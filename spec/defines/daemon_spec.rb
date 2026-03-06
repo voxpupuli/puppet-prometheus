@@ -29,8 +29,8 @@ describe 'prometheus::daemon' do
           install_method: 'url',
           export_scrape_job: true,
           scrape_host: 'localhost',
-          scrape_port: 1234
-        }
+          scrape_port: 1234,
+        },
       ].each do |parameters|
         context "with parameters #{parameters}" do
           let(:params) do
@@ -42,7 +42,7 @@ describe 'prometheus::daemon' do
           it { is_expected.to contain_class('prometheus') }
 
           prom_os = facts[:kernel].downcase
-          prom_arch = facts[:architecture] == 'i386' ? '386' : 'amd64'
+          prom_arch = (facts[:architecture] == 'i386') ? '386' : 'amd64'
 
           it {
             expect(subject).to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with(
@@ -52,7 +52,7 @@ describe 'prometheus::daemon' do
               'source' => params[:real_download_url],
               'checksum_verify' => false,
               'creates' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
-              'cleanup' => true
+              'cleanup' => true,
             ).that_comes_before("File[/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter]")
           }
 
@@ -60,14 +60,14 @@ describe 'prometheus::daemon' do
             expect(subject).to contain_file("/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter").with(
               'owner' => 'root',
               'group' => 0,
-              'mode' => '0555'
+              'mode' => '0555',
             )
           }
 
           it {
             expect(subject).to contain_file('/usr/local/bin/smurf_exporter').with(
               'ensure' => 'link',
-              'target' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter"
+              'target' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
             ).that_notifies('Service[smurf_exporter]')
           }
 
@@ -75,14 +75,14 @@ describe 'prometheus::daemon' do
             expect(subject).to contain_user('smurf_user').with(
               'ensure' => 'present',
               'system' => true,
-              'groups' => []
+              'groups' => [],
             )
           }
 
           it {
             expect(subject).to contain_group('smurf_group').with(
               'ensure' => 'present',
-              'system' => true
+              'system' => true,
             )
           }
 
@@ -98,11 +98,11 @@ describe 'prometheus::daemon' do
 
           it {
             expect(subject).to contain_systemd__unit_file('smurf_exporter.service').that_notifies(
-              'Service[smurf_exporter]'
+              'Service[smurf_exporter]',
             ).with_content(
-              %r{User=smurf_user\n}
+              %r{User=smurf_user\n},
             ).with_content(
-              %r{ExecStart=/usr/local/bin/smurf_exporter \nExecReload=}
+              %r{ExecStart=/usr/local/bin/smurf_exporter \nExecReload=},
             )
           }
 
@@ -113,7 +113,7 @@ describe 'prometheus::daemon' do
 
             it {
               expect(subject).to contain_systemd__unit_file('smurf_exporter.service').with_content(
-                %r{ExecStart=/usr/local/bin/notsmurf_exporter}
+                %r{ExecStart=/usr/local/bin/notsmurf_exporter},
               )
             }
           end
@@ -125,7 +125,7 @@ describe 'prometheus::daemon' do
 
             it {
               expect(subject).to contain_systemd__unit_file('smurf_exporter.service').with_content(
-                %r{ExecStart=/usr/local/bin/smurf_exporter --foo bar}
+                %r{ExecStart=/usr/local/bin/smurf_exporter --foo bar},
               )
             }
           end
@@ -135,9 +135,9 @@ describe 'prometheus::daemon' do
               expect(subject).to contain_file('/etc/default/smurf_exporter').with(
                 'mode' => '0644',
                 'owner' => 'root',
-                'group' => '0'
+                'group' => '0',
               ).with_content(
-                %r{SOMEVAR="42"\n}
+                %r{SOMEVAR="42"\n},
               )
             }
           end
@@ -146,7 +146,7 @@ describe 'prometheus::daemon' do
             expect(subject).to contain_service('smurf_exporter').with(
               'ensure' => 'running',
               'name' => 'smurf_exporter',
-              'enable' => true
+              'enable' => true,
             )
           }
 
@@ -156,8 +156,8 @@ describe 'prometheus::daemon' do
             it {
               expect(subject).to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
                 'labels' => {
-                  'alias' => 'localhost'
-                }
+                  'alias' => 'localhost',
+                },
               )
             }
           end
@@ -178,7 +178,7 @@ describe 'prometheus::daemon' do
             export_scrape_job: true,
             scrape_host: 'localhost',
             scrape_port: 1234,
-            scrape_job_labels: { 'instance' => 'smurf1' }
+            scrape_job_labels: { 'instance' => 'smurf1' },
           }
         end
 
@@ -188,8 +188,8 @@ describe 'prometheus::daemon' do
           it {
             expect(subject).to contain_prometheus__scrape_job('smurf_exporter_localhost_1234').with(
               'labels' => {
-                'instance' => 'smurf1'
-              }
+                'instance' => 'smurf1',
+              },
             )
           }
         end

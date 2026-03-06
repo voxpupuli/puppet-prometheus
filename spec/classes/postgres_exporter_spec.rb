@@ -18,7 +18,7 @@ describe 'prometheus::postgres_exporter' do
             bin_dir: '/usr/local/bin',
             install_method: 'url',
             postgres_user: 'username',
-            postgres_pass: 'password'
+            postgres_pass: 'password',
           }
         end
 
@@ -37,9 +37,9 @@ describe 'prometheus::postgres_exporter' do
               web_config_content: {
                 tls_server_config: {
                   cert_file: '/etc/postgres_exporter/foo.cert',
-                  key_file: '/etc/postgres_exporter/foo.key'
-                }
-              }
+                  key_file: '/etc/postgres_exporter/foo.key',
+                },
+              },
             )
           end
 

@@ -19,9 +19,9 @@ describe 'prometheus::blackbox_exporter' do
             install_method: 'url',
             modules: {
               'http_2xx' => {
-                'prober' => 'http'
-              }
-            }
+                'prober' => 'http',
+              },
+            },
           }
         end
 
@@ -37,11 +37,11 @@ describe 'prometheus::blackbox_exporter' do
           it { is_expected.to contain_file('/opt/blackbox_exporter-0.6.0.linux-amd64/blackbox_exporter') }
 
           it {
-            is_expected.to contain_file('/etc/blackbox-exporter.yaml').
-              with_content(%r{^---\n}).
-              with_content(%r{^modules:\n}).
-              with_content(%r{^  http_2xx:\n}).
-              with_content(%r{^    prober: http\n})
+            is_expected.to contain_file('/etc/blackbox-exporter.yaml')
+              .with_content(%r{^---\n})
+              .with_content(%r{^modules:\n})
+              .with_content(%r{^  http_2xx:\n})
+              .with_content(%r{^    prober: http\n})
           }
         end
 
@@ -51,9 +51,9 @@ describe 'prometheus::blackbox_exporter' do
               web_config_content: {
                 tls_server_config: {
                   cert_file: '/etc/blackbox_exporter/foo.cert',
-                  key_file: '/etc/blackbox_exporter/foo.key'
-                }
-              }
+                  key_file: '/etc/blackbox_exporter/foo.key',
+                },
+              },
             }
           end
 
@@ -67,9 +67,9 @@ describe 'prometheus::blackbox_exporter' do
         let :params do
           {
             env_vars: {
-              blub: 'foobar'
+              blub: 'foobar',
             },
-            env_file_path: '/cows'
+            env_file_path: '/cows',
           }
         end
 

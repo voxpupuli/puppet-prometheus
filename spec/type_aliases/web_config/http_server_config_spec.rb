@@ -18,8 +18,8 @@ describe 'Prometheus::Web_config::Http_server_config' do
             'X-Content-Type-Options' => 'nosniff',
             'X-XSS-Protection' => '1; mode=block',
             'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
-          }
-        }
+          },
+        },
       )
     }
   end

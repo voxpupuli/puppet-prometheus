@@ -18,8 +18,8 @@ describe 'prometheus::cgroup_exporter' do
             bin_dir: '/usr/local/bin',
             install_method: 'url',
             modules: {
-              'default' => {}
-            }
+              'default' => {},
+            },
           }
         end
 

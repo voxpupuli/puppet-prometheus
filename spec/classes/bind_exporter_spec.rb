@@ -16,7 +16,7 @@ describe 'prometheus::bind_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -37,7 +37,7 @@ describe 'prometheus::bind_exporter' do
       context 'with extra options specified' do
         let(:params) do
           {
-            extra_options: "-bind.pid-file /var/run/named/named.pid -bind.stats-groups 'server,view,tasks'"
+            extra_options: "-bind.pid-file /var/run/named/named.pid -bind.stats-groups 'server,view,tasks'",
           }
         end
 

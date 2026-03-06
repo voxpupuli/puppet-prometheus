@@ -16,7 +16,7 @@ describe 'prometheus::snmp_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -32,7 +32,7 @@ describe 'prometheus::snmp_exporter' do
               'content' => nil,
               'source' => 'file:/opt/snmp_exporter-0.6.0.linux-amd64/snmp.yml',
               'require' => 'File[/opt/snmp_exporter-0.6.0.linux-amd64/snmp_exporter]',
-              'notify' => 'Service[snmp_exporter]'
+              'notify' => 'Service[snmp_exporter]',
             )
           }
 

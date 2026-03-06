@@ -34,7 +34,7 @@ describe 'prometheus::frr_exporter' do
       context 'with version specified' do
         let(:params) do
           {
-            version: '1.8.0'
+            version: '1.8.0',
           }
         end
 
@@ -55,7 +55,7 @@ describe 'prometheus::frr_exporter' do
             manage_user: true,
             manage_group: true,
             extra_groups: [],
-            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types'
+            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types',
           )
         }
       end
@@ -69,7 +69,7 @@ describe 'prometheus::frr_exporter' do
             peer_descriptions: false,
             peer_types: false,
             advertised_prefixes: true,
-            log_level: 'debug'
+            log_level: 'debug',
           }
         end
 
@@ -77,7 +77,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            options: '--frr.socket.dir-path=/tmp/frr --web.listen-address=:9999 --web.telemetry-path=/metrics --log.level=debug --collector.bgp.advertised-prefixes'
+            options: '--frr.socket.dir-path=/tmp/frr --web.listen-address=:9999 --web.telemetry-path=/metrics --log.level=debug --collector.bgp.advertised-prefixes',
           )
         }
       end
@@ -89,7 +89,7 @@ describe 'prometheus::frr_exporter' do
             peer_descriptions: true,
             peer_types: true,
             advertised_prefixes: true,
-            bgp6: true
+            bgp6: true,
           }
         end
 
@@ -97,7 +97,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.bgp.advertised-prefixes --collector.bgp6'
+            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.bgp.advertised-prefixes --collector.bgp6',
           )
         }
       end
@@ -113,7 +113,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.vrrp'
+            options: '--frr.socket.dir-path=/var/run/frr --web.listen-address=:9342 --web.telemetry-path=/metrics --log.level=info --collector.bgp.peer-descriptions --collector.bgp.peer-types --collector.vrrp',
           )
         }
       end
@@ -122,8 +122,8 @@ describe 'prometheus::frr_exporter' do
         let :params do
           {
             env_vars: {
-              FRR_SOCKET_DIR: '/custom/frr'
-            }
+              FRR_SOCKET_DIR: '/custom/frr',
+            },
           }
         end
 
@@ -151,7 +151,7 @@ describe 'prometheus::frr_exporter' do
         let(:params) do
           {
             version: '1.8.0',
-            manage_service: false
+            manage_service: false,
           }
         end
 
@@ -159,7 +159,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            manage_service: false
+            manage_service: false,
           )
         }
       end
@@ -167,7 +167,7 @@ describe 'prometheus::frr_exporter' do
       context 'with ensure => absent' do
         let(:params) do
           {
-            ensure: 'absent'
+            ensure: 'absent',
           }
         end
 
@@ -175,7 +175,7 @@ describe 'prometheus::frr_exporter' do
 
         it {
           is_expected.to contain_prometheus__daemon('frr_exporter').with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         }
       end

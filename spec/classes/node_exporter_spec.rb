@@ -57,7 +57,7 @@ describe 'prometheus::node_exporter' do
             collectors_disable: %w[baz qux],
             init_style: 'systemd',
             service_name: 'node_exporter',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
         let(:version) { catalogue.resource('Class[prometheus::node_exporter]').parameters[:version] }
@@ -79,7 +79,7 @@ describe 'prometheus::node_exporter' do
             collectors_disable: %w[baz qux],
             extra_options: '--path.procfs /host/proc --path.sysfs /host/sys',
             service_name: 'node_exporter',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -96,7 +96,7 @@ describe 'prometheus::node_exporter' do
             service_name: 'node_exporter',
             install_method: 'url',
             package_name: 'node_exporter', # reuired to override defaults for Archlinux
-            bin_name: 'node_exporter' # reuired to override defaults for Archlinux
+            bin_name: 'node_exporter', # reuired to override defaults for Archlinux
           }
         end
         let(:version) { catalogue.resource('Class[prometheus::node_exporter]').parameters[:version] }
@@ -115,7 +115,7 @@ describe 'prometheus::node_exporter' do
           {
             install_method: 'url',
             download_extension: '',
-            service_name: 'node_exporter'
+            service_name: 'node_exporter',
           }
         end
 
@@ -140,9 +140,9 @@ describe 'prometheus::node_exporter' do
             web_config_content: {
               tls_server_config: {
                 cert_file: '/etc/node_exporter/foo.cert',
-                key_file: '/etc/node_exporter/foo.key'
-              }
-            }
+                key_file: '/etc/node_exporter/foo.key',
+              },
+            },
           }
         end
 
@@ -163,9 +163,9 @@ describe 'prometheus::node_exporter' do
             web_config_content: {
               tls_server_config: {
                 cert_file: '/etc/node_exporter/foo.cert',
-                key_file: '/etc/node_exporter/foo.key'
-              }
-            }
+                key_file: '/etc/node_exporter/foo.key',
+              },
+            },
           }
         end
 
@@ -186,9 +186,9 @@ describe 'prometheus::node_exporter' do
             web_config_content: {
               tls_server_config: {
                 cert_file: '/etc/node_exporter/foo.cert',
-                key_file: '/etc/node_exporter/foo.key'
-              }
-            }
+                key_file: '/etc/node_exporter/foo.key',
+              },
+            },
           }
         end
 
@@ -205,7 +205,7 @@ describe 'prometheus::node_exporter' do
       context 'with non default scrape port' do
         let(:params) do
           {
-            scrape_port: 9101
+            scrape_port: 9101,
           }
         end
 

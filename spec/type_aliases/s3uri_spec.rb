@@ -6,7 +6,7 @@ describe 'Prometheus::S3Uri' do
   describe 'accepts case-sensitive amazon web services s3 uris' do
     [
       's3://bucket-name/path',
-      's3://bucket/path/to/file.txt'
+      's3://bucket/path/to/file.txt',
     ].each do |value|
       describe value.inspect do
         it { is_expected.to allow_value(value) }
@@ -22,7 +22,7 @@ describe 'Prometheus::S3Uri' do
       's3:/bucket-name/path',
       's3//bucket-name/path',
       's3:bucket-name/path',
-      's3-bucket-name/path'
+      's3-bucket-name/path',
     ].each do |value|
       describe value.inspect do
         it { is_expected.not_to allow_value(value) }
