@@ -25,8 +25,8 @@ describe 'prometheus::statsd_exporter' do
                   processor: '$1',
                   action: '$2',
                   outcome: '$3',
-                  job: 'test_dispatcher'
-                }
+                  job: 'test_dispatcher',
+                },
               },
               {
                 match: '*.signup.*.*',
@@ -34,10 +34,10 @@ describe 'prometheus::statsd_exporter' do
                 labels: {
                   provider: '$2',
                   outcome: '$3',
-                  job: '${1}_server'
-                }
-              }
-            ]
+                  job: '${1}_server',
+                },
+              },
+            ],
           }
         end
 
@@ -66,7 +66,7 @@ describe 'prometheus::statsd_exporter' do
               'group' => 'statsd-exporter',
               'mode' => '0640',
               'notify' => 'Service[statsd_exporter]',
-              'content' => <<-YAML.gsub(%r{^\s+\|}, '')
+              'content' => <<-YAML.gsub(%r{^\s+\|}, ''),
                 |---
                 |mappings:
                 |- match: test.dispatcher.*.*.*
@@ -95,7 +95,7 @@ describe 'prometheus::statsd_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

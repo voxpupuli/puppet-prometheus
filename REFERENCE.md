@@ -1037,6 +1037,8 @@ Data type: `Stdlib::Absolutepath`
 
 The path to put the configuration file
 
+Default value: `'%{hiera('prometheus::alertmanager::config_dir')}/alertmanager.yaml'`
+
 ##### <a name="-prometheus--alertmanager--config_mode"></a>`config_mode`
 
 Data type: `String[1]`
@@ -1050,6 +1052,8 @@ Default value: `$prometheus::config_mode`
 Data type: `String[1]`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--alertmanager--download_url"></a>`download_url`
 
@@ -1065,11 +1069,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/alertmanager/releases'`
+
 ##### <a name="-prometheus--alertmanager--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--alertmanager--extra_options"></a>`extra_options`
 
@@ -1089,11 +1097,15 @@ prometheus::alertmanager::global:
   smtp_smarthost: 'localhost:25'
   smtp_from: 'alertmanager@localhost'
 
+Default value: `{ 'smtp_smarthost' => 'localhost:25', 'smtp_from' => 'alertmanager@localhost' }`
+
 ##### <a name="-prometheus--alertmanager--group"></a>`group`
 
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'alertmanager'`
 
 ##### <a name="-prometheus--alertmanager--inhibit_rules"></a>`inhibit_rules`
 
@@ -1110,6 +1122,8 @@ prometheus::alertmanager::inhibit_rules:
     - 'alertname'
     - 'cluster'
     - 'service'
+
+Default value: `[{ 'source_matchers' => ['severity = critical'], 'target_matchers' => ['severity = warning'], 'equal' => ['alertname', 'cluster', 'service'] }]`
 
 ##### <a name="-prometheus--alertmanager--init_style"></a>`init_style`
 
@@ -1163,11 +1177,15 @@ prometheus::alertmanager::mute_time_intervals:
   time_intervals:
     - weekdays: ['saturday','sunday']
 
+Default value: `[]`
+
 ##### <a name="-prometheus--alertmanager--time_intervals"></a>`time_intervals`
 
 Data type: `Array[Hash]`
 
 Array of time intervals, only supported with 0.24.0 and newer
+
+Default value: `[]`
 
 ##### <a name="-prometheus--alertmanager--os"></a>`os`
 
@@ -1183,17 +1201,23 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--alertmanager--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
 
+Default value: `'alertmanager'`
+
 ##### <a name="-prometheus--alertmanager--config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 The directory to put the configuration files
+
+Default value: `'/etc/alertmanager'`
 
 ##### <a name="-prometheus--alertmanager--purge_config_dir"></a>`purge_config_dir`
 
@@ -1230,6 +1254,8 @@ prometheus::alertmanager::receivers:
   email_configs:
     - to: 'root@localhost'
 
+Default value: `[{ 'name' => 'Admin', 'email_configs' => [{ 'to' => 'root@localhost' }] }]`
+
 ##### <a name="-prometheus--alertmanager--restart_on_change"></a>`restart_on_change`
 
 Data type: `Boolean`
@@ -1262,6 +1288,8 @@ prometheus::alertmanager::route:
   repeat_interval: '3h'
   receiver: 'Admin'
 
+Default value: `{ 'group_by' => ['alertname', 'cluster', 'service'], 'group_wait' => '30s', 'group_interval' => '5m', 'repeat_interval' => '3h', 'receiver' => 'Admin' }`
+
 ##### <a name="-prometheus--alertmanager--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
@@ -1292,17 +1320,23 @@ Data type: `Stdlib::Absolutepath`
 
 The storage path to pass to the alertmanager. Defaults to '/var/lib/alertmanager'
 
+Default value: `'/var/lib/alertmanager'`
+
 ##### <a name="-prometheus--alertmanager--templates"></a>`templates`
 
 Data type: `Array`
 
 The array of template files. Defaults to [ "${config_dir}/*.tmpl" ]
 
+Default value: `['%{lookup('prometheus::alertmanager::config_dir')}/*.tmpl']`
+
 ##### <a name="-prometheus--alertmanager--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'alertmanager'`
 
 ##### <a name="-prometheus--alertmanager--version"></a>`version`
 
@@ -3590,17 +3624,23 @@ Data type: `String[1]`
 
 HTTP API address of a Consul server or agent. (prefix with https:// to connect over HTTPS) (default "http://localhost:8500")
 
+Default value: `'localhost:8500'`
+
 ##### <a name="-prometheus--consul_exporter--consul_health_summary"></a>`consul_health_summary`
 
 Data type: `Boolean`
 
 Generate a health summary for each service instance. Needs n+1 queries to collect all information. (default true)
 
+Default value: `true`
+
 ##### <a name="-prometheus--consul_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--consul_exporter--download_url"></a>`download_url`
 
@@ -3616,11 +3656,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus/consul_exporter/releases'`
+
 ##### <a name="-prometheus--consul_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--consul_exporter--extra_options"></a>`extra_options`
 
@@ -3635,6 +3679,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'consul-exporter'`
 
 ##### <a name="-prometheus--consul_exporter--init_style"></a>`init_style`
 
@@ -3657,6 +3703,8 @@ Default value: `$prometheus::install_method`
 Data type: `String[1]`
 
 Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal] (default "info")
+
+Default value: `'info'`
 
 ##### <a name="-prometheus--consul_exporter--manage_group"></a>`manage_group`
 
@@ -3696,11 +3744,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--consul_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'consul_exporter'`
 
 ##### <a name="-prometheus--consul_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -3740,11 +3792,15 @@ Data type: `String[1]`
 
 Name of the consul exporter service (default 'consul_exporter')
 
+Default value: `'consul_exporter'`
+
 ##### <a name="-prometheus--consul_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'consul-exporter'`
 
 ##### <a name="-prometheus--consul_exporter--version"></a>`version`
 
@@ -3760,11 +3816,15 @@ Data type: `String[1]`
 
 Address to listen on for web interface and telemetry. (default ":9107")
 
+Default value: `':9107'`
+
 ##### <a name="-prometheus--consul_exporter--web_telemetry_path"></a>`web_telemetry_path`
 
 Data type: `String[1]`
 
 Path under which to expose metrics. (default "/metrics")
+
+Default value: `'/metrics'`
 
 ##### <a name="-prometheus--consul_exporter--proxy_server"></a>`proxy_server`
 
@@ -4193,17 +4253,23 @@ Data type: `String[1]`
 
 The URI to obtain elasticsearch stats from
 
+Default value: `'http://localhost:9200'`
+
 ##### <a name="-prometheus--elasticsearch_exporter--cnf_timeout"></a>`cnf_timeout`
 
 Data type: `String[1]`
 
 Timeout for trying to get stats from elasticsearch URI
 
+Default value: `'5s'`
+
 ##### <a name="-prometheus--elasticsearch_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--download_url"></a>`download_url`
 
@@ -4219,11 +4285,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus-community/elasticsearch_exporter/releases'`
+
 ##### <a name="-prometheus--elasticsearch_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--elasticsearch_exporter--extra_options"></a>`extra_options`
 
@@ -4238,6 +4308,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'elasticsearch-exporter'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--init_style"></a>`init_style`
 
@@ -4333,11 +4405,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--elasticsearch_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'elasticsearch_exporter'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -4377,11 +4453,15 @@ Data type: `String[1]`
 
 Name of the node exporter service
 
+Default value: `'elasticsearch_exporter'`
+
 ##### <a name="-prometheus--elasticsearch_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'elasticsearch-exporter'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--version"></a>`version`
 
@@ -6772,17 +6852,23 @@ Data type: `String[1]`
 
 Specify target type master or slave
 
+Default value: `'master'`
+
 ##### <a name="-prometheus--mesos_exporter--cnf_scrape_uri"></a>`cnf_scrape_uri`
 
 Data type: `String[1]`
 
 The URI to obtain mesos stats from
 
+Default value: `'http://localhost:5050'`
+
 ##### <a name="-prometheus--mesos_exporter--download_extension"></a>`download_extension`
 
 Data type: `String`
 
 Extension for the release binary archive
+
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--mesos_exporter--download_url"></a>`download_url`
 
@@ -6798,11 +6884,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/mesosphere/mesos_exporter/releases'`
+
 ##### <a name="-prometheus--mesos_exporter--extra_groups"></a>`extra_groups`
 
 Data type: `Array`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--mesos_exporter--extra_options"></a>`extra_options`
 
@@ -6817,6 +6907,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'mesos-exporter'`
 
 ##### <a name="-prometheus--mesos_exporter--init_style"></a>`init_style`
 
@@ -6872,11 +6964,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--mesos_exporter--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'mesos_exporter'`
 
 ##### <a name="-prometheus--mesos_exporter--purge_config_dir"></a>`purge_config_dir`
 
@@ -6916,11 +7012,15 @@ Data type: `String[1]`
 
 Name of the mesos exporter service (default 'mesos_exporter')
 
+Default value: `'mesos_exporter'`
+
 ##### <a name="-prometheus--mesos_exporter--user"></a>`user`
 
 Data type: `String[1]`
 
 User which runs the service
+
+Default value: `'mesos-exporter'`
 
 ##### <a name="-prometheus--mesos_exporter--version"></a>`version`
 
@@ -10795,6 +10895,8 @@ Data type: `String[1]`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--pushprox_client--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
@@ -10809,11 +10911,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus-community/PushProx/releases'`
+
 ##### <a name="-prometheus--pushprox_client--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--pushprox_client--extra_options"></a>`extra_options`
 
@@ -10828,6 +10934,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'pushprox_client'`
 
 ##### <a name="-prometheus--pushprox_client--init_style"></a>`init_style`
 
@@ -10883,11 +10991,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--pushprox_client--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'pushprox_client'`
 
 ##### <a name="-prometheus--pushprox_client--purge_config_dir"></a>`purge_config_dir`
 
@@ -10935,11 +11047,15 @@ Data type: `String[1]`
 
 User which runs the service
 
+Default value: `'pushprox_client'`
+
 ##### <a name="-prometheus--pushprox_client--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.2.0'`
 
 ##### <a name="-prometheus--pushprox_client--env_vars"></a>`env_vars`
 
@@ -11036,6 +11152,8 @@ Data type: `String[1]`
 
 Extension for the release binary archive
 
+Default value: `'tar.gz'`
+
 ##### <a name="-prometheus--pushprox_proxy--download_url"></a>`download_url`
 
 Data type: `Optional[String]`
@@ -11050,11 +11168,15 @@ Data type: `Prometheus::Uri`
 
 Base URL for the binary archive
 
+Default value: `'https://github.com/prometheus-community/PushProx/releases'`
+
 ##### <a name="-prometheus--pushprox_proxy--extra_groups"></a>`extra_groups`
 
 Data type: `Array[String[1]]`
 
 Extra groups to add the binary user to
+
+Default value: `[]`
 
 ##### <a name="-prometheus--pushprox_proxy--extra_options"></a>`extra_options`
 
@@ -11069,6 +11191,8 @@ Default value: `undef`
 Data type: `String[1]`
 
 Group under which the binary is running
+
+Default value: `'pushprox_proxy'`
 
 ##### <a name="-prometheus--pushprox_proxy--init_style"></a>`init_style`
 
@@ -11124,11 +11248,15 @@ Data type: `String[1]`
 
 If package, then use this for package ensure default 'latest'
 
+Default value: `'latest'`
+
 ##### <a name="-prometheus--pushprox_proxy--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The binary package name - not available yet
+
+Default value: `'pushprox_proxy'`
 
 ##### <a name="-prometheus--pushprox_proxy--purge_config_dir"></a>`purge_config_dir`
 
@@ -11176,11 +11304,15 @@ Data type: `String[1]`
 
 User which runs the service
 
+Default value: `'pushprox_proxy'`
+
 ##### <a name="-prometheus--pushprox_proxy--version"></a>`version`
 
 Data type: `String[1]`
 
 The binary release version
+
+Default value: `'0.2.0'`
 
 ##### <a name="-prometheus--pushprox_proxy--proxy_server"></a>`proxy_server`
 

@@ -16,7 +16,7 @@ describe 'prometheus::elasticsearch_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -34,9 +34,9 @@ describe 'prometheus::elasticsearch_exporter' do
               web_config_content: {
                 tls_server_config: {
                   cert_file: '/etc/elasticsearch_exporter/foo.cert',
-                  key_file: '/etc/elasticsearch_exporter/foo.key'
-                }
-              }
+                  key_file: '/etc/elasticsearch_exporter/foo.key',
+                },
+              },
             )
           end
 

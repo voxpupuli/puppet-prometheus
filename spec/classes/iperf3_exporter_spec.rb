@@ -22,7 +22,7 @@ describe 'prometheus::iperf3_exporter' do
         let :params do
           {
             install_method: 'url',
-            version: '0.1.3'
+            version: '0.1.3',
           }
         end
 

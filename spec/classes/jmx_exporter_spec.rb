@@ -31,7 +31,7 @@ describe 'prometheus::jmx_exporter' do
         describe 'generate empty configuration file' do
           it {
             is_expected.to contain_file('/etc/jmx-exporter.yaml').with(
-              'content' => <<~EOL
+              'content' => <<~EOL,
                 --- {}
               EOL
             )
@@ -51,10 +51,10 @@ describe 'prometheus::jmx_exporter' do
               startDelaySeconds: 2,
               rules: [
                 {
-                  pattern: 'something'
-                }
-              ]
-            }
+                  pattern: 'something',
+                },
+              ],
+            },
           }
         end
 
@@ -65,7 +65,7 @@ describe 'prometheus::jmx_exporter' do
         describe 'generate empty configuration file' do
           it {
             is_expected.to contain_file('/etc/jmx-exporter.yaml').with(
-              'content' => <<~EOL
+              'content' => <<~EOL,
                 ---
                 startDelaySeconds: 2
                 rules:
@@ -88,10 +88,10 @@ describe 'prometheus::jmx_exporter' do
               startDelaySeconds: 2,
               rules: [
                 {
-                  pattern: 'something'
-                }
-              ]
-            }
+                  pattern: 'something',
+                },
+              ],
+            },
           }
         end
 

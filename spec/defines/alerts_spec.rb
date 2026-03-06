@@ -31,18 +31,18 @@ describe 'prometheus::alerts' do
                     'for' => '5min',
                     'labels' => { 'severity' => 'woops' },
                     'annotations' => {
-                      'summary' => 'did a woops {{ $labels.instance }}'
-                    }
-                  }
-                ]
-              }
-            ]
+                      'summary' => 'did a woops {{ $labels.instance }}',
+                    },
+                  },
+                ],
+              },
+            ],
           },
           # location: '/etc/prometheus/rules',
           # user: 'prometheus',
           # group: 'prometheus',
           # bin_dir: '/usr/local/bin',
-        }
+        },
       ].each do |parameters|
         context "with parameters #{parameters}" do
           let(:params) do
@@ -57,7 +57,7 @@ describe 'prometheus::alerts' do
               'ensure' => 'file',
               'owner' => 'root',
               'group' => 'prometheus',
-              'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.alert.rules"))
+              'content' => File.read(File.join('spec', 'fixtures', 'files', "prometheus#{prom_major}.alert.rules")),
             ) # .that_notifies('Class[prometheus::service_reload]')
           }
         end

@@ -22,7 +22,7 @@ describe 'prometheus::collectd_exporter' do
         let(:version) { catalogue.resource('Class[prometheus::collectd_exporter]').parameters[:version] }
         let :params do
           {
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

@@ -17,7 +17,7 @@ describe 'prometheus::beanstalkd_exporter' do
             os: 'linux',
             bin_dir: '/usr/local/bin',
             install_method: 'url',
-            download_extension: 'tar.gz'
+            download_extension: 'tar.gz',
           }
         end
 
@@ -48,7 +48,7 @@ describe 'prometheus::beanstalkd_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

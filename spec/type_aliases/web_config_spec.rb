@@ -10,8 +10,8 @@ describe 'Prometheus::Web_config' do
           'tls_server_config' => {
             'cert_file' => '/etc/pki/tls/certs/example.com.pem',
             'key_file' => '/etc/pki/tls/private/example.com.pem',
-          }
-        }
+          },
+        },
       )
     }
   end
@@ -28,7 +28,7 @@ describe 'Prometheus::Web_config' do
               'X-Content-Type-Options' => 'nosniff',
               'X-XSS-Protection' => '1; mode=block',
               'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
-            }
+            },
           },
           'tls_server_config' => {
             'cert_file' => '/etc/pki/tls/certs/example.com.pem',
@@ -36,7 +36,7 @@ describe 'Prometheus::Web_config' do
             'client_ca_file' => '/etc/pki/tls/cert.pem',
             'client_auth_type' => 'NoClientCert',
             'client_allowed_sans' => [
-              'client.example.com'
+              'client.example.com',
             ],
             'min_version' => 'TLS12',
             'max_version' => 'TLS13',
@@ -47,13 +47,13 @@ describe 'Prometheus::Web_config' do
             ],
             'prefer_server_cipher_suites' => true,
             'curve_preferences' => [
-              'X25519'
-            ]
+              'X25519',
+            ],
           },
           'basic_auth_users' => {
-            'john.doe' => '$2b$05$XC0SLeu3npPRPgbPMBhjCu/2GZRfcIfjGtW5yLeDTLUO0.zAfdkjm'
-          }
-        }
+            'john.doe' => '$2b$05$XC0SLeu3npPRPgbPMBhjCu/2GZRfcIfjGtW5yLeDTLUO0.zAfdkjm',
+          },
+        },
       )
     }
   end

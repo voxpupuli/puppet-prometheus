@@ -23,7 +23,7 @@ describe 'prometheus::php_fpm_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -51,7 +51,7 @@ describe 'prometheus::php_fpm_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 

@@ -35,7 +35,7 @@ describe 'prometheus::openldap_exporter' do
 
           it {
             expect(subject).to contain_prometheus__daemon('openldap_exporter').with(
-              real_download_url: 'https://github.com/hm-edu/openldap-exporter/releases/download/v2.4.4/openldap-exporter_linux_x86_64.tar.gz'
+              real_download_url: 'https://github.com/hm-edu/openldap-exporter/releases/download/v2.4.4/openldap-exporter_linux_x86_64.tar.gz',
             )
           }
         end

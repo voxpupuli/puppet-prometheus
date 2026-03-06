@@ -16,7 +16,7 @@ describe 'prometheus::alertmanager' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -36,12 +36,12 @@ describe 'prometheus::alertmanager' do
 
         describe 'config file contents' do
           it {
-            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
-              with_notify('Service[alertmanager]').
-              with_content(%r{^---\n}).
-              with_content(%r{^global:\n}).
-              with_content(%r{^  smtp_smarthost: localhost:25\n}).
-              with_content(%r{^  smtp_from: alertmanager@localhost\n})
+            expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml')
+              .with_notify('Service[alertmanager]')
+              .with_content(%r{^---\n})
+              .with_content(%r{^global:\n})
+              .with_content(%r{^  smtp_smarthost: localhost:25\n})
+              .with_content(%r{^  smtp_from: alertmanager@localhost\n})
           }
         end
 
@@ -50,7 +50,7 @@ describe 'prometheus::alertmanager' do
             expect(subject).to contain_exec('alertmanager-reload').with(
               # 'command'     => 'systemctl reload alertmanager',
               'path' => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
-              'refreshonly' => true
+              'refreshonly' => true,
             )
           }
         end
@@ -65,19 +65,19 @@ describe 'prometheus::alertmanager' do
             bin_dir: '/usr/local/bin',
             install_method: 'url',
             mute_time_intervals: [
-              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] },
             ],
           }
         end
 
         it {
-          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
-            with_content(%r{mute_time_intervals:}).
-            with_content(%r{- name: weekend}).
-            with_content(%r{  time_intervals:}).
-            with_content(%r{  - weekdays:}).
-            with_content(%r{    - saturday}).
-            with_content(%r{    - sunday})
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml')
+            .with_content(%r{mute_time_intervals:})
+            .with_content(%r{- name: weekend})
+            .with_content(%r{  time_intervals:})
+            .with_content(%r{  - weekdays:})
+            .with_content(%r{    - saturday})
+            .with_content(%r{    - sunday})
         }
       end
 
@@ -90,10 +90,10 @@ describe 'prometheus::alertmanager' do
             bin_dir: '/usr/local/bin',
             install_method: 'url',
             mute_time_intervals: [
-              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] },
             ],
             time_intervals: [
-              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] }
+              { 'name' => 'weekend', 'time_intervals' => [{ 'weekdays' => %w[saturday sunday] }] },
             ],
           }
         end
@@ -101,13 +101,13 @@ describe 'prometheus::alertmanager' do
         it { is_expected.to contain_file('/etc/alertmanager/alertmanager.yaml').without(content: %r{mute_time_intervals}) }
 
         it {
-          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml').
-            with_content(%r{time_intervals:}).
-            with_content(%r{- name: weekend}).
-            with_content(%r{  time_intervals:}).
-            with_content(%r{  - weekdays:}).
-            with_content(%r{    - saturday}).
-            with_content(%r{    - sunday})
+          expect(subject).to contain_file('/etc/alertmanager/alertmanager.yaml')
+            .with_content(%r{time_intervals:})
+            .with_content(%r{- name: weekend})
+            .with_content(%r{  time_intervals:})
+            .with_content(%r{  - weekdays:})
+            .with_content(%r{    - saturday})
+            .with_content(%r{    - sunday})
         }
       end
 
@@ -123,8 +123,8 @@ describe 'prometheus::alertmanager' do
         [
           {
             version: '0.27.0',
-            manage_config: false
-          }
+            manage_config: false,
+          },
         ].each do |parameters|
           context "with alertmanager verions #{parameters[:version]}" do
             let(:params) do

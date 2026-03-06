@@ -56,8 +56,8 @@ describe 'prometheus::bird_exporter' do
         let :params do
           {
             env_vars: {
-              blub: 'foobar'
-            }
+              blub: 'foobar',
+            },
           }
         end
 

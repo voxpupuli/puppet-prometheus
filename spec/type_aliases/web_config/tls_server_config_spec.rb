@@ -9,7 +9,7 @@ describe 'Prometheus::Web_config::Tls_server_config' do
         {
           'cert_file' => '/etc/pki/tls/certs/example.com.pem',
           'key_file' => '/etc/pki/tls/private/example.com.pem',
-        }
+        },
       )
     }
   end
@@ -23,7 +23,7 @@ describe 'Prometheus::Web_config::Tls_server_config' do
           'client_ca_file' => '/etc/pki/tls/cert.pem',
           'client_auth_type' => 'NoClientCert',
           'client_allowed_sans' => [
-            'client.example.com'
+            'client.example.com',
           ],
           'min_version' => 'TLS12',
           'max_version' => 'TLS13',
@@ -34,9 +34,9 @@ describe 'Prometheus::Web_config::Tls_server_config' do
           ],
           'prefer_server_cipher_suites' => true,
           'curve_preferences' => [
-            'X25519'
-          ]
-        }
+            'X25519',
+          ],
+        },
       )
     }
   end

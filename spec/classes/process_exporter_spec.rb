@@ -25,7 +25,7 @@ describe 'prometheus::process_exporter' do
             arch: 'amd64',
             os: 'linux',
             bin_dir: '/usr/local/bin',
-            install_method: 'url'
+            install_method: 'url',
           }
         end
 
@@ -44,14 +44,14 @@ describe 'prometheus::process_exporter' do
               'process_names' => [
                 {
                   'name' => '{{.Matches}}',
-                  'cmdline' => ['.*process1.*']
+                  'cmdline' => ['.*process1.*'],
                 },
                 {
                   'name' => '{{.Matches}}',
-                  'cmdline' => ['.*process2.*']
-                }
-              ]
-            }
+                  'cmdline' => ['.*process2.*'],
+                },
+              ],
+            },
           }
         end
 

@@ -6,7 +6,7 @@ describe 'Prometheus::GsUri' do
   describe 'accepts case-sensitive google cloud services gs uris' do
     [
       'gs://bucket-name/path',
-      'gs://bucket/path/to/file.txt'
+      'gs://bucket/path/to/file.txt',
     ].each do |value|
       describe value.inspect do
         it { is_expected.to allow_value(value) }
@@ -22,7 +22,7 @@ describe 'Prometheus::GsUri' do
       'gs:/bucket-name/path',
       'gs//bucket-name/path',
       'gs:bucket-name/path',
-      'gs-bucket-name/path'
+      'gs-bucket-name/path',
     ].each do |value|
       describe value.inspect do
         it { is_expected.not_to allow_value(value) }

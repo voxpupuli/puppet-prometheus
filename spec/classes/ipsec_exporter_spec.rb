@@ -22,7 +22,7 @@ describe 'prometheus::ipsec_exporter' do
         let :params do
           {
             install_method: 'url',
-            version: '0.3.2'
+            version: '0.3.2',
           }
         end
 

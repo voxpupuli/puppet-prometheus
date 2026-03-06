@@ -18,7 +18,7 @@ describe 'prometheus::mysqld_exporter' do
       context 'with version >= 0.9.0' do
         let(:params) do
           {
-            version: '0.9.0'
+            version: '0.9.0',
           }
         end
 
@@ -30,7 +30,7 @@ describe 'prometheus::mysqld_exporter' do
       context 'with Sensitive password' do
         let(:params) do
           {
-            cnf_password: RSpec::Puppet::RawString.new("Sensitive('secret')")
+            cnf_password: RSpec::Puppet::RawString.new("Sensitive('secret')"),
           }
         end
 
@@ -46,7 +46,7 @@ describe 'prometheus::mysqld_exporter' do
           {
             cnf_ssl_ca: '/foo/bar/ca.pem',
             cnf_ssl_cert: '/foo/bar/cert.pem',
-            cnf_ssl_key: '/foo/bar/key.pem'
+            cnf_ssl_key: '/foo/bar/key.pem',
           }
         end
 
@@ -64,9 +64,9 @@ describe 'prometheus::mysqld_exporter' do
             web_config_content: {
               tls_server_config: {
                 cert_file: '/etc/mysqld_exporter/foo.cert',
-                key_file: '/etc/mysqld_exporter/foo.key'
-              }
-            }
+                key_file: '/etc/mysqld_exporter/foo.key',
+              },
+            },
           }
         end
 

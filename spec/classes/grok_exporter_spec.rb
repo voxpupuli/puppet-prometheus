@@ -19,21 +19,21 @@ describe 'prometheus::grok_exporter' do
             install_method: 'url',
             config: {
               'global' => {
-                'config_version' => 3
+                'config_version' => 3,
               },
               'input' => {
                 'type' => 'file',
-                'path' => '/var/log/syslog'
+                'path' => '/var/log/syslog',
               },
               'metrics' => [
                 {
                   'name' => 'syslog_errors',
                   'type' => 'counter',
                   'help' => 'number of syslog errors',
-                  'match' => 'error'
-                }
-              ]
-            }
+                  'match' => 'error',
+                },
+              ],
+            },
           }
         end
 
