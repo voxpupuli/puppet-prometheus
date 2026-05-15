@@ -27,6 +27,8 @@
 #  Should puppet manage the service? (default true)
 # @param manage_user
 #  Whether to create user or rely on external code for that
+# @param manage_mappings
+#  Whether to create mappings or rely on external code for that
 # @param os
 #  Operating system (linux is the only one supported)
 # @param package_ensure
@@ -84,6 +86,7 @@ class prometheus::statsd_exporter (
   Boolean $manage_group                                      = true,
   Boolean $manage_service                                    = true,
   Boolean $manage_user                                       = true,
+  Boolean $manage_mappings                                   = true,
   Optional[String[1]] $extra_options                         = undef,
   Optional[Prometheus::Uri] $download_url                    = undef,
   Boolean $export_scrape_job                                 = false,
@@ -106,13 +109,15 @@ class prometheus::statsd_exporter (
     default => undef,
   }
 
-  file { $mapping_config_path:
-    ensure  => 'file',
-    mode    => $config_mode,
-    owner   => 'root',
-    group   => $group,
-    content => stdlib::to_yaml({ mappings => $mappings }),
-    notify  => $notify_service,
+  if $manage_mappings {
+    file { $mapping_config_path:
+      ensure  => 'file',
+      mode    => $config_mode,
+      owner   => 'root',
+      group   => $group,
+      content => stdlib::to_yaml({ mappings => $mappings }),
+      notify  => $notify_service,
+    }
   }
 
   # Switched to POSIX like flags in version 0.7.0

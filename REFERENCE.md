@@ -13447,6 +13447,7 @@ The following parameters are available in the `prometheus::statsd_exporter` clas
 * [`manage_group`](#-prometheus--statsd_exporter--manage_group)
 * [`manage_service`](#-prometheus--statsd_exporter--manage_service)
 * [`manage_user`](#-prometheus--statsd_exporter--manage_user)
+* [`manage_mappings`](#-prometheus--statsd_exporter--manage_mappings)
 * [`os`](#-prometheus--statsd_exporter--os)
 * [`package_ensure`](#-prometheus--statsd_exporter--package_ensure)
 * [`package_name`](#-prometheus--statsd_exporter--package_name)
@@ -13576,6 +13577,14 @@ Default value: `true`
 Data type: `Boolean`
 
 Whether to create user or rely on external code for that
+
+Default value: `true`
+
+##### <a name="-prometheus--statsd_exporter--manage_mappings"></a>`manage_mappings`
+
+Data type: `Boolean`
+
+Whether to create mappings or rely on external code for that
 
 Default value: `true`
 

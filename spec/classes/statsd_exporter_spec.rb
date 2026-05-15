@@ -88,6 +88,29 @@ describe 'prometheus::statsd_exporter' do
         end
       end
 
+      context 'with no mappings' do
+        let(:params) do
+          {
+            version: '0.8.0',
+            arch: 'amd64',
+            os: 'linux',
+            bin_dir: '/usr/local/bin',
+            install_method: 'url',
+            manage_mappings: false,
+          }
+        end
+
+        describe 'compile manifest' do
+          it { is_expected.to compile.with_all_deps }
+        end
+
+        describe 'no mapping config file' do
+          it {
+            expect(subject).not_to contain_file('/etc/statsd-exporter-mapping.yaml')
+          }
+        end
+      end
+
       context 'with older version that does not support posix like option flags specified' do
         let(:params) do
           {
