@@ -4,19 +4,39 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v17.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.3.0) (2026-03-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v17.2.0...v17.3.0)
+
+**Implemented enhancements:**
+
+- chore\(deps\): update dependency percona/mongodb\_exporter to v0.48.0 [\#1035](https://github.com/voxpupuli/puppet-prometheus/pull/1035) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.81.0 [\#1034](https://github.com/voxpupuli/puppet-prometheus/pull/1034) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency hm-edu/openldap-exporter to v2.8.0 [\#1033](https://github.com/voxpupuli/puppet-prometheus/pull/1033) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency tynany/frr\_exporter to v1.10.0 [\#1030](https://github.com/voxpupuli/puppet-prometheus/pull/1030) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency prometheus-community/postgres\_exporter to v0.19.0 [\#1029](https://github.com/voxpupuli/puppet-prometheus/pull/1029) ([pccibot](https://github.com/pccibot))
+- chore\(deps\): update dependency oliver006/redis\_exporter to v1.80.2 [\#1027](https://github.com/voxpupuli/puppet-prometheus/pull/1027) ([pccibot](https://github.com/pccibot))
+
 ## [v17.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.2.0) (2026-01-28)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v17.1.0...v17.2.0)
 
 **Implemented enhancements:**
 
+- Add functionality to manage windows\_exporter [\#465](https://github.com/voxpupuli/puppet-prometheus/issues/465)
 - chore\(deps\): update dependency hm-edu/openldap-exporter to v2.7.0 [\#1025](https://github.com/voxpupuli/puppet-prometheus/pull/1025) ([pccibot](https://github.com/pccibot))
 - puppet/systemd: Allow 9.x [\#1022](https://github.com/voxpupuli/puppet-prometheus/pull/1022) ([towo](https://github.com/towo))
 - chore\(deps\): update dependency prometheus/memcached\_exporter to v0.15.5 [\#1021](https://github.com/voxpupuli/puppet-prometheus/pull/1021) ([pccibot](https://github.com/pccibot))
 
+**Fixed bugs:**
+
+- SysV init scripts of ::daemon are broken [\#524](https://github.com/voxpupuli/puppet-prometheus/issues/524)
+
 **Closed issues:**
 
+- SysV init script breaks on empty @options [\#633](https://github.com/voxpupuli/puppet-prometheus/issues/633)
 - add prometheus::server:purge\_rules parameter to enable purging in ${config\_dir}/rules file resource? [\#631](https://github.com/voxpupuli/puppet-prometheus/issues/631)
+- How does file\_sd\_configs work? [\#523](https://github.com/voxpupuli/puppet-prometheus/issues/523)
 
 ## [v17.1.0](https://github.com/voxpupuli/puppet-prometheus/tree/v17.1.0) (2026-01-13)
 
