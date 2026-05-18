@@ -2,6 +2,8 @@
 # @example Basic usage
 #   include prometheus::postfix_exporter
 # @see https://github.com/kumina/postfix_exporter
+# @param bin_dir
+#  Directory where binaries are located
 # @param install_method
 #   Installation method: `url` or `package`. (Note `package` is not available on most OSes.)
 # @param download_url
@@ -63,6 +65,7 @@ class prometheus::postfix_exporter (
   String[1] $version                                         = '0.2.0',
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
+  Stdlib::Absolutepath $bin_dir                              = $prometheus::bin_dir,
 
   # Package options (relevant when `install_method == 'package'`)
   String[1] $package_ensure               = 'installed',
@@ -108,7 +111,7 @@ class prometheus::postfix_exporter (
     os                 => $prometheus::os,
     arch               => $prometheus::real_arch,
     real_download_url  => $real_download_url,
-    bin_dir            => $prometheus::bin_dir,
+    bin_dir            => $bin_dir,
     notify_service     => $notify_service,
     package_name       => $package_name,
     package_ensure     => $package_ensure,
