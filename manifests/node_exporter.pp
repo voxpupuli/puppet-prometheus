@@ -69,6 +69,10 @@
 # @param scrape_port
 #  Scrape port for configuring scrape targets on the prometheus server via exported `prometheus::scrape_job` resources
 #  If changed from default 9100 the option `--web.listen-address=':${scrape_port}'` will be added to the command line arguments
+# @param listen_address
+#  The IP address or hostname that Prometheus should bind to for incoming requests.
+#  This will be used together with `scrape_port` to form the complete listen address.
+#  If `listen_address` is set to `127.0.0.1` and `scrape_port` is `9090`, Prometheus will be started with the option:  `--web.listen-address='127.0.0.1:9090'` Default: `0.0.0.0` (all interfaces)
 class prometheus::node_exporter (
   String $download_extension = 'tar.gz',
   Prometheus::Uri $download_url_base = 'https://github.com/prometheus/node_exporter/releases',
@@ -99,6 +103,7 @@ class prometheus::node_exporter (
   Array[String] $collectors_disable                          = [],
   Optional[Stdlib::Host] $scrape_host                        = undef,
   Boolean $export_scrape_job                                 = false,
+  Stdlib::IP::Address $listen_address                        = undef,
   Stdlib::Port $scrape_port                                  = 9100,
   String[1] $scrape_job_name                                 = 'node',
   Optional[Hash] $scrape_job_labels                          = undef,
@@ -160,17 +165,18 @@ class prometheus::node_exporter (
     }
   }
 
-  if $scrape_port != 9100 {
-    $listen_address = "--web.listen-address=':${scrape_port}'"
+  if $listen_address or $scrape_port != 9100 {
+    $web_listen_address = "--web.listen-address='${listen_address}:${scrape_port}'"
   } else {
-    $listen_address = ''
+    $web_listen_address = ''
   }
+
   $options = [
     $extra_options,
     $cmd_collectors_enable.join(' '),
     $cmd_collectors_disable.join(' '),
     $_web_config,
-    $listen_address,
+    $web_listen_address,
   ].filter |$x| { !$x.empty }.join(' ')
 
   prometheus::daemon { $service_name:
