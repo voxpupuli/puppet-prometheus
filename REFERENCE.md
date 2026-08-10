@@ -9391,7 +9391,7 @@ Default value: `$prometheus::env_file_path`
 manages prometheus postfix_exporter
 
 * **See also**
-  * https://github.com/kumina/postfix_exporter
+  * https://github.com/sarab97/postfix_exporter
 
 #### Examples
 
@@ -9405,6 +9405,8 @@ include prometheus::postfix_exporter
 
 The following parameters are available in the `prometheus::postfix_exporter` class:
 
+* [`arch`](#-prometheus--postfix_exporter--arch)
+* [`os`](#-prometheus--postfix_exporter--os)
 * [`install_method`](#-prometheus--postfix_exporter--install_method)
 * [`download_url`](#-prometheus--postfix_exporter--download_url)
 * [`download_url_base`](#-prometheus--postfix_exporter--download_url_base)
@@ -9432,6 +9434,22 @@ The following parameters are available in the `prometheus::postfix_exporter` cla
 * [`proxy_type`](#-prometheus--postfix_exporter--proxy_type)
 * [`scrape_host`](#-prometheus--postfix_exporter--scrape_host)
 
+##### <a name="-prometheus--postfix_exporter--arch"></a>`arch`
+
+Data type: `String[1]`
+
+architecture for the pacakge being downloaded, taken from prometheus::real_arch
+
+Default value: `$prometheus::real_arch`
+
+##### <a name="-prometheus--postfix_exporter--os"></a>`os`
+
+Data type: `String[1]`
+
+Operating system (linux is the only one supported)
+
+Default value: `downcase($facts['kernel'])`
+
 ##### <a name="-prometheus--postfix_exporter--install_method"></a>`install_method`
 
 Data type: `Prometheus::Install`
@@ -9454,7 +9472,7 @@ Data type: `Stdlib::HTTPUrl`
 
 Base URL for the binary archive. (This option is only relevant when `install_method` is `url`.)
 
-Default value: `'https://github.com/kumina/postfix_exporter/releases'`
+Default value: `'https://github.com/sarab97/postfix_exporter/releases'`
 
 ##### <a name="-prometheus--postfix_exporter--download_extension"></a>`download_extension`
 
@@ -9462,7 +9480,7 @@ Data type: `String`
 
 Extension for the release binary archive. (This option is only relevant when `install_method` is `url`.)
 
-Default value: `''`
+Default value: `'tar.gz'`
 
 ##### <a name="-prometheus--postfix_exporter--version"></a>`version`
 
@@ -9470,7 +9488,7 @@ Data type: `String[1]`
 
 The binary release version. (This option is only relevant when `install_method` is `url`.)
 
-Default value: `'0.2.0'`
+Default value: `'0.6.0'`
 
 ##### <a name="-prometheus--postfix_exporter--package_ensure"></a>`package_ensure`
 
