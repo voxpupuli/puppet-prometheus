@@ -100,7 +100,7 @@ class prometheus::php_fpm_exporter (
 
   $options = "server --phpfpm.scrape-uri '${scrape_uri}' ${extra_options}"
 
-  $extract_path = "/opt/${package_name}-${version}.${os}-${arch}"
+  $extract_path = "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}"
   $archive_bin_path = "${extract_path}/${bin_name}"
 
   file { $extract_path:

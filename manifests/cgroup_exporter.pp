@@ -92,7 +92,7 @@ class prometheus::cgroup_exporter (
   Boolean                                        $manage_service     = true,
   Boolean                                        $manage_user        = true,
   String[1]                                      $os                 = downcase(fact('kernel')),
-  Stdlib::Absolutepath                           $archive_bin_path   = "/opt/${package_name}-${version}.${os}-${arch}/${package_name}",
+  Stdlib::Absolutepath                           $archive_bin_path   = "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}/${package_name}",
   Optional[String[1]]                            $extra_options      = undef,
   Optional[Prometheus::Uri]                      $download_url       = undef,
   Optional[Stdlib::Host]                         $scrape_host        = undef,

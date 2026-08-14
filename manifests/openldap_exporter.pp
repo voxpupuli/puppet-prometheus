@@ -96,7 +96,7 @@ class prometheus::openldap_exporter (
 
   # For compatibility with previous versions, we keep the previous name for the service
   # but since the binary has changed name, we need to specify it manually.
-  $extract_path = "/opt/${service_name}-${version}.${os}-${real_arch}"
+  $extract_path = "${prometheus::basepath}/${service_name}-${version}.${os}-${real_arch}"
   $archive_bin_path = "${extract_path}/${package_name}"
   file { $extract_path:
     ensure => 'directory',

@@ -187,6 +187,6 @@ class prometheus::frr_exporter (
     scrape_job_name    => 'frr',
     scrape_job_labels  => {},
     bin_name           => $package_name,
-    archive_bin_path   => "/opt/${package_name}-${version}.${os}-${arch}/${package_name}",
+    archive_bin_path   => "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}/${package_name}",
   }
 }
