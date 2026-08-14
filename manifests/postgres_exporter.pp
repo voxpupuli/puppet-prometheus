@@ -107,10 +107,10 @@ class prometheus::postgres_exporter (
 
   if versioncmp($version, '0.9.0') < 0 {
     $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}_${release}_${os}-${arch}.${download_extension}")
-    $bin_path = "/opt/${package_name}_v${version}_${os}-${arch}/postgres_exporter"
+    $bin_path = "${prometheus::basepath}/${package_name}_v${version}_${os}-${arch}/postgres_exporter"
   } else {
     $real_download_url = pick($download_url, "${download_url_base}/download/${release}/${package_name}-${version}.${os}-${arch}.${download_extension}")
-    $bin_path = "/opt/${package_name}-${version}.${os}-${arch}/postgres_exporter"
+    $bin_path = "${prometheus::basepath}/${package_name}-${version}.${os}-${arch}/postgres_exporter"
   }
 
   $notify_service = $restart_on_change ? {

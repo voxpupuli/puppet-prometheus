@@ -128,7 +128,7 @@ class prometheus::dellhw_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
-    archive_bin_path   => "/opt/dellhw_exporter-${version}.${os}-${arch}/dellhw_exporter",
+    archive_bin_path   => "${prometheus::basepath}/dellhw_exporter-${version}.${os}-${arch}/dellhw_exporter",
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
   }

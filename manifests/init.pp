@@ -223,35 +223,38 @@
 # @param systemd_install_options
 #  Options for the install section of prometheus systemd unit file. Can be used to add custom options
 #  or to override default. Only used when init_style is set to systemd.
+# @param clean_url_releases
+#  If this variable is activated, the releases are no longer installed under /opt but under
+#  /opt/prometheus. In addition, all releases that are no longer used are automatically deleted.
 class prometheus (
   Stdlib::Absolutepath $env_file_path,
-  Array $extra_groups = [],
-  Hash $global_config = { 'scrape_interval' => '15s', 'evaluation_interval' => '15s', 'external_labels' => { 'monitor' => 'master' } },
-  String $package_ensure = 'latest',
-  String $package_name = 'prometheus',
-  Array $rule_files = [],
-  Array $scrape_configs = [],
-  Optional[Array] $scrape_config_files = undef,
-  Array $remote_read_configs = [],
-  Array $remote_write_configs = [],
-  Boolean $enable_tracing = false,
-  Hash $tracing_config = {},
-  Stdlib::Absolutepath $shared_dir = '/usr/local/share/prometheus',
-  String $storage_retention = '360h',
-  String $user = 'prometheus',
-  Prometheus::Uri $download_url_base = 'https://github.com/prometheus/prometheus/releases',
-  Array $alertmanagers_config = [],
-  Array $alert_relabel_config = [],
-  String $download_extension = 'tar.gz',
-  String $config_template = 'prometheus/prometheus.yaml.erb',
-  String $config_mode = '0640',
-  String $config_dir = '/etc/prometheus',
-  Boolean $manage_config_dir = true,
-  Boolean $manage_init_file = true,
-  Hash $alerts = {},
-  Boolean $manage_config = true,
-  String $group = 'prometheus',
-  Stdlib::Absolutepath $localstorage = '/var/lib/prometheus',
+  Array $extra_groups                                                           = [],
+  Hash $global_config                                                           = { 'scrape_interval' => '15s', 'evaluation_interval' => '15s', 'external_labels' => { 'monitor' => 'master' } },
+  String $package_ensure                                                        = 'latest',
+  String $package_name                                                          = 'prometheus',
+  Array $rule_files                                                             = [],
+  Array $scrape_configs                                                         = [],
+  Optional[Array] $scrape_config_files                                          = undef,
+  Array $remote_read_configs                                                    = [],
+  Array $remote_write_configs                                                   = [],
+  Boolean $enable_tracing                                                       = false,
+  Hash $tracing_config                                                          = {},
+  Stdlib::Absolutepath $shared_dir                                              = '/usr/local/share/prometheus',
+  String $storage_retention                                                     = '360h',
+  String $user                                                                  = 'prometheus',
+  Prometheus::Uri $download_url_base                                            = 'https://github.com/prometheus/prometheus/releases',
+  Array $alertmanagers_config                                                   = [],
+  Array $alert_relabel_config                                                   = [],
+  String $download_extension                                                    = 'tar.gz',
+  String $config_template                                                       = 'prometheus/prometheus.yaml.erb',
+  String $config_mode                                                           = '0640',
+  String $config_dir                                                            = '/etc/prometheus',
+  Boolean $manage_config_dir                                                    = true,
+  Boolean $manage_init_file                                                     = true,
+  Hash $alerts                                                                  = {},
+  Boolean $manage_config                                                        = true,
+  String $group                                                                 = 'prometheus',
+  Stdlib::Absolutepath $localstorage                                            = '/var/lib/prometheus',
   Boolean $manage_localstorage                                                  = true,
   Stdlib::Absolutepath $bin_dir                                                 = '/usr/local/bin',
   String $version                                                               = '2.52.0',
@@ -315,6 +318,7 @@ class prometheus (
   Boolean $include_default_scrape_configs                                       = true,
   Optional[String[1]] $proxy_server                                             = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
+  Boolean $clean_url_releases                                                   = false,
 ) {
   $real_arch = $arch ? {
     'x86_64'  => 'amd64',
@@ -324,6 +328,23 @@ class prometheus (
     'armv6l'  => 'armv6',
     'armv5l'  => 'armv5',
     default   => $arch,
+  }
+
+  if $clean_url_releases {
+    $basepath = '/opt/prometheus'
+
+    file { $basepath:
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      backup  => false,
+      force   => true,
+      purge   => true,
+      recurse => true,
+    }
+  } else {
+    $basepath = '/opt'
   }
 
   if $manage_prometheus_server {
