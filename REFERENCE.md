@@ -4469,7 +4469,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.10.0'`
+Default value: `'1.11.0'`
 
 ##### <a name="-prometheus--elasticsearch_exporter--proxy_server"></a>`proxy_server`
 
