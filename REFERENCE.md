@@ -5038,7 +5038,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.16.0'`
+Default value: `'0.17.0'`
 
 ##### <a name="-prometheus--graphite_exporter--proxy_server"></a>`proxy_server`
 
