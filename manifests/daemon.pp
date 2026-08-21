@@ -37,6 +37,9 @@
 #  Should puppet manage the service? (default true)
 # @param extract_command
 #  Custom command passed to the archive resource to extract the downloaded archive.
+# @param extract_flags
+#  Custom arguments passed to the archive resource to extract the downloaded archive.
+#  This is a hash with the key being which extract command is used, and the value being the arguments to pass the the command.
 # @param extract_path
 #  Path where to find extracted binary
 # @param archive_bin_path
@@ -78,6 +81,7 @@ define prometheus::daemon (
   Hash[String[1], Scalar] $env_vars                          = {},
   Stdlib::Absolutepath $env_file_path                        = $prometheus::env_file_path,
   Optional[String[1]] $extract_command                       = $prometheus::extract_command,
+  Hash[String[1], String[1]] $extract_flags                  = $prometheus::extract_flags,
   Stdlib::Absolutepath $extract_path                         = '/opt',
   Stdlib::Absolutepath $archive_bin_path                     = "/opt/${name}-${version}.${os}-${arch}/${name}",
   Boolean $export_scrape_job                                 = false,
@@ -121,6 +125,7 @@ define prometheus::daemon (
           cleanup         => true,
           before          => File[$archive_bin_path],
           extract_command => $extract_command,
+          extract_flags   => $extract_flags,
           proxy_server    => $proxy_server,
           proxy_type      => $proxy_type,
         }

@@ -98,6 +98,9 @@
 #  If omitted, relevant URL components will be derived automatically.
 # @param extract_command
 #  Custom command passed to the archive resource to extract the downloaded archive.
+# @param extract_flags
+#  Custom arguments passed to the archive resource to extract the downloaded archive.
+#  This is a hash with the key being which extract command is used, and the value being the arguments to pass the the command.
 # @param collect_tag
 #  Only collect scrape jobs tagged with this label. Allowing to split jobs over multiple prometheuses.
 # @param collect_scrape_jobs
@@ -261,6 +264,7 @@ class prometheus (
   Optional[String[1]] $extra_options                                            = undef,
   Optional[String] $download_url                                                = undef,
   Optional[String[1]] $extract_command                                          = undef,
+  Hash[String[1], String[1]] $extract_flags                                     = { 'tar' => '--no-same-owner --no-same-permissions --no-xattrs --no-acls -xf' },
   Stdlib::Absolutepath $usershell                                               = '/usr/bin/nologin',
   Optional[String[1]] $web_listen_address                                       = undef,
   Optional[String[1]] $web_read_timeout                                         = undef,

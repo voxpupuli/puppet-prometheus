@@ -53,6 +53,7 @@ describe 'prometheus::daemon' do
               'checksum_verify' => false,
               'creates' => "/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter",
               'cleanup' => true,
+              'extract_flags' => { 'tar' => '--no-same-owner --no-same-permissions --no-xattrs --no-acls -xf' },
             ).that_comes_before("File[/opt/smurf_exporter-#{parameters[:version]}.#{prom_os}-#{prom_arch}/smurf_exporter]")
           }
 
@@ -92,6 +93,14 @@ describe 'prometheus::daemon' do
             end
 
             it { is_expected.to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with_extract_path('/opt/foo') }
+          end
+
+          context 'with overidden extract_flags' do
+            let(:params) do
+              parameters.merge(extract_flags: { 'tar' => '--some-flag' })
+            end
+
+            it { is_expected.to contain_archive("/tmp/smurf_exporter-#{parameters[:version]}.tar.gz").with_extract_flags({ 'tar' => '--some-flag' }) }
           end
 
           it { is_expected.to contain_class('systemd') }

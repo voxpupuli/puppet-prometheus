@@ -136,6 +136,7 @@ The following parameters are available in the `prometheus` class:
 * [`storage_retention`](#-prometheus--storage_retention)
 * [`external_url`](#-prometheus--external_url)
 * [`extract_command`](#-prometheus--extract_command)
+* [`extract_flags`](#-prometheus--extract_flags)
 * [`collect_tag`](#-prometheus--collect_tag)
 * [`collect_scrape_jobs`](#-prometheus--collect_scrape_jobs)
 * [`max_open_files`](#-prometheus--max_open_files)
@@ -556,6 +557,15 @@ Data type: `Optional[String[1]]`
 Custom command passed to the archive resource to extract the downloaded archive.
 
 Default value: `undef`
+
+##### <a name="-prometheus--extract_flags"></a>`extract_flags`
+
+Data type: `Hash[String[1], String[1]]`
+
+Custom arguments passed to the archive resource to extract the downloaded archive.
+This is a hash with the key being which extract command is used, and the value being the arguments to pass the the command.
+
+Default value: `{ 'tar' => '--no-same-owner --no-same-permissions --no-xattrs --no-acls -xf' }`
 
 ##### <a name="-prometheus--collect_tag"></a>`collect_tag`
 
@@ -15105,6 +15115,7 @@ The following parameters are available in the `prometheus::daemon` defined type:
 * [`service_enable`](#-prometheus--daemon--service_enable)
 * [`manage_service`](#-prometheus--daemon--manage_service)
 * [`extract_command`](#-prometheus--daemon--extract_command)
+* [`extract_flags`](#-prometheus--daemon--extract_flags)
 * [`extract_path`](#-prometheus--daemon--extract_path)
 * [`archive_bin_path`](#-prometheus--daemon--archive_bin_path)
 * [`init_style`](#-prometheus--daemon--init_style)
@@ -15267,6 +15278,15 @@ Data type: `Optional[String[1]]`
 Custom command passed to the archive resource to extract the downloaded archive.
 
 Default value: `$prometheus::extract_command`
+
+##### <a name="-prometheus--daemon--extract_flags"></a>`extract_flags`
+
+Data type: `Hash[String[1], String[1]]`
+
+Custom arguments passed to the archive resource to extract the downloaded archive.
+This is a hash with the key being which extract command is used, and the value being the arguments to pass the the command.
+
+Default value: `$prometheus::extract_flags`
 
 ##### <a name="-prometheus--daemon--extract_path"></a>`extract_path`
 
