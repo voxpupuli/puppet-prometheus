@@ -7696,7 +7696,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.18.0'`
+Default value: `'0.20.0'`
 
 ##### <a name="-prometheus--mysqld_exporter--proxy_server"></a>`proxy_server`
 
