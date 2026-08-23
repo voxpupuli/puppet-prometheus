@@ -4116,7 +4116,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.13.13'`
+Default value: `'2.0.0'`
 
 ##### <a name="-prometheus--dellhw_exporter--omreport_path"></a>`omreport_path`
 
