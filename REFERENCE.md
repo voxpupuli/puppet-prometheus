@@ -8036,7 +8036,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.5.1'`
+Default value: `'1.5.3'`
 
 ##### <a name="-prometheus--nginx_prometheus_exporter--proxy_server"></a>`proxy_server`
 
