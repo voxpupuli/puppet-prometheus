@@ -1613,7 +1613,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.0.12'`
+Default value: `'1.1.1'`
 
 ##### <a name="-prometheus--apache_exporter--proxy_server"></a>`proxy_server`
 
