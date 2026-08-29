@@ -2324,6 +2324,7 @@ The following parameters are available in the `prometheus::bird_exporter` class:
 * [`arch`](#-prometheus--bird_exporter--arch)
 * [`bin_dir`](#-prometheus--bird_exporter--bin_dir)
 * [`download_extension`](#-prometheus--bird_exporter--download_extension)
+* [`extract_path`](#-prometheus--bird_exporter--extract_path)
 * [`download_url`](#-prometheus--bird_exporter--download_url)
 * [`download_url_base`](#-prometheus--bird_exporter--download_url_base)
 * [`extra_groups`](#-prometheus--bird_exporter--extra_groups)
@@ -2378,6 +2379,14 @@ Data type: `String`
 Extension for the release binary archive
 
 Default value: `''`
+
+##### <a name="-prometheus--bird_exporter--extract_path"></a>`extract_path`
+
+Data type: `Stdlib::Absolutepath`
+
+Path where to find extracted binary
+
+Default value: `'/opt'`
 
 ##### <a name="-prometheus--bird_exporter--download_url"></a>`download_url`
 
