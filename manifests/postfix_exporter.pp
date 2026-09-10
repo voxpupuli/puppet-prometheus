@@ -1,7 +1,11 @@
 # @summary manages prometheus postfix_exporter
 # @example Basic usage
 #   include prometheus::postfix_exporter
-# @see https://github.com/kumina/postfix_exporter
+# @see https://github.com/sarab97/postfix_exporter
+# @param arch
+#   architecture for the pacakge being downloaded, taken from prometheus::real_arch
+# @param os
+#  Operating system (linux is the only one supported)
 # @param install_method
 #   Installation method: `url` or `package`. (Note `package` is not available on most OSes.)
 # @param download_url
@@ -56,11 +60,13 @@
 #  Optional proxy server type (none|http|https|ftp)
 class prometheus::postfix_exporter (
   # Installation options
+  String[1] $arch                                            = $prometheus::real_arch,
+  String[1] $os                                              = downcase($facts['kernel']),
   Prometheus::Install $install_method                        = 'url',
   Optional[Stdlib::HTTPUrl] $download_url                    = undef,
-  Stdlib::HTTPUrl $download_url_base                         = 'https://github.com/kumina/postfix_exporter/releases',
-  String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
-  String[1] $version                                         = '0.2.0',
+  Stdlib::HTTPUrl $download_url_base                         = 'https://github.com/sarab97/postfix_exporter/releases',
+  String $download_extension                                 = 'tar.gz', # lint:ignore:params_empty_string_assignment
+  String[1] $version                                         = '0.6.0',
   Optional[String[1]] $proxy_server                          = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type = undef,
 
@@ -92,21 +98,30 @@ class prometheus::postfix_exporter (
   Stdlib::Port   $scrape_port       = 9154,
   String[1]      $scrape_job_name   = 'postfix',
   Optional[Hash] $scrape_job_labels = undef,
-) {
-  include prometheus
-
-  $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}")
+) inherits prometheus {
+  $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
   $notify_service = $restart_on_change ? {
     true    => Service[$service_name],
     default => undef,
   }
 
-  prometheus::daemon { $service_name:
+  # changing sarab97's release, it uses a flat archive, unlike prometheus::daemon's default archive_bin_path assumption. 
+  # Extract into our own versioned dir, same as nginx_prometheus_exporter 
+  $extract_path     = "/opt/${package_name}-${version}.${os}-${arch}"
+  $archive_bin_path = "${extract_path}/${package_name}"
+
+  file { $extract_path:
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 0, # 0 instead of root because OS X uses "wheel".
+    mode   => '0555',
+  }
+  -> prometheus::daemon { $service_name:
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
-    os                 => $prometheus::os,
-    arch               => $prometheus::real_arch,
+    os                 => $os,
+    arch               => $arch,
     real_download_url  => $real_download_url,
     bin_dir            => $prometheus::bin_dir,
     notify_service     => $notify_service,
@@ -129,5 +144,7 @@ class prometheus::postfix_exporter (
     scrape_job_labels  => $scrape_job_labels,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,
+    extract_path       => $extract_path,
+    archive_bin_path   => $archive_bin_path,
   }
 }
