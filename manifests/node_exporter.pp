@@ -167,9 +167,18 @@ class prometheus::node_exporter (
   }
 
   if $listen_address or $scrape_port != 9100 {
-    $web_listen_address = "--web.listen-address='${listen_address}:${scrape_port}'"
+    if $facts['kernel'] == 'FreeBSD' {
+      $env_vars_merged = $env_vars + {
+        'node_exporter_listen_address' => "${listen_address}:${scrape_port}"
+      }
+      $web_listen_address = ''
+    } else {
+      $web_listen_address = "--web.listen-address='${listen_address}:${scrape_port}'"
+      $env_vars_merged = $env_vars
+    }
   } else {
     $web_listen_address = ''
+    $env_vars_merged = $env_vars
   }
 
   $options = [
@@ -208,7 +217,7 @@ class prometheus::node_exporter (
     scrape_job_name    => $scrape_job_name,
     scrape_job_labels  => $scrape_job_labels,
     bin_name           => $bin_name,
-    env_vars           => $env_vars,
+    env_vars           => $env_vars_merged,
     env_file_path      => $env_file_path,
     proxy_server       => $proxy_server,
     proxy_type         => $proxy_type,

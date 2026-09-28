@@ -96,6 +96,7 @@ define prometheus::daemon (
 ) {
   $real_package_ensure = $ensure ? { 'absent' => 'absent', default => $package_ensure }
   $real_service_ensure = $ensure ? { 'absent' => 'stopped', default => $service_ensure }
+  $env_variable = $facts['kernel'] ? { 'FreeBSD' => "${name}_args", default => 'ARGS' }
 
   case $install_method {
     'url': {
@@ -270,7 +271,7 @@ define prometheus::daemon (
 
   if $init_style == 'none' and $install_method == 'package' {
     $env_vars_merged = $env_vars + {
-      'ARGS' => $options,
+      $env_variable => $options,
     }
   } else {
     $env_vars_merged = $env_vars
@@ -291,18 +292,30 @@ define prometheus::daemon (
     # the logic here is that the package-managed .service files *need*
     # those files to be present, even if empty, so it's critical that
     # the file not get removed
-    file { "${env_file_path}/${name}":
-      ensure  => stdlib::ensure($ensure, 'file'),
-      mode    => '0644',
-      owner   => 'root',
-      group   => '0', # Darwin uses wheel
-      content => epp(
-        'prometheus/daemon.env.epp',
-        {
-          'env_vars' => $env_vars_merged,
+    if $facts['kernel'] == 'FreeBSD' {
+      $env_vars_merged.each |$var, $args| {
+        shellvar { "${name}_${var}":
+          ensure   => present,
+          target   => "${env_file_path}/${name}",
+          variable => $var,
+          value    => $args,
+          notify   => $notify_service,
         }
-      ),
-      notify  => $notify_service,
+      }
+    } else {
+      file { "${env_file_path}/${name}":
+        ensure  => stdlib::ensure($ensure, 'file'),
+        mode    => '0644',
+        owner   => 'root',
+        group   => '0', # Darwin uses wheel
+        content => epp(
+          'prometheus/daemon.env.epp',
+          {
+            'env_vars' => $env_vars_merged,
+          }
+        ),
+        notify  => $notify_service,
+      }
     }
   }
 

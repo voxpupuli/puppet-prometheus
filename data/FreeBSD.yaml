@@ -1,0 +1,21 @@
+---
+prometheus::init_style: 'none'
+prometheus::env_file_path: '/etc/rc.conf.d'
+prometheus::manage_localstorage: false
+prometheus::server::manage_user: false
+prometheus::server::manage_group: false
+prometheus::server::package_ensure: 'installed'
+prometheus::server::manage_config_dir: false
+prometheus::server::manage_init_file: false
+prometheus::configname: 'prometheus.yml'
+prometheus::server::install_method: 'package'
+prometheus::server::bin_dir: '/usr/local/bin'
+prometheus::node_exporter::package_name: 'node_exporter'
+prometheus::node_exporter::install_method: 'package'
+prometheus::node_exporter::bin_name: 'node_exporter'
+prometheus::node_exporter::user: 'node_exporter'
+prometheus::node_exporter::group: 'node_exporter'
+prometheus::node_exporter::manage_user: false
+prometheus::node_exporter::manage_group: false
+prometheus::node_exporter::service_name: 'node_exporter'
+prometheus::node_exporter::init_style: 'none'
