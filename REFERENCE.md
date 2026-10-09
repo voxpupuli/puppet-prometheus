@@ -15582,4 +15582,3 @@ Struct[{
   Optional[curve_preferences] => Array[String[1],1],
 }]
 ```
-
