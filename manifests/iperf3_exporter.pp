@@ -55,7 +55,7 @@ class prometheus::iperf3_exporter (
   String[1] $service_name                 = 'iperf3_exporter',
   String[1] $user                         = 'iperf3-exporter',
   # renovate: depName=edgard/iperf3_exporter
-  String[1] $version                      = '0.1.3',
+  String[1] $version                      = '1.3.1',
   String[1] $os                           = downcase($facts['kernel']),
   Optional[String[1]] $options            = undef,
   Prometheus::Initstyle $init_style       = $facts['service_provider'],
