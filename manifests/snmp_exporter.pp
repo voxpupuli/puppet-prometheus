@@ -67,7 +67,7 @@ class prometheus::snmp_exporter (
   String[1] $service_name = 'snmp_exporter',
   String[1] $user = 'snmp-exporter',
   # renovate: depName=prometheus/snmp_exporter
-  String[1] $version                                         = '0.30.1',
+  String[1] $version                                         = '0.31.0',
   Boolean $purge_config_dir                                  = true,
   Boolean $restart_on_change                                 = true,
   Boolean $service_enable                                    = true,

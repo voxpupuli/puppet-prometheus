@@ -12759,7 +12759,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'0.30.1'`
+Default value: `'0.31.0'`
 
 ##### <a name="-prometheus--snmp_exporter--proxy_server"></a>`proxy_server`
 
