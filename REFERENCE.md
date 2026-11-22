@@ -8375,7 +8375,7 @@ Data type: `String[1]`
 
 The binary release version
 
-Default value: `'1.12.1'`
+Default value: `'1.13.1'`
 
 ##### <a name="-prometheus--node_exporter--env_vars"></a>`env_vars`
 
