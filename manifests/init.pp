@@ -69,6 +69,8 @@
 # @param otlp_config
 #  Prometheus OTLP configuration variables
 #  Note: only used when enable_otlp_receiver=true
+# @param storage_config
+#  Prometheus storage configuration variables
 # @param rule_files
 #  Prometheus rule files
 # @param scrape_configs
@@ -235,6 +237,7 @@ class prometheus (
   Hash $global_config = { 'scrape_interval' => '15s', 'evaluation_interval' => '15s', 'external_labels' => { 'monitor' => 'master' } },
   Boolean $enable_otlp_receiver = false,
   Hash $otlp_config = {},
+  Hash $storage_config = {},
   String $package_ensure = 'latest',
   String $package_name = 'prometheus',
   Array $rule_files = [],
