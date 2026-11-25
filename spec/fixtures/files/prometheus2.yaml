@@ -15,8 +15,8 @@ scrape_configs:
     - localhost:9090
     labels:
       alias: Prometheus
+remote_read: []
+remote_write: []
 alerting:
   alert_relabel_configs: []
   alertmanagers: []
-remote_read: []
-remote_write: []
