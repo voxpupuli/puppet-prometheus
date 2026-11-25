@@ -1,5 +1,6 @@
 <% require 'yaml' -%>
 <% global_config = scope.lookupvar('prometheus::server::global_config') -%>
+<% otlp_config = scope.lookupvar('prometheus::server::otlp_config') -%>
 <% rule_files = scope.lookupvar('prometheus::server::_rule_files') -%>
 <% scrape_configs = scope.lookupvar('prometheus::config::scrape_configs') -%>
 <% scrape_config_files = scope.lookupvar('prometheus::server::scrape_config_files') -%>
@@ -19,6 +20,9 @@
 }
 if scrape_config_files
     full_config['scrape_config_files'] = scrape_config_files
+end
+if @enable_otlp_receiver
+    full_config['otlp'] = otlp_config
 end
 if @enable_tracing
     full_config['tracing'] = tracing_config
