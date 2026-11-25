@@ -403,6 +403,7 @@ describe 'prometheus' do
                 web_enable_admin_api: true,
                 web_page_title: 'My Company Prometheus',
                 web_cors_origin: 'https?://(domain1|domain2)\.com',
+                enable_otlp_receiver: true,
                 localstorage: '/opt/prometheus/data/',
                 storage_retention: '14d',
                 storage_retention_size: '50GB',
