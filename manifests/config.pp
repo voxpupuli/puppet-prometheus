@@ -29,6 +29,8 @@ class prometheus::config {
     $scrape_configs = $prometheus::server::scrape_configs
   }
 
+  $enable_otlp_receiver = $prometheus::enable_otlp_receiver
+
   # Formatting
   $web_page_title = if ($prometheus::web_page_title) { "\"${prometheus::web_page_title}\"" } else { undef }
   $web_cors_origin = if ($prometheus::web_cors_origin) { "\"${prometheus::web_cors_origin}\"" } else { undef }
@@ -41,6 +43,7 @@ class prometheus::config {
     'web.route-prefix'                         => $prometheus::web_route_prefix,
     'web.user-assets'                          => $prometheus::web_user_assets,
     'web.enable-lifecycle'                     => $prometheus::web_enable_lifecycle,
+    'web.enable-otlp-receiver'                 => $prometheus::enable_otlp_receiver,
     'web.enable-admin-api'                     => $prometheus::web_enable_admin_api,
     'web.console.templates'                    => "${prometheus::shared_dir}/consoles",
     'web.console.libraries'                    => "${prometheus::shared_dir}/console_libraries",

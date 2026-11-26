@@ -1,5 +1,7 @@
 <% require 'yaml' -%>
 <% global_config = scope.lookupvar('prometheus::server::global_config') -%>
+<% otlp_config = scope.lookupvar('prometheus::server::otlp_config') -%>
+<% storage_config = scope.lookupvar('prometheus::server::storage_config') -%>
 <% rule_files = scope.lookupvar('prometheus::server::_rule_files') -%>
 <% scrape_configs = scope.lookupvar('prometheus::config::scrape_configs') -%>
 <% scrape_config_files = scope.lookupvar('prometheus::server::scrape_config_files') -%>
@@ -8,8 +10,11 @@
 <% tracing_config = scope.lookupvar('prometheus::server::tracing_config') -%>
 <% full_config = {
   'global'=>global_config,
+  'storage'=>storage_config,
   'rule_files'=>rule_files,
   'scrape_configs'=>scrape_configs + @collected_scrape_jobs,
+  'remote_read'=>remote_read_configs,
+  'remote_write'=>remote_write_configs,
   'alerting'=>{
     'alert_relabel_configs'=>scope.lookupvar('prometheus::server::alert_relabel_config'),
     'alertmanagers'=>scope.lookupvar('prometheus::server::alertmanagers_config'),
@@ -18,8 +23,9 @@
 if scrape_config_files
     full_config['scrape_config_files'] = scrape_config_files
 end
-    full_config['remote_read'] = remote_read_configs
-    full_config['remote_write'] = remote_write_configs
+if @enable_otlp_receiver
+    full_config['otlp'] = otlp_config
+end
 if @enable_tracing
     full_config['tracing'] = tracing_config
 end

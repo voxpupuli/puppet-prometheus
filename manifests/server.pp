@@ -19,6 +19,8 @@ class prometheus::server (
   String $config_template                                                       = $prometheus::config_template,
   String $config_mode                                                           = $prometheus::config_mode,
   Hash $global_config                                                           = $prometheus::global_config,
+  Hash $otlp_config                                                             = $prometheus::otlp_config,
+  Hash $storage_config                                                          = $prometheus::storage_config,
   Array $rule_files                                                             = $prometheus::rule_files,
   Array $scrape_configs                                                         = $prometheus::scrape_configs,
   Optional[Array] $scrape_config_files                                          = $prometheus::scrape_config_files,

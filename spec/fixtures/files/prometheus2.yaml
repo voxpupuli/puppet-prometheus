@@ -4,6 +4,7 @@ global:
   evaluation_interval: 15s
   external_labels:
     monitor: master
+storage: {}
 rule_files:
 - "/etc/prometheus/rules.d/*.rules"
 scrape_configs:
@@ -15,8 +16,8 @@ scrape_configs:
     - localhost:9090
     labels:
       alias: Prometheus
+remote_read: []
+remote_write: []
 alerting:
   alert_relabel_configs: []
   alertmanagers: []
-remote_read: []
-remote_write: []
