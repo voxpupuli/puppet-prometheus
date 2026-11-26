@@ -122,6 +122,9 @@ The following parameters are available in the `prometheus` class:
 * [`restart_on_change`](#-prometheus--restart_on_change)
 * [`init_style`](#-prometheus--init_style)
 * [`global_config`](#-prometheus--global_config)
+* [`enable_otlp_receiver`](#-prometheus--enable_otlp_receiver)
+* [`otlp_config`](#-prometheus--otlp_config)
+* [`storage_config`](#-prometheus--storage_config)
 * [`rule_files`](#-prometheus--rule_files)
 * [`scrape_configs`](#-prometheus--scrape_configs)
 * [`scrape_config_files`](#-prometheus--scrape_config_files)
@@ -432,6 +435,32 @@ Data type: `Hash`
 Prometheus global configuration variables
 
 Default value: `{ 'scrape_interval' => '15s', 'evaluation_interval' => '15s', 'external_labels' => { 'monitor' => 'master' } }`
+
+##### <a name="-prometheus--enable_otlp_receiver"></a>`enable_otlp_receiver`
+
+Data type: `Boolean`
+
+--web.enable-otlp-receiver
+Enable OTLP receiver endpoint + configuration
+
+Default value: `false`
+
+##### <a name="-prometheus--otlp_config"></a>`otlp_config`
+
+Data type: `Hash`
+
+Prometheus OTLP configuration variables
+Note: only used when enable_otlp_receiver=true
+
+Default value: `{}`
+
+##### <a name="-prometheus--storage_config"></a>`storage_config`
+
+Data type: `Hash`
+
+Prometheus storage configuration variables
+
+Default value: `{}`
 
 ##### <a name="-prometheus--rule_files"></a>`rule_files`
 
@@ -12112,6 +12141,8 @@ The following parameters are available in the `prometheus::server` class:
 * [`config_template`](#-prometheus--server--config_template)
 * [`config_mode`](#-prometheus--server--config_mode)
 * [`global_config`](#-prometheus--server--global_config)
+* [`otlp_config`](#-prometheus--server--otlp_config)
+* [`storage_config`](#-prometheus--server--storage_config)
 * [`rule_files`](#-prometheus--server--rule_files)
 * [`scrape_configs`](#-prometheus--server--scrape_configs)
 * [`scrape_config_files`](#-prometheus--server--scrape_config_files)
@@ -12302,6 +12333,22 @@ Data type: `Hash`
 
 
 Default value: `$prometheus::global_config`
+
+##### <a name="-prometheus--server--otlp_config"></a>`otlp_config`
+
+Data type: `Hash`
+
+
+
+Default value: `$prometheus::otlp_config`
+
+##### <a name="-prometheus--server--storage_config"></a>`storage_config`
+
+Data type: `Hash`
+
+
+
+Default value: `$prometheus::storage_config`
 
 ##### <a name="-prometheus--server--rule_files"></a>`rule_files`
 
