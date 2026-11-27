@@ -7,6 +7,8 @@
 #  Directory where binaries are located
 # @param download_extension
 #  Extension for the release binary archive
+# @param extract_path
+#  Path where to find extracted binary
 # @param download_url
 #  Complete URL corresponding to the where the release binary archive can be downloaded
 # @param download_url_base
@@ -68,6 +70,7 @@
 #
 class prometheus::bird_exporter (
   String $download_extension                                 = '', # lint:ignore:params_empty_string_assignment
+  Stdlib::Absolutepath $extract_path                         = '/opt',
   Prometheus::Uri $download_url_base                         = 'https://github.com/czerwonk/bird_exporter/releases',
   Array[String] $extra_groups                                = ['bird'],
   String[1] $group                                           = 'bird-exporter',
@@ -112,6 +115,7 @@ class prometheus::bird_exporter (
     install_method     => $install_method,
     version            => $version,
     download_extension => $download_extension,
+    extract_path       => $extract_path,
     os                 => $os,
     arch               => $arch,
     real_download_url  => $real_download_url,
